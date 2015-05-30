@@ -198,6 +198,9 @@ github.map.fastly.net.  30      IN      A       185.31.17.133&lt;/span&gt;
 &lt;h2&gt;Publish the web site on GitHub&lt;/h2&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt; make github
+&lt;span class="go"&gt;
+Username for 'https://github.com': didier-bernaudeau
+Password for 'https://didier-bernaudeau&amp;#64;github.com': *************************&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="references"&gt;

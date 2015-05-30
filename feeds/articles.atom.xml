@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>D. Bernaudeau</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2015-05-30T21:58:00+02:00</updated><entry><title>HowTo make a web site with Pelican hosted on GitHub Pages</title><link href="http://didier.bernaudeau.net/HowTo-make-a-web-site-with-Pelican-hosted-on-GitHub-Pages.html" rel="alternate"></link><updated>2015-05-30T21:58:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-05-16:HowTo-make-a-web-site-with-Pelican-hosted-on-GitHub-Pages.html</id><summary type="html">&lt;p&gt;Pelican is a static site generator writed in Python. This means that you edit the content on your computer with a simple text editor. Then, a generator makes all HTML pages for the web site, including indexes for articles, categories and tags. In the end, your web site can be hosted easily on a simple HTTP server like GitHub Pages or Amazon S3.&lt;/p&gt;
+&lt;p&gt;Unlike other CMS (Content Management System) like Wordpress or Drupal, Pelican has no web administration interface. In most cases, the administration interface has many vulnerabilies used to deface the website.&lt;/p&gt;
+&lt;p&gt;This article describes step by step how to make your web site with Pelican 3.5 on Gentoo Linux and how to host your web site on GitHub Pages.&lt;/p&gt;
+
+&lt;div class="section" id="install-pelican"&gt;
+&lt;h2&gt;Install Pelican&lt;/h2&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; emerge pelican
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="create-github-space"&gt;
+&lt;h2&gt;Create GitHub space&lt;/h2&gt;
+&lt;p&gt;On &lt;a class="reference external" href="https://github.com/"&gt;GitHub&lt;/a&gt;, create an account named &amp;quot;didier-bernaudeau&amp;quot; then a repository named &amp;quot;didier-bernaudeau.github.io&amp;quot;. Obviously, remplace &amp;quot;didier-bernaudeau&amp;quot; by your username.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="dns-configuration"&gt;
+&lt;h2&gt;DNS Configuration&lt;/h2&gt;
+&lt;p&gt;Add a record in the DNS :&lt;/p&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;Type&lt;/span&gt; &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;CNAME&lt;/span&gt;
+&lt;span class="err"&gt;Name&lt;/span&gt; &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;didier.bernaudeau.net&lt;/span&gt;
+&lt;span class="err"&gt;Value&lt;/span&gt; &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;didier-bernaudeau.github.io.&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Check configuration with &amp;quot;dig&amp;quot; tool :&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; emerge &lt;span class="nb"&gt;bind&lt;/span&gt;-tools
+&lt;/pre&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; dig didier.bernaudeau.net +nostats +nocomments +nocmd
+&lt;span class="go"&gt;
+; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.10.1-P1 &amp;lt;&amp;lt;&amp;gt;&amp;gt; didier.bernaudeau.net +nostats +nocomments +nocmd
+;; global options: +cmd
+;didier.bernaudeau.net.         IN      A
+didier.bernaudeau.net.  10800   IN      CNAME   didier-bernaudeau.github.io.
+didier-bernaudeau.github.io. 3600 IN    CNAME   github.map.fastly.net.
+github.map.fastly.net.  30      IN      A       185.31.17.133&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="create-local-directory"&gt;
+&lt;h2&gt;Create local directory&lt;/h2&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; git clone https://github.com/didier-bernaudeau/didier-bernaudeau.github.io.git/ MyWebSite
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;MyWebSite
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="create-project"&gt;
+&lt;h2&gt;Create project&lt;/h2&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; pelican-quickstart
+&lt;/pre&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Where&lt;/span&gt; &lt;span class="err"&gt;do&lt;/span&gt; &lt;span class="err"&gt;you&lt;/span&gt; &lt;span class="err"&gt;want&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;create&lt;/span&gt; &lt;span class="err"&gt;your&lt;/span&gt; &lt;span class="err"&gt;new&lt;/span&gt; &lt;span class="err"&gt;web&lt;/span&gt; &lt;span class="err"&gt;site?&lt;/span&gt; &lt;span class="k"&gt;[.]&lt;/span&gt;
+&lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;What&lt;/span&gt; &lt;span class="err"&gt;will&lt;/span&gt; &lt;span class="err"&gt;be&lt;/span&gt; &lt;span class="err"&gt;the&lt;/span&gt; &lt;span class="err"&gt;title&lt;/span&gt; &lt;span class="err"&gt;of&lt;/span&gt; &lt;span class="err"&gt;this&lt;/span&gt; &lt;span class="err"&gt;web&lt;/span&gt; &lt;span class="err"&gt;site?&lt;/span&gt; &lt;span class="err"&gt;D.&lt;/span&gt; &lt;span class="err"&gt;Bernaudeau&lt;/span&gt;
+&lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Who&lt;/span&gt; &lt;span class="err"&gt;will&lt;/span&gt; &lt;span class="err"&gt;be&lt;/span&gt; &lt;span class="err"&gt;the&lt;/span&gt; &lt;span class="err"&gt;author&lt;/span&gt; &lt;span class="err"&gt;of&lt;/span&gt; &lt;span class="err"&gt;this&lt;/span&gt; &lt;span class="err"&gt;web&lt;/span&gt; &lt;span class="err"&gt;site?&lt;/span&gt; &lt;span class="err"&gt;D.&lt;/span&gt; &lt;span class="err"&gt;Bernaudeau&lt;/span&gt;
+&lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;What&lt;/span&gt; &lt;span class="err"&gt;will&lt;/span&gt; &lt;span class="err"&gt;be&lt;/span&gt; &lt;span class="err"&gt;the&lt;/span&gt; &lt;span class="err"&gt;default&lt;/span&gt; &lt;span class="err"&gt;language&lt;/span&gt; &lt;span class="err"&gt;of&lt;/span&gt; &lt;span class="err"&gt;this&lt;/span&gt; &lt;span class="err"&gt;web&lt;/span&gt; &lt;span class="err"&gt;site?&lt;/span&gt; &lt;span class="k"&gt;[en]&lt;/span&gt;
+&lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Do&lt;/span&gt; &lt;span class="err"&gt;you&lt;/span&gt; &lt;span class="err"&gt;want&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;specify&lt;/span&gt; &lt;span class="err"&gt;a&lt;/span&gt; &lt;span class="err"&gt;URL&lt;/span&gt; &lt;span class="err"&gt;prefix?&lt;/span&gt; &lt;span class="err"&gt;e.g.,&lt;/span&gt; &lt;span class="err"&gt;http://example.com&lt;/span&gt;   &lt;span class="err"&gt;(Y/n)&lt;/span&gt; &lt;span class="err"&gt;Y&lt;/span&gt;
+&lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;What&lt;/span&gt; &lt;span class="err"&gt;is&lt;/span&gt; &lt;span class="err"&gt;your&lt;/span&gt; &lt;span class="err"&gt;URL&lt;/span&gt; &lt;span class="err"&gt;prefix?&lt;/span&gt; &lt;span class="err"&gt;(see&lt;/span&gt; &lt;span class="err"&gt;above&lt;/span&gt; &lt;span class="err"&gt;example&lt;/span&gt;&lt;span class="c1"&gt;; no trailing slash) http://didier.bernaudeau.net&lt;/span&gt;
+&lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Do&lt;/span&gt; &lt;span class="err"&gt;you&lt;/span&gt; &lt;span class="err"&gt;want&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;enable&lt;/span&gt; &lt;span class="err"&gt;article&lt;/span&gt; &lt;span class="err"&gt;pagination?&lt;/span&gt; &lt;span class="err"&gt;(Y/n)&lt;/span&gt; &lt;span class="err"&gt;n&lt;/span&gt;
+&lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Do&lt;/span&gt; &lt;span class="err"&gt;you&lt;/span&gt; &lt;span class="err"&gt;want&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;generate&lt;/span&gt; &lt;span class="err"&gt;a&lt;/span&gt; &lt;span class="err"&gt;Fabfile/Makefile&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;automate&lt;/span&gt; &lt;span class="err"&gt;generation&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;publishing?&lt;/span&gt; &lt;span class="err"&gt;(Y/n)&lt;/span&gt; &lt;span class="err"&gt;Y&lt;/span&gt;
+&lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Do&lt;/span&gt; &lt;span class="err"&gt;you&lt;/span&gt; &lt;span class="err"&gt;want&lt;/span&gt; &lt;span class="err"&gt;an&lt;/span&gt; &lt;span class="err"&gt;auto-reload&lt;/span&gt; &lt;span class="err"&gt;&amp;amp;&lt;/span&gt; &lt;span class="err"&gt;simpleHTTP&lt;/span&gt; &lt;span class="err"&gt;script&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;assist&lt;/span&gt; &lt;span class="err"&gt;with&lt;/span&gt; &lt;span class="err"&gt;theme&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;site&lt;/span&gt; &lt;span class="err"&gt;development?&lt;/span&gt; &lt;span class="err"&gt;(Y/n)&lt;/span&gt; &lt;span class="err"&gt;n&lt;/span&gt;
+&lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Do&lt;/span&gt; &lt;span class="err"&gt;you&lt;/span&gt; &lt;span class="err"&gt;want&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;upload&lt;/span&gt; &lt;span class="err"&gt;your&lt;/span&gt; &lt;span class="err"&gt;website&lt;/span&gt; &lt;span class="err"&gt;using&lt;/span&gt; &lt;span class="err"&gt;FTP?&lt;/span&gt; &lt;span class="err"&gt;(y/N)&lt;/span&gt; &lt;span class="err"&gt;N&lt;/span&gt;
+&lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Do&lt;/span&gt; &lt;span class="err"&gt;you&lt;/span&gt; &lt;span class="err"&gt;want&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;upload&lt;/span&gt; &lt;span class="err"&gt;your&lt;/span&gt; &lt;span class="err"&gt;website&lt;/span&gt; &lt;span class="err"&gt;using&lt;/span&gt; &lt;span class="err"&gt;SSH?&lt;/span&gt; &lt;span class="err"&gt;(y/N)&lt;/span&gt; &lt;span class="err"&gt;N&lt;/span&gt;
+&lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Do&lt;/span&gt; &lt;span class="err"&gt;you&lt;/span&gt; &lt;span class="err"&gt;want&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;upload&lt;/span&gt; &lt;span class="err"&gt;your&lt;/span&gt; &lt;span class="err"&gt;website&lt;/span&gt; &lt;span class="err"&gt;using&lt;/span&gt; &lt;span class="err"&gt;Dropbox?&lt;/span&gt; &lt;span class="err"&gt;(y/N)&lt;/span&gt; &lt;span class="err"&gt;N&lt;/span&gt;
+&lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Do&lt;/span&gt; &lt;span class="err"&gt;you&lt;/span&gt; &lt;span class="err"&gt;want&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;upload&lt;/span&gt; &lt;span class="err"&gt;your&lt;/span&gt; &lt;span class="err"&gt;website&lt;/span&gt; &lt;span class="err"&gt;using&lt;/span&gt; &lt;span class="err"&gt;S3?&lt;/span&gt; &lt;span class="err"&gt;(y/N)&lt;/span&gt; &lt;span class="err"&gt;N&lt;/span&gt;
+&lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Do&lt;/span&gt; &lt;span class="err"&gt;you&lt;/span&gt; &lt;span class="err"&gt;want&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;upload&lt;/span&gt; &lt;span class="err"&gt;your&lt;/span&gt; &lt;span class="err"&gt;website&lt;/span&gt; &lt;span class="err"&gt;using&lt;/span&gt; &lt;span class="err"&gt;Rackspace&lt;/span&gt; &lt;span class="err"&gt;Cloud&lt;/span&gt; &lt;span class="err"&gt;Files?&lt;/span&gt; &lt;span class="err"&gt;(y/N)&lt;/span&gt; &lt;span class="err"&gt;N&lt;/span&gt;
+&lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Do&lt;/span&gt; &lt;span class="err"&gt;you&lt;/span&gt; &lt;span class="err"&gt;want&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;upload&lt;/span&gt; &lt;span class="err"&gt;your&lt;/span&gt; &lt;span class="err"&gt;website&lt;/span&gt; &lt;span class="err"&gt;using&lt;/span&gt; &lt;span class="err"&gt;GitHub&lt;/span&gt; &lt;span class="err"&gt;Pages?&lt;/span&gt; &lt;span class="err"&gt;(y/N)&lt;/span&gt; &lt;span class="err"&gt;y&lt;/span&gt;
+&lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Is&lt;/span&gt; &lt;span class="err"&gt;this&lt;/span&gt; &lt;span class="err"&gt;your&lt;/span&gt; &lt;span class="err"&gt;personal&lt;/span&gt; &lt;span class="err"&gt;page&lt;/span&gt; &lt;span class="err"&gt;(username.github.io)?&lt;/span&gt; &lt;span class="err"&gt;(y/N)&lt;/span&gt; &lt;span class="err"&gt;y&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="download-the-theme"&gt;
+&lt;h2&gt;Download the theme&lt;/h2&gt;
+&lt;p&gt;For my web site, I selected the theme &amp;quot;Bootstrap3&amp;quot; and the style sheet &amp;quot;Bootswatch&amp;quot;.&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;MyWebSite
+&lt;span class="gp"&gt;$&lt;/span&gt; git clone https://github.com/DandyDev/pelican-bootstrap3.git/ theme
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;theme/static/css/
+&lt;span class="gp"&gt;$&lt;/span&gt; wget https://bootswatch.com/bower_components/bootstrap/dist/css/bootstrap.min.css
+&lt;span class="gp"&gt;$&lt;/span&gt; wget https://bootswatch.com/bower_components/bootstrap/dist/css/bootstrap.css
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="download-plugins"&gt;
+&lt;h2&gt;Download plugins&lt;/h2&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;MyWebSite
+&lt;span class="gp"&gt;$&lt;/span&gt; git clone --recursive https://github.com/getpelican/pelican-plugins plugins
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="create-github-files"&gt;
+&lt;h2&gt;Create GitHub Files&lt;/h2&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;MyWebSite
+&lt;span class="gp"&gt;$&lt;/span&gt; mkdir content/GitHubFiles
+&lt;/pre&gt;
+&lt;p&gt;Write your domain name in CNAME Files :&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; nano content/GitHubFiles/CNAME
+&lt;/pre&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;didier.bernaudeau.net&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Disable indexation by web search engine :&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; nano content/GitHubFiles/robots.txt
+&lt;/pre&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;User-agent:&lt;/span&gt; &lt;span class="err"&gt;*&lt;/span&gt;
+&lt;span class="err"&gt;Disallow:/&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="pelican-configuration"&gt;
+&lt;h2&gt;Pelican Configuration&lt;/h2&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; nano pelicanconf.py
+&lt;/pre&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="c1"&gt;# Hide Blogroll&lt;/span&gt;
+&lt;span class="c1"&gt;#LINKS =&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Hide Social widget&lt;/span&gt;
+&lt;span class="c1"&gt;#SOCIAL =&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Define the theme&lt;/span&gt;
+&lt;span class="na"&gt;THEME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'theme/'&lt;/span&gt;
+&lt;span class="na"&gt;BOOTSTRAP_THEME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'flatly'&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Define menu options&lt;/span&gt;
+&lt;span class="na"&gt;DISPLAY_CATEGORIES_ON_MENU&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;False&lt;/span&gt;
+&lt;span class="na"&gt;DISPLAY_PAGES_ON_MENU&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;True&lt;/span&gt;
+&lt;span class="na"&gt;MENUITEMS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;(
+   ('Articles', '/'),&lt;/span&gt;
+&lt;span class="err"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Define index options&lt;/span&gt;
+&lt;span class="na"&gt;DISPLAY_ARTICLE_INFO_ON_INDEX&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;True&lt;/span&gt;
+&lt;span class="na"&gt;SUMMARY_MAX_LENGTH&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;50&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Add description about author&lt;/span&gt;
+&lt;span class="na"&gt;ABOUT_ME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'...'&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Define sidebar options (With cloud tag)&lt;/span&gt;
+&lt;span class="na"&gt;DISPLAY_TAGS_ON_SIDEBAR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;True&lt;/span&gt;
+&lt;span class="na"&gt;DISPLAY_TAGS_INLINE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;True&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Add Creative Common licence in the footer&lt;/span&gt;
+&lt;span class="na"&gt;CC_LICENSE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'CC-BY-NC-ND'&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Add plugins (Summary)&lt;/span&gt;
+&lt;span class="na"&gt;PLUGIN_PATHS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;['plugins']&lt;/span&gt;
+&lt;span class="na"&gt;PLUGINS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;['summary']&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Add static paths will be copied without parsing their contents&lt;/span&gt;
+&lt;span class="na"&gt;STATIC_PATHS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;['presentation', 'GitHubFiles']&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Shift the installed location of a file&lt;/span&gt;
+&lt;span class="na"&gt;EXTRA_PATH_METADATA&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{
+   'GitHubFiles/CNAME': {'path': 'CNAME'},
+   'GitHubFiles/robots.txt': {'path': 'robots.txt'},&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="create-an-article-in-restructuredtext"&gt;
+&lt;h2&gt;Create an article in reStructuredText&lt;/h2&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; nano content/test.rst
+&lt;/pre&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;Article&lt;/span&gt; &lt;span class="err"&gt;title&lt;/span&gt;
+&lt;span class="c1"&gt;#############&lt;/span&gt;
+
+&lt;span class="err"&gt;:date:&lt;/span&gt; &lt;span class="err"&gt;AAAA-MM-JJ&lt;/span&gt; &lt;span class="err"&gt;HH:MM&lt;/span&gt;
+&lt;span class="err"&gt;:modified:&lt;/span&gt; &lt;span class="err"&gt;AAAA-MM-JJ&lt;/span&gt; &lt;span class="err"&gt;HH:MM&lt;/span&gt;
+&lt;span class="err"&gt;:tags:&lt;/span&gt; &lt;span class="err"&gt;word1,&lt;/span&gt; &lt;span class="err"&gt;word2&lt;/span&gt;
+&lt;span class="err"&gt;:category:&lt;/span&gt; &lt;span class="err"&gt;MyCategory&lt;/span&gt;
+&lt;span class="err"&gt;:slug:&lt;/span&gt; &lt;span class="err"&gt;Article-title&lt;/span&gt;
+&lt;span class="err"&gt;:authors:&lt;/span&gt; &lt;span class="err"&gt;MyName&lt;/span&gt;
+
+&lt;span class="err"&gt;Introduction&lt;/span&gt; &lt;span class="err"&gt;...&lt;/span&gt;
+
+&lt;span class="err"&gt;..&lt;/span&gt; &lt;span class="err"&gt;PELICAN_END_SUMMARY&lt;/span&gt;
+
+&lt;span class="err"&gt;Content&lt;/span&gt; &lt;span class="err"&gt;...&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="generate-the-web-site"&gt;
+&lt;h2&gt;Generate the web site&lt;/h2&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; make html
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="preview-the-web-site"&gt;
+&lt;h2&gt;Preview the web site&lt;/h2&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; make serve
+&lt;span class="gp"&gt;$&lt;/span&gt; firefox localhost:8000
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="publish-the-web-site-on-github"&gt;
+&lt;h2&gt;Publish the web site on GitHub&lt;/h2&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; make github
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="references"&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://docs.getpelican.com/en/3.5.0/"&gt;Pelican&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/getpelican/pelican-plugins/"&gt;Pelican plugins&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/DandyDev/pelican-bootstrap3/"&gt;Pelican theme - Bootstrap 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://kdheepak.com/blog/how-to-set-up-a-pelican-blog-with-github-pages/"&gt;How to set up a Pelican blog with Github pages (by Dheepak Krishnamurthy)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+</summary><category term="HowTo"></category><category term="Gentoo"></category><category term="Pelican"></category></entry></feed>

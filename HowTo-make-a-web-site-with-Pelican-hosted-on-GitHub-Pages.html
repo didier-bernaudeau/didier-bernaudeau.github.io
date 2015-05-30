@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>HowTo make a web site with Pelican hosted on GitHub Pages - D. Bernaudeau</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://didier.bernaudeau.net/HowTo-make-a-web-site-with-Pelican-hosted-on-GitHub-Pages.html">
+
+        <meta name="author" content="Didier Bernaudeau" />
+        <meta name="keywords" content="HowTo,Gentoo,Pelican" />
+        <meta name="description" content="Pelican is a static site generator writed in Python. This means that you edit the content on your computer with a simple text editor. Then, a generator makes all HTML pages for the web site, including indexes for articles, categories and tags. In the end, your web site can be hosted easily on a simple HTTP server like GitHub Pages or Amazon S3. Unlike other CMS (Content Management System) like Wordpress or Drupal, Pelican has no web administration interface. In most cases, the administration interface has many vulnerabilies used to deface the website. This article describes step by step how to make your web site with Pelican 3.5 on Gentoo Linux and how to host your web site on GitHub Pages." />
+
+        <meta property="og:site_name" content="D. Bernaudeau" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="HowTo make a web site with Pelican hosted on GitHub Pages"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/HowTo-make-a-web-site-with-Pelican-hosted-on-GitHub-Pages.html"/>
+        <meta property="og:description" content="Pelican is a static site generator writed in Python. This means that you edit the content on your computer with a simple text editor. Then, a generator makes all HTML pages for the web site, including indexes for articles, categories and tags. In the end, your web site can be hosted easily on a simple HTTP server like GitHub Pages or Amazon S3. Unlike other CMS (Content Management System) like Wordpress or Drupal, Pelican has no web administration interface. In most cases, the administration interface has many vulnerabilies used to deface the website. This article describes step by step how to make your web site with Pelican 3.5 on Gentoo Linux and how to host your web site on GitHub Pages."/>
+        <meta property="article:published_time" content="2015-05-16" />
+            <meta property="article:section" content="Articles" />
+            <meta property="article:tag" content="HowTo" />
+            <meta property="article:tag" content="Gentoo" />
+            <meta property="article:tag" content="Pelican" />
+            <meta property="article:author" content="Didier Bernaudeau" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+    <link href="http://didier.bernaudeau.net/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://didier.bernaudeau.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/style.css" type="text/css"/>
+
+        <link href="http://didier.bernaudeau.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="D. Bernaudeau ATOM Feed"/>
+
+
+
+        <link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" type="application/atom+xml" rel="alternate"
+              title="D. Bernaudeau Articles ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://didier.bernaudeau.net/" class="navbar-brand">
+D. Bernaudeau            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/">Articles</a></li>
+                         <li><a href="http://didier.bernaudeau.net/pages/presentation.html">
+                             Presentation
+                          </a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="http://didier.bernaudeau.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://didier.bernaudeau.net/HowTo-make-a-web-site-with-Pelican-hosted-on-GitHub-Pages.html"
+                       rel="bookmark"
+                       title="Permalink to HowTo make a web site with Pelican hosted on GitHub Pages">
+                        HowTo make a web site with Pelican hosted on GitHub Pages
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-05-16T22:20:00+02:00"> sam. 16 mai 2015</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://didier.bernaudeau.net/tag/howto.html">HowTo</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/gentoo.html">Gentoo</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/pelican.html">Pelican</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>Pelican is a static site generator writed in Python. This means that you edit the content on your computer with a simple text editor. Then, a generator makes all HTML pages for the web site, including indexes for articles, categories and tags. In the end, your web site can be hosted easily on a simple HTTP server like GitHub Pages or Amazon S3.</p>
+<p>Unlike other CMS (Content Management System) like Wordpress or Drupal, Pelican has no web administration interface. In most cases, the administration interface has many vulnerabilies used to deface the website.</p>
+<p>This article describes step by step how to make your web site with Pelican 3.5 on Gentoo Linux and how to host your web site on GitHub Pages.</p>
+
+<div class="section" id="install-pelican">
+<h2>Install Pelican</h2>
+<pre class="code console literal-block">
+<span class="gp">#</span> emerge pelican
+</pre>
+</div>
+<div class="section" id="create-github-space">
+<h2>Create GitHub space</h2>
+<p>On <a class="reference external" href="https://github.com/">GitHub</a>, create an account named &quot;didier-bernaudeau&quot; then a repository named &quot;didier-bernaudeau.github.io&quot;. Obviously, remplace &quot;didier-bernaudeau&quot; by your username.</p>
+</div>
+<div class="section" id="dns-configuration">
+<h2>DNS Configuration</h2>
+<p>Add a record in the DNS :</p>
+<pre class="code ini literal-block">
+<span class="err">Type</span> <span class="err">:</span> <span class="err">CNAME</span>
+<span class="err">Name</span> <span class="err">:</span> <span class="err">didier.bernaudeau.net</span>
+<span class="err">Value</span> <span class="err">:</span> <span class="err">didier-bernaudeau.github.io.</span>
+</pre>
+<p>Check configuration with &quot;dig&quot; tool :</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> emerge <span class="nb">bind</span>-tools
+</pre>
+<pre class="code console literal-block">
+<span class="gp">$</span> dig didier.bernaudeau.net +nostats +nocomments +nocmd
+<span class="go">
+; &lt;&lt;&gt;&gt; DiG 9.10.1-P1 &lt;&lt;&gt;&gt; didier.bernaudeau.net +nostats +nocomments +nocmd
+;; global options: +cmd
+;didier.bernaudeau.net.         IN      A
+didier.bernaudeau.net.  10800   IN      CNAME   didier-bernaudeau.github.io.
+didier-bernaudeau.github.io. 3600 IN    CNAME   github.map.fastly.net.
+github.map.fastly.net.  30      IN      A       185.31.17.133</span>
+</pre>
+</div>
+<div class="section" id="create-local-directory">
+<h2>Create local directory</h2>
+<pre class="code console literal-block">
+<span class="gp">$</span> git clone https://github.com/didier-bernaudeau/didier-bernaudeau.github.io.git/ MyWebSite
+<span class="gp">$</span> <span class="nb">cd </span>MyWebSite
+</pre>
+</div>
+<div class="section" id="create-project">
+<h2>Create project</h2>
+<pre class="code console literal-block">
+<span class="gp">$</span> pelican-quickstart
+</pre>
+<pre class="code ini literal-block">
+<span class="err">&gt;</span> <span class="err">Where</span> <span class="err">do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">create</span> <span class="err">your</span> <span class="err">new</span> <span class="err">web</span> <span class="err">site?</span> <span class="k">[.]</span>
+<span class="err">&gt;</span> <span class="err">What</span> <span class="err">will</span> <span class="err">be</span> <span class="err">the</span> <span class="err">title</span> <span class="err">of</span> <span class="err">this</span> <span class="err">web</span> <span class="err">site?</span> <span class="err">D.</span> <span class="err">Bernaudeau</span>
+<span class="err">&gt;</span> <span class="err">Who</span> <span class="err">will</span> <span class="err">be</span> <span class="err">the</span> <span class="err">author</span> <span class="err">of</span> <span class="err">this</span> <span class="err">web</span> <span class="err">site?</span> <span class="err">D.</span> <span class="err">Bernaudeau</span>
+<span class="err">&gt;</span> <span class="err">What</span> <span class="err">will</span> <span class="err">be</span> <span class="err">the</span> <span class="err">default</span> <span class="err">language</span> <span class="err">of</span> <span class="err">this</span> <span class="err">web</span> <span class="err">site?</span> <span class="k">[en]</span>
+<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">specify</span> <span class="err">a</span> <span class="err">URL</span> <span class="err">prefix?</span> <span class="err">e.g.,</span> <span class="err">http://example.com</span>   <span class="err">(Y/n)</span> <span class="err">Y</span>
+<span class="err">&gt;</span> <span class="err">What</span> <span class="err">is</span> <span class="err">your</span> <span class="err">URL</span> <span class="err">prefix?</span> <span class="err">(see</span> <span class="err">above</span> <span class="err">example</span><span class="c1">; no trailing slash) http://didier.bernaudeau.net</span>
+<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">enable</span> <span class="err">article</span> <span class="err">pagination?</span> <span class="err">(Y/n)</span> <span class="err">n</span>
+<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">generate</span> <span class="err">a</span> <span class="err">Fabfile/Makefile</span> <span class="err">to</span> <span class="err">automate</span> <span class="err">generation</span> <span class="err">and</span> <span class="err">publishing?</span> <span class="err">(Y/n)</span> <span class="err">Y</span>
+<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">an</span> <span class="err">auto-reload</span> <span class="err">&amp;</span> <span class="err">simpleHTTP</span> <span class="err">script</span> <span class="err">to</span> <span class="err">assist</span> <span class="err">with</span> <span class="err">theme</span> <span class="err">and</span> <span class="err">site</span> <span class="err">development?</span> <span class="err">(Y/n)</span> <span class="err">n</span>
+<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">upload</span> <span class="err">your</span> <span class="err">website</span> <span class="err">using</span> <span class="err">FTP?</span> <span class="err">(y/N)</span> <span class="err">N</span>
+<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">upload</span> <span class="err">your</span> <span class="err">website</span> <span class="err">using</span> <span class="err">SSH?</span> <span class="err">(y/N)</span> <span class="err">N</span>
+<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">upload</span> <span class="err">your</span> <span class="err">website</span> <span class="err">using</span> <span class="err">Dropbox?</span> <span class="err">(y/N)</span> <span class="err">N</span>
+<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">upload</span> <span class="err">your</span> <span class="err">website</span> <span class="err">using</span> <span class="err">S3?</span> <span class="err">(y/N)</span> <span class="err">N</span>
+<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">upload</span> <span class="err">your</span> <span class="err">website</span> <span class="err">using</span> <span class="err">Rackspace</span> <span class="err">Cloud</span> <span class="err">Files?</span> <span class="err">(y/N)</span> <span class="err">N</span>
+<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">upload</span> <span class="err">your</span> <span class="err">website</span> <span class="err">using</span> <span class="err">GitHub</span> <span class="err">Pages?</span> <span class="err">(y/N)</span> <span class="err">y</span>
+<span class="err">&gt;</span> <span class="err">Is</span> <span class="err">this</span> <span class="err">your</span> <span class="err">personal</span> <span class="err">page</span> <span class="err">(username.github.io)?</span> <span class="err">(y/N)</span> <span class="err">y</span>
+</pre>
+</div>
+<div class="section" id="download-the-theme">
+<h2>Download the theme</h2>
+<p>For my web site, I selected the theme &quot;Bootstrap3&quot; and the style sheet &quot;Bootswatch&quot;.</p>
+<pre class="code console literal-block">
+<span class="gp">$</span> <span class="nb">cd </span>MyWebSite
+<span class="gp">$</span> git clone https://github.com/DandyDev/pelican-bootstrap3.git/ theme
+<span class="gp">$</span> <span class="nb">cd </span>theme/static/css/
+<span class="gp">$</span> wget https://bootswatch.com/bower_components/bootstrap/dist/css/bootstrap.min.css
+<span class="gp">$</span> wget https://bootswatch.com/bower_components/bootstrap/dist/css/bootstrap.css
+</pre>
+</div>
+<div class="section" id="download-plugins">
+<h2>Download plugins</h2>
+<pre class="code console literal-block">
+<span class="gp">$</span> <span class="nb">cd </span>MyWebSite
+<span class="gp">$</span> git clone --recursive https://github.com/getpelican/pelican-plugins plugins
+</pre>
+</div>
+<div class="section" id="create-github-files">
+<h2>Create GitHub Files</h2>
+<pre class="code console literal-block">
+<span class="gp">$</span> <span class="nb">cd </span>MyWebSite
+<span class="gp">$</span> mkdir content/GitHubFiles
+</pre>
+<p>Write your domain name in CNAME Files :</p>
+<pre class="code console literal-block">
+<span class="gp">$</span> nano content/GitHubFiles/CNAME
+</pre>
+<pre class="code ini literal-block">
+<span class="err">didier.bernaudeau.net</span>
+</pre>
+<p>Disable indexation by web search engine :</p>
+<pre class="code console literal-block">
+<span class="gp">$</span> nano content/GitHubFiles/robots.txt
+</pre>
+<pre class="code ini literal-block">
+<span class="err">User-agent:</span> <span class="err">*</span>
+<span class="err">Disallow:/</span>
+</pre>
+</div>
+<div class="section" id="pelican-configuration">
+<h2>Pelican Configuration</h2>
+<pre class="code console literal-block">
+<span class="gp">$</span> nano pelicanconf.py
+</pre>
+<pre class="code ini literal-block">
+<span class="c1"># Hide Blogroll</span>
+<span class="c1">#LINKS =</span>
+
+<span class="c1"># Hide Social widget</span>
+<span class="c1">#SOCIAL =</span>
+
+<span class="c1"># Define the theme</span>
+<span class="na">THEME</span> <span class="o">=</span> <span class="s">'theme/'</span>
+<span class="na">BOOTSTRAP_THEME</span> <span class="o">=</span> <span class="s">'flatly'</span>
+
+<span class="c1"># Define menu options</span>
+<span class="na">DISPLAY_CATEGORIES_ON_MENU</span> <span class="o">=</span> <span class="s">False</span>
+<span class="na">DISPLAY_PAGES_ON_MENU</span> <span class="o">=</span> <span class="s">True</span>
+<span class="na">MENUITEMS</span> <span class="o">=</span> <span class="s">(
+   ('Articles', '/'),</span>
+<span class="err">)</span>
+
+<span class="c1"># Define index options</span>
+<span class="na">DISPLAY_ARTICLE_INFO_ON_INDEX</span> <span class="o">=</span> <span class="s">True</span>
+<span class="na">SUMMARY_MAX_LENGTH</span> <span class="o">=</span> <span class="s">50</span>
+
+<span class="c1"># Add description about author</span>
+<span class="na">ABOUT_ME</span> <span class="o">=</span> <span class="s">'...'</span>
+
+<span class="c1"># Define sidebar options (With cloud tag)</span>
+<span class="na">DISPLAY_TAGS_ON_SIDEBAR</span> <span class="o">=</span> <span class="s">True</span>
+<span class="na">DISPLAY_TAGS_INLINE</span> <span class="o">=</span> <span class="s">True</span>
+
+<span class="c1"># Add Creative Common licence in the footer</span>
+<span class="na">CC_LICENSE</span> <span class="o">=</span> <span class="s">'CC-BY-NC-ND'</span>
+
+<span class="c1"># Add plugins (Summary)</span>
+<span class="na">PLUGIN_PATHS</span> <span class="o">=</span> <span class="s">['plugins']</span>
+<span class="na">PLUGINS</span> <span class="o">=</span> <span class="s">['summary']</span>
+
+<span class="c1"># Add static paths will be copied without parsing their contents</span>
+<span class="na">STATIC_PATHS</span> <span class="o">=</span> <span class="s">['presentation', 'GitHubFiles']</span>
+
+<span class="c1"># Shift the installed location of a file</span>
+<span class="na">EXTRA_PATH_METADATA</span> <span class="o">=</span> <span class="s">{
+   'GitHubFiles/CNAME': {'path': 'CNAME'},
+   'GitHubFiles/robots.txt': {'path': 'robots.txt'},</span>
+<span class="err">}</span>
+</pre>
+</div>
+<div class="section" id="create-an-article-in-restructuredtext">
+<h2>Create an article in reStructuredText</h2>
+<pre class="code console literal-block">
+<span class="gp">$</span> nano content/test.rst
+</pre>
+<pre class="code ini literal-block">
+<span class="err">Article</span> <span class="err">title</span>
+<span class="c1">#############</span>
+
+<span class="err">:date:</span> <span class="err">AAAA-MM-JJ</span> <span class="err">HH:MM</span>
+<span class="err">:modified:</span> <span class="err">AAAA-MM-JJ</span> <span class="err">HH:MM</span>
+<span class="err">:tags:</span> <span class="err">word1,</span> <span class="err">word2</span>
+<span class="err">:category:</span> <span class="err">MyCategory</span>
+<span class="err">:slug:</span> <span class="err">Article-title</span>
+<span class="err">:authors:</span> <span class="err">MyName</span>
+
+<span class="err">Introduction</span> <span class="err">...</span>
+
+<span class="err">..</span> <span class="err">PELICAN_END_SUMMARY</span>
+
+<span class="err">Content</span> <span class="err">...</span>
+</pre>
+</div>
+<div class="section" id="generate-the-web-site">
+<h2>Generate the web site</h2>
+<pre class="code console literal-block">
+<span class="gp">$</span> make html
+</pre>
+</div>
+<div class="section" id="preview-the-web-site">
+<h2>Preview the web site</h2>
+<pre class="code console literal-block">
+<span class="gp">$</span> make serve
+<span class="gp">$</span> firefox localhost:8000
+</pre>
+</div>
+<div class="section" id="publish-the-web-site-on-github">
+<h2>Publish the web site on GitHub</h2>
+<pre class="code console literal-block">
+<span class="gp">$</span> make github
+</pre>
+</div>
+<div class="section" id="references">
+<h2>References</h2>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://docs.getpelican.com/en/3.5.0/">Pelican</a></li>
+<li><a class="reference external" href="https://github.com/getpelican/pelican-plugins/">Pelican plugins</a></li>
+<li><a class="reference external" href="https://github.com/DandyDev/pelican-bootstrap3/">Pelican theme - Bootstrap 3</a></li>
+<li><a class="reference external" href="http://kdheepak.com/blog/how-to-set-up-a-pelican-blog-with-github-pages/">How to set up a Pelican blog with Github pages (by Dheepak Krishnamurthy)</a></li>
+</ul>
+</blockquote>
+</div>
+
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+    <p>
+        <strong>About D. Bernaudeau</strong><br/>
+        I’m Didier Bernaudeau, an Information Systems Security Professional. This site is a way to note some experimentations.
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+
+
+
+            <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
+                            Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/howto.html">
+                            HowTo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2015 D. Bernaudeau
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://didier.bernaudeau.net/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://didier.bernaudeau.net/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://didier.bernaudeau.net/theme/js/respond.min.js"></script>
+
+
+</body>
+</html>

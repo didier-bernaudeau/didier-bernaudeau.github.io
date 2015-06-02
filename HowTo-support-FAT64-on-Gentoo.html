@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>HowTo make an hypervisor with KVM and Intel VT (In progress) - D. Bernaudeau</title>
+    <title>HowTo support FAT64 on Gentoo - D. Bernaudeau</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,17 +9,18 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/HowTo-make-an-hypervisor-with-KVM-and-Intel-VT.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/HowTo-support-FAT64-on-Gentoo.html">
 
         <meta name="author" content="Didier Bernaudeau" />
         <meta name="keywords" content="HowTo,Gentoo" />
+        <meta name="description" content="FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32. This file systen is supported by Microsoft Windows (XP, Vista, Seven,...), MacOS, Linux and Android. For linux, FAT64 is not supported directly in the kernel but with FUSE (Filesystem in UserSpacE). This article describes step by step how to support FAT64 on Gentoo Linux." />
 
         <meta property="og:site_name" content="D. Bernaudeau" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="HowTo make an hypervisor with KVM and Intel VT (In progress)"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/HowTo-make-an-hypervisor-with-KVM-and-Intel-VT.html"/>
-        <meta property="og:description" content=""/>
-        <meta property="article:published_time" content="2015-05-31" />
+        <meta property="og:title" content="HowTo support FAT64 on Gentoo"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/HowTo-support-FAT64-on-Gentoo.html"/>
+        <meta property="og:description" content="FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32. This file systen is supported by Microsoft Windows (XP, Vista, Seven,...), MacOS, Linux and Android. For linux, FAT64 is not supported directly in the kernel but with FUSE (Filesystem in UserSpacE). This article describes step by step how to support FAT64 on Gentoo Linux."/>
+        <meta property="article:published_time" content="2015-06-02" />
             <meta property="article:section" content="Articles" />
             <meta property="article:tag" content="HowTo" />
             <meta property="article:tag" content="Gentoo" />
@@ -79,10 +80,10 @@ D. Bernaudeau            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/HowTo-make-an-hypervisor-with-KVM-and-Intel-VT.html"
+                    <a href="http://didier.bernaudeau.net/HowTo-support-FAT64-on-Gentoo.html"
                        rel="bookmark"
-                       title="Permalink to HowTo make an hypervisor with KVM and Intel VT (In progress)">
-                        HowTo make an hypervisor with KVM and Intel VT (In progress)
+                       title="Permalink to HowTo support FAT64 on Gentoo">
+                        HowTo support FAT64 on Gentoo
                     </a>
                 </h1>
             </header>
@@ -92,11 +93,11 @@ D. Bernaudeau            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-05-31T01:14:00+02:00"> dim. 31 mai 2015</time>
+        <i class="fa fa-calendar"></i><time datetime="2015-06-02T18:10:00+02:00"> mar. 02 juin 2015</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-05-31T01:14:00+02:00"> dim. 31 mai 2015</time>
+                <i class="fa fa-calendar"></i><time datetime="2015-06-02T18:10:00+02:00"> mar. 02 juin 2015</time>
             </span>
 
 
@@ -110,7 +111,47 @@ D. Bernaudeau            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                
+                <p>FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32.</p>
+<p>This file systen is supported by Microsoft Windows (XP, Vista, Seven,...), MacOS, Linux and Android. For linux, FAT64 is not supported directly in the kernel but with FUSE (Filesystem&nbsp;in UserSpacE).</p>
+<p>This article describes step by step how to support FAT64 on Gentoo Linux.</p>
+
+<div class="section" id="installation">
+<h2>Installation</h2>
+<p>Kernel configuration :</p>
+<pre class="code ini literal-block">
+<span class="err">|</span>     <span class="err">File</span> <span class="err">systems</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">FUSE</span> <span class="err">(Filesystem</span> <span class="err">in</span> <span class="err">Userspace)</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Character</span> <span class="err">device</span> <span class="err">in</span> <span class="err">Userspace</span> <span class="err">support</span>
+</pre>
+<p>software installation :</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> emerge sys-fs/fuse-exfat sys-fs/exfat-utils
+</pre>
+</div>
+<div class="section" id="usage">
+<h2>Usage</h2>
+<p>Format the partition</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> mkfs.exfat /dev/sdxy
+</pre>
+<p>Check the partition</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> fsck.exfat /dev/sdxy
+</pre>
+<p>Mount the partition</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> mount -t exfat /dev/sdxy /mnt/usb
+</pre>
+</div>
+<div class="section" id="references">
+<h2>References</h2>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="https://support.microsoft.com/en-us/kb/955704/">Microsoft - Description of the ExFAT file system driver</a></li>
+</ul>
+</blockquote>
+</div>
+
             </div>
             <!-- /.entry-content -->
         </article>

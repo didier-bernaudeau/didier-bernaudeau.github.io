@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>HowTo configure the Linux kernel for Lenovo ThinkPad X240 - D. Bernaudeau</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html">
+
+        <meta name="author" content="Didier Bernaudeau" />
+        <meta name="keywords" content="HowTo,Gentoo,ThinkPad X24O" />
+        <meta name="description" content="This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub. To get more information about the configuration of my Laptop, you can read this article : Lenovo ThinkPad X240" />
+
+        <meta property="og:site_name" content="D. Bernaudeau" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="HowTo configure the Linux kernel for Lenovo ThinkPad X240"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html"/>
+        <meta property="og:description" content="This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub. To get more information about the configuration of my Laptop, you can read this article : Lenovo ThinkPad X240"/>
+        <meta property="article:published_time" content="2015-06-16" />
+            <meta property="article:section" content="Articles" />
+            <meta property="article:tag" content="HowTo" />
+            <meta property="article:tag" content="Gentoo" />
+            <meta property="article:tag" content="ThinkPad X24O" />
+            <meta property="article:author" content="Didier Bernaudeau" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+    <link href="http://didier.bernaudeau.net/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://didier.bernaudeau.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/style.css" type="text/css"/>
+
+        <link href="http://didier.bernaudeau.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="D. Bernaudeau ATOM Feed"/>
+
+
+
+        <link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" type="application/atom+xml" rel="alternate"
+              title="D. Bernaudeau Articles ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://didier.bernaudeau.net/" class="navbar-brand">
+D. Bernaudeau            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/">Articles</a></li>
+                         <li><a href="http://didier.bernaudeau.net/pages/presentation.html">
+                             Presentation
+                          </a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="http://didier.bernaudeau.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html"
+                       rel="bookmark"
+                       title="Permalink to HowTo configure the Linux kernel for Lenovo ThinkPad X240">
+                        HowTo configure the Linux kernel for Lenovo ThinkPad X240
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-06-16T22:10:00+02:00"> mar. 16 juin 2015</time>
+    </span>
+            <span class="label label-default">Modified</span>
+            <span class="modified">
+                <i class="fa fa-calendar"></i><time datetime="2015-06-21T00:15:00+02:00"> dim. 21 juin 2015</time>
+            </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://didier.bernaudeau.net/tag/howto.html">HowTo</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/gentoo.html">Gentoo</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/thinkpad-x24o.html">ThinkPad X24O</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.</p>
+<p>To get more information about the configuration of my Laptop, you can read this article : <a class="reference external" href="http://didier.bernaudeau.net/Lenovo-ThinkPad-X240.html">Lenovo ThinkPad X240</a></p>
+
+<div class="section" id="kernel-installation">
+<h2>Kernel installation</h2>
+<p>Download kernel Gentoo sources (3.18.12) :</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> emerge sys-kernel/gentoo-sources sys-firmware/iwl7260-ucode
+</pre>
+<p>Select kernel sources</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> eselect kernel list
+<span class="gp">#</span> eselect kernel <span class="nb">set </span>X
+<span class="gp">#</span> <span class="nb">cd</span> /usr/src/linux
+</pre>
+<p>Print configuration menu</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> make menuconfig
+</pre>
+</div>
+<div class="section" id="kernel-minimal-configuration">
+<h2>Kernel minimal configuration</h2>
+<pre class="code ini literal-block">
+<span class="err">|</span> <span class="err">General</span> <span class="err">setup</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>     <span class="err">Timers</span> <span class="err">subsystem</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">High</span> <span class="err">Resolution</span> <span class="err">Timer</span> <span class="err">Support</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span> <span class="err">Processor</span> <span class="err">type</span> <span class="err">and</span> <span class="err">features</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Symmetric</span> <span class="err">multi-processing</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Support</span> <span class="err">x2apic</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span> <span class="err">Support</span> <span class="err">for</span> <span class="err">extended</span> <span class="err">(non-PC)</span> <span class="err">x86</span> <span class="err">platforms</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Intel</span> <span class="err">Low</span> <span class="err">Power</span> <span class="err">Subsystem</span> <span class="err">Support</span>
+<span class="err">|</span>      <span class="err">|</span>     <span class="err">Processor</span> <span class="err">family</span> <span class="err">(Generic-x86-64)</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span> <span class="err">Old</span> <span class="err">AMD</span> <span class="err">GART</span> <span class="err">IOMMU</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span> <span class="err">IBM</span> <span class="err">Calgary</span> <span class="err">IOMMU</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span> <span class="err">Enable</span> <span class="err">Maximum</span> <span class="err">number</span> <span class="err">of</span> <span class="err">SMP</span> <span class="err">Processors</span> <span class="err">and</span> <span class="err">NUMA</span> <span class="err">Nodes</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">SMT</span> <span class="err">(Hyperthreading)</span> <span class="err">scheduler</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Multi-core</span> <span class="err">scheduler</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span> <span class="err">CPU</span> <span class="err">microcode</span> <span class="err">loading</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">/dev/cpu/*/msr</span> <span class="err">-</span> <span class="err">Model-specific</span> <span class="err">register</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">/dev/cpu/*/cpuid</span> <span class="err">-</span> <span class="err">CPU</span> <span class="err">information</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span> <span class="err">Numa</span> <span class="err">Memory</span> <span class="err">Allocation</span> <span class="err">and</span> <span class="err">Scheduler</span> <span class="err">Support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">EFI</span> <span class="err">runtime</span> <span class="err">service</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">EFI</span> <span class="err">stub</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Built-in</span> <span class="err">kernel</span> <span class="err">command</span> <span class="err">line</span>
+<span class="na">|      | (root</span><span class="o">=</span><span class="s">/dev/sda6) Built-in kernel command string</span>
+<span class="err">|</span>
+<span class="err">|</span> <span class="err">Power</span> <span class="err">management</span> <span class="err">and</span> <span class="err">ACPI</span> <span class="err">options</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Suspend</span> <span class="err">to</span> <span class="err">RAM</span> <span class="err">and</span> <span class="err">standby</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Hibernation</span> <span class="err">(aka</span> <span class="err">'suspend</span> <span class="err">to</span> <span class="err">disk')</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">/dev/sda5)</span> <span class="err">Default</span> <span class="err">resume</span> <span class="err">partition</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">ACPI</span> <span class="err">(Advanced</span> <span class="err">Configuration</span> <span class="err">and</span> <span class="err">Power</span> <span class="err">Interface)</span> <span class="err">Support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Processor</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>     <span class="err">CPU</span> <span class="err">Frequency</span> <span class="err">scaling</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">CPU</span> <span class="err">Frequency</span> <span class="err">scaling</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">CPU</span> <span class="err">frequency</span> <span class="err">translation</span> <span class="err">statistics</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>     <span class="err">CPU</span> <span class="err">frequency</span> <span class="err">translation</span> <span class="err">statistics</span> <span class="err">details</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>       <span class="err">Default</span> <span class="err">CPUFreq</span> <span class="err">governor</span> <span class="err">(conservative)</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span>   <span class="err">'performance'</span> <span class="err">governor</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">'powersave'</span> <span class="err">governor</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">'userspace'</span> <span class="err">governor</span> <span class="err">for</span> <span class="err">userspace</span> <span class="err">frequency</span> <span class="err">scaling</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">'ondemand'</span> <span class="err">cpufreq</span> <span class="err">policy</span> <span class="err">governor</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span>   <span class="err">'conservative'</span> <span class="err">cpufreq</span> <span class="err">governor</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>       <span class="err">x86</span> <span class="err">CPU</span> <span class="err">frequency</span> <span class="err">scaling</span> <span class="err">drivers</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span> <span class="err">Intel</span> <span class="err">P</span> <span class="err">state</span> <span class="err">control</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span> <span class="err">ACPI</span> <span class="err">Processor</span> <span class="err">P-States</span> <span class="err">driver</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>     <span class="err">CPU</span> <span class="err">Idle</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">CPU</span> <span class="err">idle</span> <span class="err">PM</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>   <span class="err">Ladder</span> <span class="err">governor</span> <span class="err">(for</span> <span class="err">periodic</span> <span class="err">timer</span> <span class="err">tick)</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span>   <span class="err">Menu</span> <span class="err">governor</span> <span class="err">(for</span> <span class="err">tickless</span> <span class="err">system)</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Cpuidle</span> <span class="err">Driver</span> <span class="err">for</span> <span class="err">Intel</span> <span class="err">Processors</span>
+<span class="err">|</span>
+<span class="err">|</span> <span class="err">[*]</span> <span class="err">Networking</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Networking</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>       <span class="err">Networking</span> <span class="err">options</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span> <span class="err">TCP/IP</span> <span class="err">networking</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>   <span class="err">The</span> <span class="err">IPv6</span> <span class="err">protocol</span>  <span class="err">----</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>   <span class="err">NetLabel</span> <span class="err">subsystem</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>   <span class="err">Amateur</span> <span class="err">Radio</span> <span class="err">support</span>  <span class="err">----</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span>   <span class="err">Wireless</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">---</span> <span class="err">Wireless</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">cfg80211</span> <span class="err">-</span> <span class="err">wireless</span> <span class="err">configuration</span> <span class="err">API</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span>     <span class="err">enable</span> <span class="err">powersave</span> <span class="err">by</span> <span class="err">default</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Generic</span> <span class="err">IEEE</span> <span class="err">802.11</span> <span class="err">Networking</span> <span class="err">Stack</span> <span class="err">(mac80211)</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Enable</span> <span class="err">LED</span> <span class="err">triggers</span>
+<span class="err">|</span>
+<span class="err">|</span> <span class="err">Device</span> <span class="err">Drivers</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>     <span class="err">Generic</span> <span class="err">Driver</span> <span class="err">Options</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Include</span> <span class="err">in-kernel</span> <span class="err">firmware</span> <span class="err">blobs</span> <span class="err">in</span> <span class="err">kernel</span> <span class="err">binary</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">(iwlwifi-7260-8.ucode)</span> <span class="err">External</span> <span class="err">firmware</span> <span class="err">blobs</span> <span class="err">to</span> <span class="err">build</span> <span class="err">into</span> <span class="err">the</span> <span class="err">kernel</span> <span class="err">binary</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">(/lib/firmware)</span> <span class="err">Firmware</span> <span class="err">blobs</span> <span class="err">root</span> <span class="err">directory</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Fallback</span> <span class="err">user-helper</span> <span class="err">invocation</span> <span class="err">for</span> <span class="err">firmware</span> <span class="err">loading</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Serial</span> <span class="err">ATA</span> <span class="err">and</span> <span class="err">Parallel</span> <span class="err">ATA</span> <span class="err">drivers</span> <span class="err">(libata)</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>   <span class="err">Verbose</span> <span class="err">ATA</span> <span class="err">error</span> <span class="err">reporting</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>   <span class="err">SATA</span> <span class="err">Port</span> <span class="err">Multiplier</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">AHCI</span> <span class="err">SATA</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>   <span class="err">ATA</span> <span class="err">SFF</span> <span class="err">support</span> <span class="err">(for</span> <span class="err">legacy</span> <span class="err">IDE</span> <span class="err">and</span> <span class="err">PATA)</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span> <span class="err">Multiple</span> <span class="err">devices</span> <span class="err">driver</span> <span class="err">support</span> <span class="err">(RAID</span> <span class="err">and</span> <span class="err">LVM)</span>  <span class="err">----</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span> <span class="err">Macintosh</span> <span class="err">device</span> <span class="err">drivers</span>  <span class="err">----</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Network</span> <span class="err">device</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Network</span> <span class="err">device</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Ethernet</span> <span class="err">driver</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">---</span> <span class="err">Ethernet</span> <span class="err">driver</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Intel</span> <span class="err">devices</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>     <span class="err">Intel(R)</span> <span class="err">PRO/100+</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">Intel(R)</span> <span class="err">PRO/1000</span> <span class="err">PCI-Express</span> <span class="err">Gigabit</span> <span class="err">Ethernet</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>     <span class="err">Intel</span> <span class="err">(82586/82593/82596)</span> <span class="err">devices</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>   <span class="err">FDDI</span> <span class="err">driver</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>   <span class="err">USB</span> <span class="err">Network</span> <span class="err">Adapters</span>  <span class="err">----</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Wireless</span> <span class="err">LAN</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">---</span> <span class="err">Wireless</span> <span class="err">LAN</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Intel</span> <span class="err">Wireless</span> <span class="err">WiFi</span> <span class="err">Next</span> <span class="err">Gen</span> <span class="err">AGN</span> <span class="err">-</span> <span class="err">Wireless-N/Advanced-N/Ultimate-N</span> <span class="err">(iwlwifi)</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>     <span class="err">Intel</span> <span class="err">Wireless</span> <span class="err">WiFi</span> <span class="err">DVM</span> <span class="err">Firmware</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">Intel</span> <span class="err">Wireless</span> <span class="err">WiFi</span> <span class="err">MVM</span> <span class="err">Firmware</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>     <span class="err">I2C</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span> <span class="err">I2C</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">I2C</span> <span class="err">device</span> <span class="err">interface</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>       <span class="err">I2C</span> <span class="err">Hardware</span> <span class="err">Bus</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Intel</span> <span class="err">82801</span> <span class="err">(ICH/PCH)</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">SMBus</span> <span class="err">Control</span> <span class="err">Method</span> <span class="err">Interface</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>     <span class="err">Character</span> <span class="err">devices</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span> <span class="err">Hardware</span> <span class="err">Random</span> <span class="err">Number</span> <span class="err">Generator</span> <span class="err">Core</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">GPIO</span> <span class="err">Support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Intel</span> <span class="err">Lynxpoint</span> <span class="err">GPIO</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span> <span class="err">Hardware</span> <span class="err">Monitoring</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Intel</span> <span class="err">Core/Core2/Atom</span> <span class="err">temperature</span> <span class="err">sensor</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span> <span class="err">Generic</span> <span class="err">Thermal</span> <span class="err">sysfs</span> <span class="err">driver</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>       <span class="err">Default</span> <span class="err">Thermal</span> <span class="err">governor</span> <span class="err">(step_wise)</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span>   <span class="err">Step_wise</span> <span class="err">thermal</span> <span class="err">governor</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Intel</span> <span class="err">PowerClamp</span> <span class="err">idle</span> <span class="err">injection</span> <span class="err">driver</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">X86</span> <span class="err">package</span> <span class="err">temperature</span> <span class="err">thermal</span> <span class="err">driver</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>     <span class="err">Multifunction</span> <span class="err">device</span> <span class="err">drivers</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Intel</span> <span class="err">ICH</span> <span class="err">LPC</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>     <span class="err">Graphics</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>     <span class="err">Direct</span> <span class="err">Rendering</span> <span class="err">Manager</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Intel</span> <span class="err">8xx/9xx/G3x/G4x/HD</span> <span class="err">Graphics</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Enable</span> <span class="err">modesetting</span> <span class="err">on</span> <span class="err">intel</span> <span class="err">by</span> <span class="err">default</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Enable</span> <span class="err">legacy</span> <span class="err">fbdev</span> <span class="err">support</span> <span class="err">for</span> <span class="err">the</span> <span class="err">modesetting</span> <span class="err">intel</span> <span class="err">driver</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>     <span class="err">&lt;*&gt;</span> <span class="err">Sound</span> <span class="err">card</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Advanced</span> <span class="err">Linux</span> <span class="err">Sound</span> <span class="err">Architecture</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">PCI</span> <span class="err">sound</span> <span class="err">devices</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>       <span class="err">HD-Audio</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">HD</span> <span class="err">Audio</span> <span class="err">PCI</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span> <span class="err">Support</span> <span class="err">jack</span> <span class="err">plugging</span> <span class="err">notification</span> <span class="err">via</span> <span class="err">input</span> <span class="err">layer</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Build</span> <span class="err">Realtek</span> <span class="err">HD-audio</span> <span class="err">codec</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Build</span> <span class="err">HDMI/DisplayPort</span> <span class="err">HD-audio</span> <span class="err">codec</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>   <span class="err">USB</span> <span class="err">sound</span> <span class="err">devices</span>  <span class="err">----</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>   <span class="err">PCMCIA</span> <span class="err">sound</span> <span class="err">devices</span>  <span class="err">----</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">USB</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Support</span> <span class="err">for</span> <span class="err">Host-side</span> <span class="err">USB</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>     <span class="err">USB</span> <span class="err">Monitor</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">xHCI</span> <span class="err">HCD</span> <span class="err">(USB</span> <span class="err">3.0)</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">EHCI</span> <span class="err">HCD</span> <span class="err">(USB</span> <span class="err">2.0)</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>     <span class="err">OHCI</span> <span class="err">HCD</span> <span class="err">(USB</span> <span class="err">1.1)</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>     <span class="err">UHCI</span> <span class="err">HCD</span> <span class="err">(most</span> <span class="err">Intel</span> <span class="err">and</span> <span class="err">VIA)</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">X86</span> <span class="err">Platform</span> <span class="err">Specific</span> <span class="err">Device</span> <span class="err">Drivers</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">ThinkPad</span> <span class="err">ACPI</span> <span class="err">Laptop</span> <span class="err">Extras</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>     <span class="err">Maintainer</span> <span class="err">debug</span> <span class="err">facilities</span> <span class="err">(NEW)</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>     <span class="err">Verbose</span> <span class="err">debug</span> <span class="err">mode</span> <span class="err">(NEW)</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>     <span class="err">Allow</span> <span class="err">control</span> <span class="err">of</span> <span class="err">important</span> <span class="err">LEDs</span> <span class="err">(unsafe)</span> <span class="err">(NEW)</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>     <span class="err">Video</span> <span class="err">output</span> <span class="err">control</span> <span class="err">support</span> <span class="err">(NEW)</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>     <span class="err">Support</span> <span class="err">NVRAM</span> <span class="err">polling</span> <span class="err">for</span> <span class="err">hot</span> <span class="err">keys</span> <span class="err">(NEW)</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>   <span class="err">Eee</span> <span class="err">PC</span> <span class="err">Hotkey</span> <span class="err">Driver</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">IOMMU</span> <span class="err">Hardware</span> <span class="err">Support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">IOMMU</span> <span class="err">Hardware</span> <span class="err">Support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>   <span class="err">AMD</span> <span class="err">IOMMU</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Support</span> <span class="err">for</span> <span class="err">Intel</span> <span class="err">IOMMU</span> <span class="err">using</span> <span class="err">DMA</span> <span class="err">Remapping</span> <span class="err">Devices</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>     <span class="err">Enable</span> <span class="err">Intel</span> <span class="err">DMA</span> <span class="err">Remapping</span> <span class="err">Devices</span> <span class="err">by</span> <span class="err">default</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Support</span> <span class="err">for</span> <span class="err">Interrupt</span> <span class="err">Remapping</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Pulse-Width</span> <span class="err">Modulation</span> <span class="err">(PWM)</span> <span class="err">Support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Intel</span> <span class="err">LPSS</span> <span class="err">PWM</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">Intel</span> <span class="err">LPSS</span> <span class="err">PWM</span> <span class="err">PCI</span> <span class="err">driver</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">Intel</span> <span class="err">LPSS</span> <span class="err">PWM</span> <span class="err">platform</span> <span class="err">driver</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Generic</span> <span class="err">powercap</span> <span class="err">sysfs</span> <span class="err">driver</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Intel</span> <span class="err">RAPL</span> <span class="err">Support</span>
+<span class="err">|</span>
+<span class="err">|</span>    <span class="err">File</span> <span class="err">systems</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">The</span> <span class="err">Extended</span> <span class="err">4</span> <span class="err">(ext4)</span> <span class="err">filesystem</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">XFS</span> <span class="err">filesystem</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">FUSE</span> <span class="err">(Filesystem</span> <span class="err">in</span> <span class="err">Userspace)</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Miscellaneous</span> <span class="err">filesystems</span>  <span class="err">----</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">EFI</span> <span class="err">Variable</span> <span class="err">filesystem</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Network</span> <span class="err">File</span> <span class="err">Systems</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Network</span> <span class="err">File</span> <span class="err">Systems</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">NFS</span> <span class="err">client</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>     <span class="err">NFS</span> <span class="err">client</span> <span class="err">support</span> <span class="err">for</span> <span class="err">NFS</span> <span class="err">version</span> <span class="err">2</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>     <span class="err">NFS</span> <span class="err">client</span> <span class="err">support</span> <span class="err">for</span> <span class="err">NFS</span> <span class="err">version</span> <span class="err">3</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">NFS</span> <span class="err">client</span> <span class="err">support</span> <span class="err">for</span> <span class="err">NFS</span> <span class="err">version</span> <span class="err">4</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>   <span class="err">Root</span> <span class="err">file</span> <span class="err">system</span> <span class="err">on</span> <span class="err">NFS</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">CIFS</span> <span class="err">support</span> <span class="err">(advanced</span> <span class="err">network</span> <span class="err">filesystem,</span> <span class="err">SMBFS</span> <span class="err">successor)</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>     <span class="err">Enable</span> <span class="err">CIFS</span> <span class="err">debugging</span> <span class="err">routines</span>
+<span class="err">|</span>
+<span class="err">|</span> <span class="err">-*-</span> <span class="err">Cryptographic</span> <span class="err">API</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>       <span class="err">***</span> <span class="err">Digest</span> <span class="err">***</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span>   <span class="err">CRC32c</span> <span class="err">CRC</span> <span class="err">algorithm</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">CRC32c</span> <span class="err">INTEL</span> <span class="err">hardware</span> <span class="err">acceleration</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span>   <span class="err">SHA1</span> <span class="err">digest</span> <span class="err">algorithm</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">SHA1</span> <span class="err">digest</span> <span class="err">algorithm</span> <span class="err">(SSSE3/AVX/AVX2)</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">SHA256</span> <span class="err">digest</span> <span class="err">algorithm</span> <span class="err">(SSSE3/AVX/AVX2)</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">SHA512</span> <span class="err">digest</span> <span class="err">algorithm</span> <span class="err">(SSSE3/AVX/AVX2)</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>       <span class="err">***</span> <span class="err">Ciphers</span> <span class="err">***</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span>   <span class="err">AES</span> <span class="err">cipher</span> <span class="err">algorithms</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span>   <span class="err">AES</span> <span class="err">cipher</span> <span class="err">algorithms</span> <span class="err">(x86_64)</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">AES</span> <span class="err">cipher</span> <span class="err">algorithms</span> <span class="err">(AES-NI)</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>   <span class="err">Hardware</span> <span class="err">crypto</span> <span class="err">devices</span>  <span class="err">----</span>
+</pre>
+</div>
+<div class="section" id="kernel-optional-configuration">
+<h2>Kernel optional configuration</h2>
+<div class="section" id="kerberos-cryptography-support">
+<h3>Kerberos cryptography support</h3>
+<pre class="code ini literal-block">
+<span class="err">|</span> <span class="err">-*-</span> <span class="err">Cryptographic</span> <span class="err">API</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span> <span class="err">Cryptographic</span> <span class="err">API</span> <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">CBC</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">CTS</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span>   <span class="err">ECB</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span>   <span class="err">HMAC</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span>   <span class="err">ARC4</span> <span class="err">cipher</span> <span class="err">algorithm</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span>   <span class="err">DES</span> <span class="err">and</span> <span class="err">Triple</span> <span class="err">DES</span> <span class="err">EDE</span> <span class="err">cipher</span> <span class="err">algorithms</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Triple</span> <span class="err">DES</span> <span class="err">EDE</span> <span class="err">cipher</span> <span class="err">algorithm</span> <span class="err">(x86-64)</span>
+</pre>
+</div>
+</div>
+<div class="section" id="kernel-compilation">
+<h2>Kernel compilation</h2>
+<pre class="code console literal-block">
+<span class="gp">#</span> make <span class="o">&amp;&amp;</span> make modules_install
+<span class="gp">#</span> cp arch/x86_64/boot/bzImage /boot/kernel-3.18.12
+</pre>
+</div>
+<div class="section" id="id1">
+<h2>Kernel installation</h2>
+<p>Mount ESP (EFI System Partition)</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> mkdir /mnt/ESP
+<span class="gp">#</span> mount /dev/sda2 /mnt/ESP
+</pre>
+<p>Create directory</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> mkdir /mnt/ESP/EFI/GentooLinux
+</pre>
+<p>Copy kernel</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/3.18.12.efi
+</pre>
+<p>Unmount ESP (EFI System Partition)</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> mount /mnt/ESP
+</pre>
+</div>
+<div class="section" id="update-uefi-bootloader">
+<h2>Update UEFI bootloader</h2>
+<p>Install EFI boot manager</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> emerge efibootmgr
+</pre>
+<p>Add the new kernel</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> efibootmgr -c -d /dev/sda -p <span class="m">2</span> -L <span class="s2">&quot;Gentoo Linux 3.18.12&quot;</span> -l <span class="s2">&quot;\EFI\GentooLinux\3.18.12.efi&quot;</span>
+</pre>
+<p>Print the menu</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> efibootmgr -v
+</pre>
+<p>Remove the previous kernel (after testing the new kernel)</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> efibootmgr -b <span class="m">15</span> -B
+</pre>
+</div>
+<div class="section" id="references">
+<h2>References</h2>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="https://wiki.gentoo.org/wiki/EFI_stub_kernel">Wiki Gentoo - EFI stub kernel</a></li>
+</ul>
+</blockquote>
+</div>
+
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+    <p>
+        <strong>About D. Bernaudeau</strong><br/>
+        I’m Didier Bernaudeau, an Information Systems Security Professional. This site is a way to note some experimentations.
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+
+
+
+            <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
+                            Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/howto.html">
+                            HowTo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/thinkpad-x24o.html">
+                            ThinkPad X24O
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2015 D. Bernaudeau
+            &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://didier.bernaudeau.net/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://didier.bernaudeau.net/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://didier.bernaudeau.net/theme/js/respond.min.js"></script>
+
+
+</body>
+</html>

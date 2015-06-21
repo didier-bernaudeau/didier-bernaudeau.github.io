@@ -372,12 +372,28 @@ D. Bernaudeau            </a>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Triple</span> <span class="err">DES</span> <span class="err">EDE</span> <span class="err">cipher</span> <span class="err">algorithm</span> <span class="err">(x86-64)</span>
 </pre>
 </div>
+<div class="section" id="virtualization-with-kvm">
+<h3>Virtualization with KVM</h3>
+<pre class="code ini literal-block">
+<span class="err">|</span>     <span class="err">Bus</span> <span class="err">options</span> <span class="err">(PCI</span> <span class="err">etc.)</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">PCI</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">PCI</span> <span class="err">Stub</span> <span class="err">driver</span>
+<span class="err">|</span>
+<span class="err">|</span> <span class="err">[*]</span> <span class="err">Virtualization</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Virtualization</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Kernel-based</span> <span class="err">Virtual</span> <span class="err">Machine</span> <span class="err">(KVM)</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">KVM</span> <span class="err">for</span> <span class="err">Intel</span> <span class="err">processors</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>     <span class="err">KVM</span> <span class="err">for</span> <span class="err">AMD</span> <span class="err">processors</span> <span class="err">support</span> <span class="err">(NEW)</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>     <span class="err">Audit</span> <span class="err">KVM</span> <span class="err">MMU</span> <span class="err">(NEW)</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>     <span class="err">KVM</span> <span class="err">legacy</span> <span class="err">PCI</span> <span class="err">device</span> <span class="err">assignment</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>   <span class="err">Host</span> <span class="err">kernel</span> <span class="err">accelerator</span> <span class="err">for</span> <span class="err">virtio</span> <span class="err">net</span> <span class="err">(NEW)</span>
+</pre>
+</div>
 </div>
 <div class="section" id="kernel-compilation">
 <h2>Kernel compilation</h2>
 <pre class="code console literal-block">
 <span class="gp">#</span> make <span class="o">&amp;&amp;</span> make modules_install
-<span class="gp">#</span> cp arch/x86_64/boot/bzImage /boot/kernel-3.18.12
 </pre>
 </div>
 <div class="section" id="id1">

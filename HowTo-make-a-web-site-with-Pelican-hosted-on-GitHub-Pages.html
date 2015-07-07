@@ -117,7 +117,6 @@ D. Bernaudeau            </a>
                 <p>Pelican is a static site generator writed in Python. This means that you edit the content on your computer with a simple text editor. Then, a generator makes all HTML pages for the web site, including indexes for articles, categories and tags. In the end, your web site can be hosted easily on a simple HTTP server like GitHub Pages or Amazon S3.</p>
 <p>Unlike other CMS (Content Management System) like Wordpress or Drupal, Pelican has no web administration interface. In most cases, the administration interface has many vulnerabilies used to deface the website.</p>
 <p>This article describes step by step how to make your web site with Pelican 3.5 on Gentoo Linux and how to host your web site on GitHub Pages.</p>
-
 <div class="section" id="install-pelican">
 <h2>Install Pelican</h2>
 <pre class="code console literal-block">
@@ -126,7 +125,7 @@ D. Bernaudeau            </a>
 </div>
 <div class="section" id="create-github-space">
 <h2>Create GitHub space</h2>
-<p>On <a class="reference external" href="https://github.com/">GitHub</a>, create an account named &quot;didier-bernaudeau&quot; then a repository named &quot;didier-bernaudeau.github.io&quot;. Obviously, remplace &quot;didier-bernaudeau&quot; by your username.</p>
+<p>On <a class="reference external" href="https://github.com/">GitHub</a>, create an account named "didier-bernaudeau" then a repository named "didier-bernaudeau.github.io". Obviously, remplace "didier-bernaudeau" by your username.</p>
 </div>
 <div class="section" id="dns-configuration">
 <h2>DNS Configuration</h2>
@@ -136,7 +135,7 @@ D. Bernaudeau            </a>
 <span class="err">Name</span> <span class="err">:</span> <span class="err">didier.bernaudeau.net</span>
 <span class="err">Value</span> <span class="err">:</span> <span class="err">didier-bernaudeau.github.io.</span>
 </pre>
-<p>Check configuration with &quot;dig&quot; tool :</p>
+<p>Check configuration with "dig" tool :</p>
 <pre class="code console literal-block">
 <span class="gp">#</span> emerge <span class="nb">bind</span>-tools
 </pre>
@@ -184,7 +183,7 @@ github.map.fastly.net.  30      IN      A       185.31.17.133</span>
 </div>
 <div class="section" id="download-the-theme">
 <h2>Download the theme</h2>
-<p>For my web site, I selected the theme &quot;Bootstrap3&quot; and the style sheet &quot;Bootswatch&quot;.</p>
+<p>For my web site, I selected the theme "Bootstrap3" and the style sheet "Bootswatch".</p>
 <pre class="code console literal-block">
 <span class="gp">$</span> <span class="nb">cd </span>MyWebSite
 <span class="gp">$</span> git clone https://github.com/DandyDev/pelican-bootstrap3.git/ theme
@@ -192,7 +191,7 @@ github.map.fastly.net.  30      IN      A       185.31.17.133</span>
 <span class="gp">$</span> wget https://bootswatch.com/bower_components/bootstrap/dist/css/bootstrap.min.css
 <span class="gp">$</span> wget https://bootswatch.com/bower_components/bootstrap/dist/css/bootstrap.css
 </pre>
-<p>Moreover, I have edited the theme to change the font size of &quot;blockquote&quot; section (bootstrap.flatly.min.css).</p>
+<p>Moreover, I have edited the theme to change the font size of "blockquote" section (bootstrap.flatly.min.css).</p>
 </div>
 <div class="section" id="download-plugins">
 <h2>Download plugins</h2>
@@ -316,7 +315,7 @@ github.map.fastly.net.  30      IN      A       185.31.17.133</span>
 <span class="gp">$</span> make github
 <span class="go">
 Username for 'https://github.com': didier-bernaudeau
-Password for 'https://didier-bernaudeau&#64;github.com': *************************</span>
+Password for 'https://didier-bernaudeau@github.com': *************************</span>
 </pre>
 </div>
 <div class="section" id="references">
@@ -357,6 +356,11 @@ Password for 'https://didier-bernaudeau&#64;github.com': ***********************
                             Gentoo
                         </a>
                     </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
+                            Hardware
+                        </a>
+                    </li>
                     <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/howto.html">
                             HowTo
@@ -370,6 +374,11 @@ Password for 'https://didier-bernaudeau&#64;github.com': ***********************
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/thinkpad-x24o.html">
                             ThinkPad X24O
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/vaio-sr11m.html">
+                            VAIO SR11M
                         </a>
                     </li>
                 </ul>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Sony VAIO SR11M - D. Bernaudeau</title>
+    <title>Sony VAIO VGN SR11M - D. Bernaudeau</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,21 +9,20 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/Sony_VAIO_SR11M.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/Sony_VAIO_VGN_SR11M.html">
 
         <meta name="author" content="Didier Bernaudeau" />
-        <meta name="keywords" content="Hardware,VAIO SR11M" />
+        <meta name="keywords" content="Hardware" />
         <meta name="description" content="This article describes the hardware specification and configuration of my Sony VAIO VGN SR11M based on Intel Core 2 Duo processor. Future articles will refer to this one." />
 
         <meta property="og:site_name" content="D. Bernaudeau" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Sony VAIO SR11M"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/Sony_VAIO_SR11M.html"/>
+        <meta property="og:title" content="Sony VAIO VGN SR11M"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/Sony_VAIO_VGN_SR11M.html"/>
         <meta property="og:description" content="This article describes the hardware specification and configuration of my Sony VAIO VGN SR11M based on Intel Core 2 Duo processor. Future articles will refer to this one."/>
         <meta property="article:published_time" content="2015-06-28" />
             <meta property="article:section" content="Articles" />
             <meta property="article:tag" content="Hardware" />
-            <meta property="article:tag" content="VAIO SR11M" />
             <meta property="article:author" content="Didier Bernaudeau" />
 
 
@@ -59,10 +58,15 @@ D. Bernaudeau            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                    <li><a href="/">Articles</a></li>
                          <li><a href="http://didier.bernaudeau.net/pages/presentation.html">
                              Presentation
                           </a></li>
+                        <li class="active">
+                            <a href="http://didier.bernaudeau.net/category/articles.html">Articles</a>
+                        </li>
+                        <li >
+                            <a href="http://didier.bernaudeau.net/category/tutorials.html">Tutorials</a>
+                        </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="http://didier.bernaudeau.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
@@ -80,10 +84,10 @@ D. Bernaudeau            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/Sony_VAIO_SR11M.html"
+                    <a href="http://didier.bernaudeau.net/Sony_VAIO_VGN_SR11M.html"
                        rel="bookmark"
-                       title="Permalink to Sony VAIO SR11M">
-                        Sony VAIO SR11M
+                       title="Permalink to Sony VAIO VGN SR11M">
+                        Sony VAIO VGN SR11M
                     </a>
                 </h1>
             </header>
@@ -97,7 +101,7 @@ D. Bernaudeau            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-07-07T22:50:00+02:00"> mar. 07 juillet 2015</time>
+                <i class="fa fa-calendar"></i><time datetime="2015-07-08T22:34:00+02:00"> mer. 08 juillet 2015</time>
             </span>
 
 
@@ -106,8 +110,6 @@ D. Bernaudeau            </a>
 
 <span class="label label-default">Tags</span>
 	<a href="http://didier.bernaudeau.net/tag/hardware.html">Hardware</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/vaio-sr11m.html">VAIO SR11M</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
@@ -240,8 +242,8 @@ D. Bernaudeau            </a>
 </tbody>
 </table>
 </div>
-<div class="section" id="hard-disc-drive">
-<h3>Hard Disc Drive</h3>
+<div class="section" id="hard-disk-drive">
+<h3>Hard Disk Drive</h3>
 <table border="1" class=" table-striped docutils table-hover table">
 <colgroup>
 <col width="53%"></col>
@@ -492,13 +494,26 @@ D. Bernaudeau            </a>
 <h2>Hardware architecture</h2>
 <img alt="Hardware architecture of Sony VAIO VGN-SR11M" class="img-responsive align-right" src="http://didier.bernaudeau.net/images/2015-06-28_Sony_VAIO_SR11M_01.png" style="width: 100%;"/>
 </div>
-<div class="section" id="technical-modification">
-<h2>Technical modification</h2>
-<p>Samsung 850 EVO</p>
-<p><a class="reference external" href="http://www.samsung.com/fr/consumer/memory-storage/ssd/850-evo/MZ-75E250B/EU">http://www.samsung.com/fr/consumer/memory-storage/ssd/850-evo/MZ-75E250B/EU</a></p>
+<div class="section" id="bios">
+<h2>BIOS</h2>
+<div class="section" id="version">
+<h3>Version</h3>
+<p>The last version is "R0310Y1"</p>
 </div>
-<div class="section" id="bios-configuration">
-<h2>BIOS configuration</h2>
+<div class="section" id="configuration">
+<h3>configuration</h3>
+<p>Press F2 to enter in BIOS menu</p>
+<p>Menu "Advanced"</p>
+<pre class="code ini literal-block">
+<span class="err">Intel(R)</span> <span class="err">Virtualization</span> <span class="err">Technology</span> <span class="k">[Enabled]</span>
+</pre>
+<p>Menu "Boot"</p>
+<pre class="code ini literal-block">
+<span class="err">Select</span> <span class="err">1st</span> <span class="err">Boot</span> <span class="err">Priority</span> <span class="k">[External Device]</span>
+<span class="err">Select</span> <span class="err">2nd</span> <span class="err">Boot</span> <span class="err">Priority</span> <span class="k">[Internal Optical Disc Drive]</span>
+<span class="err">Select</span> <span class="err">3rd</span> <span class="err">Boot</span> <span class="err">Priority</span> <span class="k">[Internal Hard Disk Drive]</span>
+</pre>
+</div>
 </div>
 <div class="section" id="references">
 <h2>References</h2>
@@ -506,6 +521,7 @@ D. Bernaudeau            </a>
 <ul class="simple">
 <li><a class="reference external" href="http://ark.intel.com/products/35569/Intel-Core2-Duo-Processor-P8400-3M-Cache-2_26-GHz-1066-MHz-FSB/">Intel - Intel Core 2 Duo Processor P8400</a></li>
 <li><a class="reference external" href="http://icecat.biz/p/sony/vgn-sr11m/notebooks-4905524509793-VAIO+VGN-SR11M-2146686.html/">Icecat - The open catalog</a></li>
+<li><a class="reference external" href="http://www.sony.fr/support/fr/product/VGN-SR11M/">Sony - Support for VGN SR11M</a></li>
 </ul>
 </blockquote>
 </div>
@@ -551,14 +567,9 @@ D. Bernaudeau            </a>
                             Pelican
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/thinkpad-x24o.html">
                             ThinkPad X24O
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/vaio-sr11m.html">
-                            VAIO SR11M
                         </a>
                     </li>
                 </ul>

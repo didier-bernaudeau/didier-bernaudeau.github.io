@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>D. Bernaudeau</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2015-07-08T23:10:00+02:00</updated><entry><title>HowTo configure the Linux kernel for Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html" rel="alternate"></link><updated>2015-06-27T00:15:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-16:HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html</id><summary type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
-&lt;p&gt;To get more information about the configuration of my laptop, you can read this article : &lt;a class="reference external" href="http://didier.bernaudeau.net/Lenovo-ThinkPad-X240.html"&gt;Lenovo ThinkPad X240&lt;/a&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>D. Bernaudeau</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2015-07-15T21:45:00+02:00</updated><entry><title>How to create bootable USB flash drives with Rufus</title><link href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html" rel="alternate"></link><updated>2015-07-15T21:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-12:How_to_create_bootable_USB_flash_drives_with_Rufus.html</id><summary type="html">&lt;p&gt;This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp;amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.&lt;/p&gt;
+&lt;div class="section" id="install-rufus"&gt;
+&lt;h2&gt;Install Rufus&lt;/h2&gt;
+&lt;p&gt;Download the software on &lt;a class="reference external" href="https://rufus.akeo.ie/"&gt;rufus.akeo.ie&lt;/a&gt; then execute the application.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="create-installation-media"&gt;
+&lt;h2&gt;Create installation media&lt;/h2&gt;
+&lt;div class="section" id="example-for-microsoft-windows-8-1-with-mbr"&gt;
+&lt;h3&gt;Example for Microsoft Windows 8.1 (with MBR)&lt;/h3&gt;
+&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
+&lt;/div&gt;
+&lt;div class="section" id="example-for-debian-8-with-mbr"&gt;
+&lt;h3&gt;Example for Debian 8 (with MBR)&lt;/h3&gt;
+&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
+&lt;p&gt;If you need additional firmware to install Debian :&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Download the package "firmware-iwlwifi" (for Intel Wifi)&lt;/li&gt;
+&lt;li&gt;Unpack the package&lt;/li&gt;
+&lt;li&gt;Copy the file "&lt;tt class="docutils literal"&gt;*&lt;/tt&gt;.ucode" on another USB flash drive&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="Windows"></category><category term="Linux"></category></entry><entry><title>HowTo configure the Linux kernel for Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html" rel="alternate"></link><updated>2015-06-27T00:15:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-16:HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html</id><summary type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
+&lt;p&gt;To get more information about the configuration of my laptop, you can read this article : &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html"&gt;Lenovo ThinkPad X240&lt;/a&gt;&lt;/p&gt;
 &lt;div class="section" id="kernel-installation"&gt;
 &lt;h2&gt;Kernel installation&lt;/h2&gt;
 &lt;p&gt;Download kernel Gentoo sources (4.0.5) :&lt;/p&gt;
@@ -363,7 +388,7 @@
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="HowTo"></category><category term="Gentoo"></category><category term="ThinkPad X24O"></category></entry><entry><title>HowTo support FAT64 on Gentoo</title><link href="http://didier.bernaudeau.net/HowTo-support-FAT64-on-Gentoo.html" rel="alternate"></link><updated>2015-06-02T18:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-02:HowTo-support-FAT64-on-Gentoo.html</id><summary type="html">&lt;p&gt;FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32.&lt;/p&gt;
+</summary><category term="Linux"></category><category term="Gentoo"></category></entry><entry><title>HowTo support FAT64 on Gentoo</title><link href="http://didier.bernaudeau.net/HowTo-support-FAT64-on-Gentoo.html" rel="alternate"></link><updated>2015-06-02T18:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-02:HowTo-support-FAT64-on-Gentoo.html</id><summary type="html">&lt;p&gt;FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32.&lt;/p&gt;
 &lt;p&gt;This file systen is supported by Microsoft Windows (XP, Vista, Seven,...), MacOS, Linux and Android. For linux, FAT64 is not supported directly in the kernel but with FUSE (Filesystem in UserSpacE).&lt;/p&gt;
 &lt;p&gt;This article describes step by step how to support FAT64 on Gentoo Linux.&lt;/p&gt;
 &lt;div class="section" id="installation"&gt;
@@ -402,7 +427,7 @@
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="HowTo"></category><category term="Gentoo"></category></entry><entry><title>HowTo make a web site with Pelican hosted on GitHub Pages</title><link href="http://didier.bernaudeau.net/HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html" rel="alternate"></link><updated>2015-07-08T23:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-05-16:HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html</id><summary type="html">&lt;p&gt;Pelican is a static site generator writed in Python. This means that you edit the content on your computer with a simple text editor. Then, a generator makes all HTML pages for the web site, including indexes for articles, categories and tags. In the end, your web site can be hosted easily on a simple HTTP server like GitHub Pages or Amazon S3.&lt;/p&gt;
+</summary><category term="Linux"></category><category term="Gentoo"></category></entry><entry><title>HowTo make a web site with Pelican hosted on GitHub Pages</title><link href="http://didier.bernaudeau.net/HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html" rel="alternate"></link><updated>2015-07-08T23:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-05-16:HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html</id><summary type="html">&lt;p&gt;Pelican is a static site generator writed in Python. This means that you edit the content on your computer with a simple text editor. Then, a generator makes all HTML pages for the web site, including indexes for articles, categories and tags. In the end, your web site can be hosted easily on a simple HTTP server like GitHub Pages or Amazon S3.&lt;/p&gt;
 &lt;p&gt;Unlike other CMS (Content Management System) like Wordpress or Drupal, Pelican has no web administration interface. In most cases, the administration interface has many vulnerabilies used to deface the website.&lt;/p&gt;
 &lt;p&gt;This article describes step by step how to make your web site with Pelican 3.5 on Gentoo Linux and how to host your web site on GitHub Pages.&lt;/p&gt;
 &lt;div class="section" id="install-pelican"&gt;
@@ -621,4 +646,4 @@ Password for 'https://didier-bernaudeau@github.com': *************************&l
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="HowTo"></category><category term="Gentoo"></category><category term="Pelican"></category></entry></feed>
+</summary><category term="Pelican"></category><category term="Linux"></category><category term="Gentoo"></category></entry></feed>

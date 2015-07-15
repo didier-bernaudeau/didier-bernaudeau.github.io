@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Tutorials - D. Bernaudeau</title>
+    <title>How to create bootable USB flash drives with Rufus - D. Bernaudeau</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,16 +9,22 @@
 
 
 
+<link rel="canonical" href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html">
 
-    <meta name="author" content="D. Bernaudeau" />
-    <meta name="keywords" content="Tutorials" />
+        <meta name="author" content="Didier Bernaudeau" />
+        <meta name="keywords" content="Windows,Linux" />
+        <meta name="description" content="This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp; GPT and can create installation media for Microsoft Windows 7/8. The disadvantage is that it runs only on Microsoft Windows." />
 
-    <!-- Open Graph tags -->
         <meta property="og:site_name" content="D. Bernaudeau" />
-        <meta property="og:type" content="website"/>
-        <meta property="og:title" content="D. Bernaudeau"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net"/>
-        <meta property="og:description" content="D. Bernaudeau"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="How to create bootable USB flash drives with Rufus"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html"/>
+        <meta property="og:description" content="This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp; GPT and can create installation media for Microsoft Windows 7/8. The disadvantage is that it runs only on Microsoft Windows."/>
+        <meta property="article:published_time" content="2015-07-12" />
+            <meta property="article:section" content="Tutorials" />
+            <meta property="article:tag" content="Windows" />
+            <meta property="article:tag" content="Linux" />
+            <meta property="article:author" content="Didier Bernaudeau" />
 
 
     <!-- Bootstrap -->
@@ -75,9 +81,20 @@ D. Bernaudeau            </a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-            <article>
-                <h2><a href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html">How to create bootable USB flash drives with Rufus</a></h2>
-                    <div class="well well-sm">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html"
+                       rel="bookmark"
+                       title="Permalink to How to create bootable USB flash drives with Rufus">
+                        How to create bootable USB flash drives with Rufus
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
@@ -98,106 +115,37 @@ D. Bernaudeau            </a>
 	<a href="http://didier.bernaudeau.net/tag/linux.html">Linux</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.</p>
-
-                    <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html">more ...</a>
                 </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html">HowTo configure the Linux kernel for Lenovo ThinkPad X240</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-06-16T22:10:00+02:00"> mar. 16 juin 2015</time>
-    </span>
-            <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-06-27T00:15:00+02:00"> sam. 27 juin 2015</time>
-            </span>
+                <p>This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.</p>
+<div class="section" id="install-rufus">
+<h2>Install Rufus</h2>
+<p>Download the software on <a class="reference external" href="https://rufus.akeo.ie/">rufus.akeo.ie</a> then execute the application.</p>
+</div>
+<div class="section" id="create-installation-media">
+<h2>Create installation media</h2>
+<div class="section" id="example-for-microsoft-windows-8-1-with-mbr">
+<h3>Example for Microsoft Windows 8.1 (with MBR)</h3>
+<img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/>
+</div>
+<div class="section" id="example-for-debian-8-with-mbr">
+<h3>Example for Debian 8 (with MBR)</h3>
+<img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/>
+<img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/>
+<p>If you need additional firmware to install Debian :</p>
+<blockquote>
+<ul class="simple">
+<li>Download the package "firmware-iwlwifi" (for Intel Wifi)</li>
+<li>Unpack the package</li>
+<li>Copy the file "<tt class="docutils literal">*</tt>.ucode" on another USB flash drive</li>
+</ul>
+</blockquote>
+</div>
+</div>
 
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/linux.html">Linux</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/gentoo.html">Gentoo</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.</p>
-<p>To get more information about the configuration of my laptop, you can read this article : <a class="reference external" href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html">Lenovo ThinkPad X240</a></p>
-
-                    <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://didier.bernaudeau.net/HowTo-support-FAT64-on-Gentoo.html">HowTo support FAT64 on Gentoo</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-06-02T18:10:00+02:00"> mar. 02 juin 2015</time>
-    </span>
-            <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-06-02T18:10:00+02:00"> mar. 02 juin 2015</time>
-            </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/linux.html">Linux</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/gentoo.html">Gentoo</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32.</p>
-<p>This file systen is supported by Microsoft Windows (XP, Vista, Seven,...), MacOS, Linux and Android. For linux, FAT64 is not supported directly in the kernel but with FUSE (Filesystem&nbsp;in UserSpacE).</p>
-<p>This article describes step by step how to support FAT64 on Gentoo Linux.</p>
-
-                    <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/HowTo-support-FAT64-on-Gentoo.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://didier.bernaudeau.net/HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html">HowTo make a web site with Pelican hosted on GitHub Pages</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-05-16T22:20:00+02:00"> sam. 16 mai 2015</time>
-    </span>
-            <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-07-08T23:10:00+02:00"> mer. 08 juillet 2015</time>
-            </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/pelican.html">Pelican</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/linux.html">Linux</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/gentoo.html">Gentoo</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>Pelican is a static site generator writed in Python. This means that you edit the content on your computer with a simple text editor. Then, a generator makes all HTML pages for the web site, including indexes for articles, categories and tags. In the end, your web site can be hosted easily on a simple HTTP server like GitHub Pages or Amazon S3.</p>
-<p>Unlike other CMS (Content Management System) like Wordpress or Drupal, Pelican has no web administration interface. In most cases, the administration interface has many vulnerabilies used to deface the website.</p>
-<p>This article describes step by step how to make your web site with Pelican 3.5 on Gentoo Linux and how to host your web site on GitHub Pages.</p>
-
-                    <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
 
         </div>
         <div class="col-sm-3" id="sidebar">

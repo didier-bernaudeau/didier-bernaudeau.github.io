@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Cipher suites - D. Bernaudeau</title>
+    <title>TLS : Understand the cipher suites - D. Bernaudeau</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,20 +9,21 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/cipher_suites.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/TLS_Understand_the_cipher_suites.html">
 
         <meta name="author" content="Didier Bernaudeau" />
-        <meta name="keywords" content="Cryptography" />
-        <meta name="description" content="An cipher suite is a list of one or more cipher strings separated by a special char (colons, commas, spaces, ...). The cipher suite defines the algorithms used for key exchange, authentication, encryption then message authentication code. For the TLS protocol, the name of the cipher suites is formalized by IANA (Internet Assigned Numbers Authority), organisation responsible for the global coordination of Internet protocol." />
+        <meta name="keywords" content="Cryptography,Network" />
+        <meta name="description" content="To protect your communications, the TLS protocol uses 4 types of cryptographic algorithm : key exchange, authentication, encryption and message authentication code. The cipher suite allows to define the algorithm used for each of these 4 functions." />
 
         <meta property="og:site_name" content="D. Bernaudeau" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Cipher suites"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/cipher_suites.html"/>
-        <meta property="og:description" content="An cipher suite is a list of one or more cipher strings separated by a special char (colons, commas, spaces, ...). The cipher suite defines the algorithms used for key exchange, authentication, encryption then message authentication code. For the TLS protocol, the name of the cipher suites is formalized by IANA (Internet Assigned Numbers Authority), organisation responsible for the global coordination of Internet protocol."/>
-        <meta property="article:published_time" content="2015-07-19" />
+        <meta property="og:title" content="TLS : Understand the cipher suites"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/TLS_Understand_the_cipher_suites.html"/>
+        <meta property="og:description" content="To protect your communications, the TLS protocol uses 4 types of cryptographic algorithm : key exchange, authentication, encryption and message authentication code. The cipher suite allows to define the algorithm used for each of these 4 functions."/>
+        <meta property="article:published_time" content="2015-07-22" />
             <meta property="article:section" content="Articles" />
             <meta property="article:tag" content="Cryptography" />
+            <meta property="article:tag" content="Network" />
             <meta property="article:author" content="Didier Bernaudeau" />
 
 
@@ -84,10 +85,10 @@ D. Bernaudeau            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/cipher_suites.html"
+                    <a href="http://didier.bernaudeau.net/TLS_Understand_the_cipher_suites.html"
                        rel="bookmark"
-                       title="Permalink to Cipher suites">
-                        Cipher suites
+                       title="Permalink to TLS : Understand the cipher suites">
+                        TLS : Understand the cipher suites
                     </a>
                 </h1>
             </header>
@@ -97,11 +98,11 @@ D. Bernaudeau            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-07-19T10:47:00+02:00"> dim. 19 juillet 2015</time>
+        <i class="fa fa-calendar"></i><time datetime="2015-07-22T22:54:00+02:00"> mer. 22 juillet 2015</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-07-19T18:57:00+02:00"> dim. 19 juillet 2015</time>
+                <i class="fa fa-calendar"></i><time datetime="2015-07-22T22:54:00+02:00"> mer. 22 juillet 2015</time>
             </span>
 
 
@@ -110,25 +111,35 @@ D. Bernaudeau            </a>
 
 <span class="label label-default">Tags</span>
 	<a href="http://didier.bernaudeau.net/tag/cryptography.html">Cryptography</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/network.html">Network</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>An cipher suite is a list of one or more cipher strings separated by a special char (colons, commas, spaces, ...). The cipher suite defines the algorithms used for key exchange, authentication, encryption then message authentication code.</p>
-<p>For the TLS protocol, the name of the cipher suites is formalized by IANA (Internet Assigned Numbers Authority), organisation responsible for the global coordination of Internet protocol.</p>
-<div class="section" id="cryptographic-functions">
-<h2>Cryptographic functions</h2>
-<p>An cipher suite defines 4 cryptographic algorithms:</p>
-<blockquote>
-<ul class="simple">
-<li>Key exchange: define algorithm to exchange the master secret between client and server (RSA, DH, DHE, ...).</li>
-<li>Authentication: define algorithm to authenticate the server by client and optionally client by server (RSA, DSS, ...).</li>
-<li>Encryption: define algorithm to encrypt data (RC4, AES, ...).</li>
-<li>Message authentication code: define algorithm to protect data integrity (MD5, SHA, SHA256, ...).</li>
-</ul>
-</blockquote>
+                <p>To protect your communications, the TLS protocol uses 4 types of cryptographic algorithm : key exchange, authentication, encryption and message authentication code. The cipher suite allows to define the algorithm used for each of these 4 functions.</p>
+<div class="section" id="types-of-cryptographic-algorithm">
+<h2>Types of cryptographic algorithm</h2>
+<div class="section" id="key-exchange">
+<h3>Key exchange</h3>
+<p>This type of algorithm is used to define a common secret between two parties. The available algorithms are RSA, DH, DHE and ECDHE.</p>
 </div>
-<div class="section" id="example-of-cipher-suites">
-<h2>Example of cipher suites</h2>
+<div class="section" id="authentication">
+<h3>Authentication</h3>
+<p>This type of algorithm is used to authenticate the server by client and optionally client by server. The available algorithms are RSA or DSS.</p>
+</div>
+<div class="section" id="encryption">
+<h3>Encryption</h3>
+<p>This type of algorithm is used to encrypt data. The available algorithms are DES, 3DES, RC4, AES, ...</p>
+</div>
+<div class="section" id="message-authentication-code">
+<h3>Message Authentication Code</h3>
+<p>This type of algorithm is used to sign data. The available algorithms are MD5, SHA, SHA256, ...</p>
+</div>
+</div>
+<div class="section" id="cipher-suites">
+<h2>Cipher suites</h2>
+<p>An cipher suite is a list of one or more cipher strings separated by a special char (colons, commas, spaces, ...). The name of the cipher suites is formalized by IANA (Internet Assigned Numbers Authority).</p>
+<p>The cipher suite defines the algorithms used for key exchange, authentication, encryption then message authentication code. If the algorithm for key exchange is not mentioned, the default algorithm is RSA.</p>
 <p>The table below details some example of cipher suites :</p>
 <table border="1" class=" table-striped docutils table-hover table">
 <colgroup>
@@ -145,7 +156,7 @@ D. Bernaudeau            </a>
 <th class="head">Key Exchange</th>
 <th class="head">Authentication</th>
 <th class="head">Encryption</th>
-<th class="head">Hash</th>
+<th class="head">MAC</th>
 </tr>
 </thead>
 <tbody valign="top">
@@ -348,6 +359,11 @@ D. Bernaudeau            </a>
                     <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/linux.html">
                             Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/network.html">
+                            Network
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

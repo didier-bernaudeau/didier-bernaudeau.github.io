@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>How to create bootable USB flash drives with Rufus - D. Bernaudeau</title>
+    <title>TLS: Hardened configuration - D. Bernaudeau</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,21 +9,21 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/2015-07-23_TLS_Hardened_configuration.html">
 
         <meta name="author" content="Didier Bernaudeau" />
-        <meta name="keywords" content="Windows,Linux" />
-        <meta name="description" content="This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp; GPT and can create installation media for Microsoft Windows 7/8. The disadvantage is that it runs only on Microsoft Windows." />
+        <meta name="keywords" content="Cryptography,Network" />
+        <meta name="description" content="In recent years, many vulnerabilities (BEAST, CRIME, FREAK, ...) have been published about the TLS protocol. Today, it is essential to enhanced configuration of TLS protocol to ensure the security of communication. This article lists the best practices to enhanced configuration of TLS protocol." />
 
         <meta property="og:site_name" content="D. Bernaudeau" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="How to create bootable USB flash drives with Rufus"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html"/>
-        <meta property="og:description" content="This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp; GPT and can create installation media for Microsoft Windows 7/8. The disadvantage is that it runs only on Microsoft Windows."/>
-        <meta property="article:published_time" content="2015-07-12" />
-            <meta property="article:section" content="Tutorials" />
-            <meta property="article:tag" content="Windows" />
-            <meta property="article:tag" content="Linux" />
+        <meta property="og:title" content="TLS: Hardened configuration"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/2015-07-23_TLS_Hardened_configuration.html"/>
+        <meta property="og:description" content="In recent years, many vulnerabilities (BEAST, CRIME, FREAK, ...) have been published about the TLS protocol. Today, it is essential to enhanced configuration of TLS protocol to ensure the security of communication. This article lists the best practices to enhanced configuration of TLS protocol."/>
+        <meta property="article:published_time" content="2015-07-23" />
+            <meta property="article:section" content="Articles" />
+            <meta property="article:tag" content="Cryptography" />
+            <meta property="article:tag" content="Network" />
             <meta property="article:author" content="Didier Bernaudeau" />
 
 
@@ -39,8 +39,8 @@
 
 
 
-        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
-              title="D. Bernaudeau Tutorials ATOM Feed"/>
+        <link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" type="application/atom+xml" rel="alternate"
+              title="D. Bernaudeau Articles ATOM Feed"/>
 
 </head>
 <body>
@@ -62,10 +62,10 @@ D. Bernaudeau            </a>
                          <li><a href="http://didier.bernaudeau.net/pages/presentation.html">
                              Presentation
                           </a></li>
-                        <li >
+                        <li class="active">
                             <a href="http://didier.bernaudeau.net/category/articles.html">Articles</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="http://didier.bernaudeau.net/category/tutorials.html">Tutorials</a>
                         </li>
             </ul>
@@ -85,10 +85,10 @@ D. Bernaudeau            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html"
+                    <a href="http://didier.bernaudeau.net/2015-07-23_TLS_Hardened_configuration.html"
                        rel="bookmark"
-                       title="Permalink to How to create bootable USB flash drives with Rufus">
-                        How to create bootable USB flash drives with Rufus
+                       title="Permalink to TLS: Hardened configuration">
+                        TLS: Hardened configuration
                     </a>
                 </h1>
             </header>
@@ -98,11 +98,11 @@ D. Bernaudeau            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-07-12T12:32:00+02:00"> dim. 12 juillet 2015</time>
+        <i class="fa fa-calendar"></i><time datetime="2015-07-23T22:41:00+02:00"> jeu. 23 juillet 2015</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-07-15T21:45:00+02:00"> mer. 15 juillet 2015</time>
+                <i class="fa fa-calendar"></i><time datetime="2015-07-23T22:41:00+02:00"> jeu. 23 juillet 2015</time>
             </span>
 
 
@@ -110,36 +110,210 @@ D. Bernaudeau            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/windows.html">Windows</a>
+	<a href="http://didier.bernaudeau.net/tag/cryptography.html">Cryptography</a>
         /
-	<a href="http://didier.bernaudeau.net/tag/linux.html">Linux</a>
+	<a href="http://didier.bernaudeau.net/tag/network.html">Network</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.</p>
-<div class="section" id="install-rufus">
-<h2>Install Rufus</h2>
-<p>Download the software on <a class="reference external" href="https://rufus.akeo.ie/">rufus.akeo.ie</a> then execute the application.</p>
+                <p>In recent years, many vulnerabilities (BEAST, CRIME, FREAK, ...) have been published about the TLS protocol. Today, it is essential to enhanced configuration of TLS protocol to ensure the security of communication. This article lists the best practices to enhanced configuration of TLS protocol.</p>
+<div class="section" id="protocol-version">
+<h2>Protocol version</h2>
+<table border="1" class=" table-striped docutils table-hover table">
+<colgroup>
+<col width="9%"></col>
+<col width="20%"></col>
+<col width="71%"></col>
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Version</th>
+<th class="head">Recommended state</th>
+<th class="head">Comment</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>1.0</td>
+<td>Disabled</td>
+<td>Vulnerability: BEAST (Browser Exploit Against SSL/TLS)</td>
+</tr>
+<tr><td>1.1</td>
+<td>Disabled</td>
+<td>Enable only for interoperability</td>
+</tr>
+<tr><td>1.2</td>
+<td>Enable</td>
+<td>This is the last version</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="section" id="create-installation-media">
-<h2>Create installation media</h2>
-<div class="section" id="example-for-microsoft-windows-8-1-with-mbr">
-<h3>Example for Microsoft Windows 8.1 (with MBR)</h3>
-<img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/>
+<div class="section" id="compression-method">
+<h2>Compression method</h2>
+<table border="1" class=" table-striped docutils table-hover table">
+<colgroup>
+<col width="9%"></col>
+<col width="20%"></col>
+<col width="71%"></col>
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Method</th>
+<th class="head">Recommended state</th>
+<th class="head">Comment</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Null</td>
+<td>Enable</td>
+<td> </td>
+</tr>
+<tr><td>Deflate</td>
+<td>Disabled</td>
+<td>Vulnerability: CRIME (Compression Ratio Info-leak Made Easy)</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="section" id="example-for-debian-8-with-mbr">
-<h3>Example for Debian 8 (with MBR)</h3>
-<img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/>
-<img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/>
-<p>If you need additional firmware to install Debian :</p>
-<blockquote>
-<ul class="simple">
-<li>Download the package "firmware-iwlwifi" (for Intel Wifi)</li>
-<li>Unpack the package</li>
-<li>Copy the file "<tt class="docutils literal">*</tt>.ucode" on another USB flash drive</li>
-</ul>
-</blockquote>
+<div class="section" id="cryptographic-algorithm">
+<h2>Cryptographic algorithm</h2>
+<div class="section" id="key-exchange">
+<h3>Key exchange</h3>
+<table border="1" class=" table-striped docutils table-hover table">
+<colgroup>
+<col width="10%"></col>
+<col width="11%"></col>
+<col width="18%"></col>
+<col width="60%"></col>
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Algorithm</th>
+<th class="head">Key length</th>
+<th class="head">Recommended state</th>
+<th class="head">Comment</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>RSA Export</td>
+<td>512 bits</td>
+<td>Disabled</td>
+<td>Vulnerability: FREAK (Factoring RSA Export Keys)</td>
+</tr>
+<tr><td>RSA</td>
+<td>2048 bits</td>
+<td>Disabled</td>
+<td>Enable only for interoperability</td>
+</tr>
+<tr><td>DH</td>
+<td>2048 bits</td>
+<td>Disabled</td>
+<td>Enable only for interoperability</td>
+</tr>
+<tr><td>DHE</td>
+<td>2048 bits</td>
+<td>Enable</td>
+<td>Allow PFS (Perfect Forward Secrecy)</td>
+</tr>
+<tr><td>ECDHE</td>
+<td>256 bits</td>
+<td>Enable</td>
+<td>Allow PFS (Perfect Forward Secrecy)</td>
+</tr>
+</tbody>
+</table>
 </div>
+<div class="section" id="encryption">
+<h3>Encryption</h3>
+<table border="1" class=" table-striped docutils table-hover table">
+<colgroup>
+<col width="10%"></col>
+<col width="11%"></col>
+<col width="18%"></col>
+<col width="60%"></col>
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Algorithm</th>
+<th class="head">Key length</th>
+<th class="head">Recommended state</th>
+<th class="head">Comment</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>DES</td>
+<td>56 bits</td>
+<td>Disabled</td>
+<td>Weak algorithm</td>
+</tr>
+<tr><td>3DES</td>
+<td>112 bits</td>
+<td>Disabled</td>
+<td>Weak algorithm</td>
+</tr>
+<tr><td>RC4</td>
+<td>128 bits</td>
+<td>Disabled</td>
+<td>Weak algorithm</td>
+</tr>
+<tr><td>AES-CBC</td>
+<td>128 bits</td>
+<td>Disabled</td>
+<td>Vulnerability: Lucky 13</td>
+</tr>
+<tr><td>AES-CBC</td>
+<td>256 bits</td>
+<td>Disabled</td>
+<td>Vulnerability: Lucky 13</td>
+</tr>
+<tr><td>AES-GCM</td>
+<td>128 bits</td>
+<td>Enable</td>
+<td>Allow AEAD (Authenticated Encryption with Associated Data)</td>
+</tr>
+<tr><td>AES-GCM</td>
+<td>256 bits</td>
+<td>Enable</td>
+<td>Allow AEAD (Authenticated Encryption with Associated Data)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="message-authentication-code">
+<h3>Message Authentication Code</h3>
+<table border="1" class=" table-striped docutils table-hover table">
+<colgroup>
+<col width="10%"></col>
+<col width="11%"></col>
+<col width="18%"></col>
+<col width="60%"></col>
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Algorithm</th>
+<th class="head">Key length</th>
+<th class="head">Recommended state</th>
+<th class="head">Comment</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>MD5</td>
+<td>128 bits</td>
+<td>Disabled</td>
+<td>Weak algorithm</td>
+</tr>
+<tr><td>SHA-1</td>
+<td>160 bits</td>
+<td>Disabled</td>
+<td>Weak algorithm</td>
+</tr>
+<tr><td>SHA-2</td>
+<td>256 bits</td>
+<td>Enable</td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="compliance-form">
+<h2>Compliance Form</h2>
+<p>After analyzing the configuration of a web site, you can complete the <a class="reference external" href="http://didier.bernaudeau.net/documents/2015-07-23_TLS_Hardened_configuration_Compliance_form.ods">compliance form</a>.</p>
 </div>
 
             </div>

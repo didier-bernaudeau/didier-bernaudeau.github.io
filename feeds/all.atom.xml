@@ -236,7 +236,7 @@
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary><category term="Cryptography"></category><category term="Network"></category></entry><entry><title>TLS: Understand the cipher suites</title><link href="http://didier.bernaudeau.net/TLS_Understanding_the_cipher_suites.html" rel="alternate"></link><updated>2015-08-04T21:48:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-22:TLS_Understanding_the_cipher_suites.html</id><summary type="html">&lt;p&gt;To protect your communications, TLS protocol uses 4 cryptographic functions: key exchange, authentication, encryption and message authentication code. Cipher suite allows to define the algorithm used for each of these 4 functions.&lt;/p&gt;
+</summary><category term="Cryptography"></category><category term="Network"></category></entry><entry><title>TLS: Understanding the cipher suites</title><link href="http://didier.bernaudeau.net/TLS_Understanding_the_cipher_suites.html" rel="alternate"></link><updated>2015-08-04T21:48:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-22:TLS_Understanding_the_cipher_suites.html</id><summary type="html">&lt;p&gt;To protect your communications, TLS protocol uses 4 cryptographic functions: key exchange, authentication, encryption and message authentication code. Cipher suite allows to define the algorithm used for each of these 4 functions.&lt;/p&gt;
 &lt;div class="section" id="cryptographic-function"&gt;
 &lt;h2&gt;Cryptographic function&lt;/h2&gt;
 &lt;div class="section" id="key-exchange"&gt;

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>How to create bootable USB flash drives with Rufus - D. Bernaudeau</title>
+    <title>JSONP (JSON with Padding) - D. Bernaudeau</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,21 +9,24 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/JSON_with_Padding.html">
 
         <meta name="author" content="Didier Bernaudeau" />
-        <meta name="keywords" content="Windows,Linux" />
-        <meta name="description" content="This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp; GPT and can create installation media for Microsoft Windows 7/8. The disadvantage is that it runs only on Microsoft Windows." />
+        <meta name="keywords" content="Development,WebSite,HTML,JavaScript,PHP" />
+        <meta name="description" content="This article shows how JSONP (JavaScript Object Notation with Padding) can be used to get data from different domains, bypassing SOP (Same-Origin Policy). JSONP uses the script tag, which is not in the scope of the SOP. Indeed, a JavaScript source file loaded from another domain will run in the origin of the HTML that includes the script, not in the domain where the JavaScript file originated from." />
 
         <meta property="og:site_name" content="D. Bernaudeau" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="How to create bootable USB flash drives with Rufus"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html"/>
-        <meta property="og:description" content="This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp; GPT and can create installation media for Microsoft Windows 7/8. The disadvantage is that it runs only on Microsoft Windows."/>
-        <meta property="article:published_time" content="2015-07-12" />
-            <meta property="article:section" content="Tutorials" />
-            <meta property="article:tag" content="Windows" />
-            <meta property="article:tag" content="Linux" />
+        <meta property="og:title" content="JSONP (JSON with Padding)"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/JSON_with_Padding.html"/>
+        <meta property="og:description" content="This article shows how JSONP (JavaScript Object Notation with Padding) can be used to get data from different domains, bypassing SOP (Same-Origin Policy). JSONP uses the script tag, which is not in the scope of the SOP. Indeed, a JavaScript source file loaded from another domain will run in the origin of the HTML that includes the script, not in the domain where the JavaScript file originated from."/>
+        <meta property="article:published_time" content="2015-08-29" />
+            <meta property="article:section" content="Articles" />
+            <meta property="article:tag" content="Development" />
+            <meta property="article:tag" content="WebSite" />
+            <meta property="article:tag" content="HTML" />
+            <meta property="article:tag" content="JavaScript" />
+            <meta property="article:tag" content="PHP" />
             <meta property="article:author" content="Didier Bernaudeau" />
 
 
@@ -39,8 +42,8 @@
 
 
 
-        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
-              title="D. Bernaudeau Tutorials ATOM Feed"/>
+        <link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" type="application/atom+xml" rel="alternate"
+              title="D. Bernaudeau Articles ATOM Feed"/>
 
 </head>
 <body>
@@ -62,10 +65,10 @@ D. Bernaudeau            </a>
                          <li><a href="http://didier.bernaudeau.net/pages/presentation.html">
                              Presentation
                           </a></li>
-                        <li >
+                        <li class="active">
                             <a href="http://didier.bernaudeau.net/category/articles.html">Articles</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="http://didier.bernaudeau.net/category/tutorials.html">Tutorials</a>
                         </li>
             </ul>
@@ -85,10 +88,10 @@ D. Bernaudeau            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html"
+                    <a href="http://didier.bernaudeau.net/JSON_with_Padding.html"
                        rel="bookmark"
-                       title="Permalink to How to create bootable USB flash drives with Rufus">
-                        How to create bootable USB flash drives with Rufus
+                       title="Permalink to JSONP (JSON with Padding)">
+                        JSONP (JSON with Padding)
                     </a>
                 </h1>
             </header>
@@ -98,11 +101,11 @@ D. Bernaudeau            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-07-12T12:32:00+02:00"> dim. 12 juillet 2015</time>
+        <i class="fa fa-calendar"></i><time datetime="2015-08-29T14:30:00+02:00"> sam. 29 août 2015</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-07-15T21:45:00+02:00"> mer. 15 juillet 2015</time>
+                <i class="fa fa-calendar"></i><time datetime="2015-08-29T14:30:00+02:00"> sam. 29 août 2015</time>
             </span>
 
 
@@ -110,40 +113,83 @@ D. Bernaudeau            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/windows.html">Windows</a>
+	<a href="http://didier.bernaudeau.net/tag/development.html">Development</a>
         /
-	<a href="http://didier.bernaudeau.net/tag/linux.html">Linux</a>
+	<a href="http://didier.bernaudeau.net/tag/website.html">WebSite</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/html.html">HTML</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/javascript.html">JavaScript</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/php.html">PHP</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.</p>
-<div class="section" id="install-rufus">
-<h2>Install Rufus</h2>
-<p>Download the software on <a class="reference external" href="https://rufus.akeo.ie/">rufus.akeo.ie</a> then execute the application.</p>
+                <p>This article shows how JSONP (JavaScript Object Notation with Padding) can be used to get data from different domains, bypassing SOP (Same-Origin Policy).</p>
+<p>JSONP uses the script tag, which is not in the scope of the SOP. Indeed, a JavaScript source file loaded from another domain will run in the origin of the HTML that includes the script, not in the domain where the JavaScript file originated from.</p>
+<div class="section" id="step-1-create-jsonp-webservice">
+<h2>Step 1 : Create JSONP WebService</h2>
+<p>The web service encapsulates data, in JSON format, in a callback function. Create a PHP script named "jsonp.php" and hosted on "www.example.com" :</p>
+<pre class="code php literal-block">
+<span class="cp">&lt;?</span>
+ <span class="nv">$MyData</span> <span class="o">=</span> <span class="s1">'{ "MyDateTime": "'</span> <span class="o">.</span> <span class="nb">date</span><span class="p">(</span><span class="s2">"Y-m-d H:i:s"</span><span class="p">)</span> <span class="o">.</span> <span class="s1">'" }'</span><span class="p">;</span>
+ <span class="k">echo</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'JsonpCallback'</span><span class="p">]</span> <span class="o">.</span> <span class="s1">'('</span> <span class="o">.</span> <span class="nv">$MyData</span> <span class="o">.</span> <span class="s1">');'</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
+</pre>
 </div>
-<div class="section" id="create-installation-media">
-<h2>Create installation media</h2>
-<div class="section" id="example-for-microsoft-windows-8-1-with-mbr">
-<h3>Example for Microsoft Windows 8.1 (with MBR)</h3>
-<img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/>
+<div class="section" id="step-2-create-html-web-page">
+<h2>Step 2 : Create HTML web page</h2>
+<p>The HTML page loads the JavaScript source file, from JSONP WebService, then execute the callback function. Create the HTML page named jsonp.html and hosted on your localhost :</p>
+<pre class="code html literal-block">
+<span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+ <span class="nt">&lt;head&gt;</span>
+
+  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+
+    <span class="kd">function</span> <span class="nx">LoadJavaScript</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'script'</span><span class="p">);</span>
+      <span class="nx">script</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">'http://www.example.com/jsonp.php?JsonpCallback=MyJsonpCallbackFunction'</span><span class="p">;</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">script</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">MyJsonpCallbackFunction</span><span class="p">(</span><span class="nx">DataArgument</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">MyJson</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">DataArgument</span><span class="p">));</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="nx">MyJson</span><span class="p">[</span><span class="s2">"MyDateTime"</span><span class="p">]);</span>
+    <span class="p">}</span>
+
+  <span class="nt">&lt;/script&gt;</span>
+
+ <span class="nt">&lt;/head&gt;</span>
+ <span class="nt">&lt;body&gt;</span>
+   <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">onclick=</span><span class="s">"LoadJavaScript();"</span><span class="nt">&gt;</span>Click me to display Date and Time<span class="nt">&lt;/button&gt;</span>
+ <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre>
 </div>
-<div class="section" id="example-for-debian-8-with-mbr">
-<h3>Example for Debian 8 (with MBR)</h3>
-<img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/>
-<img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/>
-<p>If you need additional firmware to install Debian :</p>
+<div class="section" id="jsonp-limits">
+<h2>JSONP limits</h2>
+<p>JSONP only supports Cross-Origin HTTP GET request. Even more, the server could be compromised and return arbitrary code that will be executing in the context of your page (thus allowing access to your site’s cookies, localStorage, ...)</p>
+</div>
+<div class="section" id="references">
+<h2>References</h2>
 <blockquote>
 <ul class="simple">
-<li>Download the package "firmware-iwlwifi" (for Intel Wifi)</li>
-<li>Unpack the package</li>
-<li>Copy the file "<tt class="docutils literal">*</tt>.ucode" on another USB flash drive</li>
+<li><a class="reference external" href="http://www.codeproject.com/Articles/42641/JSON-to-JSONP-Bypass-Same-Origin-Policy">Code Project, JSON to JSONP: Bypass Same-Origin Policy</a></li>
+<li><a class="reference external" href="http://phocean.net/2013/10/13/csrf-with-jsonp.html">Phocean.net - Computer Security Blog, (in)Security of JSONP: CSRF risks</a></li>
 </ul>
 </blockquote>
-</div>
 </div>
 
             </div>
             <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://didier.bernaudeau.net/Same_Origin_Policy.html">SOP (Same-Origin Policy)</a></li>
+        <li><a href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html">CORS (Cross-Origin Resource Sharing)</a></li>
+    </ul>
+</section>
         </article>
     </section>
 

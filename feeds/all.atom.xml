@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>D. Bernaudeau</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2015-08-30T15:14:00+02:00</updated><entry><title>CORS (Cross-Origin Resource Sharing)</title><link href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html" rel="alternate"></link><updated>2015-08-30T15:14:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-30:Cross_Origin_Resource_Sharing.html</id><summary type="html">&lt;p&gt;CORS (Cross-Origin Resource Sharing) is a mechanism, define by W3C, which provides a way for web servers to support cross-site access controls, which enable secure cross-site data transfers.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>D. Bernaudeau</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2015-09-01T23:44:00+02:00</updated><entry><title>CORS (Cross-Origin Resource Sharing)</title><link href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html" rel="alternate"></link><updated>2015-09-01T23:44:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-30:Cross_Origin_Resource_Sharing.html</id><summary type="html">&lt;p&gt;CORS (Cross-Origin Resource Sharing) is a mechanism, define by W3C, which provides a way for web servers to support cross-site access controls, which enable secure cross-site data transfers.&lt;/p&gt;
 &lt;p&gt;This mechanism works by adding new HTTP headers named Access-Control-Allow-Origin.&lt;/p&gt;
 &lt;div class="section" id="step-1-create-webservice"&gt;
 &lt;h2&gt;Step 1 : Create WebService&lt;/h2&gt;
 &lt;p&gt;Create a PHP script named "cors.php" and hosted on "www.example.com" :&lt;/p&gt;
 &lt;pre class="code php literal-block"&gt;
 &lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;
-  &lt;span class="nb"&gt;header&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Access-Control-Allow-Origin: localhost"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nb"&gt;header&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Access-Control-Allow-Origin: http://hostname:8000"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
   &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nb"&gt;date&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Y-m-d H:i:s"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="step-2-create-html-web-page"&gt;
 &lt;h2&gt;Step 2 : Create HTML web page&lt;/h2&gt;
-&lt;p&gt;Create a HTML file named "cors.html" and hosted on your localhost :&lt;/p&gt;
+&lt;p&gt;Create a HTML file named "cors.html" and hosted on your computer :&lt;/p&gt;
 &lt;pre class="code html literal-block"&gt;
 &lt;span class="cp"&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
@@ -29,6 +29,11 @@
  &lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;
+&lt;p&gt;To test easily, start a web server with python (in the directory where the file "cors.html" is located)&lt;/p&gt;
+&lt;pre class="code shell literal-block"&gt;
+python -m SimpleHTTPServer
+&lt;/pre&gt;
+&lt;p&gt;Then, open web page from &lt;a class="reference external" href="http://hostname:8000/cors.html"&gt;http://hostname:8000/cors.html&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </summary><category term="Development"></category><category term="WebSite"></category><category term="HTML"></category><category term="JavaScript"></category><category term="PHP"></category></entry><entry><title>JSONP (JSON with Padding)</title><link href="http://didier.bernaudeau.net/JSON_with_Padding.html" rel="alternate"></link><updated>2015-08-29T14:30:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-29:JSON_with_Padding.html</id><summary type="html">&lt;p&gt;This article shows how JSONP (JavaScript Object Notation with Padding) can be used to get data from different domains, bypassing SOP (Same-Origin Policy).&lt;/p&gt;
 &lt;p&gt;JSONP uses the script tag, which is not in the scope of the SOP. Indeed, a JavaScript source file loaded from another domain will run in the origin of the HTML that includes the script, not in the domain where the JavaScript file originated from.&lt;/p&gt;

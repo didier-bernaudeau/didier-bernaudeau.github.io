@@ -105,7 +105,7 @@ D. Bernaudeau            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-08-30T15:14:00+02:00"> dim. 30 août 2015</time>
+                <i class="fa fa-calendar"></i><time datetime="2015-09-01T23:44:00+02:00"> mar. 01 septembre 2015</time>
             </span>
 
 
@@ -132,14 +132,14 @@ D. Bernaudeau            </a>
 <p>Create a PHP script named "cors.php" and hosted on "www.example.com" :</p>
 <pre class="code php literal-block">
 <span class="cp">&lt;?</span>
-  <span class="nb">header</span><span class="p">(</span><span class="s2">"Access-Control-Allow-Origin: localhost"</span><span class="p">);</span>
+  <span class="nb">header</span><span class="p">(</span><span class="s2">"Access-Control-Allow-Origin: http://hostname:8000"</span><span class="p">);</span>
   <span class="k">echo</span> <span class="nb">date</span><span class="p">(</span><span class="s2">"Y-m-d H:i:s"</span><span class="p">);</span>
 <span class="cp">?&gt;</span>
 </pre>
 </div>
 <div class="section" id="step-2-create-html-web-page">
 <h2>Step 2 : Create HTML web page</h2>
-<p>Create a HTML file named "cors.html" and hosted on your localhost :</p>
+<p>Create a HTML file named "cors.html" and hosted on your computer :</p>
 <pre class="code html literal-block">
 <span class="cp">&lt;!doctype html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
@@ -155,6 +155,11 @@ D. Bernaudeau            </a>
  <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
 </pre>
+<p>To test easily, start a web server with python (in the directory where the file "cors.html" is located)</p>
+<pre class="code shell literal-block">
+python -m SimpleHTTPServer
+</pre>
+<p>Then, open web page from <a class="reference external" href="http://hostname:8000/cors.html">http://hostname:8000/cors.html</a></p>
 </div>
 
             </div>

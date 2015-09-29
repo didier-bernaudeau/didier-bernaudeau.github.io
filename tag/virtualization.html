@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Cryptography - D. Bernaudeau</title>
+    <title>Virtualization - D. Bernaudeau</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -11,7 +11,7 @@
 
 
     <meta name="author" content="D. Bernaudeau" />
-    <meta name="keywords" content="Cryptography" />
+    <meta name="keywords" content="Virtualization" />
 
     <!-- Open Graph tags -->
         <meta property="og:site_name" content="D. Bernaudeau" />
@@ -74,16 +74,16 @@ D. Bernaudeau            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
-                <h2><a href="http://didier.bernaudeau.net/TLS_Audit_tools.html">TLS: Audit tools</a></h2>
+                <h2><a href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html">HowTo install a virtualization plateform with KVM</a></h2>
                     <div class="well well-sm">
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-08-04T21:56:00+02:00"> mar. 04 août 2015</time>
+        <i class="fa fa-calendar"></i><time datetime="2015-09-15T19:08:00+02:00"> mar. 15 septembre 2015</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-08-29T15:49:00+02:00"> sam. 29 août 2015</time>
+                <i class="fa fa-calendar"></i><time datetime="2015-09-28T22:09:00+02:00"> lun. 28 septembre 2015</time>
             </span>
 
 
@@ -91,72 +91,18 @@ D. Bernaudeau            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/cryptography.html">Cryptography</a>
+	<a href="http://didier.bernaudeau.net/tag/linux.html">Linux</a>
         /
-	<a href="http://didier.bernaudeau.net/tag/network.html">Network</a>
+	<a href="http://didier.bernaudeau.net/tag/gentoo.html">Gentoo</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/virtualization.html">Virtualization</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>This memo lists the tools necessary to audit the TLS configuration. Moreover, a compliance form template is available to formalize the audit report.</p>
+                <div class="summary"><p>This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.</p>
+<p>Then, LibVirt provides a convenient way to manage virtual machines on this plateform. LibVirt include an API library, a daemon (libvirtd), command line tools (virsh and virt-install) and a graphic tool (virt-manager). All these softwares are sponsorted by Red Hat.</p>
+<p>Obviouly, this virtualization plateform uses Intel Virtualization Technologyy like VT-x (Virtualization Technology eXecution) and VT-d (Virtualization Technology for Directed I/O). KVM can also support VT-c (Intel® Virtualization Technology for Connectivity) but my laptop does not have this technology.</p>
 
-                    <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/TLS_Audit_tools.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://didier.bernaudeau.net/TLS_Hardened_configuration.html">TLS: Hardened configuration</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-07-23T22:41:00+02:00"> jeu. 23 juillet 2015</time>
-    </span>
-            <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-08-02T12:44:00+02:00"> dim. 02 août 2015</time>
-            </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/cryptography.html">Cryptography</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/network.html">Network</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>In recent years, many vulnerabilities (BEAST, CRIME, FREAK, ...) have been published about TLS protocol. Today, it is essential to enhanced configuration of TLS protocol to ensure the security of communication. This article lists the best practices to enhanced configuration of TLS protocol.</p>
-
-                    <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/TLS_Hardened_configuration.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://didier.bernaudeau.net/TLS_Understanding_the_cipher_suites.html">TLS: Understanding the cipher suites</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-07-22T22:54:00+02:00"> mer. 22 juillet 2015</time>
-    </span>
-            <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-08-04T21:48:00+02:00"> mar. 04 août 2015</time>
-            </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/cryptography.html">Cryptography</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/network.html">Network</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>To protect your communications, TLS protocol uses 4 cryptographic functions: key exchange, authentication, encryption and message authentication code. Cipher suite allows to define the algorithm used for each of these 4 functions.</p>
-
-                    <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/TLS_Understanding_the_cipher_suites.html">more ...</a>
+                    <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html">more ...</a>
                 </div>
             </article>
             <hr/>

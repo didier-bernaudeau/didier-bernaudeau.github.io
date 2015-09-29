@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>HowTo install a virtualization plateform with KVM - D. Bernaudeau</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html">
+
+        <meta name="author" content="Didier Bernaudeau" />
+        <meta name="keywords" content="Linux,Gentoo,Virtualization" />
+        <meta name="description" content="This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet. Then, LibVirt provides a convenient way to manage virtual machines on this plateform. LibVirt include an API library, a daemon (libvirtd), command line tools (virsh and virt-install) and a graphic tool (virt-manager). All these softwares are sponsorted by Red Hat. Obviouly, this virtualization plateform uses Intel Virtualization Technologyy like VT-x (Virtualization Technology eXecution) and VT-d (Virtualization Technology for Directed I/O). KVM can also support VT-c (Intel® Virtualization Technology for Connectivity) but my laptop does not have this technology." />
+
+        <meta property="og:site_name" content="D. Bernaudeau" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="HowTo install a virtualization plateform with KVM"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html"/>
+        <meta property="og:description" content="This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet. Then, LibVirt provides a convenient way to manage virtual machines on this plateform. LibVirt include an API library, a daemon (libvirtd), command line tools (virsh and virt-install) and a graphic tool (virt-manager). All these softwares are sponsorted by Red Hat. Obviouly, this virtualization plateform uses Intel Virtualization Technologyy like VT-x (Virtualization Technology eXecution) and VT-d (Virtualization Technology for Directed I/O). KVM can also support VT-c (Intel® Virtualization Technology for Connectivity) but my laptop does not have this technology."/>
+        <meta property="article:published_time" content="2015-09-15" />
+            <meta property="article:section" content="Articles" />
+            <meta property="article:tag" content="Linux" />
+            <meta property="article:tag" content="Gentoo" />
+            <meta property="article:tag" content="Virtualization" />
+            <meta property="article:author" content="Didier Bernaudeau" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+    <link href="http://didier.bernaudeau.net/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://didier.bernaudeau.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/style.css" type="text/css"/>
+
+        <link href="http://didier.bernaudeau.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="D. Bernaudeau ATOM Feed"/>
+
+
+
+        <link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" type="application/atom+xml" rel="alternate"
+              title="D. Bernaudeau Articles ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://didier.bernaudeau.net/" class="navbar-brand">
+D. Bernaudeau            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="http://didier.bernaudeau.net/pages/presentation.html">
+                             Presentation
+                          </a></li>
+                        <li class="active">
+                            <a href="http://didier.bernaudeau.net/category/articles.html">Articles</a>
+                        </li>
+                        <li >
+                            <a href="http://didier.bernaudeau.net/category/tutorials.html">Tutorials</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="http://didier.bernaudeau.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html"
+                       rel="bookmark"
+                       title="Permalink to HowTo install a virtualization plateform with KVM">
+                        HowTo install a virtualization plateform with KVM
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-09-15T19:08:00+02:00"> mar. 15 septembre 2015</time>
+    </span>
+            <span class="label label-default">Modified</span>
+            <span class="modified">
+                <i class="fa fa-calendar"></i><time datetime="2015-09-28T22:09:00+02:00"> lun. 28 septembre 2015</time>
+            </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://didier.bernaudeau.net/tag/linux.html">Linux</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/gentoo.html">Gentoo</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/virtualization.html">Virtualization</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.</p>
+<p>Then, LibVirt provides a convenient way to manage virtual machines on this plateform. LibVirt include an API library, a daemon (libvirtd), command line tools (virsh and virt-install) and a graphic tool (virt-manager). All these softwares are sponsorted by Red Hat.</p>
+<p>Obviouly, this virtualization plateform uses Intel Virtualization Technologyy like VT-x (Virtualization Technology eXecution) and VT-d (Virtualization Technology for Directed I/O). KVM can also support VT-c (Intel® Virtualization Technology for Connectivity) but my laptop does not have this technology.</p>
+<div class="section" id="kernel-configuration">
+<h2>Kernel configuration</h2>
+<p>This is the configuration for Gentoo kernel 4.0.5.</p>
+<p>Enable KVM</p>
+<pre class="code ini literal-block">
+<span class="err">|</span> <span class="err">[*]</span> <span class="err">Virtualization</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Virtualization</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Kernel-based</span> <span class="err">Virtual</span> <span class="err">Machine</span> <span class="err">(KVM)</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">KVM</span> <span class="err">for</span> <span class="err">Intel</span> <span class="err">processors</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>     <span class="err">KVM</span> <span class="err">for</span> <span class="err">AMD</span> <span class="err">processors</span> <span class="err">support</span> <span class="err">(NEW)</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>     <span class="err">Audit</span> <span class="err">KVM</span> <span class="err">MMU</span> <span class="err">(NEW)</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>     <span class="err">KVM</span> <span class="err">legacy</span> <span class="err">PCI</span> <span class="err">device</span> <span class="err">assignment</span> <span class="err">support</span>
+</pre>
+<p>Enable VirtIO driver</p>
+<pre class="code ini literal-block">
+<span class="err">|</span>     <span class="err">Device</span> <span class="err">Drivers</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Network</span> <span class="err">device</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">Virtio</span> <span class="err">network</span> <span class="err">driver</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>     <span class="err">Virtio</span> <span class="err">drivers</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">PCI</span> <span class="err">driver</span> <span class="err">for</span> <span class="err">virtio</span> <span class="err">devices</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Support</span> <span class="err">for</span> <span class="err">legacy</span> <span class="err">virtio</span> <span class="err">draft</span> <span class="err">0.9.X</span> <span class="err">and</span> <span class="err">older</span> <span class="err">devices</span> <span class="err">(NEW)</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Virtio</span> <span class="err">balloon</span> <span class="err">driver</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Platform</span> <span class="err">bus</span> <span class="err">driver</span> <span class="err">for</span> <span class="err">memory</span> <span class="err">mapped</span> <span class="err">virtio</span> <span class="err">devices</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Memory</span> <span class="err">mapped</span> <span class="err">virtio</span> <span class="err">devices</span> <span class="err">parameter</span> <span class="err">parsing</span>
+</pre>
+<p>Enable VHostNet</p>
+<pre class="code ini literal-block">
+<span class="err">|</span> <span class="err">[*]</span> <span class="err">Virtualization</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Virtualization</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Host</span> <span class="err">kernel</span> <span class="err">accelerator</span> <span class="err">for</span> <span class="err">virtio</span> <span class="err">net</span> <span class="err">(NEW)</span>
+</pre>
+<p>Enable virtual network (Local bridge with NAT)</p>
+<pre class="code ini literal-block">
+<span class="err">|</span> <span class="err">[*]</span> <span class="err">Networking</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Networking</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>       <span class="err">Networking</span> <span class="err">options</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span> <span class="err">Network</span> <span class="err">packet</span> <span class="err">filtering</span> <span class="err">framework</span> <span class="err">(Netfilter)</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Advanced</span> <span class="err">netfilter</span> <span class="err">configuration</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span>       <span class="err">Core</span> <span class="err">Netfilter</span> <span class="err">Configuration</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">ctmark</span> <span class="err">target</span> <span class="err">and</span> <span class="err">match</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">CHECKSUM</span> <span class="err">target</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Ethernet</span> <span class="err">Bridge</span> <span class="err">tables</span> <span class="err">(ebtables)</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">ebt:</span> <span class="err">nat</span> <span class="err">table</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">ebt:</span> <span class="err">mark</span> <span class="err">target</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span> <span class="err">QoS</span> <span class="err">and/or</span> <span class="err">fair</span> <span class="err">queueing</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Hierarchical</span> <span class="err">Token</span> <span class="err">Bucket</span> <span class="err">(HTB)</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Stochastic</span> <span class="err">Fairness</span> <span class="err">Queueing</span> <span class="err">(SFQ)</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Ingress</span> <span class="err">Qdisc</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Netfilter</span> <span class="err">mark</span> <span class="err">(FW)</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Universal</span> <span class="err">32bit</span> <span class="err">comparisons</span> <span class="err">w/</span> <span class="err">hashing</span> <span class="err">(U32)</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Actions</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">Traffic</span> <span class="err">Policing</span>
+</pre>
+</div>
+<div class="section" id="installation">
+<h2>Installation</h2>
+<p>Define compilation option</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> nano /etc/portage/package.use
+</pre>
+<pre class="code ini literal-block">
+<span class="err">app-emulation/libvirt</span>           <span class="err">qemu</span> <span class="err">virt-network</span>
+<span class="err">app-emulation/libvirt-glib</span>      <span class="err">python</span>
+<span class="err">app-emulation/qemu</span>              <span class="err">qemu_softmmu_targets_x86_64</span> <span class="err">spice</span>
+<span class="err">app-emulation/virt-manager</span>      <span class="err">gtk</span> <span class="err">sasl</span>
+<span class="err">net-dns/dnsmasq</span>                 <span class="err">script</span>
+<span class="err">net-firewall/iptables</span>           <span class="err">conntrack</span> <span class="err">ipv6</span>
+<span class="err">media-libs/mesa</span>                 <span class="err">gles2</span>
+</pre>
+<p>Start installation</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> emerge libvirt virt-manager
+</pre>
+<p>Disable authentication for LibVirtd (Only for socket access)</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> nano /etc/libvirt/libvirtd.conf
+</pre>
+<pre class="code ini literal-block">
+<span class="na">auth_unix_ro</span> <span class="o">=</span> <span class="s">"none"</span>
+<span class="na">auth_unix_rw</span> <span class="o">=</span> <span class="s">"none"</span>
+</pre>
+<p>Change the default repository for disk images</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> rmdir /var/lib/libvirt/images
+<span class="gp">#</span> ln -s /mnt/data/VirtualMachine /var/lib/libvirt/images
+</pre>
+<p>Add user in KVM group</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> gpasswd -a &lt;username&gt; kvm
+</pre>
+<p>Start libvirtd</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> /etc/init.d/libvirtd start
+</pre>
+</div>
+<div class="section" id="create-a-virtual-machine">
+<h2>Create a virtual machine</h2>
+<p>Start virt-manager</p>
+<pre class="code console literal-block">
+<span class="gp">$</span> virt-manager
+</pre>
+<p>Create connection to libvirtd</p>
+<blockquote>
+<ul class="simple">
+<li>Menu "file" &gt; "Add connection"</li>
+<li>Hypervisor : QEMU/KVM</li>
+<li>Connect to remote host : no</li>
+<li>Autoconnect : yes</li>
+</ul>
+</blockquote>
+<p>Create a virtual machine</p>
+<blockquote>
+<ul class="simple">
+<li>Menu "file" &gt; "New Virtual Machine"</li>
+<li>Step 1 : local install media (iso image or CDROM)</li>
+<li>Step 2 : select iso image file (example : Debian 8.1.0 amd64 netinst.iso)</li>
+<li>Step 3 : define memory (256 MB) and 1 CPU</li>
+<li>Step 4 : define disk image (10 GB)</li>
+<li>Step 5 : define virtual machine name and check "Customize configuration before install"</li>
+<li>NIC : select "virtio" in device model</li>
+</ul>
+<p>"vhost=on" ?</p>
+</blockquote>
+</div>
+
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html">Laptop - Lenovo ThinkPad X240</a></li>
+        <li><a href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html">HowTo configure the Linux kernel for Lenovo ThinkPad X240</a></li>
+    </ul>
+</section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+    <p>
+        <strong>About D. Bernaudeau</strong><br/>
+        I’m Didier Bernaudeau, an Information Systems Security Professional. This site is a way to note some experimentations.
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+
+
+
+            <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
+                            Cryptography
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/development.html">
+                            Development
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
+                            Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
+                            Hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/html.html">
+                            HTML
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/linux.html">
+                            Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/network.html">
+                            Network
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/php.html">
+                            PHP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
+                            Virtualization
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/website.html">
+                            WebSite
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/windows.html">
+                            Windows
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2015 D. Bernaudeau
+            &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://didier.bernaudeau.net/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://didier.bernaudeau.net/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://didier.bernaudeau.net/theme/js/respond.min.js"></script>
+
+
+</body>
+</html>

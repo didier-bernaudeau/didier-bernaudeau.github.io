@@ -396,18 +396,6 @@ D. Bernaudeau            </a>
 <div class="section" id="virtualization-with-kvm">
 <h3>Virtualization with KVM</h3>
 <pre class="code ini literal-block">
-<span class="err">|</span> <span class="err">[*]</span> <span class="err">Networking</span> <span class="err">support</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Networking</span> <span class="err">support</span>
-<span class="err">|</span>      <span class="err">|</span>       <span class="err">Networking</span> <span class="err">options</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">802.1d</span> <span class="err">Ethernet</span> <span class="err">Bridging</span>
-
-<span class="err">|</span> <span class="err">Device</span> <span class="err">Drivers</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Network</span> <span class="err">device</span> <span class="err">support</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Network</span> <span class="err">device</span> <span class="err">support</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">MAC-VLAN</span> <span class="err">support</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>       <span class="err">MAC-VLAN</span> <span class="err">based</span> <span class="err">tap</span> <span class="err">driver</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">Universal</span> <span class="err">TUN/TAP</span> <span class="err">device</span> <span class="err">driver</span> <span class="err">support</span>
-<span class="err">|</span>
 <span class="err">|</span> <span class="err">[*]</span> <span class="err">Virtualization</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Virtualization</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Kernel-based</span> <span class="err">Virtual</span> <span class="err">Machine</span> <span class="err">(KVM)</span> <span class="err">support</span>
@@ -416,6 +404,45 @@ D. Bernaudeau            </a>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>     <span class="err">Audit</span> <span class="err">KVM</span> <span class="err">MMU</span> <span class="err">(NEW)</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>     <span class="err">KVM</span> <span class="err">legacy</span> <span class="err">PCI</span> <span class="err">device</span> <span class="err">assignment</span> <span class="err">support</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>   <span class="err">Host</span> <span class="err">kernel</span> <span class="err">accelerator</span> <span class="err">for</span> <span class="err">virtio</span> <span class="err">net</span> <span class="err">(NEW)</span>
+</pre>
+<p>Configuration for bridge network</p>
+<pre class="code ini literal-block">
+<span class="err">|</span> <span class="err">[*]</span> <span class="err">Networking</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Networking</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>       <span class="err">Networking</span> <span class="err">options</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">802.1d</span> <span class="err">Ethernet</span> <span class="err">Bridging</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>
+<span class="err">|</span>
+<span class="err">|</span> <span class="err">Device</span> <span class="err">Drivers</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Network</span> <span class="err">device</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Network</span> <span class="err">device</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">MAC-VLAN</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>       <span class="err">MAC-VLAN</span> <span class="err">based</span> <span class="err">tap</span> <span class="err">driver</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">Universal</span> <span class="err">TUN/TAP</span> <span class="err">device</span> <span class="err">driver</span> <span class="err">support</span>
+</pre>
+<p>Configuration for virtual network</p>
+<pre class="code ini literal-block">
+<span class="err">|</span> <span class="err">[*]</span> <span class="err">Networking</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Networking</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>       <span class="err">Networking</span> <span class="err">options</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span> <span class="err">Network</span> <span class="err">packet</span> <span class="err">filtering</span> <span class="err">framework</span> <span class="err">(Netfilter)</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Advanced</span> <span class="err">netfilter</span> <span class="err">configuration</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span>       <span class="err">Core</span> <span class="err">Netfilter</span> <span class="err">Configuration</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">ctmark</span> <span class="err">target</span> <span class="err">and</span> <span class="err">match</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">CHECKSUM</span> <span class="err">target</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Ethernet</span> <span class="err">Bridge</span> <span class="err">tables</span> <span class="err">(ebtables)</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">ebt:</span> <span class="err">nat</span> <span class="err">table</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">ebt:</span> <span class="err">mark</span> <span class="err">target</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span> <span class="err">QoS</span> <span class="err">and/or</span> <span class="err">fair</span> <span class="err">queueing</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Hierarchical</span> <span class="err">Token</span> <span class="err">Bucket</span> <span class="err">(HTB)</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Stochastic</span> <span class="err">Fairness</span> <span class="err">Queueing</span> <span class="err">(SFQ)</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Ingress</span> <span class="err">Qdisc</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Netfilter</span> <span class="err">mark</span> <span class="err">(FW)</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Universal</span> <span class="err">32bit</span> <span class="err">comparisons</span> <span class="err">w/</span> <span class="err">hashing</span> <span class="err">(U32)</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Actions</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">Traffic</span> <span class="err">Policing</span>
 </pre>
 </div>
 <div class="section" id="chromimum">
@@ -483,6 +510,12 @@ D. Bernaudeau            </a>
 
             </div>
             <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html">HowTo install a virtualization plateform with KVM</a></li>
+    </ul>
+</section>
         </article>
     </section>
 
@@ -550,6 +583,11 @@ D. Bernaudeau            </a>
                     <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/php.html">
                             PHP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
+                            Virtualization
                         </a>
                     </li>
                     <li class="list-group-item tag-1">

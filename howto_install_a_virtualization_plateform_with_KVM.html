@@ -189,7 +189,7 @@ D. Bernaudeau            </a>
 <pre class="code ini literal-block">
 <span class="err">app-emulation/libvirt</span>           <span class="err">qemu</span> <span class="err">virt-network</span>
 <span class="err">app-emulation/libvirt-glib</span>      <span class="err">python</span>
-<span class="err">app-emulation/qemu</span>              <span class="err">qemu_softmmu_targets_x86_64</span> <span class="err">spice</span>
+<span class="err">app-emulation/qemu</span>              <span class="err">qemu_softmmu_targets_x86_64</span> <span class="err">spice</span> <span class="err">usbredir</span>
 <span class="err">app-emulation/virt-manager</span>      <span class="err">gtk</span> <span class="err">sasl</span>
 <span class="err">net-dns/dnsmasq</span>                 <span class="err">script</span>
 <span class="err">net-firewall/iptables</span>           <span class="err">conntrack</span> <span class="err">ipv6</span>
@@ -221,34 +221,26 @@ D. Bernaudeau            </a>
 <span class="gp">#</span> /etc/init.d/libvirtd start
 </pre>
 </div>
-<div class="section" id="create-a-virtual-machine">
-<h2>Create a virtual machine</h2>
+<div class="section" id="connection-to-libvirtd">
+<h2>Connection to LibVirtd</h2>
 <p>Start virt-manager</p>
 <pre class="code console literal-block">
 <span class="gp">$</span> virt-manager
 </pre>
-<p>Create connection to libvirtd</p>
-<blockquote>
-<ul class="simple">
-<li>Menu "file" &gt; "Add connection"</li>
-<li>Hypervisor : QEMU/KVM</li>
-<li>Connect to remote host : no</li>
-<li>Autoconnect : yes</li>
-</ul>
-</blockquote>
-<p>Create a virtual machine</p>
-<blockquote>
-<ul class="simple">
-<li>Menu "file" &gt; "New Virtual Machine"</li>
-<li>Step 1 : local install media (iso image or CDROM)</li>
-<li>Step 2 : select iso image file (example : Debian 8.1.0 amd64 netinst.iso)</li>
-<li>Step 3 : define memory (256 MB) and 1 CPU</li>
-<li>Step 4 : define disk image (10 GB)</li>
-<li>Step 5 : define virtual machine name and check "Customize configuration before install"</li>
-<li>NIC : select "virtio" in device model</li>
-</ul>
-<p>"vhost=on" ?</p>
-</blockquote>
+<p>Open the menu "file &gt; Add connection"</p>
+<img alt="Virt-Manager - Add connection" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/>
+</div>
+<div class="section" id="create-a-virtual-machine">
+<h2>Create a virtual machine</h2>
+<p>Open the menu "file &gt; New Virtual Machine"</p>
+<img alt="Virt-Manager - Step1" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/>
+<img alt="Virt-Manager - Step2" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/>
+<img alt="Virt-Manager - Step3" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/>
+<img alt="Virt-Manager - Step4" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/>
+<img alt="Virt-Manager - Step5" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/>
+<p>Select "VirtIO" device model for Network Interface</p>
+<img alt="Virt-Manager - NIC device model" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/>
+<!-- vhost=on -->
 </div>
 
             </div>

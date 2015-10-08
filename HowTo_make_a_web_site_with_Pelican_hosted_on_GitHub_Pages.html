@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>HowTo make a web site with Pelican hosted on GitHub Pages - D. Bernaudeau</title>
+    <title>HowTo make a web site with Pelican hosted on GitHub Pages - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -15,7 +15,7 @@
         <meta name="keywords" content="Pelican,Linux,Gentoo" />
         <meta name="description" content="Pelican is a static site generator writed in Python. This means that you edit the content on your computer with a simple text editor. Then, a generator makes all HTML pages for the web site, including indexes for articles, categories and tags. In the end, your web site can be hosted easily on a simple HTTP server like GitHub Pages or Amazon S3. Unlike other CMS (Content Management System) like Wordpress or Drupal, Pelican has no web administration interface. In most cases, the administration interface has many vulnerabilies used to deface the website. This article describes step by step how to make your web site with Pelican 3.5 on Gentoo Linux and how to host your web site on GitHub Pages." />
 
-        <meta property="og:site_name" content="D. Bernaudeau" />
+        <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="HowTo make a web site with Pelican hosted on GitHub Pages"/>
         <meta property="og:url" content="http://didier.bernaudeau.net/HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html"/>
@@ -36,12 +36,12 @@
     <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/style.css" type="text/css"/>
 
         <link href="http://didier.bernaudeau.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
-              title="D. Bernaudeau ATOM Feed"/>
+              title="My personal blog note ATOM Feed"/>
 
 
 
         <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
-              title="D. Bernaudeau Tutorials ATOM Feed"/>
+              title="My personal blog note Tutorials ATOM Feed"/>
 
 </head>
 <body>
@@ -56,19 +56,13 @@
                 <span class="icon-bar"></span>
             </button>
             <a href="http://didier.bernaudeau.net/" class="navbar-brand">
-D. Bernaudeau            </a>
+My personal blog note            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                         <li><a href="http://didier.bernaudeau.net/pages/presentation.html">
-                             Presentation
-                          </a></li>
-                        <li >
-                            <a href="http://didier.bernaudeau.net/category/articles.html">Articles</a>
-                        </li>
-                        <li class="active">
-                            <a href="http://didier.bernaudeau.net/category/tutorials.html">Tutorials</a>
-                        </li>
+                    <li><a href="/category/articles.html">Articles</a></li>
+                    <li><a href="/category/tutorials.html">Tutorials</a></li>
+                    <li><a href="/pages/presentation.html">Presentation</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="http://didier.bernaudeau.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
@@ -360,6 +354,11 @@ Password for 'https://didier-bernaudeau@github.com': *************************</
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
+                            Certificate
+                        </a>
+                    </li>
                     <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/cryptography.html">
                             Cryptography
@@ -408,6 +407,11 @@ Password for 'https://didier-bernaudeau@github.com': *************************</
                     <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/php.html">
                             PHP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/pki.html">
+                            PKI
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

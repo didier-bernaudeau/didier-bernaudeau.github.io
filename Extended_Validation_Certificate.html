@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Authors - My personal blog note</title>
+    <title>Extended Validation Certificate - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,15 +9,22 @@
 
 
 
+<link rel="canonical" href="http://didier.bernaudeau.net/Extended_Validation_Certificate.html">
 
-        <meta name="author" content="D. Bernaudeau" />
+        <meta name="author" content="Didier Bernaudeau" />
+        <meta name="keywords" content="Certificate,PKI" />
+        <meta name="description" content="An Extended Validation Certificate is a digital certificate issue by a Certificate Authority in conformity with &#34;Baseline Requirements&#34; and &#34;EV SSL Certificate Guidelines&#34;. These documents are defined by CA/B Forum (Certificate Authority &amp; Browser Forum). This article is a summary of EV SSL Certificate Guidelines version 1.5.6 of 25 june 2015." />
 
-    <!-- Open Graph tags -->
         <meta property="og:site_name" content="My personal blog note" />
-        <meta property="og:type" content="website"/>
-        <meta property="og:title" content="My personal blog note"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net"/>
-        <meta property="og:description" content="My personal blog note"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Extended Validation Certificate"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/Extended_Validation_Certificate.html"/>
+        <meta property="og:description" content="An Extended Validation Certificate is a digital certificate issue by a Certificate Authority in conformity with &#34;Baseline Requirements&#34; and &#34;EV SSL Certificate Guidelines&#34;. These documents are defined by CA/B Forum (Certificate Authority &amp; Browser Forum). This article is a summary of EV SSL Certificate Guidelines version 1.5.6 of 25 june 2015."/>
+        <meta property="article:published_time" content="2015-10-08" />
+            <meta property="article:section" content="Articles" />
+            <meta property="article:tag" content="Certificate" />
+            <meta property="article:tag" content="PKI" />
+            <meta property="article:author" content="Didier Bernaudeau" />
 
 
     <!-- Bootstrap -->
@@ -32,6 +39,8 @@
 
 
 
+        <link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Articles ATOM Feed"/>
 
 </head>
 <body>
@@ -66,8 +75,95 @@ My personal blog note            </a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-    <h1>Authors on My personal blog note</h1>
-        <li><a href="http://didier.bernaudeau.net/author/didier-bernaudeau.html">Didier Bernaudeau</a> (16)</li>
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://didier.bernaudeau.net/Extended_Validation_Certificate.html"
+                       rel="bookmark"
+                       title="Permalink to Extended Validation Certificate">
+                        Extended Validation Certificate
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-10-08T18:50:00+02:00"> jeu. 08 octobre 2015</time>
+    </span>
+            <span class="label label-default">Modified</span>
+            <span class="modified">
+                <i class="fa fa-calendar"></i><time datetime="2015-10-08T22:09:00+02:00"> jeu. 08 octobre 2015</time>
+            </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://didier.bernaudeau.net/tag/certificate.html">Certificate</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/pki.html">PKI</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>An Extended Validation Certificate is a digital certificate issue by a Certificate Authority in conformity with "<a class="reference external" href="https://cabforum.org/baseline-requirements-documents/">Baseline Requirements</a>" and "<a class="reference external" href="https://cabforum.org/extended-validation/">EV SSL Certificate Guidelines</a>". These documents are defined by CA/B Forum (Certificate Authority &amp; Browser Forum). This article is a summary of EV SSL Certificate Guidelines version 1.5.6 of 25 june 2015.</p>
+<div class="section" id="additional-content">
+<h2>Additional content</h2>
+<p>For an Extended Validation Certificate, these subject attributes are required :</p>
+<blockquote>
+<ul class="simple">
+<li>Subject Organization Name</li>
+<li>Subject Alternative Name Extension</li>
+<li>Subject Common Name</li>
+<li>Subject Business Category</li>
+<li>Subject Jurisdiction of Incorporation or Registration</li>
+<li>Subject Registration Number</li>
+<li>Subject Physical Address of Place of Business</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="verification-requirements">
+<h2>Verification Requirements</h2>
+<p>The verification processes are intended to accomplish the following:</p>
+<blockquote>
+<ul class="simple">
+<li>Verify Applicant’s existence and identity, including :<ul>
+<li>Verify the Applicant’s legal existence and identity,</li>
+<li>Verify the Applicant’s physical existence (business presence at a physical address)</li>
+<li>Verify the Applicant’s operational existence (business activity)</li>
+</ul>
+</li>
+<li>Verify the Applicant is a registered holder, or has control, of the Domain Name(s) to be included in the EV Certificate</li>
+<li>Verify a reliable means of communication with the entity to be named as the Subject in the Certificate;</li>
+<li>Verify the Applicant’s authorization for the EV Certificate, including :<ul>
+<li>Verify the name, title, and authority of the Contract Signer, Certificate Approver, and Certificate Requester,</li>
+<li>Verify that a Contract Signer signed the Subscriber Agreement or that a duly authorized Applicant Representative acknowledged and agreed to the Terms of Use</li>
+<li>Verify that a Certificate Approver has signed or otherwise approved the EV Certificate Request.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="audit">
+<h2>Audit</h2>
+<p>A Certificate Authority issuing EV certificates shall undergo an audit in accordance with one of the following schemes:</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://www.webtrust.org/homepage-documents/item27839.aspx">WebTrust Program for CAs audit and WebTrust EV Program audit</a></li>
+<li><a class="reference external" href="http://www.etsi.org/technologies-clusters/technologies/security/electronic-signature">ETSI TS 102 042 : "Policy requirements for certification Authorities issuing public key certificates"</a></li>
+</ul>
+</blockquote>
+</div>
+
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
         </div>
         <div class="col-sm-3" id="sidebar">
             <aside>

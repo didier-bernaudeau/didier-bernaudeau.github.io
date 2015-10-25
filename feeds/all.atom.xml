@@ -1,5 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2015-10-08T22:09:00+02:00</updated><entry><title>Extended Validation Certificate</title><link href="http://didier.bernaudeau.net/Extended_Validation_Certificate.html" rel="alternate"></link><updated>2015-10-08T22:09:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-08:Extended_Validation_Certificate.html</id><summary type="html">&lt;p&gt;An Extended Validation Certificate is a digital certificate issue by a Certificate Authority in conformity with "&lt;a class="reference external" href="https://cabforum.org/baseline-requirements-documents/"&gt;Baseline Requirements&lt;/a&gt;" and "&lt;a class="reference external" href="https://cabforum.org/extended-validation/"&gt;EV SSL Certificate Guidelines&lt;/a&gt;". These documents are defined by CA/B Forum (Certificate Authority &amp;amp; Browser Forum). This article is a summary of EV SSL Certificate Guidelines version 1.5.6 of 25 june 2015.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2015-10-25T21:16:00+01:00</updated><entry><title>How to install Chromium with Flash support</title><link href="http://didier.bernaudeau.net/How_to_install_Chromium_with_Flash_support.html" rel="alternate"></link><updated>2015-10-23T23:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-23:How_to_install_Chromium_with_Flash_support.html</id><summary type="html">&lt;p&gt;In 2012, Adobe has stopped to upgrade Flash Player for Linux. So, the last version of Flash Player plugin is 11.2 that will be maintained until 2017. To continue to take the advantage of Flash content, we must find an alternative solution.&lt;/p&gt;
+&lt;p&gt;This tutorial describes how to install Chromium and the Flash Pepper Plugin (PPAPI) on Gentoo Linux and how to configure Chromium for graphic hardware acceleration.&lt;/p&gt;
+&lt;div class="section" id="chromium"&gt;
+&lt;h2&gt;Chromium&lt;/h2&gt;
+&lt;p&gt;Define local USE flags&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.use
+&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;media-libs/libvpx-1.4.0       postproc
+&lt;/pre&gt;
+&lt;p&gt;Install Chromium&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; emerge -pv chromium
+&lt;/pre&gt;
+&lt;p&gt;To force Chromium to use hardware acceleration, open &lt;a class="reference external" href="chrome://flags"&gt;chrome://flags&lt;/a&gt; and enable "Override software rendering list". To check if Chromium uses hardware acceleration, open &lt;a class="reference external" href="chrome://gpu"&gt;chrome://gpu&lt;/a&gt; and look under "Graphics Feature status". All (or at least most of) the features should say "hardware accelerated".&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="flash-player"&gt;
+&lt;h2&gt;Flash Player&lt;/h2&gt;
+&lt;p&gt;To get Chrome and its plugins, download the RPM package for Linux 64bits on &lt;a class="reference external" href="www.google.fr/chrome/"&gt;Google&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Extract files from RPM package&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; rpmunpack google-chrome-stable_current_x86_64.rpm
+&lt;/pre&gt;
+&lt;p&gt;Print the Flash Player version&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; cat Chrome/google-chrome-stable_current_x86_64/opt/google/chrome/PepperFlash/manifest.json
+&lt;/pre&gt;
+&lt;p&gt;Copy the Flash Player file&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; cp Chrome/google-chrome-stable_current_x86_64/opt/google/chrome/PepperFlash/libpepflashplayer.so /usr/lib/chromium-browser/
+&lt;/pre&gt;
+&lt;p&gt;Add Flash Player to Chromium&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/chromium/default
+&lt;span class="go"&gt;CHROMIUM_FLAGS="--ppapi-flash-path=/usr/lib/chromium-browser/libpepflashplayer.so --ppapi-flash-version=19.0.0.207"&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+</summary><category term="Gentoo"></category></entry><entry><title>How to install PulseAudio</title><link href="http://didier.bernaudeau.net/How_to_install_PulseAudio.html" rel="alternate"></link><updated>2015-10-19T17:24:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-19:How_to_install_PulseAudio.html</id><summary type="html">&lt;p&gt;A sound server is software that manages the use of and access to audio devices. There are many sound server (JACK Audio Connection Kit, Enlightened Sound Daemon, ...) but PulseAudio is now an integral part of all relevant modern Linux distributions. This tutorials describes how to install PulseAudio on Gentoo Linux.&lt;/p&gt;
+&lt;div class="section" id="pulseaudio-architecture"&gt;
+&lt;h2&gt;PulseAudio Architecture&lt;/h2&gt;
+&lt;img alt="PulseAudio Architecture" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
+&lt;/div&gt;
+&lt;div class="section" id="install-pulseaudio"&gt;
+&lt;h2&gt;Install PulseAudio&lt;/h2&gt;
+&lt;p&gt;Define local USE flags&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.use
+&lt;span class="go"&gt;media-sound/pulseaudio          -tcpd -webrtc-aec&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Install PulseAudio&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; emerge --oneshot pulseaudio
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="compile-application-to-support-pulseaudio"&gt;
+&lt;h2&gt;Compile application to support PulseAudio&lt;/h2&gt;
+&lt;p&gt;Define global USE flags&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; etc/portage/make.conf
+&lt;span class="go"&gt;USE="pulseaudio"&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Install packages&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; emerge ffmpeg vlc kmix chromium
+&lt;/pre&gt;
+&lt;/div&gt;
+</summary><category term="Gentoo"></category></entry><entry><title>Extended Validation Certificate</title><link href="http://didier.bernaudeau.net/Extended_Validation_Certificate.html" rel="alternate"></link><updated>2015-10-08T22:09:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-08:Extended_Validation_Certificate.html</id><summary type="html">&lt;p&gt;An Extended Validation Certificate is a digital certificate issue by a Certificate Authority in conformity with "&lt;a class="reference external" href="https://cabforum.org/baseline-requirements-documents/"&gt;Baseline Requirements&lt;/a&gt;" and "&lt;a class="reference external" href="https://cabforum.org/extended-validation/"&gt;EV SSL Certificate Guidelines&lt;/a&gt;". These documents are defined by CA/B Forum (Certificate Authority &amp;amp; Browser Forum). This article is a summary of EV SSL Certificate Guidelines version 1.5.6 of 25 june 2015.&lt;/p&gt;
 &lt;div class="section" id="additional-content"&gt;
 &lt;h2&gt;Additional content&lt;/h2&gt;
 &lt;p&gt;For an Extended Validation Certificate, these subject attributes are required :&lt;/p&gt;
@@ -47,7 +112,7 @@
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Certificate"></category><category term="PKI"></category></entry><entry><title>HowTo install a virtualization plateform with KVM</title><link href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html" rel="alternate"></link><updated>2015-10-05T23:27:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-09-15:howto_install_a_virtualization_plateform_with_KVM.html</id><summary type="html">&lt;p&gt;This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.&lt;/p&gt;
+</summary><category term="Certificate"></category><category term="PKI"></category></entry><entry><title>HowTo install a virtualization plateform with KVM</title><link href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html" rel="alternate"></link><updated>2015-10-25T21:16:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-09-15:howto_install_a_virtualization_plateform_with_KVM.html</id><summary type="html">&lt;p&gt;This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.&lt;/p&gt;
 &lt;p&gt;Then, LibVirt provides a convenient way to manage virtual machines on this plateform. LibVirt include an API library, a daemon (libvirtd), command line tools (virsh and virt-install) and a graphic tool (virt-manager). All these softwares are sponsorted by Red Hat.&lt;/p&gt;
 &lt;p&gt;Obviouly, this virtualization plateform uses Intel Virtualization Technologyy like VT-x (Virtualization Technology eXecution) and VT-d (Virtualization Technology for Directed I/O). KVM can also support VT-c (Intel® Virtualization Technology for Connectivity) but my laptop does not have this technology.&lt;/p&gt;
 &lt;div class="section" id="kernel-configuration"&gt;
@@ -158,6 +223,11 @@
 &lt;p&gt;Open the menu "file &amp;gt; Add connection"&lt;/p&gt;
 &lt;img alt="Virt-Manager - Add connection" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
+&lt;div class="section" id="network-configuration"&gt;
+&lt;h2&gt;Network Configuration&lt;/h2&gt;
+&lt;p&gt;After starting LibVirtd, network configuration is as follows:&lt;/p&gt;
+&lt;img alt="Network Configuration" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
+&lt;/div&gt;
 &lt;div class="section" id="create-a-virtual-machine"&gt;
 &lt;h2&gt;Create a virtual machine&lt;/h2&gt;
 &lt;p&gt;Open the menu "file &amp;gt; New Virtual Machine"&lt;/p&gt;
@@ -170,7 +240,7 @@
 &lt;img alt="Virt-Manager - NIC device model" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
 &lt;!-- vhost=on --&gt;
 &lt;/div&gt;
-</summary><category term="Linux"></category><category term="Gentoo"></category><category term="Virtualization"></category></entry><entry><title>CORS (Cross-Origin Resource Sharing)</title><link href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html" rel="alternate"></link><updated>2015-09-01T23:44:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-30:Cross_Origin_Resource_Sharing.html</id><summary type="html">&lt;p&gt;CORS (Cross-Origin Resource Sharing) is a mechanism, define by W3C, which provides a way for web servers to support cross-site access controls, which enable secure cross-site data transfers.&lt;/p&gt;
+</summary><category term="Gentoo"></category><category term="Virtualization"></category></entry><entry><title>CORS (Cross-Origin Resource Sharing)</title><link href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html" rel="alternate"></link><updated>2015-09-01T23:44:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-30:Cross_Origin_Resource_Sharing.html</id><summary type="html">&lt;p&gt;CORS (Cross-Origin Resource Sharing) is a mechanism, define by W3C, which provides a way for web servers to support cross-site access controls, which enable secure cross-site data transfers.&lt;/p&gt;
 &lt;p&gt;This mechanism works by adding new HTTP headers named Access-Control-Allow-Origin.&lt;/p&gt;
 &lt;div class="section" id="step-1-create-webservice"&gt;
 &lt;h2&gt;Step 1 : Create WebService&lt;/h2&gt;
@@ -1488,7 +1558,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Hardware"></category></entry><entry><title>HowTo configure the Linux kernel for Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html" rel="alternate"></link><updated>2015-06-27T00:15:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-16:HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html</id><summary type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
+</summary><category term="Hardware"></category></entry><entry><title>HowTo configure the Linux kernel for Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html" rel="alternate"></link><updated>2015-10-19T17:48:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-16:HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html</id><summary type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
 &lt;p&gt;To get more information about the configuration of my laptop, you can read this article : &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html"&gt;Lenovo ThinkPad X240&lt;/a&gt;&lt;/p&gt;
 &lt;div class="section" id="kernel-installation"&gt;
 &lt;h2&gt;Kernel installation&lt;/h2&gt;
@@ -1670,6 +1740,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Advanced&lt;/span&gt; &lt;span class="err"&gt;Linux&lt;/span&gt; &lt;span class="err"&gt;Sound&lt;/span&gt; &lt;span class="err"&gt;Architecture&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;PCI&lt;/span&gt; &lt;span class="err"&gt;sound&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;       &lt;span class="err"&gt;HD-Audio&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;(2048)&lt;/span&gt; &lt;span class="err"&gt;Pre-allocated&lt;/span&gt; &lt;span class="err"&gt;buffer&lt;/span&gt; &lt;span class="err"&gt;size&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;HD-audio&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;HD&lt;/span&gt; &lt;span class="err"&gt;Audio&lt;/span&gt; &lt;span class="err"&gt;PCI&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Support&lt;/span&gt; &lt;span class="err"&gt;jack&lt;/span&gt; &lt;span class="err"&gt;plugging&lt;/span&gt; &lt;span class="err"&gt;notification&lt;/span&gt; &lt;span class="err"&gt;via&lt;/span&gt; &lt;span class="err"&gt;input&lt;/span&gt; &lt;span class="err"&gt;layer&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Build&lt;/span&gt; &lt;span class="err"&gt;Realtek&lt;/span&gt; &lt;span class="err"&gt;HD-audio&lt;/span&gt; &lt;span class="err"&gt;codec&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
@@ -1879,7 +1950,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Linux"></category><category term="Gentoo"></category></entry><entry><title>Laptop - Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html" rel="alternate"></link><updated>2015-07-18T12:27:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-12:Laptop_Lenovo_ThinkPad_X240.html</id><summary type="html">&lt;p&gt;This article describes the configuration of my Lenovo ThinkPad X240 (20ALCT01WW) based on Intel Haswell processor. Future articles will refer to this one.&lt;/p&gt;
+</summary><category term="Gentoo"></category></entry><entry><title>Laptop - Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html" rel="alternate"></link><updated>2015-07-18T12:27:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-12:Laptop_Lenovo_ThinkPad_X240.html</id><summary type="html">&lt;p&gt;This article describes the configuration of my Lenovo ThinkPad X240 (20ALCT01WW) based on Intel Haswell processor. Future articles will refer to this one.&lt;/p&gt;
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
@@ -2321,7 +2392,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Linux"></category><category term="Gentoo"></category></entry><entry><title>HowTo make a web site with Pelican hosted on GitHub Pages</title><link href="http://didier.bernaudeau.net/HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html" rel="alternate"></link><updated>2015-07-08T23:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-05-16:HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html</id><summary type="html">&lt;p&gt;Pelican is a static site generator writed in Python. This means that you edit the content on your computer with a simple text editor. Then, a generator makes all HTML pages for the web site, including indexes for articles, categories and tags. In the end, your web site can be hosted easily on a simple HTTP server like GitHub Pages or Amazon S3.&lt;/p&gt;
+</summary><category term="Gentoo"></category></entry><entry><title>HowTo make a web site with Pelican hosted on GitHub Pages</title><link href="http://didier.bernaudeau.net/HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html" rel="alternate"></link><updated>2015-07-08T23:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-05-16:HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html</id><summary type="html">&lt;p&gt;Pelican is a static site generator writed in Python. This means that you edit the content on your computer with a simple text editor. Then, a generator makes all HTML pages for the web site, including indexes for articles, categories and tags. In the end, your web site can be hosted easily on a simple HTTP server like GitHub Pages or Amazon S3.&lt;/p&gt;
 &lt;p&gt;Unlike other CMS (Content Management System) like Wordpress or Drupal, Pelican has no web administration interface. In most cases, the administration interface has many vulnerabilies used to deface the website.&lt;/p&gt;
 &lt;p&gt;This article describes step by step how to make your web site with Pelican 3.5 on Gentoo Linux and how to host your web site on GitHub Pages.&lt;/p&gt;
 &lt;div class="section" id="install-pelican"&gt;
@@ -2540,4 +2611,4 @@ Password for 'https://didier-bernaudeau@github.com': *************************&l
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Pelican"></category><category term="Linux"></category><category term="Gentoo"></category></entry></feed>
+</summary><category term="Pelican"></category><category term="Gentoo"></category></entry></feed>

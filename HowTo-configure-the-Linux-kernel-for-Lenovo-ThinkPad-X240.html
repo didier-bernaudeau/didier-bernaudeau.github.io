@@ -12,7 +12,7 @@
 <link rel="canonical" href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html">
 
         <meta name="author" content="Didier Bernaudeau" />
-        <meta name="keywords" content="Linux,Gentoo" />
+        <meta name="keywords" content="Gentoo" />
         <meta name="description" content="This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub. To get more information about the configuration of my laptop, you can read this article : Lenovo ThinkPad X240" />
 
         <meta property="og:site_name" content="My personal blog note" />
@@ -22,7 +22,6 @@
         <meta property="og:description" content="This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub. To get more information about the configuration of my laptop, you can read this article : Lenovo ThinkPad X240"/>
         <meta property="article:published_time" content="2015-06-16" />
             <meta property="article:section" content="Tutorials" />
-            <meta property="article:tag" content="Linux" />
             <meta property="article:tag" content="Gentoo" />
             <meta property="article:author" content="Didier Bernaudeau" />
 
@@ -96,7 +95,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-06-27T00:15:00+02:00"> sam. 27 juin 2015</time>
+                <i class="fa fa-calendar"></i><time datetime="2015-10-19T17:48:00+02:00"> lun. 19 octobre 2015</time>
             </span>
 
 
@@ -104,8 +103,6 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/linux.html">Linux</a>
-        /
 	<a href="http://didier.bernaudeau.net/tag/gentoo.html">Gentoo</a>
     
 </footer><!-- /.post-info -->                    </div>
@@ -292,6 +289,7 @@ My personal blog note            </a>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Advanced</span> <span class="err">Linux</span> <span class="err">Sound</span> <span class="err">Architecture</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">PCI</span> <span class="err">sound</span> <span class="err">devices</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>       <span class="err">HD-Audio</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">(2048)</span> <span class="err">Pre-allocated</span> <span class="err">buffer</span> <span class="err">size</span> <span class="err">for</span> <span class="err">HD-audio</span> <span class="err">driver</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">HD</span> <span class="err">Audio</span> <span class="err">PCI</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span> <span class="err">Support</span> <span class="err">jack</span> <span class="err">plugging</span> <span class="err">notification</span> <span class="err">via</span> <span class="err">input</span> <span class="err">layer</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Build</span> <span class="err">Realtek</span> <span class="err">HD-audio</span> <span class="err">codec</span> <span class="err">support</span>
@@ -528,17 +526,17 @@ My personal blog note            </a>
                             Certificate
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/cryptography.html">
                             Cryptography
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/development.html">
                             Development
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-0">
                         <a href="http://didier.bernaudeau.net/tag/gentoo.html">
                             Gentoo
                         </a>
@@ -548,22 +546,22 @@ My personal blog note            </a>
                             Hardware
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/html.html">
                             HTML
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/javascript.html">
                             JavaScript
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/linux.html">
                             Linux
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/network.html">
                             Network
                         </a>
@@ -573,7 +571,7 @@ My personal blog note            </a>
                             Pelican
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/php.html">
                             PHP
                         </a>
@@ -588,7 +586,7 @@ My personal blog note            </a>
                             Virtualization
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/website.html">
                             WebSite
                         </a>

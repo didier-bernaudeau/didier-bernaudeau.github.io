@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>How to create bootable USB flash drives with Rufus - My personal blog note</title>
+    <title>How to install Chromium with Flash support - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,21 +9,20 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/How_to_install_Chromium_with_Flash_support.html">
 
         <meta name="author" content="Didier Bernaudeau" />
-        <meta name="keywords" content="Windows,Linux" />
-        <meta name="description" content="This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp; GPT and can create installation media for Microsoft Windows 7/8. The disadvantage is that it runs only on Microsoft Windows." />
+        <meta name="keywords" content="Gentoo" />
+        <meta name="description" content="In 2012, Adobe has stopped to upgrade Flash Player for Linux. So, the last version of Flash Player plugin is 11.2 that will be maintained until 2017. To continue to take the advantage of Flash content, we must find an alternative solution. This tutorial describes how to install Chromium and the Flash Pepper Plugin (PPAPI) on Gentoo Linux and how to configure Chromium for graphic hardware acceleration." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="How to create bootable USB flash drives with Rufus"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html"/>
-        <meta property="og:description" content="This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp; GPT and can create installation media for Microsoft Windows 7/8. The disadvantage is that it runs only on Microsoft Windows."/>
-        <meta property="article:published_time" content="2015-07-12" />
+        <meta property="og:title" content="How to install Chromium with Flash support"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/How_to_install_Chromium_with_Flash_support.html"/>
+        <meta property="og:description" content="In 2012, Adobe has stopped to upgrade Flash Player for Linux. So, the last version of Flash Player plugin is 11.2 that will be maintained until 2017. To continue to take the advantage of Flash content, we must find an alternative solution. This tutorial describes how to install Chromium and the Flash Pepper Plugin (PPAPI) on Gentoo Linux and how to configure Chromium for graphic hardware acceleration."/>
+        <meta property="article:published_time" content="2015-10-23" />
             <meta property="article:section" content="Tutorials" />
-            <meta property="article:tag" content="Windows" />
-            <meta property="article:tag" content="Linux" />
+            <meta property="article:tag" content="Gentoo" />
             <meta property="article:author" content="Didier Bernaudeau" />
 
 
@@ -79,10 +78,10 @@ My personal blog note            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html"
+                    <a href="http://didier.bernaudeau.net/How_to_install_Chromium_with_Flash_support.html"
                        rel="bookmark"
-                       title="Permalink to How to create bootable USB flash drives with Rufus">
-                        How to create bootable USB flash drives with Rufus
+                       title="Permalink to How to install Chromium with Flash support">
+                        How to install Chromium with Flash support
                     </a>
                 </h1>
             </header>
@@ -92,11 +91,11 @@ My personal blog note            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-07-12T12:32:00+02:00"> dim. 12 juillet 2015</time>
+        <i class="fa fa-calendar"></i><time datetime="2015-10-23T23:24:00+02:00"> ven. 23 octobre 2015</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-07-15T21:45:00+02:00"> mer. 15 juillet 2015</time>
+                <i class="fa fa-calendar"></i><time datetime="2015-10-23T23:45:00+02:00"> ven. 23 octobre 2015</time>
             </span>
 
 
@@ -104,36 +103,45 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/windows.html">Windows</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/linux.html">Linux</a>
+	<a href="http://didier.bernaudeau.net/tag/gentoo.html">Gentoo</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.</p>
-<div class="section" id="install-rufus">
-<h2>Install Rufus</h2>
-<p>Download the software on <a class="reference external" href="https://rufus.akeo.ie/">rufus.akeo.ie</a> then execute the application.</p>
+                <p>In 2012, Adobe has stopped to upgrade Flash Player for Linux. So, the last version of Flash Player plugin is 11.2 that will be maintained until 2017. To continue to take the advantage of Flash content, we must find an alternative solution.</p>
+<p>This tutorial describes how to install Chromium and the Flash Pepper Plugin (PPAPI) on Gentoo Linux and how to configure Chromium for graphic hardware acceleration.</p>
+<div class="section" id="chromium">
+<h2>Chromium</h2>
+<p>Define local USE flags</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> nano /etc/portage/package.use
+<span class="gp">&gt;</span><span class="o">=</span>media-libs/libvpx-1.4.0       postproc
+</pre>
+<p>Install Chromium</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> emerge -pv chromium
+</pre>
+<p>To force Chromium to use hardware acceleration, open <a class="reference external" href="chrome://flags">chrome://flags</a> and enable "Override software rendering list". To check if Chromium uses hardware acceleration, open <a class="reference external" href="chrome://gpu">chrome://gpu</a> and look under "Graphics Feature status". All (or at least most of) the features should say "hardware accelerated".</p>
 </div>
-<div class="section" id="create-installation-media">
-<h2>Create installation media</h2>
-<div class="section" id="example-for-microsoft-windows-8-1-with-mbr">
-<h3>Example for Microsoft Windows 8.1 (with MBR)</h3>
-<img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/>
-</div>
-<div class="section" id="example-for-debian-8-with-mbr">
-<h3>Example for Debian 8 (with MBR)</h3>
-<img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/>
-<img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/>
-<p>If you need additional firmware to install Debian :</p>
-<blockquote>
-<ul class="simple">
-<li>Download the package "firmware-iwlwifi" (for Intel Wifi)</li>
-<li>Unpack the package</li>
-<li>Copy the file "<tt class="docutils literal">*</tt>.ucode" on another USB flash drive</li>
-</ul>
-</blockquote>
-</div>
+<div class="section" id="flash-player">
+<h2>Flash Player</h2>
+<p>To get Chrome and its plugins, download the RPM package for Linux 64bits on <a class="reference external" href="www.google.fr/chrome/">Google</a></p>
+<p>Extract files from RPM package</p>
+<pre class="code console literal-block">
+<span class="gp">$</span> rpmunpack google-chrome-stable_current_x86_64.rpm
+</pre>
+<p>Print the Flash Player version</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> cat Chrome/google-chrome-stable_current_x86_64/opt/google/chrome/PepperFlash/manifest.json
+</pre>
+<p>Copy the Flash Player file</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> cp Chrome/google-chrome-stable_current_x86_64/opt/google/chrome/PepperFlash/libpepflashplayer.so /usr/lib/chromium-browser/
+</pre>
+<p>Add Flash Player to Chromium</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> nano /etc/chromium/default
+<span class="go">CHROMIUM_FLAGS="--ppapi-flash-path=/usr/lib/chromium-browser/libpepflashplayer.so --ppapi-flash-version=19.0.0.207"</span>
+</pre>
 </div>
 
             </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>PKI - My personal blog note</title>
+    <title>Let’s Encrypt - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,16 +9,22 @@
 
 
 
+<link rel="canonical" href="http://didier.bernaudeau.net/Lets_Encrypt.html">
 
-    <meta name="author" content="D. Bernaudeau" />
-    <meta name="keywords" content="PKI" />
+        <meta name="author" content="Didier Bernaudeau" />
+        <meta name="keywords" content="PKI,Certificate" />
+        <meta name="description" content="Let&#39;s Encrypt, is a Certificate Authority created by Linux Fundation in 2015, which issues certificate freely and automatically." />
 
-    <!-- Open Graph tags -->
         <meta property="og:site_name" content="My personal blog note" />
-        <meta property="og:type" content="website"/>
-        <meta property="og:title" content="My personal blog note"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net"/>
-        <meta property="og:description" content="My personal blog note"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Let’s Encrypt"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/Lets_Encrypt.html"/>
+        <meta property="og:description" content="Let&#39;s Encrypt, is a Certificate Authority created by Linux Fundation in 2015, which issues certificate freely and automatically."/>
+        <meta property="article:published_time" content="2015-11-16" />
+            <meta property="article:section" content="Articles" />
+            <meta property="article:tag" content="PKI" />
+            <meta property="article:tag" content="Certificate" />
+            <meta property="article:author" content="Didier Bernaudeau" />
 
 
     <!-- Bootstrap -->
@@ -33,6 +39,8 @@
 
 
 
+        <link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Articles ATOM Feed"/>
 
 </head>
 <body>
@@ -67,9 +75,20 @@ My personal blog note            </a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-            <article>
-                <h2><a href="http://didier.bernaudeau.net/Lets_Encrypt.html">Let’s Encrypt</a></h2>
-                    <div class="well well-sm">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://didier.bernaudeau.net/Lets_Encrypt.html"
+                       rel="bookmark"
+                       title="Permalink to Let’s Encrypt">
+                        Let’s Encrypt
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
@@ -90,41 +109,25 @@ My personal blog note            </a>
 	<a href="http://didier.bernaudeau.net/tag/certificate.html">Certificate</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>Let's Encrypt, is a Certificate Authority created by Linux Fundation in 2015, which issues certificate freely and automatically.</p>
-
-                    <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/Lets_Encrypt.html">more ...</a>
                 </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://didier.bernaudeau.net/Extended_Validation_Certificate.html">Extended Validation Certificate</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-10-08T18:50:00+02:00"> jeu. 08 octobre 2015</time>
-    </span>
-            <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-10-08T22:09:00+02:00"> jeu. 08 octobre 2015</time>
-            </span>
+                <p>Let's Encrypt, is a Certificate Authority created by Linux Fundation in 2015, which issues certificate freely and automatically.</p>
+<p>Let's Encrypt uses the ACME (Automated Certificate Management Environment) protocol to issue certificates without any human intervention. This is accomplished by running a certificate management agent on the web server.</p>
+<p>An automated process avoids human errors such as forgetting certificate renewal or mishandling private key.</p>
+<p>Thanks to an automated issuance, the certificate lifetime may be reduced to 90 days. This short lifetime limits damage from key compromise and mis-issuance. Stolen keys and mis-issued certificates are valid for a shorter period of time.</p>
+<p>Let's Encrypt is a recent certificate authority and the root certificate authority is not yet trusted in most browsers. In order to be broadly trusted right away, the intermediate certificate is also cross-signed by another certificate authority, IdenTrust. This trick introduces a weakness because the root certificate of IdenTrust is signed with SHA1 algorithm.</p>
+<div class="section" id="liens">
+<h2>Liens</h2>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="https://letsencrypt.org">https://letsencrypt.org</a></li>
+</ul>
+</blockquote>
+</div>
 
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/certificate.html">Certificate</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/pki.html">PKI</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>An Extended Validation Certificate is a digital certificate issue by a Certificate Authority in conformity with &quot;<a class="reference external" href="https://cabforum.org/baseline-requirements-documents/">Baseline Requirements</a>&quot; and &quot;<a class="reference external" href="https://cabforum.org/extended-validation/">EV SSL Certificate Guidelines</a>&quot;. These documents are defined by CA/B Forum (Certificate Authority &amp; Browser Forum). This article is a summary of EV SSL Certificate Guidelines version 1.5.6 of 25 june 2015.</p>
-
-                    <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/Extended_Validation_Certificate.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
 
         </div>
         <div class="col-sm-3" id="sidebar">

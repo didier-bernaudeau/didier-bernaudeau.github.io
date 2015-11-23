@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>CORS (Cross-Origin Resource Sharing) - My personal blog note</title>
+    <title>November 2015 - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,24 +9,20 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/News_November_2015.html">
 
         <meta name="author" content="Didier Bernaudeau" />
-        <meta name="keywords" content="Development,WebSite,HTML,JavaScript,PHP" />
-        <meta name="description" content="CORS (Cross-Origin Resource Sharing) is a mechanism, define by W3C, which provides a way for web servers to support cross-site access controls, which enable secure cross-site data transfers. This mechanism works by adding new HTTP headers named Access-Control-Allow-Origin." />
+        <meta name="keywords" content="News" />
+        <meta name="description" content="This is an overview of Information Security news : vulnerabilities, patches, databreach, ..." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="CORS (Cross-Origin Resource Sharing)"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html"/>
-        <meta property="og:description" content="CORS (Cross-Origin Resource Sharing) is a mechanism, define by W3C, which provides a way for web servers to support cross-site access controls, which enable secure cross-site data transfers. This mechanism works by adding new HTTP headers named Access-Control-Allow-Origin."/>
-        <meta property="article:published_time" content="2015-08-30" />
-            <meta property="article:section" content="Articles" />
-            <meta property="article:tag" content="Development" />
-            <meta property="article:tag" content="WebSite" />
-            <meta property="article:tag" content="HTML" />
-            <meta property="article:tag" content="JavaScript" />
-            <meta property="article:tag" content="PHP" />
+        <meta property="og:title" content="November 2015"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/News_November_2015.html"/>
+        <meta property="og:description" content="This is an overview of Information Security news : vulnerabilities, patches, databreach, ..."/>
+        <meta property="article:published_time" content="2015-11-01" />
+            <meta property="article:section" content="News" />
+            <meta property="article:tag" content="News" />
             <meta property="article:author" content="Didier Bernaudeau" />
 
 
@@ -42,8 +38,8 @@
 
 
 
-        <link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" type="application/atom+xml" rel="alternate"
-              title="My personal blog note Articles ATOM Feed"/>
+        <link href="http://didier.bernaudeau.net/feeds/news.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note News ATOM Feed"/>
 
 </head>
 <body>
@@ -83,10 +79,10 @@ My personal blog note            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html"
+                    <a href="http://didier.bernaudeau.net/News_November_2015.html"
                        rel="bookmark"
-                       title="Permalink to CORS (Cross-Origin Resource Sharing)">
-                        CORS (Cross-Origin Resource Sharing)
+                       title="Permalink to November 2015">
+                        November 2015
                     </a>
                 </h1>
             </header>
@@ -96,11 +92,11 @@ My personal blog note            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-08-30T15:14:00+02:00"> dim. 30 août 2015</time>
+        <i class="fa fa-calendar"></i><time datetime="2015-11-01T22:34:00+01:00"> dim. 01 novembre 2015</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-09-01T23:44:00+02:00"> mar. 01 septembre 2015</time>
+                <i class="fa fa-calendar"></i><time datetime="2015-11-24T20:19:00+01:00"> mar. 24 novembre 2015</time>
             </span>
 
 
@@ -108,64 +104,109 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/development.html">Development</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/website.html">WebSite</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/html.html">HTML</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/javascript.html">JavaScript</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/php.html">PHP</a>
+	<a href="http://didier.bernaudeau.net/tag/news.html">News</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>CORS (Cross-Origin Resource Sharing) is a mechanism, define by W3C, which provides a way for web servers to support cross-site access controls, which enable secure cross-site data transfers.</p>
-<p>This mechanism works by adding new HTTP headers named Access-Control-Allow-Origin.</p>
-<div class="section" id="step-1-create-webservice">
-<h2>Step 1 : Create WebService</h2>
-<p>Create a PHP script named "cors.php" and hosted on "www.example.com" :</p>
-<pre class="code php literal-block">
-<span class="cp">&lt;?</span>
-  <span class="nb">header</span><span class="p">(</span><span class="s2">"Access-Control-Allow-Origin: http://hostname:8000"</span><span class="p">);</span>
-  <span class="k">echo</span> <span class="nb">date</span><span class="p">(</span><span class="s2">"Y-m-d H:i:s"</span><span class="p">);</span>
-<span class="cp">?&gt;</span>
-</pre>
-</div>
-<div class="section" id="step-2-create-html-web-page">
-<h2>Step 2 : Create HTML web page</h2>
-<p>Create a HTML file named "cors.html" and hosted on your computer :</p>
-<pre class="code html literal-block">
-<span class="cp">&lt;!doctype html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
- <span class="nt">&lt;body&gt;</span>
-
- <span class="nt">&lt;script&gt;</span>
-  <span class="kd">var</span> <span class="nx">xmlHttp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-  <span class="nx">xmlHttp</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span> <span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"http://www.example.com/cors.php"</span><span class="p">,</span> <span class="kc">false</span> <span class="p">);</span>
-  <span class="nx">xmlHttp</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span> <span class="kc">null</span> <span class="p">);</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="nx">xmlHttp</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
- <span class="nt">&lt;/script&gt;</span>
-
- <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</pre>
-<p>To test easily, start a web server with python (in the directory where the file "cors.html" is located)</p>
-<pre class="code shell literal-block">
-python -m SimpleHTTPServer
-</pre>
-<p>Then, open web page from <a class="reference external" href="http://hostname:8000/cors.html">http://hostname:8000/cors.html</a></p>
-</div>
+                <p>This is an overview of Information Security news : vulnerabilities, patches, databreach, ...</p>
+<table border="1" class=" table-striped docutils table-hover table">
+<colgroup>
+<col width="5%"></col>
+<col width="95%"></col>
+</colgroup>
+<tbody valign="top">
+<tr><td>Date</td>
+<td>Link</td>
+</tr>
+<tr><td>11/06/2015</td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="http://www.zdnet.com/article/protonmail-coughs-up-6000-to-stop-ddos-attack-ddos-carries-on-anyway/">ProtonMail coughs up $6000 to stop DDoS attack, DDoS carries on anyway</a></li>
+<li><a class="reference external" href="http://m.theregister.co.uk/2015/11/09/enormous_protonmail_ddos_attack_continues/">ProtonMail DDoS wipeout: Day 6. Yes, we're still under attack</a></li>
+</ul>
+</td>
+</tr>
+<tr><td>11/11/2015</td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="http://mobile.geek.com/latest/258535-conficker-worm-found-on-body-cams-shipped-to-us-police-departments">Conficker worm found on body cams shipped to US police departments</a></li>
+</ul>
+</td>
+</tr>
+<tr><td>11/13/2015</td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="http://www.scmagazine.com/badbarcode-attacks-expose-potential-vulnerabilities-in-barcode-tech/article/453958/">Badbarcode attacks expose potential vulnerabilities in barcode tech</a></li>
+</ul>
+</td>
+</tr>
+<tr><td>11/13/2015</td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="http://thehackernews.com/2015/11/gmail-spoofing.html?m=1">Bug in Gmail app for Android Allows anyone to Send Spoofed Emails</a></li>
+</ul>
+</td>
+</tr>
+<tr><td>11/13/2015</td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="http://www.pcworld.com/article/3005182/encryption/bitlocker-encryption-can-be-defeated-with-trivial-windows-authentication-bypass.html">BitLocker encryption can be defeated with trivial Windows authentication bypass</a></li>
+</ul>
+</td>
+</tr>
+<tr><td>11/15/2015</td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="http://www.theregister.co.uk/2015/11/15/png_pongs_critical_bug_patched_in_ubiquitous_libpng/">PNG pongs: critical bug patched in ubiquitous libpng</a></li>
+</ul>
+</td>
+</tr>
+<tr><td>11/16/2015</td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="https://www.strongswan.org/blog/2015/11/16/strongswan-vulnerability-%28cve-2015-8023%29.html">strongSwan Vulnerability (CVE-2015-8023)</a></li>
+</ul>
+</td>
+</tr>
+<tr><td>11/16/2015</td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20151116-fmc">Cisco FireSIGHT Management Center Certificate Validation Vulnerability</a></li>
+</ul>
+</td>
+</tr>
+<tr><td>11/16/2015</td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="http://www.zdnet.com/article/fbi-denies-paying-1-million-to-unmask-tor-users/">FBI denies paying $1 million to unmask Tor users</a></li>
+</ul>
+</td>
+</tr>
+<tr><td>11/17/2015</td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="https://grahamcluley.com/2015/11/flaws-lastpass-password-manager-security-researchers/">Flaws found in LastPass password manager by security researchers</a></li>
+<li><a class="reference external" href="http://www.martinvigo.com/even-the-lastpass-will-be-stolen-deal-with-it">Even the LastPass Will be Stolen, Deal with It!</a></li>
+</ul>
+</td>
+</tr>
+<tr><td>11/18/2015</td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="http://www.engadget.com/2015/11/18/amazon-two-factor-authentication-security/">It's time to secure your Amazon account with two-factor authentication</a></li>
+</ul>
+</td>
+</tr>
+<tr><td>11/18/2015</td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="http://www.wired.com/2015/11/heres-a-spy-firms-price-list-for-secret-hacker-techniques">Here’s a Spy Firm’s Price List for Secret Hacker Techniques</a></li>
+<li><a class="reference external" href="http://betanews.com/2015/11/20/zerodium-reveals-price-list-for-zero-day-exploits/">Zerodium reveals price list for zero-day exploits</a></li>
+</ul>
+</td>
+</tr>
+<tr><td>11/18/2015</td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="http://www-01.ibm.com/support/docview.wss?uid=swg21970575">Security Bulletin: Vulnerability in Apache Commons affects IBM WebSphere Application Server (CVE-2015-7450)</a></li>
+<li><a class="reference external" href="http://foxglovesecurity.com/2015/11/06/what-do-weblogic-websphere-jboss-jenkins-opennms-and-your-application-have-in-common-this-vulnerability/">What Do WebLogic, WebSphere, JBoss, Jenkins, OpenNMS, and Your Application Have in Common? This Vulnerability</a></li>
+<li><a class="reference external" href="https://exchange.xforce.ibmcloud.com/vulnerabilities/107918?cm_mc_uid=01615552728114450060625&amp;cm_mc_sid_50200000=1448283719">Apache Commons Collections InvokerTransformer.class code execution</a></li>
+<li><a class="reference external" href="http://www.darkreading.com/informationweek-home/why-the-java-deserialization-bug-is-a-big-deal/d/d-id/1323237?">Why The Java Deserialization Bug Is A Big Deal</a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 
             </div>
             <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://didier.bernaudeau.net/Same_Origin_Policy.html">SOP (Same-Origin Policy)</a></li>
-        <li><a href="http://didier.bernaudeau.net/JSON_with_Padding.html">JSONP (JSON with Padding)</a></li>
-    </ul>
-</section>
         </article>
     </section>
 

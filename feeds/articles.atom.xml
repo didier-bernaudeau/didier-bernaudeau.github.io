@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2015-11-16T21:04:00+01:00</updated><entry><title>Let’s Encrypt</title><link href="http://didier.bernaudeau.net/Lets_Encrypt.html" rel="alternate"></link><updated>2015-11-16T21:04:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-11-16:Lets_Encrypt.html</id><summary type="html">&lt;p&gt;Let's Encrypt, is a Certificate Authority created by Linux Fundation in 2015, which issues certificate freely and automatically.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2015-11-16T21:04:00+01:00</updated><entry><title>Let’s Encrypt</title><link href="http://didier.bernaudeau.net/Lets_Encrypt.html" rel="alternate"></link><updated>2015-11-16T21:04:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-11-16:Lets_Encrypt.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;Let's Encrypt, is a Certificate Authority created by Linux Fundation in 2015, which issues certificate freely and automatically.&lt;/p&gt;
+
 &lt;p&gt;Let's Encrypt uses the ACME (Automated Certificate Management Environment) protocol to issue certificates without any human intervention. This is accomplished by running a certificate management agent on the web server.&lt;/p&gt;
 &lt;p&gt;An automated process avoids human errors such as forgetting certificate renewal or mishandling private key.&lt;/p&gt;
 &lt;p&gt;Thanks to an automated issuance, the certificate lifetime may be reduced to 90 days. This short lifetime limits damage from key compromise and mis-issuance. Stolen keys and mis-issued certificates are valid for a shorter period of time.&lt;/p&gt;
@@ -12,7 +13,8 @@
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="PKI"></category><category term="Certificate"></category></entry><entry><title>Extended Validation Certificate</title><link href="http://didier.bernaudeau.net/Extended_Validation_Certificate.html" rel="alternate"></link><updated>2015-10-08T22:09:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-08:Extended_Validation_Certificate.html</id><summary type="html">&lt;p&gt;An Extended Validation Certificate is a digital certificate issue by a Certificate Authority in conformity with "&lt;a class="reference external" href="https://cabforum.org/baseline-requirements-documents/"&gt;Baseline Requirements&lt;/a&gt;" and "&lt;a class="reference external" href="https://cabforum.org/extended-validation/"&gt;EV SSL Certificate Guidelines&lt;/a&gt;". These documents are defined by CA/B Forum (Certificate Authority &amp;amp; Browser Forum). This article is a summary of EV SSL Certificate Guidelines version 1.5.6 of 25 june 2015.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</summary><category term="PKI"></category><category term="Certificate"></category></entry><entry><title>Extended Validation Certificate</title><link href="http://didier.bernaudeau.net/Extended_Validation_Certificate.html" rel="alternate"></link><updated>2015-10-08T22:09:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-08:Extended_Validation_Certificate.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;An Extended Validation Certificate is a digital certificate issue by a Certificate Authority in conformity with "&lt;a class="reference external" href="https://cabforum.org/baseline-requirements-documents/"&gt;Baseline Requirements&lt;/a&gt;" and "&lt;a class="reference external" href="https://cabforum.org/extended-validation/"&gt;EV SSL Certificate Guidelines&lt;/a&gt;". These documents are defined by CA/B Forum (Certificate Authority &amp;amp; Browser Forum). This article is a summary of EV SSL Certificate Guidelines version 1.5.6 of 25 june 2015.&lt;/p&gt;
+
 &lt;div class="section" id="additional-content"&gt;
 &lt;h2&gt;Additional content&lt;/h2&gt;
 &lt;p&gt;For an Extended Validation Certificate, these subject attributes are required :&lt;/p&gt;
@@ -60,13 +62,13 @@
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Certificate"></category><category term="PKI"></category></entry><entry><title>CORS (Cross-Origin Resource Sharing)</title><link href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html" rel="alternate"></link><updated>2015-09-01T23:44:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-30:Cross_Origin_Resource_Sharing.html</id><summary type="html">&lt;p&gt;CORS (Cross-Origin Resource Sharing) is a mechanism, define by W3C, which provides a way for web servers to support cross-site access controls, which enable secure cross-site data transfers.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</summary><category term="Certificate"></category><category term="PKI"></category></entry><entry><title>CORS (Cross-Origin Resource Sharing)</title><link href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html" rel="alternate"></link><updated>2015-09-01T23:44:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-30:Cross_Origin_Resource_Sharing.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;CORS (Cross-Origin Resource Sharing) is a mechanism, define by W3C, which provides a way for web servers to support cross-site access controls, which enable secure cross-site data transfers.&lt;/p&gt;
 &lt;p&gt;This mechanism works by adding new HTTP headers named Access-Control-Allow-Origin.&lt;/p&gt;
+
 &lt;div class="section" id="step-1-create-webservice"&gt;
 &lt;h2&gt;Step 1 : Create WebService&lt;/h2&gt;
 &lt;p&gt;Create a PHP script named "cors.php" and hosted on "www.example.com" :&lt;/p&gt;
-&lt;pre class="code php literal-block"&gt;
-&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;
+&lt;pre class="code php literal-block"&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;
   &lt;span class="nb"&gt;header&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Access-Control-Allow-Origin: http://hostname:8000"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
   &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nb"&gt;date&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Y-m-d H:i:s"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
@@ -75,8 +77,7 @@
 &lt;div class="section" id="step-2-create-html-web-page"&gt;
 &lt;h2&gt;Step 2 : Create HTML web page&lt;/h2&gt;
 &lt;p&gt;Create a HTML file named "cors.html" and hosted on your computer :&lt;/p&gt;
-&lt;pre class="code html literal-block"&gt;
-&lt;span class="cp"&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
+&lt;pre class="code html literal-block"&gt;&lt;span class="cp"&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
  &lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
 
@@ -91,18 +92,17 @@
 &lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;To test easily, start a web server with python (in the directory where the file "cors.html" is located)&lt;/p&gt;
-&lt;pre class="code shell literal-block"&gt;
-python -m SimpleHTTPServer
+&lt;pre class="code shell literal-block"&gt;python -m SimpleHTTPServer
 &lt;/pre&gt;
 &lt;p&gt;Then, open web page from &lt;a class="reference external" href="http://hostname:8000/cors.html"&gt;http://hostname:8000/cors.html&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="Development"></category><category term="WebSite"></category><category term="HTML"></category><category term="JavaScript"></category><category term="PHP"></category></entry><entry><title>JSONP (JSON with Padding)</title><link href="http://didier.bernaudeau.net/JSON_with_Padding.html" rel="alternate"></link><updated>2015-08-29T14:30:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-29:JSON_with_Padding.html</id><summary type="html">&lt;p&gt;This article shows how JSONP (JavaScript Object Notation with Padding) can be used to get data from different domains, bypassing SOP (Same-Origin Policy).&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</summary><category term="Development"></category><category term="WebSite"></category><category term="HTML"></category><category term="JavaScript"></category><category term="PHP"></category></entry><entry><title>JSONP (JSON with Padding)</title><link href="http://didier.bernaudeau.net/JSON_with_Padding.html" rel="alternate"></link><updated>2015-08-29T14:30:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-29:JSON_with_Padding.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This article shows how JSONP (JavaScript Object Notation with Padding) can be used to get data from different domains, bypassing SOP (Same-Origin Policy).&lt;/p&gt;
 &lt;p&gt;JSONP uses the script tag, which is not in the scope of the SOP. Indeed, a JavaScript source file loaded from another domain will run in the origin of the HTML that includes the script, not in the domain where the JavaScript file originated from.&lt;/p&gt;
+
 &lt;div class="section" id="step-1-create-jsonp-webservice"&gt;
 &lt;h2&gt;Step 1 : Create JSONP WebService&lt;/h2&gt;
 &lt;p&gt;The web service encapsulates data, in JSON format, in a callback function. Create a PHP script named "jsonp.php" and hosted on "www.example.com" :&lt;/p&gt;
-&lt;pre class="code php literal-block"&gt;
-&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;
+&lt;pre class="code php literal-block"&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;
  &lt;span class="nv"&gt;$MyData&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'{ "MyDateTime": "'&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nb"&gt;date&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Y-m-d H:i:s"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="s1"&gt;'" }'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
  &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$_GET&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'JsonpCallback'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="s1"&gt;'('&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nv"&gt;$MyData&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="s1"&gt;');'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
@@ -111,8 +111,7 @@ python -m SimpleHTTPServer
 &lt;div class="section" id="step-2-create-html-web-page"&gt;
 &lt;h2&gt;Step 2 : Create HTML web page&lt;/h2&gt;
 &lt;p&gt;The HTML page loads the JavaScript source file, from JSONP WebService, then execute the callback function. Create the HTML page named jsonp.html and hosted on your localhost :&lt;/p&gt;
-&lt;pre class="code html literal-block"&gt;
-&lt;span class="cp"&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
+&lt;pre class="code html literal-block"&gt;&lt;span class="cp"&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
  &lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
 
@@ -151,13 +150,13 @@ python -m SimpleHTTPServer
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Development"></category><category term="WebSite"></category><category term="HTML"></category><category term="JavaScript"></category><category term="PHP"></category></entry><entry><title>SOP (Same-Origin Policy)</title><link href="http://didier.bernaudeau.net/Same_Origin_Policy.html" rel="alternate"></link><updated>2015-08-27T12:08:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-27:Same_Origin_Policy.html</id><summary type="html">&lt;p&gt;SOP (Same Origin Policy) is a security mechanism implemented in browsers to restrict interactions between 2 different origin resources. Two resources have the same origin if the protocol, port, and host are the same for both resources.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</summary><category term="Development"></category><category term="WebSite"></category><category term="HTML"></category><category term="JavaScript"></category><category term="PHP"></category></entry><entry><title>SOP (Same-Origin Policy)</title><link href="http://didier.bernaudeau.net/Same_Origin_Policy.html" rel="alternate"></link><updated>2015-08-27T12:08:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-27:Same_Origin_Policy.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;SOP (Same Origin Policy) is a security mechanism implemented in browsers to restrict interactions between 2 different origin resources. Two resources have the same origin if the protocol, port, and host are the same for both resources.&lt;/p&gt;
 &lt;p&gt;This article shows how to test the SOP (Same Origin Policy) mechanism implemented by your browser.&lt;/p&gt;
+
 &lt;div class="section" id="step-1-create-webservice"&gt;
 &lt;h2&gt;Step 1 : Create WebService&lt;/h2&gt;
 &lt;p&gt;Create a PHP script named "sop.php" and hosted on "www.example.com" :&lt;/p&gt;
-&lt;pre class="code php literal-block"&gt;
-&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;
+&lt;pre class="code php literal-block"&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;
   &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nb"&gt;date&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Y-m-d H:i:s"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;
@@ -165,8 +164,7 @@ python -m SimpleHTTPServer
 &lt;div class="section" id="step-2-create-html-web-page"&gt;
 &lt;h2&gt;Step 2 : Create HTML web page&lt;/h2&gt;
 &lt;p&gt;Create a HTML file named "sop.html" and hosted on your localhost :&lt;/p&gt;
-&lt;pre class="code html literal-block"&gt;
-&lt;span class="cp"&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
+&lt;pre class="code html literal-block"&gt;&lt;span class="cp"&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
  &lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
 
@@ -187,7 +185,8 @@ python -m SimpleHTTPServer
 &lt;blockquote class="pull-quote"&gt;
 Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at &lt;a class="reference external" href="http://www.example.com/sop.php"&gt;http://www.example.com/sop.php&lt;/a&gt;. This can be fixed by moving the resource to the same domain or enabling CORS.&lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Development"></category><category term="WebSite"></category><category term="HTML"></category><category term="JavaScript"></category><category term="PHP"></category></entry><entry><title>TLS: Audit tools</title><link href="http://didier.bernaudeau.net/TLS_Audit_tools.html" rel="alternate"></link><updated>2015-09-30T07:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-04:TLS_Audit_tools.html</id><summary type="html">&lt;p&gt;This memo lists the tools necessary to audit the TLS configuration. Moreover, a compliance form template is available to formalize the audit report.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</summary><category term="Development"></category><category term="WebSite"></category><category term="HTML"></category><category term="JavaScript"></category><category term="PHP"></category></entry><entry><title>TLS: Audit tools</title><link href="http://didier.bernaudeau.net/TLS_Audit_tools.html" rel="alternate"></link><updated>2015-09-30T07:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-04:TLS_Audit_tools.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This memo lists the tools necessary to audit the TLS configuration. Moreover, a compliance form template is available to formalize the audit report.&lt;/p&gt;
+
 &lt;div class="section" id="audit-tools"&gt;
 &lt;h2&gt;Audit Tools&lt;/h2&gt;
 &lt;div class="section" id="ssl-server-test"&gt;
@@ -196,20 +195,17 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="nmap"&gt;
 &lt;h3&gt;Nmap&lt;/h3&gt;
-&lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; nmap --script ssl-enum-ciphers -p &lt;span class="m"&gt;443&lt;/span&gt; www.exemple.com
+&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; nmap --script ssl-enum-ciphers -p &lt;span class="m"&gt;443&lt;/span&gt; www.exemple.com
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="test-ssl-server"&gt;
 &lt;h3&gt;Test SSL Server&lt;/h3&gt;
-&lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; java -jar TestSSLServer.jar www.exemple.com 443
+&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; java -jar TestSSLServer.jar www.exemple.com 443
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="cipherscan"&gt;
 &lt;h3&gt;CipherScan&lt;/h3&gt;
-&lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; git clone git://github.com/jvehent/cipherscan.git
+&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git clone git://github.com/jvehent/cipherscan.git
 &lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;cipherscan
 &lt;span class="gp"&gt;$&lt;/span&gt; ./cipherscan www.exemple.com
 &lt;/pre&gt;
@@ -229,7 +225,8 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Cryptography"></category><category term="Network"></category></entry><entry><title>TLS: Hardened configuration</title><link href="http://didier.bernaudeau.net/TLS_Hardened_configuration.html" rel="alternate"></link><updated>2015-08-02T12:44:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-23:TLS_Hardened_configuration.html</id><summary type="html">&lt;p&gt;In recent years, many vulnerabilities (BEAST, CRIME, FREAK, ...) have been published about TLS protocol. Today, it is essential to enhanced configuration of TLS protocol to ensure the security of communication. This article lists the best practices to enhanced configuration of TLS protocol.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</summary><category term="Cryptography"></category><category term="Network"></category></entry><entry><title>TLS: Hardened configuration</title><link href="http://didier.bernaudeau.net/TLS_Hardened_configuration.html" rel="alternate"></link><updated>2015-08-02T12:44:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-23:TLS_Hardened_configuration.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;In recent years, many vulnerabilities (BEAST, CRIME, FREAK, ...) have been published about TLS protocol. Today, it is essential to enhanced configuration of TLS protocol to ensure the security of communication. This article lists the best practices to enhanced configuration of TLS protocol.&lt;/p&gt;
+
 &lt;div class="section" id="protocol-version"&gt;
 &lt;h2&gt;Protocol version&lt;/h2&gt;
 &lt;table border="1" class=" table-striped docutils table-hover table"&gt;
@@ -424,7 +421,8 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary><category term="Cryptography"></category><category term="Network"></category></entry><entry><title>TLS: Understanding the cipher suites</title><link href="http://didier.bernaudeau.net/TLS_Understanding_the_cipher_suites.html" rel="alternate"></link><updated>2015-08-04T21:48:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-22:TLS_Understanding_the_cipher_suites.html</id><summary type="html">&lt;p&gt;To protect your communications, TLS protocol uses 4 cryptographic functions: key exchange, authentication, encryption and message authentication code. Cipher suite allows to define the algorithm used for each of these 4 functions.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</summary><category term="Cryptography"></category><category term="Network"></category></entry><entry><title>TLS: Understanding the cipher suites</title><link href="http://didier.bernaudeau.net/TLS_Understanding_the_cipher_suites.html" rel="alternate"></link><updated>2015-08-04T21:48:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-22:TLS_Understanding_the_cipher_suites.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;To protect your communications, TLS protocol uses 4 cryptographic functions: key exchange, authentication, encryption and message authentication code. Cipher suite allows to define the algorithm used for each of these 4 functions.&lt;/p&gt;
+
 &lt;div class="section" id="cryptographic-function"&gt;
 &lt;h2&gt;Cryptographic function&lt;/h2&gt;
 &lt;div class="section" id="key-exchange"&gt;
@@ -601,7 +599,8 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Cryptography"></category><category term="Network"></category></entry><entry><title>SSD - Samsung 840 PRO (256 Go)</title><link href="http://didier.bernaudeau.net/SSD_Samsung_840_PRO_256_Go.html" rel="alternate"></link><updated>2015-07-18T12:47:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-18:SSD_Samsung_840_PRO_256_Go.html</id><summary type="html">&lt;p&gt;This article describes the new SSD Samsung 840 PRO 256 Go. I installed this SSD in my laptop &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html"&gt;Lenovo ThinkPad X240&lt;/a&gt; to replace the original HDD.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</summary><category term="Cryptography"></category><category term="Network"></category></entry><entry><title>SSD - Samsung 840 PRO (256 Go)</title><link href="http://didier.bernaudeau.net/SSD_Samsung_840_PRO_256_Go.html" rel="alternate"></link><updated>2015-07-18T12:47:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-18:SSD_Samsung_840_PRO_256_Go.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This article describes the new SSD Samsung 840 PRO 256 Go. I installed this SSD in my laptop &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html"&gt;Lenovo ThinkPad X240&lt;/a&gt; to replace the original HDD.&lt;/p&gt;
+
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;table border="1" class=" table-striped docutils table-hover table"&gt;
@@ -763,7 +762,8 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Hardware"></category></entry><entry><title>SSD - Samsung 850 EVO (250 Go)</title><link href="http://didier.bernaudeau.net/SSD_Samsung_850_EVO_250_Go.html" rel="alternate"></link><updated>2015-07-09T21:04:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-09:SSD_Samsung_850_EVO_250_Go.html</id><summary type="html">&lt;p&gt;This article describes the new SSD Samsung 850 EVO 250 Go. I installed this SSD in my laptop &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Sony_VAIO_VGN_SR11M.html"&gt;Sony VAIO VGN-SR11M&lt;/a&gt; to replace the original HDD.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</summary><category term="Hardware"></category></entry><entry><title>SSD - Samsung 850 EVO (250 Go)</title><link href="http://didier.bernaudeau.net/SSD_Samsung_850_EVO_250_Go.html" rel="alternate"></link><updated>2015-07-09T21:04:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-09:SSD_Samsung_850_EVO_250_Go.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This article describes the new SSD Samsung 850 EVO 250 Go. I installed this SSD in my laptop &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Sony_VAIO_VGN_SR11M.html"&gt;Sony VAIO VGN-SR11M&lt;/a&gt; to replace the original HDD.&lt;/p&gt;
+
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;table border="1" class=" table-striped docutils table-hover table"&gt;
@@ -930,7 +930,8 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Hardware"></category></entry><entry><title>Laptop - Sony VAIO VGN SR11M</title><link href="http://didier.bernaudeau.net/Laptop_Sony_VAIO_VGN_SR11M.html" rel="alternate"></link><updated>2015-07-15T22:20:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-28:Laptop_Sony_VAIO_VGN_SR11M.html</id><summary type="html">&lt;p&gt;This article describes the hardware specification and configuration of my Sony VAIO VGN SR11M based on Intel Core 2 Duo processor. Future articles will refer to this one.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</summary><category term="Hardware"></category></entry><entry><title>Laptop - Sony VAIO VGN SR11M</title><link href="http://didier.bernaudeau.net/Laptop_Sony_VAIO_VGN_SR11M.html" rel="alternate"></link><updated>2015-07-15T22:20:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-28:Laptop_Sony_VAIO_VGN_SR11M.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This article describes the hardware specification and configuration of my Sony VAIO VGN SR11M based on Intel Core 2 Duo processor. Future articles will refer to this one.&lt;/p&gt;
+
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
@@ -1324,12 +1325,10 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;h3&gt;Configuration&lt;/h3&gt;
 &lt;p&gt;Press F2 to enter in BIOS menu.&lt;/p&gt;
 &lt;p&gt;Menu "Advanced"&lt;/p&gt;
-&lt;pre class="code ini literal-block"&gt;
-&lt;span class="err"&gt;Intel(R)&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt; &lt;span class="err"&gt;Technology&lt;/span&gt; &lt;span class="k"&gt;[Enabled]&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;Intel(R)&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt; &lt;span class="err"&gt;Technology&lt;/span&gt; &lt;span class="k"&gt;[Enabled]&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Menu "Boot"&lt;/p&gt;
-&lt;pre class="code ini literal-block"&gt;
-&lt;span class="err"&gt;Select&lt;/span&gt; &lt;span class="err"&gt;1st&lt;/span&gt; &lt;span class="err"&gt;Boot&lt;/span&gt; &lt;span class="err"&gt;Priority&lt;/span&gt; &lt;span class="k"&gt;[External Device]&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;Select&lt;/span&gt; &lt;span class="err"&gt;1st&lt;/span&gt; &lt;span class="err"&gt;Boot&lt;/span&gt; &lt;span class="err"&gt;Priority&lt;/span&gt; &lt;span class="k"&gt;[External Device]&lt;/span&gt;
 &lt;span class="err"&gt;Select&lt;/span&gt; &lt;span class="err"&gt;2nd&lt;/span&gt; &lt;span class="err"&gt;Boot&lt;/span&gt; &lt;span class="err"&gt;Priority&lt;/span&gt; &lt;span class="k"&gt;[Internal Optical Disc Drive]&lt;/span&gt;
 &lt;span class="err"&gt;Select&lt;/span&gt; &lt;span class="err"&gt;3rd&lt;/span&gt; &lt;span class="err"&gt;Boot&lt;/span&gt; &lt;span class="err"&gt;Priority&lt;/span&gt; &lt;span class="k"&gt;[Internal Hard Disk Drive]&lt;/span&gt;
 &lt;/pre&gt;
@@ -1353,7 +1352,8 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Hardware"></category></entry><entry><title>Laptop - Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html" rel="alternate"></link><updated>2015-07-18T12:27:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-12:Laptop_Lenovo_ThinkPad_X240.html</id><summary type="html">&lt;p&gt;This article describes the configuration of my Lenovo ThinkPad X240 (20ALCT01WW) based on Intel Haswell processor. Future articles will refer to this one.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</summary><category term="Hardware"></category></entry><entry><title>Laptop - Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html" rel="alternate"></link><updated>2015-07-18T12:27:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-12:Laptop_Lenovo_ThinkPad_X240.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This article describes the configuration of my Lenovo ThinkPad X240 (20ALCT01WW) based on Intel Haswell processor. Future articles will refer to this one.&lt;/p&gt;
+
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
@@ -1722,17 +1722,14 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;div class="section" id="configuration"&gt;
 &lt;h3&gt;Configuration&lt;/h3&gt;
 &lt;p&gt;Menu "Security / Virtualization"&lt;/p&gt;
-&lt;pre class="code ini literal-block"&gt;
-&lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;(R)&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt; &lt;span class="err"&gt;Technologie&lt;/span&gt; &lt;span class="k"&gt;[Enabled]&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;(R)&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt; &lt;span class="err"&gt;Technologie&lt;/span&gt; &lt;span class="k"&gt;[Enabled]&lt;/span&gt;
 &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;(R)&lt;/span&gt; &lt;span class="err"&gt;VT-d&lt;/span&gt; &lt;span class="err"&gt;Feature&lt;/span&gt;               &lt;span class="k"&gt;[Enabled]&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Menu " Security / Secure Boot"&lt;/p&gt;
-&lt;pre class="code ini literal-block"&gt;
-&lt;span class="err"&gt;Secure&lt;/span&gt; &lt;span class="err"&gt;Boot&lt;/span&gt;                         &lt;span class="k"&gt;[Disabled]&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;Secure&lt;/span&gt; &lt;span class="err"&gt;Boot&lt;/span&gt;                         &lt;span class="k"&gt;[Disabled]&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Menu "Startup"&lt;/p&gt;
-&lt;pre class="code ini literal-block"&gt;
-&lt;span class="err"&gt;UEFI&lt;/span&gt; &lt;span class="err"&gt;/&lt;/span&gt; &lt;span class="err"&gt;Legacy&lt;/span&gt; &lt;span class="err"&gt;Boot&lt;/span&gt;                 &lt;span class="k"&gt;[UEFI Only]&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;UEFI&lt;/span&gt; &lt;span class="err"&gt;/&lt;/span&gt; &lt;span class="err"&gt;Legacy&lt;/span&gt; &lt;span class="err"&gt;Boot&lt;/span&gt;                 &lt;span class="k"&gt;[UEFI Only]&lt;/span&gt;
 &lt;span class="err"&gt;-CSM&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;                              &lt;span class="k"&gt;[No]&lt;/span&gt;
 &lt;span class="err"&gt;Boot&lt;/span&gt; &lt;span class="err"&gt;Mode&lt;/span&gt;                              &lt;span class="k"&gt;[Quick]&lt;/span&gt;
 &lt;/pre&gt;
@@ -1756,4 +1753,4 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Hardware"></category></entry></feed>
+&lt;/body&gt;&lt;/html&gt;</summary><category term="Hardware"></category></entry></feed>

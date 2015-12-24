@@ -120,13 +120,13 @@ My personal blog note            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>SOP (Same Origin Policy) is a security mechanism implemented in browsers to restrict interactions between 2 different origin resources. Two resources have the same origin if the protocol, port, and host are the same for both resources.</p>
+                <html><head></head><body><p>SOP (Same Origin Policy) is a security mechanism implemented in browsers to restrict interactions between 2 different origin resources. Two resources have the same origin if the protocol, port, and host are the same for both resources.</p>
 <p>This article shows how to test the SOP (Same Origin Policy) mechanism implemented by your browser.</p>
+
 <div class="section" id="step-1-create-webservice">
 <h2>Step 1 : Create WebService</h2>
 <p>Create a PHP script named "sop.php" and hosted on "www.example.com" :</p>
-<pre class="code php literal-block">
-<span class="cp">&lt;?</span>
+<pre class="code php literal-block"><span class="cp">&lt;?</span>
   <span class="k">echo</span> <span class="nb">date</span><span class="p">(</span><span class="s2">"Y-m-d H:i:s"</span><span class="p">);</span>
 <span class="cp">?&gt;</span>
 </pre>
@@ -134,8 +134,7 @@ My personal blog note            </a>
 <div class="section" id="step-2-create-html-web-page">
 <h2>Step 2 : Create HTML web page</h2>
 <p>Create a HTML file named "sop.html" and hosted on your localhost :</p>
-<pre class="code html literal-block">
-<span class="cp">&lt;!doctype html&gt;</span>
+<pre class="code html literal-block"><span class="cp">&lt;!doctype html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
  <span class="nt">&lt;body&gt;</span>
 
@@ -156,7 +155,7 @@ My personal blog note            </a>
 <blockquote class="pull-quote">
 Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at <a class="reference external" href="http://www.example.com/sop.php">http://www.example.com/sop.php</a>. This can be fixed by moving the resource to the same domain or enabling CORS.</blockquote>
 </div>
-
+</body></html>
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
@@ -185,86 +184,6 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
-                            Certificate
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
-                            Cryptography
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/development.html">
-                            Development
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-0">
-                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
-                            Gentoo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
-                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
-                            Hardware
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/html.html">
-                            HTML
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
-                            JavaScript
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/linux.html">
-                            Linux
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/network.html">
-                            Network
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/news.html">
-                            News
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/php.html">
-                            PHP
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/pki.html">
-                            PKI
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
-                            Virtualization
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/website.html">
-                            WebSite
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/windows.html">
-                            Windows
-                        </a>
-                    </li>
                 </ul>
             </li>
 

@@ -108,33 +108,29 @@ My personal blog note            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.</p>
+                <html><head></head><body><p>This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.</p>
 <p>To get more information about the configuration of my laptop, you can read this article : <a class="reference external" href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html">Lenovo ThinkPad X240</a></p>
+
 <div class="section" id="kernel-installation">
 <h2>Kernel installation</h2>
 <p>Download kernel Gentoo sources (4.0.5) :</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> emerge sys-kernel/gentoo-sources
+<pre class="code console literal-block"><span class="gp">#</span> emerge sys-kernel/gentoo-sources
 </pre>
 <p>Download firmware for Intel WiFi 7260 (version 12) :</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> emerge sys-firmware/iwl7260-ucode
+<pre class="code console literal-block"><span class="gp">#</span> emerge sys-firmware/iwl7260-ucode
 </pre>
 <p>Select kernel sources</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> eselect kernel list
+<pre class="code console literal-block"><span class="gp">#</span> eselect kernel list
 <span class="gp">#</span> eselect kernel <span class="nb">set </span>X
 <span class="gp">#</span> <span class="nb">cd</span> /usr/src/linux
 </pre>
 <p>Print configuration menu</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> make menuconfig
+<pre class="code console literal-block"><span class="gp">#</span> make menuconfig
 </pre>
 </div>
 <div class="section" id="kernel-minimal-configuration">
 <h2>Kernel minimal configuration</h2>
-<pre class="code ini literal-block">
-<span class="err">|</span> <span class="err">General</span> <span class="err">setup</span>  <span class="err">---&gt;</span>
+<pre class="code ini literal-block"><span class="err">|</span> <span class="err">General</span> <span class="err">setup</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>
 <span class="err">|</span>      <span class="err">|</span>     <span class="err">Timers</span> <span class="err">subsystem</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">High</span> <span class="err">Resolution</span> <span class="err">Timer</span> <span class="err">Support</span>
@@ -374,8 +370,7 @@ My personal blog note            </a>
 <h2>Kernel optional configuration</h2>
 <div class="section" id="kerberos-cryptography-support">
 <h3>Kerberos cryptography support</h3>
-<pre class="code ini literal-block">
-<span class="err">|</span> <span class="err">-*-</span> <span class="err">Cryptographic</span> <span class="err">API</span>  <span class="err">---&gt;</span>
+<pre class="code ini literal-block"><span class="err">|</span> <span class="err">-*-</span> <span class="err">Cryptographic</span> <span class="err">API</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span> <span class="err">Cryptographic</span> <span class="err">API</span> <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">CBC</span> <span class="err">support</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">CTS</span> <span class="err">support</span>
@@ -388,8 +383,7 @@ My personal blog note            </a>
 </div>
 <div class="section" id="virtualization-with-kvm">
 <h3>Virtualization with KVM</h3>
-<pre class="code ini literal-block">
-<span class="err">|</span> <span class="err">[*]</span> <span class="err">Virtualization</span>  <span class="err">---&gt;</span>
+<pre class="code ini literal-block"><span class="err">|</span> <span class="err">[*]</span> <span class="err">Virtualization</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Virtualization</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Kernel-based</span> <span class="err">Virtual</span> <span class="err">Machine</span> <span class="err">(KVM)</span> <span class="err">support</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">KVM</span> <span class="err">for</span> <span class="err">Intel</span> <span class="err">processors</span> <span class="err">support</span>
@@ -399,8 +393,7 @@ My personal blog note            </a>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>   <span class="err">Host</span> <span class="err">kernel</span> <span class="err">accelerator</span> <span class="err">for</span> <span class="err">virtio</span> <span class="err">net</span> <span class="err">(NEW)</span>
 </pre>
 <p>Configuration for bridge network</p>
-<pre class="code ini literal-block">
-<span class="err">|</span> <span class="err">[*]</span> <span class="err">Networking</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<pre class="code ini literal-block"><span class="err">|</span> <span class="err">[*]</span> <span class="err">Networking</span> <span class="err">support</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Networking</span> <span class="err">support</span>
 <span class="err">|</span>      <span class="err">|</span>       <span class="err">Networking</span> <span class="err">options</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">802.1d</span> <span class="err">Ethernet</span> <span class="err">Bridging</span>
@@ -414,8 +407,7 @@ My personal blog note            </a>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">Universal</span> <span class="err">TUN/TAP</span> <span class="err">device</span> <span class="err">driver</span> <span class="err">support</span>
 </pre>
 <p>Configuration for virtual network</p>
-<pre class="code ini literal-block">
-<span class="err">|</span> <span class="err">[*]</span> <span class="err">Networking</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<pre class="code ini literal-block"><span class="err">|</span> <span class="err">[*]</span> <span class="err">Networking</span> <span class="err">support</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Networking</span> <span class="err">support</span>
 <span class="err">|</span>      <span class="err">|</span>       <span class="err">Networking</span> <span class="err">options</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>
@@ -440,8 +432,7 @@ My personal blog note            </a>
 </div>
 <div class="section" id="chromimum">
 <h3>Chromimum</h3>
-<pre class="code ini literal-block">
-<span class="err">|</span> <span class="err">General</span> <span class="err">setup</span>  <span class="err">---&gt;</span>
+<pre class="code ini literal-block"><span class="err">|</span> <span class="err">General</span> <span class="err">setup</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span> <span class="err">Namespaces</span> <span class="err">support</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">User</span> <span class="err">namespace</span>
 </pre>
@@ -449,47 +440,38 @@ My personal blog note            </a>
 </div>
 <div class="section" id="kernel-compilation">
 <h2>Kernel compilation</h2>
-<pre class="code console literal-block">
-<span class="gp">#</span> make <span class="o">&amp;&amp;</span> make modules_install
+<pre class="code console literal-block"><span class="gp">#</span> make <span class="o">&amp;&amp;</span> make modules_install
 </pre>
 </div>
 <div class="section" id="id1">
 <h2>Kernel installation</h2>
 <p>Mount ESP (EFI System Partition)</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> mkdir /mnt/ESP
+<pre class="code console literal-block"><span class="gp">#</span> mkdir /mnt/ESP
 <span class="gp">#</span> mount /dev/sda2 /mnt/ESP
 </pre>
 <p>Create directory</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> mkdir /mnt/ESP/EFI/GentooLinux
+<pre class="code console literal-block"><span class="gp">#</span> mkdir /mnt/ESP/EFI/GentooLinux
 </pre>
 <p>Copy kernel</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.0.5.efi
+<pre class="code console literal-block"><span class="gp">#</span> cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.0.5.efi
 </pre>
 <p>Unmount ESP (EFI System Partition)</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> umount /mnt/ESP
+<pre class="code console literal-block"><span class="gp">#</span> umount /mnt/ESP
 </pre>
 </div>
 <div class="section" id="update-uefi-bootloader">
 <h2>Update UEFI bootloader</h2>
 <p>Install EFI boot manager</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> emerge efibootmgr
+<pre class="code console literal-block"><span class="gp">#</span> emerge efibootmgr
 </pre>
 <p>Add the new kernel</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> efibootmgr -c -d /dev/sda -p <span class="m">2</span> -L <span class="s2">"Gentoo Linux 4.0.5"</span> -l <span class="s2">"\EFI\GentooLinux\4.0.5.efi"</span>
+<pre class="code console literal-block"><span class="gp">#</span> efibootmgr -c -d /dev/sda -p <span class="m">2</span> -L <span class="s2">"Gentoo Linux 4.0.5"</span> -l <span class="s2">"\EFI\GentooLinux\4.0.5.efi"</span>
 </pre>
 <p>Print the menu</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> efibootmgr -v
+<pre class="code console literal-block"><span class="gp">#</span> efibootmgr -v
 </pre>
 <p>Remove the previous kernel (after testing the new kernel)</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> efibootmgr -b <span class="m">15</span> -B
+<pre class="code console literal-block"><span class="gp">#</span> efibootmgr -b <span class="m">15</span> -B
 </pre>
 </div>
 <div class="section" id="references">
@@ -500,7 +482,7 @@ My personal blog note            </a>
 </ul>
 </blockquote>
 </div>
-
+</body></html>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -522,86 +504,6 @@ My personal blog note            </a>
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
-                            Certificate
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
-                            Cryptography
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/development.html">
-                            Development
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-0">
-                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
-                            Gentoo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
-                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
-                            Hardware
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/html.html">
-                            HTML
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
-                            JavaScript
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/linux.html">
-                            Linux
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/network.html">
-                            Network
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/news.html">
-                            News
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/php.html">
-                            PHP
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/pki.html">
-                            PKI
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
-                            Virtualization
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/website.html">
-                            WebSite
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/windows.html">
-                            Windows
-                        </a>
-                    </li>
                 </ul>
             </li>
 

@@ -111,13 +111,13 @@ My personal blog note            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Pelican is a static site generator writed in Python. This means that you edit the content on your computer with a simple text editor. Then, a generator makes all HTML pages for the web site, including indexes for articles, categories and tags. In the end, your web site can be hosted easily on a simple HTTP server like GitHub Pages or Amazon S3.</p>
+                <html><head></head><body><p>Pelican is a static site generator writed in Python. This means that you edit the content on your computer with a simple text editor. Then, a generator makes all HTML pages for the web site, including indexes for articles, categories and tags. In the end, your web site can be hosted easily on a simple HTTP server like GitHub Pages or Amazon S3.</p>
 <p>Unlike other CMS (Content Management System) like Wordpress or Drupal, Pelican has no web administration interface. In most cases, the administration interface has many vulnerabilies used to deface the website.</p>
 <p>This article describes step by step how to make your web site with Pelican 3.5 on Gentoo Linux and how to host your web site on GitHub Pages.</p>
+
 <div class="section" id="install-pelican">
 <h2>Install Pelican</h2>
-<pre class="code console literal-block">
-<span class="gp">#</span> emerge pelican
+<pre class="code console literal-block"><span class="gp">#</span> emerge pelican
 </pre>
 </div>
 <div class="section" id="create-github-space">
@@ -127,17 +127,14 @@ My personal blog note            </a>
 <div class="section" id="dns-configuration">
 <h2>DNS Configuration</h2>
 <p>Add a record in the DNS :</p>
-<pre class="code ini literal-block">
-<span class="err">Type</span> <span class="err">:</span> <span class="err">CNAME</span>
+<pre class="code ini literal-block"><span class="err">Type</span> <span class="err">:</span> <span class="err">CNAME</span>
 <span class="err">Name</span> <span class="err">:</span> <span class="err">didier.bernaudeau.net</span>
 <span class="err">Value</span> <span class="err">:</span> <span class="err">didier-bernaudeau.github.io.</span>
 </pre>
 <p>Check configuration with "dig" tool :</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> emerge <span class="nb">bind</span>-tools
+<pre class="code console literal-block"><span class="gp">#</span> emerge <span class="nb">bind</span>-tools
 </pre>
-<pre class="code console literal-block">
-<span class="gp">$</span> dig didier.bernaudeau.net +nostats +nocomments +nocmd
+<pre class="code console literal-block"><span class="gp">$</span> dig didier.bernaudeau.net +nostats +nocomments +nocmd
 <span class="go">
 ; &lt;&lt;&gt;&gt; DiG 9.10.1-P1 &lt;&lt;&gt;&gt; didier.bernaudeau.net +nostats +nocomments +nocmd
 ;; global options: +cmd
@@ -149,18 +146,15 @@ github.map.fastly.net.  30      IN      A       185.31.17.133</span>
 </div>
 <div class="section" id="create-local-directory">
 <h2>Create local directory</h2>
-<pre class="code console literal-block">
-<span class="gp">$</span> git clone https://github.com/didier-bernaudeau/didier-bernaudeau.github.io.git/ MyWebSite
+<pre class="code console literal-block"><span class="gp">$</span> git clone https://github.com/didier-bernaudeau/didier-bernaudeau.github.io.git/ MyWebSite
 <span class="gp">$</span> <span class="nb">cd </span>MyWebSite
 </pre>
 </div>
 <div class="section" id="create-project">
 <h2>Create project</h2>
-<pre class="code console literal-block">
-<span class="gp">$</span> pelican-quickstart
+<pre class="code console literal-block"><span class="gp">$</span> pelican-quickstart
 </pre>
-<pre class="code ini literal-block">
-<span class="err">&gt;</span> <span class="err">Where</span> <span class="err">do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">create</span> <span class="err">your</span> <span class="err">new</span> <span class="err">web</span> <span class="err">site?</span> <span class="k">[.]</span>
+<pre class="code ini literal-block"><span class="err">&gt;</span> <span class="err">Where</span> <span class="err">do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">create</span> <span class="err">your</span> <span class="err">new</span> <span class="err">web</span> <span class="err">site?</span> <span class="k">[.]</span>
 <span class="err">&gt;</span> <span class="err">What</span> <span class="err">will</span> <span class="err">be</span> <span class="err">the</span> <span class="err">title</span> <span class="err">of</span> <span class="err">this</span> <span class="err">web</span> <span class="err">site?</span> <span class="err">D.</span> <span class="err">Bernaudeau</span>
 <span class="err">&gt;</span> <span class="err">Who</span> <span class="err">will</span> <span class="err">be</span> <span class="err">the</span> <span class="err">author</span> <span class="err">of</span> <span class="err">this</span> <span class="err">web</span> <span class="err">site?</span> <span class="err">D.</span> <span class="err">Bernaudeau</span>
 <span class="err">&gt;</span> <span class="err">What</span> <span class="err">will</span> <span class="err">be</span> <span class="err">the</span> <span class="err">default</span> <span class="err">language</span> <span class="err">of</span> <span class="err">this</span> <span class="err">web</span> <span class="err">site?</span> <span class="k">[en]</span>
@@ -181,8 +175,7 @@ github.map.fastly.net.  30      IN      A       185.31.17.133</span>
 <div class="section" id="download-the-theme">
 <h2>Download the theme</h2>
 <p>For my web site, I selected the theme "Bootstrap3" and the style sheet "Bootswatch".</p>
-<pre class="code console literal-block">
-<span class="gp">$</span> <span class="nb">cd </span>MyWebSite
+<pre class="code console literal-block"><span class="gp">$</span> <span class="nb">cd </span>MyWebSite
 <span class="gp">$</span> git clone https://github.com/DandyDev/pelican-bootstrap3.git/ theme
 <span class="gp">$</span> <span class="nb">cd </span>theme/static/css/
 <span class="gp">$</span> wget https://bootswatch.com/bower_components/bootstrap/dist/css/bootstrap.min.css
@@ -192,47 +185,38 @@ github.map.fastly.net.  30      IN      A       185.31.17.133</span>
 </div>
 <div class="section" id="download-plugins">
 <h2>Download plugins</h2>
-<pre class="code console literal-block">
-<span class="gp">$</span> <span class="nb">cd </span>MyWebSite
+<pre class="code console literal-block"><span class="gp">$</span> <span class="nb">cd </span>MyWebSite
 <span class="gp">$</span> git clone --recursive https://github.com/getpelican/pelican-plugins plugins
 </pre>
 </div>
 <div class="section" id="install-bootstrapify">
 <h2>Install Bootstrapify</h2>
 <p>Bootstrapify is a pelican plugin that modify article and page html to use bootstrap's default classes, especially tables. Beautiful Soup is requiered for Bootstrapify.</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> emerge dev-python/beautifulsoup
+<pre class="code console literal-block"><span class="gp">#</span> emerge dev-python/beautifulsoup
 </pre>
 </div>
 <div class="section" id="create-github-files">
 <h2>Create GitHub Files</h2>
-<pre class="code console literal-block">
-<span class="gp">$</span> <span class="nb">cd </span>MyWebSite
+<pre class="code console literal-block"><span class="gp">$</span> <span class="nb">cd </span>MyWebSite
 <span class="gp">$</span> mkdir content/GitHubFiles
 </pre>
 <p>Write your domain name in CNAME Files :</p>
-<pre class="code console literal-block">
-<span class="gp">$</span> nano content/GitHubFiles/CNAME
+<pre class="code console literal-block"><span class="gp">$</span> nano content/GitHubFiles/CNAME
 </pre>
-<pre class="code ini literal-block">
-<span class="err">didier.bernaudeau.net</span>
+<pre class="code ini literal-block"><span class="err">didier.bernaudeau.net</span>
 </pre>
 <p>Disable indexation by web search engine :</p>
-<pre class="code console literal-block">
-<span class="gp">$</span> nano content/GitHubFiles/robots.txt
+<pre class="code console literal-block"><span class="gp">$</span> nano content/GitHubFiles/robots.txt
 </pre>
-<pre class="code ini literal-block">
-<span class="err">User-agent:</span> <span class="err">*</span>
+<pre class="code ini literal-block"><span class="err">User-agent:</span> <span class="err">*</span>
 <span class="err">Disallow:/</span>
 </pre>
 </div>
 <div class="section" id="pelican-configuration">
 <h2>Pelican Configuration</h2>
-<pre class="code console literal-block">
-<span class="gp">$</span> nano pelicanconf.py
+<pre class="code console literal-block"><span class="gp">$</span> nano pelicanconf.py
 </pre>
-<pre class="code ini literal-block">
-<span class="c1"># Hide Blogroll</span>
+<pre class="code ini literal-block"><span class="c1"># Hide Blogroll</span>
 <span class="c1">#LINKS =</span>
 
 <span class="c1"># Hide Social widget</span>
@@ -276,11 +260,9 @@ github.map.fastly.net.  30      IN      A       185.31.17.133</span>
 </div>
 <div class="section" id="create-an-article-in-restructuredtext">
 <h2>Create an article in reStructuredText</h2>
-<pre class="code console literal-block">
-<span class="gp">$</span> nano content/test.rst
+<pre class="code console literal-block"><span class="gp">$</span> nano content/test.rst
 </pre>
-<pre class="code ini literal-block">
-<span class="err">Article</span> <span class="err">title</span>
+<pre class="code ini literal-block"><span class="err">Article</span> <span class="err">title</span>
 <span class="c1">#############</span>
 
 <span class="err">:date:</span> <span class="err">AAAA-MM-JJ</span> <span class="err">HH:MM</span>
@@ -299,21 +281,18 @@ github.map.fastly.net.  30      IN      A       185.31.17.133</span>
 </div>
 <div class="section" id="generate-the-web-site">
 <h2>Generate the web site</h2>
-<pre class="code console literal-block">
-<span class="gp">$</span> make html
+<pre class="code console literal-block"><span class="gp">$</span> make html
 </pre>
 </div>
 <div class="section" id="preview-the-web-site">
 <h2>Preview the web site</h2>
-<pre class="code console literal-block">
-<span class="gp">$</span> make serve
+<pre class="code console literal-block"><span class="gp">$</span> make serve
 <span class="gp">$</span> firefox localhost:8000
 </pre>
 </div>
 <div class="section" id="publish-the-web-site-on-github">
 <h2>Publish the web site on GitHub</h2>
-<pre class="code console literal-block">
-<span class="gp">$</span> make github
+<pre class="code console literal-block"><span class="gp">$</span> make github
 <span class="go">
 Username for 'https://github.com': didier-bernaudeau
 Password for 'https://didier-bernaudeau@github.com': *************************</span>
@@ -330,7 +309,7 @@ Password for 'https://didier-bernaudeau@github.com': *************************</
 </ul>
 </blockquote>
 </div>
-
+</body></html>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -352,86 +331,6 @@ Password for 'https://didier-bernaudeau@github.com': *************************</
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
-                            Certificate
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
-                            Cryptography
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/development.html">
-                            Development
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-0">
-                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
-                            Gentoo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
-                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
-                            Hardware
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/html.html">
-                            HTML
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
-                            JavaScript
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/linux.html">
-                            Linux
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/network.html">
-                            Network
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/news.html">
-                            News
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/php.html">
-                            PHP
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/pki.html">
-                            PKI
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
-                            Virtualization
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/website.html">
-                            WebSite
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/windows.html">
-                            Windows
-                        </a>
-                    </li>
                 </ul>
             </li>
 

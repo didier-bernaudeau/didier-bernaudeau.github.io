@@ -111,7 +111,8 @@ My personal blog note            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>This memo lists the tools necessary to audit the TLS configuration. Moreover, a compliance form template is available to formalize the audit report.</p>
+                <html><head></head><body><p>This memo lists the tools necessary to audit the TLS configuration. Moreover, a compliance form template is available to formalize the audit report.</p>
+
 <div class="section" id="audit-tools">
 <h2>Audit Tools</h2>
 <div class="section" id="ssl-server-test">
@@ -120,20 +121,17 @@ My personal blog note            </a>
 </div>
 <div class="section" id="nmap">
 <h3>Nmap</h3>
-<pre class="code console literal-block">
-<span class="gp">$</span> nmap --script ssl-enum-ciphers -p <span class="m">443</span> www.exemple.com
+<pre class="code console literal-block"><span class="gp">$</span> nmap --script ssl-enum-ciphers -p <span class="m">443</span> www.exemple.com
 </pre>
 </div>
 <div class="section" id="test-ssl-server">
 <h3>Test SSL Server</h3>
-<pre class="code console literal-block">
-<span class="gp">$</span> java -jar TestSSLServer.jar www.exemple.com 443
+<pre class="code console literal-block"><span class="gp">$</span> java -jar TestSSLServer.jar www.exemple.com 443
 </pre>
 </div>
 <div class="section" id="cipherscan">
 <h3>CipherScan</h3>
-<pre class="code console literal-block">
-<span class="gp">$</span> git clone git://github.com/jvehent/cipherscan.git
+<pre class="code console literal-block"><span class="gp">$</span> git clone git://github.com/jvehent/cipherscan.git
 <span class="gp">$</span> <span class="nb">cd </span>cipherscan
 <span class="gp">$</span> ./cipherscan www.exemple.com
 </pre>
@@ -153,7 +151,7 @@ My personal blog note            </a>
 </ul>
 </blockquote>
 </div>
-
+</body></html>
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
@@ -182,86 +180,6 @@ My personal blog note            </a>
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
-                            Certificate
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
-                            Cryptography
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/development.html">
-                            Development
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-0">
-                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
-                            Gentoo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
-                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
-                            Hardware
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/html.html">
-                            HTML
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
-                            JavaScript
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/linux.html">
-                            Linux
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/network.html">
-                            Network
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/news.html">
-                            News
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/php.html">
-                            PHP
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/pki.html">
-                            PKI
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
-                            Virtualization
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/website.html">
-                            WebSite
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/windows.html">
-                            Windows
-                        </a>
-                    </li>
                 </ul>
             </li>
 

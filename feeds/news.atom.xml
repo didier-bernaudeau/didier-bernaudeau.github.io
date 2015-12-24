@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/news.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2015-12-18T23:48:00+01:00</updated><entry><title>December 2015</title><link href="http://didier.bernaudeau.net/News_December_2015.html" rel="alternate"></link><updated>2015-12-18T23:48:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-12-01:News_December_2015.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/news.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2015-12-24T13:17:00+01:00</updated><entry><title>December 2015</title><link href="http://didier.bernaudeau.net/News_December_2015.html" rel="alternate"></link><updated>2015-12-24T13:17:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-12-01:News_December_2015.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
+
 &lt;table border="1" class=" table-striped docutils table-hover table"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -267,6 +268,13 @@
 &lt;/ul&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;12/15/2015&lt;/td&gt;
+&lt;td&gt;Attack&lt;/td&gt;
+&lt;td&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://en.wooyun.io/2015/12/15/Bypass-McAfee-Application-Control.html"&gt;Bypass McAfee Application Control——Code Execution&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;12/16/2015&lt;/td&gt;
 &lt;td&gt;Malware&lt;/td&gt;
 &lt;td&gt;&lt;ul class="first last simple"&gt;
@@ -277,10 +285,15 @@
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;12/17/2015&lt;/td&gt;
 &lt;td&gt;Vulnerability&lt;/td&gt;
-&lt;td&gt;&lt;ul class="first last simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="forums.juniper.net/t5/Security-Incident-Response/Important-Announcement-about-ScreenOS/ba-p/285554"&gt;Important Announcement about ScreenOS&lt;/a&gt;&lt;/li&gt;
+&lt;td&gt;&lt;p class="first"&gt;2 Backdoors (Authentication &amp;amp; VPN Decryption) :&lt;/p&gt;
+&lt;ul class="last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://forums.juniper.net/t5/Security-Incident-Response/Important-Announcement-about-ScreenOS/ba-p/285554"&gt;Important Announcement about ScreenOS&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://kb.juniper.net/JSA10713"&gt;Multiple Security issues with ScreenOS&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://threatpost.com/juniper-finds-backdoor-that-decrypts-vpn-traffic/115663/"&gt;Juniper Finds Backdoor that Decrypts VPN Traffic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://community.rapid7.com/community/infosec/blog/2015/12/20/cve-2015-7755-juniper-screenos-authentication-backdoor"&gt;CVE-2015-7755: Juniper ScreenOS Authentication Backdoor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://gist.github.com/fox-srt/ca94b350f2a91bd8ed3f"&gt;Snort coverage for Juniper ScreenOS backdoor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://gist.github.com/fox-srt/ca94b350f2a91bd8ed3f"&gt;Researchers think that a dangerous 'back door' in software used by the US government was caused by the NSA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://news.hitb.org/content/researchers-solve-juniper-backdoor-mystery-signs-point-nsa"&gt;Researchers Solve Juniper Backdoor Mystery; Signs Point to NSA&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
@@ -289,6 +302,43 @@
 &lt;td&gt;&lt;ul class="first last simple"&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.zdnet.com/article/facebook-engages-in-instagram-bug-spat-with-security-researcher/"&gt;Must Read Need a secure smartphone? Answer is simple, experts say Facebook engages in Instagram bug spat with security researcher&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.securityweek.com/facebook-threatens-researcher-over-instagram-hack"&gt;Facebook, Researcher Quarrel Over Instagram Hack&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;12/18/2015&lt;/td&gt;
+&lt;td&gt;Vulnerability&lt;/td&gt;
+&lt;td&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.vmware.com/security/advisories/VMSA-2015-0009.html"&gt;VMware product updates address a critical deserialization vulnerability&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;12/18/2015&lt;/td&gt;
+&lt;td&gt;Security measure&lt;/td&gt;
+&lt;td&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.pcisecuritystandards.org/pdfs/15_12_18_SSL_Webinar_Press_Release_FINAL_(002).pdf"&gt;PCI Security Standards Council revises date for migrating off vulnerable SSL and early TLS encryption&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;12/18/2015&lt;/td&gt;
+&lt;td&gt;Attack&lt;/td&gt;
+&lt;td&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://blog.viktorstanchev.com/2015/12/20/the-many-attacks-on-zengge-wifi-lightbulbs/"&gt;The many attacks on Zengge WiFi lightbulbs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;12/21/2015&lt;/td&gt;
+&lt;td&gt;Data leak&lt;/td&gt;
+&lt;td&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.theguardian.com/technology/2015/dec/21/hello-kitty-data-breach-leaks-details-3-3million-user-accounts"&gt;Parents warned as Hello Kitty data breach leaks details of 3.3m user accounts&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;12/18/2015&lt;/td&gt;
+&lt;td&gt;Security measure&lt;/td&gt;
+&lt;td&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://news.softpedia.com/news/cisco-starts-reviewing-code-after-juniper-finds-hidden-backdoor-497971.shtml"&gt;Cisco Starts Company-Wide Code Audit to Search for Hidden Backdoors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.net-security.org/secworld.php?id=19266"&gt;Cisco Systems will be auditing their code for backdoors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.itworld.com/article/3017716/cisco-launches-code-review-after-junipers-spyware-disclosure.html"&gt;Cisco launches code review after Juniper's spyware disclosure&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
@@ -310,7 +360,8 @@
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="News"></category></entry><entry><title>November 2015</title><link href="http://didier.bernaudeau.net/News_November_2015.html" rel="alternate"></link><updated>2015-12-18T23:03:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-11-01:News_November_2015.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...https://blog.torproject.org/blog/critique-website-traffic-fingerprinting-attacks&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</summary><category term="News"></category></entry><entry><title>November 2015</title><link href="http://didier.bernaudeau.net/News_November_2015.html" rel="alternate"></link><updated>2015-12-18T23:03:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-11-01:News_November_2015.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...https://blog.torproject.org/blog/critique-website-traffic-fingerprinting-attacks&lt;/p&gt;
+
 &lt;table border="1" class=" table-striped docutils table-hover table"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -614,4 +665,4 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-</summary><category term="News"></category></entry></feed>
+&lt;/body&gt;&lt;/html&gt;</summary><category term="News"></category></entry></feed>

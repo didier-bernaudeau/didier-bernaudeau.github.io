@@ -111,15 +111,15 @@ My personal blog note            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.</p>
+                <html><head></head><body><p>This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.</p>
 <p>Then, LibVirt provides a convenient way to manage virtual machines on this plateform. LibVirt include an API library, a daemon (libvirtd), command line tools (virsh and virt-install) and a graphic tool (virt-manager). All these softwares are sponsorted by Red Hat.</p>
 <p>Obviouly, this virtualization plateform uses Intel Virtualization Technologyy like VT-x (Virtualization Technology eXecution) and VT-d (Virtualization Technology for Directed I/O). KVM can also support VT-c (Intel® Virtualization Technology for Connectivity) but my laptop does not have this technology.</p>
+
 <div class="section" id="kernel-configuration">
 <h2>Kernel configuration</h2>
 <p>This is the configuration for Gentoo kernel 4.0.5.</p>
 <p>Enable KVM</p>
-<pre class="code ini literal-block">
-<span class="err">|</span> <span class="err">[*]</span> <span class="err">Virtualization</span>  <span class="err">---&gt;</span>
+<pre class="code ini literal-block"><span class="err">|</span> <span class="err">[*]</span> <span class="err">Virtualization</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Virtualization</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Kernel-based</span> <span class="err">Virtual</span> <span class="err">Machine</span> <span class="err">(KVM)</span> <span class="err">support</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">KVM</span> <span class="err">for</span> <span class="err">Intel</span> <span class="err">processors</span> <span class="err">support</span>
@@ -128,8 +128,7 @@ My personal blog note            </a>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>     <span class="err">KVM</span> <span class="err">legacy</span> <span class="err">PCI</span> <span class="err">device</span> <span class="err">assignment</span> <span class="err">support</span>
 </pre>
 <p>Enable VirtIO driver</p>
-<pre class="code ini literal-block">
-<span class="err">|</span>     <span class="err">Device</span> <span class="err">Drivers</span>  <span class="err">---&gt;</span>
+<pre class="code ini literal-block"><span class="err">|</span>     <span class="err">Device</span> <span class="err">Drivers</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Network</span> <span class="err">device</span> <span class="err">support</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">Virtio</span> <span class="err">network</span> <span class="err">driver</span>
@@ -142,14 +141,12 @@ My personal blog note            </a>
 <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Memory</span> <span class="err">mapped</span> <span class="err">virtio</span> <span class="err">devices</span> <span class="err">parameter</span> <span class="err">parsing</span>
 </pre>
 <p>Enable VHostNet</p>
-<pre class="code ini literal-block">
-<span class="err">|</span> <span class="err">[*]</span> <span class="err">Virtualization</span>  <span class="err">---&gt;</span>
+<pre class="code ini literal-block"><span class="err">|</span> <span class="err">[*]</span> <span class="err">Virtualization</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Virtualization</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Host</span> <span class="err">kernel</span> <span class="err">accelerator</span> <span class="err">for</span> <span class="err">virtio</span> <span class="err">net</span> <span class="err">(NEW)</span>
 </pre>
 <p>Enable virtual network (Local bridge with NAT)</p>
-<pre class="code ini literal-block">
-<span class="err">|</span> <span class="err">[*]</span> <span class="err">Networking</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<pre class="code ini literal-block"><span class="err">|</span> <span class="err">[*]</span> <span class="err">Networking</span> <span class="err">support</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Networking</span> <span class="err">support</span>
 <span class="err">|</span>      <span class="err">|</span>       <span class="err">Networking</span> <span class="err">options</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>
@@ -175,11 +172,9 @@ My personal blog note            </a>
 <div class="section" id="installation">
 <h2>Installation</h2>
 <p>Define compilation option</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> nano /etc/portage/package.use
+<pre class="code console literal-block"><span class="gp">#</span> nano /etc/portage/package.use
 </pre>
-<pre class="code ini literal-block">
-<span class="err">app-emulation/libvirt</span>           <span class="err">qemu</span> <span class="err">virt-network</span>
+<pre class="code ini literal-block"><span class="err">app-emulation/libvirt</span>           <span class="err">qemu</span> <span class="err">virt-network</span>
 <span class="err">app-emulation/libvirt-glib</span>      <span class="err">python</span>
 <span class="err">app-emulation/qemu</span>              <span class="err">qemu_softmmu_targets_x86_64</span> <span class="err">spice</span> <span class="err">usbredir</span>
 <span class="err">app-emulation/virt-manager</span>      <span class="err">gtk</span> <span class="err">sasl</span>
@@ -188,36 +183,29 @@ My personal blog note            </a>
 <span class="err">media-libs/mesa</span>                 <span class="err">gles2</span>
 </pre>
 <p>Start installation</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> emerge libvirt virt-manager
+<pre class="code console literal-block"><span class="gp">#</span> emerge libvirt virt-manager
 </pre>
 <p>Disable authentication for LibVirtd (Only for socket access)</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> nano /etc/libvirt/libvirtd.conf
+<pre class="code console literal-block"><span class="gp">#</span> nano /etc/libvirt/libvirtd.conf
 </pre>
-<pre class="code ini literal-block">
-<span class="na">auth_unix_ro</span> <span class="o">=</span> <span class="s">"none"</span>
+<pre class="code ini literal-block"><span class="na">auth_unix_ro</span> <span class="o">=</span> <span class="s">"none"</span>
 <span class="na">auth_unix_rw</span> <span class="o">=</span> <span class="s">"none"</span>
 </pre>
 <p>Change the default repository for disk images</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> rmdir /var/lib/libvirt/images
+<pre class="code console literal-block"><span class="gp">#</span> rmdir /var/lib/libvirt/images
 <span class="gp">#</span> ln -s /mnt/data/VirtualMachine /var/lib/libvirt/images
 </pre>
 <p>Add user in KVM group</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> gpasswd -a &lt;username&gt; kvm
+<pre class="code console literal-block"><span class="gp">#</span> gpasswd -a &lt;username&gt; kvm
 </pre>
 <p>Start libvirtd</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> /etc/init.d/libvirtd start
+<pre class="code console literal-block"><span class="gp">#</span> /etc/init.d/libvirtd start
 </pre>
 </div>
 <div class="section" id="connection-to-libvirtd">
 <h2>Connection to LibVirtd</h2>
 <p>Start virt-manager</p>
-<pre class="code console literal-block">
-<span class="gp">$</span> virt-manager
+<pre class="code console literal-block"><span class="gp">$</span> virt-manager
 </pre>
 <p>Open the menu "file &gt; Add connection"</p>
 <img alt="Virt-Manager - Add connection" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/>
@@ -239,7 +227,7 @@ My personal blog note            </a>
 <img alt="Virt-Manager - NIC device model" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/>
 <!-- vhost=on -->
 </div>
-
+</body></html>
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
@@ -268,86 +256,6 @@ My personal blog note            </a>
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
-                            Certificate
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
-                            Cryptography
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/development.html">
-                            Development
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-0">
-                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
-                            Gentoo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
-                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
-                            Hardware
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/html.html">
-                            HTML
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
-                            JavaScript
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/linux.html">
-                            Linux
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/network.html">
-                            Network
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/news.html">
-                            News
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/php.html">
-                            PHP
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/pki.html">
-                            PKI
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
-                            Virtualization
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/website.html">
-                            WebSite
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/windows.html">
-                            Windows
-                        </a>
-                    </li>
                 </ul>
             </li>
 

@@ -120,13 +120,13 @@ My personal blog note            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>This article shows how JSONP (JavaScript Object Notation with Padding) can be used to get data from different domains, bypassing SOP (Same-Origin Policy).</p>
+                <html><head></head><body><p>This article shows how JSONP (JavaScript Object Notation with Padding) can be used to get data from different domains, bypassing SOP (Same-Origin Policy).</p>
 <p>JSONP uses the script tag, which is not in the scope of the SOP. Indeed, a JavaScript source file loaded from another domain will run in the origin of the HTML that includes the script, not in the domain where the JavaScript file originated from.</p>
+
 <div class="section" id="step-1-create-jsonp-webservice">
 <h2>Step 1 : Create JSONP WebService</h2>
 <p>The web service encapsulates data, in JSON format, in a callback function. Create a PHP script named "jsonp.php" and hosted on "www.example.com" :</p>
-<pre class="code php literal-block">
-<span class="cp">&lt;?</span>
+<pre class="code php literal-block"><span class="cp">&lt;?</span>
  <span class="nv">$MyData</span> <span class="o">=</span> <span class="s1">'{ "MyDateTime": "'</span> <span class="o">.</span> <span class="nb">date</span><span class="p">(</span><span class="s2">"Y-m-d H:i:s"</span><span class="p">)</span> <span class="o">.</span> <span class="s1">'" }'</span><span class="p">;</span>
  <span class="k">echo</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'JsonpCallback'</span><span class="p">]</span> <span class="o">.</span> <span class="s1">'('</span> <span class="o">.</span> <span class="nv">$MyData</span> <span class="o">.</span> <span class="s1">');'</span><span class="p">;</span>
 <span class="cp">?&gt;</span>
@@ -135,8 +135,7 @@ My personal blog note            </a>
 <div class="section" id="step-2-create-html-web-page">
 <h2>Step 2 : Create HTML web page</h2>
 <p>The HTML page loads the JavaScript source file, from JSONP WebService, then execute the callback function. Create the HTML page named jsonp.html and hosted on your localhost :</p>
-<pre class="code html literal-block">
-<span class="cp">&lt;!doctype html&gt;</span>
+<pre class="code html literal-block"><span class="cp">&lt;!doctype html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
  <span class="nt">&lt;head&gt;</span>
 
@@ -175,7 +174,7 @@ My personal blog note            </a>
 </ul>
 </blockquote>
 </div>
-
+</body></html>
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
@@ -204,86 +203,6 @@ My personal blog note            </a>
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
-                            Certificate
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
-                            Cryptography
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/development.html">
-                            Development
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-0">
-                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
-                            Gentoo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
-                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
-                            Hardware
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/html.html">
-                            HTML
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
-                            JavaScript
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/linux.html">
-                            Linux
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/network.html">
-                            Network
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/news.html">
-                            News
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/php.html">
-                            PHP
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/pki.html">
-                            PKI
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
-                            Virtualization
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/website.html">
-                            WebSite
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/windows.html">
-                            Windows
-                        </a>
-                    </li>
                 </ul>
             </li>
 

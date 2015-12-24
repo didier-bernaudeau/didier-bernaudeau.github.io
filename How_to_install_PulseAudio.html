@@ -108,7 +108,8 @@ My personal blog note            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>A sound server is software that manages the use of and access to audio devices. There are many sound server (JACK Audio Connection Kit, Enlightened Sound Daemon, ...) but PulseAudio is now an integral part of all relevant modern Linux distributions. This tutorials describes how to install PulseAudio on Gentoo Linux.</p>
+                <html><head></head><body><p>A sound server is software that manages the use of and access to audio devices. There are many sound server (JACK Audio Connection Kit, Enlightened Sound Daemon, ...) but PulseAudio is now an integral part of all relevant modern Linux distributions. This tutorials describes how to install PulseAudio on Gentoo Linux.</p>
+
 <div class="section" id="pulseaudio-architecture">
 <h2>PulseAudio Architecture</h2>
 <img alt="PulseAudio Architecture" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/>
@@ -116,28 +117,24 @@ My personal blog note            </a>
 <div class="section" id="install-pulseaudio">
 <h2>Install PulseAudio</h2>
 <p>Define local USE flags</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> nano /etc/portage/package.use
+<pre class="code console literal-block"><span class="gp">#</span> nano /etc/portage/package.use
 <span class="go">media-sound/pulseaudio          -tcpd -webrtc-aec</span>
 </pre>
 <p>Install PulseAudio</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> emerge --oneshot pulseaudio
+<pre class="code console literal-block"><span class="gp">#</span> emerge --oneshot pulseaudio
 </pre>
 </div>
 <div class="section" id="compile-application-to-support-pulseaudio">
 <h2>Compile application to support PulseAudio</h2>
 <p>Define global USE flags</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> etc/portage/make.conf
+<pre class="code console literal-block"><span class="gp">#</span> etc/portage/make.conf
 <span class="go">USE="pulseaudio"</span>
 </pre>
 <p>Install packages</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> emerge ffmpeg vlc kmix chromium
+<pre class="code console literal-block"><span class="gp">#</span> emerge ffmpeg vlc kmix chromium
 </pre>
 </div>
-
+</body></html>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -159,86 +156,6 @@ My personal blog note            </a>
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
-                            Certificate
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
-                            Cryptography
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/development.html">
-                            Development
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-0">
-                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
-                            Gentoo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
-                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
-                            Hardware
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/html.html">
-                            HTML
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
-                            JavaScript
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/linux.html">
-                            Linux
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/network.html">
-                            Network
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/news.html">
-                            News
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/php.html">
-                            PHP
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/pki.html">
-                            PKI
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
-                            Virtualization
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/website.html">
-                            WebSite
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/windows.html">
-                            Windows
-                        </a>
-                    </li>
                 </ul>
             </li>
 

@@ -120,13 +120,13 @@ My personal blog note            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>CORS (Cross-Origin Resource Sharing) is a mechanism, define by W3C, which provides a way for web servers to support cross-site access controls, which enable secure cross-site data transfers.</p>
+                <html><head></head><body><p>CORS (Cross-Origin Resource Sharing) is a mechanism, define by W3C, which provides a way for web servers to support cross-site access controls, which enable secure cross-site data transfers.</p>
 <p>This mechanism works by adding new HTTP headers named Access-Control-Allow-Origin.</p>
+
 <div class="section" id="step-1-create-webservice">
 <h2>Step 1 : Create WebService</h2>
 <p>Create a PHP script named "cors.php" and hosted on "www.example.com" :</p>
-<pre class="code php literal-block">
-<span class="cp">&lt;?</span>
+<pre class="code php literal-block"><span class="cp">&lt;?</span>
   <span class="nb">header</span><span class="p">(</span><span class="s2">"Access-Control-Allow-Origin: http://hostname:8000"</span><span class="p">);</span>
   <span class="k">echo</span> <span class="nb">date</span><span class="p">(</span><span class="s2">"Y-m-d H:i:s"</span><span class="p">);</span>
 <span class="cp">?&gt;</span>
@@ -135,8 +135,7 @@ My personal blog note            </a>
 <div class="section" id="step-2-create-html-web-page">
 <h2>Step 2 : Create HTML web page</h2>
 <p>Create a HTML file named "cors.html" and hosted on your computer :</p>
-<pre class="code html literal-block">
-<span class="cp">&lt;!doctype html&gt;</span>
+<pre class="code html literal-block"><span class="cp">&lt;!doctype html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
  <span class="nt">&lt;body&gt;</span>
 
@@ -151,12 +150,11 @@ My personal blog note            </a>
 <span class="nt">&lt;/html&gt;</span>
 </pre>
 <p>To test easily, start a web server with python (in the directory where the file "cors.html" is located)</p>
-<pre class="code shell literal-block">
-python -m SimpleHTTPServer
+<pre class="code shell literal-block">python -m SimpleHTTPServer
 </pre>
 <p>Then, open web page from <a class="reference external" href="http://hostname:8000/cors.html">http://hostname:8000/cors.html</a></p>
 </div>
-
+</body></html>
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
@@ -185,86 +183,6 @@ python -m SimpleHTTPServer
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
-                            Certificate
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
-                            Cryptography
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/development.html">
-                            Development
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-0">
-                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
-                            Gentoo
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
-                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
-                            Hardware
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/html.html">
-                            HTML
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
-                            JavaScript
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/linux.html">
-                            Linux
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/network.html">
-                            Network
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/news.html">
-                            News
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
-                            Pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/php.html">
-                            PHP
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/pki.html">
-                            PKI
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
-                            Virtualization
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-2">
-                        <a href="http://didier.bernaudeau.net/tag/website.html">
-                            WebSite
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://didier.bernaudeau.net/tag/windows.html">
-                            Windows
-                        </a>
-                    </li>
                 </ul>
             </li>
 

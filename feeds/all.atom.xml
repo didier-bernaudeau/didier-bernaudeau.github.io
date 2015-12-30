@@ -1,7 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2015-12-24T13:17:00+01:00</updated><entry><title>December 2015</title><link href="http://didier.bernaudeau.net/News_December_2015.html" rel="alternate"></link><updated>2015-12-24T13:17:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-12-01:News_December_2015.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2015-12-30T14:40:00+01:00</updated><entry><title>Technical software</title><link href="http://didier.bernaudeau.net/Technical_Software.html" rel="alternate"></link><updated>2015-12-30T14:40:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-12-30:Technical_Software.html</id><summary type="html">&lt;p&gt;This article indexes some technical softwares (Application servers, database management system, virtualization, ...).&lt;/p&gt;
 
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;div class="section" id="database-management-system"&gt;
+&lt;h2&gt;Database Management System&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;MySQL&lt;/li&gt;
+&lt;li&gt;PostgreSQL&lt;/li&gt;
+&lt;li&gt;MangoDB&lt;/li&gt;
+&lt;li&gt;Cassandra (Apache)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="application-server-java"&gt;
+&lt;h2&gt;Application Server (Java)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Jboss (RedHat)&lt;/li&gt;
+&lt;li&gt;WebLogic (Oracle)&lt;/li&gt;
+&lt;li&gt;GlassFish (Oracle)&lt;/li&gt;
+&lt;li&gt;WebSphere Application Server (IBM)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="web-cache"&gt;
+&lt;h2&gt;Web Cache&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Varnish&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="virtualization"&gt;
+&lt;h2&gt;Virtualization&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;VMware&lt;/li&gt;
+&lt;li&gt;XEN&lt;/li&gt;
+&lt;li&gt;KVM&lt;/li&gt;
+&lt;li&gt;vBlock (EMC)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+</summary><category term="Software"></category></entry><entry><title>Malicious software</title><link href="http://didier.bernaudeau.net/Malicious_Software.html" rel="alternate"></link><updated>2015-12-30T14:19:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-12-30:Malicious_Software.html</id><summary type="html">&lt;p&gt;This article indexes some malicious softwares (Mal-ware) : exploit kit, trojan, ...&lt;/p&gt;
+
+&lt;div class="section" id="exploit-kit"&gt;
+&lt;h2&gt;Exploit Kit&lt;/h2&gt;
+&lt;p&gt;An exploit kit is software system designed to run on web servers, with the purpose of identifying software vulnerabilities in client machines and exploiting discovered vulnerabilities to upload and execute malicious code on the client.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Blackhole&lt;/li&gt;
+&lt;li&gt;Rig&lt;/li&gt;
+&lt;li&gt;Angler&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ransomware"&gt;
+&lt;h2&gt;Ransomware&lt;/h2&gt;
+&lt;p&gt;Ransomware is a type of malware that restricts access to a computer system and demands that the user pay a ransom to the operators of the malware to remove the restriction. Some forms of ransomware systematically encrypt files on the system's hard drive.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;CryptoWall&lt;/li&gt;
+&lt;li&gt;kovter&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="trojan"&gt;
+&lt;h2&gt;Trojan&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Bedep&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="banker-trojan"&gt;
+&lt;h2&gt;Banker Trojan&lt;/h2&gt;
+&lt;p&gt;Banker trojan is often used to steal banking information by man-in-the-browser (keystroke logging and form grabbing).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Zeus&lt;/li&gt;
+&lt;li&gt;Dridex&lt;/li&gt;
+&lt;li&gt;Cidrex&lt;/li&gt;
+&lt;li&gt;Gootkit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="botnet"&gt;
+&lt;h2&gt;Botnet&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Qakbot (aka Qbot)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+</summary><category term="Software"></category></entry><entry><title>December 2015</title><link href="http://didier.bernaudeau.net/News_December_2015.html" rel="alternate"></link><updated>2015-12-24T13:17:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-12-01:News_December_2015.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
+
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -254,6 +348,14 @@
 &lt;/ul&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;12/14/2015&lt;/td&gt;
+&lt;td&gt;Law&lt;/td&gt;
+&lt;td&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.nytimes.com/2015/12/15/technology/drone-registration-rules-are-announced-by-faa.html"&gt;Drone Registration Rules Are Announced by F.A.A.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.yahoo.com/autos/drone-registration-know-160020828.html"&gt;Drone Registration: What You Need to Know&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;12/15/2015&lt;/td&gt;
 &lt;td&gt;Vulnerability&lt;/td&gt;
 &lt;td&gt;&lt;ul class="first last simple"&gt;
@@ -280,6 +382,13 @@
 &lt;td&gt;&lt;ul class="first last simple"&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://arstechnica.com/security/2015/12/outlook-letterbomb-exploit-could-auto-open-attacks-in-e-mail/"&gt;Outlook “letterbomb” exploit could auto-open attacks in e-mail&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://business.kaspersky.com/badwinmail-outlook/4954/"&gt;BadWinmail: the really bad Outlook flaw&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;12/16/2015&lt;/td&gt;
+&lt;td&gt;Vulnerability&lt;/td&gt;
+&lt;td&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://thehackernews.com/2015/12/hack-linux-grub-password.html"&gt;You can Hack into a Linux Computer just by pressing 'Backspace' 28 times&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
@@ -326,13 +435,6 @@
 &lt;/ul&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;12/21/2015&lt;/td&gt;
-&lt;td&gt;Data leak&lt;/td&gt;
-&lt;td&gt;&lt;ul class="first last simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://www.theguardian.com/technology/2015/dec/21/hello-kitty-data-breach-leaks-details-3-3million-user-accounts"&gt;Parents warned as Hello Kitty data breach leaks details of 3.3m user accounts&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;12/18/2015&lt;/td&gt;
 &lt;td&gt;Security measure&lt;/td&gt;
 &lt;td&gt;&lt;ul class="first last simple"&gt;
@@ -342,13 +444,77 @@
 &lt;/ul&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;12/21/2015&lt;/td&gt;
+&lt;td&gt;Data leak&lt;/td&gt;
+&lt;td&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.theguardian.com/technology/2015/dec/21/hello-kitty-data-breach-leaks-details-3-3million-user-accounts"&gt;Parents warned as Hello Kitty data breach leaks details of 3.3m user accounts&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;12/21/2015&lt;/td&gt;
+&lt;td&gt;Security measure&lt;/td&gt;
+&lt;td&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.joomla.org/announcements/release-news/5643-joomla-3-4-7.html"&gt;Joomla! 3.4.7 Released - Security Issues Fixed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://developer.joomla.org/security-centre/639-20151206-core-session-hardening.html"&gt;Core - Session Hardening&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://developer.joomla.org/security-centre/640-20151207-core-sql-injection.html"&gt;Core - SQL Injection&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;12/21/2015&lt;/td&gt;
+&lt;td&gt;Law&lt;/td&gt;
+&lt;td&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.zdnet.com/article/oracle-ordered-to-blitz-users-with-java-security-warnings/"&gt;Oracle ordered to blitz users with Java security warnings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.ftc.gov/system/files/documents/cases/151221oracleorder.pdf"&gt;Federal Trade Commission - FILE NO. 132 3115&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;12/21/2015&lt;/td&gt;
+&lt;td&gt;Vulnerability&lt;/td&gt;
+&lt;td&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://xenbits.xen.org/xsa/advisory-169.html"&gt;Xen Security Advisories #169 (x86: unintentional logging upon guest changing callback method)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;12/22/2015&lt;/td&gt;
+&lt;td&gt;Attack&lt;/td&gt;
+&lt;td&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.theguardian.com/us-news/2015/dec/22/iranian-hackers-infiltrated-computers-of-small-us-dam-says-report"&gt;Iranian hackers infiltrated computers of small US dam, says report&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.nbcnews.com/news/us-news/iranian-hackers-claim-cyber-attack-new-york-dam-n484611"&gt;Iranian Hackers Claim Cyber Attack on New York Dam&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;12/25/2015&lt;/td&gt;
+&lt;td&gt;Data leak&lt;/td&gt;
+&lt;td&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://mybroadband.co.za/news/gaming/150513-steam-suffers-major-security-breach.html"&gt;Steam suffers major data leak&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.pcgamer.com/warning-steam-is-revealing-private-account-information/"&gt;Warning: Steam has revealed private account information&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://steamdb.info/blog/recent-caching-issues-on-steam/"&gt;Recent caching issues on Steam&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;12/28/2015&lt;/td&gt;
+&lt;td&gt;Malware&lt;/td&gt;
+&lt;td&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://thehackernews.com/2015/12/raspberry-pi-malware.html"&gt;Somebody Offered Money to Raspberry Pi Foundation for Pre-Installing Malware&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.theregister.co.uk/2015/12/23/raspberry_pi_flags_malware_offer"&gt;Riddle of cash-for-malware offer in new Raspberry Pi computers&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;12/28/2015&lt;/td&gt;
+&lt;td&gt;Law&lt;/td&gt;
+&lt;td&gt;&lt;ul class="first last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.nextinpact.com/news/97829-la-reglementation-applicable-aux-drones-change-1er-janvier.htm"&gt;France : La réglementation applicable aux drones change le 1er janvier&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;div class="section" id="conferences"&gt;
 &lt;h2&gt;Conferences&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://www.botconf.eu/botconf-2015/"&gt;BotConf 2015 (2-4 December)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.botconf.eu/botconf-2015/"&gt;BotConf 2015 : 2-4 December at Paris (France)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;32nd Chaos Communication Congress (32C3) : 27-30 December at Hamburg (Germany)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
@@ -360,7 +526,7 @@
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="News"></category></entry><entry><title>Let’s Encrypt</title><link href="http://didier.bernaudeau.net/Lets_Encrypt.html" rel="alternate"></link><updated>2015-11-16T21:04:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-11-16:Lets_Encrypt.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;Let's Encrypt, is a Certificate Authority created by Linux Fundation in 2015, which issues certificate freely and automatically.&lt;/p&gt;
+</summary><category term="News"></category></entry><entry><title>Let’s Encrypt</title><link href="http://didier.bernaudeau.net/Lets_Encrypt.html" rel="alternate"></link><updated>2015-11-16T21:04:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-11-16:Lets_Encrypt.html</id><summary type="html">&lt;p&gt;Let's Encrypt, is a Certificate Authority created by Linux Fundation in 2015, which issues certificate freely and automatically.&lt;/p&gt;
 
 &lt;p&gt;Let's Encrypt uses the ACME (Automated Certificate Management Environment) protocol to issue certificates without any human intervention. This is accomplished by running a certificate management agent on the web server.&lt;/p&gt;
 &lt;p&gt;An automated process avoids human errors such as forgetting certificate renewal or mishandling private key.&lt;/p&gt;
@@ -374,9 +540,9 @@
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="PKI"></category><category term="Certificate"></category></entry><entry><title>November 2015</title><link href="http://didier.bernaudeau.net/News_November_2015.html" rel="alternate"></link><updated>2015-12-18T23:03:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-11-01:News_November_2015.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...https://blog.torproject.org/blog/critique-website-traffic-fingerprinting-attacks&lt;/p&gt;
+</summary><category term="PKI"></category><category term="Certificate"></category></entry><entry><title>November 2015</title><link href="http://didier.bernaudeau.net/News_November_2015.html" rel="alternate"></link><updated>2015-12-18T23:03:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-11-01:News_November_2015.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...https://blog.torproject.org/blog/critique-website-traffic-fingerprinting-attacks&lt;/p&gt;
 
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -679,38 +845,45 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="News"></category></entry><entry><title>How to install Chromium with Flash support</title><link href="http://didier.bernaudeau.net/How_to_install_Chromium_with_Flash_support.html" rel="alternate"></link><updated>2015-10-23T23:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-23:How_to_install_Chromium_with_Flash_support.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;In 2012, Adobe has stopped to upgrade Flash Player for Linux. So, the last version of Flash Player plugin is 11.2 that will be maintained until 2017. To continue to take the advantage of Flash content, we must find an alternative solution.&lt;/p&gt;
+</summary><category term="News"></category></entry><entry><title>How to install Chromium with Flash support</title><link href="http://didier.bernaudeau.net/How_to_install_Chromium_with_Flash_support.html" rel="alternate"></link><updated>2015-12-27T21:45:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-23:How_to_install_Chromium_with_Flash_support.html</id><summary type="html">&lt;p&gt;In 2012, Adobe has stopped to upgrade Flash Player for Linux. So, the last version of Flash Player plugin is 11.2 that will be maintained until 2017. To continue to take the advantage of Flash content, we must find an alternative solution.&lt;/p&gt;
 &lt;p&gt;This tutorial describes how to install Chromium and the Flash Pepper Plugin (PPAPI) on Gentoo Linux and how to configure Chromium for graphic hardware acceleration.&lt;/p&gt;
 
 &lt;div class="section" id="chromium"&gt;
 &lt;h2&gt;Chromium&lt;/h2&gt;
 &lt;p&gt;Define local USE flags&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.use
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.use
 &lt;span class="gp"&gt;&amp;gt;&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;media-libs/libvpx-1.4.0       postproc
 &lt;/pre&gt;
 &lt;p&gt;Install Chromium&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge -pv chromium
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; emerge chromium
 &lt;/pre&gt;
 &lt;p&gt;To force Chromium to use hardware acceleration, open &lt;a class="reference external" href="chrome://flags"&gt;chrome://flags&lt;/a&gt; and enable "Override software rendering list". To check if Chromium uses hardware acceleration, open &lt;a class="reference external" href="chrome://gpu"&gt;chrome://gpu&lt;/a&gt; and look under "Graphics Feature status". All (or at least most of) the features should say "hardware accelerated".&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="flash-player"&gt;
 &lt;h2&gt;Flash Player&lt;/h2&gt;
-&lt;p&gt;To get Chrome and its plugins, download the RPM package for Linux 64bits on &lt;a class="reference external" href="www.google.fr/chrome/"&gt;Google&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;To get Chrome and its plugins, download the RPM package for Linux 64bits on &lt;a class="reference external" href="https://www.google.fr/chrome/"&gt;Google&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Extract files from RPM package&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; rpmunpack google-chrome-stable_current_x86_64.rpm
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; rpmunpack google-chrome-stable_current_x86_64.rpm
 &lt;/pre&gt;
 &lt;p&gt;Print the Flash Player version&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; cat Chrome/google-chrome-stable_current_x86_64/opt/google/chrome/PepperFlash/manifest.json
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; cat google-chrome-stable_current_x86_64/opt/google/chrome/PepperFlash/manifest.json
 &lt;/pre&gt;
 &lt;p&gt;Copy the Flash Player file&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; cp Chrome/google-chrome-stable_current_x86_64/opt/google/chrome/PepperFlash/libpepflashplayer.so /usr/lib/chromium-browser/
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; cp google-chrome-stable_current_x86_64/opt/google/chrome/PepperFlash/libpepflashplayer.so /usr/lib/chromium-browser/
 &lt;/pre&gt;
 &lt;p&gt;Add Flash Player to Chromium&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/chromium/default
-&lt;span class="go"&gt;CHROMIUM_FLAGS="--ppapi-flash-path=/usr/lib/chromium-browser/libpepflashplayer.so --ppapi-flash-version=19.0.0.207"&lt;/span&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/chromium/default
+&lt;span class="go"&gt;CHROMIUM_FLAGS="--ppapi-flash-path=/usr/lib/chromium-browser/libpepflashplayer.so --ppapi-flash-version=20.0.0.228"&lt;/span&gt;
 &lt;/pre&gt;
+&lt;p&gt;To get information about flash plugin, open &lt;a class="reference external" href="chrome://flash"&gt;chrome://flash&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="Gentoo"></category></entry><entry><title>How to install PulseAudio</title><link href="http://didier.bernaudeau.net/How_to_install_PulseAudio.html" rel="alternate"></link><updated>2015-10-19T17:24:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-19:How_to_install_PulseAudio.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;A sound server is software that manages the use of and access to audio devices. There are many sound server (JACK Audio Connection Kit, Enlightened Sound Daemon, ...) but PulseAudio is now an integral part of all relevant modern Linux distributions. This tutorials describes how to install PulseAudio on Gentoo Linux.&lt;/p&gt;
+</summary><category term="Gentoo"></category></entry><entry><title>How to install PulseAudio</title><link href="http://didier.bernaudeau.net/How_to_install_PulseAudio.html" rel="alternate"></link><updated>2015-10-19T17:24:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-19:How_to_install_PulseAudio.html</id><summary type="html">&lt;p&gt;A sound server is software that manages the use of and access to audio devices. There are many sound server (JACK Audio Connection Kit, Enlightened Sound Daemon, ...) but PulseAudio is now an integral part of all relevant modern Linux distributions. This tutorials describes how to install PulseAudio on Gentoo Linux.&lt;/p&gt;
 
 &lt;div class="section" id="pulseaudio-architecture"&gt;
 &lt;h2&gt;PulseAudio Architecture&lt;/h2&gt;
@@ -719,24 +892,28 @@
 &lt;div class="section" id="install-pulseaudio"&gt;
 &lt;h2&gt;Install PulseAudio&lt;/h2&gt;
 &lt;p&gt;Define local USE flags&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.use
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.use
 &lt;span class="go"&gt;media-sound/pulseaudio          -tcpd -webrtc-aec&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Install PulseAudio&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --oneshot pulseaudio
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; emerge --oneshot pulseaudio
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="compile-application-to-support-pulseaudio"&gt;
 &lt;h2&gt;Compile application to support PulseAudio&lt;/h2&gt;
 &lt;p&gt;Define global USE flags&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; etc/portage/make.conf
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; etc/portage/make.conf
 &lt;span class="go"&gt;USE="pulseaudio"&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Install packages&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge ffmpeg vlc kmix chromium
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; emerge ffmpeg vlc kmix chromium
 &lt;/pre&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="Gentoo"></category></entry><entry><title>Extended Validation Certificate</title><link href="http://didier.bernaudeau.net/Extended_Validation_Certificate.html" rel="alternate"></link><updated>2015-10-08T22:09:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-08:Extended_Validation_Certificate.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;An Extended Validation Certificate is a digital certificate issue by a Certificate Authority in conformity with "&lt;a class="reference external" href="https://cabforum.org/baseline-requirements-documents/"&gt;Baseline Requirements&lt;/a&gt;" and "&lt;a class="reference external" href="https://cabforum.org/extended-validation/"&gt;EV SSL Certificate Guidelines&lt;/a&gt;". These documents are defined by CA/B Forum (Certificate Authority &amp;amp; Browser Forum). This article is a summary of EV SSL Certificate Guidelines version 1.5.6 of 25 june 2015.&lt;/p&gt;
+</summary><category term="Gentoo"></category></entry><entry><title>Extended Validation Certificate</title><link href="http://didier.bernaudeau.net/Extended_Validation_Certificate.html" rel="alternate"></link><updated>2015-10-08T22:09:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-08:Extended_Validation_Certificate.html</id><summary type="html">&lt;p&gt;An Extended Validation Certificate is a digital certificate issue by a Certificate Authority in conformity with "&lt;a class="reference external" href="https://cabforum.org/baseline-requirements-documents/"&gt;Baseline Requirements&lt;/a&gt;" and "&lt;a class="reference external" href="https://cabforum.org/extended-validation/"&gt;EV SSL Certificate Guidelines&lt;/a&gt;". These documents are defined by CA/B Forum (Certificate Authority &amp;amp; Browser Forum). This article is a summary of EV SSL Certificate Guidelines version 1.5.6 of 25 june 2015.&lt;/p&gt;
 
 &lt;div class="section" id="additional-content"&gt;
 &lt;h2&gt;Additional content&lt;/h2&gt;
@@ -785,7 +962,7 @@
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="Certificate"></category><category term="PKI"></category></entry><entry><title>HowTo install a virtualization plateform with KVM</title><link href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html" rel="alternate"></link><updated>2015-10-25T21:16:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-09-15:howto_install_a_virtualization_plateform_with_KVM.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.&lt;/p&gt;
+</summary><category term="Certificate"></category><category term="PKI"></category></entry><entry><title>HowTo install a virtualization plateform with KVM</title><link href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html" rel="alternate"></link><updated>2015-10-25T21:16:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-09-15:howto_install_a_virtualization_plateform_with_KVM.html</id><summary type="html">&lt;p&gt;This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.&lt;/p&gt;
 &lt;p&gt;Then, LibVirt provides a convenient way to manage virtual machines on this plateform. LibVirt include an API library, a daemon (libvirtd), command line tools (virsh and virt-install) and a graphic tool (virt-manager). All these softwares are sponsorted by Red Hat.&lt;/p&gt;
 &lt;p&gt;Obviouly, this virtualization plateform uses Intel Virtualization Technologyy like VT-x (Virtualization Technology eXecution) and VT-d (Virtualization Technology for Directed I/O). KVM can also support VT-c (Intel® Virtualization Technology for Connectivity) but my laptop does not have this technology.&lt;/p&gt;
 
@@ -793,7 +970,8 @@
 &lt;h2&gt;Kernel configuration&lt;/h2&gt;
 &lt;p&gt;This is the configuration for Gentoo kernel 4.0.5.&lt;/p&gt;
 &lt;p&gt;Enable KVM&lt;/p&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;---&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Kernel-based&lt;/span&gt; &lt;span class="err"&gt;Virtual&lt;/span&gt; &lt;span class="err"&gt;Machine&lt;/span&gt; &lt;span class="err"&gt;(KVM)&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;KVM&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;processors&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
@@ -802,7 +980,8 @@
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;     &lt;span class="err"&gt;KVM&lt;/span&gt; &lt;span class="err"&gt;legacy&lt;/span&gt; &lt;span class="err"&gt;PCI&lt;/span&gt; &lt;span class="err"&gt;device&lt;/span&gt; &lt;span class="err"&gt;assignment&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Enable VirtIO driver&lt;/p&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Device&lt;/span&gt; &lt;span class="err"&gt;Drivers&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Device&lt;/span&gt; &lt;span class="err"&gt;Drivers&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Network&lt;/span&gt; &lt;span class="err"&gt;device&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;Virtio&lt;/span&gt; &lt;span class="err"&gt;network&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt;
@@ -815,12 +994,14 @@
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Memory&lt;/span&gt; &lt;span class="err"&gt;mapped&lt;/span&gt; &lt;span class="err"&gt;virtio&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt; &lt;span class="err"&gt;parameter&lt;/span&gt; &lt;span class="err"&gt;parsing&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Enable VHostNet&lt;/p&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;---&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Host&lt;/span&gt; &lt;span class="err"&gt;kernel&lt;/span&gt; &lt;span class="err"&gt;accelerator&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;virtio&lt;/span&gt; &lt;span class="err"&gt;net&lt;/span&gt; &lt;span class="err"&gt;(NEW)&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Enable virtual network (Local bridge with NAT)&lt;/p&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;---&lt;/span&gt; &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;       &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;options&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
@@ -846,9 +1027,11 @@
 &lt;div class="section" id="installation"&gt;
 &lt;h2&gt;Installation&lt;/h2&gt;
 &lt;p&gt;Define compilation option&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.use
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.use
 &lt;/pre&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;app-emulation/libvirt&lt;/span&gt;           &lt;span class="err"&gt;qemu&lt;/span&gt; &lt;span class="err"&gt;virt-network&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;app-emulation/libvirt&lt;/span&gt;           &lt;span class="err"&gt;qemu&lt;/span&gt; &lt;span class="err"&gt;virt-network&lt;/span&gt;
 &lt;span class="err"&gt;app-emulation/libvirt-glib&lt;/span&gt;      &lt;span class="err"&gt;python&lt;/span&gt;
 &lt;span class="err"&gt;app-emulation/qemu&lt;/span&gt;              &lt;span class="err"&gt;qemu_softmmu_targets_x86_64&lt;/span&gt; &lt;span class="err"&gt;spice&lt;/span&gt; &lt;span class="err"&gt;usbredir&lt;/span&gt;
 &lt;span class="err"&gt;app-emulation/virt-manager&lt;/span&gt;      &lt;span class="err"&gt;gtk&lt;/span&gt; &lt;span class="err"&gt;sasl&lt;/span&gt;
@@ -857,29 +1040,36 @@
 &lt;span class="err"&gt;media-libs/mesa&lt;/span&gt;                 &lt;span class="err"&gt;gles2&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Start installation&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge libvirt virt-manager
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; emerge libvirt virt-manager
 &lt;/pre&gt;
 &lt;p&gt;Disable authentication for LibVirtd (Only for socket access)&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/libvirt/libvirtd.conf
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/libvirt/libvirtd.conf
 &lt;/pre&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="na"&gt;auth_unix_ro&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"none"&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="na"&gt;auth_unix_ro&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"none"&lt;/span&gt;
 &lt;span class="na"&gt;auth_unix_rw&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"none"&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Change the default repository for disk images&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; rmdir /var/lib/libvirt/images
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; rmdir /var/lib/libvirt/images
 &lt;span class="gp"&gt;#&lt;/span&gt; ln -s /mnt/data/VirtualMachine /var/lib/libvirt/images
 &lt;/pre&gt;
 &lt;p&gt;Add user in KVM group&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; gpasswd -a &amp;lt;username&amp;gt; kvm
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; gpasswd -a &amp;lt;username&amp;gt; kvm
 &lt;/pre&gt;
 &lt;p&gt;Start libvirtd&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; /etc/init.d/libvirtd start
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; /etc/init.d/libvirtd start
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="connection-to-libvirtd"&gt;
 &lt;h2&gt;Connection to LibVirtd&lt;/h2&gt;
 &lt;p&gt;Start virt-manager&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; virt-manager
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; virt-manager
 &lt;/pre&gt;
 &lt;p&gt;Open the menu "file &amp;gt; Add connection"&lt;/p&gt;
 &lt;img alt="Virt-Manager - Add connection" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
@@ -901,13 +1091,14 @@
 &lt;img alt="Virt-Manager - NIC device model" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
 &lt;!-- vhost=on --&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="Gentoo"></category><category term="Virtualization"></category></entry><entry><title>CORS (Cross-Origin Resource Sharing)</title><link href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html" rel="alternate"></link><updated>2015-09-01T23:44:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-30:Cross_Origin_Resource_Sharing.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;CORS (Cross-Origin Resource Sharing) is a mechanism, define by W3C, which provides a way for web servers to support cross-site access controls, which enable secure cross-site data transfers.&lt;/p&gt;
+</summary><category term="Gentoo"></category><category term="Virtualization"></category></entry><entry><title>CORS (Cross-Origin Resource Sharing)</title><link href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html" rel="alternate"></link><updated>2015-09-01T23:44:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-30:Cross_Origin_Resource_Sharing.html</id><summary type="html">&lt;p&gt;CORS (Cross-Origin Resource Sharing) is a mechanism, define by W3C, which provides a way for web servers to support cross-site access controls, which enable secure cross-site data transfers.&lt;/p&gt;
 &lt;p&gt;This mechanism works by adding new HTTP headers named Access-Control-Allow-Origin.&lt;/p&gt;
 
 &lt;div class="section" id="step-1-create-webservice"&gt;
 &lt;h2&gt;Step 1 : Create WebService&lt;/h2&gt;
 &lt;p&gt;Create a PHP script named "cors.php" and hosted on "www.example.com" :&lt;/p&gt;
-&lt;pre class="code php literal-block"&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;
+&lt;pre class="code php literal-block"&gt;
+&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;
   &lt;span class="nb"&gt;header&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Access-Control-Allow-Origin: http://hostname:8000"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
   &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nb"&gt;date&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Y-m-d H:i:s"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
@@ -916,7 +1107,8 @@
 &lt;div class="section" id="step-2-create-html-web-page"&gt;
 &lt;h2&gt;Step 2 : Create HTML web page&lt;/h2&gt;
 &lt;p&gt;Create a HTML file named "cors.html" and hosted on your computer :&lt;/p&gt;
-&lt;pre class="code html literal-block"&gt;&lt;span class="cp"&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
+&lt;pre class="code html literal-block"&gt;
+&lt;span class="cp"&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
  &lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
 
@@ -931,17 +1123,19 @@
 &lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;To test easily, start a web server with python (in the directory where the file "cors.html" is located)&lt;/p&gt;
-&lt;pre class="code shell literal-block"&gt;python -m SimpleHTTPServer
+&lt;pre class="code shell literal-block"&gt;
+python -m SimpleHTTPServer
 &lt;/pre&gt;
 &lt;p&gt;Then, open web page from &lt;a class="reference external" href="http://hostname:8000/cors.html"&gt;http://hostname:8000/cors.html&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="Development"></category><category term="WebSite"></category><category term="HTML"></category><category term="JavaScript"></category><category term="PHP"></category></entry><entry><title>JSONP (JSON with Padding)</title><link href="http://didier.bernaudeau.net/JSON_with_Padding.html" rel="alternate"></link><updated>2015-08-29T14:30:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-29:JSON_with_Padding.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This article shows how JSONP (JavaScript Object Notation with Padding) can be used to get data from different domains, bypassing SOP (Same-Origin Policy).&lt;/p&gt;
+</summary><category term="Development"></category><category term="WebSite"></category><category term="HTML"></category><category term="JavaScript"></category><category term="PHP"></category></entry><entry><title>JSONP (JSON with Padding)</title><link href="http://didier.bernaudeau.net/JSON_with_Padding.html" rel="alternate"></link><updated>2015-08-29T14:30:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-29:JSON_with_Padding.html</id><summary type="html">&lt;p&gt;This article shows how JSONP (JavaScript Object Notation with Padding) can be used to get data from different domains, bypassing SOP (Same-Origin Policy).&lt;/p&gt;
 &lt;p&gt;JSONP uses the script tag, which is not in the scope of the SOP. Indeed, a JavaScript source file loaded from another domain will run in the origin of the HTML that includes the script, not in the domain where the JavaScript file originated from.&lt;/p&gt;
 
 &lt;div class="section" id="step-1-create-jsonp-webservice"&gt;
 &lt;h2&gt;Step 1 : Create JSONP WebService&lt;/h2&gt;
 &lt;p&gt;The web service encapsulates data, in JSON format, in a callback function. Create a PHP script named "jsonp.php" and hosted on "www.example.com" :&lt;/p&gt;
-&lt;pre class="code php literal-block"&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;
+&lt;pre class="code php literal-block"&gt;
+&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;
  &lt;span class="nv"&gt;$MyData&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'{ "MyDateTime": "'&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nb"&gt;date&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Y-m-d H:i:s"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="s1"&gt;'" }'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
  &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$_GET&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'JsonpCallback'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="s1"&gt;'('&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nv"&gt;$MyData&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="s1"&gt;');'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
@@ -950,7 +1144,8 @@
 &lt;div class="section" id="step-2-create-html-web-page"&gt;
 &lt;h2&gt;Step 2 : Create HTML web page&lt;/h2&gt;
 &lt;p&gt;The HTML page loads the JavaScript source file, from JSONP WebService, then execute the callback function. Create the HTML page named jsonp.html and hosted on your localhost :&lt;/p&gt;
-&lt;pre class="code html literal-block"&gt;&lt;span class="cp"&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
+&lt;pre class="code html literal-block"&gt;
+&lt;span class="cp"&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
  &lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
 
@@ -989,13 +1184,14 @@
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="Development"></category><category term="WebSite"></category><category term="HTML"></category><category term="JavaScript"></category><category term="PHP"></category></entry><entry><title>SOP (Same-Origin Policy)</title><link href="http://didier.bernaudeau.net/Same_Origin_Policy.html" rel="alternate"></link><updated>2015-08-27T12:08:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-27:Same_Origin_Policy.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;SOP (Same Origin Policy) is a security mechanism implemented in browsers to restrict interactions between 2 different origin resources. Two resources have the same origin if the protocol, port, and host are the same for both resources.&lt;/p&gt;
+</summary><category term="Development"></category><category term="WebSite"></category><category term="HTML"></category><category term="JavaScript"></category><category term="PHP"></category></entry><entry><title>SOP (Same-Origin Policy)</title><link href="http://didier.bernaudeau.net/Same_Origin_Policy.html" rel="alternate"></link><updated>2015-08-27T12:08:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-27:Same_Origin_Policy.html</id><summary type="html">&lt;p&gt;SOP (Same Origin Policy) is a security mechanism implemented in browsers to restrict interactions between 2 different origin resources. Two resources have the same origin if the protocol, port, and host are the same for both resources.&lt;/p&gt;
 &lt;p&gt;This article shows how to test the SOP (Same Origin Policy) mechanism implemented by your browser.&lt;/p&gt;
 
 &lt;div class="section" id="step-1-create-webservice"&gt;
 &lt;h2&gt;Step 1 : Create WebService&lt;/h2&gt;
 &lt;p&gt;Create a PHP script named "sop.php" and hosted on "www.example.com" :&lt;/p&gt;
-&lt;pre class="code php literal-block"&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;
+&lt;pre class="code php literal-block"&gt;
+&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;
   &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nb"&gt;date&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Y-m-d H:i:s"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;
@@ -1003,7 +1199,8 @@
 &lt;div class="section" id="step-2-create-html-web-page"&gt;
 &lt;h2&gt;Step 2 : Create HTML web page&lt;/h2&gt;
 &lt;p&gt;Create a HTML file named "sop.html" and hosted on your localhost :&lt;/p&gt;
-&lt;pre class="code html literal-block"&gt;&lt;span class="cp"&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
+&lt;pre class="code html literal-block"&gt;
+&lt;span class="cp"&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
  &lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
 
@@ -1024,7 +1221,7 @@
 &lt;blockquote class="pull-quote"&gt;
 Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at &lt;a class="reference external" href="http://www.example.com/sop.php"&gt;http://www.example.com/sop.php&lt;/a&gt;. This can be fixed by moving the resource to the same domain or enabling CORS.&lt;/blockquote&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="Development"></category><category term="WebSite"></category><category term="HTML"></category><category term="JavaScript"></category><category term="PHP"></category></entry><entry><title>TLS: Audit tools</title><link href="http://didier.bernaudeau.net/TLS_Audit_tools.html" rel="alternate"></link><updated>2015-09-30T07:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-04:TLS_Audit_tools.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This memo lists the tools necessary to audit the TLS configuration. Moreover, a compliance form template is available to formalize the audit report.&lt;/p&gt;
+</summary><category term="Development"></category><category term="WebSite"></category><category term="HTML"></category><category term="JavaScript"></category><category term="PHP"></category></entry><entry><title>TLS: Audit tools</title><link href="http://didier.bernaudeau.net/TLS_Audit_tools.html" rel="alternate"></link><updated>2015-09-30T07:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-04:TLS_Audit_tools.html</id><summary type="html">&lt;p&gt;This memo lists the tools necessary to audit the TLS configuration. Moreover, a compliance form template is available to formalize the audit report.&lt;/p&gt;
 
 &lt;div class="section" id="audit-tools"&gt;
 &lt;h2&gt;Audit Tools&lt;/h2&gt;
@@ -1034,17 +1231,20 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="nmap"&gt;
 &lt;h3&gt;Nmap&lt;/h3&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; nmap --script ssl-enum-ciphers -p &lt;span class="m"&gt;443&lt;/span&gt; www.exemple.com
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; nmap --script ssl-enum-ciphers -p &lt;span class="m"&gt;443&lt;/span&gt; www.exemple.com
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="test-ssl-server"&gt;
 &lt;h3&gt;Test SSL Server&lt;/h3&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; java -jar TestSSLServer.jar www.exemple.com 443
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; java -jar TestSSLServer.jar www.exemple.com 443
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="cipherscan"&gt;
 &lt;h3&gt;CipherScan&lt;/h3&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git clone git://github.com/jvehent/cipherscan.git
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; git clone git://github.com/jvehent/cipherscan.git
 &lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;cipherscan
 &lt;span class="gp"&gt;$&lt;/span&gt; ./cipherscan www.exemple.com
 &lt;/pre&gt;
@@ -1064,11 +1264,11 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="Cryptography"></category><category term="Network"></category></entry><entry><title>TLS: Hardened configuration</title><link href="http://didier.bernaudeau.net/TLS_Hardened_configuration.html" rel="alternate"></link><updated>2015-08-02T12:44:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-23:TLS_Hardened_configuration.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;In recent years, many vulnerabilities (BEAST, CRIME, FREAK, ...) have been published about TLS protocol. Today, it is essential to enhanced configuration of TLS protocol to ensure the security of communication. This article lists the best practices to enhanced configuration of TLS protocol.&lt;/p&gt;
+</summary><category term="Cryptography"></category><category term="Network"></category></entry><entry><title>TLS: Hardened configuration</title><link href="http://didier.bernaudeau.net/TLS_Hardened_configuration.html" rel="alternate"></link><updated>2015-08-02T12:44:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-23:TLS_Hardened_configuration.html</id><summary type="html">&lt;p&gt;In recent years, many vulnerabilities (BEAST, CRIME, FREAK, ...) have been published about TLS protocol. Today, it is essential to enhanced configuration of TLS protocol to ensure the security of communication. This article lists the best practices to enhanced configuration of TLS protocol.&lt;/p&gt;
 
 &lt;div class="section" id="protocol-version"&gt;
 &lt;h2&gt;Protocol version&lt;/h2&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -1098,7 +1298,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="compression-method"&gt;
 &lt;h2&gt;Compression method&lt;/h2&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -1126,7 +1326,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;h2&gt;Cryptographic algorithm&lt;/h2&gt;
 &lt;div class="section" id="key-exchange"&gt;
 &lt;h3&gt;Key exchange&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -1171,7 +1371,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="encryption"&gt;
 &lt;h3&gt;Encryption&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -1226,7 +1426,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="message-authentication-code"&gt;
 &lt;h3&gt;Message Authentication Code&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -1260,7 +1460,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="Cryptography"></category><category term="Network"></category></entry><entry><title>TLS: Understanding the cipher suites</title><link href="http://didier.bernaudeau.net/TLS_Understanding_the_cipher_suites.html" rel="alternate"></link><updated>2015-08-04T21:48:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-22:TLS_Understanding_the_cipher_suites.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;To protect your communications, TLS protocol uses 4 cryptographic functions: key exchange, authentication, encryption and message authentication code. Cipher suite allows to define the algorithm used for each of these 4 functions.&lt;/p&gt;
+</summary><category term="Cryptography"></category><category term="Network"></category></entry><entry><title>TLS: Understanding the cipher suites</title><link href="http://didier.bernaudeau.net/TLS_Understanding_the_cipher_suites.html" rel="alternate"></link><updated>2015-08-04T21:48:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-22:TLS_Understanding_the_cipher_suites.html</id><summary type="html">&lt;p&gt;To protect your communications, TLS protocol uses 4 cryptographic functions: key exchange, authentication, encryption and message authentication code. Cipher suite allows to define the algorithm used for each of these 4 functions.&lt;/p&gt;
 
 &lt;div class="section" id="cryptographic-function"&gt;
 &lt;h2&gt;Cryptographic function&lt;/h2&gt;
@@ -1286,7 +1486,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;p&gt;Cipher suite is a list of one or more cipher strings separated by special char (colon, comma, space, ...). The names for cipher suites are defined by IANA (Internet Assigned Numbers Authority).&lt;/p&gt;
 &lt;p&gt;Cipher suite defines algorithms used for each cryptographic function: key exchange, authentication, encryption and message authentication code. If algorithm for key exchange is not mentioned, default algorithm is RSA.&lt;/p&gt;
 &lt;p&gt;The table below details some example of cipher suites:&lt;/p&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="39%"&gt;&lt;/col&gt;
@@ -1438,11 +1638,11 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="Cryptography"></category><category term="Network"></category></entry><entry><title>SSD - Samsung 840 PRO (256 Go)</title><link href="http://didier.bernaudeau.net/SSD_Samsung_840_PRO_256_Go.html" rel="alternate"></link><updated>2015-07-18T12:47:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-18:SSD_Samsung_840_PRO_256_Go.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This article describes the new SSD Samsung 840 PRO 256 Go. I installed this SSD in my laptop &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html"&gt;Lenovo ThinkPad X240&lt;/a&gt; to replace the original HDD.&lt;/p&gt;
+</summary><category term="Cryptography"></category><category term="Network"></category></entry><entry><title>SSD - Samsung 840 PRO (256 Go)</title><link href="http://didier.bernaudeau.net/SSD_Samsung_840_PRO_256_Go.html" rel="alternate"></link><updated>2015-07-18T12:47:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-18:SSD_Samsung_840_PRO_256_Go.html</id><summary type="html">&lt;p&gt;This article describes the new SSD Samsung 840 PRO 256 Go. I installed this SSD in my laptop &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html"&gt;Lenovo ThinkPad X240&lt;/a&gt; to replace the original HDD.&lt;/p&gt;
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="28%"&gt;&lt;/col&gt;
 &lt;col width="72%"&gt;&lt;/col&gt;
@@ -1501,7 +1701,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -1531,7 +1731,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in GPT (GUID Partition Table) during Microsoft Windows 8.1 installation process&lt;/p&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -1601,7 +1801,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="Hardware"></category></entry><entry><title>How to create bootable USB flash drives with Rufus</title><link href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html" rel="alternate"></link><updated>2015-07-15T21:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-12:How_to_create_bootable_USB_flash_drives_with_Rufus.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp;amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.&lt;/p&gt;
+</summary><category term="Hardware"></category></entry><entry><title>How to create bootable USB flash drives with Rufus</title><link href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html" rel="alternate"></link><updated>2015-07-15T21:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-12:How_to_create_bootable_USB_flash_drives_with_Rufus.html</id><summary type="html">&lt;p&gt;This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp;amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.&lt;/p&gt;
 
 &lt;div class="section" id="install-rufus"&gt;
 &lt;h2&gt;Install Rufus&lt;/h2&gt;
@@ -1627,11 +1827,11 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="Windows"></category><category term="Linux"></category></entry><entry><title>SSD - Samsung 850 EVO (250 Go)</title><link href="http://didier.bernaudeau.net/SSD_Samsung_850_EVO_250_Go.html" rel="alternate"></link><updated>2015-07-09T21:04:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-09:SSD_Samsung_850_EVO_250_Go.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This article describes the new SSD Samsung 850 EVO 250 Go. I installed this SSD in my laptop &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Sony_VAIO_VGN_SR11M.html"&gt;Sony VAIO VGN-SR11M&lt;/a&gt; to replace the original HDD.&lt;/p&gt;
+</summary><category term="Windows"></category><category term="Linux"></category></entry><entry><title>SSD - Samsung 850 EVO (250 Go)</title><link href="http://didier.bernaudeau.net/SSD_Samsung_850_EVO_250_Go.html" rel="alternate"></link><updated>2015-07-09T21:04:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-09:SSD_Samsung_850_EVO_250_Go.html</id><summary type="html">&lt;p&gt;This article describes the new SSD Samsung 850 EVO 250 Go. I installed this SSD in my laptop &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Sony_VAIO_VGN_SR11M.html"&gt;Sony VAIO VGN-SR11M&lt;/a&gt; to replace the original HDD.&lt;/p&gt;
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="21%"&gt;&lt;/col&gt;
 &lt;col width="79%"&gt;&lt;/col&gt;
@@ -1699,7 +1899,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -1729,7 +1929,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in MBR (Master Boot Record) during Microsoft Windows 8.1 installation process for primary partition then during Debian 8 installation process for extended partition :&lt;/p&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
@@ -1795,13 +1995,13 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="Hardware"></category></entry><entry><title>Laptop - Sony VAIO VGN SR11M</title><link href="http://didier.bernaudeau.net/Laptop_Sony_VAIO_VGN_SR11M.html" rel="alternate"></link><updated>2015-07-15T22:20:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-28:Laptop_Sony_VAIO_VGN_SR11M.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This article describes the hardware specification and configuration of my Sony VAIO VGN SR11M based on Intel Core 2 Duo processor. Future articles will refer to this one.&lt;/p&gt;
+</summary><category term="Hardware"></category></entry><entry><title>Laptop - Sony VAIO VGN SR11M</title><link href="http://didier.bernaudeau.net/Laptop_Sony_VAIO_VGN_SR11M.html" rel="alternate"></link><updated>2015-07-15T22:20:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-28:Laptop_Sony_VAIO_VGN_SR11M.html</id><summary type="html">&lt;p&gt;This article describes the hardware specification and configuration of my Sony VAIO VGN SR11M based on Intel Core 2 Duo processor. Future articles will refer to this one.&lt;/p&gt;
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1830,7 +2030,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1850,7 +2050,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1873,7 +2073,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1890,7 +2090,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1910,7 +2110,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1927,7 +2127,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1950,7 +2150,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="optical-disc-drive"&gt;
 &lt;h3&gt;Optical Disc Drive&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -1988,7 +2188,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -2008,7 +2208,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="wifi"&gt;
 &lt;h3&gt;Wifi&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -2028,7 +2228,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="bluetooth"&gt;
 &lt;h3&gt;Bluetooth&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -2048,7 +2248,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="modem"&gt;
 &lt;h3&gt;Modem&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -2065,7 +2265,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="firewire-controller"&gt;
 &lt;h3&gt;FireWire Controller&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -2082,7 +2282,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-memory-stick"&gt;
 &lt;h3&gt;Card reader (Memory Stick)&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -2099,7 +2299,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-secure-digital"&gt;
 &lt;h3&gt;Card reader (Secure Digital)&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -2116,7 +2316,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -2139,7 +2339,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -2190,10 +2390,12 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;h3&gt;Configuration&lt;/h3&gt;
 &lt;p&gt;Press F2 to enter in BIOS menu.&lt;/p&gt;
 &lt;p&gt;Menu "Advanced"&lt;/p&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;Intel(R)&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt; &lt;span class="err"&gt;Technology&lt;/span&gt; &lt;span class="k"&gt;[Enabled]&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;Intel(R)&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt; &lt;span class="err"&gt;Technology&lt;/span&gt; &lt;span class="k"&gt;[Enabled]&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Menu "Boot"&lt;/p&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;Select&lt;/span&gt; &lt;span class="err"&gt;1st&lt;/span&gt; &lt;span class="err"&gt;Boot&lt;/span&gt; &lt;span class="err"&gt;Priority&lt;/span&gt; &lt;span class="k"&gt;[External Device]&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;Select&lt;/span&gt; &lt;span class="err"&gt;1st&lt;/span&gt; &lt;span class="err"&gt;Boot&lt;/span&gt; &lt;span class="err"&gt;Priority&lt;/span&gt; &lt;span class="k"&gt;[External Device]&lt;/span&gt;
 &lt;span class="err"&gt;Select&lt;/span&gt; &lt;span class="err"&gt;2nd&lt;/span&gt; &lt;span class="err"&gt;Boot&lt;/span&gt; &lt;span class="err"&gt;Priority&lt;/span&gt; &lt;span class="k"&gt;[Internal Optical Disc Drive]&lt;/span&gt;
 &lt;span class="err"&gt;Select&lt;/span&gt; &lt;span class="err"&gt;3rd&lt;/span&gt; &lt;span class="err"&gt;Boot&lt;/span&gt; &lt;span class="err"&gt;Priority&lt;/span&gt; &lt;span class="k"&gt;[Internal Hard Disk Drive]&lt;/span&gt;
 &lt;/pre&gt;
@@ -2217,29 +2419,34 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="Hardware"></category></entry><entry><title>HowTo configure the Linux kernel for Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html" rel="alternate"></link><updated>2015-10-19T17:48:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-16:HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
+</summary><category term="Hardware"></category></entry><entry><title>HowTo configure the Linux kernel for Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html" rel="alternate"></link><updated>2015-10-19T17:48:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-16:HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html</id><summary type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
 &lt;p&gt;To get more information about the configuration of my laptop, you can read this article : &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html"&gt;Lenovo ThinkPad X240&lt;/a&gt;&lt;/p&gt;
 
 &lt;div class="section" id="kernel-installation"&gt;
 &lt;h2&gt;Kernel installation&lt;/h2&gt;
 &lt;p&gt;Download kernel Gentoo sources (4.0.5) :&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge sys-kernel/gentoo-sources
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; emerge sys-kernel/gentoo-sources
 &lt;/pre&gt;
 &lt;p&gt;Download firmware for Intel WiFi 7260 (version 12) :&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge sys-firmware/iwl7260-ucode
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; emerge sys-firmware/iwl7260-ucode
 &lt;/pre&gt;
 &lt;p&gt;Select kernel sources&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; eselect kernel list
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; eselect kernel list
 &lt;span class="gp"&gt;#&lt;/span&gt; eselect kernel &lt;span class="nb"&gt;set &lt;/span&gt;X
 &lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; /usr/src/linux
 &lt;/pre&gt;
 &lt;p&gt;Print configuration menu&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; make menuconfig
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; make menuconfig
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="kernel-minimal-configuration"&gt;
 &lt;h2&gt;Kernel minimal configuration&lt;/h2&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;General&lt;/span&gt; &lt;span class="err"&gt;setup&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;General&lt;/span&gt; &lt;span class="err"&gt;setup&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Timers&lt;/span&gt; &lt;span class="err"&gt;subsystem&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;High&lt;/span&gt; &lt;span class="err"&gt;Resolution&lt;/span&gt; &lt;span class="err"&gt;Timer&lt;/span&gt; &lt;span class="err"&gt;Support&lt;/span&gt;
@@ -2479,7 +2686,8 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;h2&gt;Kernel optional configuration&lt;/h2&gt;
 &lt;div class="section" id="kerberos-cryptography-support"&gt;
 &lt;h3&gt;Kerberos cryptography support&lt;/h3&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt; &lt;span class="err"&gt;Cryptographic&lt;/span&gt; &lt;span class="err"&gt;API&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt; &lt;span class="err"&gt;Cryptographic&lt;/span&gt; &lt;span class="err"&gt;API&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt; &lt;span class="err"&gt;Cryptographic&lt;/span&gt; &lt;span class="err"&gt;API&lt;/span&gt; &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;CBC&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;CTS&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
@@ -2492,7 +2700,8 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="virtualization-with-kvm"&gt;
 &lt;h3&gt;Virtualization with KVM&lt;/h3&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;---&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Kernel-based&lt;/span&gt; &lt;span class="err"&gt;Virtual&lt;/span&gt; &lt;span class="err"&gt;Machine&lt;/span&gt; &lt;span class="err"&gt;(KVM)&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;KVM&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;processors&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
@@ -2502,7 +2711,8 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Host&lt;/span&gt; &lt;span class="err"&gt;kernel&lt;/span&gt; &lt;span class="err"&gt;accelerator&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;virtio&lt;/span&gt; &lt;span class="err"&gt;net&lt;/span&gt; &lt;span class="err"&gt;(NEW)&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Configuration for bridge network&lt;/p&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;---&lt;/span&gt; &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;       &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;options&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;802.1d&lt;/span&gt; &lt;span class="err"&gt;Ethernet&lt;/span&gt; &lt;span class="err"&gt;Bridging&lt;/span&gt;
@@ -2516,7 +2726,8 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;Universal&lt;/span&gt; &lt;span class="err"&gt;TUN/TAP&lt;/span&gt; &lt;span class="err"&gt;device&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Configuration for virtual network&lt;/p&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;---&lt;/span&gt; &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;       &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;options&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
@@ -2541,7 +2752,8 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="chromimum"&gt;
 &lt;h3&gt;Chromimum&lt;/h3&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;General&lt;/span&gt; &lt;span class="err"&gt;setup&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;General&lt;/span&gt; &lt;span class="err"&gt;setup&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt; &lt;span class="err"&gt;Namespaces&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;User&lt;/span&gt; &lt;span class="err"&gt;namespace&lt;/span&gt;
 &lt;/pre&gt;
@@ -2549,38 +2761,47 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="kernel-compilation"&gt;
 &lt;h2&gt;Kernel compilation&lt;/h2&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; make &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; make modules_install
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; make &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; make modules_install
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="id1"&gt;
 &lt;h2&gt;Kernel installation&lt;/h2&gt;
 &lt;p&gt;Mount ESP (EFI System Partition)&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mkdir /mnt/ESP
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; mkdir /mnt/ESP
 &lt;span class="gp"&gt;#&lt;/span&gt; mount /dev/sda2 /mnt/ESP
 &lt;/pre&gt;
 &lt;p&gt;Create directory&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mkdir /mnt/ESP/EFI/GentooLinux
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; mkdir /mnt/ESP/EFI/GentooLinux
 &lt;/pre&gt;
 &lt;p&gt;Copy kernel&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.0.5.efi
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.0.5.efi
 &lt;/pre&gt;
 &lt;p&gt;Unmount ESP (EFI System Partition)&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; umount /mnt/ESP
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; umount /mnt/ESP
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="update-uefi-bootloader"&gt;
 &lt;h2&gt;Update UEFI bootloader&lt;/h2&gt;
 &lt;p&gt;Install EFI boot manager&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge efibootmgr
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; emerge efibootmgr
 &lt;/pre&gt;
 &lt;p&gt;Add the new kernel&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr -c -d /dev/sda -p &lt;span class="m"&gt;2&lt;/span&gt; -L &lt;span class="s2"&gt;"Gentoo Linux 4.0.5"&lt;/span&gt; -l &lt;span class="s2"&gt;"\EFI\GentooLinux\4.0.5.efi"&lt;/span&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr -c -d /dev/sda -p &lt;span class="m"&gt;2&lt;/span&gt; -L &lt;span class="s2"&gt;"Gentoo Linux 4.0.5"&lt;/span&gt; -l &lt;span class="s2"&gt;"\EFI\GentooLinux\4.0.5.efi"&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Print the menu&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr -v
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr -v
 &lt;/pre&gt;
 &lt;p&gt;Remove the previous kernel (after testing the new kernel)&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr -b &lt;span class="m"&gt;15&lt;/span&gt; -B
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr -b &lt;span class="m"&gt;15&lt;/span&gt; -B
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="references"&gt;
@@ -2591,13 +2812,13 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="Gentoo"></category></entry><entry><title>Laptop - Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html" rel="alternate"></link><updated>2015-07-18T12:27:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-12:Laptop_Lenovo_ThinkPad_X240.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;This article describes the configuration of my Lenovo ThinkPad X240 (20ALCT01WW) based on Intel Haswell processor. Future articles will refer to this one.&lt;/p&gt;
+</summary><category term="Gentoo"></category></entry><entry><title>Laptop - Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html" rel="alternate"></link><updated>2015-07-18T12:27:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-12:Laptop_Lenovo_ThinkPad_X240.html</id><summary type="html">&lt;p&gt;This article describes the configuration of my Lenovo ThinkPad X240 (20ALCT01WW) based on Intel Haswell processor. Future articles will refer to this one.&lt;/p&gt;
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2638,7 +2859,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2655,7 +2876,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2687,7 +2908,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2710,7 +2931,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2730,7 +2951,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2747,7 +2968,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2770,7 +2991,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2790,7 +3011,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="wifi-and-bluetooth"&gt;
 &lt;h3&gt;Wifi and Bluetooth&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2813,7 +3034,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="memory-card-reader"&gt;
 &lt;h3&gt;Memory card reader&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2833,7 +3054,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="smartcard-reader"&gt;
 &lt;h3&gt;Smartcard Reader&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2850,7 +3071,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="fingerprint-reader"&gt;
 &lt;h3&gt;Fingerprint Reader&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2867,7 +3088,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="nfc-reader"&gt;
 &lt;h3&gt;NFC Reader&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2884,7 +3105,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2904,7 +3125,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2940,7 +3161,7 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;h2&gt;UEFI BIOS&lt;/h2&gt;
 &lt;div class="section" id="version"&gt;
 &lt;h3&gt;Version&lt;/h3&gt;
-&lt;table border="1" class=" table-striped docutils table-hover table"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="59%"&gt;&lt;/col&gt;
 &lt;col width="41%"&gt;&lt;/col&gt;
@@ -2961,14 +3182,17 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;div class="section" id="configuration"&gt;
 &lt;h3&gt;Configuration&lt;/h3&gt;
 &lt;p&gt;Menu "Security / Virtualization"&lt;/p&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;(R)&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt; &lt;span class="err"&gt;Technologie&lt;/span&gt; &lt;span class="k"&gt;[Enabled]&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;(R)&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt; &lt;span class="err"&gt;Technologie&lt;/span&gt; &lt;span class="k"&gt;[Enabled]&lt;/span&gt;
 &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;(R)&lt;/span&gt; &lt;span class="err"&gt;VT-d&lt;/span&gt; &lt;span class="err"&gt;Feature&lt;/span&gt;               &lt;span class="k"&gt;[Enabled]&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Menu " Security / Secure Boot"&lt;/p&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;Secure&lt;/span&gt; &lt;span class="err"&gt;Boot&lt;/span&gt;                         &lt;span class="k"&gt;[Disabled]&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;Secure&lt;/span&gt; &lt;span class="err"&gt;Boot&lt;/span&gt;                         &lt;span class="k"&gt;[Disabled]&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Menu "Startup"&lt;/p&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;UEFI&lt;/span&gt; &lt;span class="err"&gt;/&lt;/span&gt; &lt;span class="err"&gt;Legacy&lt;/span&gt; &lt;span class="err"&gt;Boot&lt;/span&gt;                 &lt;span class="k"&gt;[UEFI Only]&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;UEFI&lt;/span&gt; &lt;span class="err"&gt;/&lt;/span&gt; &lt;span class="err"&gt;Legacy&lt;/span&gt; &lt;span class="err"&gt;Boot&lt;/span&gt;                 &lt;span class="k"&gt;[UEFI Only]&lt;/span&gt;
 &lt;span class="err"&gt;-CSM&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;                              &lt;span class="k"&gt;[No]&lt;/span&gt;
 &lt;span class="err"&gt;Boot&lt;/span&gt; &lt;span class="err"&gt;Mode&lt;/span&gt;                              &lt;span class="k"&gt;[Quick]&lt;/span&gt;
 &lt;/pre&gt;
@@ -2992,31 +3216,36 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="Hardware"></category></entry><entry><title>HowTo support FAT64 on Gentoo</title><link href="http://didier.bernaudeau.net/HowTo-support-FAT64-on-Gentoo.html" rel="alternate"></link><updated>2015-06-02T18:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-02:HowTo-support-FAT64-on-Gentoo.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32.&lt;/p&gt;
+</summary><category term="Hardware"></category></entry><entry><title>HowTo support FAT64 on Gentoo</title><link href="http://didier.bernaudeau.net/HowTo-support-FAT64-on-Gentoo.html" rel="alternate"></link><updated>2015-06-02T18:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-02:HowTo-support-FAT64-on-Gentoo.html</id><summary type="html">&lt;p&gt;FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32.&lt;/p&gt;
 &lt;p&gt;This file systen is supported by Microsoft Windows (XP, Vista, Seven,...), MacOS, Linux and Android. For linux, FAT64 is not supported directly in the kernel but with FUSE (Filesystem in UserSpacE).&lt;/p&gt;
 &lt;p&gt;This article describes step by step how to support FAT64 on Gentoo Linux.&lt;/p&gt;
 
 &lt;div class="section" id="installation"&gt;
 &lt;h2&gt;Installation&lt;/h2&gt;
 &lt;p&gt;Kernel configuration :&lt;/p&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;File&lt;/span&gt; &lt;span class="err"&gt;systems&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;File&lt;/span&gt; &lt;span class="err"&gt;systems&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;FUSE&lt;/span&gt; &lt;span class="err"&gt;(Filesystem&lt;/span&gt; &lt;span class="err"&gt;in&lt;/span&gt; &lt;span class="err"&gt;Userspace)&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Character&lt;/span&gt; &lt;span class="err"&gt;device&lt;/span&gt; &lt;span class="err"&gt;in&lt;/span&gt; &lt;span class="err"&gt;Userspace&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;software installation :&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge sys-fs/fuse-exfat sys-fs/exfat-utils
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; emerge sys-fs/fuse-exfat sys-fs/exfat-utils
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="usage"&gt;
 &lt;h2&gt;Usage&lt;/h2&gt;
 &lt;p&gt;Format the partition&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mkfs.exfat /dev/sdxy
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; mkfs.exfat /dev/sdxy
 &lt;/pre&gt;
 &lt;p&gt;Check the partition&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; fsck.exfat /dev/sdxy
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; fsck.exfat /dev/sdxy
 &lt;/pre&gt;
 &lt;p&gt;Mount the partition&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mount -t exfat /dev/sdxy /mnt/usb
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; mount -t exfat /dev/sdxy /mnt/usb
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="references"&gt;
@@ -3027,13 +3256,14 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="Gentoo"></category></entry><entry><title>HowTo make a web site with Pelican hosted on GitHub Pages</title><link href="http://didier.bernaudeau.net/HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html" rel="alternate"></link><updated>2015-07-08T23:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-05-16:HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html</id><summary type="html">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;Pelican is a static site generator writed in Python. This means that you edit the content on your computer with a simple text editor. Then, a generator makes all HTML pages for the web site, including indexes for articles, categories and tags. In the end, your web site can be hosted easily on a simple HTTP server like GitHub Pages or Amazon S3.&lt;/p&gt;
+</summary><category term="Gentoo"></category></entry><entry><title>HowTo make a web site with Pelican hosted on GitHub Pages</title><link href="http://didier.bernaudeau.net/HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html" rel="alternate"></link><updated>2015-07-08T23:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-05-16:HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html</id><summary type="html">&lt;p&gt;Pelican is a static site generator writed in Python. This means that you edit the content on your computer with a simple text editor. Then, a generator makes all HTML pages for the web site, including indexes for articles, categories and tags. In the end, your web site can be hosted easily on a simple HTTP server like GitHub Pages or Amazon S3.&lt;/p&gt;
 &lt;p&gt;Unlike other CMS (Content Management System) like Wordpress or Drupal, Pelican has no web administration interface. In most cases, the administration interface has many vulnerabilies used to deface the website.&lt;/p&gt;
 &lt;p&gt;This article describes step by step how to make your web site with Pelican 3.5 on Gentoo Linux and how to host your web site on GitHub Pages.&lt;/p&gt;
 
 &lt;div class="section" id="install-pelican"&gt;
 &lt;h2&gt;Install Pelican&lt;/h2&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge pelican
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; emerge pelican
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="create-github-space"&gt;
@@ -3043,14 +3273,17 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;div class="section" id="dns-configuration"&gt;
 &lt;h2&gt;DNS Configuration&lt;/h2&gt;
 &lt;p&gt;Add a record in the DNS :&lt;/p&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;Type&lt;/span&gt; &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;CNAME&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;Type&lt;/span&gt; &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;CNAME&lt;/span&gt;
 &lt;span class="err"&gt;Name&lt;/span&gt; &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;didier.bernaudeau.net&lt;/span&gt;
 &lt;span class="err"&gt;Value&lt;/span&gt; &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;didier-bernaudeau.github.io.&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Check configuration with "dig" tool :&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge &lt;span class="nb"&gt;bind&lt;/span&gt;-tools
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; emerge &lt;span class="nb"&gt;bind&lt;/span&gt;-tools
 &lt;/pre&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; dig didier.bernaudeau.net +nostats +nocomments +nocmd
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; dig didier.bernaudeau.net +nostats +nocomments +nocmd
 &lt;span class="go"&gt;
 ; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.10.1-P1 &amp;lt;&amp;lt;&amp;gt;&amp;gt; didier.bernaudeau.net +nostats +nocomments +nocmd
 ;; global options: +cmd
@@ -3062,15 +3295,18 @@ github.map.fastly.net.  30      IN      A       185.31.17.133&lt;/span&gt;
 &lt;/div&gt;
 &lt;div class="section" id="create-local-directory"&gt;
 &lt;h2&gt;Create local directory&lt;/h2&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git clone https://github.com/didier-bernaudeau/didier-bernaudeau.github.io.git/ MyWebSite
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; git clone https://github.com/didier-bernaudeau/didier-bernaudeau.github.io.git/ MyWebSite
 &lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;MyWebSite
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="create-project"&gt;
 &lt;h2&gt;Create project&lt;/h2&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; pelican-quickstart
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; pelican-quickstart
 &lt;/pre&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Where&lt;/span&gt; &lt;span class="err"&gt;do&lt;/span&gt; &lt;span class="err"&gt;you&lt;/span&gt; &lt;span class="err"&gt;want&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;create&lt;/span&gt; &lt;span class="err"&gt;your&lt;/span&gt; &lt;span class="err"&gt;new&lt;/span&gt; &lt;span class="err"&gt;web&lt;/span&gt; &lt;span class="err"&gt;site?&lt;/span&gt; &lt;span class="k"&gt;[.]&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Where&lt;/span&gt; &lt;span class="err"&gt;do&lt;/span&gt; &lt;span class="err"&gt;you&lt;/span&gt; &lt;span class="err"&gt;want&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;create&lt;/span&gt; &lt;span class="err"&gt;your&lt;/span&gt; &lt;span class="err"&gt;new&lt;/span&gt; &lt;span class="err"&gt;web&lt;/span&gt; &lt;span class="err"&gt;site?&lt;/span&gt; &lt;span class="k"&gt;[.]&lt;/span&gt;
 &lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;What&lt;/span&gt; &lt;span class="err"&gt;will&lt;/span&gt; &lt;span class="err"&gt;be&lt;/span&gt; &lt;span class="err"&gt;the&lt;/span&gt; &lt;span class="err"&gt;title&lt;/span&gt; &lt;span class="err"&gt;of&lt;/span&gt; &lt;span class="err"&gt;this&lt;/span&gt; &lt;span class="err"&gt;web&lt;/span&gt; &lt;span class="err"&gt;site?&lt;/span&gt; &lt;span class="err"&gt;D.&lt;/span&gt; &lt;span class="err"&gt;Bernaudeau&lt;/span&gt;
 &lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Who&lt;/span&gt; &lt;span class="err"&gt;will&lt;/span&gt; &lt;span class="err"&gt;be&lt;/span&gt; &lt;span class="err"&gt;the&lt;/span&gt; &lt;span class="err"&gt;author&lt;/span&gt; &lt;span class="err"&gt;of&lt;/span&gt; &lt;span class="err"&gt;this&lt;/span&gt; &lt;span class="err"&gt;web&lt;/span&gt; &lt;span class="err"&gt;site?&lt;/span&gt; &lt;span class="err"&gt;D.&lt;/span&gt; &lt;span class="err"&gt;Bernaudeau&lt;/span&gt;
 &lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;What&lt;/span&gt; &lt;span class="err"&gt;will&lt;/span&gt; &lt;span class="err"&gt;be&lt;/span&gt; &lt;span class="err"&gt;the&lt;/span&gt; &lt;span class="err"&gt;default&lt;/span&gt; &lt;span class="err"&gt;language&lt;/span&gt; &lt;span class="err"&gt;of&lt;/span&gt; &lt;span class="err"&gt;this&lt;/span&gt; &lt;span class="err"&gt;web&lt;/span&gt; &lt;span class="err"&gt;site?&lt;/span&gt; &lt;span class="k"&gt;[en]&lt;/span&gt;
@@ -3091,7 +3327,8 @@ github.map.fastly.net.  30      IN      A       185.31.17.133&lt;/span&gt;
 &lt;div class="section" id="download-the-theme"&gt;
 &lt;h2&gt;Download the theme&lt;/h2&gt;
 &lt;p&gt;For my web site, I selected the theme "Bootstrap3" and the style sheet "Bootswatch".&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;MyWebSite
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;MyWebSite
 &lt;span class="gp"&gt;$&lt;/span&gt; git clone https://github.com/DandyDev/pelican-bootstrap3.git/ theme
 &lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;theme/static/css/
 &lt;span class="gp"&gt;$&lt;/span&gt; wget https://bootswatch.com/bower_components/bootstrap/dist/css/bootstrap.min.css
@@ -3101,38 +3338,47 @@ github.map.fastly.net.  30      IN      A       185.31.17.133&lt;/span&gt;
 &lt;/div&gt;
 &lt;div class="section" id="download-plugins"&gt;
 &lt;h2&gt;Download plugins&lt;/h2&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;MyWebSite
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;MyWebSite
 &lt;span class="gp"&gt;$&lt;/span&gt; git clone --recursive https://github.com/getpelican/pelican-plugins plugins
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="install-bootstrapify"&gt;
 &lt;h2&gt;Install Bootstrapify&lt;/h2&gt;
 &lt;p&gt;Bootstrapify is a pelican plugin that modify article and page html to use bootstrap's default classes, especially tables. Beautiful Soup is requiered for Bootstrapify.&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge dev-python/beautifulsoup
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; emerge dev-python/beautifulsoup
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="create-github-files"&gt;
 &lt;h2&gt;Create GitHub Files&lt;/h2&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;MyWebSite
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;MyWebSite
 &lt;span class="gp"&gt;$&lt;/span&gt; mkdir content/GitHubFiles
 &lt;/pre&gt;
 &lt;p&gt;Write your domain name in CNAME Files :&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; nano content/GitHubFiles/CNAME
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; nano content/GitHubFiles/CNAME
 &lt;/pre&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;didier.bernaudeau.net&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;didier.bernaudeau.net&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Disable indexation by web search engine :&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; nano content/GitHubFiles/robots.txt
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; nano content/GitHubFiles/robots.txt
 &lt;/pre&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;User-agent:&lt;/span&gt; &lt;span class="err"&gt;*&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;User-agent:&lt;/span&gt; &lt;span class="err"&gt;*&lt;/span&gt;
 &lt;span class="err"&gt;Disallow:/&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="pelican-configuration"&gt;
 &lt;h2&gt;Pelican Configuration&lt;/h2&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; nano pelicanconf.py
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; nano pelicanconf.py
 &lt;/pre&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="c1"&gt;# Hide Blogroll&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="c1"&gt;# Hide Blogroll&lt;/span&gt;
 &lt;span class="c1"&gt;#LINKS =&lt;/span&gt;
 
 &lt;span class="c1"&gt;# Hide Social widget&lt;/span&gt;
@@ -3176,9 +3422,11 @@ github.map.fastly.net.  30      IN      A       185.31.17.133&lt;/span&gt;
 &lt;/div&gt;
 &lt;div class="section" id="create-an-article-in-restructuredtext"&gt;
 &lt;h2&gt;Create an article in reStructuredText&lt;/h2&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; nano content/test.rst
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; nano content/test.rst
 &lt;/pre&gt;
-&lt;pre class="code ini literal-block"&gt;&lt;span class="err"&gt;Article&lt;/span&gt; &lt;span class="err"&gt;title&lt;/span&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;Article&lt;/span&gt; &lt;span class="err"&gt;title&lt;/span&gt;
 &lt;span class="c1"&gt;#############&lt;/span&gt;
 
 &lt;span class="err"&gt;:date:&lt;/span&gt; &lt;span class="err"&gt;AAAA-MM-JJ&lt;/span&gt; &lt;span class="err"&gt;HH:MM&lt;/span&gt;
@@ -3197,18 +3445,21 @@ github.map.fastly.net.  30      IN      A       185.31.17.133&lt;/span&gt;
 &lt;/div&gt;
 &lt;div class="section" id="generate-the-web-site"&gt;
 &lt;h2&gt;Generate the web site&lt;/h2&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; make html
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; make html
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="preview-the-web-site"&gt;
 &lt;h2&gt;Preview the web site&lt;/h2&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; make serve
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; make serve
 &lt;span class="gp"&gt;$&lt;/span&gt; firefox localhost:8000
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="publish-the-web-site-on-github"&gt;
 &lt;h2&gt;Publish the web site on GitHub&lt;/h2&gt;
-&lt;pre class="code console literal-block"&gt;&lt;span class="gp"&gt;$&lt;/span&gt; make github
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; make github
 &lt;span class="go"&gt;
 Username for 'https://github.com': didier-bernaudeau
 Password for 'https://didier-bernaudeau@github.com': *************************&lt;/span&gt;
@@ -3225,4 +3476,4 @@ Password for 'https://didier-bernaudeau@github.com': *************************&l
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-&lt;/body&gt;&lt;/html&gt;</summary><category term="Pelican"></category><category term="Gentoo"></category></entry></feed>
+</summary><category term="Pelican"></category><category term="Gentoo"></category></entry></feed>

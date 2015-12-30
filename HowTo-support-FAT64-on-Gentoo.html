@@ -13,13 +13,13 @@
 
         <meta name="author" content="Didier Bernaudeau" />
         <meta name="keywords" content="Gentoo" />
-        <meta name="description" content="FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32. This file systen is supported by Microsoft Windows (XP, Vista, Seven,...), MacOS, Linux and Android. For linux, FAT64 is not supported directly in the kernel but with FUSE (Filesystem in UserSpacE). This article describes step by step how to support FAT64 on Gentoo Linux." />
+        <meta name="description" content="FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32. This file systen is supported by Microsoft Windows (XP, Vista, Seven,...), MacOS, Linux and Android. For linux, FAT64 is not supported directly in the kernel but with FUSE (Filesystem in UserSpacE). This article describes step by step how to support FAT64 on Gentoo Linux." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="HowTo support FAT64 on Gentoo"/>
         <meta property="og:url" content="http://didier.bernaudeau.net/HowTo-support-FAT64-on-Gentoo.html"/>
-        <meta property="og:description" content="FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32. This file systen is supported by Microsoft Windows (XP, Vista, Seven,...), MacOS, Linux and Android. For linux, FAT64 is not supported directly in the kernel but with FUSE (Filesystem in UserSpacE). This article describes step by step how to support FAT64 on Gentoo Linux."/>
+        <meta property="og:description" content="FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32. This file systen is supported by Microsoft Windows (XP, Vista, Seven,...), MacOS, Linux and Android. For linux, FAT64 is not supported directly in the kernel but with FUSE (Filesystem in UserSpacE). This article describes step by step how to support FAT64 on Gentoo Linux."/>
         <meta property="article:published_time" content="2015-06-02" />
             <meta property="article:section" content="Tutorials" />
             <meta property="article:tag" content="Gentoo" />
@@ -108,31 +108,36 @@ My personal blog note            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <html><head></head><body><p>FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32.</p>
+                <p>FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32.</p>
 <p>This file systen is supported by Microsoft Windows (XP, Vista, Seven,...), MacOS, Linux and Android. For linux, FAT64 is not supported directly in the kernel but with FUSE (Filesystem in UserSpacE).</p>
 <p>This article describes step by step how to support FAT64 on Gentoo Linux.</p>
 
 <div class="section" id="installation">
 <h2>Installation</h2>
 <p>Kernel configuration :</p>
-<pre class="code ini literal-block"><span class="err">|</span>     <span class="err">File</span> <span class="err">systems</span>  <span class="err">---&gt;</span>
+<pre class="code ini literal-block">
+<span class="err">|</span>     <span class="err">File</span> <span class="err">systems</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">FUSE</span> <span class="err">(Filesystem</span> <span class="err">in</span> <span class="err">Userspace)</span> <span class="err">support</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Character</span> <span class="err">device</span> <span class="err">in</span> <span class="err">Userspace</span> <span class="err">support</span>
 </pre>
 <p>software installation :</p>
-<pre class="code console literal-block"><span class="gp">#</span> emerge sys-fs/fuse-exfat sys-fs/exfat-utils
+<pre class="code console literal-block">
+<span class="gp">#</span> emerge sys-fs/fuse-exfat sys-fs/exfat-utils
 </pre>
 </div>
 <div class="section" id="usage">
 <h2>Usage</h2>
 <p>Format the partition</p>
-<pre class="code console literal-block"><span class="gp">#</span> mkfs.exfat /dev/sdxy
+<pre class="code console literal-block">
+<span class="gp">#</span> mkfs.exfat /dev/sdxy
 </pre>
 <p>Check the partition</p>
-<pre class="code console literal-block"><span class="gp">#</span> fsck.exfat /dev/sdxy
+<pre class="code console literal-block">
+<span class="gp">#</span> fsck.exfat /dev/sdxy
 </pre>
 <p>Mount the partition</p>
-<pre class="code console literal-block"><span class="gp">#</span> mount -t exfat /dev/sdxy /mnt/usb
+<pre class="code console literal-block">
+<span class="gp">#</span> mount -t exfat /dev/sdxy /mnt/usb
 </pre>
 </div>
 <div class="section" id="references">
@@ -143,7 +148,7 @@ My personal blog note            </a>
 </ul>
 </blockquote>
 </div>
-</body></html>
+
             </div>
             <!-- /.entry-content -->
         </article>
@@ -153,6 +158,9 @@ My personal blog note            </a>
         <div class="col-sm-3" id="sidebar">
             <aside>
 <div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/avatar.png"/>
+        </p>
     <p>
         <strong>About D. Bernaudeau</strong><br/>
         I’m Didier Bernaudeau, an Information Systems Security Professional. This site is a way to note some experimentations.
@@ -165,6 +173,91 @@ My personal blog note            </a>
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
+                            Certificate
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
+                            Cryptography
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/development.html">
+                            Development
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-0">
+                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
+                            Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
+                            Hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/html.html">
+                            HTML
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/linux.html">
+                            Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/network.html">
+                            Network
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/news.html">
+                            News
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/php.html">
+                            PHP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/pki.html">
+                            PKI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/software.html">
+                            Software
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
+                            Virtualization
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/website.html">
+                            WebSite
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/windows.html">
+                            Windows
+                        </a>
+                    </li>
                 </ul>
             </li>
 

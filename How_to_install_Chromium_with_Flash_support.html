@@ -96,7 +96,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-10-23T23:45:00+02:00"> ven. 23 octobre 2015</time>
+                <i class="fa fa-calendar"></i><time datetime="2015-12-27T21:45:00+01:00"> dim. 27 décembre 2015</time>
             </span>
 
 
@@ -108,38 +108,45 @@ My personal blog note            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <html><head></head><body><p>In 2012, Adobe has stopped to upgrade Flash Player for Linux. So, the last version of Flash Player plugin is 11.2 that will be maintained until 2017. To continue to take the advantage of Flash content, we must find an alternative solution.</p>
+                <p>In 2012, Adobe has stopped to upgrade Flash Player for Linux. So, the last version of Flash Player plugin is 11.2 that will be maintained until 2017. To continue to take the advantage of Flash content, we must find an alternative solution.</p>
 <p>This tutorial describes how to install Chromium and the Flash Pepper Plugin (PPAPI) on Gentoo Linux and how to configure Chromium for graphic hardware acceleration.</p>
 
 <div class="section" id="chromium">
 <h2>Chromium</h2>
 <p>Define local USE flags</p>
-<pre class="code console literal-block"><span class="gp">#</span> nano /etc/portage/package.use
+<pre class="code console literal-block">
+<span class="gp">#</span> nano /etc/portage/package.use
 <span class="gp">&gt;</span><span class="o">=</span>media-libs/libvpx-1.4.0       postproc
 </pre>
 <p>Install Chromium</p>
-<pre class="code console literal-block"><span class="gp">#</span> emerge -pv chromium
+<pre class="code console literal-block">
+<span class="gp">#</span> emerge chromium
 </pre>
 <p>To force Chromium to use hardware acceleration, open <a class="reference external" href="chrome://flags">chrome://flags</a> and enable "Override software rendering list". To check if Chromium uses hardware acceleration, open <a class="reference external" href="chrome://gpu">chrome://gpu</a> and look under "Graphics Feature status". All (or at least most of) the features should say "hardware accelerated".</p>
 </div>
 <div class="section" id="flash-player">
 <h2>Flash Player</h2>
-<p>To get Chrome and its plugins, download the RPM package for Linux 64bits on <a class="reference external" href="www.google.fr/chrome/">Google</a></p>
+<p>To get Chrome and its plugins, download the RPM package for Linux 64bits on <a class="reference external" href="https://www.google.fr/chrome/">Google</a></p>
 <p>Extract files from RPM package</p>
-<pre class="code console literal-block"><span class="gp">$</span> rpmunpack google-chrome-stable_current_x86_64.rpm
+<pre class="code console literal-block">
+<span class="gp">$</span> rpmunpack google-chrome-stable_current_x86_64.rpm
 </pre>
 <p>Print the Flash Player version</p>
-<pre class="code console literal-block"><span class="gp">#</span> cat Chrome/google-chrome-stable_current_x86_64/opt/google/chrome/PepperFlash/manifest.json
+<pre class="code console literal-block">
+<span class="gp">$</span> cat google-chrome-stable_current_x86_64/opt/google/chrome/PepperFlash/manifest.json
 </pre>
 <p>Copy the Flash Player file</p>
-<pre class="code console literal-block"><span class="gp">#</span> cp Chrome/google-chrome-stable_current_x86_64/opt/google/chrome/PepperFlash/libpepflashplayer.so /usr/lib/chromium-browser/
+<pre class="code console literal-block">
+<span class="gp">#</span> cp google-chrome-stable_current_x86_64/opt/google/chrome/PepperFlash/libpepflashplayer.so /usr/lib/chromium-browser/
 </pre>
 <p>Add Flash Player to Chromium</p>
-<pre class="code console literal-block"><span class="gp">#</span> nano /etc/chromium/default
-<span class="go">CHROMIUM_FLAGS="--ppapi-flash-path=/usr/lib/chromium-browser/libpepflashplayer.so --ppapi-flash-version=19.0.0.207"</span>
+<pre class="code console literal-block">
+<span class="gp">#</span> nano /etc/chromium/default
+<span class="go">CHROMIUM_FLAGS="--ppapi-flash-path=/usr/lib/chromium-browser/libpepflashplayer.so --ppapi-flash-version=20.0.0.228"</span>
 </pre>
+<p>To get information about flash plugin, open <a class="reference external" href="chrome://flash">chrome://flash</a></p>
 </div>
-</body></html>
+
             </div>
             <!-- /.entry-content -->
         </article>
@@ -149,6 +156,9 @@ My personal blog note            </a>
         <div class="col-sm-3" id="sidebar">
             <aside>
 <div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="/images/avatar.png"/>
+        </p>
     <p>
         <strong>About D. Bernaudeau</strong><br/>
         I’m Didier Bernaudeau, an Information Systems Security Professional. This site is a way to note some experimentations.
@@ -161,6 +171,91 @@ My personal blog note            </a>
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
+                            Certificate
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
+                            Cryptography
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/development.html">
+                            Development
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-0">
+                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
+                            Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
+                            Hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/html.html">
+                            HTML
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/linux.html">
+                            Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/network.html">
+                            Network
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/news.html">
+                            News
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/php.html">
+                            PHP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/pki.html">
+                            PKI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/software.html">
+                            Software
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
+                            Virtualization
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/website.html">
+                            WebSite
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/windows.html">
+                            Windows
+                        </a>
+                    </li>
                 </ul>
             </li>
 

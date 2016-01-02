@@ -1,5 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2015-12-27T21:45:00+01:00</updated><entry><title>How to install Chromium with Flash support</title><link href="http://didier.bernaudeau.net/How_to_install_Chromium_with_Flash_support.html" rel="alternate"></link><updated>2015-12-27T21:45:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-23:How_to_install_Chromium_with_Flash_support.html</id><summary type="html">&lt;p&gt;In 2012, Adobe has stopped to upgrade Flash Player for Linux. So, the last version of Flash Player plugin is 11.2 that will be maintained until 2017. To continue to take the advantage of Flash content, we must find an alternative solution.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2016-01-02T16:02:00+01:00</updated><entry><title>How to migrate from OpenRC to SystemD</title><link href="http://didier.bernaudeau.net/How_to_migrate_from_OpenRC_to_SystemD.html" rel="alternate"></link><updated>2016-01-02T16:02:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-01-01:How_to_migrate_from_OpenRC_to_SystemD.html</id><summary type="html">&lt;p&gt;SystemD is an initialization system for Linux created in 2010. Now, most of Linux distribution (Debian, Arch, ...) use SystemD instead of original initialization system (sysvinit, upstart, ...).&lt;/p&gt;
+&lt;p&gt;However, the default initialization system used by Gentoo Linux is OpenRC which is slower than SystemD. This article describes how to replace OpenRC by SystemD on Gentoo Linux.&lt;/p&gt;
+
+&lt;div class="section" id="kernel-configuration"&gt;
+&lt;h2&gt;Kernel configuration&lt;/h2&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;Gentoo&lt;/span&gt; &lt;span class="err"&gt;Linux&lt;/span&gt; &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Support&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;init&lt;/span&gt; &lt;span class="err"&gt;systems,&lt;/span&gt; &lt;span class="err"&gt;system&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;service&lt;/span&gt; &lt;span class="err"&gt;managers&lt;/span&gt; &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt; &lt;span class="err"&gt;OpenRC,&lt;/span&gt; &lt;span class="err"&gt;runit&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;other&lt;/span&gt; &lt;span class="err"&gt;script&lt;/span&gt; &lt;span class="err"&gt;based&lt;/span&gt; &lt;span class="err"&gt;systems&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;managers&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;systemd&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;General&lt;/span&gt; &lt;span class="err"&gt;setup&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Configure&lt;/span&gt; &lt;span class="err"&gt;standard&lt;/span&gt; &lt;span class="err"&gt;kernel&lt;/span&gt; &lt;span class="err"&gt;features&lt;/span&gt; &lt;span class="err"&gt;(expert&lt;/span&gt; &lt;span class="err"&gt;users)&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Enable&lt;/span&gt; &lt;span class="err"&gt;eventpoll&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Enable&lt;/span&gt; &lt;span class="err"&gt;signalfd()&lt;/span&gt; &lt;span class="err"&gt;system&lt;/span&gt; &lt;span class="err"&gt;call&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Enable&lt;/span&gt; &lt;span class="err"&gt;timerfd()&lt;/span&gt; &lt;span class="err"&gt;system&lt;/span&gt; &lt;span class="err"&gt;call&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;Processor&lt;/span&gt; &lt;span class="err"&gt;type&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;features&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="na"&gt;|      | (root&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/dev/sda6 init=/usr/lib/systemd/systemd) Built-in kernel command string&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Another options are mandatory or recommended but they are already enabled. More informations on &lt;a class="reference external" href="https://wiki.gentoo.org/wiki/Systemd"&gt;wiki.gentoo.org/wiki/Systemd&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="systemd-installation"&gt;
+&lt;h2&gt;Systemd installation&lt;/h2&gt;
+&lt;p&gt;Select profil for systemd (default/linux/amd64/13.0/desktop/kde/systemd)&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; eselect profile list
+&lt;span class="gp"&gt;#&lt;/span&gt; eselect profile &lt;span class="nb"&gt;set &lt;/span&gt;7
+&lt;/pre&gt;
+&lt;p&gt;Update system&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; emerge -DN @world
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="systemd-configuration"&gt;
+&lt;h2&gt;Systemd configuration&lt;/h2&gt;
+&lt;p&gt;Define hostname&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/hostname
+&lt;span class="go"&gt;lenovo&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Define keyboard layout&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; localectl list-keymaps
+&lt;span class="gp"&gt;#&lt;/span&gt; localectl &lt;span class="nb"&gt;set&lt;/span&gt;-keymap fr-latin9
+&lt;/pre&gt;
+&lt;p&gt;Define time zone&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; timedatectl list-timezones
+&lt;span class="gp"&gt;#&lt;/span&gt; timedatectl &lt;span class="nb"&gt;set&lt;/span&gt;-timezone Europe/Paris
+&lt;/pre&gt;
+&lt;p&gt;Define NTP client&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/systemd/timesyncd.conf
+&lt;/pre&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="na"&gt;NTP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;0.fr.pool.ntp.org 1.fr.pool.ntp.org 2.fr.pool.ntp.org 3.fr.pool.ntp.org&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Start NTP client&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable &lt;/span&gt;systemd-timesyncd
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl start systemd-timesyncd
+&lt;span class="gp"&gt;#&lt;/span&gt; timedatectl &lt;span class="nb"&gt;set&lt;/span&gt;-ntp &lt;span class="nb"&gt;true&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Check NTP client&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; timedatectl status
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="enable-services"&gt;
+&lt;h2&gt;Enable services&lt;/h2&gt;
+&lt;p&gt;KDM (KDE Display Manager)&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable &lt;/span&gt;kdm.service
+&lt;/pre&gt;
+&lt;p&gt;NetworkManager&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable &lt;/span&gt;NetworkManager.service
+&lt;/pre&gt;
+&lt;p&gt;NFS (Network File System)&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable &lt;/span&gt;nfs-client.target
+&lt;/pre&gt;
+&lt;p&gt;AutoFS&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable &lt;/span&gt;autofs.service
+&lt;/pre&gt;
+&lt;/div&gt;
+</summary><category term="Gentoo"></category></entry><entry><title>How to install Chromium with Flash support</title><link href="http://didier.bernaudeau.net/How_to_install_Chromium_with_Flash_support.html" rel="alternate"></link><updated>2015-12-27T21:45:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-23:How_to_install_Chromium_with_Flash_support.html</id><summary type="html">&lt;p&gt;In 2012, Adobe has stopped to upgrade Flash Player for Linux. So, the last version of Flash Player plugin is 11.2 that will be maintained until 2017. To continue to take the advantage of Flash content, we must find an alternative solution.&lt;/p&gt;
 &lt;p&gt;This tutorial describes how to install Chromium and the Flash Pepper Plugin (PPAPI) on Gentoo Linux and how to configure Chromium for graphic hardware acceleration.&lt;/p&gt;
 
 &lt;div class="section" id="chromium"&gt;

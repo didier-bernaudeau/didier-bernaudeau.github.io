@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>CORS (Cross-Origin Resource Sharing) - My personal blog note</title>
+    <title>How to migrate from OpenRC to SystemD - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,24 +9,20 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/How_to_migrate_from_OpenRC_to_SystemD.html">
 
         <meta name="author" content="Didier Bernaudeau" />
-        <meta name="keywords" content="Development,WebSite,HTML,JavaScript,PHP" />
-        <meta name="description" content="CORS (Cross-Origin Resource Sharing) is a mechanism, define by W3C, which provides a way for web servers to support cross-site access controls, which enable secure cross-site data transfers. This mechanism works by adding new HTTP headers named Access-Control-Allow-Origin." />
+        <meta name="keywords" content="Gentoo" />
+        <meta name="description" content="SystemD is an initialization system for Linux created in 2010. Now, most of Linux distribution (Debian, Arch, ...) use SystemD instead of original initialization system (sysvinit, upstart, ...). However, the default initialization system used by Gentoo Linux is OpenRC which is slower than SystemD. This article describes how to replace OpenRC by SystemD on Gentoo Linux." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="CORS (Cross-Origin Resource Sharing)"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html"/>
-        <meta property="og:description" content="CORS (Cross-Origin Resource Sharing) is a mechanism, define by W3C, which provides a way for web servers to support cross-site access controls, which enable secure cross-site data transfers. This mechanism works by adding new HTTP headers named Access-Control-Allow-Origin."/>
-        <meta property="article:published_time" content="2015-08-30" />
-            <meta property="article:section" content="Articles" />
-            <meta property="article:tag" content="Development" />
-            <meta property="article:tag" content="WebSite" />
-            <meta property="article:tag" content="HTML" />
-            <meta property="article:tag" content="JavaScript" />
-            <meta property="article:tag" content="PHP" />
+        <meta property="og:title" content="How to migrate from OpenRC to SystemD"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/How_to_migrate_from_OpenRC_to_SystemD.html"/>
+        <meta property="og:description" content="SystemD is an initialization system for Linux created in 2010. Now, most of Linux distribution (Debian, Arch, ...) use SystemD instead of original initialization system (sysvinit, upstart, ...). However, the default initialization system used by Gentoo Linux is OpenRC which is slower than SystemD. This article describes how to replace OpenRC by SystemD on Gentoo Linux."/>
+        <meta property="article:published_time" content="2016-01-01" />
+            <meta property="article:section" content="Tutorials" />
+            <meta property="article:tag" content="Gentoo" />
             <meta property="article:author" content="Didier Bernaudeau" />
 
 
@@ -42,8 +38,8 @@
 
 
 
-        <link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" type="application/atom+xml" rel="alternate"
-              title="My personal blog note Articles ATOM Feed"/>
+        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Tutorials ATOM Feed"/>
 
 </head>
 <body>
@@ -83,10 +79,10 @@ My personal blog note            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html"
+                    <a href="http://didier.bernaudeau.net/How_to_migrate_from_OpenRC_to_SystemD.html"
                        rel="bookmark"
-                       title="Permalink to CORS (Cross-Origin Resource Sharing)">
-                        CORS (Cross-Origin Resource Sharing)
+                       title="Permalink to How to migrate from OpenRC to SystemD">
+                        How to migrate from OpenRC to SystemD
                     </a>
                 </h1>
             </header>
@@ -96,11 +92,11 @@ My personal blog note            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-08-30T15:14:00+02:00"> dim. 30 août 2015</time>
+        <i class="fa fa-calendar"></i><time datetime="2016-01-01T19:20:00+01:00"> ven. 01 janvier 2016</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-09-01T23:44:00+02:00"> mar. 01 septembre 2015</time>
+                <i class="fa fa-calendar"></i><time datetime="2016-01-02T16:02:00+01:00"> sam. 02 janvier 2016</time>
             </span>
 
 
@@ -108,65 +104,101 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/development.html">Development</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/website.html">WebSite</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/html.html">HTML</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/javascript.html">JavaScript</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/php.html">PHP</a>
+	<a href="http://didier.bernaudeau.net/tag/gentoo.html">Gentoo</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>CORS (Cross-Origin Resource Sharing) is a mechanism, define by W3C, which provides a way for web servers to support cross-site access controls, which enable secure cross-site data transfers.</p>
-<p>This mechanism works by adding new HTTP headers named Access-Control-Allow-Origin.</p>
+                <p>SystemD is an initialization system for Linux created in 2010. Now, most of Linux distribution (Debian, Arch, ...) use SystemD instead of original initialization system (sysvinit, upstart, ...).</p>
+<p>However, the default initialization system used by Gentoo Linux is OpenRC which is slower than SystemD. This article describes how to replace OpenRC by SystemD on Gentoo Linux.</p>
 
-<div class="section" id="step-1-create-webservice">
-<h2>Step 1 : Create WebService</h2>
-<p>Create a PHP script named "cors.php" and hosted on "www.example.com" :</p>
-<pre class="code php literal-block">
-<span class="cp">&lt;?</span>
-  <span class="nb">header</span><span class="p">(</span><span class="s2">"Access-Control-Allow-Origin: http://hostname:8000"</span><span class="p">);</span>
-  <span class="k">echo</span> <span class="nb">date</span><span class="p">(</span><span class="s2">"Y-m-d H:i:s"</span><span class="p">);</span>
-<span class="cp">?&gt;</span>
+<div class="section" id="kernel-configuration">
+<h2>Kernel configuration</h2>
+<pre class="code ini literal-block">
+<span class="err">|</span> <span class="err">Gentoo</span> <span class="err">Linux</span> <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>     <span class="err">Support</span> <span class="err">for</span> <span class="err">init</span> <span class="err">systems,</span> <span class="err">system</span> <span class="err">and</span> <span class="err">service</span> <span class="err">managers</span> <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span> <span class="err">OpenRC,</span> <span class="err">runit</span> <span class="err">and</span> <span class="err">other</span> <span class="err">script</span> <span class="err">based</span> <span class="err">systems</span> <span class="err">and</span> <span class="err">managers</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">systemd</span>
+<span class="err">|</span>
+<span class="err">|</span> <span class="err">General</span> <span class="err">setup</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Configure</span> <span class="err">standard</span> <span class="err">kernel</span> <span class="err">features</span> <span class="err">(expert</span> <span class="err">users)</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Enable</span> <span class="err">eventpoll</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Enable</span> <span class="err">signalfd()</span> <span class="err">system</span> <span class="err">call</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Enable</span> <span class="err">timerfd()</span> <span class="err">system</span> <span class="err">call</span>
+<span class="err">|</span>
+<span class="err">|</span> <span class="err">Processor</span> <span class="err">type</span> <span class="err">and</span> <span class="err">features</span>  <span class="err">---&gt;</span>
+<span class="na">|      | (root</span><span class="o">=</span><span class="s">/dev/sda6 init=/usr/lib/systemd/systemd) Built-in kernel command string</span>
+</pre>
+<p>Another options are mandatory or recommended but they are already enabled. More informations on <a class="reference external" href="https://wiki.gentoo.org/wiki/Systemd">wiki.gentoo.org/wiki/Systemd</a></p>
+</div>
+<div class="section" id="systemd-installation">
+<h2>Systemd installation</h2>
+<p>Select profil for systemd (default/linux/amd64/13.0/desktop/kde/systemd)</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> eselect profile list
+<span class="gp">#</span> eselect profile <span class="nb">set </span>7
+</pre>
+<p>Update system</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> emerge -DN @world
 </pre>
 </div>
-<div class="section" id="step-2-create-html-web-page">
-<h2>Step 2 : Create HTML web page</h2>
-<p>Create a HTML file named "cors.html" and hosted on your computer :</p>
-<pre class="code html literal-block">
-<span class="cp">&lt;!doctype html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
- <span class="nt">&lt;body&gt;</span>
-
- <span class="nt">&lt;script&gt;</span>
-  <span class="kd">var</span> <span class="nx">xmlHttp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-  <span class="nx">xmlHttp</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span> <span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"http://www.example.com/cors.php"</span><span class="p">,</span> <span class="kc">false</span> <span class="p">);</span>
-  <span class="nx">xmlHttp</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span> <span class="kc">null</span> <span class="p">);</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="nx">xmlHttp</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
- <span class="nt">&lt;/script&gt;</span>
-
- <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
+<div class="section" id="systemd-configuration">
+<h2>Systemd configuration</h2>
+<p>Define hostname</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> nano /etc/hostname
+<span class="go">lenovo</span>
 </pre>
-<p>To test easily, start a web server with python (in the directory where the file "cors.html" is located)</p>
-<pre class="code shell literal-block">
-python -m SimpleHTTPServer
+<p>Define keyboard layout</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> localectl list-keymaps
+<span class="gp">#</span> localectl <span class="nb">set</span>-keymap fr-latin9
 </pre>
-<p>Then, open web page from <a class="reference external" href="http://hostname:8000/cors.html">http://hostname:8000/cors.html</a></p>
+<p>Define time zone</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> timedatectl list-timezones
+<span class="gp">#</span> timedatectl <span class="nb">set</span>-timezone Europe/Paris
+</pre>
+<p>Define NTP client</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> nano /etc/systemd/timesyncd.conf
+</pre>
+<pre class="code ini literal-block">
+<span class="na">NTP</span><span class="o">=</span><span class="s">0.fr.pool.ntp.org 1.fr.pool.ntp.org 2.fr.pool.ntp.org 3.fr.pool.ntp.org</span>
+</pre>
+<p>Start NTP client</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> systemctl <span class="nb">enable </span>systemd-timesyncd
+<span class="gp">#</span> systemctl start systemd-timesyncd
+<span class="gp">#</span> timedatectl <span class="nb">set</span>-ntp <span class="nb">true</span>
+</pre>
+<p>Check NTP client</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> timedatectl status
+</pre>
+</div>
+<div class="section" id="enable-services">
+<h2>Enable services</h2>
+<p>KDM (KDE Display Manager)</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> systemctl <span class="nb">enable </span>kdm.service
+</pre>
+<p>NetworkManager</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> systemctl <span class="nb">enable </span>NetworkManager.service
+</pre>
+<p>NFS (Network File System)</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> systemctl <span class="nb">enable </span>nfs-client.target
+</pre>
+<p>AutoFS</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> systemctl <span class="nb">enable </span>autofs.service
+</pre>
 </div>
 
             </div>
             <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://didier.bernaudeau.net/Same_Origin_Policy.html">SOP (Same-Origin Policy)</a></li>
-        <li><a href="http://didier.bernaudeau.net/JSON_with_Padding.html">JSONP (JSON with Padding)</a></li>
-    </ul>
-</section>
         </article>
     </section>
 

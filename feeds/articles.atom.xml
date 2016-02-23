@@ -1,5 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2015-12-30T14:40:00+01:00</updated><entry><title>Technical software</title><link href="http://didier.bernaudeau.net/Technical_Software.html" rel="alternate"></link><updated>2015-12-30T14:40:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-12-30:Technical_Software.html</id><summary type="html">&lt;p&gt;This article indexes some technical softwares (Application servers, database management system, virtualization, ...).&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2016-02-23T23:16:00+01:00</updated><entry><title>Software for defensive security team</title><link href="http://didier.bernaudeau.net/Software_for_defensive_security_team.html" rel="alternate"></link><updated>2016-02-23T22:49:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-02-23:Software_for_defensive_security_team.html</id><summary type="html">&lt;p&gt;This article indexes some softwares for defensive security teams.&lt;/p&gt;
+
+&lt;div class="section" id="athentication"&gt;
+&lt;h2&gt;Athentication&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Adaptive Authentication (by RSA)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="access-manager"&gt;
+&lt;h2&gt;Access Manager&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;IBM Tivoli Access Manager (aka WebSEAL)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="siem"&gt;
+&lt;h2&gt;SIEM&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Splunk&lt;/li&gt;
+&lt;li&gt;Elasticsearch &amp;amp; Kibana&lt;/li&gt;
+&lt;li&gt;ArcSight (by HP)&lt;/li&gt;
+&lt;li&gt;Pentaho (By Hitachi)&lt;/li&gt;
+&lt;li&gt;Reveelium (By Itrust)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ddos-protection"&gt;
+&lt;h2&gt;DDOS protection&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Radware&lt;/li&gt;
+&lt;li&gt;Akamai (Prolexic / Kona)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="framework"&gt;
+&lt;h2&gt;Framework&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Java - ESAPI 2.1.0.1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+</summary><category term="Software"></category></entry><entry><title>Software for offensive security team</title><link href="http://didier.bernaudeau.net/Software_for_offensive_security_team.html" rel="alternate"></link><updated>2016-02-23T22:45:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-02-23:Software_for_offensive_security_team.html</id><summary type="html">&lt;p&gt;This article indexes some softwares for offensive security teams.&lt;/p&gt;
+
+&lt;div class="section" id="password-cracker"&gt;
+&lt;h2&gt;Password cracker&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.openwall.com/john/"&gt;John the Ripper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://hashcat.net/oclhashcat"&gt;oclHashcat&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="other-tools"&gt;
+&lt;h2&gt;Other tools&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Metasploit Framework&lt;/li&gt;
+&lt;li&gt;Meterpreter&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.powershellempire.com/"&gt;PowerShell Empire&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/infobyte/evilgrade"&gt;Evilgrade&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+</summary><category term="Software"></category></entry><entry><title>Technical software</title><link href="http://didier.bernaudeau.net/Technical_Software.html" rel="alternate"></link><updated>2016-02-23T23:16:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-12-30:Technical_Software.html</id><summary type="html">&lt;p&gt;This article indexes some technical softwares (Application servers, database management system, virtualization, ...).&lt;/p&gt;
 
 &lt;div class="section" id="database-management-system"&gt;
 &lt;h2&gt;Database Management System&lt;/h2&gt;
@@ -20,6 +89,19 @@
 &lt;li&gt;WebLogic (Oracle)&lt;/li&gt;
 &lt;li&gt;GlassFish (Oracle)&lt;/li&gt;
 &lt;li&gt;WebSphere Application Server (IBM)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="api-management"&gt;
+&lt;h2&gt;API Management&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;API Umbrella&lt;/li&gt;
+&lt;li&gt;Mashape - Kong&lt;/li&gt;
+&lt;li&gt;WSO2 - API Manager&lt;/li&gt;
+&lt;li&gt;IBM - API Management (Based on DataPower)&lt;/li&gt;
+&lt;li&gt;Axway - API Management&lt;/li&gt;
+&lt;li&gt;Tibco - Mashery - API Management&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
@@ -315,7 +397,7 @@ python -m SimpleHTTPServer
 &lt;blockquote class="pull-quote"&gt;
 Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at &lt;a class="reference external" href="http://www.example.com/sop.php"&gt;http://www.example.com/sop.php&lt;/a&gt;. This can be fixed by moving the resource to the same domain or enabling CORS.&lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Development"></category><category term="WebSite"></category><category term="HTML"></category><category term="JavaScript"></category><category term="PHP"></category></entry><entry><title>TLS: Audit tools</title><link href="http://didier.bernaudeau.net/TLS_Audit_tools.html" rel="alternate"></link><updated>2015-09-30T07:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-04:TLS_Audit_tools.html</id><summary type="html">&lt;p&gt;This memo lists the tools necessary to audit the TLS configuration. Moreover, a compliance form template is available to formalize the audit report.&lt;/p&gt;
+</summary><category term="Development"></category><category term="WebSite"></category><category term="HTML"></category><category term="JavaScript"></category><category term="PHP"></category></entry><entry><title>TLS: Audit tools</title><link href="http://didier.bernaudeau.net/TLS_Audit_tools.html" rel="alternate"></link><updated>2016-02-17T08:16:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-04:TLS_Audit_tools.html</id><summary type="html">&lt;p&gt;This memo lists the tools necessary to audit the TLS configuration. Moreover, a compliance form template is available to formalize the audit report.&lt;/p&gt;
 
 &lt;div class="section" id="audit-tools"&gt;
 &lt;h2&gt;Audit Tools&lt;/h2&gt;
@@ -342,6 +424,11 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 &lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;cipherscan
 &lt;span class="gp"&gt;$&lt;/span&gt; ./cipherscan www.exemple.com
 &lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ssl-scan"&gt;
+&lt;h3&gt;SSL Scan&lt;/h3&gt;
+&lt;blockquote&gt;
+Website : &lt;a class="reference external" href="https://sourceforge.net/projects/sslscan/"&gt;https://sourceforge.net/projects/sslscan/&lt;/a&gt;&lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="compliance-form"&gt;

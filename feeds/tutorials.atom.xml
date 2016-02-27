@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2016-01-02T16:02:00+01:00</updated><entry><title>How to migrate from OpenRC to SystemD</title><link href="http://didier.bernaudeau.net/How_to_migrate_from_OpenRC_to_SystemD.html" rel="alternate"></link><updated>2016-01-02T16:02:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-01-01:How_to_migrate_from_OpenRC_to_SystemD.html</id><summary type="html">&lt;p&gt;SystemD is an initialization system for Linux created in 2010. Now, most of Linux distribution (Debian, Arch, ...) use SystemD instead of original initialization system (sysvinit, upstart, ...).&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2016-02-25T12:26:00+01:00</updated><entry><title>How to migrate from OpenRC to SystemD</title><link href="http://didier.bernaudeau.net/How_to_migrate_from_OpenRC_to_SystemD.html" rel="alternate"></link><updated>2016-02-25T12:26:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-01-01:How_to_migrate_from_OpenRC_to_SystemD.html</id><summary type="html">&lt;p&gt;SystemD is an initialization system for Linux created in 2010. Now, most of Linux distribution (Debian, Arch, ...) use SystemD instead of original initialization system (sysvinit, upstart, ...).&lt;/p&gt;
 &lt;p&gt;However, the default initialization system used by Gentoo Linux is OpenRC which is slower than SystemD. This article describes how to replace OpenRC by SystemD on Gentoo Linux.&lt;/p&gt;
 
 &lt;div class="section" id="kernel-configuration"&gt;
@@ -85,6 +85,10 @@
 &lt;p&gt;AutoFS&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable &lt;/span&gt;autofs.service
+&lt;/pre&gt;
+&lt;p&gt;libVirtd&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl stop libvirtd
 &lt;/pre&gt;
 &lt;/div&gt;
 </summary><category term="Gentoo"></category></entry><entry><title>How to install Chromium with Flash support</title><link href="http://didier.bernaudeau.net/How_to_install_Chromium_with_Flash_support.html" rel="alternate"></link><updated>2015-12-27T21:45:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-23:How_to_install_Chromium_with_Flash_support.html</id><summary type="html">&lt;p&gt;In 2012, Adobe has stopped to upgrade Flash Player for Linux. So, the last version of Flash Player plugin is 11.2 that will be maintained until 2017. To continue to take the advantage of Flash content, we must find an alternative solution.&lt;/p&gt;

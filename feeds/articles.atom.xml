@@ -73,6 +73,15 @@
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.openwall.com/john/"&gt;John the Ripper&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://hashcat.net/oclhashcat"&gt;oclHashcat&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/sparell/phraser"&gt;Phraser&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="reverse-engineering"&gt;
+&lt;h3&gt;Reverse engineering&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.zynamics.com/software.html"&gt;BinDiff&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
@@ -82,6 +91,7 @@
 &lt;ul class="simple"&gt;
 &lt;li&gt;Metasploit Framework&lt;/li&gt;
 &lt;li&gt;Meterpreter&lt;/li&gt;
+&lt;li&gt;Burp Proxy&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.powershellempire.com/"&gt;PowerShell Empire&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://github.com/infobyte/evilgrade"&gt;Evilgrade&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -110,6 +120,7 @@
 &lt;li&gt;kovter&lt;/li&gt;
 &lt;li&gt;Cerber&lt;/li&gt;
 &lt;li&gt;Locky&lt;/li&gt;
+&lt;li&gt;TeslaCrypt&lt;/li&gt;
 &lt;li&gt;KeRanger (for OS X)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;

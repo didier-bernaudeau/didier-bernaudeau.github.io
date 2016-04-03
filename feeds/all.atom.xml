@@ -1,5 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2016-03-07T22:58:00+01:00</updated><entry><title>Press review of Mars 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_Mars_2016.html" rel="alternate"></link><updated>2016-03-07T22:25:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-03-01:Press_review_of_Mars_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2016-04-03T12:39:00+02:00</updated><entry><title>Certificate fields and extensions</title><link href="http://didier.bernaudeau.net/Certificate_fields.html" rel="alternate"></link><updated>2016-04-03T12:39:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-04-03:Certificate_fields.html</id><summary type="html">&lt;p&gt;The fields are defined by the &lt;a class="reference external" href="https://tools.ietf.org/html/rfc5280"&gt;RFC5280&lt;/a&gt;. This post is a memo to remind the main certificate fields.&lt;/p&gt;
+
+&lt;div class="section" id="basic-certificate-fields"&gt;
+&lt;h2&gt;Basic Certificate Fields&lt;/h2&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;colgroup&gt;
+&lt;col width="16%"&gt;&lt;/col&gt;
+&lt;col width="60%"&gt;&lt;/col&gt;
+&lt;col width="8%"&gt;&lt;/col&gt;
+&lt;col width="8%"&gt;&lt;/col&gt;
+&lt;col width="8%"&gt;&lt;/col&gt;
+&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Field&lt;/td&gt;
+&lt;td&gt;Description&lt;/td&gt;
+&lt;td&gt;Root CA&lt;/td&gt;
+&lt;td&gt;Sub CA&lt;/td&gt;
+&lt;td&gt;End-use&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Subject&lt;/td&gt;
+&lt;td&gt;The subject must be populated with a non-empty distinguished name.
+The DN must be defined, at least: Common Name, Organization Name and Organization Unit&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;No (if SAN
+is used)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Serial Number&lt;/td&gt;
+&lt;td&gt;This is certificate identifier.
+So it muts be unique for each certificate issued by a given CA.
+According to best practice, the first serial number must be defined randomly.
+Then, the number must be increased randomly.&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="section" id="certificate-extensions"&gt;
+&lt;h2&gt;Certificate Extensions&lt;/h2&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;colgroup&gt;
+&lt;col width="14%"&gt;&lt;/col&gt;
+&lt;col width="48%"&gt;&lt;/col&gt;
+&lt;col width="9%"&gt;&lt;/col&gt;
+&lt;col width="9%"&gt;&lt;/col&gt;
+&lt;col width="10%"&gt;&lt;/col&gt;
+&lt;col width="9%"&gt;&lt;/col&gt;
+&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Extension&lt;/td&gt;
+&lt;td&gt;Description&lt;/td&gt;
+&lt;td&gt;Root CA&lt;/td&gt;
+&lt;td&gt;Sub CA&lt;/td&gt;
+&lt;td&gt;End-use&lt;/td&gt;
+&lt;td&gt;Critical&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Subject Key Identifier&lt;/td&gt;
+&lt;td&gt;This identifier is a way to identify the public key.
+This identifier should be derived from the public key (for example: with SHA-1)&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;No&lt;/td&gt;
+&lt;td&gt;No&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Authority Key Identifier&lt;/td&gt;
+&lt;td&gt;This extension must be equal to the Subject Key Identifier of the Certification Authority&lt;/td&gt;
+&lt;td&gt;No&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;No&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Key Usage&lt;/td&gt;
+&lt;td&gt;This extension defines the purpose of the key contained in the certificate&lt;/td&gt;
+&lt;td&gt;keyCertSign,
+cRLSign&lt;/td&gt;
+&lt;td&gt;keyCertSign,
+cRLSign&lt;/td&gt;
+&lt;td&gt;digitalSignature,
+keyEncipherment&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Extended Key Usage&lt;/td&gt;
+&lt;td&gt;This extension defines the purpose of the key in addition to or in place of the basic
+purposes indicated in the key usage extension&lt;/td&gt;
+&lt;td&gt;No&lt;/td&gt;
+&lt;td&gt;No&lt;/td&gt;
+&lt;td&gt;serverAuth or
+clientAuth&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Basic Constraints&lt;/td&gt;
+&lt;td&gt;This extension identifies whether the subject of the certificate is a CA and the maximum
+depth of valid certification paths that include this certificate&lt;/td&gt;
+&lt;td&gt;CA:true,
+pathlen:2&lt;/td&gt;
+&lt;td&gt;CA:true,
+pathlen:1&lt;/td&gt;
+&lt;td&gt;CA:false,
+pathlen:0&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Authority Information
+Access&lt;/td&gt;
+&lt;td&gt;This extension indicates how to access information and services of the CA
+(on-line validation services and CA policy data)
+Example: "OCSP;URI:&lt;a class="reference external" href="http://ocsp.example.com/RootCA/"&gt;http://ocsp.example.com/RootCA/&lt;/a&gt;"&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;Yes
+clientAuth&lt;/td&gt;
+&lt;td&gt;No&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;crlDistributionPoints&lt;/td&gt;
+&lt;td&gt;This extension defines how to obtain CRL.
+Example: "URI:http://www.example.com/RootCA.crl"&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;No&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="section" id="critical-or-non-critical"&gt;
+&lt;h2&gt;Critical or Non critical&lt;/h2&gt;
+&lt;p&gt;A software must reject the certificate if it encounters a critical extension that it doesn't recognize, or a critical extension that contains information that it can't process. A non-critical extension may be ignored if it is not recognized, but must be processed if it is recognized.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="Certificate"></category></entry><entry><title>Press review of Mars 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_Mars_2016.html" rel="alternate"></link><updated>2016-03-07T22:25:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-03-01:Press_review_of_Mars_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
 &lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
@@ -309,10 +438,7 @@
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;03/xx/2016&lt;/td&gt;
-&lt;td&gt;&lt;ul class="first last simple"&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/td&gt;
+&lt;td&gt; &lt;/td&gt;
 &lt;td colspan="2"&gt;&lt;ul class="first last simple"&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://www.teamupturn.com/reports/2016/what-isps-can-see"&gt;What ISPs Can See - Clarifying the technical landscape of the broadband privacy debate&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -2818,7 +2944,7 @@ Vulnerability&lt;/td&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Certificate"></category><category term="PKI"></category></entry><entry><title>HowTo install a virtualization plateform with KVM</title><link href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html" rel="alternate"></link><updated>2015-10-25T21:16:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-09-15:howto_install_a_virtualization_plateform_with_KVM.html</id><summary type="html">&lt;p&gt;This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.&lt;/p&gt;
+</summary><category term="Certificate"></category></entry><entry><title>HowTo install a virtualization plateform with KVM</title><link href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html" rel="alternate"></link><updated>2015-10-25T21:16:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-09-15:howto_install_a_virtualization_plateform_with_KVM.html</id><summary type="html">&lt;p&gt;This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.&lt;/p&gt;
 &lt;p&gt;Then, LibVirt provides a convenient way to manage virtual machines on this plateform. LibVirt include an API library, a daemon (libvirtd), command line tools (virsh and virt-install) and a graphic tool (virt-manager). All these softwares are sponsorted by Red Hat.&lt;/p&gt;
 &lt;p&gt;Obviouly, this virtualization plateform uses Intel Virtualization Technologyy like VT-x (Virtualization Technology eXecution) and VT-d (Virtualization Technology for Directed I/O). KVM can also support VT-c (Intel® Virtualization Technology for Connectivity) but my laptop does not have this technology.&lt;/p&gt;
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>TLS: Audit tools - My personal blog note</title>
+    <title>Certificate fields and extensions - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,21 +9,20 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/TLS_Audit_tools.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/Certificate_fields.html">
 
         <meta name="author" content="Didier Bernaudeau" />
-        <meta name="keywords" content="Cryptography,Network" />
-        <meta name="description" content="This memo lists the tools necessary to audit the TLS configuration. Moreover, a compliance form template is available to formalize the audit report." />
+        <meta name="keywords" content="Certificate" />
+        <meta name="description" content="The fields are defined by the RFC5280. This post is a memo to remind the main certificate fields." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="TLS: Audit tools"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/TLS_Audit_tools.html"/>
-        <meta property="og:description" content="This memo lists the tools necessary to audit the TLS configuration. Moreover, a compliance form template is available to formalize the audit report."/>
-        <meta property="article:published_time" content="2015-08-04" />
+        <meta property="og:title" content="Certificate fields and extensions"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/Certificate_fields.html"/>
+        <meta property="og:description" content="The fields are defined by the RFC5280. This post is a memo to remind the main certificate fields."/>
+        <meta property="article:published_time" content="2016-04-03" />
             <meta property="article:section" content="Articles" />
-            <meta property="article:tag" content="Cryptography" />
-            <meta property="article:tag" content="Network" />
+            <meta property="article:tag" content="Certificate" />
             <meta property="article:author" content="Didier Bernaudeau" />
 
 
@@ -80,10 +79,10 @@ My personal blog note            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/TLS_Audit_tools.html"
+                    <a href="http://didier.bernaudeau.net/Certificate_fields.html"
                        rel="bookmark"
-                       title="Permalink to TLS: Audit tools">
-                        TLS: Audit tools
+                       title="Permalink to Certificate fields and extensions">
+                        Certificate fields and extensions
                     </a>
                 </h1>
             </header>
@@ -93,11 +92,11 @@ My personal blog note            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-08-04T21:56:00+02:00"> mar. 04 août 2015</time>
+        <i class="fa fa-calendar"></i><time datetime="2016-04-03T17:53:00+02:00"> dim. 03 avril 2016</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2016-02-17T08:16:00+01:00"> mer. 17 février 2016</time>
+                <i class="fa fa-calendar"></i><time datetime="2016-04-03T12:39:00+02:00"> dim. 03 avril 2016</time>
             </span>
 
 
@@ -105,70 +104,142 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/cryptography.html">Cryptography</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/network.html">Network</a>
+	<a href="http://didier.bernaudeau.net/tag/certificate.html">Certificate</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>This memo lists the tools necessary to audit the TLS configuration. Moreover, a compliance form template is available to formalize the audit report.</p>
+                <p>The fields are defined by the <a class="reference external" href="https://tools.ietf.org/html/rfc5280">RFC5280</a>. This post is a memo to remind the main certificate fields.</p>
 
-<div class="section" id="audit-tools">
-<h2>Audit Tools</h2>
-<div class="section" id="ssl-server-test">
-<h3>SSL Server Test</h3>
-<p>Powered by Qualys SSL Labs, this tools is available on <a class="reference external" href="https://www.ssllabs.com/ssltest/">https://www.ssllabs.com/ssltest</a></p>
+<div class="section" id="basic-certificate-fields">
+<h2>Basic Certificate Fields</h2>
+<table border="1" class="docutils table-hover table-striped table">
+<colgroup>
+<col width="16%"></col>
+<col width="60%"></col>
+<col width="8%"></col>
+<col width="8%"></col>
+<col width="8%"></col>
+</colgroup>
+<tbody valign="top">
+<tr><td>Field</td>
+<td>Description</td>
+<td>Root CA</td>
+<td>Sub CA</td>
+<td>End-use</td>
+</tr>
+<tr><td>Subject</td>
+<td>The subject must be populated with a non-empty distinguished name.
+The DN must be defined, at least: Common Name, Organization Name and Organization Unit</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No (if SAN
+is used)</td>
+</tr>
+<tr><td>Serial Number</td>
+<td>This is certificate identifier.
+So it muts be unique for each certificate issued by a given CA.
+According to best practice, the first serial number must be defined randomly.
+Then, the number must be increased randomly.</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="section" id="nmap">
-<h3>Nmap</h3>
-<pre class="code console literal-block">
-<span class="gp">$</span> nmap --script ssl-enum-ciphers -p <span class="m">443</span> www.exemple.com
-</pre>
+<div class="section" id="certificate-extensions">
+<h2>Certificate Extensions</h2>
+<table border="1" class="docutils table-hover table-striped table">
+<colgroup>
+<col width="14%"></col>
+<col width="48%"></col>
+<col width="9%"></col>
+<col width="9%"></col>
+<col width="10%"></col>
+<col width="9%"></col>
+</colgroup>
+<tbody valign="top">
+<tr><td>Extension</td>
+<td>Description</td>
+<td>Root CA</td>
+<td>Sub CA</td>
+<td>End-use</td>
+<td>Critical</td>
+</tr>
+<tr><td>Subject Key Identifier</td>
+<td>This identifier is a way to identify the public key.
+This identifier should be derived from the public key (for example: with SHA-1)</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr><td>Authority Key Identifier</td>
+<td>This extension must be equal to the Subject Key Identifier of the Certification Authority</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr><td>Key Usage</td>
+<td>This extension defines the purpose of the key contained in the certificate</td>
+<td>keyCertSign,
+cRLSign</td>
+<td>keyCertSign,
+cRLSign</td>
+<td>digitalSignature,
+keyEncipherment</td>
+<td>Yes</td>
+</tr>
+<tr><td>Extended Key Usage</td>
+<td>This extension defines the purpose of the key in addition to or in place of the basic
+purposes indicated in the key usage extension</td>
+<td>No</td>
+<td>No</td>
+<td>serverAuth or
+clientAuth</td>
+<td>Yes</td>
+</tr>
+<tr><td>Basic Constraints</td>
+<td>This extension identifies whether the subject of the certificate is a CA and the maximum
+depth of valid certification paths that include this certificate</td>
+<td>CA:true,
+pathlen:2</td>
+<td>CA:true,
+pathlen:1</td>
+<td>CA:false,
+pathlen:0</td>
+<td>Yes</td>
+</tr>
+<tr><td>Authority Information
+Access</td>
+<td>This extension indicates how to access information and services of the CA
+(on-line validation services and CA policy data)
+Example: "OCSP;URI:<a class="reference external" href="http://ocsp.example.com/RootCA/">http://ocsp.example.com/RootCA/</a>"</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes
+clientAuth</td>
+<td>No</td>
+</tr>
+<tr><td>crlDistributionPoints</td>
+<td>This extension defines how to obtain CRL.
+Example: "URI:http://www.example.com/RootCA.crl"</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="section" id="test-ssl-server">
-<h3>Test SSL Server</h3>
-<pre class="code console literal-block">
-<span class="gp">$</span> java -jar TestSSLServer.jar www.exemple.com 443
-</pre>
-</div>
-<div class="section" id="cipherscan">
-<h3>CipherScan</h3>
-<pre class="code console literal-block">
-<span class="gp">$</span> git clone git://github.com/jvehent/cipherscan.git
-<span class="gp">$</span> <span class="nb">cd </span>cipherscan
-<span class="gp">$</span> ./cipherscan www.exemple.com
-</pre>
-</div>
-<div class="section" id="ssl-scan">
-<h3>SSL Scan</h3>
-<blockquote>
-Website : <a class="reference external" href="https://sourceforge.net/projects/sslscan/">https://sourceforge.net/projects/sslscan/</a></blockquote>
-</div>
-</div>
-<div class="section" id="compliance-form">
-<h2>Compliance Form</h2>
-<p>After analyzing configuration of a web site, you can complete the <a class="reference external" href="http://didier.bernaudeau.net/documents/2015-08-04_TLS_Audit_tools_Compliance_form_v3.xlsx">compliance form</a>.</p>
-</div>
-<div class="section" id="references">
-<h2>References</h2>
-<blockquote>
-<ul class="simple">
-<li><a class="reference external" href="http://www.bolet.org/TestSSLServer/">TestSSLServer</a></li>
-<li><a class="reference external" href="https://github.com/jvehent/cipherscan">CipherScan</a></li>
-<li><a class="reference external" href="https://github.com/ssllabs/research/wiki/Assessment-Tools">Assessment Tools</a></li>
-</ul>
-</blockquote>
+<div class="section" id="critical-or-non-critical">
+<h2>Critical or Non critical</h2>
+<p>A software must reject the certificate if it encounters a critical extension that it doesn't recognize, or a critical extension that contains information that it can't process. A non-critical extension may be ignored if it is not recognized, but must be processed if it is recognized.</p>
 </div>
 
             </div>
             <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://didier.bernaudeau.net/TLS_Understanding_the_cipher_suites.html">TLS: Understanding the cipher suites</a></li>
-        <li><a href="http://didier.bernaudeau.net/TLS_Hardened_configuration.html">TLS: Hardened configuration</a></li>
-    </ul>
-</section>
         </article>
     </section>
 

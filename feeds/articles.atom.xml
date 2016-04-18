@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2016-04-03T12:39:00+02:00</updated><entry><title>Certificate fields and extensions</title><link href="http://didier.bernaudeau.net/Certificate_fields.html" rel="alternate"></link><updated>2016-04-03T12:39:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-04-03:Certificate_fields.html</id><summary type="html">&lt;p&gt;The fields are defined by the &lt;a class="reference external" href="https://tools.ietf.org/html/rfc5280"&gt;RFC5280&lt;/a&gt;. This post is a memo to remind the main certificate fields.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2016-04-06T22:38:00+02:00</updated><entry><title>Certificate fields and extensions</title><link href="http://didier.bernaudeau.net/Certificate_fields.html" rel="alternate"></link><updated>2016-04-03T12:39:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-04-03:Certificate_fields.html</id><summary type="html">&lt;p&gt;The fields are defined by the &lt;a class="reference external" href="https://tools.ietf.org/html/rfc5280"&gt;RFC5280&lt;/a&gt;. This post is a memo to remind the main certificate fields.&lt;/p&gt;
 
+&lt;!-- List des bonnes pratiques pour chaque type de certificat (Root CA, Sub CA, Server) --&gt;
 &lt;div class="section" id="basic-certificate-fields"&gt;
 &lt;h2&gt;Basic Certificate Fields&lt;/h2&gt;
 &lt;table border="1" class="docutils table-hover table-striped table"&gt;
@@ -128,7 +129,7 @@ Example: "URI:http://www.example.com/RootCA.crl"&lt;/td&gt;
 &lt;h2&gt;Critical or Non critical&lt;/h2&gt;
 &lt;p&gt;A software must reject the certificate if it encounters a critical extension that it doesn't recognize, or a critical extension that contains information that it can't process. A non-critical extension may be ignored if it is not recognized, but must be processed if it is recognized.&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="Certificate"></category></entry><entry><title>Software for defensive security team</title><link href="http://didier.bernaudeau.net/Software_for_defensive_security_team.html" rel="alternate"></link><updated>2016-02-23T22:49:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-02-23:Software_for_defensive_security_team.html</id><summary type="html">&lt;p&gt;This article indexes some softwares for defensive security teams.&lt;/p&gt;
+</summary><category term="Certificate"></category></entry><entry><title>Software for defensive security team</title><link href="http://didier.bernaudeau.net/Software_for_defensive_security_team.html" rel="alternate"></link><updated>2016-04-06T22:38:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-02-23:Software_for_defensive_security_team.html</id><summary type="html">&lt;p&gt;This article indexes some softwares for defensive security teams.&lt;/p&gt;
 
 &lt;div class="section" id="athentication"&gt;
 &lt;h2&gt;Athentication&lt;/h2&gt;
@@ -184,6 +185,14 @@ Example: "URI:http://www.example.com/RootCA.crl"&lt;/td&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
+&lt;div class="section" id="code-source-analysis"&gt;
+&lt;h2&gt;Code source analysis&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.netsparker.com/"&gt;NetSparker&lt;/a&gt;: dynamique analysis tool&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
 &lt;div class="section" id="framework"&gt;
 &lt;h2&gt;Framework&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -192,7 +201,7 @@ Example: "URI:http://www.example.com/RootCA.crl"&lt;/td&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Software"></category></entry><entry><title>Software for offensive security team</title><link href="http://didier.bernaudeau.net/Software_for_offensive_security_team.html" rel="alternate"></link><updated>2016-03-07T22:58:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-02-23:Software_for_offensive_security_team.html</id><summary type="html">&lt;p&gt;This article indexes some softwares for offensive security teams.&lt;/p&gt;
+</summary><category term="Software"></category></entry><entry><title>Software for offensive security team</title><link href="http://didier.bernaudeau.net/Software_for_offensive_security_team.html" rel="alternate"></link><updated>2016-04-06T22:00:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-02-23:Software_for_offensive_security_team.html</id><summary type="html">&lt;p&gt;This article indexes some softwares for offensive security teams.&lt;/p&gt;
 
 &lt;div class="section" id="attack-tools"&gt;
 &lt;h2&gt;Attack tools&lt;/h2&gt;
@@ -223,6 +232,7 @@ Example: "URI:http://www.example.com/RootCA.crl"&lt;/td&gt;
 &lt;li&gt;Burp Proxy&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.powershellempire.com/"&gt;PowerShell Empire&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://github.com/infobyte/evilgrade"&gt;Evilgrade&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://crt.sh/?Identity%25&amp;amp;iCAID=7395"&gt;Certificate database&lt;/a&gt; (Link for: Common Name = 'Isc.sans.edu' &amp;amp; Issuer CA ID = 1478)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;

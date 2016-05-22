@@ -138,10 +138,10 @@ My personal blog note            </a>
 <p>The HTML page loads the JavaScript source file, from JSONP WebService, then execute the callback function. Create the HTML page named jsonp.html and hosted on your localhost :</p>
 <pre class="code html literal-block">
 <span class="cp">&lt;!doctype html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
- <span class="nt">&lt;head&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
 
-  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">"text/javascript"</span><span class="p">&gt;</span>
 
     <span class="kd">function</span> <span class="nx">LoadJavaScript</span><span class="p">()</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'script'</span><span class="p">);</span>
@@ -154,13 +154,13 @@ My personal blog note            </a>
       <span class="nx">alert</span><span class="p">(</span><span class="nx">MyJson</span><span class="p">[</span><span class="s2">"MyDateTime"</span><span class="p">]);</span>
     <span class="p">}</span>
 
-  <span class="nt">&lt;/script&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 
- <span class="nt">&lt;/head&gt;</span>
- <span class="nt">&lt;body&gt;</span>
-   <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">onclick=</span><span class="s">"LoadJavaScript();"</span><span class="nt">&gt;</span>Click me to display Date and Time<span class="nt">&lt;/button&gt;</span>
- <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
+ <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">"button"</span> <span class="na">onclick</span><span class="o">=</span><span class="s">"LoadJavaScript();"</span><span class="p">&gt;</span>Click me to display Date and Time<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+ <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </pre>
 </div>
 <div class="section" id="jsonp-limits">

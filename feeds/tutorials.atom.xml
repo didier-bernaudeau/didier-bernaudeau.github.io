@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2016-02-25T12:26:00+01:00</updated><entry><title>How to migrate from OpenRC to SystemD</title><link href="http://didier.bernaudeau.net/How_to_migrate_from_OpenRC_to_SystemD.html" rel="alternate"></link><updated>2016-02-25T12:26:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-01-01:How_to_migrate_from_OpenRC_to_SystemD.html</id><summary type="html">&lt;p&gt;SystemD is an initialization system for Linux created in 2010. Now, most of Linux distribution (Debian, Arch, ...) use SystemD instead of original initialization system (sysvinit, upstart, ...).&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2016-05-22T11:41:00+02:00</updated><entry><title>How to migrate from OpenRC to SystemD</title><link href="http://didier.bernaudeau.net/How_to_migrate_from_OpenRC_to_SystemD.html" rel="alternate"></link><updated>2016-02-25T12:26:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-01-01:How_to_migrate_from_OpenRC_to_SystemD.html</id><summary type="html">&lt;p&gt;SystemD is an initialization system for Linux created in 2010. Now, most of Linux distribution (Debian, Arch, ...) use SystemD instead of original initialization system (sysvinit, upstart, ...).&lt;/p&gt;
 &lt;p&gt;However, the default initialization system used by Gentoo Linux is OpenRC which is slower than SystemD. This article describes how to replace OpenRC by SystemD on Gentoo Linux.&lt;/p&gt;
 
 &lt;div class="section" id="kernel-configuration"&gt;
@@ -26,7 +26,7 @@
 &lt;p&gt;Select profil for systemd (default/linux/amd64/13.0/desktop/kde/systemd)&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt; eselect profile list
-&lt;span class="gp"&gt;#&lt;/span&gt; eselect profile &lt;span class="nb"&gt;set &lt;/span&gt;7
+&lt;span class="gp"&gt;#&lt;/span&gt; eselect profile &lt;span class="nb"&gt;set&lt;/span&gt; 7
 &lt;/pre&gt;
 &lt;p&gt;Update system&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
@@ -43,12 +43,12 @@
 &lt;p&gt;Define keyboard layout&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt; localectl list-keymaps
-&lt;span class="gp"&gt;#&lt;/span&gt; localectl &lt;span class="nb"&gt;set&lt;/span&gt;-keymap fr-latin9
+&lt;span class="gp"&gt;#&lt;/span&gt; localectl set-keymap fr-latin9
 &lt;/pre&gt;
 &lt;p&gt;Define time zone&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt; timedatectl list-timezones
-&lt;span class="gp"&gt;#&lt;/span&gt; timedatectl &lt;span class="nb"&gt;set&lt;/span&gt;-timezone Europe/Paris
+&lt;span class="gp"&gt;#&lt;/span&gt; timedatectl set-timezone Europe/Paris
 &lt;/pre&gt;
 &lt;p&gt;Define NTP client&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
@@ -59,9 +59,9 @@
 &lt;/pre&gt;
 &lt;p&gt;Start NTP client&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable &lt;/span&gt;systemd-timesyncd
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; systemd-timesyncd
 &lt;span class="gp"&gt;#&lt;/span&gt; systemctl start systemd-timesyncd
-&lt;span class="gp"&gt;#&lt;/span&gt; timedatectl &lt;span class="nb"&gt;set&lt;/span&gt;-ntp &lt;span class="nb"&gt;true&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; timedatectl set-ntp &lt;span class="nb"&gt;true&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Check NTP client&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
@@ -72,26 +72,26 @@
 &lt;h2&gt;Enable services&lt;/h2&gt;
 &lt;p&gt;KDM (KDE Display Manager)&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable &lt;/span&gt;kdm.service
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; kdm.service
 &lt;/pre&gt;
 &lt;p&gt;NetworkManager&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable &lt;/span&gt;NetworkManager.service
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; NetworkManager.service
 &lt;/pre&gt;
 &lt;p&gt;NFS (Network File System)&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable &lt;/span&gt;nfs-client.target
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; nfs-client.target
 &lt;/pre&gt;
 &lt;p&gt;AutoFS&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable &lt;/span&gt;autofs.service
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; autofs.service
 &lt;/pre&gt;
 &lt;p&gt;libVirtd&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt; systemctl stop libvirtd
 &lt;/pre&gt;
 &lt;/div&gt;
-</summary><category term="Gentoo"></category></entry><entry><title>How to install Chromium with Flash support</title><link href="http://didier.bernaudeau.net/How_to_install_Chromium_with_Flash_support.html" rel="alternate"></link><updated>2015-12-27T21:45:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-23:How_to_install_Chromium_with_Flash_support.html</id><summary type="html">&lt;p&gt;In 2012, Adobe has stopped to upgrade Flash Player for Linux. So, the last version of Flash Player plugin is 11.2 that will be maintained until 2017. To continue to take the advantage of Flash content, we must find an alternative solution.&lt;/p&gt;
+</summary><category term="Gentoo"></category></entry><entry><title>How to install Chromium with Flash support</title><link href="http://didier.bernaudeau.net/How_to_install_Chromium_with_Flash_support.html" rel="alternate"></link><updated>2016-05-22T11:41:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-23:How_to_install_Chromium_with_Flash_support.html</id><summary type="html">&lt;p&gt;In 2012, Adobe has stopped to upgrade Flash Player for Linux. So, the last version of Flash Player plugin is 11.2 that will be maintained until 2017. To continue to take the advantage of Flash content, we must find an alternative solution.&lt;/p&gt;
 &lt;p&gt;This tutorial describes how to install Chromium and the Flash Pepper Plugin (PPAPI) on Gentoo Linux and how to configure Chromium for graphic hardware acceleration.&lt;/p&gt;
 
 &lt;div class="section" id="chromium"&gt;
@@ -105,7 +105,14 @@
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt; emerge chromium
 &lt;/pre&gt;
-&lt;p&gt;To force Chromium to use hardware acceleration, open &lt;a class="reference external" href="chrome://flags"&gt;chrome://flags&lt;/a&gt; and enable "Override software rendering list". To check if Chromium uses hardware acceleration, open &lt;a class="reference external" href="chrome://gpu"&gt;chrome://gpu&lt;/a&gt; and look under "Graphics Feature status". All (or at least most of) the features should say "hardware accelerated".&lt;/p&gt;
+&lt;p&gt;To configure Chromium, open &lt;a class="reference external" href="chrome://flags"&gt;chrome://flags&lt;/a&gt; :&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Override software rendering list : enable&lt;/li&gt;
+&lt;li&gt;GPU rasterization : enable&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;To check if Chromium uses hardware acceleration, open &lt;a class="reference external" href="chrome://gpu"&gt;chrome://gpu&lt;/a&gt; and look under "Graphics Feature status". All (or at least most of) the features should say "hardware accelerated".&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="flash-player"&gt;
 &lt;h2&gt;Flash Player&lt;/h2&gt;
@@ -133,7 +140,7 @@
 
 &lt;div class="section" id="pulseaudio-architecture"&gt;
 &lt;h2&gt;PulseAudio Architecture&lt;/h2&gt;
-&lt;img alt="PulseAudio Architecture" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
+&lt;img alt="PulseAudio Architecture" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="install-pulseaudio"&gt;
 &lt;h2&gt;Install PulseAudio&lt;/h2&gt;
@@ -159,7 +166,7 @@
 &lt;span class="gp"&gt;#&lt;/span&gt; emerge ffmpeg vlc kmix chromium
 &lt;/pre&gt;
 &lt;/div&gt;
-</summary><category term="Gentoo"></category></entry><entry><title>HowTo install a virtualization plateform with KVM</title><link href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html" rel="alternate"></link><updated>2015-10-25T21:16:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-09-15:howto_install_a_virtualization_plateform_with_KVM.html</id><summary type="html">&lt;p&gt;This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.&lt;/p&gt;
+</summary><category term="Gentoo"></category></entry><entry><title>HowTo install a virtualization plateform with KVM</title><link href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html" rel="alternate"></link><updated>2016-05-19T19:52:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-09-15:howto_install_a_virtualization_plateform_with_KVM.html</id><summary type="html">&lt;p&gt;This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.&lt;/p&gt;
 &lt;p&gt;Then, LibVirt provides a convenient way to manage virtual machines on this plateform. LibVirt include an API library, a daemon (libvirtd), command line tools (virsh and virt-install) and a graphic tool (virt-manager). All these softwares are sponsorted by Red Hat.&lt;/p&gt;
 &lt;p&gt;Obviouly, this virtualization plateform uses Intel Virtualization Technologyy like VT-x (Virtualization Technology eXecution) and VT-d (Virtualization Technology for Directed I/O). KVM can also support VT-c (Intel® Virtualization Technology for Connectivity) but my laptop does not have this technology.&lt;/p&gt;
 
@@ -259,7 +266,8 @@
 &lt;/pre&gt;
 &lt;p&gt;Start libvirtd&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; /etc/init.d/libvirtd start
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl start libvirtd
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl start virtlogd.socket
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="connection-to-libvirtd"&gt;
@@ -269,23 +277,23 @@
 &lt;span class="gp"&gt;$&lt;/span&gt; virt-manager
 &lt;/pre&gt;
 &lt;p&gt;Open the menu "file &amp;gt; Add connection"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Add connection" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Add connection" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="network-configuration"&gt;
 &lt;h2&gt;Network Configuration&lt;/h2&gt;
 &lt;p&gt;After starting LibVirtd, network configuration is as follows:&lt;/p&gt;
-&lt;img alt="Network Configuration" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
+&lt;img alt="Network Configuration" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="create-a-virtual-machine"&gt;
 &lt;h2&gt;Create a virtual machine&lt;/h2&gt;
 &lt;p&gt;Open the menu "file &amp;gt; New Virtual Machine"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Step1" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step2" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
-&lt;img alt="Virt-Manager - Step3" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step4" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step5" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step1" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step2" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - Step3" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step4" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step5" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
 &lt;p&gt;Select "VirtIO" device model for Network Interface&lt;/p&gt;
-&lt;img alt="Virt-Manager - NIC device model" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - NIC device model" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
 &lt;!-- vhost=on --&gt;
 &lt;/div&gt;
 </summary><category term="Gentoo"></category><category term="Virtualization"></category></entry><entry><title>How to create bootable USB flash drives with Rufus</title><link href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html" rel="alternate"></link><updated>2015-07-15T21:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-12:How_to_create_bootable_USB_flash_drives_with_Rufus.html</id><summary type="html">&lt;p&gt;This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp;amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.&lt;/p&gt;
@@ -298,12 +306,12 @@
 &lt;h2&gt;Create installation media&lt;/h2&gt;
 &lt;div class="section" id="example-for-microsoft-windows-8-1-with-mbr"&gt;
 &lt;h3&gt;Example for Microsoft Windows 8.1 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="example-for-debian-8-with-mbr"&gt;
 &lt;h3&gt;Example for Debian 8 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
 &lt;p&gt;If you need additional firmware to install Debian :&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul class="simple"&gt;
@@ -314,23 +322,23 @@
 &lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary><category term="Windows"></category><category term="Linux"></category></entry><entry><title>HowTo configure the Linux kernel for Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html" rel="alternate"></link><updated>2015-10-19T17:48:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-16:HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html</id><summary type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
+</summary><category term="Windows"></category><category term="Linux"></category></entry><entry><title>HowTo configure the Linux kernel for Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html" rel="alternate"></link><updated>2016-05-05T13:23:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-16:HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html</id><summary type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
 &lt;p&gt;To get more information about the configuration of my laptop, you can read this article : &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html"&gt;Lenovo ThinkPad X240&lt;/a&gt;&lt;/p&gt;
 
 &lt;div class="section" id="kernel-installation"&gt;
 &lt;h2&gt;Kernel installation&lt;/h2&gt;
-&lt;p&gt;Download kernel Gentoo sources (4.0.5) :&lt;/p&gt;
+&lt;p&gt;Download kernel Gentoo sources (4.4.6) :&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt; emerge sys-kernel/gentoo-sources
 &lt;/pre&gt;
-&lt;p&gt;Download firmware for Intel WiFi 7260 (version 12) :&lt;/p&gt;
+&lt;p&gt;Download firmware for Intel WiFi 7260 (version 16) :&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt; emerge sys-firmware/iwl7260-ucode
 &lt;/pre&gt;
 &lt;p&gt;Select kernel sources&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt; eselect kernel list
-&lt;span class="gp"&gt;#&lt;/span&gt; eselect kernel &lt;span class="nb"&gt;set &lt;/span&gt;X
+&lt;span class="gp"&gt;#&lt;/span&gt; eselect kernel &lt;span class="nb"&gt;set&lt;/span&gt; X
 &lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; /usr/src/linux
 &lt;/pre&gt;
 &lt;p&gt;Print configuration menu&lt;/p&gt;
@@ -341,6 +349,11 @@
 &lt;div class="section" id="kernel-minimal-configuration"&gt;
 &lt;h2&gt;Kernel minimal configuration&lt;/h2&gt;
 &lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;Gentoo&lt;/span&gt; &lt;span class="err"&gt;Linux&lt;/span&gt; &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Support&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;init&lt;/span&gt; &lt;span class="err"&gt;systems,&lt;/span&gt; &lt;span class="err"&gt;system&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;service&lt;/span&gt; &lt;span class="err"&gt;managers&lt;/span&gt; &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt; &lt;span class="err"&gt;OpenRC,&lt;/span&gt; &lt;span class="err"&gt;runit&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;other&lt;/span&gt; &lt;span class="err"&gt;script&lt;/span&gt; &lt;span class="err"&gt;based&lt;/span&gt; &lt;span class="err"&gt;systems&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;managers&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;systemd&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;General&lt;/span&gt; &lt;span class="err"&gt;setup&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Timers&lt;/span&gt; &lt;span class="err"&gt;subsystem&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
@@ -349,233 +362,230 @@
 &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;Processor&lt;/span&gt; &lt;span class="err"&gt;type&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;features&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Symmetric&lt;/span&gt; &lt;span class="err"&gt;multi-processing&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Support&lt;/span&gt; &lt;span class="err"&gt;x2apic&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt; &lt;span class="err"&gt;Support&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;extended&lt;/span&gt; &lt;span class="err"&gt;(non-PC)&lt;/span&gt; &lt;span class="err"&gt;x86&lt;/span&gt; &lt;span class="err"&gt;platforms&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;Low&lt;/span&gt; &lt;span class="err"&gt;Power&lt;/span&gt; &lt;span class="err"&gt;Subsystem&lt;/span&gt; &lt;span class="err"&gt;Support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Processor&lt;/span&gt; &lt;span class="err"&gt;family&lt;/span&gt; &lt;span class="err"&gt;(Generic-x86-64)&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt; &lt;span class="err"&gt;Old&lt;/span&gt; &lt;span class="err"&gt;AMD&lt;/span&gt; &lt;span class="err"&gt;GART&lt;/span&gt; &lt;span class="err"&gt;IOMMU&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt; &lt;span class="err"&gt;IBM&lt;/span&gt; &lt;span class="err"&gt;Calgary&lt;/span&gt; &lt;span class="err"&gt;IOMMU&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt; &lt;span class="err"&gt;Enable&lt;/span&gt; &lt;span class="err"&gt;Maximum&lt;/span&gt; &lt;span class="err"&gt;number&lt;/span&gt; &lt;span class="err"&gt;of&lt;/span&gt; &lt;span class="err"&gt;SMP&lt;/span&gt; &lt;span class="err"&gt;Processors&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;NUMA&lt;/span&gt; &lt;span class="err"&gt;Nodes&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;SMT&lt;/span&gt; &lt;span class="err"&gt;(Hyperthreading)&lt;/span&gt; &lt;span class="err"&gt;scheduler&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Multi-core&lt;/span&gt; &lt;span class="err"&gt;scheduler&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Machine&lt;/span&gt; &lt;span class="err"&gt;Check&lt;/span&gt; &lt;span class="err"&gt;/&lt;/span&gt; &lt;span class="err"&gt;overheating&lt;/span&gt; &lt;span class="err"&gt;reporting&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;MCE&lt;/span&gt; &lt;span class="err"&gt;features&lt;/span&gt; &lt;span class="err"&gt;(NEW)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;   &lt;span class="err"&gt;AMD&lt;/span&gt; &lt;span class="err"&gt;MCE&lt;/span&gt; &lt;span class="err"&gt;features&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;CPU&lt;/span&gt; &lt;span class="err"&gt;microcode&lt;/span&gt; &lt;span class="err"&gt;loading&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;/dev/cpu/*/msr&lt;/span&gt; &lt;span class="err"&gt;-&lt;/span&gt; &lt;span class="err"&gt;Model-specific&lt;/span&gt; &lt;span class="err"&gt;register&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;/dev/cpu/*/cpuid&lt;/span&gt; &lt;span class="err"&gt;-&lt;/span&gt; &lt;span class="err"&gt;CPU&lt;/span&gt; &lt;span class="err"&gt;information&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt; &lt;span class="err"&gt;Numa&lt;/span&gt; &lt;span class="err"&gt;Memory&lt;/span&gt; &lt;span class="err"&gt;Allocation&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;Scheduler&lt;/span&gt; &lt;span class="err"&gt;Support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;EFI&lt;/span&gt; &lt;span class="err"&gt;runtime&lt;/span&gt; &lt;span class="err"&gt;service&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;EFI&lt;/span&gt; &lt;span class="err"&gt;stub&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Built-in&lt;/span&gt; &lt;span class="err"&gt;kernel&lt;/span&gt; &lt;span class="err"&gt;command&lt;/span&gt; &lt;span class="err"&gt;line&lt;/span&gt;
-&lt;span class="na"&gt;|      | (root&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/dev/sda6) Built-in kernel command string&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;Power&lt;/span&gt; &lt;span class="err"&gt;management&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;ACPI&lt;/span&gt; &lt;span class="err"&gt;options&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Suspend&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;RAM&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;standby&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Hibernation&lt;/span&gt; &lt;span class="err"&gt;(aka&lt;/span&gt; &lt;span class="err"&gt;'suspend&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;disk')&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;(/dev/sda5)&lt;/span&gt; &lt;span class="err"&gt;Default&lt;/span&gt; &lt;span class="err"&gt;resume&lt;/span&gt; &lt;span class="err"&gt;partition&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt; &lt;span class="err"&gt;Device&lt;/span&gt; &lt;span class="err"&gt;power&lt;/span&gt; &lt;span class="err"&gt;management&lt;/span&gt; &lt;span class="err"&gt;core&lt;/span&gt; &lt;span class="err"&gt;functionality&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;   &lt;span class="err"&gt;Power&lt;/span&gt; &lt;span class="err"&gt;Management&lt;/span&gt; &lt;span class="err"&gt;Debug&lt;/span&gt; &lt;span class="err"&gt;Support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;ACPI&lt;/span&gt; &lt;span class="err"&gt;(Advanced&lt;/span&gt; &lt;span class="err"&gt;Configuration&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;Power&lt;/span&gt; &lt;span class="err"&gt;Interface)&lt;/span&gt; &lt;span class="err"&gt;Support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Processor&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Processor&lt;/span&gt; &lt;span class="err"&gt;Aggregator&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;CPU&lt;/span&gt; &lt;span class="err"&gt;Frequency&lt;/span&gt; &lt;span class="err"&gt;scaling&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;CPU&lt;/span&gt; &lt;span class="err"&gt;Frequency&lt;/span&gt; &lt;span class="err"&gt;scaling&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;CPU&lt;/span&gt; &lt;span class="err"&gt;frequency&lt;/span&gt; &lt;span class="err"&gt;translation&lt;/span&gt; &lt;span class="err"&gt;statistics&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;     &lt;span class="err"&gt;CPU&lt;/span&gt; &lt;span class="err"&gt;frequency&lt;/span&gt; &lt;span class="err"&gt;translation&lt;/span&gt; &lt;span class="err"&gt;statistics&lt;/span&gt; &lt;span class="err"&gt;details&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;       &lt;span class="err"&gt;Default&lt;/span&gt; &lt;span class="err"&gt;CPUFreq&lt;/span&gt; &lt;span class="err"&gt;governor&lt;/span&gt; &lt;span class="err"&gt;(conservative)&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt;   &lt;span class="err"&gt;'performance'&lt;/span&gt; &lt;span class="err"&gt;governor&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;'powersave'&lt;/span&gt; &lt;span class="err"&gt;governor&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;'userspace'&lt;/span&gt; &lt;span class="err"&gt;governor&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;userspace&lt;/span&gt; &lt;span class="err"&gt;frequency&lt;/span&gt; &lt;span class="err"&gt;scaling&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;'ondemand'&lt;/span&gt; &lt;span class="err"&gt;cpufreq&lt;/span&gt; &lt;span class="err"&gt;policy&lt;/span&gt; &lt;span class="err"&gt;governor&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt;   &lt;span class="err"&gt;'conservative'&lt;/span&gt; &lt;span class="err"&gt;cpufreq&lt;/span&gt; &lt;span class="err"&gt;governor&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;       &lt;span class="err"&gt;***&lt;/span&gt; &lt;span class="err"&gt;CPU&lt;/span&gt; &lt;span class="err"&gt;frequency&lt;/span&gt; &lt;span class="err"&gt;scaling&lt;/span&gt; &lt;span class="err"&gt;drivers&lt;/span&gt; &lt;span class="err"&gt;***&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;       &lt;span class="err"&gt;x86&lt;/span&gt; &lt;span class="err"&gt;CPU&lt;/span&gt; &lt;span class="err"&gt;frequency&lt;/span&gt; &lt;span class="err"&gt;scaling&lt;/span&gt; &lt;span class="err"&gt;drivers&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;P&lt;/span&gt; &lt;span class="err"&gt;state&lt;/span&gt; &lt;span class="err"&gt;control&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;ACPI&lt;/span&gt; &lt;span class="err"&gt;Processor&lt;/span&gt; &lt;span class="err"&gt;P-States&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;CPU&lt;/span&gt; &lt;span class="err"&gt;Idle&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;CPU&lt;/span&gt; &lt;span class="err"&gt;idle&lt;/span&gt; &lt;span class="err"&gt;PM&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;   &lt;span class="err"&gt;Ladder&lt;/span&gt; &lt;span class="err"&gt;governor&lt;/span&gt; &lt;span class="err"&gt;(for&lt;/span&gt; &lt;span class="err"&gt;periodic&lt;/span&gt; &lt;span class="err"&gt;timer&lt;/span&gt; &lt;span class="err"&gt;tick)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt;   &lt;span class="err"&gt;Menu&lt;/span&gt; &lt;span class="err"&gt;governor&lt;/span&gt; &lt;span class="err"&gt;(for&lt;/span&gt; &lt;span class="err"&gt;tickless&lt;/span&gt; &lt;span class="err"&gt;system)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Cpuidle&lt;/span&gt; &lt;span class="err"&gt;Driver&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;Processors&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;---&lt;/span&gt; &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;       &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;options&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;TCP/IP&lt;/span&gt; &lt;span class="err"&gt;networking&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;The&lt;/span&gt; &lt;span class="err"&gt;IPv6&lt;/span&gt; &lt;span class="err"&gt;protocol&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;   &lt;span class="err"&gt;NetLabel&lt;/span&gt; &lt;span class="err"&gt;subsystem&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;   &lt;span class="err"&gt;Amateur&lt;/span&gt; &lt;span class="err"&gt;Radio&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt;   &lt;span class="err"&gt;Wireless&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;---&lt;/span&gt; &lt;span class="err"&gt;Wireless&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;cfg80211&lt;/span&gt; &lt;span class="err"&gt;-&lt;/span&gt; &lt;span class="err"&gt;wireless&lt;/span&gt; &lt;span class="err"&gt;configuration&lt;/span&gt; &lt;span class="err"&gt;API&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;     &lt;span class="err"&gt;enable&lt;/span&gt; &lt;span class="err"&gt;powersave&lt;/span&gt; &lt;span class="err"&gt;by&lt;/span&gt; &lt;span class="err"&gt;default&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Generic&lt;/span&gt; &lt;span class="err"&gt;IEEE&lt;/span&gt; &lt;span class="err"&gt;802.11&lt;/span&gt; &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;Stack&lt;/span&gt; &lt;span class="err"&gt;(mac80211)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Enable&lt;/span&gt; &lt;span class="err"&gt;LED&lt;/span&gt; &lt;span class="err"&gt;triggers&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;Device&lt;/span&gt; &lt;span class="err"&gt;Drivers&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Generic&lt;/span&gt; &lt;span class="err"&gt;Driver&lt;/span&gt; &lt;span class="err"&gt;Options&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Include&lt;/span&gt; &lt;span class="err"&gt;in-kernel&lt;/span&gt; &lt;span class="err"&gt;firmware&lt;/span&gt; &lt;span class="err"&gt;blobs&lt;/span&gt; &lt;span class="err"&gt;in&lt;/span&gt; &lt;span class="err"&gt;kernel&lt;/span&gt; &lt;span class="err"&gt;binary&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;(iwlwifi-7260-12.ucode)&lt;/span&gt; &lt;span class="err"&gt;External&lt;/span&gt; &lt;span class="err"&gt;firmware&lt;/span&gt; &lt;span class="err"&gt;blobs&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;build&lt;/span&gt; &lt;span class="err"&gt;into&lt;/span&gt; &lt;span class="err"&gt;the&lt;/span&gt; &lt;span class="err"&gt;kernel&lt;/span&gt; &lt;span class="err"&gt;binary&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;(/lib/firmware)&lt;/span&gt; &lt;span class="err"&gt;Firmware&lt;/span&gt; &lt;span class="err"&gt;blobs&lt;/span&gt; &lt;span class="err"&gt;root&lt;/span&gt; &lt;span class="err"&gt;directory&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Fallback&lt;/span&gt; &lt;span class="err"&gt;user-helper&lt;/span&gt; &lt;span class="err"&gt;invocation&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;firmware&lt;/span&gt; &lt;span class="err"&gt;loading&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt; &lt;span class="err"&gt;Managed&lt;/span&gt; &lt;span class="err"&gt;device&lt;/span&gt; &lt;span class="err"&gt;resources&lt;/span&gt; &lt;span class="err"&gt;verbose&lt;/span&gt; &lt;span class="err"&gt;debug&lt;/span&gt; &lt;span class="err"&gt;messages&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Serial&lt;/span&gt; &lt;span class="err"&gt;ATA&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;Parallel&lt;/span&gt; &lt;span class="err"&gt;ATA&lt;/span&gt; &lt;span class="err"&gt;drivers&lt;/span&gt; &lt;span class="err"&gt;(libata)&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;   &lt;span class="err"&gt;Verbose&lt;/span&gt; &lt;span class="err"&gt;ATA&lt;/span&gt; &lt;span class="err"&gt;error&lt;/span&gt; &lt;span class="err"&gt;reporting&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;ATA&lt;/span&gt; &lt;span class="err"&gt;ACPI&lt;/span&gt; &lt;span class="err"&gt;Support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;   &lt;span class="err"&gt;SATA&lt;/span&gt; &lt;span class="err"&gt;Port&lt;/span&gt; &lt;span class="err"&gt;Multiplier&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;AHCI&lt;/span&gt; &lt;span class="err"&gt;SATA&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;   &lt;span class="err"&gt;ATA&lt;/span&gt; &lt;span class="err"&gt;SFF&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt; &lt;span class="err"&gt;(for&lt;/span&gt; &lt;span class="err"&gt;legacy&lt;/span&gt; &lt;span class="err"&gt;IDE&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;PATA)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt; &lt;span class="err"&gt;Multiple&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt; &lt;span class="err"&gt;(RAID&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;LVM)&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt; &lt;span class="err"&gt;Macintosh&lt;/span&gt; &lt;span class="err"&gt;device&lt;/span&gt; &lt;span class="err"&gt;drivers&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Network&lt;/span&gt; &lt;span class="err"&gt;device&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;---&lt;/span&gt; &lt;span class="err"&gt;Network&lt;/span&gt; &lt;span class="err"&gt;device&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Ethernet&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;---&lt;/span&gt; &lt;span class="err"&gt;Ethernet&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;Intel(R)&lt;/span&gt; &lt;span class="err"&gt;PRO/100+&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;Intel(R)&lt;/span&gt; &lt;span class="err"&gt;PRO/1000&lt;/span&gt; &lt;span class="err"&gt;Gigabit&lt;/span&gt; &lt;span class="err"&gt;Ethernet&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;Intel(R)&lt;/span&gt; &lt;span class="err"&gt;PRO/1000&lt;/span&gt; &lt;span class="err"&gt;PCI-Express&lt;/span&gt; &lt;span class="err"&gt;Gigabit&lt;/span&gt; &lt;span class="err"&gt;Ethernet&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;     &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;(82586/82593/82596)&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;FDDI&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;USB&lt;/span&gt; &lt;span class="err"&gt;Network&lt;/span&gt; &lt;span class="err"&gt;Adapters&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Wireless&lt;/span&gt; &lt;span class="err"&gt;LAN&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;---&lt;/span&gt; &lt;span class="err"&gt;Wireless&lt;/span&gt; &lt;span class="err"&gt;LAN&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;Wireless&lt;/span&gt; &lt;span class="err"&gt;WiFi&lt;/span&gt; &lt;span class="err"&gt;Next&lt;/span&gt; &lt;span class="err"&gt;Gen&lt;/span&gt; &lt;span class="err"&gt;AGN&lt;/span&gt; &lt;span class="err"&gt;-&lt;/span&gt; &lt;span class="err"&gt;Wireless-N/Advanced-N/Ultimate-N&lt;/span&gt; &lt;span class="err"&gt;(iwlwifi)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;Wireless&lt;/span&gt; &lt;span class="err"&gt;WiFi&lt;/span&gt; &lt;span class="err"&gt;DVM&lt;/span&gt; &lt;span class="err"&gt;Firmware&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;Wireless&lt;/span&gt; &lt;span class="err"&gt;WiFi&lt;/span&gt; &lt;span class="err"&gt;MVM&lt;/span&gt; &lt;span class="err"&gt;Firmware&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Realtek&lt;/span&gt; &lt;span class="err"&gt;rtlwifi&lt;/span&gt; &lt;span class="err"&gt;family&lt;/span&gt; &lt;span class="err"&gt;of&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;I2C&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt; &lt;span class="err"&gt;I2C&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;I2C&lt;/span&gt; &lt;span class="err"&gt;device&lt;/span&gt; &lt;span class="err"&gt;interface&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;       &lt;span class="err"&gt;I2C&lt;/span&gt; &lt;span class="err"&gt;Hardware&lt;/span&gt; &lt;span class="err"&gt;Bus&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;82801&lt;/span&gt; &lt;span class="err"&gt;(ICH/PCH)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;SMBus&lt;/span&gt; &lt;span class="err"&gt;Control&lt;/span&gt; &lt;span class="err"&gt;Method&lt;/span&gt; &lt;span class="err"&gt;Interface&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Character&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Hardware&lt;/span&gt; &lt;span class="err"&gt;Random&lt;/span&gt; &lt;span class="err"&gt;Number&lt;/span&gt; &lt;span class="err"&gt;Generator&lt;/span&gt; &lt;span class="err"&gt;Core&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;GPIO&lt;/span&gt; &lt;span class="err"&gt;Support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;Lynxpoint&lt;/span&gt; &lt;span class="err"&gt;GPIO&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt; &lt;span class="err"&gt;Hardware&lt;/span&gt; &lt;span class="err"&gt;Monitoring&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;Core/Core2/Atom&lt;/span&gt; &lt;span class="err"&gt;temperature&lt;/span&gt; &lt;span class="err"&gt;sensor&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt; &lt;span class="err"&gt;Generic&lt;/span&gt; &lt;span class="err"&gt;Thermal&lt;/span&gt; &lt;span class="err"&gt;sysfs&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;       &lt;span class="err"&gt;Default&lt;/span&gt; &lt;span class="err"&gt;Thermal&lt;/span&gt; &lt;span class="err"&gt;governor&lt;/span&gt; &lt;span class="err"&gt;(step_wise)&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt;   &lt;span class="err"&gt;Step_wise&lt;/span&gt; &lt;span class="err"&gt;thermal&lt;/span&gt; &lt;span class="err"&gt;governor&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;PowerClamp&lt;/span&gt; &lt;span class="err"&gt;idle&lt;/span&gt; &lt;span class="err"&gt;injection&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;X86&lt;/span&gt; &lt;span class="err"&gt;package&lt;/span&gt; &lt;span class="err"&gt;temperature&lt;/span&gt; &lt;span class="err"&gt;thermal&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Multifunction&lt;/span&gt; &lt;span class="err"&gt;device&lt;/span&gt; &lt;span class="err"&gt;drivers&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;ICH&lt;/span&gt; &lt;span class="err"&gt;LPC&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Graphics&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Direct&lt;/span&gt; &lt;span class="err"&gt;Rendering&lt;/span&gt; &lt;span class="err"&gt;Manager&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Direct&lt;/span&gt; &lt;span class="err"&gt;Rendering&lt;/span&gt; &lt;span class="err"&gt;Manager&lt;/span&gt; &lt;span class="err"&gt;(XFree86&lt;/span&gt; &lt;span class="err"&gt;4.1.0&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;higher&lt;/span&gt; &lt;span class="err"&gt;DRI&lt;/span&gt; &lt;span class="err"&gt;support)&lt;/span&gt;  &lt;span class="err"&gt;---&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;8xx/9xx/G3x/G4x/HD&lt;/span&gt; &lt;span class="err"&gt;Graphics&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Enable&lt;/span&gt; &lt;span class="err"&gt;modesetting&lt;/span&gt; &lt;span class="err"&gt;on&lt;/span&gt; &lt;span class="err"&gt;intel&lt;/span&gt; &lt;span class="err"&gt;by&lt;/span&gt; &lt;span class="err"&gt;default&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Enable&lt;/span&gt; &lt;span class="err"&gt;legacy&lt;/span&gt; &lt;span class="err"&gt;fbdev&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;the&lt;/span&gt; &lt;span class="err"&gt;modesetting&lt;/span&gt; &lt;span class="err"&gt;intel&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Sound&lt;/span&gt; &lt;span class="err"&gt;card&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Advanced&lt;/span&gt; &lt;span class="err"&gt;Linux&lt;/span&gt; &lt;span class="err"&gt;Sound&lt;/span&gt; &lt;span class="err"&gt;Architecture&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;PCI&lt;/span&gt; &lt;span class="err"&gt;sound&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;       &lt;span class="err"&gt;HD-Audio&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;(2048)&lt;/span&gt; &lt;span class="err"&gt;Pre-allocated&lt;/span&gt; &lt;span class="err"&gt;buffer&lt;/span&gt; &lt;span class="err"&gt;size&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;HD-audio&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;HD&lt;/span&gt; &lt;span class="err"&gt;Audio&lt;/span&gt; &lt;span class="err"&gt;PCI&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Support&lt;/span&gt; &lt;span class="err"&gt;jack&lt;/span&gt; &lt;span class="err"&gt;plugging&lt;/span&gt; &lt;span class="err"&gt;notification&lt;/span&gt; &lt;span class="err"&gt;via&lt;/span&gt; &lt;span class="err"&gt;input&lt;/span&gt; &lt;span class="err"&gt;layer&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Build&lt;/span&gt; &lt;span class="err"&gt;Realtek&lt;/span&gt; &lt;span class="err"&gt;HD-audio&lt;/span&gt; &lt;span class="err"&gt;codec&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Build&lt;/span&gt; &lt;span class="err"&gt;HDMI/DisplayPort&lt;/span&gt; &lt;span class="err"&gt;HD-audio&lt;/span&gt; &lt;span class="err"&gt;codec&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;   &lt;span class="err"&gt;USB&lt;/span&gt; &lt;span class="err"&gt;sound&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;   &lt;span class="err"&gt;PCMCIA&lt;/span&gt; &lt;span class="err"&gt;sound&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;USB&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Support&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;Host-side&lt;/span&gt; &lt;span class="err"&gt;USB&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;USB&lt;/span&gt; &lt;span class="err"&gt;Monitor&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;xHCI&lt;/span&gt; &lt;span class="err"&gt;HCD&lt;/span&gt; &lt;span class="err"&gt;(USB&lt;/span&gt; &lt;span class="err"&gt;3.0)&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;EHCI&lt;/span&gt; &lt;span class="err"&gt;HCD&lt;/span&gt; &lt;span class="err"&gt;(USB&lt;/span&gt; &lt;span class="err"&gt;2.0)&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;OHCI&lt;/span&gt; &lt;span class="err"&gt;HCD&lt;/span&gt; &lt;span class="err"&gt;(USB&lt;/span&gt; &lt;span class="err"&gt;1.1)&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;UHCI&lt;/span&gt; &lt;span class="err"&gt;HCD&lt;/span&gt; &lt;span class="err"&gt;(most&lt;/span&gt; &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;VIA)&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;X86&lt;/span&gt; &lt;span class="err"&gt;Platform&lt;/span&gt; &lt;span class="err"&gt;Specific&lt;/span&gt; &lt;span class="err"&gt;Device&lt;/span&gt; &lt;span class="err"&gt;Drivers&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;ThinkPad&lt;/span&gt; &lt;span class="err"&gt;ACPI&lt;/span&gt; &lt;span class="err"&gt;Laptop&lt;/span&gt; &lt;span class="err"&gt;Extras&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;     &lt;span class="err"&gt;Console&lt;/span&gt; &lt;span class="err"&gt;audio&lt;/span&gt; &lt;span class="err"&gt;control&lt;/span&gt; &lt;span class="err"&gt;ALSA&lt;/span&gt; &lt;span class="err"&gt;interface&lt;/span&gt; &lt;span class="err"&gt;(NEW)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;     &lt;span class="err"&gt;Maintainer&lt;/span&gt; &lt;span class="err"&gt;debug&lt;/span&gt; &lt;span class="err"&gt;facilities&lt;/span&gt; &lt;span class="err"&gt;(NEW)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;     &lt;span class="err"&gt;Verbose&lt;/span&gt; &lt;span class="err"&gt;debug&lt;/span&gt; &lt;span class="err"&gt;mode&lt;/span&gt; &lt;span class="err"&gt;(NEW)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;     &lt;span class="err"&gt;Allow&lt;/span&gt; &lt;span class="err"&gt;control&lt;/span&gt; &lt;span class="err"&gt;of&lt;/span&gt; &lt;span class="err"&gt;important&lt;/span&gt; &lt;span class="err"&gt;LEDs&lt;/span&gt; &lt;span class="err"&gt;(unsafe)&lt;/span&gt; &lt;span class="err"&gt;(NEW)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;     &lt;span class="err"&gt;Video&lt;/span&gt; &lt;span class="err"&gt;output&lt;/span&gt; &lt;span class="err"&gt;control&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt; &lt;span class="err"&gt;(NEW)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;     &lt;span class="err"&gt;Support&lt;/span&gt; &lt;span class="err"&gt;NVRAM&lt;/span&gt; &lt;span class="err"&gt;polling&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;hot&lt;/span&gt; &lt;span class="err"&gt;keys&lt;/span&gt; &lt;span class="err"&gt;(NEW)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Eee&lt;/span&gt; &lt;span class="err"&gt;PC&lt;/span&gt; &lt;span class="err"&gt;Hotkey&lt;/span&gt; &lt;span class="err"&gt;Driver&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;IOMMU&lt;/span&gt; &lt;span class="err"&gt;Hardware&lt;/span&gt; &lt;span class="err"&gt;Support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;---&lt;/span&gt; &lt;span class="err"&gt;IOMMU&lt;/span&gt; &lt;span class="err"&gt;Hardware&lt;/span&gt; &lt;span class="err"&gt;Support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;   &lt;span class="err"&gt;AMD&lt;/span&gt; &lt;span class="err"&gt;IOMMU&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Support&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;IOMMU&lt;/span&gt; &lt;span class="err"&gt;using&lt;/span&gt; &lt;span class="err"&gt;DMA&lt;/span&gt; &lt;span class="err"&gt;Remapping&lt;/span&gt; &lt;span class="err"&gt;Devices&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;     &lt;span class="err"&gt;Enable&lt;/span&gt; &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;DMA&lt;/span&gt; &lt;span class="err"&gt;Remapping&lt;/span&gt; &lt;span class="err"&gt;Devices&lt;/span&gt; &lt;span class="err"&gt;by&lt;/span&gt; &lt;span class="err"&gt;default&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Support&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;Interrupt&lt;/span&gt; &lt;span class="err"&gt;Remapping&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Pulse-Width&lt;/span&gt; &lt;span class="err"&gt;Modulation&lt;/span&gt; &lt;span class="err"&gt;(PWM)&lt;/span&gt; &lt;span class="err"&gt;Support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;LPSS&lt;/span&gt; &lt;span class="err"&gt;PWM&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;LPSS&lt;/span&gt; &lt;span class="err"&gt;PWM&lt;/span&gt; &lt;span class="err"&gt;PCI&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;LPSS&lt;/span&gt; &lt;span class="err"&gt;PWM&lt;/span&gt; &lt;span class="err"&gt;platform&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Generic&lt;/span&gt; &lt;span class="err"&gt;powercap&lt;/span&gt; &lt;span class="err"&gt;sysfs&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;    &lt;span class="err"&gt;File&lt;/span&gt; &lt;span class="err"&gt;systems&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;The&lt;/span&gt; &lt;span class="err"&gt;Extended&lt;/span&gt; &lt;span class="err"&gt;4&lt;/span&gt; &lt;span class="err"&gt;(ext4)&lt;/span&gt; &lt;span class="err"&gt;filesystem&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;XFS&lt;/span&gt; &lt;span class="err"&gt;filesystem&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;FUSE&lt;/span&gt; &lt;span class="err"&gt;(Filesystem&lt;/span&gt; &lt;span class="err"&gt;in&lt;/span&gt; &lt;span class="err"&gt;Userspace)&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Pseudo&lt;/span&gt; &lt;span class="err"&gt;filesystems&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;EFI&lt;/span&gt; &lt;span class="err"&gt;Variable&lt;/span&gt; &lt;span class="err"&gt;filesystem&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt; &lt;span class="err"&gt;Miscellaneous&lt;/span&gt; &lt;span class="err"&gt;filesystems&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Network&lt;/span&gt; &lt;span class="err"&gt;File&lt;/span&gt; &lt;span class="err"&gt;Systems&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;---&lt;/span&gt; &lt;span class="err"&gt;Network&lt;/span&gt; &lt;span class="err"&gt;File&lt;/span&gt; &lt;span class="err"&gt;Systems&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;NFS&lt;/span&gt; &lt;span class="err"&gt;client&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;NFS&lt;/span&gt; &lt;span class="err"&gt;client&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;NFS&lt;/span&gt; &lt;span class="err"&gt;version&lt;/span&gt; &lt;span class="err"&gt;2&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;NFS&lt;/span&gt; &lt;span class="err"&gt;client&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;NFS&lt;/span&gt; &lt;span class="err"&gt;version&lt;/span&gt; &lt;span class="err"&gt;3&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;NFS&lt;/span&gt; &lt;span class="err"&gt;client&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;NFS&lt;/span&gt; &lt;span class="err"&gt;version&lt;/span&gt; &lt;span class="err"&gt;4&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;   &lt;span class="err"&gt;Root&lt;/span&gt; &lt;span class="err"&gt;file&lt;/span&gt; &lt;span class="err"&gt;system&lt;/span&gt; &lt;span class="err"&gt;on&lt;/span&gt; &lt;span class="err"&gt;NFS&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;CIFS&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt; &lt;span class="err"&gt;(advanced&lt;/span&gt; &lt;span class="err"&gt;network&lt;/span&gt; &lt;span class="err"&gt;filesystem,&lt;/span&gt; &lt;span class="err"&gt;SMBFS&lt;/span&gt; &lt;span class="err"&gt;successor)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;     &lt;span class="err"&gt;Enable&lt;/span&gt; &lt;span class="err"&gt;CIFS&lt;/span&gt; &lt;span class="err"&gt;debugging&lt;/span&gt; &lt;span class="err"&gt;routines&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt; &lt;span class="err"&gt;Cryptographic&lt;/span&gt; &lt;span class="err"&gt;API&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;       &lt;span class="err"&gt;***&lt;/span&gt; &lt;span class="err"&gt;Digest&lt;/span&gt; &lt;span class="err"&gt;***&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt;   &lt;span class="err"&gt;CRC32c&lt;/span&gt; &lt;span class="err"&gt;CRC&lt;/span&gt; &lt;span class="err"&gt;algorithm&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;CRC32c&lt;/span&gt; &lt;span class="err"&gt;INTEL&lt;/span&gt; &lt;span class="err"&gt;hardware&lt;/span&gt; &lt;span class="err"&gt;acceleration&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt;   &lt;span class="err"&gt;SHA1&lt;/span&gt; &lt;span class="err"&gt;digest&lt;/span&gt; &lt;span class="err"&gt;algorithm&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;SHA1&lt;/span&gt; &lt;span class="err"&gt;digest&lt;/span&gt; &lt;span class="err"&gt;algorithm&lt;/span&gt; &lt;span class="err"&gt;(SSSE3/AVX/AVX2)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;SHA256&lt;/span&gt; &lt;span class="err"&gt;digest&lt;/span&gt; &lt;span class="err"&gt;algorithm&lt;/span&gt; &lt;span class="err"&gt;(SSSE3/AVX/AVX2)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;SHA512&lt;/span&gt; &lt;span class="err"&gt;digest&lt;/span&gt; &lt;span class="err"&gt;algorithm&lt;/span&gt; &lt;span class="err"&gt;(SSSE3/AVX/AVX2)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;       &lt;span class="err"&gt;***&lt;/span&gt; &lt;span class="err"&gt;Ciphers&lt;/span&gt; &lt;span class="err"&gt;***&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt;   &lt;span class="err"&gt;AES&lt;/span&gt; &lt;span class="err"&gt;cipher&lt;/span&gt; &lt;span class="err"&gt;algorithms&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt;   &lt;span class="err"&gt;AES&lt;/span&gt; &lt;span class="err"&gt;cipher&lt;/span&gt; &lt;span class="err"&gt;algorithms&lt;/span&gt; &lt;span class="err"&gt;(x86_64)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;AES&lt;/span&gt; &lt;span class="err"&gt;cipher&lt;/span&gt; &lt;span class="err"&gt;algorithms&lt;/span&gt; &lt;span class="err"&gt;(AES-NI)&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;   &lt;span class="err"&gt;Hardware&lt;/span&gt; &lt;span class="err"&gt;crypto&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
 &lt;/pre&gt;
+&lt;!-- |      | [*] Support x2apic
+|      | [ ] Support for extended (non-PC) x86 platforms
+|      | [*] Intel Low Power Subsystem Support
+|      |     Processor family (Generic-x86-64)  - - -&gt;
+|      | [ ] Old AMD GART IOMMU support
+|      | [ ] IBM Calgary IOMMU support
+|      | [ ] Enable Maximum number of SMP Processors and NUMA Nodes
+|      | [*] SMT (Hyperthreading) scheduler support
+|      | [*] Multi-core scheduler support
+|      | [*] Machine Check / overheating reporting
+|      | [*]   Intel MCE features (NEW)
+|      | [ ]   AMD MCE features
+|      | &lt; &gt; CPU microcode loading support
+|      | &lt;*&gt; /dev/cpu/*/msr - Model-specific register support
+|      | &lt;*&gt; /dev/cpu/*/cpuid - CPU information support
+|      | [ ] Numa Memory Allocation and Scheduler Support
+|      | [*] EFI runtime service support
+|      | [*]   EFI stub support
+|      | [*] Built-in kernel command line
+|      | (root=/dev/sda6 init=/usr/lib/systemd/systemd) Built-in kernel command string
+|
+| Power management and ACPI options  - - -&gt;
+|      |
+|      | [*] Suspend to RAM and standby
+|      | [*] Hibernation (aka 'suspend to disk')
+|      | (/dev/sda5) Default resume partition
+|      |
+|      | -*- Device power management core functionality
+|      | [ ]   Power Management Debug Support
+|      |
+|      | [*] ACPI (Advanced Configuration and Power Interface) Support  - - -&gt;
+|      |      | &lt;*&gt;   Processor
+|      |      | &lt;*&gt;   Processor Aggregator
+|      |
+|      |     CPU Frequency scaling  - - -&gt;
+|      |      | [*] CPU Frequency scaling
+|      |      | &lt;*&gt;   CPU frequency translation statistics
+|      |      | [*]     CPU frequency translation statistics details
+|      |      |       Default CPUFreq governor (conservative)  - - -&gt;
+|      |      | -*-   'performance' governor
+|      |      | &lt;*&gt;   'powersave' governor
+|      |      | &lt;*&gt;   'userspace' governor for userspace frequency scaling
+|      |      | &lt;*&gt;   'ondemand' cpufreq policy governor
+|      |      | -*-   'conservative' cpufreq governor
+|      |      |       *** CPU frequency scaling drivers ***
+|      |      | [*]   Intel P state control
+|      |      | &lt; &gt;   ACPI Processor P-States driver
+|      |
+|      |     CPU Idle  - - -&gt;
+|      |      | [*] CPU idle PM support
+|      |      | [ ]   Ladder governor (for periodic timer tick)
+|      |      | -*-   Menu governor (for tickless system)
+|      |
+|      | [*] Cpuidle Driver for Intel Processors
+|
+| [*] Networking support  - - -&gt;
+|      | - - - Networking support
+|      |       Networking options  - - -&gt;
+|      |        | [*] TCP/IP networking
+|      |        | &lt; &gt;   The IPv6 protocol  - - - -
+|      |        | [ ]   NetLabel subsystem support
+|      |
+|      | [ ]   Amateur Radio support  - - - -
+|      |
+|      | -*-   Wireless  - - -&gt;
+|      |        | - - - Wireless
+|      |        | &lt;*&gt;   cfg80211 - wireless configuration API
+|      |        | [*]     enable powersave by default
+|      |        | &lt;*&gt;   Generic IEEE 802.11 Networking Stack (mac80211)
+|      |        | [*]   Enable LED triggers
+|
+| Device Drivers  - - -&gt;
+|      |
+|      |     Generic Driver Options  - - -&gt;
+|      |      | [*]   Include in-kernel firmware blobs in kernel binary
+|      |      | (iwlwifi-7260-16.ucode) External firmware blobs to build into the kernel binary
+|      |      | (/lib/firmware) Firmware blobs root directory
+|      |      | [*] Fallback user-helper invocation for firmware loading
+|      |      | [ ] Managed device resources verbose debug messages
+|      |
+|      | &lt;*&gt; Serial ATA and Parallel ATA drivers (libata)  - - -&gt;
+|      |      | [ ]   Verbose ATA error reporting
+|      |      | [*]   ATA ACPI Support
+|      |      | [ ]   SATA Port Multiplier support
+|      |      | &lt;*&gt;   AHCI SATA support
+|      |      | [ ]   ATA SFF support (for legacy IDE and PATA)
+|      |
+|      | [ ] Multiple devices driver support (RAID and LVM)  - - - -
+|      | [ ] Macintosh device drivers  - - - -
+|      |
+|      | [*] Network device support  - - -&gt;
+|      |      | - - - Network device support
+|      |      | [*]   Ethernet driver support  - - -&gt;
+|      |      |        | - - - Ethernet driver support
+|      |      |        | [*]   Intel devices
+|      |      |        | &lt; &gt;     Intel(R) PRO/100+ support
+|      |      |        | &lt; &gt;     Intel(R) PRO/1000 Gigabit Ethernet support
+|      |      |        | &lt;*&gt;     Intel(R) PRO/1000 PCI-Express Gigabit Ethernet support
+|      |      |        | [ ]     Intel (82586/82593/82596) devices
+|      |      |
+|      |      | &lt; &gt;   FDDI driver support
+|      |      | &lt; &gt;   USB Network Adapters  - - - -
+|      |      | &lt; &gt;   PHY Device support and infrastructure  - - - -
+|      |      |
+|      |      | [*]   Wireless LAN  - - -&gt;
+|      |      |        | - - - Wireless LAN
+|      |      |        | &lt;*&gt;   Intel Wireless WiFi Next Gen AGN - Wireless-N/Advanced-N/Ultimate-N (iwlwifi)
+|      |      |        | &lt; &gt;     Intel Wireless WiFi DVM Firmware support
+|      |      |        | &lt;*&gt;     Intel Wireless WiFi MVM Firmware support
+|      |      |        | &lt; &gt;   Realtek rtlwifi family of devices  - - - -
+|      |
+|      |     I2C support  - - -&gt;
+|      |      | -*- I2C support
+|      |      | &lt;*&gt;   I2C device interface
+|      |      |       I2C Hardware Bus support  - - -&gt;
+|      |      |        | &lt;*&gt; Intel 82801 (ICH/PCH)
+|      |      |        | &lt;*&gt; SMBus Control Method Interface
+|      |
+|      |     Character devices  - - -&gt;
+|      |      | &lt; &gt; Hardware Random Number Generator Core support  - - -&gt;
+|      | --&gt;
+&lt;!-- |      | [*] GPIO Support  - - -&gt; --&gt;
+&lt;!-- |      |      | &lt;*&gt;   Intel Lynxpoint GPIO support                          *******************************************
+|      |
+|      | -*- Hardware Monitoring support  - - -&gt;
+|      |      | &lt;*&gt;   Intel Core/Core2/Atom temperature sensor
+|      |
+|      | -*- Generic Thermal sysfs driver  - - -&gt;
+|      |      |       Default Thermal governor (step_wise)  - - -&gt;
+|      |      | -*-   Step_wise thermal governor
+|      |      | &lt;*&gt;   Intel PowerClamp idle injection driver
+|      |      | &lt;*&gt;   X86 package temperature thermal driver
+|      |
+|      |     Multifunction device drivers  - - -&gt;
+|      |      | &lt;*&gt; Intel ICH LPC
+|      |
+|      |     Graphics support  - - -&gt;
+|      |      |     Direct Rendering Manager  - - -&gt;
+|      |      |      | &lt;*&gt; Direct Rendering Manager (XFree86 4.1.0 and higher DRI support)  - - -
+|      |      |      | &lt;*&gt; Intel 8xx/9xx/G3x/G4x/HD Graphics
+|      |
+|      |     &lt;*&gt; Sound card support  - - -&gt;
+|      |      | &lt;*&gt;   Advanced Linux Sound Architecture  - - -&gt;
+|      |      |      | [*]   PCI sound devices  - - -&gt;
+|      |      |      |       HD-Audio  - - -&gt;
+|      |      |      |        | &lt;*&gt; HD Audio PCI
+|      |      |      |        | &lt;*&gt; Build Realtek HD-audio codec support
+|      |      |      |        | &lt;*&gt; Build HDMI/DisplayPort HD-audio codec support
+|      |      |      |
+|      |      |      | (2048) Pre-allocated buffer size for HD-audio driver
+|      |      |      |
+|      |      |      | [ ]   USB sound devices  - - - -
+|      |      |      | [ ]   PCMCIA sound devices  - - - -
+|      |
+|      | [*] USB support  - - -&gt;
+|      |      | &lt;*&gt;   Support for Host-side USB
+|      |      | &lt; &gt;     USB Monitor
+|      |      | &lt;*&gt;     xHCI HCD (USB 3.0) support
+|      |      | &lt;*&gt;     EHCI HCD (USB 2.0) support
+|      |      | &lt; &gt;     OHCI HCD (USB 1.1) support
+|      |      | &lt; &gt;     UHCI HCD (most Intel and VIA) support
+|      |
+|      | [*] X86 Platform Specific Device Drivers  - - -&gt;
+|      |      | &lt;*&gt;   ThinkPad ACPI Laptop Extras
+|      |      | [*]     Console audio control ALSA interface (NEW)
+|      |      | [ ]     Maintainer debug facilities (NEW)
+|      |      | [ ]     Verbose debug mode (NEW)
+|      |      | [ ]     Allow control of important LEDs (unsafe) (NEW)
+|      |      | [*]     Video output control support (NEW)
+|      |      | [*]     Support NVRAM polling for hot keys (NEW)
+|      |      | &lt; &gt;   Eee PC Hotkey Driver
+|      |
+|      | [*] IOMMU Hardware Support  - - -&gt;
+|      |      | - - - IOMMU Hardware Support
+|      |      | [ ]   AMD IOMMU support
+|      |      | [*]   Support for Intel IOMMU using DMA Remapping Devices
+|      |      | [*]     Enable Intel DMA Remapping Devices by default
+|      |      | [*]   Support for Interrupt Remapping
+|      |
+|      | [*] Pulse-Width Modulation (PWM) Support  - - -&gt;
+|      |      | &lt;*&gt;   Intel LPSS PWM support
+|      |      | &lt;*&gt;     Intel LPSS PWM PCI driver
+|      |      | &lt;*&gt;     Intel LPSS PWM platform driver
+|      |
+|      | [*] Generic powercap sysfs driver  - - -&gt;
+|
+|    File systems  - - -&gt;
+|      |
+|      | &lt;*&gt; The Extended 4 (ext4) filesystem
+|      | &lt;*&gt; XFS filesystem support
+|      | &lt;*&gt; FUSE (Filesystem in Userspace) support
+|      |
+|      |     Pseudo filesystems  - - -&gt;
+|      |      | &lt;*&gt;   EFI Variable filesystem
+|      |
+|      | [ ] Miscellaneous filesystems  - - - -
+|      |
+|      | [*] Network File Systems  - - -&gt;
+|      |      | - - - Network File Systems
+|      |      | &lt;*&gt;   NFS client support
+|      |      | &lt; &gt;     NFS client support for NFS version 2
+|      |      | &lt; &gt;     NFS client support for NFS version 3
+|      |      | &lt;*&gt;     NFS client support for NFS version 4
+|      |      | [ ]   Root file system on NFS
+|      |      | &lt;*&gt;   CIFS support (advanced network filesystem, SMBFS successor)
+|      |      | [ ]     Enable CIFS debugging routines
+|
+| -*- Cryptographic API  - - -&gt;
+|      |
+|      |       *** Digest ***
+|      | -*-   CRC32c CRC algorithm
+|      | &lt;*&gt;   CRC32c INTEL hardware acceleration
+|      | -*-   SHA1 digest algorithm
+|      | &lt;*&gt;   SHA1 digest algorithm (SSSE3/AVX/AVX2)
+|      | &lt;*&gt;   SHA256 digest algorithm (SSSE3/AVX/AVX2)
+|      | &lt;*&gt;   SHA512 digest algorithm (SSSE3/AVX/AVX2)
+|      |
+|      |       *** Ciphers ***
+|      | -*-   AES cipher algorithms
+|      | -*-   AES cipher algorithms (x86_64)
+|      | &lt;*&gt;   AES cipher algorithms (AES-NI)
+|      |
+|      | [ ]   Hardware crypto devices  - - - - --&gt;
 &lt;/div&gt;
 &lt;div class="section" id="kernel-optional-configuration"&gt;
 &lt;h2&gt;Kernel optional configuration&lt;/h2&gt;
@@ -596,6 +606,13 @@
 &lt;div class="section" id="virtualization-with-kvm"&gt;
 &lt;h3&gt;Virtualization with KVM&lt;/h3&gt;
 &lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;General&lt;/span&gt; &lt;span class="err"&gt;setup&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt; &lt;span class="err"&gt;Control&lt;/span&gt; &lt;span class="err"&gt;Group&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Memory&lt;/span&gt; &lt;span class="err"&gt;Resource&lt;/span&gt; &lt;span class="err"&gt;Controller&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;Control&lt;/span&gt; &lt;span class="err"&gt;Groups&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;     &lt;span class="err"&gt;Memory&lt;/span&gt; &lt;span class="err"&gt;Resource&lt;/span&gt; &lt;span class="err"&gt;Controller&lt;/span&gt; &lt;span class="err"&gt;Swap&lt;/span&gt; &lt;span class="err"&gt;Extension&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;       &lt;span class="err"&gt;Memory&lt;/span&gt; &lt;span class="err"&gt;Resource&lt;/span&gt; &lt;span class="err"&gt;Controller&lt;/span&gt; &lt;span class="err"&gt;Swap&lt;/span&gt; &lt;span class="err"&gt;Extension&lt;/span&gt; &lt;span class="err"&gt;enabled&lt;/span&gt; &lt;span class="err"&gt;by&lt;/span&gt; &lt;span class="err"&gt;default&lt;/span&gt; &lt;span class="err"&gt;(NEW)&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;     &lt;span class="err"&gt;Memory&lt;/span&gt; &lt;span class="err"&gt;Resource&lt;/span&gt; &lt;span class="err"&gt;Controller&lt;/span&gt; &lt;span class="err"&gt;Kernel&lt;/span&gt; &lt;span class="err"&gt;Memory&lt;/span&gt; &lt;span class="err"&gt;accounting&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;---&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Kernel-based&lt;/span&gt; &lt;span class="err"&gt;Virtual&lt;/span&gt; &lt;span class="err"&gt;Machine&lt;/span&gt; &lt;span class="err"&gt;(KVM)&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
@@ -611,7 +628,9 @@
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;---&lt;/span&gt; &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;       &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;options&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;802.1d&lt;/span&gt; &lt;span class="err"&gt;Ethernet&lt;/span&gt; &lt;span class="err"&gt;Bridging&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Network&lt;/span&gt; &lt;span class="err"&gt;packet&lt;/span&gt; &lt;span class="err"&gt;filtering&lt;/span&gt; &lt;span class="err"&gt;framework&lt;/span&gt; &lt;span class="err"&gt;(Netfilter)&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Ethernet&lt;/span&gt; &lt;span class="err"&gt;Bridge&lt;/span&gt; &lt;span class="err"&gt;tables&lt;/span&gt; &lt;span class="err"&gt;(ebtables)&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;ebt:&lt;/span&gt; &lt;span class="err"&gt;mark&lt;/span&gt; &lt;span class="err"&gt;target&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;Device&lt;/span&gt; &lt;span class="err"&gt;Drivers&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Network&lt;/span&gt; &lt;span class="err"&gt;device&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
@@ -673,7 +692,7 @@
 &lt;/pre&gt;
 &lt;p&gt;Copy kernel&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.0.5.efi
+&lt;span class="gp"&gt;#&lt;/span&gt; cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.4.6.efi
 &lt;/pre&gt;
 &lt;p&gt;Unmount ESP (EFI System Partition)&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
@@ -688,7 +707,7 @@
 &lt;/pre&gt;
 &lt;p&gt;Add the new kernel&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr -c -d /dev/sda -p &lt;span class="m"&gt;2&lt;/span&gt; -L &lt;span class="s2"&gt;"Gentoo Linux 4.0.5"&lt;/span&gt; -l &lt;span class="s2"&gt;"\EFI\GentooLinux\4.0.5.efi"&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr -c -d /dev/sda -p &lt;span class="m"&gt;2&lt;/span&gt; -L &lt;span class="s2"&gt;"Gentoo Linux 4.4.6"&lt;/span&gt; -l &lt;span class="s2"&gt;"\EFI\GentooLinux\4.4.6.efi"&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Print the menu&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
@@ -771,7 +790,7 @@
 &lt;/pre&gt;
 &lt;p&gt;Check configuration with "dig" tool :&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; emerge &lt;span class="nb"&gt;bind&lt;/span&gt;-tools
+&lt;span class="gp"&gt;#&lt;/span&gt; emerge bind-tools
 &lt;/pre&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt; dig didier.bernaudeau.net +nostats +nocomments +nocmd
@@ -788,7 +807,7 @@ github.map.fastly.net.  30      IN      A       185.31.17.133&lt;/span&gt;
 &lt;h2&gt;Create local directory&lt;/h2&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt; git clone https://github.com/didier-bernaudeau/didier-bernaudeau.github.io.git/ MyWebSite
-&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;MyWebSite
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; MyWebSite
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="create-project"&gt;
@@ -819,9 +838,9 @@ github.map.fastly.net.  30      IN      A       185.31.17.133&lt;/span&gt;
 &lt;h2&gt;Download the theme&lt;/h2&gt;
 &lt;p&gt;For my web site, I selected the theme "Bootstrap3" and the style sheet "Bootswatch".&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;MyWebSite
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; MyWebSite
 &lt;span class="gp"&gt;$&lt;/span&gt; git clone https://github.com/DandyDev/pelican-bootstrap3.git/ theme
-&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;theme/static/css/
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; theme/static/css/
 &lt;span class="gp"&gt;$&lt;/span&gt; wget https://bootswatch.com/bower_components/bootstrap/dist/css/bootstrap.min.css
 &lt;span class="gp"&gt;$&lt;/span&gt; wget https://bootswatch.com/bower_components/bootstrap/dist/css/bootstrap.css
 &lt;/pre&gt;
@@ -830,7 +849,7 @@ github.map.fastly.net.  30      IN      A       185.31.17.133&lt;/span&gt;
 &lt;div class="section" id="download-plugins"&gt;
 &lt;h2&gt;Download plugins&lt;/h2&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;MyWebSite
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; MyWebSite
 &lt;span class="gp"&gt;$&lt;/span&gt; git clone --recursive https://github.com/getpelican/pelican-plugins plugins
 &lt;/pre&gt;
 &lt;/div&gt;
@@ -844,7 +863,7 @@ github.map.fastly.net.  30      IN      A       185.31.17.133&lt;/span&gt;
 &lt;div class="section" id="create-github-files"&gt;
 &lt;h2&gt;Create GitHub Files&lt;/h2&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd &lt;/span&gt;MyWebSite
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; MyWebSite
 &lt;span class="gp"&gt;$&lt;/span&gt; mkdir content/GitHubFiles
 &lt;/pre&gt;
 &lt;p&gt;Write your domain name in CNAME Files :&lt;/p&gt;

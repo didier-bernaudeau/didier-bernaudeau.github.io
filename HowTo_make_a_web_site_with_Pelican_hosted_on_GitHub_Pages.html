@@ -135,7 +135,7 @@ My personal blog note            </a>
 </pre>
 <p>Check configuration with "dig" tool :</p>
 <pre class="code console literal-block">
-<span class="gp">#</span> emerge <span class="nb">bind</span>-tools
+<span class="gp">#</span> emerge bind-tools
 </pre>
 <pre class="code console literal-block">
 <span class="gp">$</span> dig didier.bernaudeau.net +nostats +nocomments +nocmd
@@ -152,7 +152,7 @@ github.map.fastly.net.  30      IN      A       185.31.17.133</span>
 <h2>Create local directory</h2>
 <pre class="code console literal-block">
 <span class="gp">$</span> git clone https://github.com/didier-bernaudeau/didier-bernaudeau.github.io.git/ MyWebSite
-<span class="gp">$</span> <span class="nb">cd </span>MyWebSite
+<span class="gp">$</span> <span class="nb">cd</span> MyWebSite
 </pre>
 </div>
 <div class="section" id="create-project">
@@ -183,9 +183,9 @@ github.map.fastly.net.  30      IN      A       185.31.17.133</span>
 <h2>Download the theme</h2>
 <p>For my web site, I selected the theme "Bootstrap3" and the style sheet "Bootswatch".</p>
 <pre class="code console literal-block">
-<span class="gp">$</span> <span class="nb">cd </span>MyWebSite
+<span class="gp">$</span> <span class="nb">cd</span> MyWebSite
 <span class="gp">$</span> git clone https://github.com/DandyDev/pelican-bootstrap3.git/ theme
-<span class="gp">$</span> <span class="nb">cd </span>theme/static/css/
+<span class="gp">$</span> <span class="nb">cd</span> theme/static/css/
 <span class="gp">$</span> wget https://bootswatch.com/bower_components/bootstrap/dist/css/bootstrap.min.css
 <span class="gp">$</span> wget https://bootswatch.com/bower_components/bootstrap/dist/css/bootstrap.css
 </pre>
@@ -194,7 +194,7 @@ github.map.fastly.net.  30      IN      A       185.31.17.133</span>
 <div class="section" id="download-plugins">
 <h2>Download plugins</h2>
 <pre class="code console literal-block">
-<span class="gp">$</span> <span class="nb">cd </span>MyWebSite
+<span class="gp">$</span> <span class="nb">cd</span> MyWebSite
 <span class="gp">$</span> git clone --recursive https://github.com/getpelican/pelican-plugins plugins
 </pre>
 </div>
@@ -208,7 +208,7 @@ github.map.fastly.net.  30      IN      A       185.31.17.133</span>
 <div class="section" id="create-github-files">
 <h2>Create GitHub Files</h2>
 <pre class="code console literal-block">
-<span class="gp">$</span> <span class="nb">cd </span>MyWebSite
+<span class="gp">$</span> <span class="nb">cd</span> MyWebSite
 <span class="gp">$</span> mkdir content/GitHubFiles
 </pre>
 <p>Write your domain name in CNAME Files :</p>

@@ -135,7 +135,7 @@ My personal blog note            </a>
 <p>Select profil for systemd (default/linux/amd64/13.0/desktop/kde/systemd)</p>
 <pre class="code console literal-block">
 <span class="gp">#</span> eselect profile list
-<span class="gp">#</span> eselect profile <span class="nb">set </span>7
+<span class="gp">#</span> eselect profile <span class="nb">set</span> 7
 </pre>
 <p>Update system</p>
 <pre class="code console literal-block">
@@ -152,12 +152,12 @@ My personal blog note            </a>
 <p>Define keyboard layout</p>
 <pre class="code console literal-block">
 <span class="gp">#</span> localectl list-keymaps
-<span class="gp">#</span> localectl <span class="nb">set</span>-keymap fr-latin9
+<span class="gp">#</span> localectl set-keymap fr-latin9
 </pre>
 <p>Define time zone</p>
 <pre class="code console literal-block">
 <span class="gp">#</span> timedatectl list-timezones
-<span class="gp">#</span> timedatectl <span class="nb">set</span>-timezone Europe/Paris
+<span class="gp">#</span> timedatectl set-timezone Europe/Paris
 </pre>
 <p>Define NTP client</p>
 <pre class="code console literal-block">
@@ -168,9 +168,9 @@ My personal blog note            </a>
 </pre>
 <p>Start NTP client</p>
 <pre class="code console literal-block">
-<span class="gp">#</span> systemctl <span class="nb">enable </span>systemd-timesyncd
+<span class="gp">#</span> systemctl <span class="nb">enable</span> systemd-timesyncd
 <span class="gp">#</span> systemctl start systemd-timesyncd
-<span class="gp">#</span> timedatectl <span class="nb">set</span>-ntp <span class="nb">true</span>
+<span class="gp">#</span> timedatectl set-ntp <span class="nb">true</span>
 </pre>
 <p>Check NTP client</p>
 <pre class="code console literal-block">
@@ -181,19 +181,19 @@ My personal blog note            </a>
 <h2>Enable services</h2>
 <p>KDM (KDE Display Manager)</p>
 <pre class="code console literal-block">
-<span class="gp">#</span> systemctl <span class="nb">enable </span>kdm.service
+<span class="gp">#</span> systemctl <span class="nb">enable</span> kdm.service
 </pre>
 <p>NetworkManager</p>
 <pre class="code console literal-block">
-<span class="gp">#</span> systemctl <span class="nb">enable </span>NetworkManager.service
+<span class="gp">#</span> systemctl <span class="nb">enable</span> NetworkManager.service
 </pre>
 <p>NFS (Network File System)</p>
 <pre class="code console literal-block">
-<span class="gp">#</span> systemctl <span class="nb">enable </span>nfs-client.target
+<span class="gp">#</span> systemctl <span class="nb">enable</span> nfs-client.target
 </pre>
 <p>AutoFS</p>
 <pre class="code console literal-block">
-<span class="gp">#</span> systemctl <span class="nb">enable </span>autofs.service
+<span class="gp">#</span> systemctl <span class="nb">enable</span> autofs.service
 </pre>
 <p>libVirtd</p>
 <pre class="code console literal-block">

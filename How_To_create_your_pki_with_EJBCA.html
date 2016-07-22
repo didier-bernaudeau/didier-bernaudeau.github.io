@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>How to create your pki with EJBCA - My personal blog note</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://didier.bernaudeau.net/How_To_create_your_pki_with_EJBCA.html">
+
+        <meta name="author" content="Didier BERNAUDEAU" />
+        <meta name="keywords" content="Certificate,Debian" />
+        <meta name="description" content="This post describe step by step how to install EJBCA on Linux Debian with Wildfly 10. Then, create your Certificate Authority to issue certificate." />
+
+        <meta property="og:site_name" content="My personal blog note" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="How to create your pki with EJBCA"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/How_To_create_your_pki_with_EJBCA.html"/>
+        <meta property="og:description" content="This post describe step by step how to install EJBCA on Linux Debian with Wildfly 10. Then, create your Certificate Authority to issue certificate."/>
+        <meta property="article:published_time" content="2016-07-06" />
+            <meta property="article:section" content="Tutorials" />
+            <meta property="article:tag" content="Certificate" />
+            <meta property="article:tag" content="Debian" />
+            <meta property="article:author" content="Didier BERNAUDEAU" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+    <link href="http://didier.bernaudeau.net/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://didier.bernaudeau.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/style.css" type="text/css"/>
+
+        <link href="http://didier.bernaudeau.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note ATOM Feed"/>
+
+
+
+        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Tutorials ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://didier.bernaudeau.net/" class="navbar-brand">
+My personal blog note            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/articles.html">Articles</a></li>
+                    <li><a href="/category/tutorials.html">Tutorials</a></li>
+                    <li><a href="/category/press-review.html">Press Review</a></li>
+                    <li><a href="/pages/presentation.html">Presentation</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="http://didier.bernaudeau.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://didier.bernaudeau.net/How_To_create_your_pki_with_EJBCA.html"
+                       rel="bookmark"
+                       title="Permalink to How to create your pki with EJBCA">
+                        How to create your pki with EJBCA
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2016-07-06T18:18:00+02:00"> mer. 06 juillet 2016</time>
+    </span>
+            <span class="label label-default">Modified</span>
+            <span class="modified">
+                <i class="fa fa-calendar"></i><time datetime="2016-07-06T18:18:00+02:00"> mer. 06 juillet 2016</time>
+            </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://didier.bernaudeau.net/tag/certificate.html">Certificate</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/debian.html">Debian</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>This post describe step by step how to install EJBCA on Linux Debian with Wildfly 10. Then, create your Certificate Authority to issue certificate.</p>
+
+<h1>Install Debian</h1>
+<ul>
+<li>
+<p>Define the hostname : pki.intra.net</p>
+</li>
+<li>
+<p>change time zone for UTC</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> dpkg-reconfigure tzdata
+<span class="go">Geographic area : none of the above</span>
+<span class="go">Time zone : UTC</span>
+</pre></div>
+<ul>
+<li>Install NTP</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> apt-get install ntp
+<span class="gp">#</span> nano /etc/ntp.conf
+<span class="go">server 0.fr.pool.ntp.org</span>
+<span class="go">server 1.fr.pool.ntp.org</span>
+<span class="go">server 2.fr.pool.ntp.org</span>
+<span class="go">server 3.fr.pool.ntp.org</span>
+</pre></div>
+<ul>
+<li>Print date &amp; time</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> timedatectl
+</pre></div>
+<h1>Install MariaDB</h1>
+<ul>
+<li>Install MariaDB server</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> apt-get install mariadb-server
+</pre></div>
+<ul>
+<li>Start and enable MariaDB</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> systemctl start mysql.service
+<span class="gp">#</span> systemctl <span class="nb">enable</span> mysql.service
+</pre></div>
+<ul>
+<li>Create database</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> mysql -u root -p
+<span class="go">MariaDB&gt; CREATE DATABASE ejbca CHARACTER SET utf8 COLLATE utf8_general_ci;</span>
+<span class="go">MariaDB&gt; GRANT ALL PRIVILEGES ON ejbca.* TO 'ejbca'@'localhost' IDENTIFIED BY 'ejbca';</span>
+</pre></div>
+<h1>Install Java</h1>
+<ul>
+<li>Download JDK from Oracle</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> wget --header <span class="s2">"Cookie: oraclelicense=accept-securebackup-cookie"</span> http://download.oracle.com/otn-pub/java/jdk/8u92-b14/jdk-8u92-linux-x64.tar.gz
+<span class="gp">#</span> tar -zxf jdk-8u92-linux-x64.tar.gz -C /opt/
+<span class="gp">#</span> ln -s /opt/jdk1.8.0_92 /opt/jdk
+</pre></div>
+<ul>
+<li>Make a new JDK alternatives</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> update-alternatives --install /usr/bin/java java /opt/jdk/bin/java 100
+<span class="gp">#</span> update-alternatives --install /usr/bin/javac javac /opt/jdk/bin/javac 100
+</pre></div>
+<ul>
+<li>Update the default JDK</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> update-alternatives --config java
+<span class="gp">#</span> update-alternatives --config javac
+</pre></div>
+<ul>
+<li>Verification</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> java -version
+<span class="go">java version "1.8.0_92"</span>
+<span class="go">Java(TM) SE Runtime Environment (build 1.8.0_92-b14)</span>
+<span class="go">Java HotSpot(TM) 64-Bit Server VM (build 25.92-b14, mixed mode)</span>
+</pre></div>
+<ul>
+<li>Install JCE (A priori inutile)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> wget --header <span class="s2">"Cookie: oraclelicense=accept-securebackup-cookie"</span> http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip
+<span class="gp">#</span> unzip jce_policy-8.zip
+<span class="gp">#</span> mv /opt/jdk/jre/lib/security/local_policy.jar /opt/jdk/jre/lib/security/local_policy.jar.backup
+<span class="gp">#</span> mv /opt/jdk/jre/lib/security/US_export_policy.jar /opt/jdk/jre/lib/security/US_export_policy.jar.backup
+<span class="gp">#</span> cp UnlimitedJCEPolicyJDK8/local_policy.jar /opt/jdk/jre/lib/security/
+<span class="gp">#</span> cp UnlimitedJCEPolicyJDK8/US_export_policy.jar /opt/jdk/jre/lib/security/
+</pre></div>
+<h1>Install Wildfly</h1>
+<ul>
+<li>Create a wildfly user</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> groupadd -r wildfly
+<span class="gp">#</span> useradd -r -g wildfly -d /opt/wildfly -s /sbin/nologin wildfly
+</pre></div>
+<ul>
+<li>Download Wildfly from http://wildfly.org/downloads/</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> wget http://download.jboss.org/wildfly/10.0.0.Final/wildfly-10.0.0.Final.zip
+</pre></div>
+<ul>
+<li>Decompress archive</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> unzip wildfly-10.0.0.Final.zip -d /opt
+<span class="gp">#</span> ln -s /opt/wildfly-10.0.0.Final /opt/wildfly
+<span class="gp">#</span> chown -Rf wildfly:wildfly /opt/wildfly
+<span class="gp">#</span> chown -Rf wildfly:wildfly /opt/wildfly-10.0.0.Final
+</pre></div>
+<ul>
+<li>Copy script for systemd</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> mkdir /etc/wildfly
+<span class="gp">#</span> cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf /etc/wildfly/
+<span class="gp">#</span> cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service /etc/systemd/system/
+<span class="gp">#</span> cp /opt/wildfly/docs/contrib/scripts/systemd/launch.sh /opt/wildfly/bin/
+<span class="gp">#</span> chmod +x /opt/wildfly/bin/launch.sh
+</pre></div>
+<ul>
+<li>Edit configuration file (if required)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano /opt/wildfly/standalone/configuration/standalone.xml
+</pre></div>
+<ul>
+<li>Start and enable Wildfly</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> systemctl start wildfly.service
+<span class="gp">#</span> systemctl <span class="nb">enable</span> wildfly.service
+</pre></div>
+<ul>
+<li>Add user</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> /opt/wildfly/bin/add-user.sh
+</pre></div>
+<ul>
+<li>Browse to http://pki.intra.net:8080 (website) or http://pki.intra.net:9990 (admin console)</li>
+</ul>
+<h1>Configure WildFly for EJBCA (Part 1/2)</h1>
+<ul>
+<li>Download and install database driver for Java application</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> wget https://downloads.mariadb.com/enterprise/80e4-qqsb/connectors/java/connector-java-1.4.6/mariadb-java-client-1.4.6.jar
+<span class="gp">#</span> cp mariadb-java-client-1.4.6.jar /opt/wildfly/standalone/deployments/mariadb-java-client.jar
+</pre></div>
+<ul>
+<li>Increase allowed memory usage</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano /opt/wildfly/bin/standalone.conf
+<span class="go">JAVA_OPTS="-Xms256m -Xmx512m -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true"</span>
+</pre></div>
+<ul>
+<li>Add datasource</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> /opt/wildfly/bin/jboss-cli.sh -c
+<span class="go">[standalone@localhost:9990 /] data-source add --name=ejbcads --driver-name="mariadb-java-client.jar" --connection-url="jdbc:mysql://127.0.0.1:3306/ejbca" --jndi-name="java:/EjbcaDS" --use-ccm=true --driver-class="org.mariadb.jdbc.Driver" --user-name="ejbca" --password="ejbca" --validate-on-match=true --background-validation=false --prepared-statements-cache-size=50 --share-prepared-statements=true --min-pool-size=5 --max-pool-size=150 --pool-prefill=true --transaction-isolation=TRANSACTION_READ_COMMITTED --check-valid-connection-sql="select 1;"</span>
+<span class="go">[standalone@localhost:9990 /] :reload</span>
+</pre></div>
+<ul>
+<li>Configure WildFly Remoting</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">[standalone@localhost:9990 /] /subsystem=remoting/http-connector=http-remoting-connector:remove</span>
+<span class="go">[standalone@localhost:9990 /] /subsystem=remoting/http-connector=http-remoting-connector:add(connector-ref="remoting",security-realm="ApplicationRealm")</span>
+<span class="go">[standalone@localhost:9990 /] /socket-binding-group=standard-sockets/socket-binding=remoting:add(port="4447")</span>
+<span class="go">[standalone@localhost:9990 /] /subsystem=undertow/server=default-server/http-listener=remoting:add(socket-binding=remoting)</span>
+<span class="go">[standalone@localhost:9990 /] :reload</span>
+</pre></div>
+<ul>
+<li>Configure logging</li>
+</ul>
+<p>/!\ DEBUG enabled for this example.</p>
+<div class="highlight"><pre><span></span><span class="go">[standalone@localhost:9990 /] /subsystem=logging/logger=org.ejbca:add</span>
+<span class="go">[standalone@localhost:9990 /] /subsystem=logging/logger=org.ejbca:write-attribute(name=level, value=DEBUG)</span>
+<span class="go">[standalone@localhost:9990 /] /subsystem=logging/logger=org.cesecore:add</span>
+<span class="go">[standalone@localhost:9990 /] /subsystem=logging/logger=org.cesecore:write-attribute(name=level, value=DEBUG)</span>
+</pre></div>
+<ul>
+<li>Remove existing TLS and HTTP configuration</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">[standalone@localhost:9990 /] /subsystem=undertow/server=default-server/http-listener=default:remove</span>
+<span class="go">[standalone@localhost:9990 /] /socket-binding-group=standard-sockets/socket-binding=http:remove</span>
+<span class="go">[standalone@localhost:9990 /] :reload</span>
+</pre></div>
+<ul>
+<li>Check running</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">[standalone@localhost:9990 /] :read-attribute(name=server-state)</span>
+<span class="go">{</span>
+<span class="go">    "outcome" =&gt; "success",</span>
+<span class="go">    "result" =&gt; "running"</span>
+<span class="go">}</span>
+</pre></div>
+<ul>
+<li>Check datasource connection</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">[standalone@localhost:9990 /] /subsystem=datasources/data-source=ejbcads:test-connection-in-pool</span>
+<span class="go">{</span>
+<span class="go">    "outcome" =&gt; "success",</span>
+<span class="go">    "result" =&gt; [true]</span>
+<span class="go">}</span>
+</pre></div>
+<h1>Install EJBCA</h1>
+<ul>
+<li>install dependencies</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> apt-get install ant ant-optional unzip
+</pre></div>
+<ul>
+<li>Download EJBCA (version 6.3.1.1)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> wget http://downloads.sourceforge.net/project/ejbca/ejbca6/ejbcare th_6_3_1_1/ejbca_ce_6_3_1_1.zip
+<span class="gp">#</span> unzip ejbca_ce_6_3_1_1.zip -d /opt/
+</pre></div>
+<ul>
+<li>Edit configuration file</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> cp /opt/ejbca_ce_6_3_1_1/conf/ejbca.properties.sample /opt/ejbca_ce_6_3_1_1/conf/ejbca.properties
+<span class="gp">#</span> nano /opt/ejbca_ce_6_3_1_1/conf/ejbca.properties
+
+<span class="go">appserver.home=/opt/wildfly</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">#</span> cp /opt/ejbca_ce_6_3_1_1/conf/web.properties.sample /opt/ejbca_ce_6_3_1_1/conf/web.properties
+<span class="gp">#</span> nano /opt/ejbca_ce_6_3_1_1/conf/web.properties
+
+<span class="go">httpsserver.hostname=pki.intra.net</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">#</span> cp /opt/ejbca_ce_6_3_1_1/conf/database.properties.sample /opt/ejbca_ce_6_3_1_1/conf/database.properties
+<span class="gp">#</span> nano /opt/ejbca_ce_6_3_1_1/conf/database.properties
+
+<span class="go">database.name=mysql</span>
+<span class="go">database.url=jdbc:mysql://127.0.0.1:3306/ejbca?characterEncoding=UTF-8</span>
+<span class="go">database.driver=org.mariadb.jdbc.Driver</span>
+<span class="go">database.username=ejbca</span>
+<span class="go">database.password=ejbca</span>
+</pre></div>
+<ul>
+<li>Build and deploy EJBCA</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> <span class="nb">cd</span> /opt/ejbca_ce_6_3_1_1/
+<span class="gp">#</span> ant clean deployear
+</pre></div>
+<ul>
+<li>Install</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> ant runinstall
+</pre></div>
+<ul>
+<li>Deploy TLS keystores to WildFly</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> ant deploy-keystore
+</pre></div>
+<h1>Configure WildFly for EJBCA (Part 2/2)</h1>
+<ul>
+<li>Configure TLS</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> /opt/wildfly/bin/jboss-cli.sh -c
+<span class="go">[standalone@localhost:9990 /] /interface=http:add(inet-address="0.0.0.0")</span>
+<span class="go">[standalone@localhost:9990 /] /interface=httpspub:add(inet-address="0.0.0.0")</span>
+<span class="go">[standalone@localhost:9990 /] /interface=httpspriv:add(inet-address="0.0.0.0")</span>
+<span class="go">[standalone@localhost:9990 /] /socket-binding-group=standard-sockets/socket-binding=http:add(port="8080",interface="http")</span>
+<span class="go">[standalone@localhost:9990 /] /subsystem=undertow/server=default-server/http-listener=http:add(socket-binding=http)</span>
+<span class="go">[standalone@localhost:9990 /] /subsystem=undertow/server=default-server/http-listener=http:write-attribute(name=redirect-socket, value="httpspriv")</span>
+<span class="go">[standalone@localhost:9990 /] :reload</span>
+<span class="go">[standalone@localhost:9990 /] :read-attribute(name=server-state)</span>
+</pre></div>
+<ul>
+<li>Configure identities and socket bindings:</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">[standalone@localhost:9990 /] /core-service=management/security-realm=SSLRealm:add()</span>
+<span class="gp">[standalone@localhost:9990 /] /core-service=management/security-realm=SSLRealm/server-identity=ssl:add(keystore-path="$</span><span class="o">{</span>jboss.server.config.dir<span class="o">}</span>/keystore/keystore.jks<span class="s2">", keystore-password="</span>serverpwd<span class="s2">", alias="</span>prod-ica1<span class="s2">")</span>
+<span class="gp">[standalone@localhost:9990 /] /core-service=management/security-realm=SSLRealm/authentication=truststore:add(keystore-path="$</span><span class="s2">{jboss.server.config.dir}/keystore/truststore.jks"</span>, keystore-password<span class="o">=</span><span class="s2">"changeit"</span><span class="o">)</span>
+<span class="go">[standalone@localhost:9990 /] /socket-binding-group=standard-sockets/socket-binding=httpspriv:add(port="8443",interface="httpspriv")</span>
+<span class="go">[standalone@localhost:9990 /] /socket-binding-group=standard-sockets/socket-binding=httpspub:add(port="8442", interface="httpspub")</span>
+<span class="go">[standalone@localhost:9990 /] :reload</span>
+<span class="go">[standalone@localhost:9990 /] :read-attribute(name=server-state)</span>
+</pre></div>
+<ul>
+<li>Wait then continous</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">[standalone@localhost:9990 /] /subsystem=undertow/server=default-server/https-listener=httpspriv:add(socket-binding=httpspriv, security-realm="SSLRealm", verify-client=REQUIRED)</span>
+<span class="go">[standalone@localhost:9990 /] /subsystem=undertow/server=default-server/https-listener=httpspub:add(socket-binding=httpspub, security-realm="SSLRealm")</span>
+<span class="go">[standalone@localhost:9990 /] :reload</span>
+</pre></div>
+<ul>
+<li>Finalize Wildfly configurations</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">[standalone@localhost:9990 /] /system-property=org.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH:add(value=true)</span>
+<span class="go">[standalone@localhost:9990 /] /system-property=org.apache.catalina.connector.CoyoteAdapter.ALLOW_BACKSLASH:add(value=true)</span>
+<span class="go">[standalone@localhost:9990 /] /system-property=org.apache.catalina.connector.URI_ENCODING:add(value="UTF-8")</span>
+<span class="go">[standalone@localhost:9990 /] /system-property=org.apache.catalina.connector.USE_BODY_ENCODING_FOR_QUERY_STRING:add(value=true)</span>
+<span class="go">[standalone@localhost:9990 /] /subsystem=webservices:write-attribute(name=wsdl-host, value=jbossws.undefined.host)</span>
+<span class="go">[standalone@localhost:9990 /] /subsystem=webservices:write-attribute(name=modify-wsdl-address, value=true)</span>
+<span class="go">[standalone@localhost:9990 /] :reload</span>
+</pre></div>
+<p>open https://pki.intra.net:8443/ejbca/adminweb/</p>
+<!-- https://www.ejbca.org/docs/installation.html#WildFly 10 -->
+<h2>Error (To be solved)</h2>
+<p>tail -f /opt/wildfly/standalone/log/server.log -n 10000 | grep ERROR</p>
+<p>ERROR [org.jboss.msc.service.fail] (MSC service thread 1-1) MSC000001: Failed to start service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: org.jboss.msc.service.StartException in service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: WFLYDM0018: Unable to start service</p>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://didier.bernaudeau.net/Extended_Validation_Certificate.html">Extended Validation Certificate</a></li>
+        <li><a href="http://didier.bernaudeau.net/Lets_Encrypt.html">Let’s Encrypt</a></li>
+        <li><a href="http://didier.bernaudeau.net/X509_certificate-Fields_and_extensions.html">X509 certificate - Fields &amp; extensions</a></li>
+    </ul>
+</section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="60%" class="img-thumbnail" src="/images/avatar.png"/>
+        </p>
+    <p>
+        <strong>About D. Bernaudeau</strong><br/>
+        I’m Didier Bernaudeau, an Information Systems Security Professional. This site is a way to note some experimentations.
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+
+
+
+            <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
+                            Certificate
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
+                            Cryptography
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/debian.html">
+                            Debian
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/development.html">
+                            Development
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
+                            Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
+                            Hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/html.html">
+                            HTML
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/linux.html">
+                            Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/network.html">
+                            Network
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/php.html">
+                            PHP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/pki.html">
+                            PKI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/press-review.html">
+                            Press review
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/software.html">
+                            Software
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
+                            Virtualization
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/website.html">
+                            WebSite
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/windows.html">
+                            Windows
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 D. Bernaudeau
+            &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://didier.bernaudeau.net/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://didier.bernaudeau.net/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://didier.bernaudeau.net/theme/js/respond.min.js"></script>
+
+
+</body>
+</html>

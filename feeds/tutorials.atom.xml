@@ -1,5 +1,300 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2016-05-29T17:35:00+02:00</updated><entry><title>How to migrate from OpenRC to SystemD</title><link href="http://didier.bernaudeau.net/How_to_migrate_from_OpenRC_to_SystemD.html" rel="alternate"></link><updated>2016-02-25T12:26:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-01-01:How_to_migrate_from_OpenRC_to_SystemD.html</id><summary type="html">&lt;p&gt;SystemD is an initialization system for Linux created in 2010. Now, most of Linux distribution (Debian, Arch, ...) use SystemD instead of original initialization system (sysvinit, upstart, ...).&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2016-07-06T18:18:00+02:00</updated><entry><title>How to create your pki with EJBCA</title><link href="http://didier.bernaudeau.net/How_To_create_your_pki_with_EJBCA.html" rel="alternate"></link><updated>2016-07-06T18:18:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-07-06:How_To_create_your_pki_with_EJBCA.html</id><summary type="html">&lt;p&gt;This post describe step by step how to install EJBCA on Linux Debian with Wildfly 10. Then, create your Certificate Authority to issue certificate.&lt;/p&gt;
+
+&lt;h1&gt;Install Debian&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Define the hostname : pki.intra.net&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;change time zone for UTC&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; dpkg-reconfigure tzdata
+&lt;span class="go"&gt;Geographic area : none of the above&lt;/span&gt;
+&lt;span class="go"&gt;Time zone : UTC&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install NTP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get install ntp
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/ntp.conf
+&lt;span class="go"&gt;server 0.fr.pool.ntp.org&lt;/span&gt;
+&lt;span class="go"&gt;server 1.fr.pool.ntp.org&lt;/span&gt;
+&lt;span class="go"&gt;server 2.fr.pool.ntp.org&lt;/span&gt;
+&lt;span class="go"&gt;server 3.fr.pool.ntp.org&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Print date &amp;amp; time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; timedatectl
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Install MariaDB&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install MariaDB server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get install mariadb-server
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start and enable MariaDB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl start mysql.service
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; mysql.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create database&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; mysql -u root -p
+&lt;span class="go"&gt;MariaDB&amp;gt; CREATE DATABASE ejbca CHARACTER SET utf8 COLLATE utf8_general_ci;&lt;/span&gt;
+&lt;span class="go"&gt;MariaDB&amp;gt; GRANT ALL PRIVILEGES ON ejbca.* TO 'ejbca'@'localhost' IDENTIFIED BY 'ejbca';&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Install Java&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Download JDK from Oracle&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; wget --header &lt;span class="s2"&gt;"Cookie: oraclelicense=accept-securebackup-cookie"&lt;/span&gt; http://download.oracle.com/otn-pub/java/jdk/8u92-b14/jdk-8u92-linux-x64.tar.gz
+&lt;span class="gp"&gt;#&lt;/span&gt; tar -zxf jdk-8u92-linux-x64.tar.gz -C /opt/
+&lt;span class="gp"&gt;#&lt;/span&gt; ln -s /opt/jdk1.8.0_92 /opt/jdk
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Make a new JDK alternatives&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; update-alternatives --install /usr/bin/java java /opt/jdk/bin/java 100
+&lt;span class="gp"&gt;#&lt;/span&gt; update-alternatives --install /usr/bin/javac javac /opt/jdk/bin/javac 100
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update the default JDK&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; update-alternatives --config java
+&lt;span class="gp"&gt;#&lt;/span&gt; update-alternatives --config javac
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Verification&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; java -version
+&lt;span class="go"&gt;java version "1.8.0_92"&lt;/span&gt;
+&lt;span class="go"&gt;Java(TM) SE Runtime Environment (build 1.8.0_92-b14)&lt;/span&gt;
+&lt;span class="go"&gt;Java HotSpot(TM) 64-Bit Server VM (build 25.92-b14, mixed mode)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install JCE (A priori inutile)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; wget --header &lt;span class="s2"&gt;"Cookie: oraclelicense=accept-securebackup-cookie"&lt;/span&gt; http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip
+&lt;span class="gp"&gt;#&lt;/span&gt; unzip jce_policy-8.zip
+&lt;span class="gp"&gt;#&lt;/span&gt; mv /opt/jdk/jre/lib/security/local_policy.jar /opt/jdk/jre/lib/security/local_policy.jar.backup
+&lt;span class="gp"&gt;#&lt;/span&gt; mv /opt/jdk/jre/lib/security/US_export_policy.jar /opt/jdk/jre/lib/security/US_export_policy.jar.backup
+&lt;span class="gp"&gt;#&lt;/span&gt; cp UnlimitedJCEPolicyJDK8/local_policy.jar /opt/jdk/jre/lib/security/
+&lt;span class="gp"&gt;#&lt;/span&gt; cp UnlimitedJCEPolicyJDK8/US_export_policy.jar /opt/jdk/jre/lib/security/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Install Wildfly&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a wildfly user&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; groupadd -r wildfly
+&lt;span class="gp"&gt;#&lt;/span&gt; useradd -r -g wildfly -d /opt/wildfly -s /sbin/nologin wildfly
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Download Wildfly from http://wildfly.org/downloads/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://download.jboss.org/wildfly/10.0.0.Final/wildfly-10.0.0.Final.zip
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Decompress archive&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; unzip wildfly-10.0.0.Final.zip -d /opt
+&lt;span class="gp"&gt;#&lt;/span&gt; ln -s /opt/wildfly-10.0.0.Final /opt/wildfly
+&lt;span class="gp"&gt;#&lt;/span&gt; chown -Rf wildfly:wildfly /opt/wildfly
+&lt;span class="gp"&gt;#&lt;/span&gt; chown -Rf wildfly:wildfly /opt/wildfly-10.0.0.Final
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Copy script for systemd&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mkdir /etc/wildfly
+&lt;span class="gp"&gt;#&lt;/span&gt; cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf /etc/wildfly/
+&lt;span class="gp"&gt;#&lt;/span&gt; cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service /etc/systemd/system/
+&lt;span class="gp"&gt;#&lt;/span&gt; cp /opt/wildfly/docs/contrib/scripts/systemd/launch.sh /opt/wildfly/bin/
+&lt;span class="gp"&gt;#&lt;/span&gt; chmod +x /opt/wildfly/bin/launch.sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Edit configuration file (if required)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /opt/wildfly/standalone/configuration/standalone.xml
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start and enable Wildfly&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl start wildfly.service
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; wildfly.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add user&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; /opt/wildfly/bin/add-user.sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Browse to http://pki.intra.net:8080 (website) or http://pki.intra.net:9990 (admin console)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Configure WildFly for EJBCA (Part 1/2)&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Download and install database driver for Java application&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; wget https://downloads.mariadb.com/enterprise/80e4-qqsb/connectors/java/connector-java-1.4.6/mariadb-java-client-1.4.6.jar
+&lt;span class="gp"&gt;#&lt;/span&gt; cp mariadb-java-client-1.4.6.jar /opt/wildfly/standalone/deployments/mariadb-java-client.jar
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Increase allowed memory usage&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /opt/wildfly/bin/standalone.conf
+&lt;span class="go"&gt;JAVA_OPTS="-Xms256m -Xmx512m -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add datasource&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; /opt/wildfly/bin/jboss-cli.sh -c
+&lt;span class="go"&gt;[standalone@localhost:9990 /] data-source add --name=ejbcads --driver-name="mariadb-java-client.jar" --connection-url="jdbc:mysql://127.0.0.1:3306/ejbca" --jndi-name="java:/EjbcaDS" --use-ccm=true --driver-class="org.mariadb.jdbc.Driver" --user-name="ejbca" --password="ejbca" --validate-on-match=true --background-validation=false --prepared-statements-cache-size=50 --share-prepared-statements=true --min-pool-size=5 --max-pool-size=150 --pool-prefill=true --transaction-isolation=TRANSACTION_READ_COMMITTED --check-valid-connection-sql="select 1;"&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] :reload&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure WildFly Remoting&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;[standalone@localhost:9990 /] /subsystem=remoting/http-connector=http-remoting-connector:remove&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /subsystem=remoting/http-connector=http-remoting-connector:add(connector-ref="remoting",security-realm="ApplicationRealm")&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /socket-binding-group=standard-sockets/socket-binding=remoting:add(port="4447")&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /subsystem=undertow/server=default-server/http-listener=remoting:add(socket-binding=remoting)&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] :reload&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure logging&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;/!\ DEBUG enabled for this example.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;[standalone@localhost:9990 /] /subsystem=logging/logger=org.ejbca:add&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /subsystem=logging/logger=org.ejbca:write-attribute(name=level, value=DEBUG)&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /subsystem=logging/logger=org.cesecore:add&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /subsystem=logging/logger=org.cesecore:write-attribute(name=level, value=DEBUG)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Remove existing TLS and HTTP configuration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;[standalone@localhost:9990 /] /subsystem=undertow/server=default-server/http-listener=default:remove&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /socket-binding-group=standard-sockets/socket-binding=http:remove&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] :reload&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Check running&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;[standalone@localhost:9990 /] :read-attribute(name=server-state)&lt;/span&gt;
+&lt;span class="go"&gt;{&lt;/span&gt;
+&lt;span class="go"&gt;    "outcome" =&amp;gt; "success",&lt;/span&gt;
+&lt;span class="go"&gt;    "result" =&amp;gt; "running"&lt;/span&gt;
+&lt;span class="go"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Check datasource connection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;[standalone@localhost:9990 /] /subsystem=datasources/data-source=ejbcads:test-connection-in-pool&lt;/span&gt;
+&lt;span class="go"&gt;{&lt;/span&gt;
+&lt;span class="go"&gt;    "outcome" =&amp;gt; "success",&lt;/span&gt;
+&lt;span class="go"&gt;    "result" =&amp;gt; [true]&lt;/span&gt;
+&lt;span class="go"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Install EJBCA&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;install dependencies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get install ant ant-optional unzip
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Download EJBCA (version 6.3.1.1)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; wget http://downloads.sourceforge.net/project/ejbca/ejbca6/ejbcare th_6_3_1_1/ejbca_ce_6_3_1_1.zip
+&lt;span class="gp"&gt;#&lt;/span&gt; unzip ejbca_ce_6_3_1_1.zip -d /opt/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Edit configuration file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; cp /opt/ejbca_ce_6_3_1_1/conf/ejbca.properties.sample /opt/ejbca_ce_6_3_1_1/conf/ejbca.properties
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /opt/ejbca_ce_6_3_1_1/conf/ejbca.properties
+
+&lt;span class="go"&gt;appserver.home=/opt/wildfly&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; cp /opt/ejbca_ce_6_3_1_1/conf/web.properties.sample /opt/ejbca_ce_6_3_1_1/conf/web.properties
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /opt/ejbca_ce_6_3_1_1/conf/web.properties
+
+&lt;span class="go"&gt;httpsserver.hostname=pki.intra.net&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; cp /opt/ejbca_ce_6_3_1_1/conf/database.properties.sample /opt/ejbca_ce_6_3_1_1/conf/database.properties
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /opt/ejbca_ce_6_3_1_1/conf/database.properties
+
+&lt;span class="go"&gt;database.name=mysql&lt;/span&gt;
+&lt;span class="go"&gt;database.url=jdbc:mysql://127.0.0.1:3306/ejbca?characterEncoding=UTF-8&lt;/span&gt;
+&lt;span class="go"&gt;database.driver=org.mariadb.jdbc.Driver&lt;/span&gt;
+&lt;span class="go"&gt;database.username=ejbca&lt;/span&gt;
+&lt;span class="go"&gt;database.password=ejbca&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Build and deploy EJBCA&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; /opt/ejbca_ce_6_3_1_1/
+&lt;span class="gp"&gt;#&lt;/span&gt; ant clean deployear
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; ant runinstall
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Deploy TLS keystores to WildFly&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; ant deploy-keystore
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Configure WildFly for EJBCA (Part 2/2)&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure TLS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; /opt/wildfly/bin/jboss-cli.sh -c
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /interface=http:add(inet-address="0.0.0.0")&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /interface=httpspub:add(inet-address="0.0.0.0")&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /interface=httpspriv:add(inet-address="0.0.0.0")&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /socket-binding-group=standard-sockets/socket-binding=http:add(port="8080",interface="http")&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /subsystem=undertow/server=default-server/http-listener=http:add(socket-binding=http)&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /subsystem=undertow/server=default-server/http-listener=http:write-attribute(name=redirect-socket, value="httpspriv")&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] :reload&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] :read-attribute(name=server-state)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure identities and socket bindings:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;[standalone@localhost:9990 /] /core-service=management/security-realm=SSLRealm:add()&lt;/span&gt;
+&lt;span class="gp"&gt;[standalone@localhost:9990 /] /core-service=management/security-realm=SSLRealm/server-identity=ssl:add(keystore-path="$&lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt;jboss.server.config.dir&lt;span class="o"&gt;}&lt;/span&gt;/keystore/keystore.jks&lt;span class="s2"&gt;", keystore-password="&lt;/span&gt;serverpwd&lt;span class="s2"&gt;", alias="&lt;/span&gt;prod-ica1&lt;span class="s2"&gt;")&lt;/span&gt;
+&lt;span class="gp"&gt;[standalone@localhost:9990 /] /core-service=management/security-realm=SSLRealm/authentication=truststore:add(keystore-path="$&lt;/span&gt;&lt;span class="s2"&gt;{jboss.server.config.dir}/keystore/truststore.jks"&lt;/span&gt;, keystore-password&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"changeit"&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /socket-binding-group=standard-sockets/socket-binding=httpspriv:add(port="8443",interface="httpspriv")&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /socket-binding-group=standard-sockets/socket-binding=httpspub:add(port="8442", interface="httpspub")&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] :reload&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] :read-attribute(name=server-state)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Wait then continous&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;[standalone@localhost:9990 /] /subsystem=undertow/server=default-server/https-listener=httpspriv:add(socket-binding=httpspriv, security-realm="SSLRealm", verify-client=REQUIRED)&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /subsystem=undertow/server=default-server/https-listener=httpspub:add(socket-binding=httpspub, security-realm="SSLRealm")&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] :reload&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Finalize Wildfly configurations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;[standalone@localhost:9990 /] /system-property=org.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH:add(value=true)&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /system-property=org.apache.catalina.connector.CoyoteAdapter.ALLOW_BACKSLASH:add(value=true)&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /system-property=org.apache.catalina.connector.URI_ENCODING:add(value="UTF-8")&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /system-property=org.apache.catalina.connector.USE_BODY_ENCODING_FOR_QUERY_STRING:add(value=true)&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /subsystem=webservices:write-attribute(name=wsdl-host, value=jbossws.undefined.host)&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] /subsystem=webservices:write-attribute(name=modify-wsdl-address, value=true)&lt;/span&gt;
+&lt;span class="go"&gt;[standalone@localhost:9990 /] :reload&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;open https://pki.intra.net:8443/ejbca/adminweb/&lt;/p&gt;
+&lt;!-- https://www.ejbca.org/docs/installation.html#WildFly 10 --&gt;
+&lt;h2&gt;Error (To be solved)&lt;/h2&gt;
+&lt;p&gt;tail -f /opt/wildfly/standalone/log/server.log -n 10000 | grep ERROR&lt;/p&gt;
+&lt;p&gt;ERROR [org.jboss.msc.service.fail] (MSC service thread 1-1) MSC000001: Failed to start service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: org.jboss.msc.service.StartException in service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: WFLYDM0018: Unable to start service&lt;/p&gt;</summary><category term="Certificate"></category><category term="Debian"></category></entry><entry><title>How to migrate from OpenRC to SystemD</title><link href="http://didier.bernaudeau.net/How_to_migrate_from_OpenRC_to_SystemD.html" rel="alternate"></link><updated>2016-02-25T12:26:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-01-01:How_to_migrate_from_OpenRC_to_SystemD.html</id><summary type="html">&lt;p&gt;SystemD is an initialization system for Linux created in 2010. Now, most of Linux distribution (Debian, Arch, ...) use SystemD instead of original initialization system (sysvinit, upstart, ...).&lt;/p&gt;
 &lt;p&gt;However, the default initialization system used by Gentoo Linux is OpenRC which is slower than SystemD. This article describes how to replace OpenRC by SystemD on Gentoo Linux.&lt;/p&gt;
 
 &lt;div class="section" id="kernel-configuration"&gt;
@@ -140,7 +435,7 @@
 
 &lt;div class="section" id="pulseaudio-architecture"&gt;
 &lt;h2&gt;PulseAudio Architecture&lt;/h2&gt;
-&lt;img alt="PulseAudio Architecture" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
+&lt;img alt="PulseAudio Architecture" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="install-pulseaudio"&gt;
 &lt;h2&gt;Install PulseAudio&lt;/h2&gt;
@@ -277,23 +572,23 @@
 &lt;span class="gp"&gt;$&lt;/span&gt; virt-manager
 &lt;/pre&gt;
 &lt;p&gt;Open the menu "file &amp;gt; Add connection"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Add connection" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Add connection" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="network-configuration"&gt;
 &lt;h2&gt;Network Configuration&lt;/h2&gt;
 &lt;p&gt;After starting LibVirtd, network configuration is as follows:&lt;/p&gt;
-&lt;img alt="Network Configuration" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
+&lt;img alt="Network Configuration" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="create-a-virtual-machine"&gt;
 &lt;h2&gt;Create a virtual machine&lt;/h2&gt;
 &lt;p&gt;Open the menu "file &amp;gt; New Virtual Machine"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Step1" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step2" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
-&lt;img alt="Virt-Manager - Step3" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step4" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step5" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step1" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step2" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - Step3" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step4" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step5" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
 &lt;p&gt;Select "VirtIO" device model for Network Interface&lt;/p&gt;
-&lt;img alt="Virt-Manager - NIC device model" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - NIC device model" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
 &lt;!-- vhost=on --&gt;
 &lt;/div&gt;
 </summary><category term="Gentoo"></category><category term="Virtualization"></category></entry><entry><title>How to create bootable USB flash drives with Rufus</title><link href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html" rel="alternate"></link><updated>2015-07-15T21:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-12:How_to_create_bootable_USB_flash_drives_with_Rufus.html</id><summary type="html">&lt;p&gt;This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp;amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.&lt;/p&gt;
@@ -306,12 +601,12 @@
 &lt;h2&gt;Create installation media&lt;/h2&gt;
 &lt;div class="section" id="example-for-microsoft-windows-8-1-with-mbr"&gt;
 &lt;h3&gt;Example for Microsoft Windows 8.1 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="example-for-debian-8-with-mbr"&gt;
 &lt;h3&gt;Example for Debian 8 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
 &lt;p&gt;If you need additional firmware to install Debian :&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul class="simple"&gt;
@@ -334,6 +629,10 @@
 &lt;p&gt;Download firmware for Intel WiFi 7260 (version 16) :&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt; emerge sys-firmware/iwl7260-ucode
+&lt;/pre&gt;
+&lt;p&gt;or&lt;/p&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; wget https://git.kernel.org/cgit/linux/kernel/git/iwlwifi/linux-firmware.git/plain/iwlwifi-7260-17.ucode
 &lt;/pre&gt;
 &lt;p&gt;Select kernel sources&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
@@ -435,8 +734,9 @@
 &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;Device&lt;/span&gt; &lt;span class="err"&gt;Drivers&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Generic&lt;/span&gt; &lt;span class="err"&gt;Driver&lt;/span&gt; &lt;span class="err"&gt;Options&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt; &lt;span class="err"&gt;Prevent&lt;/span&gt; &lt;span class="err"&gt;firmware&lt;/span&gt; &lt;span class="err"&gt;from&lt;/span&gt; &lt;span class="err"&gt;being&lt;/span&gt; &lt;span class="err"&gt;built&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Include&lt;/span&gt; &lt;span class="err"&gt;in-kernel&lt;/span&gt; &lt;span class="err"&gt;firmware&lt;/span&gt; &lt;span class="err"&gt;blobs&lt;/span&gt; &lt;span class="err"&gt;in&lt;/span&gt; &lt;span class="err"&gt;kernel&lt;/span&gt; &lt;span class="err"&gt;binary&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;(iwlwifi-7260-16.ucode)&lt;/span&gt; &lt;span class="err"&gt;External&lt;/span&gt; &lt;span class="err"&gt;firmware&lt;/span&gt; &lt;span class="err"&gt;blobs&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;build&lt;/span&gt; &lt;span class="err"&gt;into&lt;/span&gt; &lt;span class="err"&gt;the&lt;/span&gt; &lt;span class="err"&gt;kernel&lt;/span&gt; &lt;span class="err"&gt;binary&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;(iwlwifi-7260-17.ucode)&lt;/span&gt; &lt;span class="err"&gt;External&lt;/span&gt; &lt;span class="err"&gt;firmware&lt;/span&gt; &lt;span class="err"&gt;blobs&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;build&lt;/span&gt; &lt;span class="err"&gt;into&lt;/span&gt; &lt;span class="err"&gt;the&lt;/span&gt; &lt;span class="err"&gt;kernel&lt;/span&gt; &lt;span class="err"&gt;binary&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;(/lib/firmware)&lt;/span&gt; &lt;span class="err"&gt;Firmware&lt;/span&gt; &lt;span class="err"&gt;blobs&lt;/span&gt; &lt;span class="err"&gt;root&lt;/span&gt; &lt;span class="err"&gt;directory&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Fallback&lt;/span&gt; &lt;span class="err"&gt;user-helper&lt;/span&gt; &lt;span class="err"&gt;invocation&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;firmware&lt;/span&gt; &lt;span class="err"&gt;loading&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt; &lt;span class="err"&gt;Managed&lt;/span&gt; &lt;span class="err"&gt;device&lt;/span&gt; &lt;span class="err"&gt;resources&lt;/span&gt; &lt;span class="err"&gt;verbose&lt;/span&gt; &lt;span class="err"&gt;debug&lt;/span&gt; &lt;span class="err"&gt;messages&lt;/span&gt;

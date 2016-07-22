@@ -121,6 +121,10 @@ My personal blog note            </a>
 <pre class="code console literal-block">
 <span class="gp">#</span> emerge sys-firmware/iwl7260-ucode
 </pre>
+<p>or</p>
+<pre class="code console literal-block">
+<span class="gp">#</span> wget https://git.kernel.org/cgit/linux/kernel/git/iwlwifi/linux-firmware.git/plain/iwlwifi-7260-17.ucode
+</pre>
 <p>Select kernel sources</p>
 <pre class="code console literal-block">
 <span class="gp">#</span> eselect kernel list
@@ -221,8 +225,9 @@ My personal blog note            </a>
 <span class="err">|</span> <span class="err">Device</span> <span class="err">Drivers</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>
 <span class="err">|</span>      <span class="err">|</span>     <span class="err">Generic</span> <span class="err">Driver</span> <span class="err">Options</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span> <span class="err">Prevent</span> <span class="err">firmware</span> <span class="err">from</span> <span class="err">being</span> <span class="err">built</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Include</span> <span class="err">in-kernel</span> <span class="err">firmware</span> <span class="err">blobs</span> <span class="err">in</span> <span class="err">kernel</span> <span class="err">binary</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">(iwlwifi-7260-16.ucode)</span> <span class="err">External</span> <span class="err">firmware</span> <span class="err">blobs</span> <span class="err">to</span> <span class="err">build</span> <span class="err">into</span> <span class="err">the</span> <span class="err">kernel</span> <span class="err">binary</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">(iwlwifi-7260-17.ucode)</span> <span class="err">External</span> <span class="err">firmware</span> <span class="err">blobs</span> <span class="err">to</span> <span class="err">build</span> <span class="err">into</span> <span class="err">the</span> <span class="err">kernel</span> <span class="err">binary</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">(/lib/firmware)</span> <span class="err">Firmware</span> <span class="err">blobs</span> <span class="err">root</span> <span class="err">directory</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Fallback</span> <span class="err">user-helper</span> <span class="err">invocation</span> <span class="err">for</span> <span class="err">firmware</span> <span class="err">loading</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span> <span class="err">Managed</span> <span class="err">device</span> <span class="err">resources</span> <span class="err">verbose</span> <span class="err">debug</span> <span class="err">messages</span>
@@ -548,6 +553,11 @@ My personal blog note            </a>
                             Cryptography
                         </a>
                     </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/debian.html">
+                            Debian
+                        </a>
+                    </li>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/development.html">
                             Development
@@ -558,7 +568,7 @@ My personal blog note            </a>
                             Gentoo
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/hardware.html">
                             Hardware
                         </a>

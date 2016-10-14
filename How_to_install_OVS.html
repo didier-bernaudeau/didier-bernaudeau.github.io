@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>How to install Canon Selphy CP400 - My personal blog note</title>
+    <title>How to install OVS (Open Virtual Swtich) - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,21 +9,20 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/How_to_install_canon_selphy_cp400.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/How_to_install_OVS.html">
 
         <meta name="author" content="Didier BERNAUDEAU" />
-        <meta name="keywords" content="hardware,cups,Gentoo" />
-        <meta name="description" content="This tutorial describe how to install a portable photo printer (Canon Selphy CP400). This device is normaly use for direct printing with Canon compact digital camera. But, this uncommon printer is pretty well supported by cups with gutenprint driver." />
+        <meta name="keywords" content="virtualization,Gentoo" />
+        <meta name="description" content="Open vSwitch is a virtual switch with advanced functionnality such as isolation (vlan), monitoring and automated control. This tutorial describes how to install Open vSwitch in kernel space and how to configure LibVirt to use a virtual switch with KVM guest." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="How to install Canon Selphy CP400"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/How_to_install_canon_selphy_cp400.html"/>
-        <meta property="og:description" content="This tutorial describe how to install a portable photo printer (Canon Selphy CP400). This device is normaly use for direct printing with Canon compact digital camera. But, this uncommon printer is pretty well supported by cups with gutenprint driver."/>
+        <meta property="og:title" content="How to install OVS (Open Virtual Swtich)"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/How_to_install_OVS.html"/>
+        <meta property="og:description" content="Open vSwitch is a virtual switch with advanced functionnality such as isolation (vlan), monitoring and automated control. This tutorial describes how to install Open vSwitch in kernel space and how to configure LibVirt to use a virtual switch with KVM guest."/>
         <meta property="article:published_time" content="2016-09-05" />
             <meta property="article:section" content="Tutorials" />
-            <meta property="article:tag" content="hardware" />
-            <meta property="article:tag" content="cups" />
+            <meta property="article:tag" content="virtualization" />
             <meta property="article:tag" content="Gentoo" />
             <meta property="article:author" content="Didier BERNAUDEAU" />
 
@@ -81,10 +80,10 @@ My personal blog note            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/How_to_install_canon_selphy_cp400.html"
+                    <a href="http://didier.bernaudeau.net/How_to_install_OVS.html"
                        rel="bookmark"
-                       title="Permalink to How to install Canon Selphy CP400">
-                        How to install Canon Selphy CP400
+                       title="Permalink to How to install OVS (Open Virtual Swtich)">
+                        How to install OVS (Open Virtual Swtich)
                     </a>
                 </h1>
             </header>
@@ -98,7 +97,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2016-09-16T22:56:00+02:00"> ven. 16 septembre 2016</time>
+                <i class="fa fa-calendar"></i><time datetime="2016-10-14T23:08:00+02:00"> ven. 14 octobre 2016</time>
             </span>
 
 
@@ -106,92 +105,126 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/hardware.html">hardware</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/cups.html">cups</a>
+	<a href="http://didier.bernaudeau.net/tag/virtualization.html">virtualization</a>
         /
 	<a href="http://didier.bernaudeau.net/tag/gentoo.html">Gentoo</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>This tutorial describe how to install a portable photo printer (Canon Selphy CP400). This device is normaly use for direct printing with Canon compact digital camera. But, this uncommon printer is pretty well supported by cups with gutenprint driver.</p>
+                <p>Open vSwitch is a virtual switch with advanced functionnality such as isolation (vlan), monitoring and automated control. This tutorial describes how to install Open vSwitch in kernel space and how to configure LibVirt to use a virtual switch with KVM guest.</p>
 
-<p align="center">
-<img class="img-responsive" src="images/2016-09-10_How_to_install_canon_selphy_cp400_Printer.jpg">
-</img></p>
 <h1>Kernel configuration</h1>
-<ul>
-<li>Add support for USB printer.</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> make menuconfig
-
-<span class="go">  Device Drivers  ---&gt;</span>
-<span class="go">    [*] USB support  ---&gt;</span>
-<span class="go">      &lt;*&gt;     USB Printer support</span>
+<div class="highlight"><pre><span></span><span class="go">|[*] Networking support  ---&gt;</span>
+<span class="go">|     | Networking options  ---&gt;</span>
+<span class="go">|     |    | &lt;*&gt;   The IPv6 protocol  ---&gt;</span>
+<span class="go">|     |    |         | [*] Network packet filtering framework (Netfilter)  ---&gt;</span>
+<span class="go">|     |    |         |      | IPv6: Netfilter Configuration  ---&gt;</span>
+<span class="go">|     |    |         |      |     | &lt;*&gt; IP6 tables support (required for filtering)</span>
+<span class="go">|     |    |         |      |     | &lt;*&gt;   "frag" Fragmentation header match support</span>
+<span class="go">|     |    |</span>
+<span class="go">|     |    | &lt;*&gt;   Open vSwitch</span>
 </pre></div>
-<h1>Install Cups and GutenPrint</h1>
+<h1>OVS Installation</h1>
+<ul>
+<li>Enable OVS 2.6 for kernel 4.4.6</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/portage/package.keywords
+<span class="go">net-misc/openvswitch-2.6.0             ~amd64</span>
+</pre></div>
 <ul>
 <li>Define compilation option</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/portage/package.use
-
-<span class="go">net-print/gutenprint            gimp gtk</span>
-<span class="go">net-print/cups                  -usb</span>
+<span class="go">net-misc/openvswitch    -module</span>
 </pre></div>
 <ul>
-<li>Install</li>
+<li>Edit ebuild</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> emerge -pv cups gutenprint
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano /usr/portage/net-misc/openvswitch/openvswitch-2.6.0.ebuild
+<span class="go">line 09: inherit eutils linux-info linux-mod python-single-r1 systemd autotools</span>
+<span class="go">line 51: use monitor &amp;&amp; python-single-r1_pkg_setup</span>
+<span class="gp">#</span> ebuild /usr/portage/net-misc/openvswitch/openvswitch-2.6.0.ebuild manifest
 </pre></div>
 <ul>
-<li>Start Cups</li>
+<li>Install Open vSwitch</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> systemctl start cups.service
+<div class="highlight"><pre><span></span><span class="gp">#</span> emerge openvswitch
 </pre></div>
-<h1>Add printer</h1>
 <ul>
-<li>Open administration page : <a href="http://localhost:631/admin">http://localhost:631/admin</a></li>
+<li>Create database (path: /var/lib/openvswitch/conf.db)</li>
 </ul>
-<p align="center">
-<img class="img-responsive" src="images/2016-09-10_How_to_install_canon_selphy_cp400_01.png">
-<br/><br/>
-<img class="img-responsive" src="images/2016-09-10_How_to_install_canon_selphy_cp400_02.png">
-<br/><br/>
-<img class="img-responsive" src="images/2016-09-10_How_to_install_canon_selphy_cp400_03.png">
-<br/><br/>
-<img class="img-responsive" src="images/2016-09-10_How_to_install_canon_selphy_cp400_04.png">
-</img></img></img></img></p>
-<ul>
-<li>Configure Cups client</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/cups/client.conf
-<span class="go">ServerName localhost</span>
+<div class="highlight"><pre><span></span><span class="gp">#</span> emerge --config <span class="o">=</span>net-misc/openvswitch-2.6.0
+<span class="gp">#</span> ln /var/lib/openvswitch/conf.db /etc/openvswitch/conf.db
 </pre></div>
-<h1>Test printing</h1>
+<ul>
+<li>Copie script for systemd (If required)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> cp /usr/local/portage/net-misc/openvswitch/files/ovs-controller.service /usr/lib64/systemd/system/
+</pre></div>
+<ul>
+<li>Create missing directory (If required)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> mkdir /var/run/openvswitch/
+</pre></div>
 <ul>
 <li>
-<p>Scale an image with Gimp (ratio : 100x148mm)</p>
+<p>Disconnect cable interface via Network manager (If used)</p>
 </li>
 <li>
-<p>Define print options (with Gimp) :</p>
-<ul>
-<li>Page setup : check orientation</li>
-<li>Image setting : increase size until maximum</li>
-<li>Advanced : borderless = yes</li>
-</ul>
+<p>Start OpenSwitch</p>
 </li>
 </ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> systemctl start ovsdb-server
+<span class="gp">#</span> systemctl start ovs-vswitchd
+</pre></div>
+<ul>
+<li>Create a virtual switch</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> ovs-vsctl add-br vbr0
+<span class="gp">#</span> ovs-vsctl set-controller vbr0 ptcp:
+<span class="gp">#</span> ovs-vsctl add-port vbr0 enp0s25
+<span class="gp">#</span> ovs-vsctl <span class="nb">set</span> bridge vbr0 <span class="nv">stp_enable</span><span class="o">=</span><span class="nb">true</span>
+</pre></div>
+<ul>
+<li>Prints a brief overview of the switch database configuration</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> ovs-vsctl show
+<span class="go">209fb6b8-d25b-4c1d-874c-0c75bccfca15</span>
+<span class="go">    Bridge "vbr0"</span>
+<span class="go">        Controller "ptcp:"</span>
+<span class="go">        Port "enp0s25"</span>
+<span class="go">            Interface "enp0s25"</span>
+<span class="go">        Port "vbr0"</span>
+<span class="go">            Interface "vbr0"</span>
+<span class="go">                type: internal</span>
+</pre></div>
+<h1>LibVirt configuration</h1>
+<ul>
+<li>Create an XML file to define a libvirt virtual network</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano virtual_switch.xml
+<span class="go">&lt;network&gt;</span>
+<span class="go">  &lt;name&gt;VirtualSwitch&lt;/name&gt;</span>
+<span class="go">  &lt;forward mode='bridge'/&gt;</span>
+<span class="go">  &lt;bridge name='vbr0'/&gt;</span>
+<span class="go">  &lt;virtualport type='openvswitch'/&gt;</span>
+<span class="go">&lt;/network&gt;</span>
+</pre></div>
+<ul>
+<li>Create network in LibVirt</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> virsh net-define virtual_switch.xml
+<span class="gp">#</span> virsh net-start VirtualSwitch
+<span class="gp">#</span> virsh net-list --all
+</pre></div>
+<ul>
+<li>Restart LibVirt</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> systemctl restart libvirtd.service
+</pre></div>
+<p>Now, the virtual switch is available for the guest VM.</p>
             </div>
             <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://didier.bernaudeau.net/SSD_Samsung_840_PRO_256_Go.html">SSD - Samsung 840 PRO (256 Go)</a></li>
-        <li><a href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html">Laptop - Lenovo ThinkPad X240</a></li>
-        <li><a href="http://didier.bernaudeau.net/SSD_Samsung_850_EVO_250_Go.html">SSD - Samsung 850 EVO (250 Go)</a></li>
-        <li><a href="http://didier.bernaudeau.net/Laptop_Sony_VAIO_VGN_SR11M.html">Laptop - Sony VAIO VGN SR11M</a></li>
-    </ul>
-</section>
         </article>
     </section>
 

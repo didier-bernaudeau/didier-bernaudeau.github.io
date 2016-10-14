@@ -1,5 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2016-09-16T22:56:00+02:00</updated><entry><title>How to install Canon Selphy CP400</title><link href="http://didier.bernaudeau.net/How_to_install_canon_selphy_cp400.html" rel="alternate"></link><updated>2016-09-16T22:56:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-09-05:How_to_install_canon_selphy_cp400.html</id><summary type="html">&lt;p&gt;This tutorial describe how to install a portable photo printer (Canon Selphy CP400). This device is normaly use for direct printing with Canon compact digital camera. But, this uncommon printer is pretty well supported by cups with gutenprint driver.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2016-10-14T23:08:00+02:00</updated><entry><title>How to install OVS (Open Virtual Swtich)</title><link href="http://didier.bernaudeau.net/How_to_install_OVS.html" rel="alternate"></link><updated>2016-10-14T23:08:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-09-05:How_to_install_OVS.html</id><summary type="html">&lt;p&gt;Open vSwitch is a virtual switch with advanced functionnality such as isolation (vlan), monitoring and automated control. This tutorial describes how to install Open vSwitch in kernel space and how to configure LibVirt to use a virtual switch with KVM guest.&lt;/p&gt;
+
+&lt;h1&gt;Kernel configuration&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;|[*] Networking support  ---&amp;gt;&lt;/span&gt;
+&lt;span class="go"&gt;|     | Networking options  ---&amp;gt;&lt;/span&gt;
+&lt;span class="go"&gt;|     |    | &amp;lt;*&amp;gt;   The IPv6 protocol  ---&amp;gt;&lt;/span&gt;
+&lt;span class="go"&gt;|     |    |         | [*] Network packet filtering framework (Netfilter)  ---&amp;gt;&lt;/span&gt;
+&lt;span class="go"&gt;|     |    |         |      | IPv6: Netfilter Configuration  ---&amp;gt;&lt;/span&gt;
+&lt;span class="go"&gt;|     |    |         |      |     | &amp;lt;*&amp;gt; IP6 tables support (required for filtering)&lt;/span&gt;
+&lt;span class="go"&gt;|     |    |         |      |     | &amp;lt;*&amp;gt;   "frag" Fragmentation header match support&lt;/span&gt;
+&lt;span class="go"&gt;|     |    |&lt;/span&gt;
+&lt;span class="go"&gt;|     |    | &amp;lt;*&amp;gt;   Open vSwitch&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;OVS Installation&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Enable OVS 2.6 for kernel 4.4.6&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.keywords
+&lt;span class="go"&gt;net-misc/openvswitch-2.6.0             ~amd64&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Define compilation option&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.use
+&lt;span class="go"&gt;net-misc/openvswitch    -module&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Edit ebuild&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /usr/portage/net-misc/openvswitch/openvswitch-2.6.0.ebuild
+&lt;span class="go"&gt;line 09: inherit eutils linux-info linux-mod python-single-r1 systemd autotools&lt;/span&gt;
+&lt;span class="go"&gt;line 51: use monitor &amp;amp;&amp;amp; python-single-r1_pkg_setup&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; ebuild /usr/portage/net-misc/openvswitch/openvswitch-2.6.0.ebuild manifest
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Open vSwitch&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge openvswitch
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create database (path: /var/lib/openvswitch/conf.db)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --config &lt;span class="o"&gt;=&lt;/span&gt;net-misc/openvswitch-2.6.0
+&lt;span class="gp"&gt;#&lt;/span&gt; ln /var/lib/openvswitch/conf.db /etc/openvswitch/conf.db
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Copie script for systemd (If required)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; cp /usr/local/portage/net-misc/openvswitch/files/ovs-controller.service /usr/lib64/systemd/system/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create missing directory (If required)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mkdir /var/run/openvswitch/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Disconnect cable interface via Network manager (If used)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Start OpenSwitch&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl start ovsdb-server
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl start ovs-vswitchd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a virtual switch&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; ovs-vsctl add-br vbr0
+&lt;span class="gp"&gt;#&lt;/span&gt; ovs-vsctl set-controller vbr0 ptcp:
+&lt;span class="gp"&gt;#&lt;/span&gt; ovs-vsctl add-port vbr0 enp0s25
+&lt;span class="gp"&gt;#&lt;/span&gt; ovs-vsctl &lt;span class="nb"&gt;set&lt;/span&gt; bridge vbr0 &lt;span class="nv"&gt;stp_enable&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Prints a brief overview of the switch database configuration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; ovs-vsctl show
+&lt;span class="go"&gt;209fb6b8-d25b-4c1d-874c-0c75bccfca15&lt;/span&gt;
+&lt;span class="go"&gt;    Bridge "vbr0"&lt;/span&gt;
+&lt;span class="go"&gt;        Controller "ptcp:"&lt;/span&gt;
+&lt;span class="go"&gt;        Port "enp0s25"&lt;/span&gt;
+&lt;span class="go"&gt;            Interface "enp0s25"&lt;/span&gt;
+&lt;span class="go"&gt;        Port "vbr0"&lt;/span&gt;
+&lt;span class="go"&gt;            Interface "vbr0"&lt;/span&gt;
+&lt;span class="go"&gt;                type: internal&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;LibVirt configuration&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Create an XML file to define a libvirt virtual network&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano virtual_switch.xml
+&lt;span class="go"&gt;&amp;lt;network&amp;gt;&lt;/span&gt;
+&lt;span class="go"&gt;  &amp;lt;name&amp;gt;VirtualSwitch&amp;lt;/name&amp;gt;&lt;/span&gt;
+&lt;span class="go"&gt;  &amp;lt;forward mode='bridge'/&amp;gt;&lt;/span&gt;
+&lt;span class="go"&gt;  &amp;lt;bridge name='vbr0'/&amp;gt;&lt;/span&gt;
+&lt;span class="go"&gt;  &amp;lt;virtualport type='openvswitch'/&amp;gt;&lt;/span&gt;
+&lt;span class="go"&gt;&amp;lt;/network&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create network in LibVirt&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; virsh net-define virtual_switch.xml
+&lt;span class="gp"&gt;#&lt;/span&gt; virsh net-start VirtualSwitch
+&lt;span class="gp"&gt;#&lt;/span&gt; virsh net-list --all
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart LibVirt&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl restart libvirtd.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now, the virtual switch is available for the guest VM.&lt;/p&gt;</summary><category term="virtualization"></category><category term="Gentoo"></category></entry><entry><title>How to install Canon Selphy CP400</title><link href="http://didier.bernaudeau.net/How_to_install_canon_selphy_cp400.html" rel="alternate"></link><updated>2016-09-16T22:56:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-09-05:How_to_install_canon_selphy_cp400.html</id><summary type="html">&lt;p&gt;This tutorial describe how to install a portable photo printer (Canon Selphy CP400). This device is normaly use for direct printing with Canon compact digital camera. But, this uncommon printer is pretty well supported by cups with gutenprint driver.&lt;/p&gt;
 
 &lt;p align="center"&gt;
 &lt;img class="img-responsive" src="images/2016-09-10_How_to_install_canon_selphy_cp400_Printer.jpg"&gt;
@@ -688,7 +799,7 @@
 
 &lt;div class="section" id="kernel-installation"&gt;
 &lt;h2&gt;Kernel installation&lt;/h2&gt;
-&lt;p&gt;Download kernel Gentoo sources (4.4.6) :&lt;/p&gt;
+&lt;p&gt;Download kernel Gentoo sources (4.4.21) :&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt; emerge sys-kernel/gentoo-sources
 &lt;/pre&gt;
@@ -715,6 +826,7 @@
 &lt;h2&gt;Kernel minimal configuration&lt;/h2&gt;
 &lt;pre class="code ini literal-block"&gt;
 &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;Gentoo&lt;/span&gt; &lt;span class="err"&gt;Linux&lt;/span&gt; &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Support&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;init&lt;/span&gt; &lt;span class="err"&gt;systems,&lt;/span&gt; &lt;span class="err"&gt;system&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;service&lt;/span&gt; &lt;span class="err"&gt;managers&lt;/span&gt; &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt; &lt;span class="err"&gt;OpenRC,&lt;/span&gt; &lt;span class="err"&gt;runit&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;other&lt;/span&gt; &lt;span class="err"&gt;script&lt;/span&gt; &lt;span class="err"&gt;based&lt;/span&gt; &lt;span class="err"&gt;systems&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;managers&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;systemd&lt;/span&gt;
@@ -785,7 +897,7 @@
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;---&lt;/span&gt; &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;       &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;options&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;TCP/IP&lt;/span&gt; &lt;span class="err"&gt;networking&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;The&lt;/span&gt; &lt;span class="err"&gt;IPv6&lt;/span&gt; &lt;span class="err"&gt;protocol&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;The&lt;/span&gt; &lt;span class="err"&gt;IPv6&lt;/span&gt; &lt;span class="err"&gt;protocol&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;   &lt;span class="err"&gt;NetLabel&lt;/span&gt; &lt;span class="err"&gt;subsystem&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;   &lt;span class="err"&gt;Amateur&lt;/span&gt; &lt;span class="err"&gt;Radio&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
@@ -838,16 +950,15 @@
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;Wireless&lt;/span&gt; &lt;span class="err"&gt;WiFi&lt;/span&gt; &lt;span class="err"&gt;MVM&lt;/span&gt; &lt;span class="err"&gt;Firmware&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Realtek&lt;/span&gt; &lt;span class="err"&gt;rtlwifi&lt;/span&gt; &lt;span class="err"&gt;family&lt;/span&gt; &lt;span class="err"&gt;of&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Character&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Hardware&lt;/span&gt; &lt;span class="err"&gt;Random&lt;/span&gt; &lt;span class="err"&gt;Number&lt;/span&gt; &lt;span class="err"&gt;Generator&lt;/span&gt; &lt;span class="err"&gt;Core&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;I2C&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt; &lt;span class="err"&gt;I2C&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;I2C&lt;/span&gt; &lt;span class="err"&gt;device&lt;/span&gt; &lt;span class="err"&gt;interface&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;       &lt;span class="err"&gt;I2C&lt;/span&gt; &lt;span class="err"&gt;Hardware&lt;/span&gt; &lt;span class="err"&gt;Bus&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;82801&lt;/span&gt; &lt;span class="err"&gt;(ICH/PCH)&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;SMBus&lt;/span&gt; &lt;span class="err"&gt;Control&lt;/span&gt; &lt;span class="err"&gt;Method&lt;/span&gt; &lt;span class="err"&gt;Interface&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Character&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Hardware&lt;/span&gt; &lt;span class="err"&gt;Random&lt;/span&gt; &lt;span class="err"&gt;Number&lt;/span&gt; &lt;span class="err"&gt;Generator&lt;/span&gt; &lt;span class="err"&gt;Core&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt; &lt;span class="err"&gt;Hardware&lt;/span&gt; &lt;span class="err"&gt;Monitoring&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;Core/Core2/Atom&lt;/span&gt; &lt;span class="err"&gt;temperature&lt;/span&gt; &lt;span class="err"&gt;sensor&lt;/span&gt;
@@ -887,6 +998,7 @@
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;EHCI&lt;/span&gt; &lt;span class="err"&gt;HCD&lt;/span&gt; &lt;span class="err"&gt;(USB&lt;/span&gt; &lt;span class="err"&gt;2.0)&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;OHCI&lt;/span&gt; &lt;span class="err"&gt;HCD&lt;/span&gt; &lt;span class="err"&gt;(USB&lt;/span&gt; &lt;span class="err"&gt;1.1)&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;UHCI&lt;/span&gt; &lt;span class="err"&gt;HCD&lt;/span&gt; &lt;span class="err"&gt;(most&lt;/span&gt; &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;VIA)&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;USB&lt;/span&gt; &lt;span class="err"&gt;Printer&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;MMC/SD/SDIO&lt;/span&gt; &lt;span class="err"&gt;card&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Realtek&lt;/span&gt; &lt;span class="err"&gt;PCI-E&lt;/span&gt; &lt;span class="err"&gt;SD/MMC&lt;/span&gt; &lt;span class="err"&gt;Card&lt;/span&gt; &lt;span class="err"&gt;Interface&lt;/span&gt; &lt;span class="err"&gt;Driver&lt;/span&gt;
@@ -1059,7 +1171,7 @@
 &lt;/pre&gt;
 &lt;p&gt;Copy kernel&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.4.6.efi
+&lt;span class="gp"&gt;#&lt;/span&gt; cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.4.21.efi
 &lt;/pre&gt;
 &lt;p&gt;Unmount ESP (EFI System Partition)&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
@@ -1074,7 +1186,7 @@
 &lt;/pre&gt;
 &lt;p&gt;Add the new kernel&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr -c -d /dev/sda -p &lt;span class="m"&gt;2&lt;/span&gt; -L &lt;span class="s2"&gt;"Gentoo Linux 4.4.6"&lt;/span&gt; -l &lt;span class="s2"&gt;"\EFI\GentooLinux\4.4.6.efi"&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr -c -d /dev/sda -p &lt;span class="m"&gt;2&lt;/span&gt; -L &lt;span class="s2"&gt;"Gentoo Linux 4.4.21"&lt;/span&gt; -l &lt;span class="s2"&gt;"\EFI\GentooLinux\4.4.21.efi"&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Print the menu&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;

@@ -113,7 +113,7 @@ My personal blog note            </a>
 
 <div class="section" id="kernel-installation">
 <h2>Kernel installation</h2>
-<p>Download kernel Gentoo sources (4.4.6) :</p>
+<p>Download kernel Gentoo sources (4.4.21) :</p>
 <pre class="code console literal-block">
 <span class="gp">#</span> emerge sys-kernel/gentoo-sources
 </pre>
@@ -140,6 +140,7 @@ My personal blog note            </a>
 <h2>Kernel minimal configuration</h2>
 <pre class="code ini literal-block">
 <span class="err">|</span> <span class="err">Gentoo</span> <span class="err">Linux</span> <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>
 <span class="err">|</span>      <span class="err">|</span>     <span class="err">Support</span> <span class="err">for</span> <span class="err">init</span> <span class="err">systems,</span> <span class="err">system</span> <span class="err">and</span> <span class="err">service</span> <span class="err">managers</span> <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span> <span class="err">OpenRC,</span> <span class="err">runit</span> <span class="err">and</span> <span class="err">other</span> <span class="err">script</span> <span class="err">based</span> <span class="err">systems</span> <span class="err">and</span> <span class="err">managers</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">systemd</span>
@@ -210,7 +211,7 @@ My personal blog note            </a>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Networking</span> <span class="err">support</span>
 <span class="err">|</span>      <span class="err">|</span>       <span class="err">Networking</span> <span class="err">options</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span> <span class="err">TCP/IP</span> <span class="err">networking</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>   <span class="err">The</span> <span class="err">IPv6</span> <span class="err">protocol</span>  <span class="err">----</span>
+<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">The</span> <span class="err">IPv6</span> <span class="err">protocol</span>  <span class="err">----</span>
 <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>   <span class="err">NetLabel</span> <span class="err">subsystem</span> <span class="err">support</span>
 <span class="err">|</span>      <span class="err">|</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>   <span class="err">Amateur</span> <span class="err">Radio</span> <span class="err">support</span>  <span class="err">----</span>
@@ -263,16 +264,15 @@ My personal blog note            </a>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">Intel</span> <span class="err">Wireless</span> <span class="err">WiFi</span> <span class="err">MVM</span> <span class="err">Firmware</span> <span class="err">support</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>   <span class="err">Realtek</span> <span class="err">rtlwifi</span> <span class="err">family</span> <span class="err">of</span> <span class="err">devices</span>  <span class="err">----</span>
 <span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span>     <span class="err">Character</span> <span class="err">devices</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span> <span class="err">Hardware</span> <span class="err">Random</span> <span class="err">Number</span> <span class="err">Generator</span> <span class="err">Core</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>
 <span class="err">|</span>      <span class="err">|</span>     <span class="err">I2C</span> <span class="err">support</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span> <span class="err">I2C</span> <span class="err">support</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">I2C</span> <span class="err">device</span> <span class="err">interface</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>       <span class="err">I2C</span> <span class="err">Hardware</span> <span class="err">Bus</span> <span class="err">support</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Intel</span> <span class="err">82801</span> <span class="err">(ICH/PCH)</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">SMBus</span> <span class="err">Control</span> <span class="err">Method</span> <span class="err">Interface</span>
-<span class="err">|</span>      <span class="err">|</span>
-<span class="err">|</span>      <span class="err">|</span>     <span class="err">Character</span> <span class="err">devices</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span> <span class="err">Hardware</span> <span class="err">Random</span> <span class="err">Number</span> <span class="err">Generator</span> <span class="err">Core</span> <span class="err">support</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>
 <span class="err">|</span>      <span class="err">|</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">-*-</span> <span class="err">Hardware</span> <span class="err">Monitoring</span> <span class="err">support</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Intel</span> <span class="err">Core/Core2/Atom</span> <span class="err">temperature</span> <span class="err">sensor</span>
@@ -312,6 +312,7 @@ My personal blog note            </a>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">EHCI</span> <span class="err">HCD</span> <span class="err">(USB</span> <span class="err">2.0)</span> <span class="err">support</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>     <span class="err">OHCI</span> <span class="err">HCD</span> <span class="err">(USB</span> <span class="err">1.1)</span> <span class="err">support</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>     <span class="err">UHCI</span> <span class="err">HCD</span> <span class="err">(most</span> <span class="err">Intel</span> <span class="err">and</span> <span class="err">VIA)</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>     <span class="err">USB</span> <span class="err">Printer</span> <span class="err">support</span>
 <span class="err">|</span>      <span class="err">|</span>
 <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">MMC/SD/SDIO</span> <span class="err">card</span> <span class="err">support</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Realtek</span> <span class="err">PCI-E</span> <span class="err">SD/MMC</span> <span class="err">Card</span> <span class="err">Interface</span> <span class="err">Driver</span>
@@ -484,7 +485,7 @@ My personal blog note            </a>
 </pre>
 <p>Copy kernel</p>
 <pre class="code console literal-block">
-<span class="gp">#</span> cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.4.6.efi
+<span class="gp">#</span> cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.4.21.efi
 </pre>
 <p>Unmount ESP (EFI System Partition)</p>
 <pre class="code console literal-block">
@@ -499,7 +500,7 @@ My personal blog note            </a>
 </pre>
 <p>Add the new kernel</p>
 <pre class="code console literal-block">
-<span class="gp">#</span> efibootmgr -c -d /dev/sda -p <span class="m">2</span> -L <span class="s2">"Gentoo Linux 4.4.6"</span> -l <span class="s2">"\EFI\GentooLinux\4.4.6.efi"</span>
+<span class="gp">#</span> efibootmgr -c -d /dev/sda -p <span class="m">2</span> -L <span class="s2">"Gentoo Linux 4.4.21"</span> -l <span class="s2">"\EFI\GentooLinux\4.4.21.efi"</span>
 </pre>
 <p>Print the menu</p>
 <pre class="code console literal-block">
@@ -623,9 +624,9 @@ My personal blog note            </a>
                             Software
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
+                    <li class="list-group-item tag-3">
                         <a href="http://didier.bernaudeau.net/tag/virtualization.html">
-                            Virtualization
+                            virtualization
                         </a>
                     </li>
                     <li class="list-group-item tag-2">

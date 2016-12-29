@@ -1,137 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2016-12-07T19:53:00+01:00</updated><entry><title>How to install NodeJS</title><link href="http://didier.bernaudeau.net/How_to_install_nodejs.html" rel="alternate"></link><updated>2016-12-07T19:53:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-12-07:How_to_install_nodejs.html</id><summary type="html">&lt;p&gt;Docker is the most famous application container engine. This post describes the best way to install docker on Debian Linux.&lt;/p&gt;
-
-&lt;h1&gt;Add Docker's repository&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Install dependencies&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get install apt-transport-https ca-certificates
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Install public key of Docker's repository&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Add Docker repository&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/apt/sources.list.d/docker.list
-&lt;span class="go"&gt;deb https://apt.dockerproject.org/repo debian-jessie main&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Update repository&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get update
-&lt;span class="gp"&gt;#&lt;/span&gt; apt-cache policy docker-engine
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;Install Docker&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Install&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get install docker-engine
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Start Docker&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; service docker start
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;Test Docker with OWASP ZAP&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Pull the latest zap docker image from owasp's docker image repository (hosted by docker hub).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker pull owasp/zap2docker-stable
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;List installed images&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker images
-&lt;span class="go"&gt;REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE&lt;/span&gt;
-&lt;span class="go"&gt;owasp/zap2docker-stable   latest              a774bdc65502        5 months ago        1.557 GB&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Run docker image&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker run -p 8090:8090 -i owasp/zap2docker-stable zap.sh -daemon -port &lt;span class="m"&gt;8090&lt;/span&gt; -host 0.0.0.0
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Get Container ID&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker ps
-
-&lt;span class="go"&gt;CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS              PORTS                    NAMES&lt;/span&gt;
-&lt;span class="go"&gt;5ff0ca31a9a1        owasp/zap2docker-stable   "zap.sh -daemon -port"   54 seconds ago      Up 53 seconds       0.0.0.0:8090-&amp;gt;8090/tcp   zen_knuth&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Get information&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker inspect &amp;lt;CONTAINER ID&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Container"></category><category term="Debian"></category></entry><entry><title>How to install Docker</title><link href="http://didier.bernaudeau.net/How_to_install_docker.html" rel="alternate"></link><updated>2016-11-10T23:34:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-11-10:How_to_install_docker.html</id><summary type="html">&lt;p&gt;Docker is the most famous application container engine. This post describes the best way to install docker on Debian Linux.&lt;/p&gt;
-
-&lt;h1&gt;Add Docker's repository&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Install dependencies&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get install apt-transport-https ca-certificates
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Install public key of Docker's repository&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Add Docker repository&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/apt/sources.list.d/docker.list
-&lt;span class="go"&gt;deb https://apt.dockerproject.org/repo debian-jessie main&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Update repository&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get update
-&lt;span class="gp"&gt;#&lt;/span&gt; apt-cache policy docker-engine
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;Install Docker&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Install&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get install docker-engine
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Start Docker&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; service docker start
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;Test Docker with OWASP ZAP&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Pull the latest zap docker image from owasp's docker image repository (hosted by docker hub).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker pull owasp/zap2docker-stable
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;List installed images&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker images
-&lt;span class="go"&gt;REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE&lt;/span&gt;
-&lt;span class="go"&gt;owasp/zap2docker-stable   latest              a774bdc65502        5 months ago        1.557 GB&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Run docker image&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker run -p 8090:8090 -i owasp/zap2docker-stable zap.sh -daemon -port &lt;span class="m"&gt;8090&lt;/span&gt; -host 0.0.0.0
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Get Container ID&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker ps
-
-&lt;span class="go"&gt;CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS              PORTS                    NAMES&lt;/span&gt;
-&lt;span class="go"&gt;5ff0ca31a9a1        owasp/zap2docker-stable   "zap.sh -daemon -port"   54 seconds ago      Up 53 seconds       0.0.0.0:8090-&amp;gt;8090/tcp   zen_knuth&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Get information&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker inspect &amp;lt;CONTAINER ID&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Container"></category><category term="Debian"></category></entry><entry><title>How to install OVS (Open Virtual Swtich)</title><link href="http://didier.bernaudeau.net/How_to_install_OVS.html" rel="alternate"></link><updated>2016-10-14T23:08:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-09-05:How_to_install_OVS.html</id><summary type="html">&lt;p&gt;Open vSwitch is a virtual switch with advanced functionnality such as isolation (vlan), monitoring and automated control. This tutorial describes how to install Open vSwitch in kernel space and how to configure LibVirt to use a virtual switch with KVM guest.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2016-10-14T23:08:00+02:00</updated><entry><title>How to install OVS (Open Virtual Swtich)</title><link href="http://didier.bernaudeau.net/How_to_install_OVS.html" rel="alternate"></link><updated>2016-10-14T23:08:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-09-05:How_to_install_OVS.html</id><summary type="html">&lt;p&gt;Open vSwitch is a virtual switch with advanced functionnality such as isolation (vlan), monitoring and automated control. This tutorial describes how to install Open vSwitch in kernel space and how to configure LibVirt to use a virtual switch with KVM guest.&lt;/p&gt;
 
 &lt;h1&gt;Kernel configuration&lt;/h1&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;|[*] Networking support  ---&amp;gt;&lt;/span&gt;
@@ -744,7 +612,7 @@
 
 &lt;div class="section" id="pulseaudio-architecture"&gt;
 &lt;h2&gt;PulseAudio Architecture&lt;/h2&gt;
-&lt;img alt="PulseAudio Architecture" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
+&lt;img alt="PulseAudio Architecture" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="install-pulseaudio"&gt;
 &lt;h2&gt;Install PulseAudio&lt;/h2&gt;
@@ -881,23 +749,23 @@
 &lt;span class="gp"&gt;$&lt;/span&gt; virt-manager
 &lt;/pre&gt;
 &lt;p&gt;Open the menu "file &amp;gt; Add connection"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Add connection" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Add connection" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="network-configuration"&gt;
 &lt;h2&gt;Network Configuration&lt;/h2&gt;
 &lt;p&gt;After starting LibVirtd, network configuration is as follows:&lt;/p&gt;
-&lt;img alt="Network Configuration" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
+&lt;img alt="Network Configuration" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="create-a-virtual-machine"&gt;
 &lt;h2&gt;Create a virtual machine&lt;/h2&gt;
 &lt;p&gt;Open the menu "file &amp;gt; New Virtual Machine"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Step1" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step2" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
-&lt;img alt="Virt-Manager - Step3" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step4" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step5" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step1" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step2" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - Step3" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step4" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step5" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
 &lt;p&gt;Select "VirtIO" device model for Network Interface&lt;/p&gt;
-&lt;img alt="Virt-Manager - NIC device model" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - NIC device model" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
 &lt;!-- vhost=on --&gt;
 &lt;/div&gt;
 </summary><category term="Gentoo"></category><category term="Virtualization"></category></entry><entry><title>How to create bootable USB flash drives with Rufus</title><link href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html" rel="alternate"></link><updated>2015-07-15T21:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-12:How_to_create_bootable_USB_flash_drives_with_Rufus.html</id><summary type="html">&lt;p&gt;This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp;amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.&lt;/p&gt;
@@ -910,12 +778,12 @@
 &lt;h2&gt;Create installation media&lt;/h2&gt;
 &lt;div class="section" id="example-for-microsoft-windows-8-1-with-mbr"&gt;
 &lt;h3&gt;Example for Microsoft Windows 8.1 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="example-for-debian-8-with-mbr"&gt;
 &lt;h3&gt;Example for Debian 8 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
 &lt;p&gt;If you need additional firmware to install Debian :&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul class="simple"&gt;

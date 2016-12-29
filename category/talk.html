@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>How to install Docker - My personal blog note</title>
+    <title>Talk - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,22 +9,16 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/How_to_install_docker.html">
 
-        <meta name="author" content="Didier BERNAUDEAU" />
-        <meta name="keywords" content="Container,Debian" />
-        <meta name="description" content="Docker is the most famous application container engine. This post describes the best way to install docker on Debian Linux." />
+    <meta name="author" content="D. Bernaudeau" />
+    <meta name="keywords" content="Talk" />
 
+    <!-- Open Graph tags -->
         <meta property="og:site_name" content="My personal blog note" />
-        <meta property="og:type" content="article"/>
-        <meta property="og:title" content="How to install Docker"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/How_to_install_docker.html"/>
-        <meta property="og:description" content="Docker is the most famous application container engine. This post describes the best way to install docker on Debian Linux."/>
-        <meta property="article:published_time" content="2016-11-10" />
-            <meta property="article:section" content="Tutorials" />
-            <meta property="article:tag" content="Container" />
-            <meta property="article:tag" content="Debian" />
-            <meta property="article:author" content="Didier BERNAUDEAU" />
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="My personal blog note"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net"/>
+        <meta property="og:description" content="My personal blog note"/>
 
 
     <!-- Bootstrap -->
@@ -39,8 +33,8 @@
 
 
 
-        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
-              title="My personal blog note Tutorials ATOM Feed"/>
+        <link href="http://didier.bernaudeau.net/feeds/talk.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Talk ATOM Feed"/>
 
 </head>
 <body>
@@ -61,8 +55,8 @@ My personal blog note            </a>
             <ul class="nav navbar-nav">
                     <li><a href="/category/articles.html">Articles</a></li>
                     <li><a href="/category/tutorials.html">Tutorials</a></li>
+                    <li><a href="/category/talk.html">Talk</a></li>
                     <li><a href="/category/press-review.html">Press Review</a></li>
-                    <li><a href="/pages/presentation.html">Presentation</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="http://didier.bernaudeau.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
@@ -76,28 +70,17 @@ My personal blog note            </a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-    <section id="content">
-        <article>
-            <header class="page-header">
-                <h1>
-                    <a href="http://didier.bernaudeau.net/How_to_install_docker.html"
-                       rel="bookmark"
-                       title="Permalink to How to install Docker">
-                        How to install Docker
-                    </a>
-                </h1>
-            </header>
-            <div class="entry-content">
-                <div class="panel">
-                    <div class="panel-body">
+            <article>                
+              <h2><a href="http://didier.bernaudeau.net/Container_Overview.html">Container Overview</a></h2>
+                <div class="well well-sm">
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2016-11-10T23:34:00+01:00"> jeu. 10 novembre 2016</time>
+        <i class="fa fa-calendar"></i><time datetime="2016-12-08T13:00:00+01:00"> jeu. 08 décembre 2016</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2016-11-10T23:34:00+01:00"> jeu. 10 novembre 2016</time>
+                <i class="fa fa-calendar"></i><time datetime="2016-12-18T13:00:00+01:00"> dim. 18 décembre 2016</time>
             </span>
 
 
@@ -106,88 +89,105 @@ My personal blog note            </a>
 
 <span class="label label-default">Tags</span>
 	<a href="http://didier.bernaudeau.net/tag/container.html">Container</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/debian.html">Debian</a>
     
-</footer><!-- /.post-info -->                    </div>
-                </div>
-                <p>Docker is the most famous application container engine. This post describes the best way to install docker on Debian Linux.</p>
+</footer><!-- /.post-info -->                </div>
+              <div class="summary"><p>Container is a righ way to run application in a sandbox and this technology becomes an alternative to virtualization. Container is already used by many companies such as Google, Netflix, Amazon, ... This talk is a short overview (10mn) to present the base of this technology.</p>
+<p>View online on <a href="http://0xdbe.github.io/ContainerOverview_20161208">GitHub</a></p>
 
-<h1>Add Docker's repository</h1>
-<ul>
-<li>Install dependencies</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> apt-get install apt-transport-https ca-certificates
-</pre></div>
-<ul>
-<li>Install public key of Docker's repository</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-</pre></div>
-<ul>
-<li>Add Docker repository</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/apt/sources.list.d/docker.list
-<span class="go">deb https://apt.dockerproject.org/repo debian-jessie main</span>
-</pre></div>
-<ul>
-<li>Update repository</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> apt-get update
-<span class="gp">#</span> apt-cache policy docker-engine
-</pre></div>
-<h1>Install Docker</h1>
-<ul>
-<li>Install</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> apt-get install docker-engine
-</pre></div>
-<ul>
-<li>Start Docker</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> service docker start
-</pre></div>
-<h1>Test Docker with OWASP ZAP</h1>
-<ul>
-<li>Pull the latest zap docker image from owasp's docker image repository (hosted by docker hub).</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> docker pull owasp/zap2docker-stable
-</pre></div>
-<ul>
-<li>List installed images</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> docker images
-<span class="go">REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE</span>
-<span class="go">owasp/zap2docker-stable   latest              a774bdc65502        5 months ago        1.557 GB</span>
-</pre></div>
-<ul>
-<li>Run docker image</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> docker run -p 8090:8090 -i owasp/zap2docker-stable zap.sh -daemon -port <span class="m">8090</span> -host 0.0.0.0
-</pre></div>
-<ul>
-<li>Get Container ID</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> docker ps
+                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/Container_Overview.html">more ...</a>
+              </div>
+            </article>
+            <hr/>
+            <article>                
+              <h2><a href="http://didier.bernaudeau.net/2015-12-19_Bitcoin.html">Bitcoin</a></h2>
+                <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-12-19T17:00:00+01:00"> sam. 19 décembre 2015</time>
+    </span>
+            <span class="label label-default">Modified</span>
+            <span class="modified">
+                <i class="fa fa-calendar"></i><time datetime="2015-12-19T17:00:00+01:00"> sam. 19 décembre 2015</time>
+            </span>
 
-<span class="go">CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS              PORTS                    NAMES</span>
-<span class="go">5ff0ca31a9a1        owasp/zap2docker-stable   "zap.sh -daemon -port"   54 seconds ago      Up 53 seconds       0.0.0.0:8090-&gt;8090/tcp   zen_knuth</span>
-</pre></div>
-<ul>
-<li>Get information</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> docker inspect &lt;CONTAINER ID&gt;
-</pre></div>
-            </div>
-            <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://didier.bernaudeau.net/Debian_Cheat_Sheet.html">Debian Cheat Sheet</a></li>
-    </ul>
-</section>
-        </article>
-    </section>
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://didier.bernaudeau.net/tag/blockchain.html">Blockchain</a>
+    
+</footer><!-- /.post-info -->                </div>
+              <div class="summary"><p>Bitcoin is the main blockchain for crypto-currency. This long talk (2h) is a presentation for newbie to understand this technology with Bitcoin.</p>
+<p>Download slides <a href="http://didier.bernaudeau.net/presentation/Bitcoin_2015-12-19.pdf">here</a>.</p>
+
+                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/2015-12-19_Bitcoin.html">more ...</a>
+              </div>
+            </article>
+            <hr/>
+            <article>                
+              <h2><a href="http://didier.bernaudeau.net/Keytool.html">Keytool</a></h2>
+                <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-02-04T13:00:00+01:00"> mer. 04 février 2015</time>
+    </span>
+            <span class="label label-default">Modified</span>
+            <span class="modified">
+                <i class="fa fa-calendar"></i><time datetime="2015-02-04T13:00:00+01:00"> mer. 04 février 2015</time>
+            </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://didier.bernaudeau.net/tag/tls.html">TLS</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/java.html">Java</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/certificate.html">Certificate</a>
+    
+</footer><!-- /.post-info -->                </div>
+              <div class="summary"><p>Keytool is a command line tool provided by Oracle to create and manage Java keystore. This long talk (45min) presents the best practices to create a private and public key, create a Certificate Signing Request, ...</p>
+<p>Download slides <a href="http://didier.bernaudeau.net/presentation/Keytool_2015-02-04.pdf">here</a>.</p>
+
+                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/Keytool.html">more ...</a>
+              </div>
+            </article>
+            <hr/>
+            <article>                
+              <h2><a href="http://didier.bernaudeau.net/OpenSSL.html">OpenSSL</a></h2>
+                <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-02-03T13:00:00+01:00"> mar. 03 février 2015</time>
+    </span>
+            <span class="label label-default">Modified</span>
+            <span class="modified">
+                <i class="fa fa-calendar"></i><time datetime="2015-02-03T13:00:00+01:00"> mar. 03 février 2015</time>
+            </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://didier.bernaudeau.net/tag/certificate.html">Certificate</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/pki.html">PKI</a>
+    
+</footer><!-- /.post-info -->                </div>
+              <div class="summary"><p>OpenSSL is a command line tool to create and manage certificate. This long talk (45min) presents the best practices to create a certificate authority, a private and public key, a Certificate Signing Request, ... with OpenSSL.</p>
+<p>Download slides <a href="http://didier.bernaudeau.net/presentation/OpenSSL_2015-02-03.pdf">here</a>.</p>
+
+                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/OpenSSL.html">more ...</a>
+              </div>
+            </article>
+            <hr/>
 
         </div>
         <div class="col-sm-3" id="sidebar">
@@ -208,12 +208,17 @@ My personal blog note            </a>
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/blockchain.html">
+                            Blockchain
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/certificate.html">
                             Certificate
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
+                    <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/container.html">
                             Container
                         </a>
@@ -228,7 +233,7 @@ My personal blog note            </a>
                             cups
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-3">
                         <a href="http://didier.bernaudeau.net/tag/debian.html">
                             Debian
                         </a>
@@ -251,6 +256,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/html.html">
                             HTML
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/java.html">
+                            Java
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -278,7 +288,7 @@ My personal blog note            </a>
                             PHP
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
+                    <li class="list-group-item tag-3">
                         <a href="http://didier.bernaudeau.net/tag/pki.html">
                             PKI
                         </a>
@@ -291,6 +301,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/software.html">
                             Software
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/tls.html">
+                            TLS
                         </a>
                     </li>
                     <li class="list-group-item tag-3">

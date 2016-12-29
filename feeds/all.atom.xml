@@ -13,7 +13,73 @@
 &lt;li&gt;install the newest versions of all packages currently installed on the system&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get upgrade
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="Debian"></category></entry><entry><title>How to install OVS (Open Virtual Swtich)</title><link href="http://didier.bernaudeau.net/How_to_install_OVS.html" rel="alternate"></link><updated>2016-10-14T23:08:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-09-05:How_to_install_OVS.html</id><summary type="html">&lt;p&gt;Open vSwitch is a virtual switch with advanced functionnality such as isolation (vlan), monitoring and automated control. This tutorial describes how to install Open vSwitch in kernel space and how to configure LibVirt to use a virtual switch with KVM guest.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="Debian"></category></entry><entry><title>How to install Docker</title><link href="http://didier.bernaudeau.net/How_to_install_docker.html" rel="alternate"></link><updated>2016-11-10T23:34:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-11-10:How_to_install_docker.html</id><summary type="html">&lt;p&gt;Docker is the most famous application container engine. This post describes the best way to install docker on Debian Linux.&lt;/p&gt;
+
+&lt;h1&gt;Add Docker's repository&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install dependencies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get install apt-transport-https ca-certificates
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install public key of Docker's repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add Docker repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/apt/sources.list.d/docker.list
+&lt;span class="go"&gt;deb https://apt.dockerproject.org/repo debian-jessie main&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get update
+&lt;span class="gp"&gt;#&lt;/span&gt; apt-cache policy docker-engine
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Install Docker&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get install docker-engine
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start Docker&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; service docker start
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Test Docker with OWASP ZAP&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Pull the latest zap docker image from owasp's docker image repository (hosted by docker hub).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker pull owasp/zap2docker-stable
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;List installed images&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker images
+&lt;span class="go"&gt;REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE&lt;/span&gt;
+&lt;span class="go"&gt;owasp/zap2docker-stable   latest              a774bdc65502        5 months ago        1.557 GB&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Run docker image&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker run -p 8090:8090 -i owasp/zap2docker-stable zap.sh -daemon -port &lt;span class="m"&gt;8090&lt;/span&gt; -host 0.0.0.0
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Get Container ID&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker ps
+
+&lt;span class="go"&gt;CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS              PORTS                    NAMES&lt;/span&gt;
+&lt;span class="go"&gt;5ff0ca31a9a1        owasp/zap2docker-stable   "zap.sh -daemon -port"   54 seconds ago      Up 53 seconds       0.0.0.0:8090-&amp;gt;8090/tcp   zen_knuth&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Get information&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker inspect &amp;lt;CONTAINER ID&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Container"></category><category term="Debian"></category></entry><entry><title>How to install OVS (Open Virtual Swtich)</title><link href="http://didier.bernaudeau.net/How_to_install_OVS.html" rel="alternate"></link><updated>2016-10-14T23:08:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-09-05:How_to_install_OVS.html</id><summary type="html">&lt;p&gt;Open vSwitch is a virtual switch with advanced functionnality such as isolation (vlan), monitoring and automated control. This tutorial describes how to install Open vSwitch in kernel space and how to configure LibVirt to use a virtual switch with KVM guest.&lt;/p&gt;
 
 &lt;h1&gt;Kernel configuration&lt;/h1&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;|[*] Networking support  ---&amp;gt;&lt;/span&gt;
@@ -487,7 +553,7 @@
 &lt;p&gt;tail -f /opt/wildfly/standalone/log/server.log -n 10000 | grep ERROR&lt;/p&gt;
 &lt;p&gt;ERROR [org.jboss.msc.service.fail] (MSC service thread 1-1) MSC000001: Failed to start service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: org.jboss.msc.service.StartException in service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: WFLYDM0018: Unable to start service&lt;/p&gt;</summary><category term="Certificate"></category><category term="Debian"></category></entry><entry><title>Press review of July 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_July_2016.html" rel="alternate"></link><updated>2016-07-25T22:21:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-07-01:Press_review_of_July_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -589,7 +655,7 @@
 &lt;li&gt;&lt;a class="reference external" href="http://www.tripwire.com/state-of-security/featured/boobytrapped-printers-windows-malware/"&gt;How boobytrapped printers have been able to infect Windows PCs for over 20 years&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="last first img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="first img-responsive last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;07/13/2016&lt;/td&gt;
@@ -692,7 +758,7 @@
 &lt;/div&gt;
 </summary><category term="Press review"></category></entry><entry><title>Press review of June 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_June_2016.html" rel="alternate"></link><updated>2016-07-22T22:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-06-01:Press_review_of_June_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -898,7 +964,7 @@
 &lt;li&gt;&lt;a class="reference external" href="https://blog.bity.com/la-faille-de-the-dao-les-cles-pour-comprendre/"&gt;La faille de The DAO : les clés pour comprendre&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="last first img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="first img-responsive last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;06/20/2016&lt;/td&gt;
@@ -926,7 +992,7 @@
 &lt;li&gt;&lt;a class="reference external" href="http://www.ibtimes.co.uk/ukrainian-bank-cyber-heist-hackers-compromise-swift-network-10m-theft-1567699"&gt;Ukrainian bank cyber-heist: Hackers take off with $10m&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="last first img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="first img-responsive last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;06/28/2016&lt;/td&gt;
@@ -1033,7 +1099,7 @@
 &lt;/div&gt;
 </summary><category term="Press review"></category></entry><entry><title>Press review of May 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_May_2016.html" rel="alternate"></link><updated>2016-06-21T22:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-05-01:Press_review_of_May_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -1436,7 +1502,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 
 &lt;div class="section" id="basic-certificate-field"&gt;
 &lt;h2&gt;Basic certificate field&lt;/h2&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
 &lt;col width="89%"&gt;&lt;/col&gt;
@@ -1458,7 +1524,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="certificate-extension"&gt;
 &lt;h2&gt;Certificate extension&lt;/h2&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="12%"&gt;&lt;/col&gt;
 &lt;col width="88%"&gt;&lt;/col&gt;
@@ -1496,7 +1562,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;/div&gt;
 </summary><category term="Certificate"></category></entry><entry><title>Press review of April 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_April_2016.html" rel="alternate"></link><updated>2016-04-18T22:37:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-04-01:Press_review_of_April_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -1549,7 +1615,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://reflets.info/panamapapers-mossack-fonseca-une-incroyable-bourde/"&gt;#PanamaPapers : Mossack Fonseca une incroyable bourde ?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="last first img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="first img-responsive last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;04/04/2016&lt;/td&gt;
@@ -1640,7 +1706,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.theregister.co.uk/2016/04/13/burr_feinstein_antiencryption_bill_is_out/"&gt;Line by line, how the US anti-encryption bill will kill our privacy, security&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="last first img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="first img-responsive last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;04/07/2016&lt;/td&gt;
@@ -1771,7 +1837,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://www.theguardian.com/technology/2016/apr/19/ss7-hack-explained-mobile-phone-vulnerability-snooping-texts-calls"&gt;SS7 hack explained: what can you do about it?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="last first img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="first img-responsive last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;04/18/2016&lt;/td&gt;
@@ -1855,7 +1921,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;/div&gt;
 </summary><category term="Press review"></category></entry><entry><title>Press review of Mars 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_Mars_2016.html" rel="alternate"></link><updated>2016-04-18T20:22:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-03-01:Press_review_of_Mars_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -2498,7 +2564,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;/div&gt;
 </summary><category term="Software"></category></entry><entry><title>Press review of February 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_February_2016.html" rel="alternate"></link><updated>2016-03-07T22:36:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-02-01:Press_review_of_February_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -2977,7 +3043,7 @@ Vulnerability&lt;/td&gt;
 &lt;/div&gt;
 </summary><category term="Press review"></category></entry><entry><title>Press review of January 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_January_2016.html" rel="alternate"></link><updated>2016-04-18T22:01:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-01-01:Press_review_of_January_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -3813,7 +3879,7 @@ Vulnerability&lt;/td&gt;
 &lt;p&gt;Download slides &lt;a href="http://didier.bernaudeau.net/presentation/Bitcoin_2015-12-19.pdf"&gt;here&lt;/a&gt;.&lt;/p&gt;
 </summary><category term="Blockchain"></category></entry><entry><title>Press review of december 2015</title><link href="http://didier.bernaudeau.net/Press_review_of_december_2015.html" rel="alternate"></link><updated>2016-01-09T22:32:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-12-01:Press_review_of_december_2015.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -4354,7 +4420,7 @@ Vulnerability&lt;/td&gt;
 &lt;/div&gt;
 </summary><category term="PKI"></category><category term="Certificate"></category></entry><entry><title>Press review of november 2015</title><link href="http://didier.bernaudeau.net/Press_review_of_november_2015.html" rel="alternate"></link><updated>2016-02-27T12:50:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-11-01:Press_review_of_november_2015.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -4707,7 +4773,7 @@ Vulnerability&lt;/td&gt;
 
 &lt;div class="section" id="pulseaudio-architecture"&gt;
 &lt;h2&gt;PulseAudio Architecture&lt;/h2&gt;
-&lt;img alt="PulseAudio Architecture" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
+&lt;img alt="PulseAudio Architecture" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="install-pulseaudio"&gt;
 &lt;h2&gt;Install PulseAudio&lt;/h2&gt;
@@ -4893,23 +4959,23 @@ Vulnerability&lt;/td&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt; virt-manager
 &lt;/pre&gt;
 &lt;p&gt;Open the menu "file &amp;gt; Add connection"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Add connection" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Add connection" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="network-configuration"&gt;
 &lt;h2&gt;Network Configuration&lt;/h2&gt;
 &lt;p&gt;After starting LibVirtd, network configuration is as follows:&lt;/p&gt;
-&lt;img alt="Network Configuration" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
+&lt;img alt="Network Configuration" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="create-a-virtual-machine"&gt;
 &lt;h2&gt;Create a virtual machine&lt;/h2&gt;
 &lt;p&gt;Open the menu "file &amp;gt; New Virtual Machine"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Step1" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step2" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
-&lt;img alt="Virt-Manager - Step3" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step4" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step5" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step1" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step2" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - Step3" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step4" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step5" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
 &lt;p&gt;Select "VirtIO" device model for Network Interface&lt;/p&gt;
-&lt;img alt="Virt-Manager - NIC device model" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - NIC device model" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
 &lt;!-- vhost=on --&gt;
 &lt;/div&gt;
 </summary><category term="Gentoo"></category><category term="Virtualization"></category></entry><entry><title>CORS (Cross-Origin Resource Sharing)</title><link href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html" rel="alternate"></link><updated>2015-09-01T23:44:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-30:Cross_Origin_Resource_Sharing.html</id><summary type="html">&lt;p&gt;CORS (Cross-Origin Resource Sharing) is a mechanism, define by W3C, which provides a way for web servers to support cross-site access controls, which enable secure cross-site data transfers.&lt;/p&gt;
@@ -5094,7 +5160,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="protocol-version"&gt;
 &lt;h2&gt;Protocol version&lt;/h2&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -5124,7 +5190,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="compression-method"&gt;
 &lt;h2&gt;Compression method&lt;/h2&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -5152,7 +5218,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Cryptographic algorithm&lt;/h2&gt;
 &lt;div class="section" id="key-exchange"&gt;
 &lt;h3&gt;Key exchange&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -5197,7 +5263,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="encryption"&gt;
 &lt;h3&gt;Encryption&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -5252,7 +5318,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="message-authentication-code"&gt;
 &lt;h3&gt;Message Authentication Code&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -5312,7 +5378,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;p&gt;Cipher suite is a list of one or more cipher strings separated by special char (colon, comma, space, ...). The names for cipher suites are defined by IANA (Internet Assigned Numbers Authority).&lt;/p&gt;
 &lt;p&gt;Cipher suite defines algorithms used for each cryptographic function: key exchange, authentication, encryption and message authentication code. If algorithm for key exchange is not mentioned, default algorithm is RSA.&lt;/p&gt;
 &lt;p&gt;The table below details some example of cipher suites:&lt;/p&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="39%"&gt;&lt;/col&gt;
@@ -5468,7 +5534,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="28%"&gt;&lt;/col&gt;
 &lt;col width="72%"&gt;&lt;/col&gt;
@@ -5527,7 +5593,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -5557,7 +5623,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in GPT (GUID Partition Table) during Microsoft Windows 8.1 installation process&lt;/p&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -5637,12 +5703,12 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Create installation media&lt;/h2&gt;
 &lt;div class="section" id="example-for-microsoft-windows-8-1-with-mbr"&gt;
 &lt;h3&gt;Example for Microsoft Windows 8.1 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="example-for-debian-8-with-mbr"&gt;
 &lt;h3&gt;Example for Debian 8 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
 &lt;p&gt;If you need additional firmware to install Debian :&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul class="simple"&gt;
@@ -5657,7 +5723,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="21%"&gt;&lt;/col&gt;
 &lt;col width="79%"&gt;&lt;/col&gt;
@@ -5725,7 +5791,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -5755,7 +5821,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in MBR (Master Boot Record) during Microsoft Windows 8.1 installation process for primary partition then during Debian 8 installation process for extended partition :&lt;/p&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
@@ -5827,7 +5893,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -5856,7 +5922,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -5876,7 +5942,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -5899,7 +5965,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -5916,7 +5982,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -5936,7 +6002,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -5953,7 +6019,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -5976,7 +6042,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="optical-disc-drive"&gt;
 &lt;h3&gt;Optical Disc Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -6014,7 +6080,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -6034,7 +6100,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="wifi"&gt;
 &lt;h3&gt;Wifi&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6054,7 +6120,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="bluetooth"&gt;
 &lt;h3&gt;Bluetooth&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6074,7 +6140,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="modem"&gt;
 &lt;h3&gt;Modem&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6091,7 +6157,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="firewire-controller"&gt;
 &lt;h3&gt;FireWire Controller&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6108,7 +6174,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-memory-stick"&gt;
 &lt;h3&gt;Card reader (Memory Stick)&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6125,7 +6191,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-secure-digital"&gt;
 &lt;h3&gt;Card reader (Secure Digital)&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6142,7 +6208,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6165,7 +6231,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6662,7 +6728,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6703,7 +6769,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6720,7 +6786,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6752,7 +6818,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6775,7 +6841,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6795,7 +6861,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6812,7 +6878,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6835,7 +6901,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6855,7 +6921,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="wifi-and-bluetooth"&gt;
 &lt;h3&gt;Wifi and Bluetooth&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6878,7 +6944,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory-card-reader"&gt;
 &lt;h3&gt;Memory card reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6898,7 +6964,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="smartcard-reader"&gt;
 &lt;h3&gt;Smartcard Reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6915,7 +6981,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="fingerprint-reader"&gt;
 &lt;h3&gt;Fingerprint Reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6932,7 +6998,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="nfc-reader"&gt;
 &lt;h3&gt;NFC Reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6949,7 +7015,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6969,7 +7035,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7005,7 +7071,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;UEFI BIOS&lt;/h2&gt;
 &lt;div class="section" id="version"&gt;
 &lt;h3&gt;Version&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-hover table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="59%"&gt;&lt;/col&gt;
 &lt;col width="41%"&gt;&lt;/col&gt;

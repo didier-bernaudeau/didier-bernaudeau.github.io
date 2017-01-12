@@ -1,5 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2016-11-10T23:34:00+01:00</updated><entry><title>How to install Docker</title><link href="http://didier.bernaudeau.net/How_to_install_docker.html" rel="alternate"></link><updated>2016-11-10T23:34:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-11-10:How_to_install_docker.html</id><summary type="html">&lt;p&gt;Docker is the most famous application container engine. This post describes the best way to install docker on Debian Linux.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-01-12T18:55:00+01:00</updated><entry><title>How to install Java SE on Debian</title><link href="http://didier.bernaudeau.net/How_to_install_Java_SE_on_debian.html" rel="alternate"></link><updated>2017-01-12T18:55:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-01-12:How_to_install_Java_SE_on_debian.html</id><summary type="html">&lt;p&gt;Lately, install Java SE on Linux has become a nightmare because most of Linux distributions, such as Debian, have chosen to remove this package from official repositories due to license reasons.
+However, Java SE is needed for some applications which are not compatible with Open JRE / JDK. So, this post describes step by step how to install Java SE (JRE and JDK) provided by Oracle on Debian.&lt;/p&gt;
+
+&lt;h1&gt;Java Package&lt;/h1&gt;
+&lt;p&gt;Java-package provides the ability to build a Debian package from a Java binary.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Add a "contrib" component in sources.list&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/apt/sources.list
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;deb&lt;/span&gt; &lt;span class="s"&gt;http://*********.debian.org/debian/&lt;/span&gt; &lt;span class="kp"&gt;jessie&lt;/span&gt; &lt;span class="kp"&gt;main&lt;/span&gt; &lt;span class="kp"&gt;contrib&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update the list of available packages&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get update
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install the java-package package&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get install java-package
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install packages needed by Java 8&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get install libxslt1-dev
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;JRE (Java Runtime Environment)&lt;/h1&gt;
+&lt;p&gt;JRE contains the JVM (Java Virtual Machine) to execute java programs and other java tools such as keytool.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Download Java 8 Standard Edition&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget --header &lt;span class="s2"&gt;"Cookie: oraclelicense=accept-securebackup-cookie"&lt;/span&gt; http://download.oracle.com/otn-pub/java/jdk/8u112-b15/jre-8u112-linux-x64.tar.gz
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a Debian package&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; fakeroot make-jpkg jre-8u112-linux-x64.tar.gz
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install the binary package&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; dpkg -i oracle-java8-jre_8u112_amd64.deb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;JDK (Java Development Kit)&lt;/h1&gt;
+&lt;p&gt;The Java Development Kit includes JRE and tools for developers to create and compile programs (javac, JavaDoc, Java Debugger, ...).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Download Java 8 Standard Edition Development Kit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget --header &lt;span class="s2"&gt;"Cookie: oraclelicense=accept-securebackup-cookie"&lt;/span&gt; http://download.oracle.com/otn-pub/java/jdk/8u112-b15/jdk-8u112-linux-x64.tar.gz
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a Debian package&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; fakeroot make-jpkg jdk-8u112-linux-x64.tar.gz
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install the binary package created:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; dpkg -i oracle-java8-jdk_8u112_amd64.deb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Select Java SE&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Select java JVM&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; update-alternatives --config java
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;There are 3 choices for the alternative java (providing /usr/bin/java).
+
+  Selection    Path                                            Priority   Status
+------------------------------------------------------------
+  0            /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java   1071      auto mode
+  1            /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java   1071      manual mode
+* 2            /usr/lib/jvm/jdk-8-oracle-x64/jre/bin/java       318       manual mode
+  3            /usr/lib/jvm/jre-8-oracle-x64/bin/java           317       manual mode
+
+Press enter to keep the current choice[*], or type selection number: 3
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Verify the selected JVM&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; java -version
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;java version "1.8.0_112"
+Java(TM) SE Runtime Environment (build 1.8.0_112-b15)
+Java HotSpot(TM) 64-Bit Server VM (build 25.112-b15, mixed mode)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Select Java compiler&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;update-alternatives --config javac&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;There are 2 choices for the alternative javac (providing /usr/bin/javac).
+
+  Selection    Path                                         Priority   Status
+------------------------------------------------------------
+  0            /usr/lib/jvm/java-7-openjdk-amd64/bin/javac   1071      auto mode
+  1            /usr/lib/jvm/java-7-openjdk-amd64/bin/javac   1071      manual mode
+* 2            /usr/lib/jvm/jdk-8-oracle-x64/bin/javac       318       manual mode
+
+Press enter to keep the current choice[*], or type selection number: 2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Verify the selected Java compiler&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; javac -version
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;javac 1.8.0_112
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Links&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://wiki.debian.org/JavaPackage"&gt;JavaPackage&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Debian"></category><category term="Java"></category></entry><entry><title>How to install Docker</title><link href="http://didier.bernaudeau.net/How_to_install_docker.html" rel="alternate"></link><updated>2016-11-10T23:34:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-11-10:How_to_install_docker.html</id><summary type="html">&lt;p&gt;Docker is the most famous application container engine. This post describes the best way to install docker on Debian Linux.&lt;/p&gt;
 
 &lt;h1&gt;Add Docker's repository&lt;/h1&gt;
 &lt;ul&gt;

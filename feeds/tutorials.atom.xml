@@ -204,6 +204,23 @@ Application URL = https://gogs.intra.net
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart gogs
 &lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Create the first account (which will be the administrator)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create an Organisation for your entity&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create teams and define the access right (read, write or admin) on Organisation's repositories&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add members in the teams&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create collaborative repositories&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h1&gt;what still needs to be done:&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Change log repository (As is: /opt/GoApps/src/github.com/gogits/gogs/log)&lt;/li&gt;

@@ -1,9 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-01-12T18:55:00+01:00</updated><entry><title>How to install Java SE on Debian</title><link href="http://didier.bernaudeau.net/How_to_install_Java_SE_on_debian.html" rel="alternate"></link><updated>2017-01-12T18:55:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-01-12:How_to_install_Java_SE_on_debian.html</id><summary type="html">&lt;p&gt;Lately, install Java SE on Linux has become a nightmare because most of Linux distributions, such as Debian, have chosen to remove this package from official repositories due to license reasons.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-01-19T16:45:00+01:00</updated><entry><title>Gogs (Go Git Service)</title><link href="http://didier.bernaudeau.net/Gogs_Go_Git_Service.html" rel="alternate"></link><updated>2017-01-19T16:45:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-01-18:Gogs_Go_Git_Service.html</id><summary type="html">&lt;p&gt;Gogs (Go Git Service) is a front-end for Git, the famed VCS (Version Control System) or SCM (Source Control Management). It's a lightweight software written in Go that can run anywhere (Linux, Mac, ARM, ...). On top of that, Gogs is fully open source unlike GitLab! Thus, this post describes how to host your own private GitHub with &lt;a href="https://gogs.io"&gt;Gogs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1&gt;Debian Stretch&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Debian&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Hostname&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;gogs&lt;/span&gt;
+&lt;span class="n"&gt;Domain&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;intra&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;net&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install sudo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get install -y sudo
+&lt;span class="gp"&gt;#&lt;/span&gt; adduser UserName sudo
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; sudo apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get upgrade
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;PostgreSQL&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install PostgreSQL&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y postgresql postgresql-client libpq-dev
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Open the PostgreSQL interactive terminal&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo -u postgres psql
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create user and database for Gogs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;postgres=#&lt;/span&gt; &lt;span class="k"&gt;CREATE&lt;/span&gt; &lt;span class="k"&gt;USER&lt;/span&gt; &lt;span class="n"&gt;gogs&lt;/span&gt; &lt;span class="n"&gt;CREATEDB&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="gp"&gt;postgres=#&lt;/span&gt; &lt;span class="kp"&gt;\password&lt;/span&gt; &lt;span class="ss"&gt;gogs&lt;/span&gt;
+&lt;span class="gp"&gt;postgres=#&lt;/span&gt; &lt;span class="k"&gt;CREATE&lt;/span&gt; &lt;span class="k"&gt;DATABASE&lt;/span&gt; &lt;span class="n"&gt;gogs&lt;/span&gt; &lt;span class="k"&gt;OWNER&lt;/span&gt; &lt;span class="n"&gt;gogs&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="gp"&gt;postgres=#&lt;/span&gt; &lt;span class="kp"&gt;\q&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Nginx&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Nginx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y nginx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create self-signed certificate&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo mkdir /etc/nginx/tls
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo openssl req -new -x509 -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 -sha256 -days &lt;span class="m"&gt;365&lt;/span&gt; -nodes -out /etc/nginx/tls/gogs.crt -keyout /etc/nginx/tls/gogs.key
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo chmod -R &lt;span class="m"&gt;600&lt;/span&gt; /etc/nginx/tls
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Warning:&lt;/strong&gt; a self signed certificate is for test purposes only. Don't do that on production environment where a certificate issued by a trusted certificate authority is needed.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Set Nginx as the reverse proxy for Gogs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/nginx/sites-available/gogs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;server&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;listen&lt;/span&gt; &lt;span class="m"&gt;80&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;server_name&lt;/span&gt; &lt;span class="n"&gt;gogs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;intra&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;return&lt;/span&gt; &lt;span class="m"&gt;302&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;server_name&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;request_uri&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nt"&gt;server&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;listen&lt;/span&gt; &lt;span class="m"&gt;443&lt;/span&gt; &lt;span class="n"&gt;ssl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;server_name&lt;/span&gt; &lt;span class="n"&gt;gogs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;intra&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="n"&gt;ssl_certificate&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tls&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gogs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;crt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;ssl_certificate_key&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tls&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gogs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="n"&gt;location&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;proxy_set_header&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Real&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;remote_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;proxy_pass&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="m"&gt;127&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;3000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Activate the reverse proxy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo ln -s /etc/nginx/sites-available/gogs /etc/nginx/sites-enabled/gogs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart Nginx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart nginx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Git&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Git&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Go&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Go&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y golang-1.7-go
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a folder for Go Apps (such as Gogs)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo mkdir /opt/GoApps
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; /opt/GoApps
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create user to run Go Apps&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo adduser --disabled-login --gecos &lt;span class="s1"&gt;'Go Apps User'&lt;/span&gt; go
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Set the environment variables&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;GOROOT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/lib/go-1.7
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;GOPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/opt/GoApps
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Gogs&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Download Gogs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo --preserve-env /usr/lib/go-1.7/bin/go get -u github.com/gogits/gogs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Build Gogs binary&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; /opt/GoApps/src/github.com/gogits/gogs
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo --preserve-env /usr/lib/go-1.7/bin/go build
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create directory for source code repositories&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo mkdir /var/gogs-repositories
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Warning:&lt;/strong&gt; in production environment, don't forget to add this repository in your backup system.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Change owner&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo chown go:go -R /opt/GoApps
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo chown go:go -R /var/gogs-repositories
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create startup script for Gogs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/systemd/system/gogs.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[Unit]&lt;/span&gt;
+&lt;span class="na"&gt;Description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;Gogs (Go Git Service)&lt;/span&gt;
+&lt;span class="na"&gt;After&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;syslog.target&lt;/span&gt;
+&lt;span class="na"&gt;After&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;network.target&lt;/span&gt;
+&lt;span class="na"&gt;After&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;postgresql.service&lt;/span&gt;
+&lt;span class="na"&gt;After&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;nginx.service&lt;/span&gt;
+
+&lt;span class="k"&gt;[Service]&lt;/span&gt;
+&lt;span class="na"&gt;Type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;simple&lt;/span&gt;
+&lt;span class="na"&gt;User&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;go&lt;/span&gt;
+&lt;span class="na"&gt;Group&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;go&lt;/span&gt;
+&lt;span class="na"&gt;WorkingDirectory&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/opt/GoApps/src/github.com/gogits/gogs&lt;/span&gt;
+&lt;span class="na"&gt;ExecStart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/opt/GoApps/src/github.com/gogits/gogs/gogs web&lt;/span&gt;
+&lt;span class="na"&gt;Restart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;always&lt;/span&gt;
+&lt;span class="na"&gt;Environment&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;USER=go HOME=/home/go&lt;/span&gt;
+
+&lt;span class="k"&gt;[Install]&lt;/span&gt;
+&lt;span class="na"&gt;WantedBy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;multi-user.target&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start the service&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; gogs
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start gogs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Open &lt;a href="http://gogs.intra.net:3000"&gt;http://gogs.intra.net:3000&lt;/a&gt;  in your browser to configure Gogs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Database type = PostgreSQL
+Host = 127.0.0.1:5432
+User = gogs
+Password = ************
+Database Name = gogs
+Repository Root Path = /var/gogs-repositories
+Run User = go
+Domain = gogs.intra.net
+Port SSH = empty
+Application URL = https://gogs.intra.net
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Disable the access to non-TLS version of Gogs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /opt/GoApps/src/github.com/gogits/gogs/custom/conf/app.ini
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[server]&lt;/span&gt;
+&lt;span class="na"&gt;DOMAIN&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;gogs.intra.net&lt;/span&gt;
+&lt;span class="na"&gt;HTTP_ADDR&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;127.0.0.1&lt;/span&gt;
+&lt;span class="na"&gt;HTTP_PORT&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;3000&lt;/span&gt;
+&lt;span class="na"&gt;ROOT_URL&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;http://gogs.intra.net:3000/&lt;/span&gt;
+&lt;span class="na"&gt;DISABLE_SSH&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;true&lt;/span&gt;
+&lt;span class="na"&gt;OFFLINE_MODE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;false&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart Gogs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart gogs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;what still needs to be done:&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Change log repository (As is: /opt/GoApps/src/github.com/gogits/gogs/log)&lt;/li&gt;
+&lt;li&gt;Authentication by certificate&lt;/li&gt;
+&lt;li&gt;Getting started with a true repository (For instance: Jetty hello world)&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Development tool"></category><category term="Debian"></category><category term="Go"></category><category term="Git"></category></entry><entry><title>How to install Java SE on Debian</title><link href="http://didier.bernaudeau.net/How_to_install_Java_SE_on_debian.html" rel="alternate"></link><updated>2017-01-13T17:47:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-01-12:How_to_install_Java_SE_on_debian.html</id><summary type="html">&lt;p&gt;Lately, install Java SE on Linux has become a nightmare because most of Linux distributions, such as Debian, have chosen to remove this package from official repositories due to license reasons.
 However, Java SE is needed for some applications which are not compatible with Open JRE / JDK. So, this post describes step by step how to install Java SE (JRE and JDK) provided by Oracle on Debian.&lt;/p&gt;
 
 &lt;h1&gt;Java Package&lt;/h1&gt;
-&lt;p&gt;Java-package provides the ability to build a Debian package from a Java binary.&lt;/p&gt;
+&lt;p&gt;Java-package is a tool that provides the ability to build a Debian package from a Java binary.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Add a "contrib" component in sources.list&lt;/li&gt;
 &lt;/ul&gt;
@@ -26,10 +233,10 @@ However, Java SE is needed for some applications which are not compatible with O
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get install libxslt1-dev
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;JRE (Java Runtime Environment)&lt;/h1&gt;
-&lt;p&gt;JRE contains the JVM (Java Virtual Machine) to execute java programs and other java tools such as keytool.&lt;/p&gt;
+&lt;h1&gt;Java Runtime Environment&lt;/h1&gt;
+&lt;p&gt;JRE (Java Runtime Environment) contains the JVM (Java Virtual Machine) to execute java programs and other java tools such as keytool.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Download Java 8 Standard Edition&lt;/li&gt;
+&lt;li&gt;Download Java 8 Standard Edition Runtime Environment&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget --header &lt;span class="s2"&gt;"Cookie: oraclelicense=accept-securebackup-cookie"&lt;/span&gt; http://download.oracle.com/otn-pub/java/jdk/8u112-b15/jre-8u112-linux-x64.tar.gz
 &lt;/pre&gt;&lt;/div&gt;
@@ -43,8 +250,8 @@ However, Java SE is needed for some applications which are not compatible with O
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; dpkg -i oracle-java8-jre_8u112_amd64.deb
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;JDK (Java Development Kit)&lt;/h1&gt;
-&lt;p&gt;The Java Development Kit includes JRE and tools for developers to create and compile programs (javac, JavaDoc, Java Debugger, ...).&lt;/p&gt;
+&lt;h1&gt;Java Development Kit&lt;/h1&gt;
+&lt;p&gt;The JDK (Java Development Kit) includes JRE and tools for developers to create and compile java programs (javac, JavaDoc, Java Debugger, ...).&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Download Java 8 Standard Edition Development Kit&lt;/li&gt;
 &lt;/ul&gt;
@@ -62,7 +269,7 @@ However, Java SE is needed for some applications which are not compatible with O
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Select Java SE&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;Select java JVM&lt;/li&gt;
+&lt;li&gt;Select the JVM of your choice&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; update-alternatives --config java
 &lt;/pre&gt;&lt;/div&gt;
@@ -87,7 +294,7 @@ Java(TM) SE Runtime Environment (build 1.8.0_112-b15)
 Java HotSpot(TM) 64-Bit Server VM (build 25.112-b15, mixed mode)
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;Select Java compiler&lt;/li&gt;
+&lt;li&gt;Select the Java compiler of your choice&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;update-alternatives --config javac&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -137,6 +344,12 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;Start a daemon&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl status sshd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Debian 9 (Stretch)&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Show IP address&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; ip address show
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="Debian"></category></entry><entry><title>How to install Docker</title><link href="http://didier.bernaudeau.net/How_to_install_docker.html" rel="alternate"></link><updated>2016-11-10T23:34:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-11-10:How_to_install_docker.html</id><summary type="html">&lt;p&gt;Docker is the most famous application container engine. This post describes the best way to install docker on Debian Linux.&lt;/p&gt;
 
 &lt;h1&gt;Add Docker's repository&lt;/h1&gt;
@@ -677,7 +890,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;p&gt;tail -f /opt/wildfly/standalone/log/server.log -n 10000 | grep ERROR&lt;/p&gt;
 &lt;p&gt;ERROR [org.jboss.msc.service.fail] (MSC service thread 1-1) MSC000001: Failed to start service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: org.jboss.msc.service.StartException in service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: WFLYDM0018: Unable to start service&lt;/p&gt;</summary><category term="Certificate"></category><category term="Debian"></category></entry><entry><title>Press review of July 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_July_2016.html" rel="alternate"></link><updated>2016-07-25T22:21:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-07-01:Press_review_of_July_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -779,7 +992,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;&lt;a class="reference external" href="http://www.tripwire.com/state-of-security/featured/boobytrapped-printers-windows-malware/"&gt;How boobytrapped printers have been able to infect Windows PCs for over 20 years&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="first img-responsive last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="last first img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;07/13/2016&lt;/td&gt;
@@ -882,7 +1095,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/div&gt;
 </summary><category term="Press review"></category></entry><entry><title>Press review of June 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_June_2016.html" rel="alternate"></link><updated>2016-07-22T22:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-06-01:Press_review_of_June_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -1088,7 +1301,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;&lt;a class="reference external" href="https://blog.bity.com/la-faille-de-the-dao-les-cles-pour-comprendre/"&gt;La faille de The DAO : les clés pour comprendre&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="first img-responsive last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="last first img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;06/20/2016&lt;/td&gt;
@@ -1116,7 +1329,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;&lt;a class="reference external" href="http://www.ibtimes.co.uk/ukrainian-bank-cyber-heist-hackers-compromise-swift-network-10m-theft-1567699"&gt;Ukrainian bank cyber-heist: Hackers take off with $10m&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="first img-responsive last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="last first img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;06/28/2016&lt;/td&gt;
@@ -1223,7 +1436,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/div&gt;
 </summary><category term="Press review"></category></entry><entry><title>Press review of May 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_May_2016.html" rel="alternate"></link><updated>2016-06-21T22:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-05-01:Press_review_of_May_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -1626,7 +1839,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 
 &lt;div class="section" id="basic-certificate-field"&gt;
 &lt;h2&gt;Basic certificate field&lt;/h2&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
 &lt;col width="89%"&gt;&lt;/col&gt;
@@ -1648,7 +1861,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="certificate-extension"&gt;
 &lt;h2&gt;Certificate extension&lt;/h2&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="12%"&gt;&lt;/col&gt;
 &lt;col width="88%"&gt;&lt;/col&gt;
@@ -1686,7 +1899,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;/div&gt;
 </summary><category term="Certificate"></category></entry><entry><title>Press review of April 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_April_2016.html" rel="alternate"></link><updated>2016-04-18T22:37:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-04-01:Press_review_of_April_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -1739,7 +1952,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://reflets.info/panamapapers-mossack-fonseca-une-incroyable-bourde/"&gt;#PanamaPapers : Mossack Fonseca une incroyable bourde ?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="first img-responsive last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="last first img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;04/04/2016&lt;/td&gt;
@@ -1830,7 +2043,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.theregister.co.uk/2016/04/13/burr_feinstein_antiencryption_bill_is_out/"&gt;Line by line, how the US anti-encryption bill will kill our privacy, security&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="first img-responsive last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="last first img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;04/07/2016&lt;/td&gt;
@@ -1961,7 +2174,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://www.theguardian.com/technology/2016/apr/19/ss7-hack-explained-mobile-phone-vulnerability-snooping-texts-calls"&gt;SS7 hack explained: what can you do about it?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="first img-responsive last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="last first img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;04/18/2016&lt;/td&gt;
@@ -2045,7 +2258,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;/div&gt;
 </summary><category term="Press review"></category></entry><entry><title>Press review of Mars 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_Mars_2016.html" rel="alternate"></link><updated>2016-04-18T20:22:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-03-01:Press_review_of_Mars_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -2688,7 +2901,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;/div&gt;
 </summary><category term="Software"></category></entry><entry><title>Press review of February 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_February_2016.html" rel="alternate"></link><updated>2016-03-07T22:36:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-02-01:Press_review_of_February_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -3167,7 +3380,7 @@ Vulnerability&lt;/td&gt;
 &lt;/div&gt;
 </summary><category term="Press review"></category></entry><entry><title>Press review of January 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_January_2016.html" rel="alternate"></link><updated>2016-04-18T22:01:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-01-01:Press_review_of_January_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -4003,7 +4216,7 @@ Vulnerability&lt;/td&gt;
 &lt;p&gt;Download slides : &lt;a href="http://didier.bernaudeau.net/presentation/Bitcoin_2017-01-04.pdf"&gt;2017-01-04&lt;/a&gt;, &lt;a href="http://didier.bernaudeau.net/presentation/Bitcoin_2015-12-19.pdf"&gt;2015-12-19&lt;/a&gt;.&lt;/p&gt;
 </summary><category term="Blockchain"></category></entry><entry><title>Press review of december 2015</title><link href="http://didier.bernaudeau.net/Press_review_of_december_2015.html" rel="alternate"></link><updated>2016-01-09T22:32:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-12-01:Press_review_of_december_2015.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -4544,7 +4757,7 @@ Vulnerability&lt;/td&gt;
 &lt;/div&gt;
 </summary><category term="PKI"></category><category term="Certificate"></category></entry><entry><title>Press review of november 2015</title><link href="http://didier.bernaudeau.net/Press_review_of_november_2015.html" rel="alternate"></link><updated>2016-02-27T12:50:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-11-01:Press_review_of_november_2015.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -4848,9 +5061,10 @@ Vulnerability&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-</summary><category term="Press Review"></category></entry><entry><title>How to install Chromium with Flash support</title><link href="http://didier.bernaudeau.net/How_to_install_Chromium_with_Flash_support.html" rel="alternate"></link><updated>2016-05-22T11:41:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-23:How_to_install_Chromium_with_Flash_support.html</id><summary type="html">&lt;p&gt;In 2012, Adobe has stopped to upgrade Flash Player for Linux. So, the last version of Flash Player plugin is 11.2 that will be maintained until 2017. To continue to take the advantage of Flash content, we must find an alternative solution.&lt;/p&gt;
+</summary><category term="Press Review"></category></entry><entry><title>How to install Chromium with Flash support (Deprecated)</title><link href="http://didier.bernaudeau.net/How_to_install_Chromium_with_Flash_support.html" rel="alternate"></link><updated>2017-01-14T12:55:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-23:How_to_install_Chromium_with_Flash_support.html</id><summary type="html">&lt;p&gt;In 2012, Adobe has stopped to upgrade Flash Player for Linux. So, the last version of Flash Player plugin is 11.2 that will be maintained until 2017. To continue to take the advantage of Flash content, we must find an alternative solution.&lt;/p&gt;
 &lt;p&gt;This tutorial describes how to install Chromium and the Flash Pepper Plugin (PPAPI) on Gentoo Linux and how to configure Chromium for graphic hardware acceleration.&lt;/p&gt;
 
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This tutorial is &lt;strong&gt;deprecated&lt;/strong&gt; because Google Chrome doesn't support Flash anymore. Even so, Adobe releases Flash Player 24 for Linux in December 2016. Now, all you have to do is to emerge the package "www-plugins/adobe-flash".&lt;/p&gt;
 &lt;div class="section" id="chromium"&gt;
 &lt;h2&gt;Chromium&lt;/h2&gt;
 &lt;p&gt;Define local USE flags&lt;/p&gt;
@@ -5284,7 +5498,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="protocol-version"&gt;
 &lt;h2&gt;Protocol version&lt;/h2&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -5314,7 +5528,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="compression-method"&gt;
 &lt;h2&gt;Compression method&lt;/h2&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -5342,7 +5556,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Cryptographic algorithm&lt;/h2&gt;
 &lt;div class="section" id="key-exchange"&gt;
 &lt;h3&gt;Key exchange&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -5387,7 +5601,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="encryption"&gt;
 &lt;h3&gt;Encryption&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -5442,7 +5656,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="message-authentication-code"&gt;
 &lt;h3&gt;Message Authentication Code&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -5502,7 +5716,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;p&gt;Cipher suite is a list of one or more cipher strings separated by special char (colon, comma, space, ...). The names for cipher suites are defined by IANA (Internet Assigned Numbers Authority).&lt;/p&gt;
 &lt;p&gt;Cipher suite defines algorithms used for each cryptographic function: key exchange, authentication, encryption and message authentication code. If algorithm for key exchange is not mentioned, default algorithm is RSA.&lt;/p&gt;
 &lt;p&gt;The table below details some example of cipher suites:&lt;/p&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="39%"&gt;&lt;/col&gt;
@@ -5658,7 +5872,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="28%"&gt;&lt;/col&gt;
 &lt;col width="72%"&gt;&lt;/col&gt;
@@ -5717,7 +5931,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -5747,7 +5961,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in GPT (GUID Partition Table) during Microsoft Windows 8.1 installation process&lt;/p&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -5847,7 +6061,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="21%"&gt;&lt;/col&gt;
 &lt;col width="79%"&gt;&lt;/col&gt;
@@ -5915,7 +6129,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -5945,7 +6159,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in MBR (Master Boot Record) during Microsoft Windows 8.1 installation process for primary partition then during Debian 8 installation process for extended partition :&lt;/p&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
@@ -6017,7 +6231,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6046,7 +6260,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6066,7 +6280,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6089,7 +6303,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6106,7 +6320,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6126,7 +6340,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6143,7 +6357,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6166,7 +6380,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="optical-disc-drive"&gt;
 &lt;h3&gt;Optical Disc Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -6204,7 +6418,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -6224,7 +6438,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="wifi"&gt;
 &lt;h3&gt;Wifi&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6244,7 +6458,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="bluetooth"&gt;
 &lt;h3&gt;Bluetooth&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6264,7 +6478,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="modem"&gt;
 &lt;h3&gt;Modem&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6281,7 +6495,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="firewire-controller"&gt;
 &lt;h3&gt;FireWire Controller&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6298,7 +6512,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-memory-stick"&gt;
 &lt;h3&gt;Card reader (Memory Stick)&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6315,7 +6529,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-secure-digital"&gt;
 &lt;h3&gt;Card reader (Secure Digital)&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6332,7 +6546,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6355,7 +6569,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6852,7 +7066,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6893,7 +7107,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6910,7 +7124,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6942,7 +7156,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6965,7 +7179,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -6985,7 +7199,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7002,7 +7216,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7025,7 +7239,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7045,7 +7259,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="wifi-and-bluetooth"&gt;
 &lt;h3&gt;Wifi and Bluetooth&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7068,7 +7282,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory-card-reader"&gt;
 &lt;h3&gt;Memory card reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7088,7 +7302,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="smartcard-reader"&gt;
 &lt;h3&gt;Smartcard Reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7105,7 +7319,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="fingerprint-reader"&gt;
 &lt;h3&gt;Fingerprint Reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7122,7 +7336,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="nfc-reader"&gt;
 &lt;h3&gt;NFC Reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7139,7 +7353,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7159,7 +7373,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7195,7 +7409,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;UEFI BIOS&lt;/h2&gt;
 &lt;div class="section" id="version"&gt;
 &lt;h3&gt;Version&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="59%"&gt;&lt;/col&gt;
 &lt;col width="41%"&gt;&lt;/col&gt;

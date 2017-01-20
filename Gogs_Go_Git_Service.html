@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Gogs (Go Git Service) - My personal blog note</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://didier.bernaudeau.net/Gogs_Go_Git_Service.html">
+
+        <meta name="author" content="Didier BERNAUDEAU" />
+        <meta name="keywords" content="Development tool,Debian,Go,Git" />
+        <meta name="description" content="Gogs (Go Git Service) is a front-end for Git, the famed VCS (Version Control System) or SCM (Source Control Management). It&#39;s a lightweight software written in Go that can run anywhere (Linux, Mac, ARM, ...). On top of that, Gogs is fully open source unlike GitLab! Thus, this post describes how to host your own private GitHub with Gogs." />
+
+        <meta property="og:site_name" content="My personal blog note" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Gogs (Go Git Service)"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/Gogs_Go_Git_Service.html"/>
+        <meta property="og:description" content="Gogs (Go Git Service) is a front-end for Git, the famed VCS (Version Control System) or SCM (Source Control Management). It&#39;s a lightweight software written in Go that can run anywhere (Linux, Mac, ARM, ...). On top of that, Gogs is fully open source unlike GitLab! Thus, this post describes how to host your own private GitHub with Gogs."/>
+        <meta property="article:published_time" content="2017-01-18" />
+            <meta property="article:section" content="Tutorials" />
+            <meta property="article:tag" content="Development tool" />
+            <meta property="article:tag" content="Debian" />
+            <meta property="article:tag" content="Go" />
+            <meta property="article:tag" content="Git" />
+            <meta property="article:author" content="Didier BERNAUDEAU" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+    <link href="http://didier.bernaudeau.net/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://didier.bernaudeau.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/style.css" type="text/css"/>
+
+        <link href="http://didier.bernaudeau.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note ATOM Feed"/>
+
+
+
+        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Tutorials ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://didier.bernaudeau.net/" class="navbar-brand">
+My personal blog note            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/articles.html">Articles</a></li>
+                    <li><a href="/category/tutorials.html">Tutorials</a></li>
+                    <li><a href="/category/talk.html">Talk</a></li>
+                    <li><a href="/category/press-review.html">Press Review</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="http://didier.bernaudeau.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://didier.bernaudeau.net/Gogs_Go_Git_Service.html"
+                       rel="bookmark"
+                       title="Permalink to Gogs (Go Git Service)">
+                        Gogs (Go Git Service)
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-01-18T17:23:00+01:00"> mer. 18 janvier 2017</time>
+    </span>
+            <span class="label label-default">Modified</span>
+            <span class="modified">
+                <i class="fa fa-calendar"></i><time datetime="2017-01-19T16:45:00+01:00"> jeu. 19 janvier 2017</time>
+            </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://didier.bernaudeau.net/tag/development-tool.html">Development tool</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/debian.html">Debian</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/go.html">Go</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/git.html">Git</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>Gogs (Go Git Service) is a front-end for Git, the famed VCS (Version Control System) or SCM (Source Control Management). It's a lightweight software written in Go that can run anywhere (Linux, Mac, ARM, ...). On top of that, Gogs is fully open source unlike GitLab! Thus, this post describes how to host your own private GitHub with <a href="https://gogs.io">Gogs</a>.</p>
+
+<h1>Debian Stretch</h1>
+<ul>
+<li>Install Debian</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">Hostname</span><span class="o">:</span> <span class="n">gogs</span>
+<span class="n">Domain</span> <span class="n">name</span><span class="o">:</span> <span class="n">intra</span><span class="o">.</span><span class="na">net</span>
+</pre></div>
+<ul>
+<li>Install sudo</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> apt-get install -y sudo
+<span class="gp">#</span> adduser UserName sudo
+</pre></div>
+<ul>
+<li>Update system</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get upgrade
+</pre></div>
+<h1>PostgreSQL</h1>
+<ul>
+<li>Install PostgreSQL</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y postgresql postgresql-client libpq-dev
+</pre></div>
+<ul>
+<li>Open the PostgreSQL interactive terminal</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo -u postgres psql
+</pre></div>
+<ul>
+<li>Create user and database for Gogs</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">postgres=#</span> <span class="k">CREATE</span> <span class="k">USER</span> <span class="n">gogs</span> <span class="n">CREATEDB</span><span class="p">;</span>
+<span class="gp">postgres=#</span> <span class="kp">\password</span> <span class="ss">gogs</span>
+<span class="gp">postgres=#</span> <span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">gogs</span> <span class="k">OWNER</span> <span class="n">gogs</span><span class="p">;</span>
+<span class="gp">postgres=#</span> <span class="kp">\q</span>
+</pre></div>
+<h1>Nginx</h1>
+<ul>
+<li>Install Nginx</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y nginx
+</pre></div>
+<ul>
+<li>Create self-signed certificate</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo mkdir /etc/nginx/tls
+<span class="gp">$</span> sudo openssl req -new -x509 -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 -sha256 -days <span class="m">365</span> -nodes -out /etc/nginx/tls/gogs.crt -keyout /etc/nginx/tls/gogs.key
+<span class="gp">$</span> sudo chmod -R <span class="m">600</span> /etc/nginx/tls
+</pre></div>
+<p><strong>Warning:</strong> a self signed certificate is for test purposes only. Don't do that on production environment where a certificate issued by a trusted certificate authority is needed.</p>
+<ul>
+<li>Set Nginx as the reverse proxy for Gogs.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/nginx/sites-available/gogs
+</pre></div>
+<div class="highlight"><pre><span></span><span class="nt">server</span> <span class="p">{</span>
+    <span class="n">listen</span> <span class="m">80</span><span class="p">;</span>
+    <span class="n">server_name</span> <span class="n">gogs</span><span class="o">.</span><span class="n">intra</span><span class="o">.</span><span class="n">net</span><span class="p">;</span>
+    <span class="n">return</span> <span class="m">302</span> <span class="n">https</span><span class="o">://</span><span class="err">$</span><span class="n">server_name</span><span class="err">$</span><span class="n">request_uri</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">server</span> <span class="p">{</span>
+    <span class="n">listen</span> <span class="m">443</span> <span class="n">ssl</span><span class="p">;</span>
+    <span class="n">server_name</span> <span class="n">gogs</span><span class="o">.</span><span class="n">intra</span><span class="o">.</span><span class="n">net</span><span class="p">;</span>
+
+    <span class="n">ssl_certificate</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">tls</span><span class="o">/</span><span class="n">gogs</span><span class="o">.</span><span class="n">crt</span><span class="p">;</span>
+    <span class="n">ssl_certificate_key</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">tls</span><span class="o">/</span><span class="n">gogs</span><span class="o">.</span><span class="n">key</span><span class="p">;</span>
+
+    <span class="n">location</span> <span class="o">/</span> <span class="err">{</span>
+        <span class="n">proxy_set_header</span> <span class="n">X</span><span class="o">-</span><span class="n">Real</span><span class="o">-</span><span class="n">IP</span> <span class="err">$</span><span class="n">remote_addr</span><span class="p">;</span>
+        <span class="n">proxy_pass</span> <span class="n">http</span><span class="o">://</span><span class="m">127</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">1</span><span class="o">:</span><span class="m">3000</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="err">}</span>
+</pre></div>
+<ul>
+<li>Activate the reverse proxy</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo ln -s /etc/nginx/sites-available/gogs /etc/nginx/sites-enabled/gogs
+</pre></div>
+<ul>
+<li>Restart Nginx</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl restart nginx
+</pre></div>
+<h1>Git</h1>
+<ul>
+<li>Install Git</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y git
+</pre></div>
+<h1>Go</h1>
+<ul>
+<li>Install Go</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y golang-1.7-go
+</pre></div>
+<ul>
+<li>Create a folder for Go Apps (such as Gogs)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo mkdir /opt/GoApps
+<span class="gp">$</span> <span class="nb">cd</span> /opt/GoApps
+</pre></div>
+<ul>
+<li>Create user to run Go Apps</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo adduser --disabled-login --gecos <span class="s1">'Go Apps User'</span> go
+</pre></div>
+<ul>
+<li>Set the environment variables</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">export</span> <span class="nv">GOROOT</span><span class="o">=</span>/usr/lib/go-1.7
+<span class="gp">$</span> <span class="nb">export</span> <span class="nv">GOPATH</span><span class="o">=</span>/opt/GoApps
+</pre></div>
+<h1>Gogs</h1>
+<ul>
+<li>Download Gogs</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo --preserve-env /usr/lib/go-1.7/bin/go get -u github.com/gogits/gogs
+</pre></div>
+<ul>
+<li>Build Gogs binary</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> /opt/GoApps/src/github.com/gogits/gogs
+<span class="gp">$</span> sudo --preserve-env /usr/lib/go-1.7/bin/go build
+</pre></div>
+<ul>
+<li>Create directory for source code repositories</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo mkdir /var/gogs-repositories
+</pre></div>
+<p><strong>Warning:</strong> in production environment, don't forget to add this repository in your backup system.</p>
+<ul>
+<li>Change owner</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo chown go:go -R /opt/GoApps
+<span class="gp">$</span> sudo chown go:go -R /var/gogs-repositories
+</pre></div>
+<ul>
+<li>Create startup script for Gogs</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/systemd/system/gogs.service
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Gogs (Go Git Service)</span>
+<span class="na">After</span><span class="o">=</span><span class="s">syslog.target</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+<span class="na">After</span><span class="o">=</span><span class="s">postgresql.service</span>
+<span class="na">After</span><span class="o">=</span><span class="s">nginx.service</span>
+
+<span class="k">[Service]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+<span class="na">User</span><span class="o">=</span><span class="s">go</span>
+<span class="na">Group</span><span class="o">=</span><span class="s">go</span>
+<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/opt/GoApps/src/github.com/gogits/gogs</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/opt/GoApps/src/github.com/gogits/gogs/gogs web</span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
+<span class="na">Environment</span><span class="o">=</span><span class="s">USER=go HOME=/home/go</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</pre></div>
+<ul>
+<li>Start the service</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl <span class="nb">enable</span> gogs
+<span class="gp">$</span> sudo systemctl start gogs
+</pre></div>
+<ul>
+<li>Open <a href="http://gogs.intra.net:3000">http://gogs.intra.net:3000</a>  in your browser to configure Gogs</li>
+</ul>
+<div class="highlight"><pre><span></span>Database type = PostgreSQL
+Host = 127.0.0.1:5432
+User = gogs
+Password = ************
+Database Name = gogs
+Repository Root Path = /var/gogs-repositories
+Run User = go
+Domain = gogs.intra.net
+Port SSH = empty
+Application URL = https://gogs.intra.net
+</pre></div>
+<ul>
+<li>Disable the access to non-TLS version of Gogs</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /opt/GoApps/src/github.com/gogits/gogs/custom/conf/app.ini
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">[server]</span>
+<span class="na">DOMAIN</span>       <span class="o">=</span> <span class="s">gogs.intra.net</span>
+<span class="na">HTTP_ADDR</span>    <span class="o">=</span> <span class="s">127.0.0.1</span>
+<span class="na">HTTP_PORT</span>    <span class="o">=</span> <span class="s">3000</span>
+<span class="na">ROOT_URL</span>     <span class="o">=</span> <span class="s">http://gogs.intra.net:3000/</span>
+<span class="na">DISABLE_SSH</span>  <span class="o">=</span> <span class="s">true</span>
+<span class="na">OFFLINE_MODE</span> <span class="o">=</span> <span class="s">false</span>
+</pre></div>
+<ul>
+<li>Restart Gogs</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl restart gogs
+</pre></div>
+<h1>what still needs to be done:</h1>
+<ul>
+<li>Change log repository (As is: /opt/GoApps/src/github.com/gogits/gogs/log)</li>
+<li>Authentication by certificate</li>
+<li>Getting started with a true repository (For instance: Jetty hello world)</li>
+</ul>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://didier.bernaudeau.net/Debian_Cheat_Sheet.html">Debian Cheat Sheet</a></li>
+    </ul>
+</section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="60%" class="img-thumbnail" src="/images/avatar.png"/>
+        </p>
+    <p>
+        <strong>About D. Bernaudeau</strong><br/>
+        I’m Didier Bernaudeau, an Information Systems Security Professional. This site is a way to note some experimentations.
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+
+
+
+            <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/blockchain.html">
+                            Blockchain
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
+                            Certificate
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/container.html">
+                            Container
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
+                            Cryptography
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/cups.html">
+                            cups
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/debian.html">
+                            Debian
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/development.html">
+                            Development
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/development-tool.html">
+                            Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
+                            Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/git.html">
+                            Git
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/go.html">
+                            Go
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
+                            hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/html.html">
+                            HTML
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/java.html">
+                            Java
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/linux.html">
+                            Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/network.html">
+                            Network
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/php.html">
+                            PHP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/pki.html">
+                            PKI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/press-review.html">
+                            Press review
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/software.html">
+                            Software
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/tls.html">
+                            TLS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
+                            virtualization
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/website.html">
+                            WebSite
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/windows.html">
+                            Windows
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+            &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://didier.bernaudeau.net/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://didier.bernaudeau.net/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://didier.bernaudeau.net/theme/js/respond.min.js"></script>
+
+
+</body>
+</html>

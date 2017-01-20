@@ -97,7 +97,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-01-12T18:55:00+01:00"> jeu. 12 janvier 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-01-13T17:47:00+01:00"> ven. 13 janvier 2017</time>
             </span>
 
 
@@ -115,7 +115,7 @@ My personal blog note            </a>
 However, Java SE is needed for some applications which are not compatible with Open JRE / JDK. So, this post describes step by step how to install Java SE (JRE and JDK) provided by Oracle on Debian.</p>
 
 <h1>Java Package</h1>
-<p>Java-package provides the ability to build a Debian package from a Java binary.</p>
+<p>Java-package is a tool that provides the ability to build a Debian package from a Java binary.</p>
 <ul>
 <li>Add a "contrib" component in sources.list</li>
 </ul>
@@ -138,10 +138,10 @@ However, Java SE is needed for some applications which are not compatible with O
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">#</span> apt-get install libxslt1-dev
 </pre></div>
-<h1>JRE (Java Runtime Environment)</h1>
-<p>JRE contains the JVM (Java Virtual Machine) to execute java programs and other java tools such as keytool.</p>
+<h1>Java Runtime Environment</h1>
+<p>JRE (Java Runtime Environment) contains the JVM (Java Virtual Machine) to execute java programs and other java tools such as keytool.</p>
 <ul>
-<li>Download Java 8 Standard Edition</li>
+<li>Download Java 8 Standard Edition Runtime Environment</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> wget --header <span class="s2">"Cookie: oraclelicense=accept-securebackup-cookie"</span> http://download.oracle.com/otn-pub/java/jdk/8u112-b15/jre-8u112-linux-x64.tar.gz
 </pre></div>
@@ -155,8 +155,8 @@ However, Java SE is needed for some applications which are not compatible with O
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">#</span> dpkg -i oracle-java8-jre_8u112_amd64.deb
 </pre></div>
-<h1>JDK (Java Development Kit)</h1>
-<p>The Java Development Kit includes JRE and tools for developers to create and compile programs (javac, JavaDoc, Java Debugger, ...).</p>
+<h1>Java Development Kit</h1>
+<p>The JDK (Java Development Kit) includes JRE and tools for developers to create and compile java programs (javac, JavaDoc, Java Debugger, ...).</p>
 <ul>
 <li>Download Java 8 Standard Edition Development Kit</li>
 </ul>
@@ -174,7 +174,7 @@ However, Java SE is needed for some applications which are not compatible with O
 </pre></div>
 <h1>Select Java SE</h1>
 <ul>
-<li>Select java JVM</li>
+<li>Select the JVM of your choice</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">#</span> update-alternatives --config java
 </pre></div>
@@ -199,7 +199,7 @@ Java(TM) SE Runtime Environment (build 1.8.0_112-b15)
 Java HotSpot(TM) 64-Bit Server VM (build 25.112-b15, mixed mode)
 </pre></div>
 <ul>
-<li>Select Java compiler</li>
+<li>Select the Java compiler of your choice</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="go">update-alternatives --config javac</span>
 </pre></div>
@@ -280,7 +280,7 @@ Press enter to keep the current choice[*], or type selection number: 2
                             cups
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/debian.html">
                             Debian
                         </a>
@@ -290,9 +290,24 @@ Press enter to keep the current choice[*], or type selection number: 2
                             Development
                         </a>
                     </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/development-tool.html">
+                            Development tool
+                        </a>
+                    </li>
                     <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/gentoo.html">
                             Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/git.html">
+                            Git
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/go.html">
+                            Go
                         </a>
                     </li>
                     <li class="list-group-item tag-1">

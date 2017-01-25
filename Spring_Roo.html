@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Spring Roo - My personal blog note</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://didier.bernaudeau.net/Spring_Roo.html">
+
+        <meta name="author" content="Didier BERNAUDEAU" />
+        <meta name="keywords" content="Framework,Java,Spring" />
+        <meta name="description" content="Spring ROO (Real Object Oriented) is an another framework provided by Pivotal for AOP (Aspect-Oriented Programming). This framework is based on AspectJ and suitable for DDD (Domain Driven Design). This tutorial describes how to install STS (Spring Tool Suite) and how to create a first application with Spring ROO." />
+
+        <meta property="og:site_name" content="My personal blog note" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Spring Roo"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/Spring_Roo.html"/>
+        <meta property="og:description" content="Spring ROO (Real Object Oriented) is an another framework provided by Pivotal for AOP (Aspect-Oriented Programming). This framework is based on AspectJ and suitable for DDD (Domain Driven Design). This tutorial describes how to install STS (Spring Tool Suite) and how to create a first application with Spring ROO."/>
+        <meta property="article:published_time" content="2017-01-24" />
+            <meta property="article:section" content="Tutorials" />
+            <meta property="article:tag" content="Framework" />
+            <meta property="article:tag" content="Java" />
+            <meta property="article:tag" content="Spring" />
+            <meta property="article:author" content="Didier BERNAUDEAU" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+    <link href="http://didier.bernaudeau.net/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://didier.bernaudeau.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/style.css" type="text/css"/>
+
+        <link href="http://didier.bernaudeau.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note ATOM Feed"/>
+
+
+
+        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Tutorials ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://didier.bernaudeau.net/" class="navbar-brand">
+My personal blog note            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/articles.html">Articles</a></li>
+                    <li><a href="/category/tutorials.html">Tutorials</a></li>
+                    <li><a href="/category/talk.html">Talk</a></li>
+                    <li><a href="/category/press-review.html">Press Review</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="http://didier.bernaudeau.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://didier.bernaudeau.net/Spring_Roo.html"
+                       rel="bookmark"
+                       title="Permalink to Spring Roo">
+                        Spring Roo
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-01-24T17:55:00+01:00"> mar. 24 janvier 2017</time>
+    </span>
+            <span class="label label-default">Modified</span>
+            <span class="modified">
+                <i class="fa fa-calendar"></i><time datetime="2017-01-25T16:23:00+01:00"> mer. 25 janvier 2017</time>
+            </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://didier.bernaudeau.net/tag/framework.html">Framework</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/java.html">Java</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/spring.html">Spring</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>Spring ROO (Real Object Oriented) is an another framework provided by Pivotal for AOP (Aspect-Oriented Programming). This framework is based on AspectJ and suitable for DDD (Domain Driven Design).
+This tutorial describes how to install STS (Spring Tool Suite) and how to create a first application with Spring ROO.</p>
+
+<h1>Install the development tools</h1>
+<ul>
+<li>Install maven</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> emerge dev-java/maven-bin
+</pre></div>
+<ul>
+<li>Download Spring Tool Suite</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> wget http://download.springsource.com/release/STS/3.8.3.RELEASE/dist/e4.6/spring-tool-suite-3.8.3.RELEASE-e4.6.2-linux-gtk-x86_64.tar.gz
+</pre></div>
+<ul>
+<li>Install Spring Tool Suite</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> tar xvzf spring-tool-suite-3.8.3.RELEASE-e4.6.2-linux-gtk-x86_64.tar.gz
+<span class="gp">$</span> mv sts-bundle spring-tool-suite
+</pre></div>
+<p><strong>warning:</strong> the user must have write access in this directory. So, you can't install this software in "opt" directory for all users.</p>
+<ul>
+<li>Download Spring ROO</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> wget http://spring-roo-repository.springsource.org.s3.amazonaws.com/release/ROO/spring-roo-1.3.2.RELEASE.zip
+<span class="gp">$</span> unzip spring-roo-1.3.2.RELEASE.zip -d /mnt/data/spring-tool-suite/
+</pre></div>
+<ul>
+<li>
+<p>Open STS and click on "Extensions" bottom tab and search "Spring Roo".</p>
+</li>
+<li>
+<p>Select "Spring Roo (current production release)" and "Spring IDE - (Roo extension)"and follow the intructions</p>
+</li>
+</ul>
+<p align="center"><img class="img-responsive" src="images/2017-01-24_Spring_Roo_00.png"/></p>
+<p align="center"><img class="img-responsive" src="images/2017-01-24_Spring_Roo_01.png"/></p>
+<p align="center"><img class="img-responsive" src="images/2017-01-24_Spring_Roo_02.png"/></p>
+<p align="center"><img class="img-responsive" src="images/2017-01-24_Spring_Roo_03.png"/></p>
+<p align="center"><img class="img-responsive" src="images/2017-01-24_Spring_Roo_04.png"/></p>
+<p align="center"><img class="img-responsive" src="images/2017-01-24_Spring_Roo_05.png"/></p>
+<p align="center"><img class="img-responsive" src="images/2017-01-24_Spring_Roo_06.png"/></p>
+<p align="center"><img class="img-responsive" src="images/2017-01-24_Spring_Roo_07.png"/></p>
+<h1>Develop an application : BurgerShop</h1>
+<ul>
+<li>Create a project : File &gt; New &gt; Spring ROO Project</li>
+</ul>
+<p align="center"><img class="img-responsive" src="images/2017-01-24_Spring_Roo_Project.png"/></p>
+<ul>
+<li>Define the domain objects</li>
+</ul>
+<p align="center"><img class="img-responsive" src="images/2017-01-24_Spring_Roo_domain.png"/></p>
+<ul>
+<li>Define the database</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">roo &gt; jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY</span>
+</pre></div>
+<ul>
+<li>Create the domain objects</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">roo &gt; entity jpa --class ~.domain.Topping --testAutomatically</span>
+<span class="go">roo &gt; field string --fieldName name --notNull --sizeMin 2</span>
+
+<span class="go">roo &gt; entity jpa --class ~.domain.Base --testAutomatically</span>
+<span class="go">roo &gt; field string --fieldName name --notNull --sizeMin 2</span>
+
+<span class="go">roo &gt; entity jpa --class ~.domain.Burger --testAutomatically</span>
+<span class="go">roo &gt; field string --fieldName name --notNull --sizeMin 2</span>
+<span class="go">roo &gt; field number --fieldName price --type java.lang.Float</span>
+</pre></div>
+<ul>
+<li>Create relations between objects</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">roo &gt; field set --fieldName toppings --type ~.domain.Topping</span>
+<span class="go">roo &gt; field reference --fieldName base --type ~.domain.Base</span>
+</pre></div>
+<ul>
+<li>Create the last domain object: "Burger Order"</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">roo &gt; entity jpa --class ~.domain.BurgerOrder --testAutomatically </span>
+<span class="go">roo &gt; field string --fieldName name --notNull --sizeMin 2</span>
+<span class="go">roo &gt; field string --fieldName address --sizeMax 30</span>
+<span class="go">roo &gt; field number --fieldName total --type java.lang.Float </span>
+<span class="go">roo &gt; field date --fieldName deliveryDate --type java.util.Date</span>
+<span class="go">roo &gt; field set --fieldName burgers --type ~.domain.Burger</span>
+</pre></div>
+<ul>
+<li>Perform test</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">roo &gt; test integration</span>
+<span class="go">roo &gt; perform tests</span>
+</pre></div>
+<ul>
+<li>Create automatically the web components</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">roo&gt; web mvc setup</span>
+<span class="go">roo&gt; web mvc all --package ~.web</span>
+</pre></div>
+<h1>Deploy the application</h1>
+<ul>
+<li>
+<p>Drag and drop the project on the "Pivotal tc Server Developer Edition" in the "Servers" view.</p>
+</li>
+<li>
+<p>Right clic on the project and select « Run As &gt; Run on Server »</p>
+</li>
+<li>
+<p>Open <a href="http://localhost:8080/burgershop">http://localhost:8080/burgershop</a> in your browser.</p>
+</li>
+</ul>
+<p align="center"><img class="img-responsive" src="images/2017-01-24_Spring_Roo_BurgerShop.png"/></p>
+<h1>What still needs to be done</h1>
+<ul>
+<li>Add security (user profile, authentication, ...) with Spring Security</li>
+<li>Improve BurgerShop application with calculated field, better form, ...</li>
+</ul>
+<!--
+http://docs.spring.io/spring-roo/docs/2.0.x/reference/html/#getting-started-install-roo
+http://jeremy-jeanne.developpez.com/tutoriels/spring/spring-roo/
+Add project Git :http://www.5balloons.info/adding-a-new-spring-maven-project-from-eclipse-to-git-repobitbucket/
+https://spring.io/guides
+-->
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://didier.bernaudeau.net/Keytool.html">Keytool</a></li>
+    </ul>
+</section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="60%" class="img-thumbnail" src="/images/avatar.png"/>
+        </p>
+    <p>
+        <strong>About D. Bernaudeau</strong><br/>
+        I’m Didier Bernaudeau, an Information Systems Security Professional. This site is a way to note some experimentations.
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+
+
+
+            <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/blockchain.html">
+                            Blockchain
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
+                            Certificate
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/container.html">
+                            Container
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
+                            Cryptography
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/cups.html">
+                            cups
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/debian.html">
+                            Debian
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/development.html">
+                            Development
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/development-tool.html">
+                            Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/framework.html">
+                            Framework
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
+                            Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/git.html">
+                            Git
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/go.html">
+                            Go
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
+                            hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/html.html">
+                            HTML
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/java.html">
+                            Java
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/linux.html">
+                            Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/network.html">
+                            Network
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/php.html">
+                            PHP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/pki.html">
+                            PKI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/press-review.html">
+                            Press review
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scm.html">
+                            SCM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/software.html">
+                            Software
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/spring.html">
+                            Spring
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/tls.html">
+                            TLS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
+                            virtualization
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/website.html">
+                            WebSite
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/windows.html">
+                            Windows
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+            &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://didier.bernaudeau.net/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://didier.bernaudeau.net/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://didier.bernaudeau.net/theme/js/respond.min.js"></script>
+
+
+</body>
+</html>

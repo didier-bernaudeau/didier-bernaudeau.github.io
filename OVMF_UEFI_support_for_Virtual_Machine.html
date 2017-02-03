@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Press review of July 2016 - My personal blog note</title>
+    <title>OVMF: UEFI support for Virtual Machine - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,21 +9,22 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/Press_review_of_July_2016.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/OVMF_UEFI_support_for_Virtual_Machine.html">
 
-        <meta name="author" content="Didier Bernaudeau" />
-        <meta name="keywords" content="Press review" />
-        <meta name="description" content="This is an overview of Information Security news : vulnerabilities, patches, data leak, ..." />
+        <meta name="author" content="Didier BERNAUDEAU" />
+        <meta name="keywords" content="Virtualization,Gentoo" />
+        <meta name="description" content="OVMF (Open Virtual Machine Firmware) is the UEFI reference implementation. This firmware is based on EDK2 (EFI Development Kit) and it comes from the Intel&#39;s project &#34;TianoCore&#34;. By default, virtual machine uses a legacy BIOS implementation (For instance, QEMU uses SeaBIOS). With OVMF, virtual machine could enjoy the new features such as GUID partition tables and Secure Boot (for testing purposes only). At this point, running a UEFI virtual machine with QEMU is still a fairly obscure use-case for which it can be difficult to find good examples. So, this post describes how to install OVMF on Gentoo Linux then, how to start an UEFI virtual machine with QEMU/KVM." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Press review of July 2016"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/Press_review_of_July_2016.html"/>
-        <meta property="og:description" content="This is an overview of Information Security news : vulnerabilities, patches, data leak, ..."/>
-        <meta property="article:published_time" content="2016-07-01" />
-            <meta property="article:section" content="Press review" />
-            <meta property="article:tag" content="Press review" />
-            <meta property="article:author" content="Didier Bernaudeau" />
+        <meta property="og:title" content="OVMF: UEFI support for Virtual Machine"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/OVMF_UEFI_support_for_Virtual_Machine.html"/>
+        <meta property="og:description" content="OVMF (Open Virtual Machine Firmware) is the UEFI reference implementation. This firmware is based on EDK2 (EFI Development Kit) and it comes from the Intel&#39;s project &#34;TianoCore&#34;. By default, virtual machine uses a legacy BIOS implementation (For instance, QEMU uses SeaBIOS). With OVMF, virtual machine could enjoy the new features such as GUID partition tables and Secure Boot (for testing purposes only). At this point, running a UEFI virtual machine with QEMU is still a fairly obscure use-case for which it can be difficult to find good examples. So, this post describes how to install OVMF on Gentoo Linux then, how to start an UEFI virtual machine with QEMU/KVM."/>
+        <meta property="article:published_time" content="2017-01-29" />
+            <meta property="article:section" content="Tutorials" />
+            <meta property="article:tag" content="Virtualization" />
+            <meta property="article:tag" content="Gentoo" />
+            <meta property="article:author" content="Didier BERNAUDEAU" />
 
 
     <!-- Bootstrap -->
@@ -38,8 +39,8 @@
 
 
 
-        <link href="http://didier.bernaudeau.net/feeds/press-review.atom.xml" type="application/atom+xml" rel="alternate"
-              title="My personal blog note Press review ATOM Feed"/>
+        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Tutorials ATOM Feed"/>
 
 </head>
 <body>
@@ -79,10 +80,10 @@ My personal blog note            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/Press_review_of_July_2016.html"
+                    <a href="http://didier.bernaudeau.net/OVMF_UEFI_support_for_Virtual_Machine.html"
                        rel="bookmark"
-                       title="Permalink to Press review of July 2016">
-                        Press review of July 2016
+                       title="Permalink to OVMF: UEFI support for Virtual Machine">
+                        OVMF: UEFI support for Virtual Machine
                     </a>
                 </h1>
             </header>
@@ -92,11 +93,11 @@ My personal blog note            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2016-07-01T21:11:00+02:00"> ven. 01 juillet 2016</time>
+        <i class="fa fa-calendar"></i><time datetime="2017-01-29T19:30:00+01:00"> dim. 29 janvier 2017</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2016-07-25T22:21:00+02:00"> lun. 25 juillet 2016</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-01-31T13:54:00+01:00"> mar. 31 janvier 2017</time>
             </span>
 
 
@@ -104,216 +105,121 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/press-review.html">Press review</a>
+	<a href="http://didier.bernaudeau.net/tag/virtualization.html">Virtualization</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/gentoo.html">Gentoo</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>This is an overview of Information Security news : vulnerabilities, patches, data leak, ...</p>
+                <p>OVMF (Open Virtual Machine Firmware) is the UEFI reference implementation. This firmware is based on EDK2 (EFI Development Kit) and it comes from the Intel's project "TianoCore".</p>
+<p>By default, virtual machine uses a legacy BIOS implementation (For instance, QEMU uses SeaBIOS). With OVMF, virtual machine could enjoy the new features such as GUID partition tables and Secure Boot (for testing purposes only).</p>
+<p>At this point, running a UEFI virtual machine with QEMU is still a fairly obscure use-case for which it can be difficult to find good examples. So, this post describes how to install OVMF on Gentoo Linux then, how to start an UEFI virtual machine with QEMU/KVM.</p>
 
-<table border="1" class="docutils table-hover table table-striped">
-<colgroup>
-<col width="4%"></col>
-<col width="5%"></col>
-<col width="80%"></col>
-<col width="11%"></col>
-</colgroup>
-<tbody valign="top">
-<tr><td>Date</td>
-<td>Type</td>
-<td>Link</td>
-<td> </td>
-</tr>
-<tr><td>07/01/2016</td>
-<td>Malware</td>
-<td><ul class="first last simple">
-<li><a class="reference external" href="http://www.isssource.com/ransomware-masked-as-rockwell-update/">Ransomware Masked as Rockwell Update</a></li>
+<h1>OVMF</h1>
+<ul>
+<li>Install required packages</li>
 </ul>
-</td>
-<td> </td>
-</tr>
-<tr><td>07/01/2016</td>
-<td>Vulnerability</td>
-<td><ul class="first last simple">
-<li><a class="reference external" href="https://www.engadget.com/2016/07/01/android-qualcomm-security-flaw-encryption/">Millions of Android devices have flawed full disk encryption</a></li>
+<div class="highlight"><pre><span></span><span class="gp">#</span> emerge git nasm
+</pre></div>
+<ul>
+<li>Get the latest source for EDKII</li>
 </ul>
-</td>
-<td> </td>
-</tr>
-<tr><td>07/04/2016</td>
-<td>Law</td>
-<td><ul class="first last simple">
-<li><a class="reference external" href="http://www.theverge.com/2016/7/4/12093088/icloud-celebrity-hacks-edward-majerczyk">Hacker involved in ‘Celebgate’ pleads guilty, faces maximum five years in prison</a></li>
+<div class="highlight"><pre><span></span><span class="gp">$</span> mkdir ~/src
+<span class="gp">$</span> <span class="nb">cd</span> ~/src
+<span class="gp">$</span> git clone git://github.com/tianocore/edk2.git
+<span class="gp">$</span> <span class="nb">cd</span> edk2
+</pre></div>
+<ul>
+<li>Choosing which version of OVMF to build</li>
 </ul>
-</td>
-<td> </td>
-</tr>
-<tr><td>07/05/2016</td>
-<td>Security measure</td>
-<td><ul class="first last simple">
-<li><a class="reference external" href="http://didier.bernaudeau.net/Press_review_of_June_2016.html">Android Nougat prevents ransomware from resetting device passwords</a></li>
+<div class="highlight"><pre><span></span><span class="gp">$</span> nano ~/src/edk2/Conf/target.txt
+</pre></div>
+<div class="highlight"><pre><span></span>ACTIVE_PLATFORM       = OvmfPkg/OvmfPkgX64.dsc
+TARGET_ARCH           = X64
+TOOL_CHAIN_TAG        = GCC49
+</pre></div>
+<ul>
+<li>build</li>
 </ul>
-</td>
-<td> </td>
-</tr>
-<tr><td>07/05/2016</td>
-<td>Malware</td>
-<td><ul class="first last simple">
-<li><a class="reference external" href="https://nakedsecurity.sophos.com/2016/07/05/is-zepto-ransomware-the-new-locky/">Is Zepto ransomware the new Locky?</a></li>
+<div class="highlight"><pre><span></span><span class="go">cd ~/src/edk2/OvmfPkg/</span>
+<span class="go">./build.sh</span>
+</pre></div>
+<hr>
+<p>The build output files are in "~/src/edk2/Build/OvmfX64/DEBUG_GCC49/FV/" :</p>
+<ul>
+<li>OVMF.fd : contains executable firmware code and the variable store</li>
+<li>OVMF_CODE.fd: contains the executable firmware code</li>
+<li>OVMF_VARS.fd: contains the variable store</li>
 </ul>
-</td>
-<td> </td>
-</tr>
-<tr><td>07/07/2016</td>
-<td>Attack</td>
-<td><ul class="first last simple">
-<li><a class="reference external" href="http://thenextweb.com/gadgets/2016/07/07/smartwatch-revealing-atm-pin-hackers/">Your smartwatch is revealing your ATM PIN to hackers</a></li>
+<p>At this point, you have 2 options:</p>
+<ol>
+<li>Use a writable copy of OVMF.fd for each virtual machine</li>
+<li>Use OVMF_CODE.fd in read only for all virtual machines and a writable copy of OVMF_VARS.fd for each virtual machine.</li>
+</ol>
+<p><strong>Warning:</strong> the variable store should be private to the virtual machine. For this reason, each virtual machine needs a private, writable copy of OVMF.fd or OVMF_VARS.fd.</p>
+<hr>
+<h1>QEMU / KVM</h1>
+<ul>
+<li>Copy OVMF files</li>
 </ul>
-</td>
-<td> </td>
-</tr>
-<tr><td>07/07/2016</td>
-<td>Vulnerability</td>
-<td><ul class="first last simple">
-<li><a class="reference external" href="http://www.securitytracker.com/id/1036244">Samba Lets Remote Users Downgrade SMB Signing Security Protections on the Target System</a></li>
-<li><a class="reference external" href="https://www.samba.org/samba/security/CVE-2016-2119.html">Client side SMB2/3 required signing can be downgraded (CVE-2016-2119)</a></li>
+<div class="highlight"><pre><span></span><span class="gp">$</span> mkdir VirtualMachine/OVMF
+<span class="gp">$</span> cp ~/src/edk2/Build/OvmfX64/DEBUG_GCC49/FV/OVMF* VirtualMachine/OVMF/
+</pre></div>
+<ul>
+<li>create disk image</li>
 </ul>
-</td>
-<td> </td>
-</tr>
-<tr><td>07/07/2016</td>
-<td>Data leak</td>
-<td><ul class="first last simple">
-<li><a class="reference external" href="http://m.healthcareitnews.com/news/11-million-patient-record-breaches-make-june-worst-month-information-security-2016">11 million patient record breaches make June worst month for information security in 2016</a></li>
+<div class="highlight"><pre><span></span><span class="gp">$</span> qemu-img create -f qcow2 OVMF.qcow2 10G
+</pre></div>
+<ul>
+<li>Start virtual machine (Option 1)</li>
 </ul>
-</td>
-<td> </td>
-</tr>
-<tr><td>07/11/2016</td>
-<td>Attack</td>
-<td><ul class="first last simple">
-<li><a class="reference external" href="http://www.harmj0y.net/blog/redteaming/keethief-a-case-study-in-attacking-keepass-part-2/">KeeThief – A Case Study in Attacking KeePass Part 2</a></li>
+<div class="highlight"><pre><span></span><span class="gp">$</span> qemu-system-x86_64 -m 1G -enable-kvm -vga virtio <span class="se">\</span>
+<span class="go">    -drive if=pflash,format=raw,readonly,file=OVMF/OVMF_CODE.fd \</span>
+<span class="go">    -drive if=pflash,format=raw,file=OVMF/OVMF_VARS.fd \</span>
+<span class="go">    -drive if=virtio,file=OVMF.qcow2 \</span>
+<span class="go">    -cdrom iso/archlinux-2016.10.01-dual.iso</span>
+</pre></div>
+<ul>
+<li>Start virtual machine (Option 2)</li>
 </ul>
-</td>
-<td> </td>
-</tr>
-<tr><td>07/11/2016</td>
-<td>Vulnerability</td>
-<td><ul class="first last simple">
-<li><a class="reference external" href="https://security-center.intel.com/advisory.aspx?intelid=INTEL-SA-00054&amp;languageid=en-fr">Multiple Potential Vulnerabilities in the Intel® Graphics Driver for Microsoft Windows</a></li>
+<div class="highlight"><pre><span></span><span class="gp">$</span> qemu-system-x86_64 -m 1G -enable-kvm -vga virtio <span class="se">\</span>
+<span class="go">    -drive if=pflash,format=raw,file=OVMF/OVMF.fd \</span>
+<span class="go">    -drive if=virtio,file=OVMF.qcow2 \</span>
+<span class="go">    -cdrom iso/archlinux-2016.10.01-dual.iso</span>
+</pre></div>
+<p align="center"><img class="img-responsive" src="images/2017-01-29_OVMF_UEFI_support_for_Virtual_Machine_01.png" width="60%"/></p>
+<p align="center"><img class="img-responsive" src="images/2017-01-29_OVMF_UEFI_support_for_Virtual_Machine_02.png" width="60%"/></p>
+<p align="center"><img class="img-responsive" src="images/2017-01-29_OVMF_UEFI_support_for_Virtual_Machine_03.png" width="80%"/></p>
+<h1>LibVirt</h1>
+<ul>
+<li>Copy OVMF files</li>
 </ul>
-</td>
-<td> </td>
-</tr>
-<tr><td>07/12/2016</td>
-<td>Vulnerability</td>
-<td><ul class="first last simple">
-<li><a class="reference external" href="http://blog.vectranetworks.com/blog/microsoft-windows-printer-wateringhole-attack">Own a printer, own a network with point and print drive-by</a></li>
-<li><a class="reference external" href="http://arstechnica.com/security/2016/07/20-year-old-windows-bug-lets-printers-install-malware-patch-now/">20-year-old Windows bug lets printers install malware—patch now</a></li>
-<li><a class="reference external" href="http://www.tripwire.com/state-of-security/featured/boobytrapped-printers-windows-malware/">How boobytrapped printers have been able to infect Windows PCs for over 20 years</a></li>
+<div class="highlight"><pre><span></span><span class="gp">#</span> mkdir /opt/OVMF
+<span class="gp">#</span> cp src/edk2/Build/OvmfX64/DEBUG_GCC49/FV/OVMF* /opt/OVMF
+</pre></div>
+<ul>
+<li>Configure LibVirt</li>
 </ul>
-</td>
-<td><img alt="" class="last img-responsive first" src="http://didier.bernaudeau.net/images/star.png"/>
-</td>
-</tr>
-<tr><td>07/13/2016</td>
-<td>Security measure</td>
-<td><ul class="first last simple">
-<li><a class="reference external" href="http://www.symantec.com/connect/blogs/pokemon-go-how-protect-your-device-scams-malware-and-privacy-issues">Pokemon Go: How to protect your device from scams, malware, and privacy issues</a></li>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/libvirt/qemu.conf
+</pre></div>
+<div class="highlight"><pre><span></span>nvram = [ "/opt/OVMF/OVMF_CODE.fd:/opt/OVMF/OVMF_VARS.fd" ]
+</pre></div>
+<ul>
+<li>Restart LibVirt and create a new virtual machine</li>
 </ul>
-</td>
-<td> </td>
-</tr>
-<tr><td>07/13/2016</td>
-<td>Security measure</td>
-<td><ul class="first last simple">
-<li><a class="reference external" href="http://www.wsj.com/articles/fiat-chrysler-to-pay-hackers-who-find-cybersecurity-flaws-1468382462">Fiat Chrysler to Pay Hackers Who Find Cybersecurity Flaws</a></li>
+<p align="center"><img class="img-responsive" src="images/2017-01-29_OVMF_UEFI_support_for_Virtual_Machine_04.png" width="60%"/></p>
+<h1>What still needs to be done</h1>
+<ul>
+<li>Secure Boot support</li>
+<li>Install OVMF with Portage (When OVMF package will be available)</li>
 </ul>
-</td>
-<td> </td>
-</tr>
-<tr><td>07/13/2016</td>
-<td>Attack</td>
-<td><ul class="first last simple">
-<li><a class="reference external" href="http://www.darkreading.com/vulnerabilities---threats/airbnbreach-how-networks-at-short-term-rentals-are-wide-open-to-attack/d/d-id/1326256">AirbnBreach: How Networks At Short-Term Rentals Are Wide Open To Attack</a></li>
-</ul>
-</td>
-<td> </td>
-</tr>
-<tr><td>07/14/2016</td>
-<td>Malware</td>
-<td><ul class="first last simple">
-<li><a class="reference external" href="http://www.symantec.com/connect/blogs/android-banking-malware-blocks-victims-outgoing-calls-customer-service">Android banking malware blocks victims’ outgoing calls to customer service</a></li>
-</ul>
-</td>
-<td> </td>
-</tr>
-<tr><td>07/20/2016</td>
-<td>Vulnerability</td>
-<td><ul class="first last simple">
-<li><a class="reference external" href="http://arstechnica.com/security/2016/07/software-flaw-puts-mobile-phones-and-networks-at-risk-of-complete-takeover/">Software flaw puts mobile phones and networks at risk of complete takeover</a></li>
-</ul>
-</td>
-<td> </td>
-</tr>
-<tr><td>07/20/2016</td>
-<td>Vulnerability</td>
-<td><ul class="first last simple">
-<li><a class="reference external" href="http://www.theregister.co.uk/2016/07/20/wordpress_admin_thinking_of_spending_time_with_the_family_think_again/">WordPress admin? Thinking of spending time with the family? Think again</a></li>
-</ul>
-</td>
-<td> </td>
-</tr>
-<tr><td>07/20/2016</td>
-<td>Vulnerability</td>
-<td><ul class="first last simple">
-<li><a class="reference external" href="https://blog.fortinet.com/2016/07/20/analysis-of-cve-2016-4203-adobe-acrobat-and-reader-cooltype-handling-heap-overflow-vulnerability">Analysis of CVE-2016-4203 - Adobe Acrobat and Reader CoolType Handling Heap Overflow Vulnerability</a></li>
-</ul>
-</td>
-<td> </td>
-</tr>
-</tbody>
-</table>
-<!-- Challenges -->
-<!-- ========== -->
-<div class="section" id="conferences">
-<h2>Conferences</h2>
-<p><strong>Nuit du Hack</strong></p>
-<blockquote>
-<ul class="simple">
-<li>Date: July 2-3, 2016</li>
-<li>Location: Disneyland Paris (France)</li>
-<li>Website: <a class="reference external" href="https://www.nuitduhack.com/fr/">www.nuitduhack.com</a></li>
-</ul>
-</blockquote>
-<p><strong>International Conference on Cyber Security 2016</strong></p>
-<blockquote>
-<ul class="simple">
-<li>Date: July 25-28, 2016</li>
-<li>Location: New York City (USA)</li>
-<li>Website: <a class="reference external" href="http://iccs.fordham.edu/">&lt;iccs.fordham.edu</a></li>
-</ul>
-</blockquote>
-<!-- Aout : -->
-<!-- Bside: https://www.bsideslv.org/ -->
-<!-- Black Hat USA July 30-August 4, 2016 -->
-<!-- DEF CON August 4-7, 2016 -->
-<!-- Septembre 2016 -->
-<!-- http://www.bsidesottawa.ca/index.html -->
-<!-- DerbyCon : https://www.derbycon.com/ (September 21st - 25th) -->
-<!-- Octobre 2016 -->
-<!-- hack.lu -->
-<!-- Brucon (27-28 October) => http://blog.brucon.org/ -->
-<!-- https://2016.appsecusa.org/ -->
-<!-- http://nymjcsc.org/ (October 5th) => New York Metro Joint Cyber Security Conference -->
-<!-- Security BSides Delaware 2016 : October 7-8, 2016, http://www.bsidesdelaware.com/ -->
-<!-- novembre 2016 -->
-<!-- http://www.cybersecurityalliance.ch/cybsec16-program -->
-<!-- botconf https://www.botconf.eu/botconf-2016/call-for-papers-2016/ -->
-<!-- Mars 2017 -->
-<!-- https://cyphercon.com/ -->
-<!-- BSides Series : Website: http://www.securitybsides.com/ -->
-</div>
-
+<!--
+# Link
+* [How to build OVMF](https://github.com/tianocore/tianocore.github.io/wiki/How%20to%20build%20OVMF)
+* [Howto: QEMU w/ Ubuntu Xenial host + UEFI guest](http://blog.system76.com/post/139138591598/howto-qemu-w-ubuntu-xenial-host-uefi-guest)
+* [Using UEFI with QEMU](https://fedoraproject.org/wiki/Using_UEFI_with_QEMU)
+* [libvirt - UEFI Support](https://wiki.archlinux.org/index.php/Libvirt#UEFI_Support)
+--></hr></hr>
             </div>
             <!-- /.entry-content -->
         </article>

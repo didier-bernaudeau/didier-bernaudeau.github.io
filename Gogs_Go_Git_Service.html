@@ -175,7 +175,7 @@ My personal blog note            </a>
 <span class="gp">$</span> sudo openssl req -new -x509 -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 -sha256 -days <span class="m">365</span> -nodes -out /etc/nginx/tls/gogs.crt -keyout /etc/nginx/tls/gogs.key
 <span class="gp">$</span> sudo chmod -R <span class="m">600</span> /etc/nginx/tls
 </pre></div>
-<p><strong>Warning:</strong> a self signed certificate is for test purposes only. Don't do that on production environment where a certificate issued by a trusted certificate authority is needed.</p>
+<p><strong>Warning:</strong> a self signed certificate is for testing purposes only. Don't do that on production environment where a certificate issued by a trusted certificate authority is needed.</p>
 <ul>
 <li>Set Nginx as the reverse proxy for Gogs.</li>
 </ul>
@@ -508,9 +508,9 @@ Application URL = https://gogs.intra.net
                             TLS
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/virtualization.html">
-                            virtualization
+                            Virtualization
                         </a>
                     </li>
                     <li class="list-group-item tag-2">

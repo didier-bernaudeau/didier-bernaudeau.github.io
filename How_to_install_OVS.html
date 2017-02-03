@@ -13,13 +13,13 @@
 
         <meta name="author" content="Didier BERNAUDEAU" />
         <meta name="keywords" content="virtualization,Gentoo" />
-        <meta name="description" content="Open vSwitch is a virtual switch with advanced functionnality such as isolation (vlan), monitoring and automated control. This tutorial describes how to install Open vSwitch in kernel space and how to configure LibVirt to use a virtual switch with KVM guest." />
+        <meta name="description" content="Open vSwitch is a virtual switch with advanced functionnality such as isolation (vlan), monitoring and automated control. This tutorial describes how to install Open vSwitch in kernel space and how to configure LibVirt to use a virtual switch with KVM guest. However, there is a lot of functionality available with Open Virtual Switch that this article does not touch. You can setup VLAN tagging, QoS rules, create re-routing rules, block IP address, block ports, and much more. Feel free to reference online documentation and man pages if you are interested in adding complex functionality to the controller." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="How to install OVS (Open Virtual Swtich)"/>
         <meta property="og:url" content="http://didier.bernaudeau.net/How_to_install_OVS.html"/>
-        <meta property="og:description" content="Open vSwitch is a virtual switch with advanced functionnality such as isolation (vlan), monitoring and automated control. This tutorial describes how to install Open vSwitch in kernel space and how to configure LibVirt to use a virtual switch with KVM guest."/>
+        <meta property="og:description" content="Open vSwitch is a virtual switch with advanced functionnality such as isolation (vlan), monitoring and automated control. This tutorial describes how to install Open vSwitch in kernel space and how to configure LibVirt to use a virtual switch with KVM guest. However, there is a lot of functionality available with Open Virtual Switch that this article does not touch. You can setup VLAN tagging, QoS rules, create re-routing rules, block IP address, block ports, and much more. Feel free to reference online documentation and man pages if you are interested in adding complex functionality to the controller."/>
         <meta property="article:published_time" content="2016-09-05" />
             <meta property="article:section" content="Tutorials" />
             <meta property="article:tag" content="virtualization" />
@@ -97,7 +97,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2016-10-14T23:08:00+02:00"> ven. 14 octobre 2016</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-01-30T10:42:00+01:00"> lun. 30 janvier 2017</time>
             </span>
 
 
@@ -112,63 +112,55 @@ My personal blog note            </a>
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <p>Open vSwitch is a virtual switch with advanced functionnality such as isolation (vlan), monitoring and automated control. This tutorial describes how to install Open vSwitch in kernel space and how to configure LibVirt to use a virtual switch with KVM guest.</p>
+<p>However, there is a lot of functionality available with Open Virtual Switch that this article does not touch. You can setup VLAN tagging, QoS rules, create re-routing rules, block IP address, block ports, and much more. Feel free to reference online documentation and man pages if you are interested in adding complex functionality to the controller.</p>
 
-<h1>Kernel configuration</h1>
-<div class="highlight"><pre><span></span><span class="go">|[*] Networking support  ---&gt;</span>
-<span class="go">|     | Networking options  ---&gt;</span>
-<span class="go">|     |    | &lt;*&gt;   The IPv6 protocol  ---&gt;</span>
-<span class="go">|     |    |         | [*] Network packet filtering framework (Netfilter)  ---&gt;</span>
-<span class="go">|     |    |         |      | IPv6: Netfilter Configuration  ---&gt;</span>
-<span class="go">|     |    |         |      |     | &lt;*&gt; IP6 tables support (required for filtering)</span>
-<span class="go">|     |    |         |      |     | &lt;*&gt;   "frag" Fragmentation header match support</span>
-<span class="go">|     |    |</span>
-<span class="go">|     |    | &lt;*&gt;   Open vSwitch</span>
-</pre></div>
-<h1>OVS Installation</h1>
+<h1>Open Virtual Switch</h1>
 <ul>
-<li>Enable OVS 2.6 for kernel 4.4.6</li>
+<li>Configure the kernel</li>
+</ul>
+<div class="highlight"><pre><span></span>|[*] Networking support  ---&gt;
+|     | Networking options  ---&gt;
+|     |    | [*] Network packet filtering framework (Netfilter)  ---&gt;
+|     |    |         | IPv6: Netfilter Configuration  ---&gt;
+|     |    |         |      | &lt;*&gt; IP6 tables support (required for filtering)
+|     |    |         |      | &lt;*&gt;   "frag" Fragmentation header match support
+|     |    |
+|     |    | &lt;*&gt;   Open vSwitch
+</pre></div>
+<ul>
+<li>Enable the version 2.6.1</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/portage/package.keywords
-<span class="go">net-misc/openvswitch-2.6.0             ~amd64</span>
+</pre></div>
+<div class="highlight"><pre><span></span>=net-misc/openvswitch-2.6.1             ~amd64
+=dev-python/ovs-2.6.1                   ~amd64
 </pre></div>
 <ul>
 <li>Define compilation option</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/portage/package.use
-<span class="go">net-misc/openvswitch    -module</span>
+</pre></div>
+<div class="highlight"><pre><span></span>net-misc/openvswitch    -module
 </pre></div>
 <ul>
-<li>Edit ebuild</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> nano /usr/portage/net-misc/openvswitch/openvswitch-2.6.0.ebuild
-<span class="go">line 09: inherit eutils linux-info linux-mod python-single-r1 systemd autotools</span>
-<span class="go">line 51: use monitor &amp;&amp; python-single-r1_pkg_setup</span>
-<span class="gp">#</span> ebuild /usr/portage/net-misc/openvswitch/openvswitch-2.6.0.ebuild manifest
-</pre></div>
-<ul>
-<li>Install Open vSwitch</li>
+<li>Install packages</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">#</span> emerge openvswitch
 </pre></div>
 <ul>
-<li>Create database (path: /var/lib/openvswitch/conf.db)</li>
+<li>Create database</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> emerge --config <span class="o">=</span>net-misc/openvswitch-2.6.0
-<span class="gp">#</span> ln /var/lib/openvswitch/conf.db /etc/openvswitch/conf.db
+<div class="highlight"><pre><span></span><span class="gp">#</span> emerge --config <span class="o">=</span>net-misc/openvswitch-2.6.1
 </pre></div>
+<p><strong>Note:</strong> The file of this database is "/var/lib/openvswitch/conf.db".</p>
 <ul>
-<li>Copie script for systemd (If required)</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> cp /usr/local/portage/net-misc/openvswitch/files/ovs-controller.service /usr/lib64/systemd/system/
-</pre></div>
-<ul>
-<li>Create missing directory (If required)</li>
+<li>Create missing directory</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">#</span> mkdir /var/run/openvswitch/
 </pre></div>
 <ul>
 <li>
-<p>Disconnect cable interface via Network manager (If used)</p>
+<p>Configure Network Manager (if used) : Disconnect "cable interface" and disabled "automatically connect".</p>
 </li>
 <li>
 <p>Start OpenSwitch</p>
@@ -189,16 +181,17 @@ My personal blog note            </a>
 <li>Prints a brief overview of the switch database configuration</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">#</span> ovs-vsctl show
-<span class="go">209fb6b8-d25b-4c1d-874c-0c75bccfca15</span>
-<span class="go">    Bridge "vbr0"</span>
-<span class="go">        Controller "ptcp:"</span>
-<span class="go">        Port "enp0s25"</span>
-<span class="go">            Interface "enp0s25"</span>
-<span class="go">        Port "vbr0"</span>
-<span class="go">            Interface "vbr0"</span>
-<span class="go">                type: internal</span>
 </pre></div>
-<h1>LibVirt configuration</h1>
+<div class="highlight"><pre><span></span>209fb6b8-d25b-4c1d-874c-0c75bccfca15
+    Bridge "vbr0"
+        Controller "ptcp:"
+        Port "enp0s25"
+            Interface "enp0s25"
+        Port "vbr0"
+            Interface "vbr0"
+                type: internal
+</pre></div>
+<h1>LibVirt</h1>
 <ul>
 <li>Create an XML file to define a libvirt virtual network</li>
 </ul>
@@ -377,9 +370,9 @@ My personal blog note            </a>
                             TLS
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/virtualization.html">
-                            virtualization
+                            Virtualization
                         </a>
                     </li>
                     <li class="list-group-item tag-2">

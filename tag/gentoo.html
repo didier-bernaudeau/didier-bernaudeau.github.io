@@ -69,6 +69,37 @@ My personal blog note            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>                
+              <h2><a href="http://didier.bernaudeau.net/OVMF_UEFI_support_for_Virtual_Machine.html">OVMF: UEFI support for Virtual Machine</a></h2>
+                <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-01-29T19:30:00+01:00"> dim. 29 janvier 2017</time>
+    </span>
+            <span class="label label-default">Modified</span>
+            <span class="modified">
+                <i class="fa fa-calendar"></i><time datetime="2017-01-31T13:54:00+01:00"> mar. 31 janvier 2017</time>
+            </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://didier.bernaudeau.net/tag/virtualization.html">Virtualization</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/gentoo.html">Gentoo</a>
+    
+</footer><!-- /.post-info -->                </div>
+              <div class="summary"><p>OVMF (Open Virtual Machine Firmware) is the UEFI reference implementation. This firmware is based on EDK2 (EFI Development Kit) and it comes from the Intel's project "TianoCore".</p>
+<p>By default, virtual machine uses a legacy BIOS implementation (For instance, QEMU uses SeaBIOS). With OVMF, virtual machine could enjoy the new features such as GUID partition tables and Secure Boot (for testing purposes only).</p>
+<p>At this point, running a UEFI virtual machine with QEMU is still a fairly obscure use-case for which it can be difficult to find good examples. So, this post describes how to install OVMF on Gentoo Linux then, how to start an UEFI virtual machine with QEMU/KVM.</p>
+
+                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/OVMF_UEFI_support_for_Virtual_Machine.html">more ...</a>
+              </div>
+            </article>
+            <hr/>
+            <article>                
               <h2><a href="http://didier.bernaudeau.net/How_to_install_OVS.html">How to install OVS (Open Virtual Swtich)</a></h2>
                 <div class="well well-sm">
 <footer class="post-info">
@@ -78,7 +109,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2016-10-14T23:08:00+02:00"> ven. 14 octobre 2016</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-01-30T10:42:00+01:00"> lun. 30 janvier 2017</time>
             </span>
 
 
@@ -92,6 +123,7 @@ My personal blog note            </a>
     
 </footer><!-- /.post-info -->                </div>
               <div class="summary"><p>Open vSwitch is a virtual switch with advanced functionnality such as isolation (vlan), monitoring and automated control. This tutorial describes how to install Open vSwitch in kernel space and how to configure LibVirt to use a virtual switch with KVM guest.</p>
+<p>However, there is a lot of functionality available with Open Virtual Switch that this article does not touch. You can setup VLAN tagging, QoS rules, create re-routing rules, block IP address, block ports, and much more. Feel free to reference online documentation and man pages if you are interested in adding complex functionality to the controller.</p>
 
                 <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/How_to_install_OVS.html">more ...</a>
               </div>
@@ -221,7 +253,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2016-05-19T19:52:00+02:00"> jeu. 19 mai 2016</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-01-30T11:13:00+01:00"> lun. 30 janvier 2017</time>
             </span>
 
 
@@ -252,7 +284,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2016-05-29T17:35:00+02:00"> dim. 29 mai 2016</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-01-27T18:55:00+01:00"> ven. 27 janvier 2017</time>
             </span>
 
 
@@ -480,9 +512,9 @@ My personal blog note            </a>
                             TLS
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/virtualization.html">
-                            virtualization
+                            Virtualization
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -509,7 +541,7 @@ My personal blog note            </a>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2016 D. Bernaudeau
+         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
             &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
     Content
   licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.

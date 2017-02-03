@@ -96,7 +96,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2016-05-29T17:35:00+02:00"> dim. 29 mai 2016</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-01-27T18:55:00+01:00"> ven. 27 janvier 2017</time>
             </span>
 
 
@@ -113,7 +113,7 @@ My personal blog note            </a>
 
 <div class="section" id="kernel-installation">
 <h2>Kernel installation</h2>
-<p>Download kernel Gentoo sources (4.4.21) :</p>
+<p>Download kernel Gentoo sources (4.4.39) :</p>
 <pre class="code console literal-block">
 <span class="gp">#</span> emerge sys-kernel/gentoo-sources
 </pre>
@@ -222,6 +222,8 @@ My personal blog note            </a>
 <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span>     <span class="err">enable</span> <span class="err">powersave</span> <span class="err">by</span> <span class="err">default</span>
 <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Generic</span> <span class="err">IEEE</span> <span class="err">802.11</span> <span class="err">Networking</span> <span class="err">Stack</span> <span class="err">(mac80211)</span>
 <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Enable</span> <span class="err">LED</span> <span class="err">triggers</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">RF</span> <span class="err">switch</span> <span class="err">subsystem</span> <span class="err">support</span>  <span class="err">----</span>
 <span class="err">|</span>
 <span class="err">|</span> <span class="err">Device</span> <span class="err">Drivers</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>
@@ -254,8 +256,8 @@ My personal blog note            </a>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>     <span class="err">Intel</span> <span class="err">(82586/82593/82596)</span> <span class="err">devices</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>   <span class="err">FDDI</span> <span class="err">driver</span> <span class="err">support</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>   <span class="err">USB</span> <span class="err">Network</span> <span class="err">Adapters</span>  <span class="err">----</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>   <span class="err">PHY</span> <span class="err">Device</span> <span class="err">support</span> <span class="err">and</span> <span class="err">infrastructure</span>  <span class="err">----</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>   <span class="err">USB</span> <span class="err">Network</span> <span class="err">Adapters</span>  <span class="err">----</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Wireless</span> <span class="err">LAN</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">---</span> <span class="err">Wireless</span> <span class="err">LAN</span>
@@ -287,10 +289,16 @@ My personal blog note            </a>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Intel</span> <span class="err">ICH</span> <span class="err">LPC</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Realtek</span> <span class="err">PCI-E</span> <span class="err">card</span> <span class="err">reader</span>
 <span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Multimedia</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Cameras/video</span> <span class="err">grabbers</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Media</span> <span class="err">USB</span> <span class="err">Adapters</span>  <span class="err">----&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">USB</span> <span class="err">Video</span> <span class="err">Class</span> <span class="err">(UVC)</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span>     <span class="err">UVC</span> <span class="err">input</span> <span class="err">events</span> <span class="err">device</span> <span class="err">support</span> <span class="err">(NEW)</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>   <span class="err">GSPCA</span> <span class="err">based</span> <span class="err">webcams</span>  <span class="err">----</span>
+<span class="err">|</span>      <span class="err">|</span>
 <span class="err">|</span>      <span class="err">|</span>     <span class="err">Graphics</span> <span class="err">support</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>     <span class="err">Direct</span> <span class="err">Rendering</span> <span class="err">Manager</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Direct</span> <span class="err">Rendering</span> <span class="err">Manager</span> <span class="err">(XFree86</span> <span class="err">4.1.0</span> <span class="err">and</span> <span class="err">higher</span> <span class="err">DRI</span> <span class="err">support)</span>  <span class="err">---</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Intel</span> <span class="err">8xx/9xx/G3x/G4x/HD</span> <span class="err">Graphics</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Direct</span> <span class="err">Rendering</span> <span class="err">Manager</span> <span class="err">(XFree86</span> <span class="err">4.1.0</span> <span class="err">and</span> <span class="err">higher</span> <span class="err">DRI</span> <span class="err">support)</span>  <span class="err">---</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Intel</span> <span class="err">8xx/9xx/G3x/G4x/HD</span> <span class="err">Graphics</span>
 <span class="err">|</span>      <span class="err">|</span>
 <span class="err">|</span>      <span class="err">|</span>     <span class="err">&lt;*&gt;</span> <span class="err">Sound</span> <span class="err">card</span> <span class="err">support</span>  <span class="err">---&gt;</span>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Advanced</span> <span class="err">Linux</span> <span class="err">Sound</span> <span class="err">Architecture</span>  <span class="err">---&gt;</span>
@@ -485,7 +493,7 @@ My personal blog note            </a>
 </pre>
 <p>Copy kernel</p>
 <pre class="code console literal-block">
-<span class="gp">#</span> cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.4.21.efi
+<span class="gp">#</span> cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.4.39.efi
 </pre>
 <p>Unmount ESP (EFI System Partition)</p>
 <pre class="code console literal-block">
@@ -500,7 +508,7 @@ My personal blog note            </a>
 </pre>
 <p>Add the new kernel</p>
 <pre class="code console literal-block">
-<span class="gp">#</span> efibootmgr -c -d /dev/sda -p <span class="m">2</span> -L <span class="s2">"Gentoo Linux 4.4.21"</span> -l <span class="s2">"\EFI\GentooLinux\4.4.21.efi"</span>
+<span class="gp">#</span> efibootmgr -c -d /dev/sda -p <span class="m">2</span> -L <span class="s2">"Gentoo Linux 4.4.39"</span> -l <span class="s2">"\EFI\GentooLinux\4.4.39.efi"</span>
 </pre>
 <p>Print the menu</p>
 <pre class="code console literal-block">
@@ -674,9 +682,9 @@ My personal blog note            </a>
                             TLS
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/virtualization.html">
-                            virtualization
+                            Virtualization
                         </a>
                     </li>
                     <li class="list-group-item tag-2">

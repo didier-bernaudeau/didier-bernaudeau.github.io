@@ -1,5 +1,286 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-01-25T16:23:00+01:00</updated><entry><title>Spring Roo</title><link href="http://didier.bernaudeau.net/Spring_Roo.html" rel="alternate"></link><updated>2017-01-25T16:23:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-01-24:Spring_Roo.html</id><summary type="html">&lt;p&gt;Spring ROO (Real Object Oriented) is an another framework provided by Pivotal for AOP (Aspect-Oriented Programming). This framework is based on AspectJ and suitable for DDD (Domain Driven Design).
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-02-03T13:34:00+01:00</updated><entry><title>Debian Stretch</title><link href="http://didier.bernaudeau.net/Debian_Stretch.html" rel="alternate"></link><published>2017-02-02T12:24:00+01:00</published><updated>2017-02-03T13:34:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-02-02:/Debian_Stretch.html</id><summary type="html">&lt;p&gt;Stretch is the 9th version of Debian Linux and succeed to Debian Jessie. This version is still in testing, but the transition freeze stage will begin on February 5th 2017 and should become stable in September 2017. This tutorials is a guideline to install and secure Debian Stretch (RC2).&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Stretch is the 9th version of Debian Linux and succeed to Debian Jessie. This version is still in testing, but the transition freeze stage will begin on February 5th 2017 and should become stable in September 2017. This tutorials is a guideline to install and secure Debian Stretch (RC2).&lt;/p&gt;
+
+&lt;h1&gt;Installation&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Download Debian Stretch ISO&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;cd /var/lib/libvirt/images/iso/&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; wget http://cdimage.debian.org/cdimage/stretch_di_rc2/amd64/iso-cd/debian-stretch-DI-rc2-amd64-netinst.iso
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a virtual machine with Libvirt, QEMU and KVM&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; virt-install &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="go"&gt;--connect qemu:///system \&lt;/span&gt;
+&lt;span class="go"&gt;--name=debian.intra.net \&lt;/span&gt;
+&lt;span class="go"&gt;--os-type=linux \&lt;/span&gt;
+&lt;span class="go"&gt;--os-variant=debiantesting \&lt;/span&gt;
+&lt;span class="go"&gt;--vcpus=1 \&lt;/span&gt;
+&lt;span class="go"&gt;--ram=1024 \&lt;/span&gt;
+&lt;span class="go"&gt;--graphics spice \&lt;/span&gt;
+&lt;span class="go"&gt;--network network=VirtualSwitch,model=virtio \&lt;/span&gt;
+&lt;span class="go"&gt;--boot uefi \&lt;/span&gt;
+&lt;span class="go"&gt;--disk path=/var/lib/libvirt/images/disk/debian.qcow2,format=qcow2,size=10,bus=virtio \&lt;/span&gt;
+&lt;span class="go"&gt;--cdrom=/var/lib/libvirt/images/iso/debian-stretch-DI-rc2-amd64-netinst.iso&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Follow the instruction on the screen&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install sudo&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get install -y sudo
+&lt;span class="gp"&gt;#&lt;/span&gt; adduser UserName sudo
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; sudo apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get upgrade
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;What still needs to be done&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install a Firewall IPv4/v6&lt;/li&gt;
+&lt;li&gt;Install SeLinux&lt;/li&gt;
+&lt;li&gt;Secure Boot&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Debian"></category></entry><entry><title>OVMF: UEFI support for Virtual Machine</title><link href="http://didier.bernaudeau.net/OVMF_UEFI_support_for_Virtual_Machine.html" rel="alternate"></link><published>2017-01-29T19:30:00+01:00</published><updated>2017-01-31T13:54:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-01-29:/OVMF_UEFI_support_for_Virtual_Machine.html</id><summary type="html">&lt;p&gt;OVMF (Open Virtual Machine Firmware) is the UEFI reference implementation. This firmware is based on EDK2 (EFI Development Kit) and it comes from the Intel's project "TianoCore".&lt;/p&gt;
+&lt;p&gt;By default, virtual machine uses a legacy BIOS implementation (For instance, QEMU uses SeaBIOS). With OVMF, virtual machine could enjoy the new features such as GUID partition tables and Secure Boot (for testing purposes only).&lt;/p&gt;
+&lt;p&gt;At this point, running a UEFI virtual machine with QEMU is still a fairly obscure use-case for which it can be difficult to find good examples. So, this post describes how to install OVMF on Gentoo Linux then, how to start an UEFI virtual machine with QEMU/KVM.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;OVMF (Open Virtual Machine Firmware) is the UEFI reference implementation. This firmware is based on EDK2 (EFI Development Kit) and it comes from the Intel's project "TianoCore".&lt;/p&gt;
+&lt;p&gt;By default, virtual machine uses a legacy BIOS implementation (For instance, QEMU uses SeaBIOS). With OVMF, virtual machine could enjoy the new features such as GUID partition tables and Secure Boot (for testing purposes only).&lt;/p&gt;
+&lt;p&gt;At this point, running a UEFI virtual machine with QEMU is still a fairly obscure use-case for which it can be difficult to find good examples. So, this post describes how to install OVMF on Gentoo Linux then, how to start an UEFI virtual machine with QEMU/KVM.&lt;/p&gt;
+
+&lt;h1&gt;OVMF&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install required packages&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge git nasm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Get the latest source for EDKII&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; mkdir ~/src
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; ~/src
+&lt;span class="gp"&gt;$&lt;/span&gt; git clone git://github.com/tianocore/edk2.git
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; edk2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Choosing which version of OVMF to build&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; nano ~/src/edk2/Conf/target.txt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ACTIVE_PLATFORM       = OvmfPkg/OvmfPkgX64.dsc
+TARGET_ARCH           = X64
+TOOL_CHAIN_TAG        = GCC49
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;build&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;cd ~/src/edk2/OvmfPkg/&lt;/span&gt;
+&lt;span class="go"&gt;./build.sh&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;hr&gt;
+&lt;p&gt;The build output files are in "~/src/edk2/Build/OvmfX64/DEBUG_GCC49/FV/" :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;OVMF.fd : contains executable firmware code and the variable store&lt;/li&gt;
+&lt;li&gt;OVMF_CODE.fd: contains the executable firmware code&lt;/li&gt;
+&lt;li&gt;OVMF_VARS.fd: contains the variable store&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;At this point, you have 2 options:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Use a writable copy of OVMF.fd for each virtual machine&lt;/li&gt;
+&lt;li&gt;Use OVMF_CODE.fd in read only for all virtual machines and a writable copy of OVMF_VARS.fd for each virtual machine.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the variable store should be private to the virtual machine. For this reason, each virtual machine needs a private, writable copy of OVMF.fd or OVMF_VARS.fd.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1&gt;QEMU / KVM&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Copy OVMF files&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; mkdir VirtualMachine/OVMF
+&lt;span class="gp"&gt;$&lt;/span&gt; cp ~/src/edk2/Build/OvmfX64/DEBUG_GCC49/FV/OVMF* VirtualMachine/OVMF/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;create disk image&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; qemu-img create -f qcow2 OVMF.qcow2 10G
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start virtual machine (Option 1)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; qemu-system-x86_64 -m 1G -enable-kvm -vga virtio &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="go"&gt;    -drive if=pflash,format=raw,readonly,file=OVMF/OVMF_CODE.fd \&lt;/span&gt;
+&lt;span class="go"&gt;    -drive if=pflash,format=raw,file=OVMF/OVMF_VARS.fd \&lt;/span&gt;
+&lt;span class="go"&gt;    -drive if=virtio,file=OVMF.qcow2 \&lt;/span&gt;
+&lt;span class="go"&gt;    -cdrom iso/archlinux-2016.10.01-dual.iso&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start virtual machine (Option 2)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; qemu-system-x86_64 -m 1G -enable-kvm -vga virtio &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="go"&gt;    -drive if=pflash,format=raw,file=OVMF/OVMF.fd \&lt;/span&gt;
+&lt;span class="go"&gt;    -drive if=virtio,file=OVMF.qcow2 \&lt;/span&gt;
+&lt;span class="go"&gt;    -cdrom iso/archlinux-2016.10.01-dual.iso&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-29_OVMF_UEFI_support_for_Virtual_Machine_01.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-29_OVMF_UEFI_support_for_Virtual_Machine_02.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-29_OVMF_UEFI_support_for_Virtual_Machine_03.png" width="80%"/&gt;&lt;/p&gt;
+&lt;h1&gt;LibVirt&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Copy OVMF files&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mkdir /opt/OVMF
+&lt;span class="gp"&gt;#&lt;/span&gt; cp src/edk2/Build/OvmfX64/DEBUG_GCC49/FV/OVMF* /opt/OVMF
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure LibVirt&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/libvirt/qemu.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;nvram = [ "/opt/OVMF/OVMF_CODE.fd:/opt/OVMF/OVMF_VARS.fd" ]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart LibVirt and create a new virtual machine&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-29_OVMF_UEFI_support_for_Virtual_Machine_04.png" width="60%"/&gt;&lt;/p&gt;
+&lt;h1&gt;What still needs to be done&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Secure Boot support&lt;/li&gt;
+&lt;li&gt;Install OVMF with Portage (When OVMF package will be available)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!--
+# Link
+* [How to build OVMF](https://github.com/tianocore/tianocore.github.io/wiki/How%20to%20build%20OVMF)
+* [Howto: QEMU w/ Ubuntu Xenial host + UEFI guest](http://blog.system76.com/post/139138591598/howto-qemu-w-ubuntu-xenial-host-uefi-guest)
+* [Using UEFI with QEMU](https://fedoraproject.org/wiki/Using_UEFI_with_QEMU)
+* [libvirt - UEFI Support](https://wiki.archlinux.org/index.php/Libvirt#UEFI_Support)
+--&gt;&lt;/hr&gt;&lt;/hr&gt;</content><category term="Virtualization"></category><category term="Gentoo"></category></entry><entry><title>Nexus Repository OSS</title><link href="http://didier.bernaudeau.net/Nexus_Repository_OSS.html" rel="alternate"></link><published>2017-01-26T10:35:00+01:00</published><updated>2017-01-26T10:35:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-01-26:/Nexus_Repository_OSS.html</id><summary type="html">&lt;p&gt;Nexus Repository OSS is an artifact repository manager provided by Sonatype. This post describes how to install Nexus on Debian Linux. For this tutorial, I have chosen the version 2 because the version 3 doesn't support Maven yet.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Nexus Repository OSS is an artifact repository manager provided by Sonatype. This post describes how to install Nexus on Debian Linux. For this tutorial, I have chosen the version 2 because the version 3 doesn't support Maven yet.&lt;/p&gt;
+
+&lt;h1&gt;Debian&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Install Debian Stretch RC1&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install sudo&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get install -y sudo
+&lt;span class="gp"&gt;#&lt;/span&gt; adduser UserName sudo
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; sudo apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get upgrade
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Prerequisites&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Java Runtime Environment&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y openjdk-8-jre
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Nexus Repository&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Create system user and group&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo useradd --shell /usr/sbin/nologin --system --no-create-home nexus
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Download Nexus&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://www.sonatype.org/downloads/nexus-latest-bundle.tar.gz
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Nexus&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo tar xvzf nexus-latest-bundle.tar.gz -C /opt/
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo ln -s /opt/nexus-2.14.2-01 /opt/nexus
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Change the user and group ownership of Nexus' folders&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo chown -R nexus:nexus /opt/nexus
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo chown -R nexus:nexus /opt/nexus-2.14.2-01
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo chown -R nexus:nexus /opt/sonatype-work
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create startup script for Systemd&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/systemd/system/nexus.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[Unit]&lt;/span&gt;
+&lt;span class="na"&gt;Description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;Sonatype Nexus Repository OSS&lt;/span&gt;
+
+&lt;span class="k"&gt;[Service]&lt;/span&gt;
+&lt;span class="na"&gt;Type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;forking&lt;/span&gt;
+&lt;span class="na"&gt;User&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;nexus&lt;/span&gt;
+&lt;span class="na"&gt;Group&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;nexus&lt;/span&gt;
+&lt;span class="na"&gt;ExecStart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/opt/nexus/bin/nexus start&lt;/span&gt;
+&lt;span class="na"&gt;ExecReload&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/opt/nexus/bin/nexus restart&lt;/span&gt;
+&lt;span class="na"&gt;ExecStop&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/opt/nexus/bin/nexus stop&lt;/span&gt;
+
+&lt;span class="k"&gt;[Install]&lt;/span&gt;
+&lt;span class="na"&gt;WantedBy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;default.target&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start the service&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; nexus
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start nexus
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Open &lt;a href="http://nexus.intra.net:8081/nexus"&gt;http://nexus.intra.net:8081/nexus&lt;/a&gt; in your browser to configure Nexus&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Log in with administrator credential : username = admin and password = admin123&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Warning:&lt;/strong&gt; Change the default password.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a "Local Repository"&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-26_Nexus_Repository_OSS_01.png"/&gt;&lt;/p&gt;
+&lt;!--
+
+# User right management
+
+  * Privileges
+  * Roles : set of privileges and/or roles
+  * Users : set of roles
+      ==&gt; cf. schéma
+
+# Maven
+
+This section describe how to configure Maven on Gentoo Linux to use the Nexus repository.
+
+* Install maven
+
+
+wzxhzdk:10
+
+
+* Edit repository
+
+/usr/share/maven-bin-3.3/conf/settings.xml
+/home/didier/.m2/settings.xml
+/home/didier/.m2/repository
+
+--&gt;
+&lt;h1&gt;What still needs to be done&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Maven client&lt;/li&gt;
+&lt;li&gt;Right management&lt;/li&gt;
+&lt;li&gt;Enable HTTPS on Jetty (Especially for Secure Cookies)
+  &lt;!--   http://www.sonatype.org/nexus/2014/09/09/five-steps-to-securing-your-use-of-nexus/ --&gt;&lt;/li&gt;
+&lt;li&gt;Enable standard port for HTTPS (TCP/443 with nginx RP)&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Development tool"></category><category term="Debian"></category></entry><entry><title>Spring Roo</title><link href="http://didier.bernaudeau.net/Spring_Roo.html" rel="alternate"></link><published>2017-01-24T17:55:00+01:00</published><updated>2017-01-25T16:23:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-01-24:/Spring_Roo.html</id><summary type="html">&lt;p&gt;Spring ROO (Real Object Oriented) is an another framework provided by Pivotal for AOP (Aspect-Oriented Programming). This framework is based on AspectJ and suitable for DDD (Domain Driven Design).
+This tutorial describes how to install STS (Spring Tool Suite) and how to create a first application with Spring ROO.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Spring ROO (Real Object Oriented) is an another framework provided by Pivotal for AOP (Aspect-Oriented Programming). This framework is based on AspectJ and suitable for DDD (Domain Driven Design).
 This tutorial describes how to install STS (Spring Tool Suite) and how to create a first application with Spring ROO.&lt;/p&gt;
 
 &lt;h1&gt;Install the development tools&lt;/h1&gt;
@@ -31,7 +312,7 @@ This tutorial describes how to install STS (Spring Tool Suite) and how to create
 &lt;p&gt;Open STS and click on "Extensions" bottom tab and search "Spring Roo".&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Select "Spring Roo (current production release)" and "Spring IDE - (Roo extension)"and follow the intructions&lt;/p&gt;
+&lt;p&gt;Select "Spring Roo (current production release)" and "Spring IDE - (Roo extension)"and follow the instructions&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_00.png"/&gt;&lt;/p&gt;
@@ -120,7 +401,8 @@ http://docs.spring.io/spring-roo/docs/2.0.x/reference/html/#getting-started-inst
 http://jeremy-jeanne.developpez.com/tutoriels/spring/spring-roo/
 Add project Git :http://www.5balloons.info/adding-a-new-spring-maven-project-from-eclipse-to-git-repobitbucket/
 https://spring.io/guides
---&gt;</summary><category term="Framework"></category><category term="Java"></category><category term="Spring"></category></entry><entry><title>Jenkins</title><link href="http://didier.bernaudeau.net/Jenkins.html" rel="alternate"></link><updated>2017-01-21T21:08:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-01-21:Jenkins.html</id><summary type="html">&lt;p&gt;Jenkins is the main tool for continuous integration and continuous delivery. Indeed, this tool is in the center of a development pipeline because it is able to interact with a variety of tools (Git repository, source code analysis, ...). Jenkins, a fork of Hudson, is a open source software written in Java.&lt;/p&gt;
+--&gt;</content><category term="Framework"></category><category term="Java"></category><category term="Spring"></category></entry><entry><title>Jenkins</title><link href="http://didier.bernaudeau.net/Jenkins.html" rel="alternate"></link><published>2017-01-21T21:08:00+01:00</published><updated>2017-01-21T21:08:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-01-21:/Jenkins.html</id><summary type="html">&lt;p&gt;Jenkins is the main tool for continuous integration and continuous delivery. Indeed, this tool is in the center of a development pipeline because it is able to interact with a variety of tools (Git repository, source code analysis, ...). Jenkins, a fork of Hudson, is a open source software written in Java.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Jenkins is the main tool for continuous integration and continuous delivery. Indeed, this tool is in the center of a development pipeline because it is able to interact with a variety of tools (Git repository, source code analysis, ...). Jenkins, a fork of Hudson, is a open source software written in Java.&lt;/p&gt;
 
 &lt;h1&gt;Debian Stretch&lt;/h1&gt;
 &lt;ul&gt;
@@ -206,7 +488,8 @@ https://spring.io/guides
 &lt;ul&gt;
 &lt;li&gt;Reverse Proxy with authentication&lt;/li&gt;
 &lt;li&gt;Link to git repository (without technical account)&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Development tool"></category><category term="Debian"></category></entry><entry><title>Gogs (Go Git Service)</title><link href="http://didier.bernaudeau.net/Gogs_Go_Git_Service.html" rel="alternate"></link><updated>2017-01-23T14:36:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-01-18:Gogs_Go_Git_Service.html</id><summary type="html">&lt;p&gt;Gogs (Go Git Service) is a source code repository manager for Git, the famed VCS (Version Control System) or SCM (Source Control Management). It's a lightweight software written in Go that can run anywhere (Linux, Mac, ARM, ...). On top of that, Gogs is fully open source unlike GitLab! Thus, this post describes how to host your own private GitHub with &lt;a href="https://gogs.io"&gt;Gogs&lt;/a&gt;.&lt;/p&gt;
+&lt;/ul&gt;</content><category term="Development tool"></category><category term="Debian"></category></entry><entry><title>Gogs (Go Git Service)</title><link href="http://didier.bernaudeau.net/Gogs_Go_Git_Service.html" rel="alternate"></link><published>2017-01-18T17:23:00+01:00</published><updated>2017-01-23T14:36:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-01-18:/Gogs_Go_Git_Service.html</id><summary type="html">&lt;p&gt;Gogs (Go Git Service) is a source code repository manager for Git, the famed VCS (Version Control System) or SCM (Source Control Management). It's a lightweight software written in Go that can run anywhere (Linux, Mac, ARM, ...). On top of that, Gogs is fully open source unlike GitLab! Thus, this post describes how to host your own private GitHub with &lt;a href="https://gogs.io"&gt;Gogs&lt;/a&gt;.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Gogs (Go Git Service) is a source code repository manager for Git, the famed VCS (Version Control System) or SCM (Source Control Management). It's a lightweight software written in Go that can run anywhere (Linux, Mac, ARM, ...). On top of that, Gogs is fully open source unlike GitLab! Thus, this post describes how to host your own private GitHub with &lt;a href="https://gogs.io"&gt;Gogs&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p align="center"&gt;
 &lt;img class="img-responsive" src="images/2017-01-18_Gogs_Go_Git_Service.jpg"&gt;
@@ -261,7 +544,7 @@ https://spring.io/guides
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo openssl req -new -x509 -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 -sha256 -days &lt;span class="m"&gt;365&lt;/span&gt; -nodes -out /etc/nginx/tls/gogs.crt -keyout /etc/nginx/tls/gogs.key
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo chmod -R &lt;span class="m"&gt;600&lt;/span&gt; /etc/nginx/tls
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Warning:&lt;/strong&gt; a self signed certificate is for test purposes only. Don't do that on production environment where a certificate issued by a trusted certificate authority is needed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Warning:&lt;/strong&gt; a self signed certificate is for testing purposes only. Don't do that on production environment where a certificate issued by a trusted certificate authority is needed.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Set Nginx as the reverse proxy for Gogs.&lt;/li&gt;
 &lt;/ul&gt;
@@ -432,7 +715,9 @@ Application URL = https://gogs.intra.net
 &lt;ul&gt;
 &lt;li&gt;Change log repository (As is: /opt/GoApps/src/github.com/gogits/gogs/log)&lt;/li&gt;
 &lt;li&gt;Reverse proxy authentication by certificate&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Development tool"></category><category term="SCM"></category><category term="Debian"></category><category term="Go"></category><category term="Git"></category></entry><entry><title>How to install Java SE on Debian</title><link href="http://didier.bernaudeau.net/How_to_install_Java_SE_on_debian.html" rel="alternate"></link><updated>2017-01-13T17:47:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-01-12:How_to_install_Java_SE_on_debian.html</id><summary type="html">&lt;p&gt;Lately, install Java SE on Linux has become a nightmare because most of Linux distributions, such as Debian, have chosen to remove this package from official repositories due to license reasons.
+&lt;/ul&gt;</content><category term="Development tool"></category><category term="SCM"></category><category term="Debian"></category><category term="Go"></category><category term="Git"></category></entry><entry><title>How to install Java SE on Debian</title><link href="http://didier.bernaudeau.net/How_to_install_Java_SE_on_debian.html" rel="alternate"></link><published>2017-01-12T15:42:00+01:00</published><updated>2017-01-13T17:47:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-01-12:/How_to_install_Java_SE_on_debian.html</id><summary type="html">&lt;p&gt;Lately, install Java SE on Linux has become a nightmare because most of Linux distributions, such as Debian, have chosen to remove this package from official repositories due to license reasons.
+However, Java SE is needed for some applications which are not compatible with Open JRE / JDK. So, this post describes step by step how to install Java SE (JRE and JDK) provided by Oracle on Debian.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Lately, install Java SE on Linux has become a nightmare because most of Linux distributions, such as Debian, have chosen to remove this package from official repositories due to license reasons.
 However, Java SE is needed for some applications which are not compatible with Open JRE / JDK. So, this post describes step by step how to install Java SE (JRE and JDK) provided by Oracle on Debian.&lt;/p&gt;
 
 &lt;h1&gt;Java Package&lt;/h1&gt;
@@ -544,7 +829,8 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;h1&gt;Links&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://wiki.debian.org/JavaPackage"&gt;JavaPackage&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Debian"></category><category term="Java"></category></entry><entry><title>How to install Docker</title><link href="http://didier.bernaudeau.net/How_to_install_docker.html" rel="alternate"></link><updated>2016-11-10T23:34:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-11-10:How_to_install_docker.html</id><summary type="html">&lt;p&gt;Docker is the most famous application container engine. This post describes the best way to install docker on Debian Linux.&lt;/p&gt;
+&lt;/ul&gt;</content><category term="Debian"></category><category term="Java"></category></entry><entry><title>How to install Docker</title><link href="http://didier.bernaudeau.net/How_to_install_docker.html" rel="alternate"></link><published>2016-11-10T23:34:00+01:00</published><updated>2016-11-10T23:34:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-11-10:/How_to_install_docker.html</id><summary type="html">&lt;p&gt;Docker is the most famous application container engine. This post describes the best way to install docker on Debian Linux.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Docker is the most famous application container engine. This post describes the best way to install docker on Debian Linux.&lt;/p&gt;
 
 &lt;h1&gt;Add Docker's repository&lt;/h1&gt;
 &lt;ul&gt;
@@ -610,64 +896,58 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;Get information&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker inspect &amp;lt;CONTAINER ID&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Container"></category><category term="Debian"></category></entry><entry><title>How to install OVS (Open Virtual Swtich)</title><link href="http://didier.bernaudeau.net/How_to_install_OVS.html" rel="alternate"></link><updated>2016-10-14T23:08:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-09-05:How_to_install_OVS.html</id><summary type="html">&lt;p&gt;Open vSwitch is a virtual switch with advanced functionnality such as isolation (vlan), monitoring and automated control. This tutorial describes how to install Open vSwitch in kernel space and how to configure LibVirt to use a virtual switch with KVM guest.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Container"></category><category term="Debian"></category></entry><entry><title>How to install OVS (Open Virtual Swtich)</title><link href="http://didier.bernaudeau.net/How_to_install_OVS.html" rel="alternate"></link><published>2016-09-05T22:26:00+02:00</published><updated>2017-01-30T10:42:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-09-05:/How_to_install_OVS.html</id><summary type="html">&lt;p&gt;Open vSwitch is a virtual switch with advanced functionnality such as isolation (vlan), monitoring and automated control. This tutorial describes how to install Open vSwitch in kernel space and how to configure LibVirt to use a virtual switch with KVM guest.&lt;/p&gt;
+&lt;p&gt;However, there is a lot of functionality available with Open Virtual Switch that this article does not touch. You can setup VLAN tagging, QoS rules, create re-routing rules, block IP address, block ports, and much more. Feel free to reference online documentation and man pages if you are interested in adding complex functionality to the controller.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Open vSwitch is a virtual switch with advanced functionnality such as isolation (vlan), monitoring and automated control. This tutorial describes how to install Open vSwitch in kernel space and how to configure LibVirt to use a virtual switch with KVM guest.&lt;/p&gt;
+&lt;p&gt;However, there is a lot of functionality available with Open Virtual Switch that this article does not touch. You can setup VLAN tagging, QoS rules, create re-routing rules, block IP address, block ports, and much more. Feel free to reference online documentation and man pages if you are interested in adding complex functionality to the controller.&lt;/p&gt;
 
-&lt;h1&gt;Kernel configuration&lt;/h1&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;|[*] Networking support  ---&amp;gt;&lt;/span&gt;
-&lt;span class="go"&gt;|     | Networking options  ---&amp;gt;&lt;/span&gt;
-&lt;span class="go"&gt;|     |    | &amp;lt;*&amp;gt;   The IPv6 protocol  ---&amp;gt;&lt;/span&gt;
-&lt;span class="go"&gt;|     |    |         | [*] Network packet filtering framework (Netfilter)  ---&amp;gt;&lt;/span&gt;
-&lt;span class="go"&gt;|     |    |         |      | IPv6: Netfilter Configuration  ---&amp;gt;&lt;/span&gt;
-&lt;span class="go"&gt;|     |    |         |      |     | &amp;lt;*&amp;gt; IP6 tables support (required for filtering)&lt;/span&gt;
-&lt;span class="go"&gt;|     |    |         |      |     | &amp;lt;*&amp;gt;   "frag" Fragmentation header match support&lt;/span&gt;
-&lt;span class="go"&gt;|     |    |&lt;/span&gt;
-&lt;span class="go"&gt;|     |    | &amp;lt;*&amp;gt;   Open vSwitch&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;OVS Installation&lt;/h1&gt;
+&lt;h1&gt;Open Virtual Switch&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;Enable OVS 2.6 for kernel 4.4.6&lt;/li&gt;
+&lt;li&gt;Configure the kernel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;|[*] Networking support  ---&amp;gt;
+|     | Networking options  ---&amp;gt;
+|     |    | [*] Network packet filtering framework (Netfilter)  ---&amp;gt;
+|     |    |         | IPv6: Netfilter Configuration  ---&amp;gt;
+|     |    |         |      | &amp;lt;*&amp;gt; IP6 tables support (required for filtering)
+|     |    |         |      | &amp;lt;*&amp;gt;   "frag" Fragmentation header match support
+|     |    |
+|     |    | &amp;lt;*&amp;gt;   Open vSwitch
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Enable the version 2.6.1&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.keywords
-&lt;span class="go"&gt;net-misc/openvswitch-2.6.0             ~amd64&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;=net-misc/openvswitch-2.6.1             ~amd64
+=dev-python/ovs-2.6.1                   ~amd64
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Define compilation option&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.use
-&lt;span class="go"&gt;net-misc/openvswitch    -module&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;net-misc/openvswitch    -module
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;Edit ebuild&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /usr/portage/net-misc/openvswitch/openvswitch-2.6.0.ebuild
-&lt;span class="go"&gt;line 09: inherit eutils linux-info linux-mod python-single-r1 systemd autotools&lt;/span&gt;
-&lt;span class="go"&gt;line 51: use monitor &amp;amp;&amp;amp; python-single-r1_pkg_setup&lt;/span&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; ebuild /usr/portage/net-misc/openvswitch/openvswitch-2.6.0.ebuild manifest
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Install Open vSwitch&lt;/li&gt;
+&lt;li&gt;Install packages&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge openvswitch
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;Create database (path: /var/lib/openvswitch/conf.db)&lt;/li&gt;
+&lt;li&gt;Create database&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --config &lt;span class="o"&gt;=&lt;/span&gt;net-misc/openvswitch-2.6.0
-&lt;span class="gp"&gt;#&lt;/span&gt; ln /var/lib/openvswitch/conf.db /etc/openvswitch/conf.db
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --config &lt;span class="o"&gt;=&lt;/span&gt;net-misc/openvswitch-2.6.1
 &lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The file of this database is "/var/lib/openvswitch/conf.db".&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Copie script for systemd (If required)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; cp /usr/local/portage/net-misc/openvswitch/files/ovs-controller.service /usr/lib64/systemd/system/
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Create missing directory (If required)&lt;/li&gt;
+&lt;li&gt;Create missing directory&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mkdir /var/run/openvswitch/
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Disconnect cable interface via Network manager (If used)&lt;/p&gt;
+&lt;p&gt;Configure Network Manager (if used) : Disconnect "cable interface" and disabled "automatically connect".&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Start OpenSwitch&lt;/p&gt;
@@ -688,16 +968,17 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;Prints a brief overview of the switch database configuration&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; ovs-vsctl show
-&lt;span class="go"&gt;209fb6b8-d25b-4c1d-874c-0c75bccfca15&lt;/span&gt;
-&lt;span class="go"&gt;    Bridge "vbr0"&lt;/span&gt;
-&lt;span class="go"&gt;        Controller "ptcp:"&lt;/span&gt;
-&lt;span class="go"&gt;        Port "enp0s25"&lt;/span&gt;
-&lt;span class="go"&gt;            Interface "enp0s25"&lt;/span&gt;
-&lt;span class="go"&gt;        Port "vbr0"&lt;/span&gt;
-&lt;span class="go"&gt;            Interface "vbr0"&lt;/span&gt;
-&lt;span class="go"&gt;                type: internal&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;LibVirt configuration&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;209fb6b8-d25b-4c1d-874c-0c75bccfca15
+    Bridge "vbr0"
+        Controller "ptcp:"
+        Port "enp0s25"
+            Interface "enp0s25"
+        Port "vbr0"
+            Interface "vbr0"
+                type: internal
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;LibVirt&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Create an XML file to define a libvirt virtual network&lt;/li&gt;
 &lt;/ul&gt;
@@ -721,7 +1002,8 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl restart libvirtd.service
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Now, the virtual switch is available for the guest VM.&lt;/p&gt;</summary><category term="virtualization"></category><category term="Gentoo"></category></entry><entry><title>How to install Canon Selphy CP400</title><link href="http://didier.bernaudeau.net/How_to_install_canon_selphy_cp400.html" rel="alternate"></link><updated>2016-09-16T22:56:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-09-05:How_to_install_canon_selphy_cp400.html</id><summary type="html">&lt;p&gt;This tutorial describe how to install a portable photo printer (Canon Selphy CP400). This device is normaly use for direct printing with Canon compact digital camera. But, this uncommon printer is pretty well supported by cups with gutenprint driver.&lt;/p&gt;
+&lt;p&gt;Now, the virtual switch is available for the guest VM.&lt;/p&gt;</content><category term="virtualization"></category><category term="Gentoo"></category></entry><entry><title>How to install Canon Selphy CP400</title><link href="http://didier.bernaudeau.net/How_to_install_canon_selphy_cp400.html" rel="alternate"></link><published>2016-09-05T22:26:00+02:00</published><updated>2016-09-16T22:56:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-09-05:/How_to_install_canon_selphy_cp400.html</id><summary type="html">&lt;p&gt;This tutorial describe how to install a portable photo printer (Canon Selphy CP400). This device is normaly use for direct printing with Canon compact digital camera. But, this uncommon printer is pretty well supported by cups with gutenprint driver.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This tutorial describe how to install a portable photo printer (Canon Selphy CP400). This device is normaly use for direct printing with Canon compact digital camera. But, this uncommon printer is pretty well supported by cups with gutenprint driver.&lt;/p&gt;
 
 &lt;p align="center"&gt;
 &lt;img class="img-responsive" src="images/2016-09-10_How_to_install_canon_selphy_cp400_Printer.jpg"&gt;
@@ -787,7 +1069,8 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;Advanced : borderless = yes&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</summary><category term="hardware"></category><category term="cups"></category><category term="Gentoo"></category></entry><entry><title>How to create your PKI with EJBCA</title><link href="http://didier.bernaudeau.net/How_To_create_your_pki_with_EJBCA.html" rel="alternate"></link><updated>2016-07-06T18:18:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-07-06:How_To_create_your_pki_with_EJBCA.html</id><summary type="html">&lt;p&gt;This post describe step by step how to install EJBCA on Linux Debian with Wildfly 10. Then, create your Certificate Authority to issue certificate.&lt;/p&gt;
+&lt;/ul&gt;</content><category term="hardware"></category><category term="cups"></category><category term="Gentoo"></category></entry><entry><title>How to create your PKI with EJBCA</title><link href="http://didier.bernaudeau.net/How_To_create_your_pki_with_EJBCA.html" rel="alternate"></link><published>2016-07-06T18:18:00+02:00</published><updated>2016-07-06T18:18:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-07-06:/How_To_create_your_pki_with_EJBCA.html</id><summary type="html">&lt;p&gt;This post describe step by step how to install EJBCA on Linux Debian with Wildfly 10. Then, create your Certificate Authority to issue certificate.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post describe step by step how to install EJBCA on Linux Debian with Wildfly 10. Then, create your Certificate Authority to issue certificate.&lt;/p&gt;
 
 &lt;h1&gt;Install Debian&lt;/h1&gt;
 &lt;ul&gt;
@@ -1082,7 +1365,9 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;!-- https://www.ejbca.org/docs/installation.html#WildFly 10 --&gt;
 &lt;h2&gt;Error (To be solved)&lt;/h2&gt;
 &lt;p&gt;tail -f /opt/wildfly/standalone/log/server.log -n 10000 | grep ERROR&lt;/p&gt;
-&lt;p&gt;ERROR [org.jboss.msc.service.fail] (MSC service thread 1-1) MSC000001: Failed to start service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: org.jboss.msc.service.StartException in service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: WFLYDM0018: Unable to start service&lt;/p&gt;</summary><category term="Certificate"></category><category term="Debian"></category></entry><entry><title>How to migrate from OpenRC to SystemD</title><link href="http://didier.bernaudeau.net/How_to_migrate_from_OpenRC_to_SystemD.html" rel="alternate"></link><updated>2016-02-25T12:26:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-01-01:How_to_migrate_from_OpenRC_to_SystemD.html</id><summary type="html">&lt;p&gt;SystemD is an initialization system for Linux created in 2010. Now, most of Linux distribution (Debian, Arch, ...) use SystemD instead of original initialization system (sysvinit, upstart, ...).&lt;/p&gt;
+&lt;p&gt;ERROR [org.jboss.msc.service.fail] (MSC service thread 1-1) MSC000001: Failed to start service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: org.jboss.msc.service.StartException in service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: WFLYDM0018: Unable to start service&lt;/p&gt;</content><category term="Certificate"></category><category term="Debian"></category></entry><entry><title>How to migrate from OpenRC to SystemD</title><link href="http://didier.bernaudeau.net/How_to_migrate_from_OpenRC_to_SystemD.html" rel="alternate"></link><published>2016-01-01T19:20:00+01:00</published><updated>2016-02-25T12:26:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-01-01:/How_to_migrate_from_OpenRC_to_SystemD.html</id><summary type="html">&lt;p&gt;SystemD is an initialization system for Linux created in 2010. Now, most of Linux distribution (Debian, Arch, ...) use SystemD instead of original initialization system (sysvinit, upstart, ...).&lt;/p&gt;
+&lt;p&gt;However, the default initialization system used by Gentoo Linux is OpenRC which is slower than SystemD. This article describes how to replace OpenRC by SystemD on Gentoo Linux.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;SystemD is an initialization system for Linux created in 2010. Now, most of Linux distribution (Debian, Arch, ...) use SystemD instead of original initialization system (sysvinit, upstart, ...).&lt;/p&gt;
 &lt;p&gt;However, the default initialization system used by Gentoo Linux is OpenRC which is slower than SystemD. This article describes how to replace OpenRC by SystemD on Gentoo Linux.&lt;/p&gt;
 
 &lt;div class="section" id="kernel-configuration"&gt;
@@ -1174,7 +1459,9 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;span class="gp"&gt;#&lt;/span&gt; systemctl stop libvirtd
 &lt;/pre&gt;
 &lt;/div&gt;
-</summary><category term="Gentoo"></category></entry><entry><title>How to install Chromium with Flash support (Deprecated)</title><link href="http://didier.bernaudeau.net/How_to_install_Chromium_with_Flash_support.html" rel="alternate"></link><updated>2017-01-14T12:55:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-23:How_to_install_Chromium_with_Flash_support.html</id><summary type="html">&lt;p&gt;In 2012, Adobe has stopped to upgrade Flash Player for Linux. So, the last version of Flash Player plugin is 11.2 that will be maintained until 2017. To continue to take the advantage of Flash content, we must find an alternative solution.&lt;/p&gt;
+</content><category term="Gentoo"></category></entry><entry><title>How to install Chromium with Flash support (Deprecated)</title><link href="http://didier.bernaudeau.net/How_to_install_Chromium_with_Flash_support.html" rel="alternate"></link><published>2015-10-23T23:24:00+02:00</published><updated>2017-01-14T12:55:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-23:/How_to_install_Chromium_with_Flash_support.html</id><summary type="html">&lt;p&gt;In 2012, Adobe has stopped to upgrade Flash Player for Linux. So, the last version of Flash Player plugin is 11.2 that will be maintained until 2017. To continue to take the advantage of Flash content, we must find an alternative solution.&lt;/p&gt;
+&lt;p&gt;This tutorial describes how to install Chromium and the Flash Pepper Plugin (PPAPI) on Gentoo Linux and how to configure Chromium for graphic hardware acceleration.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;In 2012, Adobe has stopped to upgrade Flash Player for Linux. So, the last version of Flash Player plugin is 11.2 that will be maintained until 2017. To continue to take the advantage of Flash content, we must find an alternative solution.&lt;/p&gt;
 &lt;p&gt;This tutorial describes how to install Chromium and the Flash Pepper Plugin (PPAPI) on Gentoo Linux and how to configure Chromium for graphic hardware acceleration.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This tutorial is &lt;strong&gt;deprecated&lt;/strong&gt; because Google Chrome doesn't support Flash anymore. Even so, Adobe releases Flash Player 24 for Linux in December 2016. Now, all you have to do is to emerge the package "www-plugins/adobe-flash".&lt;/p&gt;
@@ -1220,7 +1507,8 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/pre&gt;
 &lt;p&gt;To get information about flash plugin, open &lt;a class="reference external" href="chrome://flash"&gt;chrome://flash&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="Gentoo"></category></entry><entry><title>How to install PulseAudio</title><link href="http://didier.bernaudeau.net/How_to_install_PulseAudio.html" rel="alternate"></link><updated>2015-10-19T17:24:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-19:How_to_install_PulseAudio.html</id><summary type="html">&lt;p&gt;A sound server is software that manages the use of and access to audio devices. There are many sound server (JACK Audio Connection Kit, Enlightened Sound Daemon, ...) but PulseAudio is now an integral part of all relevant modern Linux distributions. This tutorials describes how to install PulseAudio on Gentoo Linux.&lt;/p&gt;
+</content><category term="Gentoo"></category></entry><entry><title>How to install PulseAudio</title><link href="http://didier.bernaudeau.net/How_to_install_PulseAudio.html" rel="alternate"></link><published>2015-10-19T17:24:00+02:00</published><updated>2015-10-19T17:24:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-19:/How_to_install_PulseAudio.html</id><summary type="html">&lt;p&gt;A sound server is software that manages the use of and access to audio devices. There are many sound server (JACK Audio Connection Kit, Enlightened Sound Daemon, ...) but PulseAudio is now an integral part of all relevant modern Linux distributions. This tutorials describes how to install PulseAudio on Gentoo Linux.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;A sound server is software that manages the use of and access to audio devices. There are many sound server (JACK Audio Connection Kit, Enlightened Sound Daemon, ...) but PulseAudio is now an integral part of all relevant modern Linux distributions. This tutorials describes how to install PulseAudio on Gentoo Linux.&lt;/p&gt;
 
 &lt;div class="section" id="pulseaudio-architecture"&gt;
 &lt;h2&gt;PulseAudio Architecture&lt;/h2&gt;
@@ -1250,7 +1538,10 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;span class="gp"&gt;#&lt;/span&gt; emerge ffmpeg vlc kmix chromium
 &lt;/pre&gt;
 &lt;/div&gt;
-</summary><category term="Gentoo"></category></entry><entry><title>HowTo install a virtualization plateform with KVM</title><link href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html" rel="alternate"></link><updated>2016-05-19T19:52:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-09-15:howto_install_a_virtualization_plateform_with_KVM.html</id><summary type="html">&lt;p&gt;This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.&lt;/p&gt;
+</content><category term="Gentoo"></category></entry><entry><title>HowTo install a virtualization plateform with KVM</title><link href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html" rel="alternate"></link><published>2015-09-15T19:08:00+02:00</published><updated>2017-01-30T11:13:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-09-15:/howto_install_a_virtualization_plateform_with_KVM.html</id><summary type="html">&lt;p&gt;This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.&lt;/p&gt;
+&lt;p&gt;Then, LibVirt provides a convenient way to manage virtual machines on this plateform. LibVirt include an API library, a daemon (libvirtd), command line tools (virsh and virt-install) and a graphic tool (virt-manager). All these softwares are sponsorted by Red Hat.&lt;/p&gt;
+&lt;p&gt;Obviouly, this virtualization plateform uses Intel Virtualization Technologyy like VT-x (Virtualization Technology eXecution) and VT-d (Virtualization Technology for Directed I/O). KVM can also support VT-c (Intel® Virtualization Technology for Connectivity) but my laptop does not have this technology.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.&lt;/p&gt;
 &lt;p&gt;Then, LibVirt provides a convenient way to manage virtual machines on this plateform. LibVirt include an API library, a daemon (libvirtd), command line tools (virsh and virt-install) and a graphic tool (virt-manager). All these softwares are sponsorted by Red Hat.&lt;/p&gt;
 &lt;p&gt;Obviouly, this virtualization plateform uses Intel Virtualization Technologyy like VT-x (Virtualization Technology eXecution) and VT-d (Virtualization Technology for Directed I/O). KVM can also support VT-c (Intel® Virtualization Technology for Connectivity) but my laptop does not have this technology.&lt;/p&gt;
 
@@ -1346,7 +1637,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/pre&gt;
 &lt;p&gt;Add user in KVM group&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; gpasswd -a &amp;lt;username&amp;gt; kvm
+&lt;span class="gp"&gt;#&lt;/span&gt; gpasswd -a &amp;lt;username&amp;gt; libvirt kvm
 &lt;/pre&gt;
 &lt;p&gt;Start libvirtd&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
@@ -1380,7 +1671,8 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;img alt="Virt-Manager - NIC device model" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
 &lt;!-- vhost=on --&gt;
 &lt;/div&gt;
-</summary><category term="Gentoo"></category><category term="Virtualization"></category></entry><entry><title>How to create bootable USB flash drives with Rufus</title><link href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html" rel="alternate"></link><updated>2015-07-15T21:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-12:How_to_create_bootable_USB_flash_drives_with_Rufus.html</id><summary type="html">&lt;p&gt;This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp;amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.&lt;/p&gt;
+</content><category term="Gentoo"></category><category term="Virtualization"></category></entry><entry><title>How to create bootable USB flash drives with Rufus</title><link href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html" rel="alternate"></link><published>2015-07-12T12:32:00+02:00</published><updated>2015-07-15T21:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-12:/How_to_create_bootable_USB_flash_drives_with_Rufus.html</id><summary type="html">&lt;p&gt;This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp;amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp;amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.&lt;/p&gt;
 
 &lt;div class="section" id="install-rufus"&gt;
 &lt;h2&gt;Install Rufus&lt;/h2&gt;
@@ -1406,12 +1698,14 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary><category term="Windows"></category><category term="Linux"></category></entry><entry><title>HowTo configure the Linux kernel for Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html" rel="alternate"></link><updated>2016-05-29T17:35:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-16:HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html</id><summary type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
+</content><category term="Windows"></category><category term="Linux"></category></entry><entry><title>HowTo configure the Linux kernel for Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html" rel="alternate"></link><published>2015-06-16T22:10:00+02:00</published><updated>2017-01-27T18:55:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-16:/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html</id><summary type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
+&lt;p&gt;To get more information about the configuration of my laptop, you can read this article : &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html"&gt;Lenovo ThinkPad X240&lt;/a&gt;&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
 &lt;p&gt;To get more information about the configuration of my laptop, you can read this article : &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html"&gt;Lenovo ThinkPad X240&lt;/a&gt;&lt;/p&gt;
 
 &lt;div class="section" id="kernel-installation"&gt;
 &lt;h2&gt;Kernel installation&lt;/h2&gt;
-&lt;p&gt;Download kernel Gentoo sources (4.4.21) :&lt;/p&gt;
+&lt;p&gt;Download kernel Gentoo sources (4.4.39) :&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt; emerge sys-kernel/gentoo-sources
 &lt;/pre&gt;
@@ -1520,6 +1814,8 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;     &lt;span class="err"&gt;enable&lt;/span&gt; &lt;span class="err"&gt;powersave&lt;/span&gt; &lt;span class="err"&gt;by&lt;/span&gt; &lt;span class="err"&gt;default&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Generic&lt;/span&gt; &lt;span class="err"&gt;IEEE&lt;/span&gt; &lt;span class="err"&gt;802.11&lt;/span&gt; &lt;span class="err"&gt;Networking&lt;/span&gt; &lt;span class="err"&gt;Stack&lt;/span&gt; &lt;span class="err"&gt;(mac80211)&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Enable&lt;/span&gt; &lt;span class="err"&gt;LED&lt;/span&gt; &lt;span class="err"&gt;triggers&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;RF&lt;/span&gt; &lt;span class="err"&gt;switch&lt;/span&gt; &lt;span class="err"&gt;subsystem&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;Device&lt;/span&gt; &lt;span class="err"&gt;Drivers&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
@@ -1552,8 +1848,8 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt;     &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;(82586/82593/82596)&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;FDDI&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;USB&lt;/span&gt; &lt;span class="err"&gt;Network&lt;/span&gt; &lt;span class="err"&gt;Adapters&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;PHY&lt;/span&gt; &lt;span class="err"&gt;Device&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;infrastructure&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;USB&lt;/span&gt; &lt;span class="err"&gt;Network&lt;/span&gt; &lt;span class="err"&gt;Adapters&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Wireless&lt;/span&gt; &lt;span class="err"&gt;LAN&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;---&lt;/span&gt; &lt;span class="err"&gt;Wireless&lt;/span&gt; &lt;span class="err"&gt;LAN&lt;/span&gt;
@@ -1585,10 +1881,16 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;ICH&lt;/span&gt; &lt;span class="err"&gt;LPC&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Realtek&lt;/span&gt; &lt;span class="err"&gt;PCI-E&lt;/span&gt; &lt;span class="err"&gt;card&lt;/span&gt; &lt;span class="err"&gt;reader&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Multimedia&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Cameras/video&lt;/span&gt; &lt;span class="err"&gt;grabbers&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Media&lt;/span&gt; &lt;span class="err"&gt;USB&lt;/span&gt; &lt;span class="err"&gt;Adapters&lt;/span&gt;  &lt;span class="err"&gt;----&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;USB&lt;/span&gt; &lt;span class="err"&gt;Video&lt;/span&gt; &lt;span class="err"&gt;Class&lt;/span&gt; &lt;span class="err"&gt;(UVC)&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;     &lt;span class="err"&gt;UVC&lt;/span&gt; &lt;span class="err"&gt;input&lt;/span&gt; &lt;span class="err"&gt;events&lt;/span&gt; &lt;span class="err"&gt;device&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt; &lt;span class="err"&gt;(NEW)&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;GSPCA&lt;/span&gt; &lt;span class="err"&gt;based&lt;/span&gt; &lt;span class="err"&gt;webcams&lt;/span&gt;  &lt;span class="err"&gt;----&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Graphics&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Direct&lt;/span&gt; &lt;span class="err"&gt;Rendering&lt;/span&gt; &lt;span class="err"&gt;Manager&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Direct&lt;/span&gt; &lt;span class="err"&gt;Rendering&lt;/span&gt; &lt;span class="err"&gt;Manager&lt;/span&gt; &lt;span class="err"&gt;(XFree86&lt;/span&gt; &lt;span class="err"&gt;4.1.0&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;higher&lt;/span&gt; &lt;span class="err"&gt;DRI&lt;/span&gt; &lt;span class="err"&gt;support)&lt;/span&gt;  &lt;span class="err"&gt;---&lt;/span&gt;
-&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;8xx/9xx/G3x/G4x/HD&lt;/span&gt; &lt;span class="err"&gt;Graphics&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Direct&lt;/span&gt; &lt;span class="err"&gt;Rendering&lt;/span&gt; &lt;span class="err"&gt;Manager&lt;/span&gt; &lt;span class="err"&gt;(XFree86&lt;/span&gt; &lt;span class="err"&gt;4.1.0&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;higher&lt;/span&gt; &lt;span class="err"&gt;DRI&lt;/span&gt; &lt;span class="err"&gt;support)&lt;/span&gt;  &lt;span class="err"&gt;---&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;8xx/9xx/G3x/G4x/HD&lt;/span&gt; &lt;span class="err"&gt;Graphics&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Sound&lt;/span&gt; &lt;span class="err"&gt;card&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Advanced&lt;/span&gt; &lt;span class="err"&gt;Linux&lt;/span&gt; &lt;span class="err"&gt;Sound&lt;/span&gt; &lt;span class="err"&gt;Architecture&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
@@ -1783,7 +2085,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/pre&gt;
 &lt;p&gt;Copy kernel&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.4.21.efi
+&lt;span class="gp"&gt;#&lt;/span&gt; cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.4.39.efi
 &lt;/pre&gt;
 &lt;p&gt;Unmount ESP (EFI System Partition)&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
@@ -1798,7 +2100,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/pre&gt;
 &lt;p&gt;Add the new kernel&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr -c -d /dev/sda -p &lt;span class="m"&gt;2&lt;/span&gt; -L &lt;span class="s2"&gt;"Gentoo Linux 4.4.21"&lt;/span&gt; -l &lt;span class="s2"&gt;"\EFI\GentooLinux\4.4.21.efi"&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr -c -d /dev/sda -p &lt;span class="m"&gt;2&lt;/span&gt; -L &lt;span class="s2"&gt;"Gentoo Linux 4.4.39"&lt;/span&gt; -l &lt;span class="s2"&gt;"\EFI\GentooLinux\4.4.39.efi"&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Print the menu&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
@@ -1817,7 +2119,10 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Gentoo"></category></entry><entry><title>HowTo support FAT64 on Gentoo</title><link href="http://didier.bernaudeau.net/HowTo-support-FAT64-on-Gentoo.html" rel="alternate"></link><updated>2015-06-02T18:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-02:HowTo-support-FAT64-on-Gentoo.html</id><summary type="html">&lt;p&gt;FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32.&lt;/p&gt;
+</content><category term="Gentoo"></category></entry><entry><title>HowTo support FAT64 on Gentoo</title><link href="http://didier.bernaudeau.net/HowTo-support-FAT64-on-Gentoo.html" rel="alternate"></link><published>2015-06-02T18:10:00+02:00</published><updated>2015-06-02T18:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-02:/HowTo-support-FAT64-on-Gentoo.html</id><summary type="html">&lt;p&gt;FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32.&lt;/p&gt;
+&lt;p&gt;This file systen is supported by Microsoft Windows (XP, Vista, Seven,...), MacOS, Linux and Android. For linux, FAT64 is not supported directly in the kernel but with FUSE (Filesystem in UserSpacE).&lt;/p&gt;
+&lt;p&gt;This article describes step by step how to support FAT64 on Gentoo Linux.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32.&lt;/p&gt;
 &lt;p&gt;This file systen is supported by Microsoft Windows (XP, Vista, Seven,...), MacOS, Linux and Android. For linux, FAT64 is not supported directly in the kernel but with FUSE (Filesystem in UserSpacE).&lt;/p&gt;
 &lt;p&gt;This article describes step by step how to support FAT64 on Gentoo Linux.&lt;/p&gt;
 
@@ -1857,7 +2162,10 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Gentoo"></category></entry><entry><title>HowTo make a web site with Pelican hosted on GitHub Pages</title><link href="http://didier.bernaudeau.net/HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html" rel="alternate"></link><updated>2015-07-08T23:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-05-16:HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html</id><summary type="html">&lt;p&gt;Pelican is a static site generator writed in Python. This means that you edit the content on your computer with a simple text editor. Then, a generator makes all HTML pages for the web site, including indexes for articles, categories and tags. In the end, your web site can be hosted easily on a simple HTTP server like GitHub Pages or Amazon S3.&lt;/p&gt;
+</content><category term="Gentoo"></category></entry><entry><title>HowTo make a web site with Pelican hosted on GitHub Pages</title><link href="http://didier.bernaudeau.net/HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html" rel="alternate"></link><published>2015-05-16T22:20:00+02:00</published><updated>2015-07-08T23:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-05-16:/HowTo_make_a_web_site_with_Pelican_hosted_on_GitHub_Pages.html</id><summary type="html">&lt;p&gt;Pelican is a static site generator writed in Python. This means that you edit the content on your computer with a simple text editor. Then, a generator makes all HTML pages for the web site, including indexes for articles, categories and tags. In the end, your web site can be hosted easily on a simple HTTP server like GitHub Pages or Amazon S3.&lt;/p&gt;
+&lt;p&gt;Unlike other CMS (Content Management System) like Wordpress or Drupal, Pelican has no web administration interface. In most cases, the administration interface has many vulnerabilies used to deface the website.&lt;/p&gt;
+&lt;p&gt;This article describes step by step how to make your web site with Pelican 3.5 on Gentoo Linux and how to host your web site on GitHub Pages.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Pelican is a static site generator writed in Python. This means that you edit the content on your computer with a simple text editor. Then, a generator makes all HTML pages for the web site, including indexes for articles, categories and tags. In the end, your web site can be hosted easily on a simple HTTP server like GitHub Pages or Amazon S3.&lt;/p&gt;
 &lt;p&gt;Unlike other CMS (Content Management System) like Wordpress or Drupal, Pelican has no web administration interface. In most cases, the administration interface has many vulnerabilies used to deface the website.&lt;/p&gt;
 &lt;p&gt;This article describes step by step how to make your web site with Pelican 3.5 on Gentoo Linux and how to host your web site on GitHub Pages.&lt;/p&gt;
 
@@ -2077,4 +2385,4 @@ Password for 'https://didier-bernaudeau@github.com': *************************&l
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-</summary><category term="Pelican"></category><category term="Gentoo"></category></entry></feed>
+</content><category term="Pelican"></category><category term="Gentoo"></category></entry></feed>

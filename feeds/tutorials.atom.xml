@@ -1,5 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-02-03T13:34:00+01:00</updated><entry><title>Debian Stretch</title><link href="http://didier.bernaudeau.net/Debian_Stretch.html" rel="alternate"></link><published>2017-02-02T12:24:00+01:00</published><updated>2017-02-03T13:34:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-02-02:/Debian_Stretch.html</id><summary type="html">&lt;p&gt;Stretch is the 9th version of Debian Linux and succeed to Debian Jessie. This version is still in testing, but the transition freeze stage will begin on February 5th 2017 and should become stable in September 2017. This tutorials is a guideline to install and secure Debian Stretch (RC2).&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-04-12T21:37:00+02:00</updated><entry><title>How to install Docker on Gentoo</title><link href="http://didier.bernaudeau.net/How_to_install_Docker_on_Gentoo.html" rel="alternate"></link><published>2017-03-31T06:50:00+02:00</published><updated>2017-04-12T21:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-03-31:/How_to_install_Docker_on_Gentoo.html</id><summary type="html">&lt;p&gt;This post describes the linux kernel configuration for container support and the way to install Docker on Gentoo Linux.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post describes the linux kernel configuration for container support and the way to install Docker on Gentoo Linux.&lt;/p&gt;
+
+&lt;h1&gt;Kernel configuration&lt;/h1&gt;
+&lt;p&gt;This configuration is based on Gentoo Source 4.9.16.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; | General setup  ---&amp;gt;
+ |      |
+*|      | [*] POSIX Message Queues
+ |      | 
+*|      | -*- Control Group support  ---&amp;gt;
+ |      |      |
+*|      |      | [*]   Memory controller
+ |      |      | [*]     Swap controller
+ |      |      | [*]       Swap controller enabled by default
+ |      |      | [*]   IO controller
+ |      |      | 
+*|      |      | [*]   CPU controller  ---&amp;gt;
+ |      |      |        | [*]   Group scheduling for SCHED_OTHER
+ |      |      |        | [*]     CPU bandwidth provisioning for FAIR_GROUP_SCHED
+ |      |      |        | [*]   Group scheduling for SCHED_RR/FIFO
+ |      |      | 
+ |      |      | [*]   PIDs controller
+*|      |      | [*]   Freezer cgroup subsystem
+ |      |      | [*]   HugeTLB controller
+*|      |      | [*]   Cpuset support
+ |      |      | [*]     Include legacy /proc/&amp;lt;pid&amp;gt;/cpuset file
+*|      |      | [*]   Device controller for cgroups
+*|      |      | [*]   Simple CPU accounting cgroup subsystem
+ |      |      | [*]   Perf controller
+ |      | 
+*|      | -*- Namespaces support
+*|      | [*]   UTS namespace
+*|      | [*]   IPC namespace
+ |      | [*]   User namespace
+*|      | [*]   PID Namespaces
+*|      | [*]   Network namespace
+ |
+ | [*] Networking support  ---&amp;gt;
+ |      | Networking options  ---&amp;gt;
+ |      |      |
+*|      |      | &amp;lt;*&amp;gt; 802.1d Ethernet Bridging
+ |      |      |
+ |      |      | [*] Network packet filtering framework (Netfilter)  ---&amp;gt;
+ |      |      |        | 
+ |      |      |        | [*]   Advanced netfilter configuration
+*|      |      |        | [*]     Bridged IP/ARP packets filtering
+ |      |      |        | 
+ |      |      |        | Core Netfilter Configuration  ---&amp;gt;
+ |      |      |        |        | &amp;lt;*&amp;gt; Netfilter connection tracking support 
+ |      |      |        |        | *** Xtables matches ***
+*|      |      |        |        | &amp;lt;*&amp;gt;   "addrtype" address type match support
+*|      |      |        |        | &amp;lt;*&amp;gt;   "conntrack" connection tracking match support
+*|      |      |        |        | &amp;lt;*&amp;gt;   "ipvs" match support
+ |      |      |        | 
+ |      |      |        | &amp;lt;*&amp;gt;   IP virtual server support  ---&amp;gt;
+ |      |      |        | 
+ |      |      |        | IP: Netfilter Configuration  ---&amp;gt;
+ |      |      |        |         | &amp;lt;*&amp;gt; IPv4 connection tracking support (required for NAT)
+*|      |      |        |         | -*- IPv4 NAT
+ |      |      |        |         | -*-   IPv4 masquerade support
+ |      |      |        |         | &amp;lt;*&amp;gt; IP tables support (required for filtering/masq/NAT)
+*|      |      |        |         | &amp;lt;*&amp;gt;   Packet filtering
+*|      |      |        |         | &amp;lt;*&amp;gt;   iptables NAT support
+*|      |      |        |         | &amp;lt;*&amp;gt;     MASQUERADE target support
+ |      |      |        |         | &amp;lt;*&amp;gt;     NETMAP target support
+ |      |      |        |         | &amp;lt;*&amp;gt;     REDIRECT target support
+ |      |      |
+ |      |      | [*] QoS and/or fair queueing  ---&amp;gt; 
+ |      |      |        | &amp;lt;*&amp;gt;   Control Group Classifier
+ |      |      |
+ |      |      | [*] Network priority cgroup
+ |      |      | -*- Network classid cgroup
+ |
+ | Device Drivers  ---&amp;gt;
+ |      |
+ |      | [*] Multiple devices driver support (RAID and LVM)  ---&amp;gt;
+ |      |      | &amp;lt;*&amp;gt;   Device mapper support
+ |      |      | &amp;lt;*&amp;gt;     Thin provisioning target
+ |      |
+ |      | [*] Network device support  ---&amp;gt;
+ |      |      | [*]   Network core driver support
+*|      |      | &amp;lt;*&amp;gt;     Virtual ethernet pair device
+ |      |
+ |
+ | File systems  ---&amp;gt;
+ |      | &amp;lt;*&amp;gt; Overlay filesystem support 
+ |      | Pseudo filesystems  ---&amp;gt;
+ |      |      | [*] HugeTLB file system support
+ |
+ | Security options  ---&amp;gt;
+ |      | [*] Enable access key retention support
+ |      | [*]   Enable register of persistent per-UID keyrings
+ |      | &amp;lt;*&amp;gt;   ENCRYPTED KEYS
+ |      | [*]   Diffie-Hellman operations on retained keys
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;* mandatory option&lt;/p&gt;
+&lt;h1&gt;Docker installation&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Emerge docker&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --ask --verbose app-emulation/docker
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Check kernel configuration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;exec&lt;/span&gt; /usr/share/docker/contrib/check-config.sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start docker daemon&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl start docker.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;test&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker run --rm hello-world
+&lt;span class="gp"&gt;#&lt;/span&gt; docker run -it ubuntu bash
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Container"></category><category term="Docker"></category><category term="Gentoo"></category></entry><entry><title>Spring Tool Suite</title><link href="http://didier.bernaudeau.net/Spring_Tool_Suite.html" rel="alternate"></link><published>2017-03-26T12:12:00+02:00</published><updated>2017-03-26T12:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-03-26:/Spring_Tool_Suite.html</id><summary type="html">&lt;p&gt;STS (Spring Tool Suite) is an IDE (Integrated Development Environment) provided by Pivotal. STS is an Eclipse-based that is customized to develop application based on Spring framework. This tutorial describes how to install Spring Tool Suite and additional framework provided by Pivotal.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;STS (Spring Tool Suite) is an IDE (Integrated Development Environment) provided by Pivotal. STS is an Eclipse-based that is customized to develop application based on Spring framework. This tutorial describes how to install Spring Tool Suite and additional framework provided by Pivotal.&lt;/p&gt;
+
+&lt;h1&gt;Spring Tool Suite&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install maven&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge dev-java/maven-bin
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Download Spring Tool Suite&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://download.springsource.com/release/STS/3.8.3.RELEASE/dist/e4.6/spring-tool-suite-3.8.3.RELEASE-e4.6.2-linux-gtk-x86_64.tar.gz
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Spring Tool Suite&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; tar xvzf spring-tool-suite-3.8.3.RELEASE-e4.6.2-linux-gtk-x86_64.tar.gz
+&lt;span class="gp"&gt;$&lt;/span&gt; mv sts-bundle spring-tool-suite
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;warning:&lt;/strong&gt; the user must have write access in this directory. So, you can't install this software in "opt" directory for all users.&lt;/p&gt;
+&lt;h1&gt;Spring ROO&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Download Spring ROO&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://spring-roo-repository.springsource.org.s3.amazonaws.com/release/ROO/spring-roo-1.3.2.RELEASE.zip
+&lt;span class="gp"&gt;$&lt;/span&gt; unzip spring-roo-1.3.2.RELEASE.zip -d /mnt/data/spring-tool-suite/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Open STS and click on "Extensions" bottom tab and search "Spring Roo".&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Select "Spring Roo (current production release)" and "Spring IDE - (Roo extension)"and follow the instructions&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_00.png"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_01.png"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_02.png"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_03.png"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_04.png"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_05.png"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_06.png"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_07.png"/&gt;&lt;/p&gt;</content><category term="Java"></category><category term="Spring"></category></entry><entry><title>Debian Stretch</title><link href="http://didier.bernaudeau.net/Debian_Stretch.html" rel="alternate"></link><published>2017-02-02T12:24:00+01:00</published><updated>2017-03-22T17:29:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-02-02:/Debian_Stretch.html</id><summary type="html">&lt;p&gt;Stretch is the 9th version of Debian Linux and succeed to Debian Jessie. This version is still in testing, but the transition freeze stage will begin on February 5th 2017 and should become stable in September 2017. This tutorials is a guideline to install and secure Debian Stretch (RC2).&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Stretch is the 9th version of Debian Linux and succeed to Debian Jessie. This version is still in testing, but the transition freeze stage will begin on February 5th 2017 and should become stable in September 2017. This tutorials is a guideline to install and secure Debian Stretch (RC2).&lt;/p&gt;
 
 &lt;h1&gt;Installation&lt;/h1&gt;
@@ -40,6 +200,23 @@
 &lt;li&gt;Update system&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; sudo apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get upgrade
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Useful tools&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Curl&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y curl
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Network configuration&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Show IP address&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo ip address show
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Set IP address&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo ip addr add 192.168.10.1 dev ens3
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;What still needs to be done&lt;/h1&gt;
 &lt;ul&gt;
@@ -278,51 +455,9 @@ This section describe how to configure Maven on Gentoo Linux to use the Nexus re
 &lt;li&gt;Enable HTTPS on Jetty (Especially for Secure Cookies)
   &lt;!--   http://www.sonatype.org/nexus/2014/09/09/five-steps-to-securing-your-use-of-nexus/ --&gt;&lt;/li&gt;
 &lt;li&gt;Enable standard port for HTTPS (TCP/443 with nginx RP)&lt;/li&gt;
-&lt;/ul&gt;</content><category term="Development tool"></category><category term="Debian"></category></entry><entry><title>Spring Roo</title><link href="http://didier.bernaudeau.net/Spring_Roo.html" rel="alternate"></link><published>2017-01-24T17:55:00+01:00</published><updated>2017-01-25T16:23:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-01-24:/Spring_Roo.html</id><summary type="html">&lt;p&gt;Spring ROO (Real Object Oriented) is an another framework provided by Pivotal for AOP (Aspect-Oriented Programming). This framework is based on AspectJ and suitable for DDD (Domain Driven Design).
-This tutorial describes how to install STS (Spring Tool Suite) and how to create a first application with Spring ROO.&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;Spring ROO (Real Object Oriented) is an another framework provided by Pivotal for AOP (Aspect-Oriented Programming). This framework is based on AspectJ and suitable for DDD (Domain Driven Design).
-This tutorial describes how to install STS (Spring Tool Suite) and how to create a first application with Spring ROO.&lt;/p&gt;
+&lt;/ul&gt;</content><category term="Development tool"></category><category term="Debian"></category></entry><entry><title>Spring Roo</title><link href="http://didier.bernaudeau.net/Spring_Roo.html" rel="alternate"></link><published>2017-01-24T17:55:00+01:00</published><updated>2017-01-25T16:23:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-01-24:/Spring_Roo.html</id><summary type="html">&lt;p&gt;Spring ROO (Real Object Oriented) is an another framework provided by Pivotal for AOP (Aspect-Oriented Programming). This framework is based on AspectJ and suitable for DDD (Domain Driven Design). This tutorial describes how to create a first application with Spring ROO.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Spring ROO (Real Object Oriented) is an another framework provided by Pivotal for AOP (Aspect-Oriented Programming). This framework is based on AspectJ and suitable for DDD (Domain Driven Design). This tutorial describes how to create a first application with Spring ROO.&lt;/p&gt;
 
-&lt;h1&gt;Install the development tools&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Install maven&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge dev-java/maven-bin
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Download Spring Tool Suite&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://download.springsource.com/release/STS/3.8.3.RELEASE/dist/e4.6/spring-tool-suite-3.8.3.RELEASE-e4.6.2-linux-gtk-x86_64.tar.gz
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Install Spring Tool Suite&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; tar xvzf spring-tool-suite-3.8.3.RELEASE-e4.6.2-linux-gtk-x86_64.tar.gz
-&lt;span class="gp"&gt;$&lt;/span&gt; mv sts-bundle spring-tool-suite
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;warning:&lt;/strong&gt; the user must have write access in this directory. So, you can't install this software in "opt" directory for all users.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Download Spring ROO&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://spring-roo-repository.springsource.org.s3.amazonaws.com/release/ROO/spring-roo-1.3.2.RELEASE.zip
-&lt;span class="gp"&gt;$&lt;/span&gt; unzip spring-roo-1.3.2.RELEASE.zip -d /mnt/data/spring-tool-suite/
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Open STS and click on "Extensions" bottom tab and search "Spring Roo".&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Select "Spring Roo (current production release)" and "Spring IDE - (Roo extension)"and follow the instructions&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_00.png"/&gt;&lt;/p&gt;
-&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_01.png"/&gt;&lt;/p&gt;
-&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_02.png"/&gt;&lt;/p&gt;
-&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_03.png"/&gt;&lt;/p&gt;
-&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_04.png"/&gt;&lt;/p&gt;
-&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_05.png"/&gt;&lt;/p&gt;
-&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_06.png"/&gt;&lt;/p&gt;
-&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_07.png"/&gt;&lt;/p&gt;
 &lt;h1&gt;Develop an application : BurgerShop&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Create a project : File &amp;gt; New &amp;gt; Spring ROO Project&lt;/li&gt;
@@ -1002,7 +1137,36 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl restart libvirtd.service
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Now, the virtual switch is available for the guest VM.&lt;/p&gt;</content><category term="virtualization"></category><category term="Gentoo"></category></entry><entry><title>How to install Canon Selphy CP400</title><link href="http://didier.bernaudeau.net/How_to_install_canon_selphy_cp400.html" rel="alternate"></link><published>2016-09-05T22:26:00+02:00</published><updated>2016-09-16T22:56:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-09-05:/How_to_install_canon_selphy_cp400.html</id><summary type="html">&lt;p&gt;This tutorial describe how to install a portable photo printer (Canon Selphy CP400). This device is normaly use for direct printing with Canon compact digital camera. But, this uncommon printer is pretty well supported by cups with gutenprint driver.&lt;/p&gt;
+&lt;p&gt;Now, the virtual switch is available for the guest VM.&lt;/p&gt;
+&lt;!--
+
+# Addendum: Local Switch
+
+* Create a virtual switch
+
+
+wzxhzdk:15
+
+
+* Prints a brief overview of the switch database configuration
+
+
+wzxhzdk:16
+
+
+* Create an XML file to define a libvirt virtual network
+
+
+wzxhzdk:17
+
+
+* Create network in LibVirt
+
+
+wzxhzdk:18
+
+
+--&gt;</content><category term="virtualization"></category><category term="Gentoo"></category></entry><entry><title>How to install Canon Selphy CP400</title><link href="http://didier.bernaudeau.net/How_to_install_canon_selphy_cp400.html" rel="alternate"></link><published>2016-09-05T22:26:00+02:00</published><updated>2016-09-16T22:56:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-09-05:/How_to_install_canon_selphy_cp400.html</id><summary type="html">&lt;p&gt;This tutorial describe how to install a portable photo printer (Canon Selphy CP400). This device is normaly use for direct printing with Canon compact digital camera. But, this uncommon printer is pretty well supported by cups with gutenprint driver.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This tutorial describe how to install a portable photo printer (Canon Selphy CP400). This device is normaly use for direct printing with Canon compact digital camera. But, this uncommon printer is pretty well supported by cups with gutenprint driver.&lt;/p&gt;
 
 &lt;p align="center"&gt;
@@ -1705,7 +1869,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 
 &lt;div class="section" id="kernel-installation"&gt;
 &lt;h2&gt;Kernel installation&lt;/h2&gt;
-&lt;p&gt;Download kernel Gentoo sources (4.4.39) :&lt;/p&gt;
+&lt;p&gt;Download kernel Gentoo sources (4.9.16) :&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt; emerge sys-kernel/gentoo-sources
 &lt;/pre&gt;
@@ -1821,6 +1985,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;     &lt;span class="err"&gt;Generic&lt;/span&gt; &lt;span class="err"&gt;Driver&lt;/span&gt; &lt;span class="err"&gt;Options&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;]&lt;/span&gt; &lt;span class="err"&gt;Prevent&lt;/span&gt; &lt;span class="err"&gt;firmware&lt;/span&gt; &lt;span class="err"&gt;from&lt;/span&gt; &lt;span class="err"&gt;being&lt;/span&gt; &lt;span class="err"&gt;built&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;-*-&lt;/span&gt; &lt;span class="err"&gt;Userspace&lt;/span&gt; &lt;span class="err"&gt;firmware&lt;/span&gt; &lt;span class="err"&gt;loading&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Include&lt;/span&gt; &lt;span class="err"&gt;in-kernel&lt;/span&gt; &lt;span class="err"&gt;firmware&lt;/span&gt; &lt;span class="err"&gt;blobs&lt;/span&gt; &lt;span class="err"&gt;in&lt;/span&gt; &lt;span class="err"&gt;kernel&lt;/span&gt; &lt;span class="err"&gt;binary&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;(iwlwifi-7260-17.ucode)&lt;/span&gt; &lt;span class="err"&gt;External&lt;/span&gt; &lt;span class="err"&gt;firmware&lt;/span&gt; &lt;span class="err"&gt;blobs&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;build&lt;/span&gt; &lt;span class="err"&gt;into&lt;/span&gt; &lt;span class="err"&gt;the&lt;/span&gt; &lt;span class="err"&gt;kernel&lt;/span&gt; &lt;span class="err"&gt;binary&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;(/lib/firmware)&lt;/span&gt; &lt;span class="err"&gt;Firmware&lt;/span&gt; &lt;span class="err"&gt;blobs&lt;/span&gt; &lt;span class="err"&gt;root&lt;/span&gt; &lt;span class="err"&gt;directory&lt;/span&gt;
@@ -1940,6 +2105,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;LPSS&lt;/span&gt; &lt;span class="err"&gt;PWM&lt;/span&gt; &lt;span class="err"&gt;platform&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Generic&lt;/span&gt; &lt;span class="err"&gt;powercap&lt;/span&gt; &lt;span class="err"&gt;sysfs&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;Intel&lt;/span&gt; &lt;span class="err"&gt;RAPL&lt;/span&gt; &lt;span class="err"&gt;Support&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;    &lt;span class="err"&gt;File&lt;/span&gt; &lt;span class="err"&gt;systems&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
@@ -2085,7 +2251,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/pre&gt;
 &lt;p&gt;Copy kernel&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.4.39.efi
+&lt;span class="gp"&gt;#&lt;/span&gt; cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.9.16.efi
 &lt;/pre&gt;
 &lt;p&gt;Unmount ESP (EFI System Partition)&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
@@ -2100,7 +2266,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/pre&gt;
 &lt;p&gt;Add the new kernel&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr -c -d /dev/sda -p &lt;span class="m"&gt;2&lt;/span&gt; -L &lt;span class="s2"&gt;"Gentoo Linux 4.4.39"&lt;/span&gt; -l &lt;span class="s2"&gt;"\EFI\GentooLinux\4.4.39.efi"&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr -c -d /dev/sda -p &lt;span class="m"&gt;2&lt;/span&gt; -L &lt;span class="s2"&gt;"Gentoo Linux 4.9.16"&lt;/span&gt; -l &lt;span class="s2"&gt;"\EFI\GentooLinux\4.9.16.efi"&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Print the menu&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;

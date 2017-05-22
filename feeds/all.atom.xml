@@ -1,7 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-04-12T21:37:00+02:00</updated><entry><title>Docker Cheat Sheet</title><link href="http://didier.bernaudeau.net/Docker_cheat_sheet.html" rel="alternate"></link><published>2017-04-12T21:29:00+02:00</published><updated>2017-04-12T21:29:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-04-12:/Docker_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a quick reference sheet in one page for Docker&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-05-21T10:37:00+02:00</updated><entry><title>Update GCC on Gentoo Linux</title><link href="http://didier.bernaudeau.net/Update_GCC_on_Gentoo_Linux.html" rel="alternate"></link><published>2017-05-21T10:37:00+02:00</published><updated>2017-05-21T10:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-21:/Update_GCC_on_Gentoo_Linux.html</id><summary type="html">&lt;p&gt;GCC, the GNU Compiler Collection, is an essential tool on Gentoo Linux to compile, build then install packages. This post is a quick reminder to update GGC, a sensitive operation on Gentoo.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;GCC, the GNU Compiler Collection, is an essential tool on Gentoo Linux to compile, build then install packages. This post is a quick reminder to update GGC, a sensitive operation on Gentoo.&lt;/p&gt;
+
+&lt;h1&gt;Update GCC&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install the last version&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge -u sys-devel/gcc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Print installed version of GCC&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; gcc-config --list-profiles
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[1] x86_64-pc-linux-gnu-4.9.4 *
+[2] x86_64-pc-linux-gnu-5.4.0
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Switch compiler version &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; gcc-config 2
+&lt;span class="gp"&gt;#&lt;/span&gt; env-update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nb"&gt;source&lt;/span&gt; /etc/profile
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Common compilation errors&lt;/h1&gt;
+&lt;p&gt;After GCC update, the ABI uses for binary applications and libraries is changed. You will risk getting linker errors or malfunctioning programs unless you rebuild all libraries that use C++ code.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cmis_repo_content.cxx:(.text+0x4bb7): undefined reference to `libcmis::Repository::getId[abi:cxx11]() const'
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;or&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/usr/include/xapian/version.h:32:2: warning: #warning The Xapian library was built with g++ 4.9.4 [-Wcpp]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Rebuild&lt;/h1&gt;
+&lt;p&gt;Some people swear that they need to rebuild every single package on their system when a new GCC version is made available. Of course, that doesn't make sense, since there are many applications that are not using GCC for their build and install process anyhow, so they would never be affected by such changes.&lt;/p&gt;
+&lt;p&gt;Below, some packages for which rebuild is requires :&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --oneshot -pv media-gfx/exiv2 dev-libs/re2 dev-libs/boost dev-util/cppunit dev-cpp/libcmis dev-libs/liborcus dev-libs/xapian
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Gentoo"></category></entry><entry><title>Docker Cheat Sheet</title><link href="http://didier.bernaudeau.net/Docker_cheat_sheet.html" rel="alternate"></link><published>2017-04-12T21:29:00+02:00</published><updated>2017-04-12T21:29:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-04-12:/Docker_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a quick reference sheet in one page for Docker&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post is a quick reference sheet in one page for Docker&lt;/p&gt;
 
+&lt;h1&gt;Container&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Creates and start a container in one operation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker run -td -p 127.0.0.1:$HOSTPORT:&lt;span class="nv"&gt;$C&lt;/span&gt;ONTAINERPORT -v $HOSTDIR:&lt;span class="nv"&gt;$D&lt;/span&gt;OCKERDIR
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Options:
+&lt;em&gt; -t allocates a pseudo-TTY session
+&lt;/em&gt; -d runs container in background
+&lt;em&gt; -p maps the container port to the host port 
+&lt;/em&gt; -v maps a directory on the host to a docker container&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Show running containers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker ps
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES                     
+f91ce070d170        postgres:9.6        "docker-entrypoint.sh"   2 minutes ago       Up 2 minutes        0.0.0.0:5432-&amp;gt;5432/tcp   stupefied_easley
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Stop a running container&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker stop
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Image&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Show all images&lt;/li&gt;
@@ -65,7 +123,8 @@ e6ba45aff418        bridge              bridge              local
         "Labels": {}
     }
 ]
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Container"></category><category term="Docker"></category></entry><entry><title>How to install Docker on Gentoo</title><link href="http://didier.bernaudeau.net/How_to_install_Docker_on_Gentoo.html" rel="alternate"></link><published>2017-03-31T06:50:00+02:00</published><updated>2017-04-12T21:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-03-31:/How_to_install_Docker_on_Gentoo.html</id><summary type="html">&lt;p&gt;This post describes the linux kernel configuration for container support and the way to install Docker on Gentoo Linux.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- https://github.com/wsargent/docker-cheat-sheet --&gt;</content><category term="Container"></category><category term="Docker"></category></entry><entry><title>How to install Docker on Gentoo</title><link href="http://didier.bernaudeau.net/How_to_install_Docker_on_Gentoo.html" rel="alternate"></link><published>2017-03-31T06:50:00+02:00</published><updated>2017-04-12T21:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-03-31:/How_to_install_Docker_on_Gentoo.html</id><summary type="html">&lt;p&gt;This post describes the linux kernel configuration for container support and the way to install Docker on Gentoo Linux.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post describes the linux kernel configuration for container support and the way to install Docker on Gentoo Linux.&lt;/p&gt;
 
 &lt;h1&gt;Kernel configuration&lt;/h1&gt;
@@ -165,7 +224,7 @@ e6ba45aff418        bridge              bridge              local
 &lt;ul&gt;
 &lt;li&gt;Emerge docker&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --ask --verbose app-emulation/docker
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge app-emulation/docker
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Check kernel configuration&lt;/li&gt;
@@ -182,7 +241,22 @@ e6ba45aff418        bridge              bridge              local
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker run --rm hello-world
 &lt;span class="gp"&gt;#&lt;/span&gt; docker run -it ubuntu bash
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Container"></category><category term="Docker"></category><category term="Gentoo"></category></entry><entry><title>Spring Tool Suite</title><link href="http://didier.bernaudeau.net/Spring_Tool_Suite.html" rel="alternate"></link><published>2017-03-26T12:12:00+02:00</published><updated>2017-03-26T12:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-03-26:/Spring_Tool_Suite.html</id><summary type="html">&lt;p&gt;STS (Spring Tool Suite) is an IDE (Integrated Development Environment) provided by Pivotal. STS is an Eclipse-based that is customized to develop application based on Spring framework. This tutorial describes how to install Spring Tool Suite and additional framework provided by Pivotal.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Docker tools&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge app-emulation/docker-compose
+&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- * Messages for package app-emulation/docker-17.03.1:
+
+ *   CONFIG_BLK_DEV_THROTTLING:  is not set when it should be.
+ *   CONFIG_CFQ_GROUP_IOSCHED:   is not set when it should be.
+ *   CONFIG_IP_VS_PROTO_TCP:     is not set when it should be.
+ *   CONFIG_IP_VS_PROTO_UDP:     is not set when it should be.
+ *   CONFIG_IP_VS_NFCT:  is not set when it should be.
+ *   CONFIG_IP_VS_RR:    is not set when it should be.
+ *   CONFIG_VXLAN:       is not set when it should be.
+ *   CONFIG_IPVLAN:      is not set when it should be.
+ *   CONFIG_MACVLAN:     is not set when it should be.
+ *   CONFIG_DUMMY:       is not set when it should be.--&gt;</content><category term="Container"></category><category term="Docker"></category><category term="Gentoo"></category></entry><entry><title>Spring Tool Suite</title><link href="http://didier.bernaudeau.net/Spring_Tool_Suite.html" rel="alternate"></link><published>2017-03-26T12:12:00+02:00</published><updated>2017-03-26T12:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-03-26:/Spring_Tool_Suite.html</id><summary type="html">&lt;p&gt;STS (Spring Tool Suite) is an IDE (Integrated Development Environment) provided by Pivotal. STS is an Eclipse-based that is customized to develop application based on Spring framework. This tutorial describes how to install Spring Tool Suite and additional framework provided by Pivotal.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;STS (Spring Tool Suite) is an IDE (Integrated Development Environment) provided by Pivotal. STS is an Eclipse-based that is customized to develop application based on Spring framework. This tutorial describes how to install Spring Tool Suite and additional framework provided by Pivotal.&lt;/p&gt;
 
 &lt;h1&gt;Spring Tool Suite&lt;/h1&gt;
@@ -1696,7 +1770,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;p&gt;ERROR [org.jboss.msc.service.fail] (MSC service thread 1-1) MSC000001: Failed to start service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: org.jboss.msc.service.StartException in service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: WFLYDM0018: Unable to start service&lt;/p&gt;</content><category term="Certificate"></category><category term="Debian"></category></entry><entry><title>Press review of July 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_July_2016.html" rel="alternate"></link><published>2016-07-01T21:11:00+02:00</published><updated>2016-07-25T22:21:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-07-01:/Press_review_of_July_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -1798,7 +1872,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;&lt;a class="reference external" href="http://www.tripwire.com/state-of-security/featured/boobytrapped-printers-windows-malware/"&gt;How boobytrapped printers have been able to infect Windows PCs for over 20 years&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="last img-responsive first" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="first last img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;07/13/2016&lt;/td&gt;
@@ -1902,7 +1976,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 </content><category term="Press review"></category></entry><entry><title>Press review of June 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_June_2016.html" rel="alternate"></link><published>2016-06-01T22:44:00+02:00</published><updated>2016-07-22T22:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-06-01:/Press_review_of_June_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -2108,7 +2182,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;&lt;a class="reference external" href="https://blog.bity.com/la-faille-de-the-dao-les-cles-pour-comprendre/"&gt;La faille de The DAO : les clés pour comprendre&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="last img-responsive first" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="first last img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;06/20/2016&lt;/td&gt;
@@ -2136,7 +2210,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;&lt;a class="reference external" href="http://www.ibtimes.co.uk/ukrainian-bank-cyber-heist-hackers-compromise-swift-network-10m-theft-1567699"&gt;Ukrainian bank cyber-heist: Hackers take off with $10m&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="last img-responsive first" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="first last img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;06/28/2016&lt;/td&gt;
@@ -2244,7 +2318,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 </content><category term="Press review"></category></entry><entry><title>Press review of May 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_May_2016.html" rel="alternate"></link><published>2016-05-01T23:20:00+02:00</published><updated>2016-06-21T22:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-05-01:/Press_review_of_May_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -2649,7 +2723,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 
 &lt;div class="section" id="basic-certificate-field"&gt;
 &lt;h2&gt;Basic certificate field&lt;/h2&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
 &lt;col width="89%"&gt;&lt;/col&gt;
@@ -2671,7 +2745,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="certificate-extension"&gt;
 &lt;h2&gt;Certificate extension&lt;/h2&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="12%"&gt;&lt;/col&gt;
 &lt;col width="88%"&gt;&lt;/col&gt;
@@ -2710,7 +2784,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 </content><category term="Certificate"></category></entry><entry><title>Press review of April 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_April_2016.html" rel="alternate"></link><published>2016-04-01T21:24:00+02:00</published><updated>2016-04-18T22:37:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-04-01:/Press_review_of_April_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -2763,7 +2837,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://reflets.info/panamapapers-mossack-fonseca-une-incroyable-bourde/"&gt;#PanamaPapers : Mossack Fonseca une incroyable bourde ?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="last img-responsive first" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="first last img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;04/04/2016&lt;/td&gt;
@@ -2854,7 +2928,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.theregister.co.uk/2016/04/13/burr_feinstein_antiencryption_bill_is_out/"&gt;Line by line, how the US anti-encryption bill will kill our privacy, security&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="last img-responsive first" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="first last img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;04/07/2016&lt;/td&gt;
@@ -2985,7 +3059,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://www.theguardian.com/technology/2016/apr/19/ss7-hack-explained-mobile-phone-vulnerability-snooping-texts-calls"&gt;SS7 hack explained: what can you do about it?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="last img-responsive first" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="first last img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;04/18/2016&lt;/td&gt;
@@ -3070,7 +3144,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 </content><category term="Press review"></category></entry><entry><title>Press review of Mars 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_Mars_2016.html" rel="alternate"></link><published>2016-03-01T22:25:00+01:00</published><updated>2016-04-18T20:22:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-03-01:/Press_review_of_Mars_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -3716,7 +3790,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 </content><category term="Software"></category></entry><entry><title>Press review of February 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_February_2016.html" rel="alternate"></link><published>2016-02-01T22:55:00+01:00</published><updated>2016-03-07T22:36:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-02-01:/Press_review_of_February_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -4196,7 +4270,7 @@ Vulnerability&lt;/td&gt;
 </content><category term="Press review"></category></entry><entry><title>Press review of January 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_January_2016.html" rel="alternate"></link><published>2016-01-01T22:34:00+01:00</published><updated>2016-04-18T22:01:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-01-01:/Press_review_of_January_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -5047,7 +5121,7 @@ Vulnerability&lt;/td&gt;
 </content><category term="Blockchain"></category></entry><entry><title>Press review of december 2015</title><link href="http://didier.bernaudeau.net/Press_review_of_december_2015.html" rel="alternate"></link><published>2015-12-01T22:22:00+01:00</published><updated>2016-01-09T22:32:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-12-01:/Press_review_of_december_2015.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -5590,7 +5664,7 @@ Vulnerability&lt;/td&gt;
 </content><category term="PKI"></category><category term="Certificate"></category></entry><entry><title>Press review of november 2015</title><link href="http://didier.bernaudeau.net/Press_review_of_november_2015.html" rel="alternate"></link><published>2015-11-01T22:34:00+01:00</published><updated>2016-02-27T12:50:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-11-01:/Press_review_of_november_2015.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -6346,7 +6420,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="protocol-version"&gt;
 &lt;h2&gt;Protocol version&lt;/h2&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -6376,7 +6450,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="compression-method"&gt;
 &lt;h2&gt;Compression method&lt;/h2&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -6404,7 +6478,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Cryptographic algorithm&lt;/h2&gt;
 &lt;div class="section" id="key-exchange"&gt;
 &lt;h3&gt;Key exchange&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -6449,7 +6523,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="encryption"&gt;
 &lt;h3&gt;Encryption&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -6504,7 +6578,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="message-authentication-code"&gt;
 &lt;h3&gt;Message Authentication Code&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -6565,7 +6639,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;p&gt;Cipher suite is a list of one or more cipher strings separated by special char (colon, comma, space, ...). The names for cipher suites are defined by IANA (Internet Assigned Numbers Authority).&lt;/p&gt;
 &lt;p&gt;Cipher suite defines algorithms used for each cryptographic function: key exchange, authentication, encryption and message authentication code. If algorithm for key exchange is not mentioned, default algorithm is RSA.&lt;/p&gt;
 &lt;p&gt;The table below details some example of cipher suites:&lt;/p&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="39%"&gt;&lt;/col&gt;
@@ -6722,7 +6796,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="28%"&gt;&lt;/col&gt;
 &lt;col width="72%"&gt;&lt;/col&gt;
@@ -6781,7 +6855,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -6811,7 +6885,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in GPT (GUID Partition Table) during Microsoft Windows 8.1 installation process&lt;/p&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -6913,7 +6987,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="21%"&gt;&lt;/col&gt;
 &lt;col width="79%"&gt;&lt;/col&gt;
@@ -6981,7 +7055,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -7011,7 +7085,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in MBR (Master Boot Record) during Microsoft Windows 8.1 installation process for primary partition then during Debian 8 installation process for extended partition :&lt;/p&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
@@ -7084,7 +7158,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -7113,7 +7187,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -7133,7 +7207,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -7156,7 +7230,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -7173,7 +7247,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -7193,7 +7267,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -7210,7 +7284,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -7233,7 +7307,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="optical-disc-drive"&gt;
 &lt;h3&gt;Optical Disc Drive&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -7271,7 +7345,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -7291,7 +7365,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="wifi"&gt;
 &lt;h3&gt;Wifi&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -7311,7 +7385,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="bluetooth"&gt;
 &lt;h3&gt;Bluetooth&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -7331,7 +7405,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="modem"&gt;
 &lt;h3&gt;Modem&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -7348,7 +7422,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="firewire-controller"&gt;
 &lt;h3&gt;FireWire Controller&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -7365,7 +7439,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-memory-stick"&gt;
 &lt;h3&gt;Card reader (Memory Stick)&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -7382,7 +7456,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-secure-digital"&gt;
 &lt;h3&gt;Card reader (Secure Digital)&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -7399,7 +7473,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -7422,7 +7496,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -7461,7 +7535,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hardware-architecture"&gt;
 &lt;h2&gt;Hardware architecture&lt;/h2&gt;
-&lt;img alt="Hardware architecture of Sony VAIO VGN-SR11M" class="align-right img-responsive" src="http://didier.bernaudeau.net/images/2015-06-28_Sony_VAIO_SR11M_01.png" style="width: 100%;"/&gt;
+&lt;img alt="Hardware architecture of Sony VAIO VGN-SR11M" class="img-responsive align-right" src="http://didier.bernaudeau.net/images/2015-06-28_Sony_VAIO_SR11M_01.png" style="width: 100%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="bios"&gt;
 &lt;h2&gt;BIOS&lt;/h2&gt;
@@ -7932,7 +8006,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7973,7 +8047,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7990,7 +8064,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -8022,7 +8096,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -8045,7 +8119,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -8065,7 +8139,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -8082,7 +8156,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -8105,7 +8179,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -8125,7 +8199,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="wifi-and-bluetooth"&gt;
 &lt;h3&gt;Wifi and Bluetooth&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -8148,7 +8222,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory-card-reader"&gt;
 &lt;h3&gt;Memory card reader&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -8168,7 +8242,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="smartcard-reader"&gt;
 &lt;h3&gt;Smartcard Reader&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -8185,7 +8259,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="fingerprint-reader"&gt;
 &lt;h3&gt;Fingerprint Reader&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -8202,7 +8276,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="nfc-reader"&gt;
 &lt;h3&gt;NFC Reader&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -8219,7 +8293,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -8239,7 +8313,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -8269,13 +8343,13 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hardware-architecture"&gt;
 &lt;h2&gt;Hardware architecture&lt;/h2&gt;
-&lt;img alt="Hardware architecture of Lenovo ThinkPad X240" class="align-right img-responsive" src="http://didier.bernaudeau.net/images/2015-06-12_Laptop_Lenovo_ThinkPad_X240.png" style="width: 100%;"/&gt;
+&lt;img alt="Hardware architecture of Lenovo ThinkPad X240" class="img-responsive align-right" src="http://didier.bernaudeau.net/images/2015-06-12_Laptop_Lenovo_ThinkPad_X240.png" style="width: 100%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="uefi-bios"&gt;
 &lt;h2&gt;UEFI BIOS&lt;/h2&gt;
 &lt;div class="section" id="version"&gt;
 &lt;h3&gt;Version&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="table table-hover docutils table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="59%"&gt;&lt;/col&gt;
 &lt;col width="41%"&gt;&lt;/col&gt;

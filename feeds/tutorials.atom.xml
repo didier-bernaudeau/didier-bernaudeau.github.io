@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-04-12T21:37:00+02:00</updated><entry><title>How to install Docker on Gentoo</title><link href="http://didier.bernaudeau.net/How_to_install_Docker_on_Gentoo.html" rel="alternate"></link><published>2017-03-31T06:50:00+02:00</published><updated>2017-04-12T21:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-03-31:/How_to_install_Docker_on_Gentoo.html</id><summary type="html">&lt;p&gt;This post describes the linux kernel configuration for container support and the way to install Docker on Gentoo Linux.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-05-21T10:37:00+02:00</updated><entry><title>Update GCC on Gentoo Linux</title><link href="http://didier.bernaudeau.net/Update_GCC_on_Gentoo_Linux.html" rel="alternate"></link><published>2017-05-21T10:37:00+02:00</published><updated>2017-05-21T10:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-21:/Update_GCC_on_Gentoo_Linux.html</id><summary type="html">&lt;p&gt;GCC, the GNU Compiler Collection, is an essential tool on Gentoo Linux to compile, build then install packages. This post is a quick reminder to update GGC, a sensitive operation on Gentoo.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;GCC, the GNU Compiler Collection, is an essential tool on Gentoo Linux to compile, build then install packages. This post is a quick reminder to update GGC, a sensitive operation on Gentoo.&lt;/p&gt;
+
+&lt;h1&gt;Update GCC&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install the last version&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge -u sys-devel/gcc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Print installed version of GCC&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; gcc-config --list-profiles
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[1] x86_64-pc-linux-gnu-4.9.4 *
+[2] x86_64-pc-linux-gnu-5.4.0
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Switch compiler version &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; gcc-config 2
+&lt;span class="gp"&gt;#&lt;/span&gt; env-update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nb"&gt;source&lt;/span&gt; /etc/profile
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Common compilation errors&lt;/h1&gt;
+&lt;p&gt;After GCC update, the ABI uses for binary applications and libraries is changed. You will risk getting linker errors or malfunctioning programs unless you rebuild all libraries that use C++ code.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cmis_repo_content.cxx:(.text+0x4bb7): undefined reference to `libcmis::Repository::getId[abi:cxx11]() const'
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;or&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/usr/include/xapian/version.h:32:2: warning: #warning The Xapian library was built with g++ 4.9.4 [-Wcpp]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Rebuild&lt;/h1&gt;
+&lt;p&gt;Some people swear that they need to rebuild every single package on their system when a new GCC version is made available. Of course, that doesn't make sense, since there are many applications that are not using GCC for their build and install process anyhow, so they would never be affected by such changes.&lt;/p&gt;
+&lt;p&gt;Below, some packages for which rebuild is requires :&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --oneshot -pv media-gfx/exiv2 dev-libs/re2 dev-libs/boost dev-util/cppunit dev-cpp/libcmis dev-libs/liborcus dev-libs/xapian
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Gentoo"></category></entry><entry><title>How to install Docker on Gentoo</title><link href="http://didier.bernaudeau.net/How_to_install_Docker_on_Gentoo.html" rel="alternate"></link><published>2017-03-31T06:50:00+02:00</published><updated>2017-04-12T21:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-03-31:/How_to_install_Docker_on_Gentoo.html</id><summary type="html">&lt;p&gt;This post describes the linux kernel configuration for container support and the way to install Docker on Gentoo Linux.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post describes the linux kernel configuration for container support and the way to install Docker on Gentoo Linux.&lt;/p&gt;
 
 &lt;h1&gt;Kernel configuration&lt;/h1&gt;
@@ -99,7 +133,7 @@
 &lt;ul&gt;
 &lt;li&gt;Emerge docker&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --ask --verbose app-emulation/docker
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge app-emulation/docker
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Check kernel configuration&lt;/li&gt;
@@ -116,7 +150,22 @@
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker run --rm hello-world
 &lt;span class="gp"&gt;#&lt;/span&gt; docker run -it ubuntu bash
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Container"></category><category term="Docker"></category><category term="Gentoo"></category></entry><entry><title>Spring Tool Suite</title><link href="http://didier.bernaudeau.net/Spring_Tool_Suite.html" rel="alternate"></link><published>2017-03-26T12:12:00+02:00</published><updated>2017-03-26T12:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-03-26:/Spring_Tool_Suite.html</id><summary type="html">&lt;p&gt;STS (Spring Tool Suite) is an IDE (Integrated Development Environment) provided by Pivotal. STS is an Eclipse-based that is customized to develop application based on Spring framework. This tutorial describes how to install Spring Tool Suite and additional framework provided by Pivotal.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Docker tools&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge app-emulation/docker-compose
+&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- * Messages for package app-emulation/docker-17.03.1:
+
+ *   CONFIG_BLK_DEV_THROTTLING:  is not set when it should be.
+ *   CONFIG_CFQ_GROUP_IOSCHED:   is not set when it should be.
+ *   CONFIG_IP_VS_PROTO_TCP:     is not set when it should be.
+ *   CONFIG_IP_VS_PROTO_UDP:     is not set when it should be.
+ *   CONFIG_IP_VS_NFCT:  is not set when it should be.
+ *   CONFIG_IP_VS_RR:    is not set when it should be.
+ *   CONFIG_VXLAN:       is not set when it should be.
+ *   CONFIG_IPVLAN:      is not set when it should be.
+ *   CONFIG_MACVLAN:     is not set when it should be.
+ *   CONFIG_DUMMY:       is not set when it should be.--&gt;</content><category term="Container"></category><category term="Docker"></category><category term="Gentoo"></category></entry><entry><title>Spring Tool Suite</title><link href="http://didier.bernaudeau.net/Spring_Tool_Suite.html" rel="alternate"></link><published>2017-03-26T12:12:00+02:00</published><updated>2017-03-26T12:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-03-26:/Spring_Tool_Suite.html</id><summary type="html">&lt;p&gt;STS (Spring Tool Suite) is an IDE (Integrated Development Environment) provided by Pivotal. STS is an Eclipse-based that is customized to develop application based on Spring framework. This tutorial describes how to install Spring Tool Suite and additional framework provided by Pivotal.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;STS (Spring Tool Suite) is an IDE (Integrated Development Environment) provided by Pivotal. STS is an Eclipse-based that is customized to develop application based on Spring framework. This tutorial describes how to install Spring Tool Suite and additional framework provided by Pivotal.&lt;/p&gt;
 
 &lt;h1&gt;Spring Tool Suite&lt;/h1&gt;

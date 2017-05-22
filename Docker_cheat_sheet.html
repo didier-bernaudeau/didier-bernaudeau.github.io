@@ -113,6 +113,30 @@ My personal blog note            </a>
                 </div>
                 <p>This post is a quick reference sheet in one page for Docker</p>
 
+<h1>Container</h1>
+<ul>
+<li>Creates and start a container in one operation</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> docker run -td -p 127.0.0.1:$HOSTPORT:<span class="nv">$C</span>ONTAINERPORT -v $HOSTDIR:<span class="nv">$D</span>OCKERDIR
+</pre></div>
+<p>Options:
+<em> -t allocates a pseudo-TTY session
+</em> -d runs container in background
+<em> -p maps the container port to the host port 
+</em> -v maps a directory on the host to a docker container</p>
+<ul>
+<li>Show running containers</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> docker ps
+</pre></div>
+<div class="highlight"><pre><span></span>CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES                     
+f91ce070d170        postgres:9.6        "docker-entrypoint.sh"   2 minutes ago       Up 2 minutes        0.0.0.0:5432-&gt;5432/tcp   stupefied_easley
+</pre></div>
+<ul>
+<li>Stop a running container</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> docker stop
+</pre></div>
 <h1>Image</h1>
 <ul>
 <li>Show all images</li>
@@ -177,14 +201,15 @@ e6ba45aff418        bridge              bridge              local
     }
 ]
 </pre></div>
+<!-- https://github.com/wsargent/docker-cheat-sheet -->
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
         <li><a href="http://didier.bernaudeau.net/How_to_install_Docker_on_Gentoo.html">How to install Docker on Gentoo</a></li>
-        <li><a href="http://didier.bernaudeau.net/How_to_install_docker.html">How to install Docker</a></li>
         <li><a href="http://didier.bernaudeau.net/Container_Overview.html">Container Overview</a></li>
+        <li><a href="http://didier.bernaudeau.net/How_to_install_docker.html">How to install Docker</a></li>
     </ul>
 </section>
         </article>
@@ -274,7 +299,7 @@ e6ba45aff418        bridge              bridge              local
                             Go
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/hardware.html">
                             hardware
                         </a>

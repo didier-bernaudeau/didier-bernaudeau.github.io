@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Keytool - My personal blog note</title>
+    <title>Create your first presentation with RevealJS - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,22 +9,21 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/Keytool.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/Create_your_first_presentation_with_RevealJS.html">
 
         <meta name="author" content="Didier BERNAUDEAU" />
-        <meta name="keywords" content="TLS,Java,Certificate" />
-        <meta name="description" content="Keytool is a command line tool provided by Oracle to create and manage Java keystore. This long talk (45min) presents the best practices to create a private and public key, create a Certificate Signing Request, ... Download slides here." />
+        <meta name="keywords" content="Development,JavaScript" />
+        <meta name="description" content="RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. This post descirbes how to install RevealJS then how to make your first presentation." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Keytool"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/Keytool.html"/>
-        <meta property="og:description" content="Keytool is a command line tool provided by Oracle to create and manage Java keystore. This long talk (45min) presents the best practices to create a private and public key, create a Certificate Signing Request, ... Download slides here."/>
-        <meta property="article:published_time" content="2015-02-04" />
-            <meta property="article:section" content="Talk" />
-            <meta property="article:tag" content="TLS" />
-            <meta property="article:tag" content="Java" />
-            <meta property="article:tag" content="Certificate" />
+        <meta property="og:title" content="Create your first presentation with RevealJS"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/Create_your_first_presentation_with_RevealJS.html"/>
+        <meta property="og:description" content="RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. This post descirbes how to install RevealJS then how to make your first presentation."/>
+        <meta property="article:published_time" content="2017-05-22" />
+            <meta property="article:section" content="Tutorials" />
+            <meta property="article:tag" content="Development" />
+            <meta property="article:tag" content="JavaScript" />
             <meta property="article:author" content="Didier BERNAUDEAU" />
 
 
@@ -40,8 +39,8 @@
 
 
 
-        <link href="http://didier.bernaudeau.net/feeds/talk.atom.xml" type="application/atom+xml" rel="alternate"
-              title="My personal blog note Talk ATOM Feed"/>
+        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Tutorials ATOM Feed"/>
 
 </head>
 <body>
@@ -81,10 +80,10 @@ My personal blog note            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/Keytool.html"
+                    <a href="http://didier.bernaudeau.net/Create_your_first_presentation_with_RevealJS.html"
                        rel="bookmark"
-                       title="Permalink to Keytool">
-                        Keytool
+                       title="Permalink to Create your first presentation with RevealJS">
+                        Create your first presentation with RevealJS
                     </a>
                 </h1>
             </header>
@@ -94,11 +93,11 @@ My personal blog note            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-02-04T13:00:00+01:00"> mer. 04 février 2015</time>
+        <i class="fa fa-calendar"></i><time datetime="2017-05-22T20:10:00+02:00"> lun. 22 mai 2017</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-02-04T13:00:00+01:00"> mer. 04 février 2015</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-06-05T12:38:00+02:00"> lun. 05 juin 2017</time>
             </span>
 
 
@@ -106,27 +105,58 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/tls.html">TLS</a>
+	<a href="http://didier.bernaudeau.net/tag/development.html">Development</a>
         /
-	<a href="http://didier.bernaudeau.net/tag/java.html">Java</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/certificate.html">Certificate</a>
+	<a href="http://didier.bernaudeau.net/tag/javascript.html">JavaScript</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Keytool is a command line tool provided by Oracle to create and manage Java keystore. This long talk (45min) presents the best practices to create a private and public key, create a Certificate Signing Request, ...</p>
-<p>Download slides <a href="http://didier.bernaudeau.net/presentation/Keytool_2015-02-04.pdf">here</a>.</p>
+                <p>RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. This post descirbes how to install RevealJS then how to make your first presentation.</p>
 
+<h1>Install needed software</h1>
+<ul>
+<li>Install nodeJS</li>
+</ul>
+<h1>emerge nodejs</h1>
+<ul>
+<li>Install RevealJS</li>
+</ul>
+<h1>npm i node-reveal -g</h1>
+<h1>Create a presentation</h1>
+<ul>
+<li>Init a new presentation</li>
+</ul>
+<p>$ reveal -i <project_name>
+$ cd <project_name></project_name></project_name></p>
+<ul>
+<li>
+<p>Edit index.html file to add content</p>
+</li>
+<li>
+<p>Start server in watch mode</p>
+</li>
+</ul>
+<p>$ reveal -w</p>
+<ul>
+<li>Then, open your browser :</li>
+<li>Multiplex presentation: http://localhost:3000/?role=master#/</li>
+<li>Export presentation: http://localhost:3000/?print-pdf#/</li>
+</ul>
+<!--Source:
+https://www.npmjs.com/package/node-reveal
+http://htmlcheats.com/reveal-js/reveal-js-tutorial-reveal-js-for-beginners/
+http://www.bortzmeyer.org/reveal-js.html
+http://lab.hakim.se/reveal-js/#/
+-->
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://didier.bernaudeau.net/X509_certificate-Fields_and_extensions.html">X509 certificate - Fields &amp; extensions</a></li>
-        <li><a href="http://didier.bernaudeau.net/Spring_Roo.html">Spring Roo</a></li>
-        <li><a href="http://didier.bernaudeau.net/How_to_install_Java_SE_on_debian.html">How to install Java SE on Debian</a></li>
-        <li><a href="http://didier.bernaudeau.net/Spring_Tool_Suite.html">Spring Tool Suite</a></li>
-        <li><a href="http://didier.bernaudeau.net/Lets_Encrypt.html">Let’s Encrypt</a></li>
+        <li><a href="http://didier.bernaudeau.net/ModernPresentationRevealJS.html">Modern Presentation with RevealJS</a></li>
+        <li><a href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html">CORS (Cross-Origin Resource Sharing)</a></li>
+        <li><a href="http://didier.bernaudeau.net/JSON_with_Padding.html">JSONP (JSON with Padding)</a></li>
+        <li><a href="http://didier.bernaudeau.net/Same_Origin_Policy.html">SOP (Same-Origin Policy)</a></li>
     </ul>
 </section>
         </article>

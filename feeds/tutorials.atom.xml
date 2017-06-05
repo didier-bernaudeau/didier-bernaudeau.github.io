@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-05-21T10:37:00+02:00</updated><entry><title>Update GCC on Gentoo Linux</title><link href="http://didier.bernaudeau.net/Update_GCC_on_Gentoo_Linux.html" rel="alternate"></link><published>2017-05-21T10:37:00+02:00</published><updated>2017-05-21T10:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-21:/Update_GCC_on_Gentoo_Linux.html</id><summary type="html">&lt;p&gt;GCC, the GNU Compiler Collection, is an essential tool on Gentoo Linux to compile, build then install packages. This post is a quick reminder to update GGC, a sensitive operation on Gentoo.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-06-05T12:38:00+02:00</updated><entry><title>Create your first presentation with RevealJS</title><link href="http://didier.bernaudeau.net/Create_your_first_presentation_with_RevealJS.html" rel="alternate"></link><published>2017-05-22T20:10:00+02:00</published><updated>2017-06-05T12:38:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-22:/Create_your_first_presentation_with_RevealJS.html</id><summary type="html">&lt;p&gt;RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. This post descirbes how to install RevealJS then how to make your first presentation.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. This post descirbes how to install RevealJS then how to make your first presentation.&lt;/p&gt;
+
+&lt;h1&gt;Install needed software&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install nodeJS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;emerge nodejs&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install RevealJS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;npm i node-reveal -g&lt;/h1&gt;
+&lt;h1&gt;Create a presentation&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Init a new presentation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$ reveal -i &lt;project_name&gt;
+$ cd &lt;project_name&gt;&lt;/project_name&gt;&lt;/project_name&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Edit index.html file to add content&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Start server in watch mode&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$ reveal -w&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Then, open your browser :&lt;/li&gt;
+&lt;li&gt;Multiplex presentation: http://localhost:3000/?role=master#/&lt;/li&gt;
+&lt;li&gt;Export presentation: http://localhost:3000/?print-pdf#/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!--Source:
+https://www.npmjs.com/package/node-reveal
+http://htmlcheats.com/reveal-js/reveal-js-tutorial-reveal-js-for-beginners/
+http://www.bortzmeyer.org/reveal-js.html
+http://lab.hakim.se/reveal-js/#/
+--&gt;</content><category term="Development"></category><category term="JavaScript"></category></entry><entry><title>Update GCC on Gentoo Linux</title><link href="http://didier.bernaudeau.net/Update_GCC_on_Gentoo_Linux.html" rel="alternate"></link><published>2017-05-21T10:37:00+02:00</published><updated>2017-05-21T10:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-21:/Update_GCC_on_Gentoo_Linux.html</id><summary type="html">&lt;p&gt;GCC, the GNU Compiler Collection, is an essential tool on Gentoo Linux to compile, build then install packages. This post is a quick reminder to update GGC, a sensitive operation on Gentoo.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;GCC, the GNU Compiler Collection, is an essential tool on Gentoo Linux to compile, build then install packages. This post is a quick reminder to update GGC, a sensitive operation on Gentoo.&lt;/p&gt;
 
 &lt;h1&gt;Update GCC&lt;/h1&gt;
@@ -32,7 +69,7 @@
 &lt;h1&gt;Rebuild&lt;/h1&gt;
 &lt;p&gt;Some people swear that they need to rebuild every single package on their system when a new GCC version is made available. Of course, that doesn't make sense, since there are many applications that are not using GCC for their build and install process anyhow, so they would never be affected by such changes.&lt;/p&gt;
 &lt;p&gt;Below, some packages for which rebuild is requires :&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --oneshot -pv media-gfx/exiv2 dev-libs/re2 dev-libs/boost dev-util/cppunit dev-cpp/libcmis dev-libs/liborcus dev-libs/xapian
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --oneshot -pv media-gfx/exiv2 dev-libs/re2 dev-libs/boost dev-util/cppunit dev-cpp/libcmis dev-libs/liborcus dev-libs/xapian dev-libs/tinyxml app-text/qpdf
 &lt;/pre&gt;&lt;/div&gt;</content><category term="Gentoo"></category></entry><entry><title>How to install Docker on Gentoo</title><link href="http://didier.bernaudeau.net/How_to_install_Docker_on_Gentoo.html" rel="alternate"></link><published>2017-03-31T06:50:00+02:00</published><updated>2017-04-12T21:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-03-31:/How_to_install_Docker_on_Gentoo.html</id><summary type="html">&lt;p&gt;This post describes the linux kernel configuration for container support and the way to install Docker on Gentoo Linux.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post describes the linux kernel configuration for container support and the way to install Docker on Gentoo Linux.&lt;/p&gt;
 

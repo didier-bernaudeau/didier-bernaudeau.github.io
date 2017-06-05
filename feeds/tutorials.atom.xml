@@ -6,17 +6,20 @@
 &lt;ul&gt;
 &lt;li&gt;Install nodeJS&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1&gt;emerge nodejs&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge nodejs
+&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Install RevealJS&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1&gt;npm i node-reveal -g&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm i node-reveal -g
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Create a presentation&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Init a new presentation&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;$ reveal -i &lt;project_name&gt;
-$ cd &lt;project_name&gt;&lt;/project_name&gt;&lt;/project_name&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; reveal -i &amp;lt;project_name&amp;gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; &amp;lt;project_name&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Edit index.html file to add content&lt;/p&gt;
@@ -25,11 +28,12 @@ $ cd &lt;project_name&gt;&lt;/project_name&gt;&lt;/project_name&gt;&lt;/p&gt;
 &lt;p&gt;Start server in watch mode&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;$ reveal -w&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; reveal -w
+&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Then, open your browser :&lt;/li&gt;
-&lt;li&gt;Multiplex presentation: http://localhost:3000/?role=master#/&lt;/li&gt;
-&lt;li&gt;Export presentation: http://localhost:3000/?print-pdf#/&lt;/li&gt;
+&lt;li&gt;Multiplex presentation: &lt;a href="http://localhost:3000/?role=master#/"&gt;http://localhost:3000/?role=master#/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Export presentation: &lt;a href="http://localhost:3000/?print-pdf#/"&gt;http://localhost:3000/?print-pdf#/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!--Source:
 https://www.npmjs.com/package/node-reveal

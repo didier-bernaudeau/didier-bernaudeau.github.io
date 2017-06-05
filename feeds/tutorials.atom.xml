@@ -31,9 +31,11 @@
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; reveal -w
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;Then, open your browser :&lt;/li&gt;
+&lt;li&gt;Then, open your browser :&lt;ul&gt;
 &lt;li&gt;Multiplex presentation: &lt;a href="http://localhost:3000/?role=master#/"&gt;http://localhost:3000/?role=master#/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Export presentation: &lt;a href="http://localhost:3000/?print-pdf#/"&gt;http://localhost:3000/?print-pdf#/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!--Source:
 https://www.npmjs.com/package/node-reveal

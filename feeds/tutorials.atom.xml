@@ -1,5 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-06-05T14:32:00+02:00</updated><entry><title>Create your first presentation with RevealJS</title><link href="http://didier.bernaudeau.net/Create_your_first_presentation_with_RevealJS.html" rel="alternate"></link><published>2017-05-22T20:10:00+02:00</published><updated>2017-06-05T14:32:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-22:/Create_your_first_presentation_with_RevealJS.html</id><summary type="html">&lt;p&gt;RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. This post descirbes how to install RevealJS then how to make your first presentation.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-06-24T22:46:00+02:00</updated><entry><title>How to install Raspbian on a Raspberry Pi</title><link href="http://didier.bernaudeau.net/HowToInstallRaspbianOnRaspberryPi.html" rel="alternate"></link><published>2017-06-24T22:19:00+02:00</published><updated>2017-06-24T22:46:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-06-24:/HowToInstallRaspbianOnRaspberryPi.html</id><summary type="html">&lt;p&gt;Raspbian is the main operating system for a Raspberry Pi. This tutorial describes how to install and configure Raspbian Jessie Lite (without desktop environment) on a Raspberry Pi 3.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Raspbian is the main operating system for a Raspberry Pi. This tutorial describes how to install and configure Raspbian Jessie Lite (without desktop environment) on a Raspberry Pi 3.&lt;/p&gt;
+
+&lt;h1&gt;Create SD card&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Download Raspbian Jessie Lite&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget https://downloads.raspberrypi.org/raspbian_lite_latest
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Copy files on the SD card&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; dd &lt;span class="nv"&gt;bs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4M &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;2017-04-10-raspbian-jessie.img &lt;span class="nv"&gt;of&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/mmcblk0 &lt;span class="nv"&gt;status&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;progress
+&lt;span class="gp"&gt;#&lt;/span&gt; sync
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Insert the SD card in the Raspberry Pi&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Configure the system&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Connect with the default user and password&lt;/li&gt;
+&lt;li&gt;Login : pi&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Password : raspberry&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Update the system&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt-get upgrade
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure the system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo raspi-config
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1. Change keyboard layout
+2. Expand FS
+3. Update
+4. Enable SSH (Interfacing option)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure the WiFi &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo wpa_passphrase SSID
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;network={
+        ssid="SSID"
+        #psk="MySecret"
+        psk=4baa71a05efba1dfa9af4aa162f5a67b7c9d9aae5c3bac92e5ed540b0c3f0332
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Install additional packages&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install PyGPIO&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install python3
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install RPi.GPIO
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install GPIO command line&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install Wiringpi
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Java&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install oracle-java7-jdk
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Raspbian"></category><category term="Raspberry Pi"></category></entry><entry><title>Create your first presentation with RevealJS</title><link href="http://didier.bernaudeau.net/Create_your_first_presentation_with_RevealJS.html" rel="alternate"></link><published>2017-05-22T20:10:00+02:00</published><updated>2017-06-05T14:32:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-22:/Create_your_first_presentation_with_RevealJS.html</id><summary type="html">&lt;p&gt;RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. This post descirbes how to install RevealJS then how to make your first presentation.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. This post descirbes how to install RevealJS then how to make your first presentation.&lt;/p&gt;
 
 &lt;h1&gt;Install needed software&lt;/h1&gt;
@@ -37,6 +106,35 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;h1&gt;Customize your presentation&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;First slide&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;style&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class="nc"&gt;.FirstSlides&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+          &lt;span class="nb"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;1280px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+          &lt;span class="nb"&gt;height&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;720px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="p"&gt;}&lt;/span&gt;
+      &lt;span class="nc"&gt;.Title&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nb"&gt;position&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;absolute&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="nb"&gt;right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;2%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="nb"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;70%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="nb"&gt;top&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;20%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="nb"&gt;background-color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;rgba&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;46&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="m"&gt;89&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="m"&gt;82&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nb"&gt;text-align&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;right&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;style&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+...
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;section&lt;/span&gt; &lt;span class="na"&gt;data-state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"header1"&lt;/span&gt; &lt;span class="na"&gt;data-background&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"img/background.jpg"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"FirstSlides"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"Title"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+              &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Title&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+              &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h4&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Month Day&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;span&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"ordinal"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;th&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;span&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;, 2017&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h4&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+              &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;small&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;By NAME&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;small&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;section&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;!--Source:
 https://www.npmjs.com/package/node-reveal
 http://htmlcheats.com/reveal-js/reveal-js-tutorial-reveal-js-for-beginners/
@@ -1794,7 +1892,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;span class="gp"&gt;#&lt;/span&gt; emerge ffmpeg vlc kmix chromium
 &lt;/pre&gt;
 &lt;/div&gt;
-</content><category term="Gentoo"></category></entry><entry><title>HowTo install a virtualization plateform with KVM</title><link href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html" rel="alternate"></link><published>2015-09-15T19:08:00+02:00</published><updated>2017-01-30T11:13:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-09-15:/howto_install_a_virtualization_plateform_with_KVM.html</id><summary type="html">&lt;p&gt;This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.&lt;/p&gt;
+</content><category term="Gentoo"></category></entry><entry><title>HowTo install a virtualization plateform with KVM</title><link href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html" rel="alternate"></link><published>2015-09-15T19:08:00+02:00</published><updated>2017-06-20T22:07:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-09-15:/howto_install_a_virtualization_plateform_with_KVM.html</id><summary type="html">&lt;p&gt;This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.&lt;/p&gt;
 &lt;p&gt;Then, LibVirt provides a convenient way to manage virtual machines on this plateform. LibVirt include an API library, a daemon (libvirtd), command line tools (virsh and virt-install) and a graphic tool (virt-manager). All these softwares are sponsorted by Red Hat.&lt;/p&gt;
 &lt;p&gt;Obviouly, this virtualization plateform uses Intel Virtualization Technologyy like VT-x (Virtualization Technology eXecution) and VT-d (Virtualization Technology for Directed I/O). KVM can also support VT-c (Intel® Virtualization Technology for Connectivity) but my laptop does not have this technology.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.&lt;/p&gt;
@@ -1803,7 +1901,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 
 &lt;div class="section" id="kernel-configuration"&gt;
 &lt;h2&gt;Kernel configuration&lt;/h2&gt;
-&lt;p&gt;This is the configuration for Gentoo kernel 4.0.5.&lt;/p&gt;
+&lt;p&gt;This is the configuration for Gentoo kernel 4.9.16.&lt;/p&gt;
 &lt;p&gt;Enable KVM&lt;/p&gt;
 &lt;pre class="code ini literal-block"&gt;
 &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;Virtualization&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
@@ -1825,6 +1923,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;PCI&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;virtio&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Support&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;legacy&lt;/span&gt; &lt;span class="err"&gt;virtio&lt;/span&gt; &lt;span class="err"&gt;draft&lt;/span&gt; &lt;span class="err"&gt;0.9.X&lt;/span&gt; &lt;span class="err"&gt;and&lt;/span&gt; &lt;span class="err"&gt;older&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt; &lt;span class="err"&gt;(NEW)&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Virtio&lt;/span&gt; &lt;span class="err"&gt;balloon&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Virtio&lt;/span&gt; &lt;span class="err"&gt;input&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;Platform&lt;/span&gt; &lt;span class="err"&gt;bus&lt;/span&gt; &lt;span class="err"&gt;driver&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;memory&lt;/span&gt; &lt;span class="err"&gt;mapped&lt;/span&gt; &lt;span class="err"&gt;virtio&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt;
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;        &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Memory&lt;/span&gt; &lt;span class="err"&gt;mapped&lt;/span&gt; &lt;span class="err"&gt;virtio&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt; &lt;span class="err"&gt;parameter&lt;/span&gt; &lt;span class="err"&gt;parsing&lt;/span&gt;
 &lt;/pre&gt;

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>How to install Docker on Gentoo - My personal blog note</title>
+    <title>Raspberry Pi - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,23 +9,16 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/How_to_install_Docker_on_Gentoo.html">
 
-        <meta name="author" content="Didier BERNAUDEAU" />
-        <meta name="keywords" content="Container,Docker,Gentoo" />
-        <meta name="description" content="This post describes the linux kernel configuration for container support and the way to install Docker on Gentoo Linux." />
+    <meta name="author" content="D. Bernaudeau" />
+    <meta name="keywords" content="Raspberry Pi" />
 
+    <!-- Open Graph tags -->
         <meta property="og:site_name" content="My personal blog note" />
-        <meta property="og:type" content="article"/>
-        <meta property="og:title" content="How to install Docker on Gentoo"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/How_to_install_Docker_on_Gentoo.html"/>
-        <meta property="og:description" content="This post describes the linux kernel configuration for container support and the way to install Docker on Gentoo Linux."/>
-        <meta property="article:published_time" content="2017-03-31" />
-            <meta property="article:section" content="Tutorials" />
-            <meta property="article:tag" content="Container" />
-            <meta property="article:tag" content="Docker" />
-            <meta property="article:tag" content="Gentoo" />
-            <meta property="article:author" content="Didier BERNAUDEAU" />
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="My personal blog note"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net"/>
+        <meta property="og:description" content="My personal blog note"/>
 
 
     <!-- Bootstrap -->
@@ -40,8 +33,6 @@
 
 
 
-        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
-              title="My personal blog note Tutorials ATOM Feed"/>
 
 </head>
 <body>
@@ -77,28 +68,17 @@ My personal blog note            </a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-    <section id="content">
-        <article>
-            <header class="page-header">
-                <h1>
-                    <a href="http://didier.bernaudeau.net/How_to_install_Docker_on_Gentoo.html"
-                       rel="bookmark"
-                       title="Permalink to How to install Docker on Gentoo">
-                        How to install Docker on Gentoo
-                    </a>
-                </h1>
-            </header>
-            <div class="entry-content">
-                <div class="panel">
-                    <div class="panel-body">
+            <article>                
+              <h2><a href="http://didier.bernaudeau.net/HowToInstallRaspbianOnRaspberryPi.html">How to install Raspbian on a Raspberry Pi</a></h2>
+                <div class="well well-sm">
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-03-31T06:50:00+02:00"> ven. 31 mars 2017</time>
+        <i class="fa fa-calendar"></i><time datetime="2017-06-24T22:19:00+02:00"> sam. 24 juin 2017</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-04-12T21:37:00+02:00"> mer. 12 avril 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-06-24T22:46:00+02:00"> sam. 24 juin 2017</time>
             </span>
 
 
@@ -106,157 +86,17 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/container.html">Container</a>
+	<a href="http://didier.bernaudeau.net/tag/raspbian.html">Raspbian</a>
         /
-	<a href="http://didier.bernaudeau.net/tag/docker.html">Docker</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/gentoo.html">Gentoo</a>
+	<a href="http://didier.bernaudeau.net/tag/raspberry-pi.html">Raspberry Pi</a>
     
-</footer><!-- /.post-info -->                    </div>
-                </div>
-                <p>This post describes the linux kernel configuration for container support and the way to install Docker on Gentoo Linux.</p>
+</footer><!-- /.post-info -->                </div>
+              <div class="summary"><p>Raspbian is the main operating system for a Raspberry Pi. This tutorial describes how to install and configure Raspbian Jessie Lite (without desktop environment) on a Raspberry Pi 3.</p>
 
-<h1>Kernel configuration</h1>
-<p>This configuration is based on Gentoo Source 4.9.16.</p>
-<div class="highlight"><pre><span></span> | General setup  ---&gt;
- |      |
-*|      | [*] POSIX Message Queues
- |      | 
-*|      | -*- Control Group support  ---&gt;
- |      |      |
-*|      |      | [*]   Memory controller
- |      |      | [*]     Swap controller
- |      |      | [*]       Swap controller enabled by default
- |      |      | [*]   IO controller
- |      |      | 
-*|      |      | [*]   CPU controller  ---&gt;
- |      |      |        | [*]   Group scheduling for SCHED_OTHER
- |      |      |        | [*]     CPU bandwidth provisioning for FAIR_GROUP_SCHED
- |      |      |        | [*]   Group scheduling for SCHED_RR/FIFO
- |      |      | 
- |      |      | [*]   PIDs controller
-*|      |      | [*]   Freezer cgroup subsystem
- |      |      | [*]   HugeTLB controller
-*|      |      | [*]   Cpuset support
- |      |      | [*]     Include legacy /proc/&lt;pid&gt;/cpuset file
-*|      |      | [*]   Device controller for cgroups
-*|      |      | [*]   Simple CPU accounting cgroup subsystem
- |      |      | [*]   Perf controller
- |      | 
-*|      | -*- Namespaces support
-*|      | [*]   UTS namespace
-*|      | [*]   IPC namespace
- |      | [*]   User namespace
-*|      | [*]   PID Namespaces
-*|      | [*]   Network namespace
- |
- | [*] Networking support  ---&gt;
- |      | Networking options  ---&gt;
- |      |      |
-*|      |      | &lt;*&gt; 802.1d Ethernet Bridging
- |      |      |
- |      |      | [*] Network packet filtering framework (Netfilter)  ---&gt;
- |      |      |        | 
- |      |      |        | [*]   Advanced netfilter configuration
-*|      |      |        | [*]     Bridged IP/ARP packets filtering
- |      |      |        | 
- |      |      |        | Core Netfilter Configuration  ---&gt;
- |      |      |        |        | &lt;*&gt; Netfilter connection tracking support 
- |      |      |        |        | *** Xtables matches ***
-*|      |      |        |        | &lt;*&gt;   "addrtype" address type match support
-*|      |      |        |        | &lt;*&gt;   "conntrack" connection tracking match support
-*|      |      |        |        | &lt;*&gt;   "ipvs" match support
- |      |      |        | 
- |      |      |        | &lt;*&gt;   IP virtual server support  ---&gt;
- |      |      |        | 
- |      |      |        | IP: Netfilter Configuration  ---&gt;
- |      |      |        |         | &lt;*&gt; IPv4 connection tracking support (required for NAT)
-*|      |      |        |         | -*- IPv4 NAT
- |      |      |        |         | -*-   IPv4 masquerade support
- |      |      |        |         | &lt;*&gt; IP tables support (required for filtering/masq/NAT)
-*|      |      |        |         | &lt;*&gt;   Packet filtering
-*|      |      |        |         | &lt;*&gt;   iptables NAT support
-*|      |      |        |         | &lt;*&gt;     MASQUERADE target support
- |      |      |        |         | &lt;*&gt;     NETMAP target support
- |      |      |        |         | &lt;*&gt;     REDIRECT target support
- |      |      |
- |      |      | [*] QoS and/or fair queueing  ---&gt; 
- |      |      |        | &lt;*&gt;   Control Group Classifier
- |      |      |
- |      |      | [*] Network priority cgroup
- |      |      | -*- Network classid cgroup
- |
- | Device Drivers  ---&gt;
- |      |
- |      | [*] Multiple devices driver support (RAID and LVM)  ---&gt;
- |      |      | &lt;*&gt;   Device mapper support
- |      |      | &lt;*&gt;     Thin provisioning target
- |      |
- |      | [*] Network device support  ---&gt;
- |      |      | [*]   Network core driver support
-*|      |      | &lt;*&gt;     Virtual ethernet pair device
- |      |
- |
- | File systems  ---&gt;
- |      | &lt;*&gt; Overlay filesystem support 
- |      | Pseudo filesystems  ---&gt;
- |      |      | [*] HugeTLB file system support
- |
- | Security options  ---&gt;
- |      | [*] Enable access key retention support
- |      | [*]   Enable register of persistent per-UID keyrings
- |      | &lt;*&gt;   ENCRYPTED KEYS
- |      | [*]   Diffie-Hellman operations on retained keys
-</pre></div>
-<p>* mandatory option</p>
-<h1>Docker installation</h1>
-<ul>
-<li>Emerge docker</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> emerge app-emulation/docker
-</pre></div>
-<ul>
-<li>Check kernel configuration</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> <span class="nb">exec</span> /usr/share/docker/contrib/check-config.sh
-</pre></div>
-<ul>
-<li>Start docker daemon</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> systemctl start docker.service
-</pre></div>
-<ul>
-<li>test</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> docker run --rm hello-world
-<span class="gp">#</span> docker run -it ubuntu bash
-</pre></div>
-<h1>Docker tools</h1>
-<div class="highlight"><pre><span></span><span class="gp">#</span> emerge app-emulation/docker-compose
-</pre></div>
-<!-- * Messages for package app-emulation/docker-17.03.1:
-
- *   CONFIG_BLK_DEV_THROTTLING:  is not set when it should be.
- *   CONFIG_CFQ_GROUP_IOSCHED:   is not set when it should be.
- *   CONFIG_IP_VS_PROTO_TCP:     is not set when it should be.
- *   CONFIG_IP_VS_PROTO_UDP:     is not set when it should be.
- *   CONFIG_IP_VS_NFCT:  is not set when it should be.
- *   CONFIG_IP_VS_RR:    is not set when it should be.
- *   CONFIG_VXLAN:       is not set when it should be.
- *   CONFIG_IPVLAN:      is not set when it should be.
- *   CONFIG_MACVLAN:     is not set when it should be.
- *   CONFIG_DUMMY:       is not set when it should be.-->
-            </div>
-            <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://didier.bernaudeau.net/Docker_cheat_sheet.html">Docker Cheat Sheet</a></li>
-        <li><a href="http://didier.bernaudeau.net/Container_Overview.html">Container Overview</a></li>
-    </ul>
-</section>
-        </article>
-    </section>
+                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/HowToInstallRaspbianOnRaspberryPi.html">more ...</a>
+              </div>
+            </article>
+            <hr/>
 
         </div>
         <div class="col-sm-3" id="sidebar">

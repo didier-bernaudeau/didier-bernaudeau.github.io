@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Container Overview - My personal blog note</title>
+    <title>Wiring PI - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,20 +9,20 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/Container_Overview.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/WiringPi.html">
 
         <meta name="author" content="Didier BERNAUDEAU" />
-        <meta name="keywords" content="Container" />
-        <meta name="description" content="Container is a righ way to run application in a sandbox and this technology becomes an alternative to virtualization. Container is already used by many companies such as Google, Netflix, Amazon, ... This talk is a short overview (10mn) to present the base of this technology. View online on GitHub" />
+        <meta name="keywords" content="Raspberry Pi" />
+        <meta name="description" content="Wiring PI is a command line tool which allows you to access directly to the GPIO interface." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Container Overview"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/Container_Overview.html"/>
-        <meta property="og:description" content="Container is a righ way to run application in a sandbox and this technology becomes an alternative to virtualization. Container is already used by many companies such as Google, Netflix, Amazon, ... This talk is a short overview (10mn) to present the base of this technology. View online on GitHub"/>
-        <meta property="article:published_time" content="2016-12-08" />
-            <meta property="article:section" content="Talk" />
-            <meta property="article:tag" content="Container" />
+        <meta property="og:title" content="Wiring PI"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/WiringPi.html"/>
+        <meta property="og:description" content="Wiring PI is a command line tool which allows you to access directly to the GPIO interface."/>
+        <meta property="article:published_time" content="2017-06-25" />
+            <meta property="article:section" content="Articles" />
+            <meta property="article:tag" content="Raspberry Pi" />
             <meta property="article:author" content="Didier BERNAUDEAU" />
 
 
@@ -38,8 +38,8 @@
 
 
 
-        <link href="http://didier.bernaudeau.net/feeds/talk.atom.xml" type="application/atom+xml" rel="alternate"
-              title="My personal blog note Talk ATOM Feed"/>
+        <link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Articles ATOM Feed"/>
 
 </head>
 <body>
@@ -79,10 +79,10 @@ My personal blog note            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/Container_Overview.html"
+                    <a href="http://didier.bernaudeau.net/WiringPi.html"
                        rel="bookmark"
-                       title="Permalink to Container Overview">
-                        Container Overview
+                       title="Permalink to Wiring PI">
+                        Wiring PI
                     </a>
                 </h1>
             </header>
@@ -92,11 +92,11 @@ My personal blog note            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2016-12-08T13:00:00+01:00"> jeu. 08 décembre 2016</time>
+        <i class="fa fa-calendar"></i><time datetime="2017-06-25T20:55:00+02:00"> dim. 25 juin 2017</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2016-12-18T13:00:00+01:00"> dim. 18 décembre 2016</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-06-25T20:55:00+02:00"> dim. 25 juin 2017</time>
             </span>
 
 
@@ -104,21 +104,46 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/container.html">Container</a>
+	<a href="http://didier.bernaudeau.net/tag/raspberry-pi.html">Raspberry Pi</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Container is a righ way to run application in a sandbox and this technology becomes an alternative to virtualization. Container is already used by many companies such as Google, Netflix, Amazon, ... This talk is a short overview (10mn) to present the base of this technology.</p>
-<p>View online on <a href="http://0xdbe.github.io/ContainerOverview_20161208">GitHub</a></p>
+                <p>Wiring PI is a command line tool which allows you to access directly to the GPIO interface.</p>
 
+<h1>Pin-out</h1>
+<p>Wiring PI use its own pinout illustrated below:</p>
+<p align="center"><img class="img-responsive" src="images/2017-06-25_WiringPI_GPIO.png"/></p>
+<h1>Install Wiring Pi (On Raspbian)</h1>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install Wiringpi
+</pre></div>
+<p>The gpio command is designed to be called by a normal user without using the sudo command or logging in as root.</p>
+<h1>Output mode</h1>
+<ul>
+<li>Set GPIO pin 4 as an output</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> gpio mode <span class="m">7</span> out
+</pre></div>
+<ul>
+<li>Closed-circuit (which means that the current is On)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> gpio write <span class="m">7</span> 0
+</pre></div>
+<ul>
+<li>Open-circuit (which means that the current is Off)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> gpio write <span class="m">7</span> 1
+</pre></div>
+<ul>
+<li>Print the status</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> gpio <span class="nb">read</span> 7
+</pre></div>
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://didier.bernaudeau.net/How_to_install_Docker_on_Gentoo.html">How to install Docker on Gentoo</a></li>
-        <li><a href="http://didier.bernaudeau.net/Docker_cheat_sheet.html">Docker Cheat Sheet</a></li>
-        <li><a href="http://didier.bernaudeau.net/How_to_install_docker.html">How to install Docker</a></li>
+        <li><a href="http://didier.bernaudeau.net/HowToInstallRaspbianOnRaspberryPi.html">How to install Raspbian on a Raspberry Pi</a></li>
     </ul>
 </section>
         </article>

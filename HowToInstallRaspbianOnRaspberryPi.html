@@ -97,7 +97,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-06-24T22:46:00+02:00"> sam. 24 juin 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-06-25T17:58:00+02:00"> dim. 25 juin 2017</time>
             </span>
 
 
@@ -136,10 +136,15 @@ My personal blog note            </a>
 <p>Password : raspberry</p>
 </li>
 <li>
-<p>Update the system</p>
+<p>Change default password</p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get update <span class="o">&amp;&amp;</span> apt-get upgrade
+<div class="highlight"><pre><span></span><span class="gp">$</span> passwd
+</pre></div>
+<ul>
+<li>Update the system</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get upgrade
 </pre></div>
 <ul>
 <li>Configure the system</li>
@@ -171,17 +176,23 @@ My personal blog note            </a>
 <span class="gp">$</span> sudo apt-get install RPi.GPIO
 </pre></div>
 <ul>
-<li>Install GPIO command line</li>
+<li>Install <a href="http://didier.bernaudeau.net/WiringPi.html">WiringPI</a></li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install Wiringpi
 </pre></div>
 <ul>
 <li>Install Java</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install oracle-java7-jdk
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install openjdk-8-jre
 </pre></div>
             </div>
             <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://didier.bernaudeau.net/WiringPi.html">Wiring PI</a></li>
+    </ul>
+</section>
         </article>
     </section>
 
@@ -319,7 +330,7 @@ My personal blog note            </a>
                             Press review
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
+                    <li class="list-group-item tag-3">
                         <a href="http://didier.bernaudeau.net/tag/raspberry-pi.html">
                             Raspberry Pi
                         </a>

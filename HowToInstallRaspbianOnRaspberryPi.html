@@ -97,7 +97,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-06-25T17:58:00+02:00"> dim. 25 juin 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-06-26T21:59:00+02:00"> lun. 26 juin 2017</time>
             </span>
 
 
@@ -128,16 +128,15 @@ My personal blog note            </a>
 <ul>
 <li>Insert the SD card in the Raspberry Pi</li>
 </ul>
-<h1>Configure the system</h1>
+<h1>Start the system</h1>
 <ul>
 <li>Connect with the default user and password</li>
-<li>Login : pi</li>
-<li>
-<p>Password : raspberry</p>
-</li>
-<li>
-<p>Change default password</p>
-</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">Login</span><span class="o">:</span> <span class="n">pi</span>
+<span class="n">Password</span><span class="o">:</span> <span class="n">raspberry</span>
+</pre></div>
+<ul>
+<li>Change default password</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> passwd
 </pre></div>
@@ -146,19 +145,39 @@ My personal blog note            </a>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get upgrade
 </pre></div>
+<h1>Configure the system</h1>
 <ul>
-<li>Configure the system</li>
+<li>Open the configuration menu</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo raspi-config
 </pre></div>
-<div class="highlight"><pre><span></span>1. Change keyboard layout
-2. Expand FS
-3. Update
-4. Enable SSH (Interfacing option)
+<ul>
+<li>Change keyboard layout</li>
+</ul>
+<div class="highlight"><pre><span></span>...
 </pre></div>
 <ul>
-<li>Configure the WiFi </li>
+<li>Expand Filesystem</li>
 </ul>
+<div class="highlight"><pre><span></span>7 Advanced Options
+A1 Expand Filesystem
+</pre></div>
+<ul>
+<li>Enable SSH</li>
+</ul>
+<div class="highlight"><pre><span></span>5 Interfacing Options
+P2 SSH
+Would you like the SSH server to be enabled? Yes
+</pre></div>
+<ul>
+<li>Define Time Zone</li>
+</ul>
+<div class="highlight"><pre><span></span>4 Localisation Options
+I2 Change Timezone
+Geographic area: Europe
+Time zone: Paris
+</pre></div>
+<h1>Configure the WiFi</h1>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo wpa_passphrase SSID
 <span class="gp">$</span> sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
 </pre></div>
@@ -285,6 +304,11 @@ My personal blog note            </a>
                             hardware
                         </a>
                     </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/home-automation.html">
+                            Home automation
+                        </a>
+                    </li>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/html.html">
                             HTML
@@ -373,6 +397,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/windows.html">
                             Windows
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/wireless.html">
+                            Wireless
                         </a>
                     </li>
                 </ul>

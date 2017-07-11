@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>How to install Docker - My personal blog note</title>
+    <title>EnOcean - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,21 +9,22 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/How_to_install_docker.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/EnOcean.html">
 
         <meta name="author" content="Didier BERNAUDEAU" />
-        <meta name="keywords" content="Container,Debian" />
-        <meta name="description" content="Docker is the most famous application container engine. This post describes the best way to install docker on Debian Linux." />
+        <meta name="keywords" content="Home automation,Network,Wireless" />
+        <meta name="description" content="EnOcean is an energy harvesting wireless technology used primarily in building automation systems and smart homes. All modules based on this technology combine on the one hand micro energy converters with ultra low power electronics, and on the other hand enable wireless communications between battery-less wireless sensors, actors and even gateways." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="How to install Docker"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/How_to_install_docker.html"/>
-        <meta property="og:description" content="Docker is the most famous application container engine. This post describes the best way to install docker on Debian Linux."/>
-        <meta property="article:published_time" content="2016-11-10" />
-            <meta property="article:section" content="Tutorials" />
-            <meta property="article:tag" content="Container" />
-            <meta property="article:tag" content="Debian" />
+        <meta property="og:title" content="EnOcean"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/EnOcean.html"/>
+        <meta property="og:description" content="EnOcean is an energy harvesting wireless technology used primarily in building automation systems and smart homes. All modules based on this technology combine on the one hand micro energy converters with ultra low power electronics, and on the other hand enable wireless communications between battery-less wireless sensors, actors and even gateways."/>
+        <meta property="article:published_time" content="2017-07-05" />
+            <meta property="article:section" content="Articles" />
+            <meta property="article:tag" content="Home automation" />
+            <meta property="article:tag" content="Network" />
+            <meta property="article:tag" content="Wireless" />
             <meta property="article:author" content="Didier BERNAUDEAU" />
 
 
@@ -39,8 +40,8 @@
 
 
 
-        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
-              title="My personal blog note Tutorials ATOM Feed"/>
+        <link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Articles ATOM Feed"/>
 
 </head>
 <body>
@@ -80,10 +81,10 @@ My personal blog note            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/How_to_install_docker.html"
+                    <a href="http://didier.bernaudeau.net/EnOcean.html"
                        rel="bookmark"
-                       title="Permalink to How to install Docker">
-                        How to install Docker
+                       title="Permalink to EnOcean">
+                        EnOcean
                     </a>
                 </h1>
             </header>
@@ -93,11 +94,11 @@ My personal blog note            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2016-11-10T23:34:00+01:00"> jeu. 10 novembre 2016</time>
+        <i class="fa fa-calendar"></i><time datetime="2017-07-05T11:50:00+02:00"> mer. 05 juillet 2017</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2016-11-10T23:34:00+01:00"> jeu. 10 novembre 2016</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-07-11T22:54:00+02:00"> mar. 11 juillet 2017</time>
             </span>
 
 
@@ -105,87 +106,62 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/container.html">Container</a>
+	<a href="http://didier.bernaudeau.net/tag/home-automation.html">Home automation</a>
         /
-	<a href="http://didier.bernaudeau.net/tag/debian.html">Debian</a>
+	<a href="http://didier.bernaudeau.net/tag/network.html">Network</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/wireless.html">Wireless</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Docker is the most famous application container engine. This post describes the best way to install docker on Debian Linux.</p>
+                <p>EnOcean is an energy harvesting wireless technology used primarily in building automation systems and smart homes. All modules based on this technology combine on the one hand micro energy converters with ultra low power electronics, and on the other hand enable wireless communications between battery-less wireless sensors, actors and even gateways.</p>
 
-<h1>Add Docker's repository</h1>
+<p align="center"><img class="img-responsive" src="images/2017-07-05_EnOcean_Logo.png"/></p>
+<h1>Protocols</h1>
+<p align="center"><img class="img-responsive" src="images/2017-07-05_EnOcean_Arch.png"/></p>
+<h3>ESP (Enocean Serial Protocol)</h3>
+<p>This protocol is designed to transfer information between EnOcean device and host using UART interface. For more information, read the <a href="http://didier.bernaudeau.net/documents/2017-07-05_EnOceanSerialProtocol.pdf">specification v1.30 / March 22, 2016</a>.</p>
+<h3>ERP (Enocean Radio Protocol)</h3>
+<p>This protocol is designed to sent information, as "EnOcean telegram", between two devices. According to the OSI layer model, this protocol covers layers 1 to 3. For more information, read the <a href="http://didier.bernaudeau.net/documents/2017-07-05_EnOceanRadioProtocol.pdf">specification v2 / September 26, 2013</a>.</p>
+<h3>EEP (EnOcean Equipment Profiles)</h3>
+<p>This specification describes the payload of "EnOcean telegram" for each profile.</p>
+<p>The name of an equipment profile is divided in 3 elements:</p>
 <ul>
-<li>Install dependencies</li>
+<li>RORG: the ERP radio telegram type (range: 00…FF, 8 Bit)</li>
+<li>FUNC: basic functionality of the data content (range 00…3F, 6 Bit)</li>
+<li>TYPE: type of device in its individual characteristics (range 00…7F, 7 Bit)</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> apt-get install apt-transport-https ca-certificates
-</pre></div>
+<p>For example, the profile "A5-02-05":</p>
 <ul>
-<li>Install public key of Docker's repository</li>
+<li>A5: 4BS communication</li>
+<li>02: Temperature Sensors</li>
+<li>05: Temperature Sensors Range 0°C to +40°C</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-</pre></div>
+<p>For more information, read the <a href="http://didier.bernaudeau.net/documents/2017-07-05_EnOceanEquipmentProfiles.pdf">specification v2.6.3 / June 8, 2015</a>.</p>
+<h1>Security</h1>
+<p>Wireless communication raises two significant concerns:</p>
 <ul>
-<li>Add Docker repository</li>
+<li>Unauthorized interception (reception and correct interpretation) of transmitted data (Eavesdropping)</li>
+<li>Unauthorized transmission of correct control commands including “Replay Attacks"</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/apt/sources.list.d/docker.list
-<span class="go">deb https://apt.dockerproject.org/repo debian-jessie main</span>
-</pre></div>
+<p>Content protection addressing replay attacks:</p>
 <ul>
-<li>Update repository</li>
+<li>Rolling Code: code that changes according to a predefined algorithm</li>
+<li>CMAC: Cipher-based message authentication code with dynamic key (derived from rolling code)</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> apt-get update
-<span class="gp">#</span> apt-cache policy docker-engine
-</pre></div>
-<h1>Install Docker</h1>
+<p>Content protection addressing eavesdropping:</p>
 <ul>
-<li>Install</li>
+<li>AES 128 bits CBC mode</li>
+<li>Variable AES 2128 bits (data is encrypted using the 128-bit AES algorithm in combination with the rolling code)</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> apt-get install docker-engine
-</pre></div>
-<ul>
-<li>Start Docker</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> service docker start
-</pre></div>
-<h1>Test Docker with OWASP ZAP</h1>
-<ul>
-<li>Pull the latest zap docker image from owasp's docker image repository (hosted by docker hub).</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> docker pull owasp/zap2docker-stable
-</pre></div>
-<ul>
-<li>List installed images</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> docker images
-<span class="go">REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE</span>
-<span class="go">owasp/zap2docker-stable   latest              a774bdc65502        5 months ago        1.557 GB</span>
-</pre></div>
-<ul>
-<li>Run docker image</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> docker run -p 8090:8090 -i owasp/zap2docker-stable zap.sh -daemon -port <span class="m">8090</span> -host 0.0.0.0
-</pre></div>
-<ul>
-<li>Get Container ID</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> docker ps
-
-<span class="go">CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS              PORTS                    NAMES</span>
-<span class="go">5ff0ca31a9a1        owasp/zap2docker-stable   "zap.sh -daemon -port"   54 seconds ago      Up 53 seconds       0.0.0.0:8090-&gt;8090/tcp   zen_knuth</span>
-</pre></div>
-<ul>
-<li>Get information</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> docker inspect &lt;CONTAINER ID&gt;
-</pre></div>
+<p>The manufacturer is free to choose whether or not to implement these security mechanisms. Take care when selecting EnOcean modules!</p>
+<p>For more information, read the <a href="http://didier.bernaudeau.net/documents/2017-07-05_EnOceanSecurity.pdf">Security of EnOcean Radio Networks v1.9 / July 26, 2013</a>.</p>
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://didier.bernaudeau.net/Docker_cheat_sheet.html">Docker Cheat Sheet</a></li>
-        <li><a href="http://didier.bernaudeau.net/Container_Overview.html">Container Overview</a></li>
-        <li><a href="http://didier.bernaudeau.net/Debian_Cheat_Sheet.html">Debian Cheat Sheet</a></li>
+        <li><a href="http://didier.bernaudeau.net/TLS_Cipher_Suites.html">TLS Cipher Suites</a></li>
     </ul>
 </section>
         </article>

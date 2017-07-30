@@ -1,5 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-07-17T22:18:00+02:00</updated><entry><title>Flask</title><link href="http://didier.bernaudeau.net/Flask.html" rel="alternate"></link><published>2017-07-17T22:18:00+02:00</published><updated>2017-07-17T22:18:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-17:/Flask.html</id><summary type="html">&lt;p&gt;Flask is a light and simple framework for bulding RESTfull API with Python. This post is based on the official &lt;a href="http://flask-restful.readthedocs.io/en/0.3.5/quickstart.html"&gt;quickstart guide&lt;/a&gt; and describes how to create an API with Flask.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-07-30T10:25:00+02:00</updated><entry><title>Install Debian on PcEngines APU</title><link href="http://didier.bernaudeau.net/Install_Debian_on_APU.html" rel="alternate"></link><published>2017-07-30T10:25:00+02:00</published><updated>2017-07-30T10:25:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-30:/Install_Debian_on_APU.html</id><summary type="html">&lt;p&gt;This post describes a way to install Debian 9.1 on the APU3C4, a system board from PcEngines.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post describes a way to install Debian 9.1 on the APU3C4, a system board from PcEngines.&lt;/p&gt;
+
+&lt;h1&gt;Create boot media&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Download Debian 9.1 for network installation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-9.1.0-amd64-netinst.iso
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Copy iso image on an USB flash drive&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; dd &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;debian-9.1.0-amd64-netinst.iso &lt;span class="nv"&gt;of&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/sdb &lt;span class="nv"&gt;bs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4k
+&lt;span class="gp"&gt;#&lt;/span&gt; sync
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Boot the system board&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Plug the serial USB converter on the system board and on your computer&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Start serial interface&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; picocom --baud &lt;span class="m"&gt;115200&lt;/span&gt; --flow n --parity n --stopbits &lt;span class="m"&gt;1&lt;/span&gt; /dev/ttyUSB0
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Plug an Ethernet cable in LAN1 port&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Plug the USB flash drive on the system board&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Plug in and the system board is now power on&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Press F10 and select "USB MSC Drive  USB DISK 2.0 PMAP" in the boot menu&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Debian install menu appears&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_01.png" width="60%"/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Press "tab" to edit the boot command and add "console=ttyS0,115200u8" to the end of the default boot command&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;/install.amd/vmlinuz vga=off initrd=/install.amd/gtk/initrd.gz --- quiet console=ttyS0,115200u8&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;/!\ Changing the "vga=788" to "vga=off" will speed up the boot as it won't stop complaining about not finding video mode.&lt;/p&gt;
+&lt;h1&gt;Install Debian Linux&lt;/h1&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_02.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_03.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_04.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_05.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_06.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_07.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_08.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_09.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_10.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_11.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_12.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_13.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_14.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_15.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_16.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_17.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_18.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_19.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_20.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_21.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_22.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_23.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_24.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_25.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_26.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_27.png" width="60%"/&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-30_Install_Debian_on_APU_28.png" width="60%"/&gt;&lt;/p&gt;
+&lt;h1&gt;Custom the system&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install sudo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get install -y sudo
+&lt;span class="gp"&gt;#&lt;/span&gt; adduser UserName sudo
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install sensors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y lm-sensors
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo sensors-detect
+&lt;span class="gp"&gt;$&lt;/span&gt; sensors
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;k10temp-pci-00c3
+Adapter: PCI adapter
+temp1:        +58.8°C  (high = +70.0°C)
+                       (crit = +105.0°C, hyst = +104.0°C)
+
+fam15h_power-pci-00c4
+Adapter: PCI adapter
+power1:        1.82 mW (interval =   0.01 s, crit =   6.00 W)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- http://pcengines.info/forums/?page=post&amp;id=51C5DE97-2D0E-40E9-BFF7-7F7FE30E18FE --&gt;</content><category term="APU"></category><category term="Debian"></category></entry><entry><title>How to install Postgresql on RedHat</title><link href="http://didier.bernaudeau.net/HowTo_Install_Postgresql_On_RedHat.html" rel="alternate"></link><published>2017-07-29T21:51:00+02:00</published><updated>2017-07-29T21:51:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-29:/HowTo_Install_Postgresql_On_RedHat.html</id><summary type="html">&lt;p&gt;By default, RedHat Linux Enterprise provides python 9.1 only. This post is a way to install Postgresql 9.6 on RedHat 7.3.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;By default, RedHat Linux Enterprise provides python 9.1 only. This post is a way to install Postgresql 9.6 on RedHat 7.3.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Add the Postgresql repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; curl -O https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-redhat96-9.6-3.noarch.rpm
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo yum install pgdg-redhat96-9.6-3.noarch.rpm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install the client and server packages&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo yum install -y postgresql96 postgresql96-server
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Initialize the database&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo /usr/pgsql-9.6/bin/postgresql96-setup initdb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Enable automatic start&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; postgresql-9.6
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start postgresql-9.6
+&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- Source: https://www.postgresql.org/download/linux/redhat/ --&gt;</content><category term="RedHat"></category><category term="Database"></category></entry><entry><title>How to install python on RedHat</title><link href="http://didier.bernaudeau.net/HowTo_Install_Python_On_RedHat.html" rel="alternate"></link><published>2017-07-29T21:26:00+02:00</published><updated>2017-07-29T21:26:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-29:/HowTo_Install_Python_On_RedHat.html</id><summary type="html">&lt;p&gt;By default, RedHat Linux Enterprise provides python 2.7 only. This post is a way to install python 3.4 on RedHat.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;By default, RedHat Linux Enterprise provides python 2.7 only. This post is a way to install python 3.4 on RedHat.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Install Python 3.4 and tools from RHEL repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo yum install -y python34 python34-devel python34-pip python-pip python-wheel
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a group of alternatives for python&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo alternatives --install /usr/bin/python python /usr/bin/python3.4 2
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+&lt;span class="go"&gt;```console&lt;/span&gt;
+
+&lt;span class="go"&gt;* Select python 3.4&lt;/span&gt;
+
+&lt;span class="go"&gt;```console&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo alternatives --config python
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install additional tools from Pypi&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo -H pip3 install virtualenv wheel
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Allow access to python packages for all users&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo chmod o+rX -R /usr/lib/python3.4/site-packages
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo chmod o+rX -R /usr/lib64/python3.4/site-packages
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;/!\ Yum command line needs python 2.7.&lt;/p&gt;</content><category term="RedHat"></category><category term="Python"></category></entry><entry><title>Flask</title><link href="http://didier.bernaudeau.net/Flask.html" rel="alternate"></link><published>2017-07-17T22:18:00+02:00</published><updated>2017-07-17T22:18:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-17:/Flask.html</id><summary type="html">&lt;p&gt;Flask is a light and simple framework for bulding RESTfull API with Python. This post is based on the official &lt;a href="http://flask-restful.readthedocs.io/en/0.3.5/quickstart.html"&gt;quickstart guide&lt;/a&gt; and describes how to create an API with Flask.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Flask is a light and simple framework for bulding RESTfull API with Python. This post is based on the official &lt;a href="http://flask-restful.readthedocs.io/en/0.3.5/quickstart.html"&gt;quickstart guide&lt;/a&gt; and describes how to create an API with Flask.&lt;/p&gt;
 
 &lt;h1&gt;Create the application&lt;/h1&gt;
@@ -442,7 +599,7 @@ http://lab.hakim.se/reveal-js/#/
 &lt;h1&gt;Rebuild&lt;/h1&gt;
 &lt;p&gt;Some people swear that they need to rebuild every single package on their system when a new GCC version is made available. Of course, that doesn't make sense, since there are many applications that are not using GCC for their build and install process anyhow, so they would never be affected by such changes.&lt;/p&gt;
 &lt;p&gt;Below, some packages for which rebuild is requires :&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --oneshot -pv media-gfx/exiv2 dev-libs/re2 dev-libs/boost dev-util/cppunit dev-cpp/libcmis dev-libs/liborcus dev-libs/xapian dev-libs/tinyxml app-text/qpdf
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --oneshot -pv media-gfx/exiv2 dev-libs/re2 dev-libs/boost dev-util/cppunit dev-cpp/libcmis dev-libs/liborcus dev-libs/xapian dev-libs/tinyxml app-text/qpdf sys-devel/llvm dev-libs/leveldb
 &lt;/pre&gt;&lt;/div&gt;</content><category term="Gentoo"></category></entry><entry><title>How to install Docker on Gentoo</title><link href="http://didier.bernaudeau.net/How_to_install_Docker_on_Gentoo.html" rel="alternate"></link><published>2017-03-31T06:50:00+02:00</published><updated>2017-04-12T21:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-03-31:/How_to_install_Docker_on_Gentoo.html</id><summary type="html">&lt;p&gt;This post describes the linux kernel configuration for container support and the way to install Docker on Gentoo Linux.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post describes the linux kernel configuration for container support and the way to install Docker on Gentoo Linux.&lt;/p&gt;
 
@@ -665,17 +822,6 @@ http://lab.hakim.se/reveal-js/#/
 &lt;li&gt;Curl&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y curl
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;Network configuration&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Show IP address&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo ip address show
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Set IP address&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo ip addr add 192.168.10.1 dev ens3
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;What still needs to be done&lt;/h1&gt;
 &lt;ul&gt;
@@ -2135,7 +2281,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 
 &lt;div class="section" id="pulseaudio-architecture"&gt;
 &lt;h2&gt;PulseAudio Architecture&lt;/h2&gt;
-&lt;img alt="PulseAudio Architecture" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
+&lt;img alt="PulseAudio Architecture" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="install-pulseaudio"&gt;
 &lt;h2&gt;Install PulseAudio&lt;/h2&gt;
@@ -2276,23 +2422,23 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;span class="gp"&gt;$&lt;/span&gt; virt-manager
 &lt;/pre&gt;
 &lt;p&gt;Open the menu "file &amp;gt; Add connection"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Add connection" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Add connection" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="network-configuration"&gt;
 &lt;h2&gt;Network Configuration&lt;/h2&gt;
 &lt;p&gt;After starting LibVirtd, network configuration is as follows:&lt;/p&gt;
-&lt;img alt="Network Configuration" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
+&lt;img alt="Network Configuration" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="create-a-virtual-machine"&gt;
 &lt;h2&gt;Create a virtual machine&lt;/h2&gt;
 &lt;p&gt;Open the menu "file &amp;gt; New Virtual Machine"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Step1" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step2" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
-&lt;img alt="Virt-Manager - Step3" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step4" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step5" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step1" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step2" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - Step3" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step4" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step5" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
 &lt;p&gt;Select "VirtIO" device model for Network Interface&lt;/p&gt;
-&lt;img alt="Virt-Manager - NIC device model" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - NIC device model" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
 &lt;!-- vhost=on --&gt;
 &lt;/div&gt;
 </content><category term="Gentoo"></category><category term="Virtualization"></category></entry><entry><title>How to create bootable USB flash drives with Rufus</title><link href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html" rel="alternate"></link><published>2015-07-12T12:32:00+02:00</published><updated>2015-07-15T21:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-12:/How_to_create_bootable_USB_flash_drives_with_Rufus.html</id><summary type="html">&lt;p&gt;This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp;amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.&lt;/p&gt;
@@ -2306,12 +2452,12 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;h2&gt;Create installation media&lt;/h2&gt;
 &lt;div class="section" id="example-for-microsoft-windows-8-1-with-mbr"&gt;
 &lt;h3&gt;Example for Microsoft Windows 8.1 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="example-for-debian-8-with-mbr"&gt;
 &lt;h3&gt;Example for Debian 8 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
 &lt;p&gt;If you need additional firmware to install Debian :&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul class="simple"&gt;
@@ -2322,14 +2468,14 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="Windows"></category><category term="Linux"></category></entry><entry><title>HowTo configure the Linux kernel for Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html" rel="alternate"></link><published>2015-06-16T22:10:00+02:00</published><updated>2017-01-27T18:55:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-16:/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html</id><summary type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
+</content><category term="Windows"></category><category term="Linux"></category></entry><entry><title>HowTo configure the Linux kernel for Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html" rel="alternate"></link><published>2015-06-16T22:10:00+02:00</published><updated>2017-07-23T22:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-16:/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html</id><summary type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
 &lt;p&gt;To get more information about the configuration of my laptop, you can read this article : &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html"&gt;Lenovo ThinkPad X240&lt;/a&gt;&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
 &lt;p&gt;To get more information about the configuration of my laptop, you can read this article : &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html"&gt;Lenovo ThinkPad X240&lt;/a&gt;&lt;/p&gt;
 
 &lt;div class="section" id="kernel-installation"&gt;
 &lt;h2&gt;Kernel installation&lt;/h2&gt;
-&lt;p&gt;Download kernel Gentoo sources (4.9.16) :&lt;/p&gt;
+&lt;p&gt;Download kernel Gentoo sources (4.9.34) :&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt; emerge sys-kernel/gentoo-sources
 &lt;/pre&gt;
@@ -2691,6 +2837,15 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;User&lt;/span&gt; &lt;span class="err"&gt;namespace&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
+&lt;div class="section" id="usb-serial-converter-support"&gt;
+&lt;h3&gt;USB Serial Converter support&lt;/h3&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;Device&lt;/span&gt; &lt;span class="err"&gt;Drivers&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;USB&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;USB&lt;/span&gt; &lt;span class="err"&gt;Serial&lt;/span&gt; &lt;span class="err"&gt;Converter&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;USB&lt;/span&gt; &lt;span class="err"&gt;Winchiphead&lt;/span&gt; &lt;span class="err"&gt;CH341&lt;/span&gt; &lt;span class="err"&gt;Single&lt;/span&gt; &lt;span class="err"&gt;Port&lt;/span&gt; &lt;span class="err"&gt;Serial&lt;/span&gt; &lt;span class="err"&gt;Driver&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="kernel-compilation"&gt;
 &lt;h2&gt;Kernel compilation&lt;/h2&gt;
@@ -2711,7 +2866,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/pre&gt;
 &lt;p&gt;Copy kernel&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.9.16.efi
+&lt;span class="gp"&gt;#&lt;/span&gt; cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.9.34.efi
 &lt;/pre&gt;
 &lt;p&gt;Unmount ESP (EFI System Partition)&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
@@ -2726,7 +2881,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/pre&gt;
 &lt;p&gt;Add the new kernel&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr -c -d /dev/sda -p &lt;span class="m"&gt;2&lt;/span&gt; -L &lt;span class="s2"&gt;"Gentoo Linux 4.9.16"&lt;/span&gt; -l &lt;span class="s2"&gt;"\EFI\GentooLinux\4.9.16.efi"&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr -c -d /dev/sda -p &lt;span class="m"&gt;2&lt;/span&gt; -L &lt;span class="s2"&gt;"Gentoo Linux 4.9.34"&lt;/span&gt; -l &lt;span class="s2"&gt;"\EFI\GentooLinux\4.9.34.efi"&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Print the menu&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;

@@ -96,7 +96,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-01-27T18:55:00+01:00"> ven. 27 janvier 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-07-23T22:10:00+02:00"> dim. 23 juillet 2017</time>
             </span>
 
 
@@ -113,7 +113,7 @@ My personal blog note            </a>
 
 <div class="section" id="kernel-installation">
 <h2>Kernel installation</h2>
-<p>Download kernel Gentoo sources (4.9.16) :</p>
+<p>Download kernel Gentoo sources (4.9.34) :</p>
 <pre class="code console literal-block">
 <span class="gp">#</span> emerge sys-kernel/gentoo-sources
 </pre>
@@ -475,6 +475,15 @@ My personal blog note            </a>
 <span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">User</span> <span class="err">namespace</span>
 </pre>
 </div>
+<div class="section" id="usb-serial-converter-support">
+<h3>USB Serial Converter support</h3>
+<pre class="code ini literal-block">
+<span class="err">|</span> <span class="err">Device</span> <span class="err">Drivers</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">USB</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">USB</span> <span class="err">Serial</span> <span class="err">Converter</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">&lt;*&gt;</span>   <span class="err">USB</span> <span class="err">Winchiphead</span> <span class="err">CH341</span> <span class="err">Single</span> <span class="err">Port</span> <span class="err">Serial</span> <span class="err">Driver</span>
+</pre>
+</div>
 </div>
 <div class="section" id="kernel-compilation">
 <h2>Kernel compilation</h2>
@@ -495,7 +504,7 @@ My personal blog note            </a>
 </pre>
 <p>Copy kernel</p>
 <pre class="code console literal-block">
-<span class="gp">#</span> cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.9.16.efi
+<span class="gp">#</span> cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.9.34.efi
 </pre>
 <p>Unmount ESP (EFI System Partition)</p>
 <pre class="code console literal-block">
@@ -510,7 +519,7 @@ My personal blog note            </a>
 </pre>
 <p>Add the new kernel</p>
 <pre class="code console literal-block">
-<span class="gp">#</span> efibootmgr -c -d /dev/sda -p <span class="m">2</span> -L <span class="s2">"Gentoo Linux 4.9.16"</span> -l <span class="s2">"\EFI\GentooLinux\4.9.16.efi"</span>
+<span class="gp">#</span> efibootmgr -c -d /dev/sda -p <span class="m">2</span> -L <span class="s2">"Gentoo Linux 4.9.34"</span> -l <span class="s2">"\EFI\GentooLinux\4.9.34.efi"</span>
 </pre>
 <p>Print the menu</p>
 <pre class="code console literal-block">
@@ -554,6 +563,11 @@ My personal blog note            </a>
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/apu.html">
+                            APU
+                        </a>
+                    </li>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/blockchain.html">
                             Blockchain
@@ -577,6 +591,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/cups.html">
                             cups
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/database.html">
+                            Database
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
@@ -619,9 +638,9 @@ My personal blog note            </a>
                             Go
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/hardware.html">
-                            hardware
+                            Hardware
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -674,7 +693,7 @@ My personal blog note            </a>
                             Press review
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/python.html">
                             Python
                         </a>
@@ -687,6 +706,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/raspbian.html">
                             Raspbian
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/redhat.html">
+                            RedHat
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>PC Engines APU3a4 - My personal blog note</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://didier.bernaudeau.net/PC_Engines_APU3a4.html">
+
+        <meta name="author" content="Didier Bernaudeau" />
+        <meta name="keywords" content="Hardware,APU" />
+        <meta name="description" content="PC Engines offers small and low power computer that is perfectly suitable for a personal server or firewall. It&#39;s a good alternative to Soekris that is not really commercialized in European countries. This post describes the hardware configuration of my APU3a4. Future articles will refer to this one." />
+
+        <meta property="og:site_name" content="My personal blog note" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="PC Engines APU3a4"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/PC_Engines_APU3a4.html"/>
+        <meta property="og:description" content="PC Engines offers small and low power computer that is perfectly suitable for a personal server or firewall. It&#39;s a good alternative to Soekris that is not really commercialized in European countries. This post describes the hardware configuration of my APU3a4. Future articles will refer to this one."/>
+        <meta property="article:published_time" content="2017-07-21" />
+            <meta property="article:section" content="Articles" />
+            <meta property="article:tag" content="Hardware" />
+            <meta property="article:tag" content="APU" />
+            <meta property="article:author" content="Didier Bernaudeau" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+    <link href="http://didier.bernaudeau.net/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://didier.bernaudeau.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/style.css" type="text/css"/>
+
+        <link href="http://didier.bernaudeau.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note ATOM Feed"/>
+
+
+
+        <link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Articles ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://didier.bernaudeau.net/" class="navbar-brand">
+My personal blog note            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/articles.html">Articles</a></li>
+                    <li><a href="/category/tutorials.html">Tutorials</a></li>
+                    <li><a href="/category/talk.html">Talk</a></li>
+                    <li><a href="/category/press-review.html">Press Review</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="http://didier.bernaudeau.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://didier.bernaudeau.net/PC_Engines_APU3a4.html"
+                       rel="bookmark"
+                       title="Permalink to PC Engines APU3a4">
+                        PC Engines APU3a4
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-07-21T21:22:00+02:00"> ven. 21 juillet 2017</time>
+    </span>
+            <span class="label label-default">Modified</span>
+            <span class="modified">
+                <i class="fa fa-calendar"></i><time datetime="2017-07-28T22:58:00+02:00"> ven. 28 juillet 2017</time>
+            </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://didier.bernaudeau.net/tag/hardware.html">Hardware</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/apu.html">APU</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>PC Engines offers small and low power computer that is perfectly suitable for a personal server or firewall. It's a good alternative to Soekris that is not really commercialized in European countries. This post describes the hardware configuration of my APU3a4. Future articles will refer to this one.</p>
+
+<div class="section" id="hardware-specification">
+<h2>Hardware specification</h2>
+<div class="section" id="processor">
+<h3>Processor</h3>
+<table border="1" class="docutils table table-striped table-hover">
+<colgroup>
+<col width="43%"></col>
+<col width="57%"></col>
+</colgroup>
+<tbody valign="top">
+<tr><td>Processor family</td>
+<td>AMD Embedded G series</td>
+</tr>
+<tr><td>Processor model</td>
+<td>GX-412TC</td>
+</tr>
+<tr><td>Processor architecture</td>
+<td>Jaguar</td>
+</tr>
+<tr><td>Processor core</td>
+<td>4</td>
+</tr>
+<tr><td>Processor frequency</td>
+<td>1 GHz</td>
+</tr>
+<tr><td>Processor Cache L1</td>
+<td>64 KB per core</td>
+</tr>
+<tr><td>Processor Cache L2</td>
+<td>2 MB</td>
+</tr>
+<tr><td>Instruction set support</td>
+<td>64 bits with AES-NI</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="memory">
+<h3>Memory</h3>
+<table border="1" class="docutils table table-striped table-hover">
+<colgroup>
+<col width="43%"></col>
+<col width="57%"></col>
+</colgroup>
+<tbody valign="top">
+<tr><td>Memory chip name</td>
+<td>DDR3-1333 ECC</td>
+</tr>
+<tr><td>Memory capacity</td>
+<td>4 GB</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="ethernet">
+<h3>Ethernet</h3>
+<table border="1" class="docutils table table-striped table-hover">
+<colgroup>
+<col width="43%"></col>
+<col width="57%"></col>
+</colgroup>
+<tbody valign="top">
+<tr><td>Model</td>
+<td>Intel Ethernet Connection I211-AT</td>
+</tr>
+<tr><td>Standard</td>
+<td>Gigabit Ethernet (1 Gbps)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="ports-interfaces">
+<h3>Ports &amp; interfaces</h3>
+<table border="1" class="docutils table table-striped table-hover">
+<colgroup>
+<col width="43%"></col>
+<col width="57%"></col>
+</colgroup>
+<tbody valign="top">
+<tr><td>DB9 serial port</td>
+<td>x 1</td>
+</tr>
+<tr><td>Ethernet LAN (RJ-45)</td>
+<td>x 3</td>
+</tr>
+<tr><td>USB 3.0</td>
+<td>x 2 (external)</td>
+</tr>
+<tr><td>USB 2.0</td>
+<td>x 4 (internal)</td>
+</tr>
+<tr><td>miniPCI express</td>
+<td>x 3</td>
+</tr>
+<tr><td>SATA</td>
+<td>x 1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="hard-disk-drive">
+<h3>Hard Disk Drive</h3>
+<table border="1" class="docutils table table-striped table-hover">
+<colgroup>
+<col width="43%"></col>
+<col width="57%"></col>
+</colgroup>
+<tbody valign="top">
+<tr><td>Hard drive model</td>
+<td>HGST</td>
+</tr>
+<tr><td>Total storage capacity</td>
+<td>500 GB</td>
+</tr>
+<tr><td>Hard drive interface</td>
+<td>Serial ATA</td>
+</tr>
+<tr><td>Hard drive speed</td>
+<td>5400 RPM</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="case">
+<h3>Case</h3>
+<table border="1" class="docutils table table-striped table-hover">
+<colgroup>
+<col width="43%"></col>
+<col width="57%"></col>
+</colgroup>
+<tbody valign="top">
+<tr><td>Model</td>
+<td>Calexium</td>
+</tr>
+</tbody>
+</table>
+<p>For more information, read the <a class="reference external" href="http://didier.bernaudeau.net/documents/2017-07-21_PcEngines_AP3_Datasheet.pdf">Datasheet</a>.</p>
+</div>
+</div>
+<div class="section" id="serial-console">
+<h2>Serial console</h2>
+<p>A PC Engines doesn't have graphical processor unit. The only way to interact with this computer is a serial console with a null-modem cable (DB9 female). On top of that, if you don't have a serial port on your laptop, an USB serial converter is needed. Calexium provides the "QinHeng Electronics HL-340 USB-Serial adapter".</p>
+<ul class="simple">
+<li>Kernel configuration</li>
+</ul>
+<pre class="code ini literal-block">
+<span class="err">|</span> <span class="err">Device</span> <span class="err">Drivers</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">USB</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">USB</span> <span class="err">Serial</span> <span class="err">Converter</span> <span class="err">support</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">USB</span> <span class="err">Serial</span> <span class="err">Console</span> <span class="err">device</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">&lt;*&gt;</span>   <span class="err">USB</span> <span class="err">Winchiphead</span> <span class="err">CH341</span> <span class="err">Single</span> <span class="err">Port</span> <span class="err">Serial</span> <span class="err">Driver</span>
+<span class="err">|</span>      <span class="err">|</span>
+<span class="err">|</span>      <span class="err">|</span> <span class="err">Character</span> <span class="err">devices</span>  <span class="err">---&gt;</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Legacy</span> <span class="err">(BSD)</span> <span class="err">PTY</span> <span class="err">support</span>
+<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">(256)</span>   <span class="err">Maximum</span> <span class="err">number</span> <span class="err">of</span> <span class="err">legacy</span> <span class="err">PTY</span> <span class="err">in</span> <span class="err">use</span> <span class="err">(NEW)</span>
+</pre>
+<ul class="simple">
+<li>Add user in the group uucp</li>
+</ul>
+<pre class="code console literal-block">
+<span class="gp">#</span> usermod -a -G uucp didier
+</pre>
+<ul class="simple">
+<li>Install Picocom</li>
+</ul>
+<pre class="code console literal-block">
+<span class="gp">#</span> net-dialup/picocom
+</pre>
+<ul class="simple">
+<li>Connect to serial interface</li>
+</ul>
+<pre class="code console literal-block">
+<span class="gp">$</span> picocom --baud <span class="m">115200</span> --flow n --parity n --stopbits <span class="m">1</span> /dev/ttyUSB0
+</pre>
+<pre class="code ini literal-block">
+<span class="err">picocom</span> <span class="err">v2.2</span>
+
+<span class="err">port</span> <span class="err">is</span>        <span class="err">:</span> <span class="err">/dev/ttyUSB0</span>
+<span class="err">flowcontrol</span>    <span class="err">:</span> <span class="err">none</span>
+<span class="err">baudrate</span> <span class="err">is</span>    <span class="err">:</span> <span class="err">115200</span>
+<span class="err">parity</span> <span class="err">is</span>      <span class="err">:</span> <span class="err">none</span>
+<span class="err">databits</span> <span class="err">are</span>   <span class="err">:</span> <span class="err">8</span>
+<span class="err">stopbits</span> <span class="err">are</span>   <span class="err">:</span> <span class="err">1</span>
+<span class="err">escape</span> <span class="err">is</span>      <span class="err">:</span> <span class="err">C-a</span>
+<span class="err">local</span> <span class="err">echo</span> <span class="err">is</span>  <span class="err">:</span> <span class="err">no</span>
+<span class="err">noinit</span> <span class="err">is</span>      <span class="err">:</span> <span class="err">no</span>
+<span class="err">noreset</span> <span class="err">is</span>     <span class="err">:</span> <span class="err">no</span>
+<span class="err">nolock</span> <span class="err">is</span>      <span class="err">:</span> <span class="err">no</span>
+<span class="err">send_cmd</span> <span class="err">is</span>    <span class="err">:</span> <span class="err">sz</span> <span class="err">-vv</span>
+<span class="err">receive_cmd</span> <span class="err">is</span> <span class="err">:</span> <span class="err">rz</span> <span class="err">-vv</span> <span class="err">-E</span>
+<span class="err">imap</span> <span class="err">is</span>        <span class="err">:</span>
+<span class="err">omap</span> <span class="err">is</span>        <span class="err">:</span>
+<span class="err">emap</span> <span class="err">is</span>        <span class="err">:</span> <span class="err">crcrlf,delbs,</span>
+
+<span class="err">Type</span> <span class="err">[C-a]</span> <span class="err">[C-h]</span> <span class="err">to</span> <span class="err">see</span> <span class="err">available</span> <span class="err">commands</span>
+
+<span class="err">Terminal</span> <span class="err">ready</span>
+<span class="err">PCEngines</span> <span class="err">apu3</span>
+<span class="err">coreboot</span> <span class="err">build</span> <span class="err">20170302</span>
+<span class="err">4080</span> <span class="err">MB</span> <span class="err">ECC</span> <span class="err">DRAM</span>
+
+<span class="err">SeaBIOS</span> <span class="err">(version</span> <span class="err">rel-1.10.0.1)</span>
+
+<span class="err">Press</span> <span class="err">F10</span> <span class="err">key</span> <span class="err">now</span> <span class="err">for</span> <span class="err">boot</span> <span class="err">menu</span>
+</pre>
+<ul class="simple">
+<li>Press F10 to print the boot menu</li>
+</ul>
+<pre class="code ini literal-block">
+<span class="err">Select</span> <span class="err">boot</span> <span class="err">device:</span>
+
+<span class="err">1.</span> <span class="err">USB</span> <span class="err">MSC</span> <span class="err">Drive</span>  <span class="err">USB</span> <span class="err">DISK</span> <span class="err">2.0</span> <span class="err">PMAP</span>
+<span class="err">2.</span> <span class="err">Payload</span> <span class="k">[memtest]</span>
+<span class="err">3.</span> <span class="err">Payload</span> <span class="k">[setup]</span>
+</pre>
+<ul class="simple">
+<li>Boot on the USB media boot</li>
+</ul>
+<img alt="PC Enginge boot" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2017-07-21_PC_Engines_APU3a4_02.png" style="width: 100%;"/>
+<!-- -->
+<!-- TinyCore USB-Stick -->
+<!-- ================== -->
+<!-- -->
+<!-- Instead of getting an USB-mSATA adapter for a single use, you can boot the apu from USB and write an image on the mSATA inserted in the apu board. -->
+<!-- To install Voyage Linux on an mSATA module follow these steps: -->
+<!-- -->
+<!-- * prepare an USB stick with apu-tinycore-usb-installer.exe* -->
+<!-- get the latest amd64.tar.bz2 file from http://www.voyage.hk/download/voyage/amd64/, and copy it to the TinyCore USB-Stick -->
+<!-- boot TinyCore on the apu board -->
+<!-- cp voyage-0.X_amd64.tar.bz2 /tmp/ -->
+<!-- cd /tmp/ -->
+<!-- tar xfvj voyage-0.X_amd64.tar.bz2 -->
+<!-- cd voyage-0.X_amd64 -->
+<!-- start the installation script with /tmp/voyage-0.X_amd64/usr/local/sbin/voyage.update -->
+<!-- -->
+<!-- * please use the TinyCore installer for apu1 also for apu2 boards to install Voyage Linux, some needed tools are missing on the later installers. -->
+<!-- -->
+<!-- -->
+</div>
+
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://didier.bernaudeau.net/Install_Debian_on_APU.html">Install Debian on PcEngines APU</a></li>
+        <li><a href="http://didier.bernaudeau.net/How_to_install_canon_selphy_cp400.html">How to install Canon Selphy CP400</a></li>
+    </ul>
+</section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="60%" class="img-thumbnail" src="/images/avatar.png"/>
+        </p>
+    <p>
+        <strong>About D. Bernaudeau</strong><br/>
+        I’m Didier Bernaudeau, an Information Systems Security Professional. This site is a way to note some experimentations.
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+
+
+
+            <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/apu.html">
+                            APU
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/blockchain.html">
+                            Blockchain
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
+                            Certificate
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/container.html">
+                            Container
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
+                            Cryptography
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/cups.html">
+                            cups
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/database.html">
+                            Database
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/debian.html">
+                            Debian
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/development.html">
+                            Development
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/development-tool.html">
+                            Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/docker.html">
+                            Docker
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/framework.html">
+                            Framework
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
+                            Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/git.html">
+                            Git
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/go.html">
+                            Go
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
+                            Hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/home-automation.html">
+                            Home automation
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/html.html">
+                            HTML
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/java.html">
+                            Java
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/linux.html">
+                            Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/network.html">
+                            Network
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/php.html">
+                            PHP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/pki.html">
+                            PKI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/press-review.html">
+                            Press review
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/python.html">
+                            Python
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/raspberry-pi.html">
+                            Raspberry Pi
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/raspbian.html">
+                            Raspbian
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/redhat.html">
+                            RedHat
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scm.html">
+                            SCM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/software.html">
+                            Software
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/spring.html">
+                            Spring
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/tls.html">
+                            TLS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
+                            Virtualization
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/website.html">
+                            WebSite
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/windows.html">
+                            Windows
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/wireless.html">
+                            Wireless
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+            &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://didier.bernaudeau.net/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://didier.bernaudeau.net/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://didier.bernaudeau.net/theme/js/respond.min.js"></script>
+
+
+</body>
+</html>

@@ -1,5 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Articles</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-07-11T22:54:00+02:00</updated><entry><title>EnOcean</title><link href="http://didier.bernaudeau.net/EnOcean.html" rel="alternate"></link><published>2017-07-05T11:50:00+02:00</published><updated>2017-07-11T22:54:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-05:/EnOcean.html</id><summary type="html">&lt;p&gt;EnOcean is an energy harvesting wireless technology used primarily in building automation systems and smart homes. All modules based on this technology combine on the one hand micro energy converters with ultra low power electronics, and on the other hand enable wireless communications between battery-less wireless sensors, actors and even gateways.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Articles</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-07-28T22:58:00+02:00</updated><entry><title>PC Engines APU3a4</title><link href="http://didier.bernaudeau.net/PC_Engines_APU3a4.html" rel="alternate"></link><published>2017-07-21T21:22:00+02:00</published><updated>2017-07-28T22:58:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2017-07-21:/PC_Engines_APU3a4.html</id><summary type="html">&lt;p&gt;PC Engines offers small and low power computer that is perfectly suitable for a personal server or firewall. It's a good alternative to Soekris that is not really commercialized in European countries. This post describes the hardware configuration of my APU3a4. Future articles will refer to this one.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;PC Engines offers small and low power computer that is perfectly suitable for a personal server or firewall. It's a good alternative to Soekris that is not really commercialized in European countries. This post describes the hardware configuration of my APU3a4. Future articles will refer to this one.&lt;/p&gt;
+
+&lt;div class="section" id="hardware-specification"&gt;
+&lt;h2&gt;Hardware specification&lt;/h2&gt;
+&lt;div class="section" id="processor"&gt;
+&lt;h3&gt;Processor&lt;/h3&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;colgroup&gt;
+&lt;col width="43%"&gt;&lt;/col&gt;
+&lt;col width="57%"&gt;&lt;/col&gt;
+&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Processor family&lt;/td&gt;
+&lt;td&gt;AMD Embedded G series&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Processor model&lt;/td&gt;
+&lt;td&gt;GX-412TC&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Processor architecture&lt;/td&gt;
+&lt;td&gt;Jaguar&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Processor core&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Processor frequency&lt;/td&gt;
+&lt;td&gt;1 GHz&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Processor Cache L1&lt;/td&gt;
+&lt;td&gt;64 KB per core&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Processor Cache L2&lt;/td&gt;
+&lt;td&gt;2 MB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Instruction set support&lt;/td&gt;
+&lt;td&gt;64 bits with AES-NI&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="section" id="memory"&gt;
+&lt;h3&gt;Memory&lt;/h3&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;colgroup&gt;
+&lt;col width="43%"&gt;&lt;/col&gt;
+&lt;col width="57%"&gt;&lt;/col&gt;
+&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Memory chip name&lt;/td&gt;
+&lt;td&gt;DDR3-1333 ECC&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Memory capacity&lt;/td&gt;
+&lt;td&gt;4 GB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ethernet"&gt;
+&lt;h3&gt;Ethernet&lt;/h3&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;colgroup&gt;
+&lt;col width="43%"&gt;&lt;/col&gt;
+&lt;col width="57%"&gt;&lt;/col&gt;
+&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Model&lt;/td&gt;
+&lt;td&gt;Intel Ethernet Connection I211-AT&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Standard&lt;/td&gt;
+&lt;td&gt;Gigabit Ethernet (1 Gbps)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ports-interfaces"&gt;
+&lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;colgroup&gt;
+&lt;col width="43%"&gt;&lt;/col&gt;
+&lt;col width="57%"&gt;&lt;/col&gt;
+&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;DB9 serial port&lt;/td&gt;
+&lt;td&gt;x 1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Ethernet LAN (RJ-45)&lt;/td&gt;
+&lt;td&gt;x 3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;USB 3.0&lt;/td&gt;
+&lt;td&gt;x 2 (external)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;USB 2.0&lt;/td&gt;
+&lt;td&gt;x 4 (internal)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;miniPCI express&lt;/td&gt;
+&lt;td&gt;x 3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;SATA&lt;/td&gt;
+&lt;td&gt;x 1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="section" id="hard-disk-drive"&gt;
+&lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;colgroup&gt;
+&lt;col width="43%"&gt;&lt;/col&gt;
+&lt;col width="57%"&gt;&lt;/col&gt;
+&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Hard drive model&lt;/td&gt;
+&lt;td&gt;HGST&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Total storage capacity&lt;/td&gt;
+&lt;td&gt;500 GB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Hard drive interface&lt;/td&gt;
+&lt;td&gt;Serial ATA&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Hard drive speed&lt;/td&gt;
+&lt;td&gt;5400 RPM&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="section" id="case"&gt;
+&lt;h3&gt;Case&lt;/h3&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;colgroup&gt;
+&lt;col width="43%"&gt;&lt;/col&gt;
+&lt;col width="57%"&gt;&lt;/col&gt;
+&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Model&lt;/td&gt;
+&lt;td&gt;Calexium&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;For more information, read the &lt;a class="reference external" href="http://didier.bernaudeau.net/documents/2017-07-21_PcEngines_AP3_Datasheet.pdf"&gt;Datasheet&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="serial-console"&gt;
+&lt;h2&gt;Serial console&lt;/h2&gt;
+&lt;p&gt;A PC Engines doesn't have graphical processor unit. The only way to interact with this computer is a serial console with a null-modem cable (DB9 female). On top of that, if you don't have a serial port on your laptop, an USB serial converter is needed. Calexium provides the "QinHeng Electronics HL-340 USB-Serial adapter".&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Kernel configuration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;Device&lt;/span&gt; &lt;span class="err"&gt;Drivers&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt; &lt;span class="err"&gt;USB&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;USB&lt;/span&gt; &lt;span class="err"&gt;Serial&lt;/span&gt; &lt;span class="err"&gt;Converter&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;USB&lt;/span&gt; &lt;span class="err"&gt;Serial&lt;/span&gt; &lt;span class="err"&gt;Console&lt;/span&gt; &lt;span class="err"&gt;device&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;     &lt;span class="err"&gt;&amp;lt;*&amp;gt;&lt;/span&gt;   &lt;span class="err"&gt;USB&lt;/span&gt; &lt;span class="err"&gt;Winchiphead&lt;/span&gt; &lt;span class="err"&gt;CH341&lt;/span&gt; &lt;span class="err"&gt;Single&lt;/span&gt; &lt;span class="err"&gt;Port&lt;/span&gt; &lt;span class="err"&gt;Serial&lt;/span&gt; &lt;span class="err"&gt;Driver&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;Character&lt;/span&gt; &lt;span class="err"&gt;devices&lt;/span&gt;  &lt;span class="err"&gt;---&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;[*]&lt;/span&gt;   &lt;span class="err"&gt;Legacy&lt;/span&gt; &lt;span class="err"&gt;(BSD)&lt;/span&gt; &lt;span class="err"&gt;PTY&lt;/span&gt; &lt;span class="err"&gt;support&lt;/span&gt;
+&lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt;      &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="err"&gt;(256)&lt;/span&gt;   &lt;span class="err"&gt;Maximum&lt;/span&gt; &lt;span class="err"&gt;number&lt;/span&gt; &lt;span class="err"&gt;of&lt;/span&gt; &lt;span class="err"&gt;legacy&lt;/span&gt; &lt;span class="err"&gt;PTY&lt;/span&gt; &lt;span class="err"&gt;in&lt;/span&gt; &lt;span class="err"&gt;use&lt;/span&gt; &lt;span class="err"&gt;(NEW)&lt;/span&gt;
+&lt;/pre&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Add user in the group uucp&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; usermod -a -G uucp didier
+&lt;/pre&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Install Picocom&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; net-dialup/picocom
+&lt;/pre&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Connect to serial interface&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code console literal-block"&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; picocom --baud &lt;span class="m"&gt;115200&lt;/span&gt; --flow n --parity n --stopbits &lt;span class="m"&gt;1&lt;/span&gt; /dev/ttyUSB0
+&lt;/pre&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;picocom&lt;/span&gt; &lt;span class="err"&gt;v2.2&lt;/span&gt;
+
+&lt;span class="err"&gt;port&lt;/span&gt; &lt;span class="err"&gt;is&lt;/span&gt;        &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;/dev/ttyUSB0&lt;/span&gt;
+&lt;span class="err"&gt;flowcontrol&lt;/span&gt;    &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;none&lt;/span&gt;
+&lt;span class="err"&gt;baudrate&lt;/span&gt; &lt;span class="err"&gt;is&lt;/span&gt;    &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;115200&lt;/span&gt;
+&lt;span class="err"&gt;parity&lt;/span&gt; &lt;span class="err"&gt;is&lt;/span&gt;      &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;none&lt;/span&gt;
+&lt;span class="err"&gt;databits&lt;/span&gt; &lt;span class="err"&gt;are&lt;/span&gt;   &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;8&lt;/span&gt;
+&lt;span class="err"&gt;stopbits&lt;/span&gt; &lt;span class="err"&gt;are&lt;/span&gt;   &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;1&lt;/span&gt;
+&lt;span class="err"&gt;escape&lt;/span&gt; &lt;span class="err"&gt;is&lt;/span&gt;      &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;C-a&lt;/span&gt;
+&lt;span class="err"&gt;local&lt;/span&gt; &lt;span class="err"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;is&lt;/span&gt;  &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;no&lt;/span&gt;
+&lt;span class="err"&gt;noinit&lt;/span&gt; &lt;span class="err"&gt;is&lt;/span&gt;      &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;no&lt;/span&gt;
+&lt;span class="err"&gt;noreset&lt;/span&gt; &lt;span class="err"&gt;is&lt;/span&gt;     &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;no&lt;/span&gt;
+&lt;span class="err"&gt;nolock&lt;/span&gt; &lt;span class="err"&gt;is&lt;/span&gt;      &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;no&lt;/span&gt;
+&lt;span class="err"&gt;send_cmd&lt;/span&gt; &lt;span class="err"&gt;is&lt;/span&gt;    &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;sz&lt;/span&gt; &lt;span class="err"&gt;-vv&lt;/span&gt;
+&lt;span class="err"&gt;receive_cmd&lt;/span&gt; &lt;span class="err"&gt;is&lt;/span&gt; &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;rz&lt;/span&gt; &lt;span class="err"&gt;-vv&lt;/span&gt; &lt;span class="err"&gt;-E&lt;/span&gt;
+&lt;span class="err"&gt;imap&lt;/span&gt; &lt;span class="err"&gt;is&lt;/span&gt;        &lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="err"&gt;omap&lt;/span&gt; &lt;span class="err"&gt;is&lt;/span&gt;        &lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="err"&gt;emap&lt;/span&gt; &lt;span class="err"&gt;is&lt;/span&gt;        &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;crcrlf,delbs,&lt;/span&gt;
+
+&lt;span class="err"&gt;Type&lt;/span&gt; &lt;span class="err"&gt;[C-a]&lt;/span&gt; &lt;span class="err"&gt;[C-h]&lt;/span&gt; &lt;span class="err"&gt;to&lt;/span&gt; &lt;span class="err"&gt;see&lt;/span&gt; &lt;span class="err"&gt;available&lt;/span&gt; &lt;span class="err"&gt;commands&lt;/span&gt;
+
+&lt;span class="err"&gt;Terminal&lt;/span&gt; &lt;span class="err"&gt;ready&lt;/span&gt;
+&lt;span class="err"&gt;PCEngines&lt;/span&gt; &lt;span class="err"&gt;apu3&lt;/span&gt;
+&lt;span class="err"&gt;coreboot&lt;/span&gt; &lt;span class="err"&gt;build&lt;/span&gt; &lt;span class="err"&gt;20170302&lt;/span&gt;
+&lt;span class="err"&gt;4080&lt;/span&gt; &lt;span class="err"&gt;MB&lt;/span&gt; &lt;span class="err"&gt;ECC&lt;/span&gt; &lt;span class="err"&gt;DRAM&lt;/span&gt;
+
+&lt;span class="err"&gt;SeaBIOS&lt;/span&gt; &lt;span class="err"&gt;(version&lt;/span&gt; &lt;span class="err"&gt;rel-1.10.0.1)&lt;/span&gt;
+
+&lt;span class="err"&gt;Press&lt;/span&gt; &lt;span class="err"&gt;F10&lt;/span&gt; &lt;span class="err"&gt;key&lt;/span&gt; &lt;span class="err"&gt;now&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;boot&lt;/span&gt; &lt;span class="err"&gt;menu&lt;/span&gt;
+&lt;/pre&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Press F10 to print the boot menu&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code ini literal-block"&gt;
+&lt;span class="err"&gt;Select&lt;/span&gt; &lt;span class="err"&gt;boot&lt;/span&gt; &lt;span class="err"&gt;device:&lt;/span&gt;
+
+&lt;span class="err"&gt;1.&lt;/span&gt; &lt;span class="err"&gt;USB&lt;/span&gt; &lt;span class="err"&gt;MSC&lt;/span&gt; &lt;span class="err"&gt;Drive&lt;/span&gt;  &lt;span class="err"&gt;USB&lt;/span&gt; &lt;span class="err"&gt;DISK&lt;/span&gt; &lt;span class="err"&gt;2.0&lt;/span&gt; &lt;span class="err"&gt;PMAP&lt;/span&gt;
+&lt;span class="err"&gt;2.&lt;/span&gt; &lt;span class="err"&gt;Payload&lt;/span&gt; &lt;span class="k"&gt;[memtest]&lt;/span&gt;
+&lt;span class="err"&gt;3.&lt;/span&gt; &lt;span class="err"&gt;Payload&lt;/span&gt; &lt;span class="k"&gt;[setup]&lt;/span&gt;
+&lt;/pre&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Boot on the USB media boot&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img alt="PC Enginge boot" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2017-07-21_PC_Engines_APU3a4_02.png" style="width: 100%;"/&gt;
+&lt;!-- --&gt;
+&lt;!-- TinyCore USB-Stick --&gt;
+&lt;!-- ================== --&gt;
+&lt;!-- --&gt;
+&lt;!-- Instead of getting an USB-mSATA adapter for a single use, you can boot the apu from USB and write an image on the mSATA inserted in the apu board. --&gt;
+&lt;!-- To install Voyage Linux on an mSATA module follow these steps: --&gt;
+&lt;!-- --&gt;
+&lt;!-- * prepare an USB stick with apu-tinycore-usb-installer.exe* --&gt;
+&lt;!-- get the latest amd64.tar.bz2 file from http://www.voyage.hk/download/voyage/amd64/, and copy it to the TinyCore USB-Stick --&gt;
+&lt;!-- boot TinyCore on the apu board --&gt;
+&lt;!-- cp voyage-0.X_amd64.tar.bz2 /tmp/ --&gt;
+&lt;!-- cd /tmp/ --&gt;
+&lt;!-- tar xfvj voyage-0.X_amd64.tar.bz2 --&gt;
+&lt;!-- cd voyage-0.X_amd64 --&gt;
+&lt;!-- start the installation script with /tmp/voyage-0.X_amd64/usr/local/sbin/voyage.update --&gt;
+&lt;!-- --&gt;
+&lt;!-- * please use the TinyCore installer for apu1 also for apu2 boards to install Voyage Linux, some needed tools are missing on the later installers. --&gt;
+&lt;!-- --&gt;
+&lt;!-- --&gt;
+&lt;/div&gt;
+</content><category term="Hardware"></category><category term="APU"></category></entry><entry><title>EnOcean</title><link href="http://didier.bernaudeau.net/EnOcean.html" rel="alternate"></link><published>2017-07-05T11:50:00+02:00</published><updated>2017-07-11T22:54:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-05:/EnOcean.html</id><summary type="html">&lt;p&gt;EnOcean is an energy harvesting wireless technology used primarily in building automation systems and smart homes. All modules based on this technology combine on the one hand micro energy converters with ultra low power electronics, and on the other hand enable wireless communications between battery-less wireless sensors, actors and even gateways.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;EnOcean is an energy harvesting wireless technology used primarily in building automation systems and smart homes. All modules based on this technology combine on the one hand micro energy converters with ultra low power electronics, and on the other hand enable wireless communications between battery-less wireless sensors, actors and even gateways.&lt;/p&gt;
 
 &lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-07-05_EnOcean_Logo.png"/&gt;&lt;/p&gt;
@@ -245,13 +487,24 @@ e6ba45aff418        bridge              bridge              local
 &lt;ul&gt;
 &lt;li&gt;Start a daemon&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; service DaemonName start
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo service DaemonName start
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Daemon management (with Systemd)&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Start a daemon&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl status sshd
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl status sshd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Network configuration&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Show IP address&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo ip address show
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Set IP address&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo ip addr add 192.168.10.1 dev ens3
 &lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category><category term="Debian"></category></entry><entry><title>X509 certificate - Fields &amp; extensions</title><link href="http://didier.bernaudeau.net/X509_certificate-Fields_and_extensions.html" rel="alternate"></link><published>2016-04-03T17:53:00+02:00</published><updated>2016-04-19T22:39:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-04-03:/X509_certificate-Fields_and_extensions.html</id><summary type="html">&lt;p&gt;For X509 certificate, the fields and extension are defined by the &lt;a class="reference external" href="https://tools.ietf.org/html/rfc5280"&gt;RFC5280&lt;/a&gt;. As well, the CA/B Forum (Certificate Authority &amp;amp; Browser Forum) defines best pratice.
 This post is a memo to remind the main fields and extension.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;For X509 certificate, the fields and extension are defined by the &lt;a class="reference external" href="https://tools.ietf.org/html/rfc5280"&gt;RFC5280&lt;/a&gt;. As well, the CA/B Forum (Certificate Authority &amp;amp; Browser Forum) defines best pratice.
@@ -259,7 +512,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 
 &lt;div class="section" id="basic-certificate-field"&gt;
 &lt;h2&gt;Basic certificate field&lt;/h2&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
 &lt;col width="89%"&gt;&lt;/col&gt;
@@ -281,7 +534,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="certificate-extension"&gt;
 &lt;h2&gt;Certificate extension&lt;/h2&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="12%"&gt;&lt;/col&gt;
 &lt;col width="88%"&gt;&lt;/col&gt;
@@ -867,7 +1120,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="protocol-version"&gt;
 &lt;h2&gt;Protocol version&lt;/h2&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -897,7 +1150,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="compression-method"&gt;
 &lt;h2&gt;Compression method&lt;/h2&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -925,7 +1178,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Cryptographic algorithm&lt;/h2&gt;
 &lt;div class="section" id="key-exchange"&gt;
 &lt;h3&gt;Key exchange&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -970,7 +1223,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="encryption"&gt;
 &lt;h3&gt;Encryption&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -1025,7 +1278,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="message-authentication-code"&gt;
 &lt;h3&gt;Message Authentication Code&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -1086,7 +1339,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;p&gt;Cipher suite is a list of one or more cipher strings separated by special char (colon, comma, space, ...). The names for cipher suites are defined by IANA (Internet Assigned Numbers Authority).&lt;/p&gt;
 &lt;p&gt;Cipher suite defines algorithms used for each cryptographic function: key exchange, authentication, encryption and message authentication code. If algorithm for key exchange is not mentioned, default algorithm is RSA.&lt;/p&gt;
 &lt;p&gt;The table below details some example of cipher suites:&lt;/p&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="39%"&gt;&lt;/col&gt;
@@ -1243,7 +1496,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="28%"&gt;&lt;/col&gt;
 &lt;col width="72%"&gt;&lt;/col&gt;
@@ -1302,7 +1555,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -1332,7 +1585,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in GPT (GUID Partition Table) during Microsoft Windows 8.1 installation process&lt;/p&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -1407,7 +1660,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="21%"&gt;&lt;/col&gt;
 &lt;col width="79%"&gt;&lt;/col&gt;
@@ -1475,7 +1728,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -1505,7 +1758,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in MBR (Master Boot Record) during Microsoft Windows 8.1 installation process for primary partition then during Debian 8 installation process for extended partition :&lt;/p&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
@@ -1578,7 +1831,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1607,7 +1860,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1627,7 +1880,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1650,7 +1903,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1667,7 +1920,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1687,7 +1940,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1704,7 +1957,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1727,7 +1980,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="optical-disc-drive"&gt;
 &lt;h3&gt;Optical Disc Drive&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -1765,7 +2018,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -1785,7 +2038,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="wifi"&gt;
 &lt;h3&gt;Wifi&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1805,7 +2058,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="bluetooth"&gt;
 &lt;h3&gt;Bluetooth&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1825,7 +2078,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="modem"&gt;
 &lt;h3&gt;Modem&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1842,7 +2095,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="firewire-controller"&gt;
 &lt;h3&gt;FireWire Controller&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1859,7 +2112,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-memory-stick"&gt;
 &lt;h3&gt;Card reader (Memory Stick)&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1876,7 +2129,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-secure-digital"&gt;
 &lt;h3&gt;Card reader (Secure Digital)&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1893,7 +2146,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1916,7 +2169,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -1955,7 +2208,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hardware-architecture"&gt;
 &lt;h2&gt;Hardware architecture&lt;/h2&gt;
-&lt;img alt="Hardware architecture of Sony VAIO VGN-SR11M" class="align-right img-responsive" src="http://didier.bernaudeau.net/images/2015-06-28_Sony_VAIO_SR11M_01.png" style="width: 100%;"/&gt;
+&lt;img alt="Hardware architecture of Sony VAIO VGN-SR11M" class="img-responsive align-right" src="http://didier.bernaudeau.net/images/2015-06-28_Sony_VAIO_SR11M_01.png" style="width: 100%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="bios"&gt;
 &lt;h2&gt;BIOS&lt;/h2&gt;
@@ -2003,7 +2256,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2044,7 +2297,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2061,7 +2314,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2093,7 +2346,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2116,7 +2369,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2136,7 +2389,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2153,7 +2406,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2176,7 +2429,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2196,7 +2449,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="wifi-and-bluetooth"&gt;
 &lt;h3&gt;Wifi and Bluetooth&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2219,7 +2472,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory-card-reader"&gt;
 &lt;h3&gt;Memory card reader&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2239,7 +2492,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="smartcard-reader"&gt;
 &lt;h3&gt;Smartcard Reader&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2256,7 +2509,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="fingerprint-reader"&gt;
 &lt;h3&gt;Fingerprint Reader&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2273,7 +2526,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="nfc-reader"&gt;
 &lt;h3&gt;NFC Reader&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2290,7 +2543,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2310,7 +2563,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2340,13 +2593,13 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hardware-architecture"&gt;
 &lt;h2&gt;Hardware architecture&lt;/h2&gt;
-&lt;img alt="Hardware architecture of Lenovo ThinkPad X240" class="align-right img-responsive" src="http://didier.bernaudeau.net/images/2015-06-12_Laptop_Lenovo_ThinkPad_X240.png" style="width: 100%;"/&gt;
+&lt;img alt="Hardware architecture of Lenovo ThinkPad X240" class="img-responsive align-right" src="http://didier.bernaudeau.net/images/2015-06-12_Laptop_Lenovo_ThinkPad_X240.png" style="width: 100%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="uefi-bios"&gt;
 &lt;h2&gt;UEFI BIOS&lt;/h2&gt;
 &lt;div class="section" id="version"&gt;
 &lt;h3&gt;Version&lt;/h3&gt;
-&lt;table border="1" class="table-hover table docutils table-striped"&gt;
+&lt;table border="1" class="docutils table table-striped table-hover"&gt;
 &lt;colgroup&gt;
 &lt;col width="59%"&gt;&lt;/col&gt;
 &lt;col width="41%"&gt;&lt;/col&gt;

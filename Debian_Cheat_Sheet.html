@@ -128,23 +128,34 @@ My personal blog note            </a>
 <ul>
 <li>Start a daemon</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> service DaemonName start
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo service DaemonName start
 </pre></div>
 <h1>Daemon management (with Systemd)</h1>
 <ul>
 <li>Start a daemon</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> systemctl status sshd
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl status sshd
+</pre></div>
+<h1>Network configuration</h1>
+<ul>
+<li>Show IP address</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo ip address show
+</pre></div>
+<ul>
+<li>Set IP address</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo ip addr add 192.168.10.1 dev ens3
 </pre></div>
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://didier.bernaudeau.net/Nexus_Repository_OSS.html">Nexus Repository OSS</a></li>
-        <li><a href="http://didier.bernaudeau.net/Jenkins.html">Jenkins</a></li>
-        <li><a href="http://didier.bernaudeau.net/How_to_install_docker.html">How to install Docker</a></li>
         <li><a href="http://didier.bernaudeau.net/Debian_Stretch.html">Debian Stretch</a></li>
+        <li><a href="http://didier.bernaudeau.net/Jenkins.html">Jenkins</a></li>
+        <li><a href="http://didier.bernaudeau.net/Nexus_Repository_OSS.html">Nexus Repository OSS</a></li>
+        <li><a href="http://didier.bernaudeau.net/How_to_install_Java_SE_on_debian.html">How to install Java SE on Debian</a></li>
         <li><a href="http://didier.bernaudeau.net/How_To_create_your_pki_with_EJBCA.html">How to create your PKI with EJBCA</a></li>
     </ul>
 </section>
@@ -170,6 +181,11 @@ My personal blog note            </a>
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/apu.html">
+                            APU
+                        </a>
+                    </li>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/blockchain.html">
                             Blockchain
@@ -193,6 +209,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/cups.html">
                             cups
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/database.html">
+                            Database
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
@@ -235,9 +256,9 @@ My personal blog note            </a>
                             Go
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/hardware.html">
-                            hardware
+                            Hardware
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -290,7 +311,7 @@ My personal blog note            </a>
                             Press review
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/python.html">
                             Python
                         </a>
@@ -303,6 +324,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/raspbian.html">
                             Raspbian
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/redhat.html">
+                            RedHat
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

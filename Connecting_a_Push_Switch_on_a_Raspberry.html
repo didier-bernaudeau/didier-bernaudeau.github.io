@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Wiring PI - My personal blog note</title>
+    <title>Connecting a push button switch on a Raspberry - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,20 +9,20 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/WiringPi.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/Connecting_a_Push_Switch_on_a_Raspberry.html">
 
         <meta name="author" content="Didier BERNAUDEAU" />
-        <meta name="keywords" content="Raspberry Pi" />
-        <meta name="description" content="Wiring PI is a command line tool which allows you to access directly to the GPIO interface." />
+        <meta name="keywords" content="Raspberry" />
+        <meta name="description" content="Connecting a push button switch should be an easy thing but it&#39;s harder than it seems. There are two main concerns to be solved: undefined state and switch bounce." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Wiring PI"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/WiringPi.html"/>
-        <meta property="og:description" content="Wiring PI is a command line tool which allows you to access directly to the GPIO interface."/>
-        <meta property="article:published_time" content="2017-06-25" />
+        <meta property="og:title" content="Connecting a push button switch on a Raspberry"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/Connecting_a_Push_Switch_on_a_Raspberry.html"/>
+        <meta property="og:description" content="Connecting a push button switch should be an easy thing but it&#39;s harder than it seems. There are two main concerns to be solved: undefined state and switch bounce."/>
+        <meta property="article:published_time" content="2017-08-16" />
             <meta property="article:section" content="Articles" />
-            <meta property="article:tag" content="Raspberry Pi" />
+            <meta property="article:tag" content="Raspberry" />
             <meta property="article:author" content="Didier BERNAUDEAU" />
 
 
@@ -79,10 +79,10 @@ My personal blog note            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/WiringPi.html"
+                    <a href="http://didier.bernaudeau.net/Connecting_a_Push_Switch_on_a_Raspberry.html"
                        rel="bookmark"
-                       title="Permalink to Wiring PI">
-                        Wiring PI
+                       title="Permalink to Connecting a push button switch on a Raspberry">
+                        Connecting a push button switch on a Raspberry
                     </a>
                 </h1>
             </header>
@@ -92,11 +92,11 @@ My personal blog note            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-06-25T20:55:00+02:00"> dim. 25 juin 2017</time>
+        <i class="fa fa-calendar"></i><time datetime="2017-08-16T21:55:00+02:00"> mer. 16 août 2017</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-06-25T20:55:00+02:00"> dim. 25 juin 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-08-16T21:55:00+02:00"> mer. 16 août 2017</time>
             </span>
 
 
@@ -104,48 +104,36 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/raspberry-pi.html">Raspberry Pi</a>
+	<a href="http://didier.bernaudeau.net/tag/raspberry.html">Raspberry</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Wiring PI is a command line tool which allows you to access directly to the GPIO interface.</p>
+                <p>Connecting a push button switch should be an easy thing but it's harder than it seems. There are two main concerns to be solved: undefined state and switch bounce.</p>
 
-<h1>Pin-out</h1>
-<p>Wiring PI use its own pinout illustrated below:</p>
-<p align="center"><img class="img-responsive" src="images/2017-06-25_WiringPI_GPIO.png"/></p>
-<h1>Install Wiring Pi (On Raspbian)</h1>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install Wiringpi
+<h1>Pull Down/Up resistor</h1>
+<p>The first concern regarding a push button switch is that its status is not clearly defined because the circuit is not closed. It is susceptible to random electromagnetic radiation or static from you, from any devices near or far and from the environment. Any wires attached to the GPIO ports act as antennae.</p>
+<p>To prevent this, it is common to use pull-up or pull-down resistors to get it under control. Fortunately, the Raspberry Pi has built-in pull-up and pull-down resistors which can be enabled in software.</p>
+<p>N.B.: the protection resistor (1Kohm) is only to limit damage if the GPIO is set, by error, in output mode.</p>
+<h2>Pull Down</h2>
+<p>In this following circuit, a resistor is used to “pull-down” the voltage. In other words, the GPIO is connected to the ground and its default state is LOW, 0, or False.</p>
+<p align="center"><img class="img-responsive" src="images/2017-08-16_Connecting_a_Push_Switch_on_a_Raspberry_PullDown.jpg" width="60%"/></p>
+<p>Then, the code below allows to configure the GPIO as an input with the pull-down resistor:</p>
+<div class="highlight"><pre><span></span><span class="go">GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)</span>
 </pre></div>
-<p>The gpio command is designed to be called by a normal user without using the sudo command or logging in as root.</p>
-<h1>Output mode</h1>
-<ul>
-<li>Set GPIO pin 4 as an output</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> gpio mode <span class="m">7</span> out
+<h2>Pull Up</h2>
+<p>In this following circuit, a resistor is used to “pull-up” the voltage. In other words, the GPIO is connected to the 3,3V and its default state is HIGH, 1, or True.</p>
+<p align="center"><img class="img-responsive" src="images/2017-08-16_Connecting_a_Push_Switch_on_a_Raspberry_PullUp.jpg" width="60%"/></p>
+<p>Then, the code below allows to configure the GPIO as an input with the pull-up resistor:</p>
+<div class="highlight"><pre><span></span>GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 </pre></div>
-<ul>
-<li>Closed-circuit (which means that the current is On)</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> gpio write <span class="m">7</span> 0
-</pre></div>
-<ul>
-<li>Open-circuit (which means that the current is Off)</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> gpio write <span class="m">7</span> 1
-</pre></div>
-<ul>
-<li>Print the status</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> gpio <span class="nb">read</span> 7
+<h1>Switch bounce</h1>
+<p>The second concern regarding a push button switch is that it often generates spurious open/close transitions when pressed, due to mechanical and physical issues. These transitions may be read as multiple presses in a very short time fooling the program. This is as a result of what is known as 'switch bounce'.</p>
+<p>There are two ways of dealing with switch bounce: add a 0.1uF capacitor across your switch or software debouncing.</p>
+<p>The software debouncing strategy is really simple: checking twice in a short period of time to make sure the push button switch is definitely pressed.</p>
+<div class="highlight"><pre><span></span>GPIO.add_event_detect(18, GPIO.BOTH, callback=CallbackFunction(), bouncetime=200)
 </pre></div>
             </div>
             <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://didier.bernaudeau.net/HowToInstallRaspbianOnRaspberryPi.html">How to install Raspbian on a Raspberry Pi</a></li>
-    </ul>
-</section>
         </article>
     </section>
 

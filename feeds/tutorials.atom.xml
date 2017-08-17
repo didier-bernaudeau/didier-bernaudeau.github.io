@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-07-30T10:25:00+02:00</updated><entry><title>Install Debian on PcEngines APU</title><link href="http://didier.bernaudeau.net/Install_Debian_on_APU.html" rel="alternate"></link><published>2017-07-30T10:25:00+02:00</published><updated>2017-07-30T10:25:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-30:/Install_Debian_on_APU.html</id><summary type="html">&lt;p&gt;This post describes a way to install Debian 9.1 on the APU3C4, a system board from PcEngines.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-07-30T10:25:00+02:00</updated><entry><title>Install Debian on PC Engines APU3a4</title><link href="http://didier.bernaudeau.net/Install_Debian_on_APU.html" rel="alternate"></link><published>2017-07-30T10:25:00+02:00</published><updated>2017-07-30T10:25:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-30:/Install_Debian_on_APU.html</id><summary type="html">&lt;p&gt;This post describes a way to install Debian 9.1 on the APU3C4, a system board from PcEngines.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post describes a way to install Debian 9.1 on the APU3C4, a system board from PcEngines.&lt;/p&gt;
 
 &lt;h1&gt;Create boot media&lt;/h1&gt;
@@ -103,6 +103,7 @@ power1:        1.82 mW (interval =   0.01 s, crit =   6.00 W)
 &lt;!-- http://pcengines.info/forums/?page=post&amp;id=51C5DE97-2D0E-40E9-BFF7-7F7FE30E18FE --&gt;</content><category term="APU"></category><category term="Debian"></category></entry><entry><title>How to install Postgresql on RedHat</title><link href="http://didier.bernaudeau.net/HowTo_Install_Postgresql_On_RedHat.html" rel="alternate"></link><published>2017-07-29T21:51:00+02:00</published><updated>2017-07-29T21:51:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-29:/HowTo_Install_Postgresql_On_RedHat.html</id><summary type="html">&lt;p&gt;By default, RedHat Linux Enterprise provides python 9.1 only. This post is a way to install Postgresql 9.6 on RedHat 7.3.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;By default, RedHat Linux Enterprise provides python 9.1 only. This post is a way to install Postgresql 9.6 on RedHat 7.3.&lt;/p&gt;
 
+&lt;h1&gt;Installation&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Add the Postgresql repository&lt;/li&gt;
 &lt;/ul&gt;
@@ -125,6 +126,27 @@ power1:        1.82 mW (interval =   0.01 s, crit =   6.00 W)
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; postgresql-9.6
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start postgresql-9.6
 &lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Logging&lt;/h1&gt;
+&lt;p&gt;The following step is for debugging purpose only.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Edit configuration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /var/lib/pgsql/9.6/data/postgresql.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;log_directory = 'pg_log'
+log_filename = 'postgresql-%a.log'
+log_statement = 'all'
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Restart Postgresql&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Enable automatic start&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart postgresql-9.6
+&lt;/pre&gt;&lt;/div&gt;
 &lt;!-- Source: https://www.postgresql.org/download/linux/redhat/ --&gt;</content><category term="RedHat"></category><category term="Database"></category></entry><entry><title>How to install python on RedHat</title><link href="http://didier.bernaudeau.net/HowTo_Install_Python_On_RedHat.html" rel="alternate"></link><published>2017-07-29T21:26:00+02:00</published><updated>2017-07-29T21:26:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-29:/HowTo_Install_Python_On_RedHat.html</id><summary type="html">&lt;p&gt;By default, RedHat Linux Enterprise provides python 2.7 only. This post is a way to install python 3.4 on RedHat.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;By default, RedHat Linux Enterprise provides python 2.7 only. This post is a way to install python 3.4 on RedHat.&lt;/p&gt;
 
@@ -138,12 +160,11 @@ power1:        1.82 mW (interval =   0.01 s, crit =   6.00 W)
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo alternatives --install /usr/bin/python python /usr/bin/python3.4 2
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo alternatives --install /usr/bin/python python /usr/bin/python2.7 1
-&lt;span class="go"&gt;```console&lt;/span&gt;
-
-&lt;span class="go"&gt;* Select python 3.4&lt;/span&gt;
-
-&lt;span class="go"&gt;```console&lt;/span&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; sudo alternatives --config python
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Select python 3.4&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo alternatives --config python
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Install additional tools from Pypi&lt;/li&gt;

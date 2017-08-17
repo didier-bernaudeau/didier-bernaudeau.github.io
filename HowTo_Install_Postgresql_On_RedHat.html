@@ -113,6 +113,7 @@ My personal blog note            </a>
                 </div>
                 <p>By default, RedHat Linux Enterprise provides python 9.1 only. This post is a way to install Postgresql 9.6 on RedHat 7.3.</p>
 
+<h1>Installation</h1>
 <ul>
 <li>Add the Postgresql repository</li>
 </ul>
@@ -134,6 +135,27 @@ My personal blog note            </a>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl <span class="nb">enable</span> postgresql-9.6
 <span class="gp">$</span> sudo systemctl start postgresql-9.6
+</pre></div>
+<h1>Logging</h1>
+<p>The following step is for debugging purpose only.</p>
+<ul>
+<li>Edit configuration</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /var/lib/pgsql/9.6/data/postgresql.conf
+</pre></div>
+<div class="highlight"><pre><span></span>log_directory = 'pg_log'
+log_filename = 'postgresql-%a.log'
+log_statement = 'all'
+</pre></div>
+<ul>
+<li>
+<p>Restart Postgresql</p>
+</li>
+<li>
+<p>Enable automatic start</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl restart postgresql-9.6
 </pre></div>
 <!-- Source: https://www.postgresql.org/download/linux/redhat/ -->
             </div>
@@ -293,6 +315,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/python.html">
                             Python
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/raspberry.html">
+                            Raspberry
                         </a>
                     </li>
                     <li class="list-group-item tag-3">

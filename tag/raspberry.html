@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Wiring PI - My personal blog note</title>
+    <title>Raspberry - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,21 +9,16 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/WiringPi.html">
 
-        <meta name="author" content="Didier BERNAUDEAU" />
-        <meta name="keywords" content="Raspberry Pi" />
-        <meta name="description" content="Wiring PI is a command line tool which allows you to access directly to the GPIO interface." />
+    <meta name="author" content="D. Bernaudeau" />
+    <meta name="keywords" content="Raspberry" />
 
+    <!-- Open Graph tags -->
         <meta property="og:site_name" content="My personal blog note" />
-        <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Wiring PI"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/WiringPi.html"/>
-        <meta property="og:description" content="Wiring PI is a command line tool which allows you to access directly to the GPIO interface."/>
-        <meta property="article:published_time" content="2017-06-25" />
-            <meta property="article:section" content="Articles" />
-            <meta property="article:tag" content="Raspberry Pi" />
-            <meta property="article:author" content="Didier BERNAUDEAU" />
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="My personal blog note"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net"/>
+        <meta property="og:description" content="My personal blog note"/>
 
 
     <!-- Bootstrap -->
@@ -38,8 +33,6 @@
 
 
 
-        <link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" type="application/atom+xml" rel="alternate"
-              title="My personal blog note Articles ATOM Feed"/>
 
 </head>
 <body>
@@ -75,28 +68,17 @@ My personal blog note            </a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-    <section id="content">
-        <article>
-            <header class="page-header">
-                <h1>
-                    <a href="http://didier.bernaudeau.net/WiringPi.html"
-                       rel="bookmark"
-                       title="Permalink to Wiring PI">
-                        Wiring PI
-                    </a>
-                </h1>
-            </header>
-            <div class="entry-content">
-                <div class="panel">
-                    <div class="panel-body">
+            <article>                
+              <h2><a href="http://didier.bernaudeau.net/Connecting_a_Push_Switch_on_a_Raspberry.html">Connecting a push button switch on a Raspberry</a></h2>
+                <div class="well well-sm">
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-06-25T20:55:00+02:00"> dim. 25 juin 2017</time>
+        <i class="fa fa-calendar"></i><time datetime="2017-08-16T21:55:00+02:00"> mer. 16 août 2017</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-06-25T20:55:00+02:00"> dim. 25 juin 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-08-16T21:55:00+02:00"> mer. 16 août 2017</time>
             </span>
 
 
@@ -104,50 +86,15 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/raspberry-pi.html">Raspberry Pi</a>
+	<a href="http://didier.bernaudeau.net/tag/raspberry.html">Raspberry</a>
     
-</footer><!-- /.post-info -->                    </div>
-                </div>
-                <p>Wiring PI is a command line tool which allows you to access directly to the GPIO interface.</p>
+</footer><!-- /.post-info -->                </div>
+              <div class="summary"><p>Connecting a push button switch should be an easy thing but it's harder than it seems. There are two main concerns to be solved: undefined state and switch bounce.</p>
 
-<h1>Pin-out</h1>
-<p>Wiring PI use its own pinout illustrated below:</p>
-<p align="center"><img class="img-responsive" src="images/2017-06-25_WiringPI_GPIO.png"/></p>
-<h1>Install Wiring Pi (On Raspbian)</h1>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install Wiringpi
-</pre></div>
-<p>The gpio command is designed to be called by a normal user without using the sudo command or logging in as root.</p>
-<h1>Output mode</h1>
-<ul>
-<li>Set GPIO pin 4 as an output</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> gpio mode <span class="m">7</span> out
-</pre></div>
-<ul>
-<li>Closed-circuit (which means that the current is On)</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> gpio write <span class="m">7</span> 0
-</pre></div>
-<ul>
-<li>Open-circuit (which means that the current is Off)</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> gpio write <span class="m">7</span> 1
-</pre></div>
-<ul>
-<li>Print the status</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> gpio <span class="nb">read</span> 7
-</pre></div>
-            </div>
-            <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://didier.bernaudeau.net/HowToInstallRaspbianOnRaspberryPi.html">How to install Raspbian on a Raspberry Pi</a></li>
-    </ul>
-</section>
-        </article>
-    </section>
+                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/Connecting_a_Push_Switch_on_a_Raspberry.html">more ...</a>
+              </div>
+            </article>
+            <hr/>
 
         </div>
         <div class="col-sm-3" id="sidebar">

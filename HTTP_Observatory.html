@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>HTTP Observatory - My personal blog note</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://didier.bernaudeau.net/HTTP_Observatory.html">
+
+        <meta name="author" content="Didier BERNAUDEAU" />
+        <meta name="keywords" content="TLS" />
+        <meta name="description" content="HTTP Observatory is a security tools provided by Mozilla to check HTTP security headers. This post describes a way to install HTTP Observatory on Red Hat 7.3." />
+
+        <meta property="og:site_name" content="My personal blog note" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="HTTP Observatory"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/HTTP_Observatory.html"/>
+        <meta property="og:description" content="HTTP Observatory is a security tools provided by Mozilla to check HTTP security headers. This post describes a way to install HTTP Observatory on Red Hat 7.3."/>
+        <meta property="article:published_time" content="2017-08-20" />
+            <meta property="article:section" content="Tutorials" />
+            <meta property="article:tag" content="TLS" />
+            <meta property="article:author" content="Didier BERNAUDEAU" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+    <link href="http://didier.bernaudeau.net/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://didier.bernaudeau.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/style.css" type="text/css"/>
+
+        <link href="http://didier.bernaudeau.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note ATOM Feed"/>
+
+
+
+        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Tutorials ATOM Feed"/>
+
+    <link href="http://didier.bernaudeau.net/theme/css/colorbox.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://didier.bernaudeau.net/" class="navbar-brand">
+My personal blog note            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/articles.html">Articles</a></li>
+                    <li><a href="/category/tutorials.html">Tutorials</a></li>
+                    <li><a href="/category/talk.html">Talk</a></li>
+                    <li><a href="/category/press-review.html">Press Review</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="http://didier.bernaudeau.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://didier.bernaudeau.net/HTTP_Observatory.html"
+                       rel="bookmark"
+                       title="Permalink to HTTP Observatory">
+                        HTTP Observatory
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-08-20T10:15:00+02:00"> dim. 20 août 2017</time>
+    </span>
+            <span class="label label-default">Modified</span>
+            <span class="modified">
+                <i class="fa fa-calendar"></i><time datetime="2017-07-24T21:25:00+02:00"> lun. 24 juillet 2017</time>
+            </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://didier.bernaudeau.net/tag/tls.html">TLS</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>HTTP Observatory is a security tools provided by Mozilla to check HTTP security headers. This post describes a way to install HTTP Observatory on Red Hat 7.3.</p>
+
+<h1>Get TLS Observatory</h1>
+<ul>
+<li>Install Git</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo yum install git
+</pre></div>
+<ul>
+<li>Create Apps directory</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo mkdir /apps
+<span class="gp">$</span> <span class="nb">cd</span> /apps
+</pre></div>
+<ul>
+<li>Clone HTTP Observatory</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> git clone https://github.com/mozilla/http-observatory.git
+</pre></div>
+<h1>Create database</h1>
+<ul>
+<li>
+<p>Install <a href="http://didier.bernaudeau.net/HowTo_Install_Postgresql_On_RedHat.html">PostgreSQL</a>.</p>
+</li>
+<li>
+<p>Create database</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo su - postgres
+<span class="gp">$</span> createdb http_observatory
+<span class="gp">$</span> psql http_observatory &lt; /apps/http-observatory/httpobs/database/schema.sql
+</pre></div>
+<ul>
+<li>Define user password</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> psql http_observatory
+<span class="go">http_observatory=# \password httpobsapi</span>
+<span class="go">http_observatory=# \password httpobsscanner</span>
+<span class="go">http_observatory=# \q</span>
+</pre></div>
+<ul>
+<li>logout postgres user</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">exit</span>
+</pre></div>
+<ul>
+<li>Edit configuration</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /var/lib/pgsql/9.6/data/postgresql.conf
+</pre></div>
+<div class="highlight"><pre><span></span>max_connections = 512
+shared_buffers = 256MB
+</pre></div>
+<ul>
+<li>Allow access to PostgreSQL from localhost with authentication by password</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /var/lib/pgsql/9.6/data/pg_hba.conf
+</pre></div>
+<div class="highlight"><pre><span></span><span class="go">host    all             all             127.0.0.1/32            md5</span>
+</pre></div>
+<p>MD5 is the best cryptographic function supported by RedHat to secure the password exchange. Indeed, SCRAM-SHA-256 is not yet available.</p>
+<ul>
+<li>Restart Postgresql</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl restart postgresql-9.6
+</pre></div>
+<ul>
+<li>Test connection</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> psql --host localhost --dbname http_observatory --username httpobsscanner --password
+<span class="gp">$</span> psql --host localhost --dbname http_observatory --username httpobsapi --password
+</pre></div>
+<h1>Install Python packages</h1>
+<ul>
+<li>Create a new virtual environment</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> /apps/http-observatory 
+<span class="gp">$</span> virtualenv PyEnv
+<span class="gp">$</span> <span class="nb">source</span> PyEnv/bin/activate
+</pre></div>
+<ul>
+<li>Install python module</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> pip install -r requirements.txt
+</pre></div>
+<h1>Configure the system</h1>
+<ul>
+<li>Add user</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo useradd -m httpobs
+<span class="gp">$</span> sudo chown -R httpobs:httpobs /apps/http-observatory
+</pre></div>
+<ul>
+<li>Create needed directories</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> mkdir /apps/http-observatory/log/
+<span class="gp">$</span> mkdir /apps/http-observatory/run/
+</pre></div>
+<h1>Install Celery</h1>
+<p>...</p>
+<h1>Install Redis</h1>
+<p>...</p>
+<h1>Install HTTP Observatory</h1>
+<ul>
+<li>Edit configuration</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> nano /apps/http-observatory/httpobs/conf/httpobs.conf
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">[global]</span>
+<span class="na">development</span> <span class="o">=</span> <span class="s">no </span>
+
+<span class="k">[api]</span>
+<span class="na">cached_result_time</span> <span class="o">=</span> <span class="s">86400</span>
+<span class="na">cooldown</span> <span class="o">=</span> <span class="s">180</span>
+<span class="na">port</span> <span class="o">=</span> <span class="s">57001</span>
+<span class="na">propagate_exceptions</span> <span class="o">=</span> <span class="s">no</span>
+<span class="na">url</span> <span class="o">=</span> <span class="s">http://observatory.intra/api/v1</span>
+
+<span class="k">[database]</span>
+<span class="na">database</span> <span class="o">=</span> <span class="s">http_observatory</span>
+<span class="na">host</span> <span class="o">=</span> <span class="s">localhost</span>
+<span class="na">pass</span> <span class="o">=</span> <span class="s">*********</span>
+<span class="na">port</span> <span class="o">=</span> <span class="s">5432</span>
+<span class="na">user</span> <span class="o">=</span> <span class="s">httpobsapi</span>
+
+<span class="k">[retriever]</span>
+<span class="na">connect_timeout</span> <span class="o">=</span> <span class="s">6.05</span>
+<span class="na">cors_origin</span> <span class="o">=</span> <span class="s">http://observatory.intra</span>
+<span class="na">read_timeout</span> <span class="o">=</span> <span class="s">30</span>
+</pre></div>
+<h1>Start services</h1>
+<ul>
+<li>Define environment variables for the Scanner</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> nano /apps/http-observatory/VarScanner.env
+</pre></div>
+<div class="highlight"><pre><span></span><span class="x">PYTHONPATH=</span><span class="p">$</span><span class="nv">PYTHONPATH</span><span class="x">:/apps/http-observatory/</span>
+<span class="x">HTTPOBS_BROKER_URL=redis://localhost:6379/0</span>
+<span class="x">HTTPOBS_API_URL=http://localhost:57001/api/v1</span>
+<span class="x">HTTPOBS_MAX_CONCURRENCY=48</span>
+<span class="x">HTTPOBS_DATABASE_USER=httpobsscanner</span>
+<span class="x">HTTPOBS_DATABASE_PASS=********</span>
+</pre></div>
+<ul>
+<li>Create unit file for Celery</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/systemd/system/httpobs-scan-worker-celery.service
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">CELERY for HTTP Observatory scan worker</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network.target auditd.service</span>
+<span class="na">After</span><span class="o">=</span><span class="s">redis-server.service</span>
+<span class="na">Before</span><span class="o">=</span><span class="s">httpobs-scan-worker.service</span>
+<span class="na">Requires</span><span class="o">=</span><span class="s">redis.service</span>
+
+<span class="k">[Service]</span>
+<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/apps/http-observatory</span>
+<span class="na">RuntimeDirectory</span><span class="o">=</span><span class="s">httpobs</span>
+<span class="na">EnvironmentFile</span><span class="o">=</span><span class="s">/apps/http-observatory/VarScanner.env</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/apps/http-observatory/PyEnv/bin/celery -A httpobs.scanner.tasks \</span>
+<span class="s">                                                --broker=redis://localhost:6379/0 \</span>
+<span class="s">                                                --autoscale=128,4 \</span>
+<span class="s">                                                --hostname=scanner@%%h \</span>
+<span class="s">                                                --loglevel=info \</span>
+<span class="s">                                                --maxtasksperchild=1024 \</span>
+<span class="s">                                                --pidfile=/apps/http-observatory/run/scanner.pid \</span>
+<span class="s">                                                --logfile=/apps/http-observatory/log/scanner.log \</span>
+<span class="s">                                                worker</span>
+
+<span class="na">Restart</span><span class="o">=</span><span class="s">on-failure</span>
+<span class="na">User</span><span class="o">=</span><span class="s">httpobs</span>
+<span class="na">Group</span><span class="o">=</span><span class="s">httpobs</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</pre></div>
+<ul>
+<li>Create unit file for Scanner</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/systemd/system/httpobs-scan-worker.service
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">HTTP Observatory scan worker</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network.target auditd.service</span>
+<span class="na">Requires</span><span class="o">=</span><span class="s">httpobs-scan-worker-celery.service</span>
+
+<span class="k">[Service]</span>
+<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/apps/http-observatory</span>
+<span class="na">EnvironmentFile</span><span class="o">=</span><span class="s">/apps/http-observatory/VarScanner.env</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/apps/http-observatory/PyEnv/bin/python3.4 /apps/http-observatory/httpobs/scanner/main.py &gt;&gt; /apps/http-observatory/log/scan-worker.log</span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">on-failure</span>
+<span class="na">User</span><span class="o">=</span><span class="s">httpobs</span>
+<span class="na">Group</span><span class="o">=</span><span class="s">httpobs</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</pre></div>
+<ul>
+<li>Define environment variables for the API</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /apps/http-observatory/Variables_API.env
+</pre></div>
+<div class="highlight"><pre><span></span><span class="x">PYTHONPATH=</span><span class="p">$</span><span class="nv">PYTHONPATH</span><span class="x">:/apps/http-observatory/</span>
+<span class="x">HTTPOBS_BROKER_URL=redis://localhost:6379/0</span>
+<span class="x">HTTPOBS_API_URL=http://localhost:57001/api/v1</span>
+<span class="x">HTTPOBS_MAX_CONCURRENCY=48</span>
+<span class="x">HTTPOBS_DATABASE_USER=httpobsapi</span>
+<span class="x">HTTPOBS_DATABASE_PASS=*******</span>
+</pre></div>
+<ul>
+<li>Create unit file for API</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/systemd/system/httpobs-api.service
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">HTTP Observatory API</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network.target auditd.service</span>
+
+<span class="k">[Service]</span>
+<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/apps/http-observatory</span>
+<span class="na">EnvironmentFile</span><span class="o">=</span><span class="s">/apps/http-observatory/VarAPI.env</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/apps/http-observatory/PyEnv/bin/uwsgi \</span>
+<span class="s">                 --http :57001 \</span>
+<span class="s">                 --wsgi-file /opt/http-observatory/httpobs/website/main.py \</span>
+<span class="s">                 --processes 8 \</span>
+<span class="s">                 --callable app \</span>
+<span class="s">                 --master \</span>
+<span class="s">                 --logto /apps/http-observatory/log/api.log</span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">on-failure</span>
+<span class="na">User</span><span class="o">=</span><span class="s">httpobs</span>
+<span class="na">Group</span><span class="o">=</span><span class="s">httpobs</span>
+<span class="na">KillSignal</span><span class="o">=</span><span class="s">SIGINT</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</pre></div>
+<ul>
+<li>Start services</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl start httpobs-scan-worker-celery.service
+<span class="gp">$</span> sudo systemctl start httpobs-scan-worker.service
+<span class="gp">$</span> sudo systemctl start httpobs-api.service
+</pre></div>
+<ul>
+<li>Enable services</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl <span class="nb">enable</span> httpobs-scan-worker-celery.service
+<span class="gp">$</span> sudo systemctl <span class="nb">enable</span> httpobs-scan-worker.service
+<span class="gp">$</span> sudo systemctl <span class="nb">enable</span> httpobs-api.service
+</pre></div>
+<h1>To Do</h1>
+<ul>
+<li>Install git</li>
+<li>conf API : check user</li>
+<li>Redis and celery</li>
+<li>Nginx reverse proxy</li>
+</ul>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://didier.bernaudeau.net/Keytool.html">Keytool</a></li>
+        <li><a href="http://didier.bernaudeau.net/TLS_Cipher_Suites.html">TLS Cipher Suites</a></li>
+    </ul>
+</section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="60%" class="img-thumbnail" src="/images/avatar.png"/>
+        </p>
+    <p>
+        <strong>About D. Bernaudeau</strong><br/>
+        I’m Didier Bernaudeau, an Information Systems Security Professional. This site is a way to note some experimentations.
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+
+
+
+            <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/apu.html">
+                            APU
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/blockchain.html">
+                            Blockchain
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
+                            Certificate
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/container.html">
+                            Container
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
+                            Cryptography
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/cups.html">
+                            cups
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/database.html">
+                            Database
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/debian.html">
+                            Debian
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/development.html">
+                            Development
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/development-tool.html">
+                            Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/docker.html">
+                            Docker
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/framework.html">
+                            Framework
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
+                            Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/git.html">
+                            Git
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/go.html">
+                            Go
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
+                            Hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/home-automation.html">
+                            Home automation
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/html.html">
+                            HTML
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/java.html">
+                            Java
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/linux.html">
+                            Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/network.html">
+                            Network
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/php.html">
+                            PHP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/pki.html">
+                            PKI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/press-review.html">
+                            Press review
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/python.html">
+                            Python
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/raspberry-pi.html">
+                            Raspberry Pi
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/raspbian.html">
+                            Raspbian
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/redhat.html">
+                            RedHat
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scm.html">
+                            SCM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/software.html">
+                            Software
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/spring.html">
+                            Spring
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/tls.html">
+                            TLS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
+                            Virtualization
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/website.html">
+                            WebSite
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/windows.html">
+                            Windows
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/wireless.html">
+                            Wireless
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+            &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://didier.bernaudeau.net/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://didier.bernaudeau.net/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://didier.bernaudeau.net/theme/js/respond.min.js"></script>
+
+<!-- ColorBox -->
+<script src="http://didier.bernaudeau.net/theme/js/jquery.colorbox-min.js"></script>
+<script src="http://didier.bernaudeau.net/theme/js/load-colorbox.js"></script>
+
+
+
+</body>
+</html>

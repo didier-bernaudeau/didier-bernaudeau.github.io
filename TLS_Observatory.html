@@ -112,8 +112,114 @@ My personal blog note            </a>
                 </div>
                 <p>TLS Observatory is a security tools provided by Mozilla to scan TLS endpoint. This post describes a way to install TLS Observatory on Red Hat 7.3.</p>
 
-<h1>Get TLS Observatory</h1>
+<h1>Install Go</h1>
+<ul>
+<li>Get Go</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> curl -LO https://storage.googleapis.com/golang/go1.7.linux-amd64.tar.gz
+<span class="gp">$</span> sudo tar -C /apps/ -xvzf go1.7.linux-amd64.tar.gz
+</pre></div>
+<ul>
+<li>Define environment varibales</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>$PATH:/apps/go/bin
+<span class="gp">$</span> <span class="nb">export</span> <span class="nv">GOROOT</span><span class="o">=</span><span class="s2">"/apps/go/"</span>
+<span class="gp">$</span> <span class="nb">export</span> <span class="nv">GOBIN</span><span class="o">=</span><span class="s2">"/apps/go/bin"</span>
+<span class="gp">$</span> <span class="nb">export</span> <span class="nv">GOPATH</span><span class="o">=</span><span class="s2">"/apps/go/src"</span>
+</pre></div>
 <h1>Install Cipherscan</h1>
+<ul>
+<li>Get Cipherscan</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo <span class="nb">cd</span> /apps/
+<span class="gp">$</span> sudo git clone https://github.com/mozilla/cipherscan.git
+</pre></div>
+<ul>
+<li>Change access right</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo chmod go+rx /apps/cipherscan
+</pre></div>
+<h1>Install TLS Observatory</h1>
+<ul>
+<li>get TLS Observatory</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo mkdir -p /apps/go/src/github.com/mozilla
+<span class="gp">$</span> sudo <span class="nb">cd</span> /apps/go/src/github.com/mozilla
+<span class="gp">$</span> sudo git clone https://github.com/mozilla/tls-observatory.git
+</pre></div>
+<ul>
+<li>Compile</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo <span class="nb">cd</span> /apps/go/src/github.com/mozilla/tls-observatory
+<span class="gp">$</span> sudo make
+</pre></div>
+<ul>
+<li>Change access right</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo chmod go+rX -R /apps/go/src/github.com
+</pre></div>
+<h1>Create database</h1>
+<ul>
+<li>
+<p>Install <a href="http://didier.bernaudeau.net/HowTo_Install_Postgresql_On_RedHat.html">PostgreSQL</a></p>
+</li>
+<li>
+<p>Create database</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo su - postgres
+<span class="gp">$</span> createdb observatory
+<span class="gp">$</span> psql observatory &lt; /apps/TlsObs/database/schema.sql
+</pre></div>
+<ul>
+<li>Define password</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> psql observatory
+<span class="go">observatory=# \password tlsobsapi</span>
+<span class="go">observatory=# \password tlsobsscanner</span>
+<span class="go">observatory=# \q</span>
+</pre></div>
+<ul>
+<li>Logout Postgres user</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">exit</span>
+</pre></div>
+<h1>Configure TLS Observatory</h1>
+<ul>
+<li>Edit configuration files for API</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /apps/go/src/github.com/mozilla/tls-observatory/conf/api.cfg
+</pre></div>
+<div class="highlight"><pre><span></span>PostgresUser    = "tlsobsapi"
+PostgresPass    = "*******"
+APIListenAddr   = ":8083"
+</pre></div>
+<ul>
+<li>Edit configuration files for Scanner</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /apps/go/src/github.com/mozilla/tls-observatory/conf/scanner.cfg
+</pre></div>
+<div class="highlight"><pre><span></span>PostgresDB    = "observatory"
+PostgresPass  = "scannerpwd"
+
+[TrustStores]
+UbuntuTS  = "/apps/go/src/github.com/mozilla/tls-observatory/conf/truststores/CA_ubuntu_latest.crt"
+MozillaTS  = "/apps/go/src/github.com/mozilla/tls-observatory/conf/truststores/CA_mozilla_nss.crt"
+MicrosoftTS  = "/apps/go/src/github.com/mozilla/tls-observatory/conf/truststores/CA_microsoft.crt"
+AppleTS  = "/apps/go/src/github.com/mozilla/tls-observatory/conf/truststores/CA_apple_latest.crt"
+AndroidTS  = "/apps/go/src/github.com/mozilla/tls-observatory/conf/truststores/CA_AOSP.crt"
+</pre></div>
+<ul>
+<li>Start TlS Observatory (for testing purpose only)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> /apps/go/src/bin/tlsobs-api -c /apps/go/src/github.com/mozilla/tls-observatory/conf/api.cfg
+<span class="gp">$</span> /apps/go/src/bin/tlsobs-scanner -b /apps/cipherscan/cipherscan -c /apps/go/src/github.com/mozilla/tls-observatory/conf/scanner.cfg
+</pre></div>
+<ul>
+<li>test</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> curl http://observatory.intra:8083/api/v1/truststore?store<span class="o">=</span>mozilla<span class="p">&amp;</span><span class="nv">format</span><span class="o">=</span>pem
+</pre></div>
 <h1>Start services</h1>
 <ul>
 <li>Create unit file for API</li>

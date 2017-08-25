@@ -116,7 +116,7 @@ My personal blog note            </a>
 <ul>
 <li>Install Git</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo yum install git
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo yum install -y git
 </pre></div>
 <ul>
 <li>Create Apps directory</li>
@@ -191,9 +191,26 @@ shared_buffers = 256MB
 <span class="gp">$</span> <span class="nb">source</span> PyEnv/bin/activate
 </pre></div>
 <ul>
+<li>Install GCC</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo yum install -y gcc
+</pre></div>
+<ul>
 <li>Install python module</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> pip install -r requirements.txt
+</pre></div>
+<h1>Redis</h1>
+<ul>
+<li>Install Redis client and server</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo yum install -y redis
+</pre></div>
+<ul>
+<li>Start Redis server</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl <span class="nb">enable</span> redis
+<span class="gp">$</span> sudo systemctl start redis
 </pre></div>
 <h1>Configure the system</h1>
 <ul>
@@ -208,10 +225,6 @@ shared_buffers = 256MB
 <div class="highlight"><pre><span></span><span class="gp">$</span> mkdir /apps/http-observatory/log/
 <span class="gp">$</span> mkdir /apps/http-observatory/run/
 </pre></div>
-<h1>Install Celery</h1>
-<p>...</p>
-<h1>Install Redis</h1>
-<p>...</p>
 <h1>Install HTTP Observatory</h1>
 <ul>
 <li>Edit configuration</li>
@@ -360,13 +373,17 @@ shared_buffers = 256MB
 <span class="gp">$</span> sudo systemctl <span class="nb">enable</span> httpobs-scan-worker.service
 <span class="gp">$</span> sudo systemctl <span class="nb">enable</span> httpobs-api.service
 </pre></div>
-<h1>To Do</h1>
+<h1>Test API</h1>
 <ul>
-<li>Install git</li>
-<li>conf API : check user</li>
-<li>Redis and celery</li>
-<li>Nginx reverse proxy</li>
+<li>Start a scan</li>
 </ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> curl http://observatory.intra:57001/api/v1/analyze?host<span class="o">=</span>www.hostname.com -X POST -v
+</pre></div>
+<ul>
+<li>Get a report</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> curl http://observatory.intra:57001/api/v1/getScanResults?scan<span class="o">=</span>1
+</pre></div>
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">

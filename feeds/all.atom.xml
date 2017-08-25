@@ -2,11 +2,80 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-08-20T12:16:00+02:00</updated><entry><title>HTTP Observatory Website</title><link href="http://didier.bernaudeau.net/HTTP_Observatory_Website.html" rel="alternate"></link><published>2017-08-20T12:16:00+02:00</published><updated>2017-07-24T23:17:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-08-20:/HTTP_Observatory_Website.html</id><summary type="html">&lt;p&gt;HTTP Observatory Web is a web application for TLS and HTTP Observatory. This post describes a way to install HTTP Observatory Web on Red Hat 7.3.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;HTTP Observatory Web is a web application for TLS and HTTP Observatory. This post describes a way to install HTTP Observatory Web on Red Hat 7.3.&lt;/p&gt;
 
+&lt;h1&gt;Nginx&lt;/h1&gt;
+&lt;p&gt;Nginx, configured as a reverse proxy, could be used as a single entry point for APIs and Website.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Nginx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo yum install -y nginx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure Nginx to remove IPV6&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/nginx/nginx.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;server {
+  listen       80 default_server;
+  #listen       [::]:80 default_server;
+}
+ ```
+
+* Add site for APIs and Website
+
+```console
+$ sudo nano /etc/nginx/conf.d/observatory.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;server&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;listen&lt;/span&gt;          &lt;span class="m"&gt;443&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;server_name&lt;/span&gt;     &lt;span class="n"&gt;observatory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;intra&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;access_log&lt;/span&gt;      &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;observatory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;access&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;error_log&lt;/span&gt;       &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;observatory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="n"&gt;location&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_buffering&lt;/span&gt; &lt;span class="n"&gt;off&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_set_header&lt;/span&gt; &lt;span class="n"&gt;Host&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_set_header&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Real&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;remote_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_pass&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="n"&gt;localhost&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;intra&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;5500&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="nt"&gt;location&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;http&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_buffering&lt;/span&gt; &lt;span class="n"&gt;off&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_set_header&lt;/span&gt; &lt;span class="n"&gt;Host&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_set_header&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Real&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;remote_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_pass&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="n"&gt;localhost&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;57001&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="nt"&gt;location&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;tls&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_http_version&lt;/span&gt;  &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_set_header&lt;/span&gt;    &lt;span class="n"&gt;Accept&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Encoding&lt;/span&gt; &lt;span class="s2"&gt;""&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_set_header&lt;/span&gt;    &lt;span class="n"&gt;Host&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_set_header&lt;/span&gt;    &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Real&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;remote_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_set_header&lt;/span&gt;    &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Forwarded&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;For&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_buffering&lt;/span&gt;     &lt;span class="n"&gt;off&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_pass&lt;/span&gt;          &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="n"&gt;localhost&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;8083&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+     &lt;span class="n"&gt;sub_filter_once&lt;/span&gt; &lt;span class="n"&gt;off&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;sub_filter_types&lt;/span&gt; &lt;span class="nb"&gt;text&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt; &lt;span class="nb"&gt;text&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;css&lt;/span&gt; &lt;span class="n"&gt;application&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;javascript&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;sub_filter&lt;/span&gt; &lt;span class="s2"&gt;"/api/v1/"&lt;/span&gt; &lt;span class="s2"&gt;"/tls/api/v1/"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;sub_filter&lt;/span&gt; &lt;span class="s2"&gt;"/static/"&lt;/span&gt; &lt;span class="s2"&gt;"/tls/static/"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Change access right&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo chmod go+r /etc/nginx/conf.d/observatory.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Démarrer Nginx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start nginx
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Get TLS Observatory Website&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Install Git&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo yum install git
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo yum install -y git
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Create Apps directory&lt;/li&gt;
@@ -50,14 +119,14 @@
     &lt;span class="nt"&gt;maxQueriesBeforeTimeout&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;600&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
 
     &lt;span class="nt"&gt;urls&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-      &lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'http://observatory.intra:57001/api/v1/'&lt;/span&gt;
+      &lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'https://observatory.intra/http/api/v1/'&lt;/span&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
 
     &lt;span class="o"&gt;...&lt;/span&gt;
 
     &lt;span class="nt"&gt;loadHTTPObservatoryHostHistory&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;function&lt;/span&gt; &lt;span class="nt"&gt;loadHTTPObservatoryHostHistory&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="s1"&gt;'use strict'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;API_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'http://observatory.intra:57001/api/v1/getHostHistory?host='&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;Observatory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hostname&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;API_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'https://observatory.intra/http/api/v1/getHostHistory?host='&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;Observatory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hostname&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;successCallback&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
       &lt;span class="n"&gt;Observatory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;history&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
       &lt;span class="n"&gt;Observatory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insertHTTPObservatoryHostHistory&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
@@ -68,10 +137,10 @@
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; nano /apps/http-observatory-website/js/httpobs-third-party.js
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;  &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;SCAN_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'http://observatory.intra:8083/api/v1/scan'&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
-  &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;RESULTS_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'http://observatory.intra:8083/api/v1/results'&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
-  &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;CERTIFICATE_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'http://observatory.intra:8083/api/v1/certificate'&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
-  &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;CERTIFICATE_EXPLAINER_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'http://observatory.intra:8083/static/certsplainer.html'&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;  &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;SCAN_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'https://observatory.intra/tls/api/v1/scan'&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;RESULTS_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'https://observatory.intra/tls/api/v1/results'&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;CERTIFICATE_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'https://observatory.intra/tls/api/v1/certificate'&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;CERTIFICATE_EXPLAINER_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'https://observatory.intra/tls/static/certsplainer.html'&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -84,11 +153,13 @@
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; python render.py
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;Start for test purpose onlys&lt;/li&gt;
+&lt;li&gt;Start for testing purpose only&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; make devserver
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Then, open this page with your browser: http://observatory.intra:5500&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Open this page with your browser: https://observatory.intra&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h1&gt;Start services&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Create unit file&lt;/li&gt;
@@ -122,8 +193,114 @@
 &lt;/pre&gt;&lt;/div&gt;</content><category term="TLS"></category></entry><entry><title>TLS Observatory</title><link href="http://didier.bernaudeau.net/TLS_Observatory.html" rel="alternate"></link><published>2017-08-20T11:15:00+02:00</published><updated>2017-07-24T22:12:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-08-20:/TLS_Observatory.html</id><summary type="html">&lt;p&gt;TLS Observatory is a security tools provided by Mozilla to scan TLS endpoint. This post describes a way to install TLS Observatory on Red Hat 7.3.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;TLS Observatory is a security tools provided by Mozilla to scan TLS endpoint. This post describes a way to install TLS Observatory on Red Hat 7.3.&lt;/p&gt;
 
-&lt;h1&gt;Get TLS Observatory&lt;/h1&gt;
+&lt;h1&gt;Install Go&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Get Go&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; curl -LO https://storage.googleapis.com/golang/go1.7.linux-amd64.tar.gz
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo tar -C /apps/ -xvzf go1.7.linux-amd64.tar.gz
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Define environment varibales&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;$PATH:/apps/go/bin
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;GOROOT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"/apps/go/"&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;GOBIN&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"/apps/go/bin"&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;GOPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"/apps/go/src"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Install Cipherscan&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Get Cipherscan&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo &lt;span class="nb"&gt;cd&lt;/span&gt; /apps/
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo git clone https://github.com/mozilla/cipherscan.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Change access right&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo chmod go+rx /apps/cipherscan
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Install TLS Observatory&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;get TLS Observatory&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo mkdir -p /apps/go/src/github.com/mozilla
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo &lt;span class="nb"&gt;cd&lt;/span&gt; /apps/go/src/github.com/mozilla
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo git clone https://github.com/mozilla/tls-observatory.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Compile&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo &lt;span class="nb"&gt;cd&lt;/span&gt; /apps/go/src/github.com/mozilla/tls-observatory
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo make
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Change access right&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo chmod go+rX -R /apps/go/src/github.com
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Create database&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Install &lt;a href="http://didier.bernaudeau.net/HowTo_Install_Postgresql_On_RedHat.html"&gt;PostgreSQL&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create database&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo su - postgres
+&lt;span class="gp"&gt;$&lt;/span&gt; createdb observatory
+&lt;span class="gp"&gt;$&lt;/span&gt; psql observatory &amp;lt; /apps/TlsObs/database/schema.sql
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Define password&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; psql observatory
+&lt;span class="go"&gt;observatory=# \password tlsobsapi&lt;/span&gt;
+&lt;span class="go"&gt;observatory=# \password tlsobsscanner&lt;/span&gt;
+&lt;span class="go"&gt;observatory=# \q&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Logout Postgres user&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;exit&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Configure TLS Observatory&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Edit configuration files for API&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /apps/go/src/github.com/mozilla/tls-observatory/conf/api.cfg
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;PostgresUser    = "tlsobsapi"
+PostgresPass    = "*******"
+APIListenAddr   = ":8083"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Edit configuration files for Scanner&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /apps/go/src/github.com/mozilla/tls-observatory/conf/scanner.cfg
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;PostgresDB    = "observatory"
+PostgresPass  = "scannerpwd"
+
+[TrustStores]
+UbuntuTS  = "/apps/go/src/github.com/mozilla/tls-observatory/conf/truststores/CA_ubuntu_latest.crt"
+MozillaTS  = "/apps/go/src/github.com/mozilla/tls-observatory/conf/truststores/CA_mozilla_nss.crt"
+MicrosoftTS  = "/apps/go/src/github.com/mozilla/tls-observatory/conf/truststores/CA_microsoft.crt"
+AppleTS  = "/apps/go/src/github.com/mozilla/tls-observatory/conf/truststores/CA_apple_latest.crt"
+AndroidTS  = "/apps/go/src/github.com/mozilla/tls-observatory/conf/truststores/CA_AOSP.crt"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start TlS Observatory (for testing purpose only)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; /apps/go/src/bin/tlsobs-api -c /apps/go/src/github.com/mozilla/tls-observatory/conf/api.cfg
+&lt;span class="gp"&gt;$&lt;/span&gt; /apps/go/src/bin/tlsobs-scanner -b /apps/cipherscan/cipherscan -c /apps/go/src/github.com/mozilla/tls-observatory/conf/scanner.cfg
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;test&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; curl http://observatory.intra:8083/api/v1/truststore?store&lt;span class="o"&gt;=&lt;/span&gt;mozilla&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nv"&gt;format&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;pem
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Start services&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Create unit file for API&lt;/li&gt;
@@ -182,7 +359,7 @@
 &lt;ul&gt;
 &lt;li&gt;Install Git&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo yum install git
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo yum install -y git
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Create Apps directory&lt;/li&gt;
@@ -257,9 +434,26 @@ shared_buffers = 256MB
 &lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;source&lt;/span&gt; PyEnv/bin/activate
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
+&lt;li&gt;Install GCC&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo yum install -y gcc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
 &lt;li&gt;Install python module&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; pip install -r requirements.txt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Redis&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Redis client and server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo yum install -y redis
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start Redis server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; redis
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start redis
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Configure the system&lt;/h1&gt;
 &lt;ul&gt;
@@ -274,10 +468,6 @@ shared_buffers = 256MB
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; mkdir /apps/http-observatory/log/
 &lt;span class="gp"&gt;$&lt;/span&gt; mkdir /apps/http-observatory/run/
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;Install Celery&lt;/h1&gt;
-&lt;p&gt;...&lt;/p&gt;
-&lt;h1&gt;Install Redis&lt;/h1&gt;
-&lt;p&gt;...&lt;/p&gt;
 &lt;h1&gt;Install HTTP Observatory&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Edit configuration&lt;/li&gt;
@@ -426,13 +616,17 @@ shared_buffers = 256MB
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; httpobs-scan-worker.service
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; httpobs-api.service
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;To Do&lt;/h1&gt;
+&lt;h1&gt;Test API&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;Install git&lt;/li&gt;
-&lt;li&gt;conf API : check user&lt;/li&gt;
-&lt;li&gt;Redis and celery&lt;/li&gt;
-&lt;li&gt;Nginx reverse proxy&lt;/li&gt;
-&lt;/ul&gt;</content><category term="TLS"></category></entry><entry><title>Connecting a push button switch on a Raspberry</title><link href="http://didier.bernaudeau.net/Connecting_a_Push_Switch_on_a_Raspberry.html" rel="alternate"></link><published>2017-08-16T21:55:00+02:00</published><updated>2017-08-16T21:55:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-08-16:/Connecting_a_Push_Switch_on_a_Raspberry.html</id><summary type="html">&lt;p&gt;Connecting a push button switch should be an easy thing but it's harder than it seems. There are two main concerns to be solved: undefined state and switch bounce.&lt;/p&gt;
+&lt;li&gt;Start a scan&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; curl http://observatory.intra:57001/api/v1/analyze?host&lt;span class="o"&gt;=&lt;/span&gt;www.hostname.com -X POST -v
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Get a report&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; curl http://observatory.intra:57001/api/v1/getScanResults?scan&lt;span class="o"&gt;=&lt;/span&gt;1
+&lt;/pre&gt;&lt;/div&gt;</content><category term="TLS"></category></entry><entry><title>Connecting a push button switch on a Raspberry</title><link href="http://didier.bernaudeau.net/Connecting_a_Push_Switch_on_a_Raspberry.html" rel="alternate"></link><published>2017-08-16T21:55:00+02:00</published><updated>2017-08-16T21:55:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-08-16:/Connecting_a_Push_Switch_on_a_Raspberry.html</id><summary type="html">&lt;p&gt;Connecting a push button switch should be an easy thing but it's harder than it seems. There are two main concerns to be solved: undefined state and switch bounce.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Connecting a push button switch should be an easy thing but it's harder than it seems. There are two main concerns to be solved: undefined state and switch bounce.&lt;/p&gt;
 
 &lt;h1&gt;Pull Down/Up resistor&lt;/h1&gt;
@@ -643,7 +837,7 @@ log_statement = 'all'
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -678,7 +872,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -695,7 +889,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -712,7 +906,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -741,7 +935,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -764,7 +958,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="case"&gt;
 &lt;h3&gt;Case&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -3135,7 +3329,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;p&gt;ERROR [org.jboss.msc.service.fail] (MSC service thread 1-1) MSC000001: Failed to start service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: org.jboss.msc.service.StartException in service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: WFLYDM0018: Unable to start service&lt;/p&gt;</content><category term="Certificate"></category><category term="Debian"></category></entry><entry><title>Press review of July 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_July_2016.html" rel="alternate"></link><published>2016-07-01T21:11:00+02:00</published><updated>2016-07-25T22:21:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-07-01:/Press_review_of_July_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -3237,7 +3431,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;&lt;a class="reference external" href="http://www.tripwire.com/state-of-security/featured/boobytrapped-printers-windows-malware/"&gt;How boobytrapped printers have been able to infect Windows PCs for over 20 years&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="img-responsive first last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="first last img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;07/13/2016&lt;/td&gt;
@@ -3341,7 +3535,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 </content><category term="Press review"></category></entry><entry><title>Press review of June 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_June_2016.html" rel="alternate"></link><published>2016-06-01T22:44:00+02:00</published><updated>2016-07-22T22:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-06-01:/Press_review_of_June_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -3547,7 +3741,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;&lt;a class="reference external" href="https://blog.bity.com/la-faille-de-the-dao-les-cles-pour-comprendre/"&gt;La faille de The DAO : les clés pour comprendre&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="img-responsive first last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="first last img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;06/20/2016&lt;/td&gt;
@@ -3575,7 +3769,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;&lt;a class="reference external" href="http://www.ibtimes.co.uk/ukrainian-bank-cyber-heist-hackers-compromise-swift-network-10m-theft-1567699"&gt;Ukrainian bank cyber-heist: Hackers take off with $10m&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="img-responsive first last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="first last img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;06/28/2016&lt;/td&gt;
@@ -3683,7 +3877,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 </content><category term="Press review"></category></entry><entry><title>Press review of May 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_May_2016.html" rel="alternate"></link><published>2016-05-01T23:20:00+02:00</published><updated>2016-06-21T22:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-05-01:/Press_review_of_May_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -4088,7 +4282,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 
 &lt;div class="section" id="basic-certificate-field"&gt;
 &lt;h2&gt;Basic certificate field&lt;/h2&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
 &lt;col width="89%"&gt;&lt;/col&gt;
@@ -4110,7 +4304,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="certificate-extension"&gt;
 &lt;h2&gt;Certificate extension&lt;/h2&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="12%"&gt;&lt;/col&gt;
 &lt;col width="88%"&gt;&lt;/col&gt;
@@ -4149,7 +4343,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 </content><category term="Certificate"></category></entry><entry><title>Press review of April 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_April_2016.html" rel="alternate"></link><published>2016-04-01T21:24:00+02:00</published><updated>2016-04-18T22:37:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-04-01:/Press_review_of_April_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -4202,7 +4396,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://reflets.info/panamapapers-mossack-fonseca-une-incroyable-bourde/"&gt;#PanamaPapers : Mossack Fonseca une incroyable bourde ?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="img-responsive first last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="first last img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;04/04/2016&lt;/td&gt;
@@ -4293,7 +4487,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.theregister.co.uk/2016/04/13/burr_feinstein_antiencryption_bill_is_out/"&gt;Line by line, how the US anti-encryption bill will kill our privacy, security&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="img-responsive first last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="first last img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;04/07/2016&lt;/td&gt;
@@ -4424,7 +4618,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://www.theguardian.com/technology/2016/apr/19/ss7-hack-explained-mobile-phone-vulnerability-snooping-texts-calls"&gt;SS7 hack explained: what can you do about it?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="img-responsive first last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="first last img-responsive" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;04/18/2016&lt;/td&gt;
@@ -4509,7 +4703,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 </content><category term="Press review"></category></entry><entry><title>Press review of Mars 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_Mars_2016.html" rel="alternate"></link><published>2016-03-01T22:25:00+01:00</published><updated>2016-04-18T20:22:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-03-01:/Press_review_of_Mars_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -5155,7 +5349,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 </content><category term="Software"></category></entry><entry><title>Press review of February 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_February_2016.html" rel="alternate"></link><published>2016-02-01T22:55:00+01:00</published><updated>2016-03-07T22:36:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-02-01:/Press_review_of_February_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -5635,7 +5829,7 @@ Vulnerability&lt;/td&gt;
 </content><category term="Press review"></category></entry><entry><title>Press review of January 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_January_2016.html" rel="alternate"></link><published>2016-01-01T22:34:00+01:00</published><updated>2016-04-18T22:01:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-01-01:/Press_review_of_January_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -6486,7 +6680,7 @@ Vulnerability&lt;/td&gt;
 </content><category term="Blockchain"></category></entry><entry><title>Press review of december 2015</title><link href="http://didier.bernaudeau.net/Press_review_of_december_2015.html" rel="alternate"></link><published>2015-12-01T22:22:00+01:00</published><updated>2016-01-09T22:32:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-12-01:/Press_review_of_december_2015.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -7029,7 +7223,7 @@ Vulnerability&lt;/td&gt;
 </content><category term="PKI"></category><category term="Certificate"></category></entry><entry><title>Press review of november 2015</title><link href="http://didier.bernaudeau.net/Press_review_of_november_2015.html" rel="alternate"></link><published>2015-11-01T22:34:00+01:00</published><updated>2016-02-27T12:50:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-11-01:/Press_review_of_november_2015.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -7786,7 +7980,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="protocol-version"&gt;
 &lt;h2&gt;Protocol version&lt;/h2&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -7816,7 +8010,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="compression-method"&gt;
 &lt;h2&gt;Compression method&lt;/h2&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -7844,7 +8038,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Cryptographic algorithm&lt;/h2&gt;
 &lt;div class="section" id="key-exchange"&gt;
 &lt;h3&gt;Key exchange&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -7889,7 +8083,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="encryption"&gt;
 &lt;h3&gt;Encryption&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -7944,7 +8138,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="message-authentication-code"&gt;
 &lt;h3&gt;Message Authentication Code&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -8005,7 +8199,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;p&gt;Cipher suite is a list of one or more cipher strings separated by special char (colon, comma, space, ...). The names for cipher suites are defined by IANA (Internet Assigned Numbers Authority).&lt;/p&gt;
 &lt;p&gt;Cipher suite defines algorithms used for each cryptographic function: key exchange, authentication, encryption and message authentication code. If algorithm for key exchange is not mentioned, default algorithm is RSA.&lt;/p&gt;
 &lt;p&gt;The table below details some example of cipher suites:&lt;/p&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="39%"&gt;&lt;/col&gt;
@@ -8162,7 +8356,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="28%"&gt;&lt;/col&gt;
 &lt;col width="72%"&gt;&lt;/col&gt;
@@ -8221,7 +8415,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -8251,7 +8445,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in GPT (GUID Partition Table) during Microsoft Windows 8.1 installation process&lt;/p&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -8353,7 +8547,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="21%"&gt;&lt;/col&gt;
 &lt;col width="79%"&gt;&lt;/col&gt;
@@ -8421,7 +8615,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -8451,7 +8645,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in MBR (Master Boot Record) during Microsoft Windows 8.1 installation process for primary partition then during Debian 8 installation process for extended partition :&lt;/p&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
@@ -8524,7 +8718,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8553,7 +8747,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8573,7 +8767,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8596,7 +8790,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8613,7 +8807,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8633,7 +8827,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8650,7 +8844,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8673,7 +8867,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="optical-disc-drive"&gt;
 &lt;h3&gt;Optical Disc Drive&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -8711,7 +8905,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -8731,7 +8925,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="wifi"&gt;
 &lt;h3&gt;Wifi&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8751,7 +8945,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="bluetooth"&gt;
 &lt;h3&gt;Bluetooth&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8771,7 +8965,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="modem"&gt;
 &lt;h3&gt;Modem&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8788,7 +8982,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="firewire-controller"&gt;
 &lt;h3&gt;FireWire Controller&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8805,7 +8999,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-memory-stick"&gt;
 &lt;h3&gt;Card reader (Memory Stick)&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8822,7 +9016,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-secure-digital"&gt;
 &lt;h3&gt;Card reader (Secure Digital)&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8839,7 +9033,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8862,7 +9056,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9381,7 +9575,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9422,7 +9616,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9439,7 +9633,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9471,7 +9665,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9494,7 +9688,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9514,7 +9708,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9531,7 +9725,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9554,7 +9748,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9574,7 +9768,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="wifi-and-bluetooth"&gt;
 &lt;h3&gt;Wifi and Bluetooth&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9597,7 +9791,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory-card-reader"&gt;
 &lt;h3&gt;Memory card reader&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9617,7 +9811,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="smartcard-reader"&gt;
 &lt;h3&gt;Smartcard Reader&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9634,7 +9828,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="fingerprint-reader"&gt;
 &lt;h3&gt;Fingerprint Reader&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9651,7 +9845,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="nfc-reader"&gt;
 &lt;h3&gt;NFC Reader&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9668,7 +9862,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9688,7 +9882,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9724,7 +9918,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;UEFI BIOS&lt;/h2&gt;
 &lt;div class="section" id="version"&gt;
 &lt;h3&gt;Version&lt;/h3&gt;
-&lt;table border="1" class="table docutils table-striped table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="59%"&gt;&lt;/col&gt;
 &lt;col width="41%"&gt;&lt;/col&gt;

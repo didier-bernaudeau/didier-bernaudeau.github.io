@@ -2,11 +2,80 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-08-20T12:16:00+02:00</updated><entry><title>HTTP Observatory Website</title><link href="http://didier.bernaudeau.net/HTTP_Observatory_Website.html" rel="alternate"></link><published>2017-08-20T12:16:00+02:00</published><updated>2017-07-24T23:17:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-08-20:/HTTP_Observatory_Website.html</id><summary type="html">&lt;p&gt;HTTP Observatory Web is a web application for TLS and HTTP Observatory. This post describes a way to install HTTP Observatory Web on Red Hat 7.3.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;HTTP Observatory Web is a web application for TLS and HTTP Observatory. This post describes a way to install HTTP Observatory Web on Red Hat 7.3.&lt;/p&gt;
 
+&lt;h1&gt;Nginx&lt;/h1&gt;
+&lt;p&gt;Nginx, configured as a reverse proxy, could be used as a single entry point for APIs and Website.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Nginx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo yum install -y nginx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure Nginx to remove IPV6&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/nginx/nginx.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;server {
+  listen       80 default_server;
+  #listen       [::]:80 default_server;
+}
+ ```
+
+* Add site for APIs and Website
+
+```console
+$ sudo nano /etc/nginx/conf.d/observatory.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;server&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;listen&lt;/span&gt;          &lt;span class="m"&gt;443&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;server_name&lt;/span&gt;     &lt;span class="n"&gt;observatory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;intra&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;access_log&lt;/span&gt;      &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;observatory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;access&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;error_log&lt;/span&gt;       &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;observatory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+  &lt;span class="n"&gt;location&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_buffering&lt;/span&gt; &lt;span class="n"&gt;off&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_set_header&lt;/span&gt; &lt;span class="n"&gt;Host&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_set_header&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Real&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;remote_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_pass&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="n"&gt;localhost&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;intra&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;5500&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="nt"&gt;location&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;http&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_buffering&lt;/span&gt; &lt;span class="n"&gt;off&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_set_header&lt;/span&gt; &lt;span class="n"&gt;Host&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_set_header&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Real&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;remote_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_pass&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="n"&gt;localhost&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;57001&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="nt"&gt;location&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;tls&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_http_version&lt;/span&gt;  &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_set_header&lt;/span&gt;    &lt;span class="n"&gt;Accept&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Encoding&lt;/span&gt; &lt;span class="s2"&gt;""&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_set_header&lt;/span&gt;    &lt;span class="n"&gt;Host&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_set_header&lt;/span&gt;    &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Real&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;remote_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_set_header&lt;/span&gt;    &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Forwarded&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;For&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_buffering&lt;/span&gt;     &lt;span class="n"&gt;off&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;proxy_pass&lt;/span&gt;          &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="n"&gt;localhost&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;8083&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+     &lt;span class="n"&gt;sub_filter_once&lt;/span&gt; &lt;span class="n"&gt;off&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;sub_filter_types&lt;/span&gt; &lt;span class="nb"&gt;text&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt; &lt;span class="nb"&gt;text&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;css&lt;/span&gt; &lt;span class="n"&gt;application&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;javascript&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;sub_filter&lt;/span&gt; &lt;span class="s2"&gt;"/api/v1/"&lt;/span&gt; &lt;span class="s2"&gt;"/tls/api/v1/"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="n"&gt;sub_filter&lt;/span&gt; &lt;span class="s2"&gt;"/static/"&lt;/span&gt; &lt;span class="s2"&gt;"/tls/static/"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Change access right&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo chmod go+r /etc/nginx/conf.d/observatory.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Démarrer Nginx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start nginx
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Get TLS Observatory Website&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Install Git&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo yum install git
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo yum install -y git
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Create Apps directory&lt;/li&gt;
@@ -50,14 +119,14 @@
     &lt;span class="nt"&gt;maxQueriesBeforeTimeout&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;600&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
 
     &lt;span class="nt"&gt;urls&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-      &lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'http://observatory.intra:57001/api/v1/'&lt;/span&gt;
+      &lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'https://observatory.intra/http/api/v1/'&lt;/span&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
 
     &lt;span class="o"&gt;...&lt;/span&gt;
 
     &lt;span class="nt"&gt;loadHTTPObservatoryHostHistory&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;function&lt;/span&gt; &lt;span class="nt"&gt;loadHTTPObservatoryHostHistory&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="s1"&gt;'use strict'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;API_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'http://observatory.intra:57001/api/v1/getHostHistory?host='&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;Observatory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hostname&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;API_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'https://observatory.intra/http/api/v1/getHostHistory?host='&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;Observatory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hostname&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;successCallback&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
       &lt;span class="n"&gt;Observatory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;history&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
       &lt;span class="n"&gt;Observatory&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insertHTTPObservatoryHostHistory&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
@@ -68,10 +137,10 @@
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; nano /apps/http-observatory-website/js/httpobs-third-party.js
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;  &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;SCAN_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'http://observatory.intra:8083/api/v1/scan'&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
-  &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;RESULTS_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'http://observatory.intra:8083/api/v1/results'&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
-  &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;CERTIFICATE_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'http://observatory.intra:8083/api/v1/certificate'&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
-  &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;CERTIFICATE_EXPLAINER_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'http://observatory.intra:8083/static/certsplainer.html'&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;  &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;SCAN_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'https://observatory.intra/tls/api/v1/scan'&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;RESULTS_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'https://observatory.intra/tls/api/v1/results'&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;CERTIFICATE_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'https://observatory.intra/tls/api/v1/certificate'&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;CERTIFICATE_EXPLAINER_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'https://observatory.intra/tls/static/certsplainer.html'&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -84,11 +153,13 @@
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; python render.py
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;Start for test purpose onlys&lt;/li&gt;
+&lt;li&gt;Start for testing purpose only&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; make devserver
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Then, open this page with your browser: http://observatory.intra:5500&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Open this page with your browser: https://observatory.intra&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h1&gt;Start services&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Create unit file&lt;/li&gt;
@@ -122,8 +193,114 @@
 &lt;/pre&gt;&lt;/div&gt;</content><category term="TLS"></category></entry><entry><title>TLS Observatory</title><link href="http://didier.bernaudeau.net/TLS_Observatory.html" rel="alternate"></link><published>2017-08-20T11:15:00+02:00</published><updated>2017-07-24T22:12:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-08-20:/TLS_Observatory.html</id><summary type="html">&lt;p&gt;TLS Observatory is a security tools provided by Mozilla to scan TLS endpoint. This post describes a way to install TLS Observatory on Red Hat 7.3.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;TLS Observatory is a security tools provided by Mozilla to scan TLS endpoint. This post describes a way to install TLS Observatory on Red Hat 7.3.&lt;/p&gt;
 
-&lt;h1&gt;Get TLS Observatory&lt;/h1&gt;
+&lt;h1&gt;Install Go&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Get Go&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; curl -LO https://storage.googleapis.com/golang/go1.7.linux-amd64.tar.gz
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo tar -C /apps/ -xvzf go1.7.linux-amd64.tar.gz
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Define environment varibales&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;$PATH:/apps/go/bin
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;GOROOT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"/apps/go/"&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;GOBIN&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"/apps/go/bin"&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;GOPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"/apps/go/src"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Install Cipherscan&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Get Cipherscan&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo &lt;span class="nb"&gt;cd&lt;/span&gt; /apps/
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo git clone https://github.com/mozilla/cipherscan.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Change access right&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo chmod go+rx /apps/cipherscan
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Install TLS Observatory&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;get TLS Observatory&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo mkdir -p /apps/go/src/github.com/mozilla
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo &lt;span class="nb"&gt;cd&lt;/span&gt; /apps/go/src/github.com/mozilla
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo git clone https://github.com/mozilla/tls-observatory.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Compile&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo &lt;span class="nb"&gt;cd&lt;/span&gt; /apps/go/src/github.com/mozilla/tls-observatory
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo make
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Change access right&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo chmod go+rX -R /apps/go/src/github.com
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Create database&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Install &lt;a href="http://didier.bernaudeau.net/HowTo_Install_Postgresql_On_RedHat.html"&gt;PostgreSQL&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create database&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo su - postgres
+&lt;span class="gp"&gt;$&lt;/span&gt; createdb observatory
+&lt;span class="gp"&gt;$&lt;/span&gt; psql observatory &amp;lt; /apps/TlsObs/database/schema.sql
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Define password&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; psql observatory
+&lt;span class="go"&gt;observatory=# \password tlsobsapi&lt;/span&gt;
+&lt;span class="go"&gt;observatory=# \password tlsobsscanner&lt;/span&gt;
+&lt;span class="go"&gt;observatory=# \q&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Logout Postgres user&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;exit&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Configure TLS Observatory&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Edit configuration files for API&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /apps/go/src/github.com/mozilla/tls-observatory/conf/api.cfg
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;PostgresUser    = "tlsobsapi"
+PostgresPass    = "*******"
+APIListenAddr   = ":8083"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Edit configuration files for Scanner&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /apps/go/src/github.com/mozilla/tls-observatory/conf/scanner.cfg
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;PostgresDB    = "observatory"
+PostgresPass  = "scannerpwd"
+
+[TrustStores]
+UbuntuTS  = "/apps/go/src/github.com/mozilla/tls-observatory/conf/truststores/CA_ubuntu_latest.crt"
+MozillaTS  = "/apps/go/src/github.com/mozilla/tls-observatory/conf/truststores/CA_mozilla_nss.crt"
+MicrosoftTS  = "/apps/go/src/github.com/mozilla/tls-observatory/conf/truststores/CA_microsoft.crt"
+AppleTS  = "/apps/go/src/github.com/mozilla/tls-observatory/conf/truststores/CA_apple_latest.crt"
+AndroidTS  = "/apps/go/src/github.com/mozilla/tls-observatory/conf/truststores/CA_AOSP.crt"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start TlS Observatory (for testing purpose only)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; /apps/go/src/bin/tlsobs-api -c /apps/go/src/github.com/mozilla/tls-observatory/conf/api.cfg
+&lt;span class="gp"&gt;$&lt;/span&gt; /apps/go/src/bin/tlsobs-scanner -b /apps/cipherscan/cipherscan -c /apps/go/src/github.com/mozilla/tls-observatory/conf/scanner.cfg
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;test&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; curl http://observatory.intra:8083/api/v1/truststore?store&lt;span class="o"&gt;=&lt;/span&gt;mozilla&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nv"&gt;format&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;pem
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Start services&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Create unit file for API&lt;/li&gt;
@@ -182,7 +359,7 @@
 &lt;ul&gt;
 &lt;li&gt;Install Git&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo yum install git
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo yum install -y git
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Create Apps directory&lt;/li&gt;
@@ -257,9 +434,26 @@ shared_buffers = 256MB
 &lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;source&lt;/span&gt; PyEnv/bin/activate
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
+&lt;li&gt;Install GCC&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo yum install -y gcc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
 &lt;li&gt;Install python module&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; pip install -r requirements.txt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Redis&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Redis client and server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo yum install -y redis
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start Redis server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; redis
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start redis
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Configure the system&lt;/h1&gt;
 &lt;ul&gt;
@@ -274,10 +468,6 @@ shared_buffers = 256MB
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; mkdir /apps/http-observatory/log/
 &lt;span class="gp"&gt;$&lt;/span&gt; mkdir /apps/http-observatory/run/
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;Install Celery&lt;/h1&gt;
-&lt;p&gt;...&lt;/p&gt;
-&lt;h1&gt;Install Redis&lt;/h1&gt;
-&lt;p&gt;...&lt;/p&gt;
 &lt;h1&gt;Install HTTP Observatory&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Edit configuration&lt;/li&gt;
@@ -426,13 +616,17 @@ shared_buffers = 256MB
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; httpobs-scan-worker.service
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; httpobs-api.service
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;To Do&lt;/h1&gt;
+&lt;h1&gt;Test API&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;Install git&lt;/li&gt;
-&lt;li&gt;conf API : check user&lt;/li&gt;
-&lt;li&gt;Redis and celery&lt;/li&gt;
-&lt;li&gt;Nginx reverse proxy&lt;/li&gt;
-&lt;/ul&gt;</content><category term="TLS"></category></entry><entry><title>Install Debian on PC Engines APU3a4</title><link href="http://didier.bernaudeau.net/Install_Debian_on_APU.html" rel="alternate"></link><published>2017-07-30T10:25:00+02:00</published><updated>2017-07-30T10:25:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-30:/Install_Debian_on_APU.html</id><summary type="html">&lt;p&gt;This post describes a way to install Debian 9.1 on the APU3C4, a system board from PcEngines.&lt;/p&gt;
+&lt;li&gt;Start a scan&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; curl http://observatory.intra:57001/api/v1/analyze?host&lt;span class="o"&gt;=&lt;/span&gt;www.hostname.com -X POST -v
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Get a report&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; curl http://observatory.intra:57001/api/v1/getScanResults?scan&lt;span class="o"&gt;=&lt;/span&gt;1
+&lt;/pre&gt;&lt;/div&gt;</content><category term="TLS"></category></entry><entry><title>Install Debian on PC Engines APU3a4</title><link href="http://didier.bernaudeau.net/Install_Debian_on_APU.html" rel="alternate"></link><published>2017-07-30T10:25:00+02:00</published><updated>2017-07-30T10:25:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-30:/Install_Debian_on_APU.html</id><summary type="html">&lt;p&gt;This post describes a way to install Debian 9.1 on the APU3C4, a system board from PcEngines.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post describes a way to install Debian 9.1 on the APU3C4, a system board from PcEngines.&lt;/p&gt;
 
 &lt;h1&gt;Create boot media&lt;/h1&gt;

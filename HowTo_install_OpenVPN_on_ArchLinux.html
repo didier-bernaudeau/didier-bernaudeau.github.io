@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>HTTP Observatory Website - My personal blog note</title>
+    <title>How to install OpenVPN on ArchLinux - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,20 +9,23 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/HTTP_Observatory_Website.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html">
 
         <meta name="author" content="Didier BERNAUDEAU" />
-        <meta name="keywords" content="TLS" />
-        <meta name="description" content="HTTP Observatory Web is a web application for TLS and HTTP Observatory. This post describes a way to install HTTP Observatory Web on Red Hat 7.3." />
+        <meta name="keywords" content="Network,ArchLinux,Debian Linux,VPN" />
+        <meta name="description" content="OpenVPN is an open-source software application that implements virtual private network (VPN) for creating secure point-to-point connections. This software is available on all Linux distributions. This tutorial describes how to install an OpenVPN server on ArchLinux with routed lan." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="HTTP Observatory Website"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/HTTP_Observatory_Website.html"/>
-        <meta property="og:description" content="HTTP Observatory Web is a web application for TLS and HTTP Observatory. This post describes a way to install HTTP Observatory Web on Red Hat 7.3."/>
-        <meta property="article:published_time" content="2017-08-20" />
+        <meta property="og:title" content="How to install OpenVPN on ArchLinux"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html"/>
+        <meta property="og:description" content="OpenVPN is an open-source software application that implements virtual private network (VPN) for creating secure point-to-point connections. This software is available on all Linux distributions. This tutorial describes how to install an OpenVPN server on ArchLinux with routed lan."/>
+        <meta property="article:published_time" content="2017-09-03" />
             <meta property="article:section" content="Tutorials" />
-            <meta property="article:tag" content="TLS" />
+            <meta property="article:tag" content="Network" />
+            <meta property="article:tag" content="ArchLinux" />
+            <meta property="article:tag" content="Debian Linux" />
+            <meta property="article:tag" content="VPN" />
             <meta property="article:author" content="Didier BERNAUDEAU" />
 
 
@@ -81,10 +84,10 @@ My personal blog note            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/HTTP_Observatory_Website.html"
+                    <a href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html"
                        rel="bookmark"
-                       title="Permalink to HTTP Observatory Website">
-                        HTTP Observatory Website
+                       title="Permalink to How to install OpenVPN on ArchLinux">
+                        How to install OpenVPN on ArchLinux
                     </a>
                 </h1>
             </header>
@@ -94,11 +97,11 @@ My personal blog note            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-08-20T12:16:00+02:00"> dim. 20 août 2017</time>
+        <i class="fa fa-calendar"></i><time datetime="2017-09-03T22:46:00+02:00"> dim. 03 septembre 2017</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-07-24T23:17:00+02:00"> lun. 24 juillet 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-09-09T22:47:00+02:00"> sam. 09 septembre 2017</time>
             </span>
 
 
@@ -106,207 +109,338 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/tls.html">TLS</a>
+	<a href="http://didier.bernaudeau.net/tag/network.html">Network</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/archlinux.html">ArchLinux</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/debian-linux.html">Debian Linux</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/vpn.html">VPN</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>HTTP Observatory Web is a web application for TLS and HTTP Observatory. This post describes a way to install HTTP Observatory Web on Red Hat 7.3.</p>
+                <p>OpenVPN is an open-source software application that implements virtual private network (VPN) for creating secure point-to-point connections. This software is available on all Linux distributions. This tutorial describes how to install an OpenVPN server on ArchLinux with routed lan.</p>
 
-<h1>Nginx</h1>
-<p>Nginx, configured as a reverse proxy, could be used as a single entry point for APIs and Website.</p>
+<p align="center"><img class="img-responsive" src="images/2017-09-03_OpenVPN_01.png" width="60%"/></p>
+<h1>Create a PKI</h1>
+<p>This following PKI is created on my laptop with Gentoo Linux. This is a quick way to create a PKI for testing purpose only.</p>
 <ul>
-<li>Install Nginx</li>
+<li>Install Easy RSA</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo yum install -y nginx
+<div class="highlight"><pre><span></span><span class="gp">#</span> emerge app-crypt/easy-rsa
 </pre></div>
 <ul>
-<li>Configure Nginx to remove IPV6</li>
+<li>Copy files for a new Certificate Authority</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/nginx/nginx.conf
+<div class="highlight"><pre><span></span><span class="gp">#</span> cp -a /usr/share/easy-rsa /root/MyPKI
+<span class="gp">#</span> <span class="nb">cd</span> /root/MyPKI
+<span class="gp">#</span> mv vars.example vars
 </pre></div>
-<div class="highlight"><pre><span></span>server {
-  listen       80 default_server;
-  #listen       [::]:80 default_server;
-}
- ```
+<ul>
+<li>Configure</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano /root/MyPKI/vars
+</pre></div>
+<div class="highlight"><pre><span></span>set_var EASYRSA_DN      "org"
 
-* Add site for APIs and Website
+set_var EASYRSA_REQ_COUNTRY     "FR"
+set_var EASYRSA_REQ_PROVINCE    "MyProvince"
+set_var EASYRSA_REQ_CITY        "MyCity"
+set_var EASYRSA_REQ_ORG         "MyOrg"
+set_var EASYRSA_REQ_EMAIL       "me@org.net"
 
-```console
-$ sudo nano /etc/nginx/conf.d/observatory.conf
-</pre></div>
-<div class="highlight"><pre><span></span><span class="nt">server</span> <span class="p">{</span>
-  <span class="n">listen</span>          <span class="m">443</span><span class="p">;</span>
-  <span class="n">server_name</span>     <span class="n">observatory</span><span class="o">.</span><span class="n">intra</span><span class="p">;</span>
-  <span class="n">access_log</span>      <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">observatory</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
-  <span class="n">error_log</span>       <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">observatory</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">log</span> <span class="n">debug</span><span class="p">;</span>
+set_var EASYRSA_ALGO            ec
+set_var EASYRSA_CURVE           secp384r1
 
-  <span class="n">location</span> <span class="o">/</span> <span class="err">{</span>
-     <span class="n">proxy_buffering</span> <span class="n">off</span><span class="p">;</span>
-     <span class="n">proxy_set_header</span> <span class="n">Host</span> <span class="err">$</span><span class="n">host</span><span class="p">;</span>
-     <span class="n">proxy_set_header</span> <span class="n">X</span><span class="o">-</span><span class="n">Real</span><span class="o">-</span><span class="n">IP</span> <span class="err">$</span><span class="n">remote_addr</span><span class="p">;</span>
-     <span class="n">proxy_pass</span> <span class="n">http</span><span class="o">://</span><span class="n">localhost</span><span class="o">.</span><span class="n">intra</span><span class="o">:</span><span class="m">5500</span><span class="o">/</span><span class="p">;</span>
-   <span class="p">}</span>
+set_var EASYRSA_CA_EXPIRE       3650
+set_var EASYRSA_CERT_EXPIRE     1825
+</pre></div>
+<ul>
+<li>Delete any previously created certificates</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> /root/MyPKI/easyrsa init-pki
+</pre></div>
+<ul>
+<li>Generates the Certificate Authority certificate.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> /root/MyPKI/easyrsa build-ca
+</pre></div>
+<ul>
+<li>Generates a server certificate </li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> /root/MyPKI/easyrsa gen-req openvpn nopass
+</pre></div>
+<ul>
+<li>Sign the certificate</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> /root/MyPKI/easyrsa sign-req server openvpn
+</pre></div>
+<ul>
+<li>Send files to the server</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> scp -p /root/MyPKI/pki/ca.crt user@hostname:/home/user/
+<span class="gp">#</span> scp -p /root/MyPKI/pki/issued/openvpn.crt user@hostname:/home/user/
+<span class="gp">#</span> scp -p /root/MyPKI/pki/private/openvpn.key user@hostname:/home/user/
+</pre></div>
+<ul>
+<li>Create a certificate for a client</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> /root/MyPKI/easyrsa build-client-full hostname nopass
+</pre></div>
+<h1>Server Side</h1>
+<p>OpenVPN server is install on "edge.domain.net", a dedicated server hosted by an hosting provider.</p>
+<h2>OpenVPN</h2>
+<ul>
+<li>Install OpenVPN</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo pacman -S --noconfirm openvpn
+</pre></div>
+<ul>
+<li>Copy certificate files</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo mv /home/user/ca.crt /etc/openvpn/server/
+<span class="gp">$</span> sudo mv /home/user/openvpn.crt /etc/openvpn/server/server.crt
+<span class="gp">$</span> sudo mv /home/user/openvpn.key /etc/openvpn/server/server.key
+</pre></div>
+<ul>
+<li>Generate TLS Auth secret key</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo openvpn --genkey --secret /etc/openvpn/server/ta.key
+</pre></div>
+<ul>
+<li>Generate Diffie Hellman parameters (Still needed even with elliptic curve cryptography)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> sudo openssl dhparam -out /etc/openvpn/server/dh2048.pem 2048
+</pre></div>
+<ul>
+<li>Define client configuration</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo mkdir /etc/openvpn/ccd
+<span class="gp">$</span> sudo nano /etc/openvpn/ccd/g8way
+</pre></div>
+<div class="highlight"><pre><span></span>iroute 10.XXX.3.0 255.255.255.0
+</pre></div>
+<ul>
+<li>Configure</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo cp /usr/share/openvpn/examples/server.conf /etc/openvpn/server/server.conf
+<span class="gp">$</span> sudo nano /etc/openvpn/server/server.conf
+</pre></div>
+<div class="highlight"><pre><span></span>ca ca.crt
+cert server.crt
+key server.key
+dh dh2048.pem
 
-  <span class="nt">location</span> <span class="o">/</span><span class="nt">http</span> <span class="p">{</span>
-     <span class="n">proxy_buffering</span> <span class="n">off</span><span class="p">;</span>
-     <span class="n">proxy_set_header</span> <span class="n">Host</span> <span class="err">$</span><span class="n">host</span><span class="p">;</span>
-     <span class="n">proxy_set_header</span> <span class="n">X</span><span class="o">-</span><span class="n">Real</span><span class="o">-</span><span class="n">IP</span> <span class="err">$</span><span class="n">remote_addr</span><span class="p">;</span>
-     <span class="n">proxy_pass</span> <span class="n">http</span><span class="o">://</span><span class="n">localhost</span><span class="o">:</span><span class="m">57001</span><span class="o">/</span><span class="p">;</span>
-   <span class="p">}</span>
+topology subnet
+server 10.0.0.0 255.255.255.0
 
-  <span class="nt">location</span> <span class="o">/</span><span class="nt">tls</span><span class="o">/</span> <span class="p">{</span>
-     <span class="n">proxy_http_version</span>  <span class="m">1</span><span class="o">.</span><span class="m">1</span><span class="p">;</span>
-     <span class="n">proxy_set_header</span>    <span class="n">Accept</span><span class="o">-</span><span class="n">Encoding</span> <span class="s2">""</span><span class="p">;</span>
-     <span class="n">proxy_set_header</span>    <span class="n">Host</span> <span class="err">$</span><span class="n">host</span><span class="p">;</span>
-     <span class="n">proxy_set_header</span>    <span class="n">X</span><span class="o">-</span><span class="n">Real</span><span class="o">-</span><span class="n">IP</span> <span class="err">$</span><span class="n">remote_addr</span><span class="p">;</span>
-     <span class="n">proxy_set_header</span>    <span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span> <span class="err">$</span><span class="n">proxy_add_x_forwarded_for</span><span class="p">;</span>
-     <span class="n">proxy_buffering</span>     <span class="n">off</span><span class="p">;</span>
-     <span class="n">proxy_pass</span>          <span class="n">http</span><span class="o">://</span><span class="n">localhost</span><span class="o">:</span><span class="m">8083</span><span class="o">/</span><span class="p">;</span>
+push "route 10.XXX.3.0 255.255.255.0"
+route 10.XXX.3.0 255.255.255.0
 
-     <span class="n">sub_filter_once</span> <span class="n">off</span><span class="p">;</span>
-     <span class="n">sub_filter_types</span> <span class="nb">text</span><span class="o">/</span><span class="n">html</span> <span class="nb">text</span><span class="o">/</span><span class="n">css</span> <span class="n">application</span><span class="o">/</span><span class="n">javascript</span><span class="p">;</span>
-     <span class="n">sub_filter</span> <span class="s2">"/api/v1/"</span> <span class="s2">"/tls/api/v1/"</span><span class="p">;</span>
-     <span class="n">sub_filter</span> <span class="s2">"/static/"</span> <span class="s2">"/tls/static/"</span><span class="p">;</span>
-   <span class="p">}</span>
-<span class="err">}</span>
-</pre></div>
-<ul>
-<li>Change access right</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo chmod go+r /etc/nginx/conf.d/observatory.conf
-</pre></div>
-<ul>
-<li>Démarrer Nginx</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl start nginx
-</pre></div>
-<h1>Get TLS Observatory Website</h1>
-<ul>
-<li>Install Git</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo yum install -y git
-</pre></div>
-<ul>
-<li>Create Apps directory</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo mkdir /apps
-<span class="gp">$</span> <span class="nb">cd</span> /apps
-</pre></div>
-<ul>
-<li>Clone HTTP Observatory Website</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> git clone https://github.com/mozilla/http-observatory-website.git
-</pre></div>
-<h1>Install Python packages</h1>
-<ul>
-<li>Create a new virtual environment for python </li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> /apps/http-observatory-website
-<span class="gp">$</span> virtualenv PyEnv
-<span class="gp">$</span> <span class="nb">source</span> PyEnv/bin/activate
-</pre></div>
-<ul>
-<li>Install python module</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> pip install -r requirements.txt
-</pre></div>
-<h1>Configure HTTP Observatory Website</h1>
-<ul>
-<li>Change network interface</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> nano /apps/http-observatory-website/devserver.py
-</pre></div>
-<div class="highlight"><pre><span></span>server.serve(root='dist', port=5500, host='0.0.0.0', liveport=35729)
-</pre></div>
-<ul>
-<li>Define URL of HTTP Observatory API</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> nano /apps/http-observatory-website/js/httpobs.js
-</pre></div>
-<div class="highlight"><pre><span></span>    <span class="nt">domain</span><span class="o">:</span> <span class="s1">'observatory.intra'</span><span class="o">,</span>
-    <span class="nt">grades</span><span class="o">:</span> <span class="cp">[</span><span class="s1">'A+'</span><span class="p">,</span> <span class="s1">'A'</span><span class="p">,</span> <span class="s1">'A-'</span><span class="p">,</span> <span class="s1">'B+'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">,</span> <span class="s1">'B-'</span><span class="p">,</span> <span class="s1">'C+'</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">,</span> <span class="s1">'C-'</span><span class="p">,</span> <span class="s1">'D+'</span><span class="p">,</span> <span class="s1">'D'</span><span class="p">,</span> <span class="s1">'D-'</span><span class="p">,</span> <span class="s1">'F'</span><span class="cp">]</span><span class="o">,</span>
-    <span class="nt">maxQueriesBeforeTimeout</span><span class="o">:</span> <span class="nt">600</span><span class="o">,</span>
+client-config-dir /etc/openvpn/ccd
 
-    <span class="nt">urls</span><span class="o">:</span> <span class="p">{</span>
-      <span class="n">api</span><span class="o">:</span> <span class="s1">'https://observatory.intra/http/api/v1/'</span>
-    <span class="p">}</span>
+push "redirect-gateway def1 bypass-dhcp"
+push "dhcp-option DNS w.x.y.z"
+push "dhcp-option DNS w.x.y.z"
 
-    <span class="o">...</span>
+tls-auth ta.key 0
+cipher AES-256-GCM
 
-    <span class="nt">loadHTTPObservatoryHostHistory</span><span class="o">:</span> <span class="nt">function</span> <span class="nt">loadHTTPObservatoryHostHistory</span><span class="o">()</span> <span class="p">{</span>
-    <span class="s1">'use strict'</span><span class="p">;</span>
-    <span class="n">var</span> <span class="n">API_URL</span> <span class="o">=</span> <span class="s1">'https://observatory.intra/http/api/v1/getHostHistory?host='</span> <span class="o">+</span> <span class="n">Observatory</span><span class="o">.</span><span class="n">hostname</span><span class="p">;</span>
-    <span class="n">var</span> <span class="n">successCallback</span> <span class="o">=</span> <span class="n">function</span> <span class="n">f</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="err">{</span>
-      <span class="n">Observatory</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="n">data</span><span class="p">;</span>
-      <span class="n">Observatory</span><span class="o">.</span><span class="n">insertHTTPObservatoryHostHistory</span><span class="p">();</span>
-    <span class="p">}</span><span class="o">;</span>
-</pre></div>
-<ul>
-<li>Define URL of TLS Observatory API</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> nano /apps/http-observatory-website/js/httpobs-third-party.js
-</pre></div>
-<div class="highlight"><pre><span></span>  <span class="nt">var</span> <span class="nt">SCAN_URL</span> <span class="o">=</span> <span class="s1">'https://observatory.intra/tls/api/v1/scan'</span><span class="o">;</span>
-  <span class="nt">var</span> <span class="nt">RESULTS_URL</span> <span class="o">=</span> <span class="s1">'https://observatory.intra/tls/api/v1/results'</span><span class="o">;</span>
-  <span class="nt">var</span> <span class="nt">CERTIFICATE_URL</span> <span class="o">=</span> <span class="s1">'https://observatory.intra/tls/api/v1/certificate'</span><span class="o">;</span>
-  <span class="nt">var</span> <span class="nt">CERTIFICATE_EXPLAINER_URL</span> <span class="o">=</span> <span class="s1">'https://observatory.intra/tls/static/certsplainer.html'</span><span class="o">;</span>
-</pre></div>
-<ul>
-<li>
-<p>Edit file to change images and CSS (if needed)</p>
-</li>
-<li>
-<p>Make website</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> python render.py
-</pre></div>
-<ul>
-<li>Start for testing purpose only</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> make devserver
-</pre></div>
-<ul>
-<li>Open this page with your browser: https://observatory.intra</li>
-</ul>
-<h1>Start services</h1>
-<ul>
-<li>Create unit file</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/systemd/system/httpobs-web.service
-</pre></div>
-<div class="highlight"><pre><span></span><span class="k">[Unit]</span>
-<span class="na">Description</span><span class="o">=</span><span class="s">HTTP Observatory Web</span>
-<span class="na">After</span><span class="o">=</span><span class="s">network.target auditd.service</span>
+user nobody
+group nobody
 
-<span class="k">[Service]</span>
-<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/apps/http-observatory-website</span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">/apps/http-observatory-website/PyEnv/bin/python3.4 /apps/http-observatory-website/devserver.py</span>
-<span class="na">Restart</span><span class="o">=</span><span class="s">on-failure</span>
-<span class="na">User</span><span class="o">=</span><span class="s">httpobs</span>
-<span class="na">Group</span><span class="o">=</span><span class="s">httpobs</span>
-<span class="na">KillSignal</span><span class="o">=</span><span class="s">SIGINT</span>
+tls-version-min 1.2
+tls-cipher TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384
+</pre></div>
+<ul>
+<li>Start</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl start openvpn-server@server.service
+<span class="gp">$</span> sudo systemctl <span class="nb">enable</span> openvpn-server@server.service
+</pre></div>
+<h2>Network routing</h2>
+<ul>
+<li>Edit kernel configuration</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/sysctl.d/10-IpForward.conf
+</pre></div>
+<div class="highlight"><pre><span></span>net.ipv4.ip_forward=1
+</pre></div>
+<ul>
+<li>Apply changes</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">sudo sysctl --system</span>
+</pre></div>
+<ul>
+<li>Verify</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">sudo sysctl net.ipv4.ip_forward</span>
+</pre></div>
+<h2>Configure Netfilter</h2>
+<ul>
+<li>Create configuration file</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo touch /etc/iptables/iptables.rules
+</pre></div>
+<ul>
+<li>Start iptables</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl start iptables
+<span class="gp">$</span> sudo systemctl <span class="nb">enable</span> iptables
+</pre></div>
+<ul>
+<li>Configure</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> nano iptables.sh
+</pre></div>
+<div class="highlight"><pre><span></span><span class="err">#</span><span class="x"> !/bin/bash</span>
 
-<span class="k">[Install]</span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+<span class="x">IpAddress=w.x.y.z</span>
+<span class="x">VpnNetwork=10.0.0.0/24</span>
+
+<span class="err">#</span><span class="x"> flush existing rules</span>
+<span class="x">sudo iptables -F</span>
+<span class="x">sudo iptables -X</span>
+
+<span class="err">#</span><span class="x"> Default policy</span>
+<span class="x">sudo iptables -t filter -P INPUT DROP</span>
+<span class="x">sudo iptables -t filter -P FORWARD DROP</span>
+<span class="x">sudo iptables -t filter -P OUTPUT DROP</span>
+
+<span class="err">#</span><span class="x"> Allow outgoing and incoming established connection</span>
+<span class="x">sudo iptables -A OUTPUT -s </span><span class="p">$</span><span class="nv">IpAddress</span><span class="x"> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+<span class="x">sudo iptables -A INPUT -d </span><span class="p">$</span><span class="nv">IpAddress</span><span class="x"> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+
+
+<span class="cp">##</span><span class="c">############################# Outgoing flows ###############################</span><span class="x"></span>
+
+<span class="err">#</span><span class="x"> Allow DNS</span>
+<span class="x">sudo iptables -A OUTPUT -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> Allow Internet Browsing</span>
+<span class="x">sudo iptables -A OUTPUT -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+<span class="x">sudo iptables -A OUTPUT -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="cp">##</span><span class="c">############################# Incoming flows ###############################</span><span class="x"></span>
+
+<span class="err">#</span><span class="x"> Allow SSH</span>
+<span class="x">sudo iptables -A INPUT -i enp0s20 -d </span><span class="p">$</span><span class="nv">IpAddress</span><span class="x"> -p tcp --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> Allow OpenVPN</span>
+<span class="x">sudo iptables -A INPUT -i enp0s20 -d </span><span class="p">$</span><span class="nv">IpAddress</span><span class="x"> -p udp --dport 1194 -m conntrack --ctstate NEW -j ACCEPT</span>
+
+<span class="cp">##</span><span class="c">############################# VPN flow ###############################</span><span class="x"></span>
+
+<span class="err">#</span><span class="x"> Allow TUN interface connections to OpenVPN server</span>
+<span class="x">sudo iptables -A INPUT -i tun+ -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> Allow TUN interface connections to be forwarded through other interfaces</span>
+<span class="x">sudo iptables -A FORWARD -i tun+ -j ACCEPT</span>
+<span class="x">sudo iptables -A FORWARD -i tun+ -o enp0s20 -m state --state RELATED,ESTABLISHED -j ACCEPT</span>
+<span class="x">sudo iptables -A FORWARD -i enp0s20 -o tun+ -m state --state RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> NAT the VPN client traffic to the Internet</span>
+<span class="x">sudo iptables -t nat -A POSTROUTING -s </span><span class="p">$</span><span class="nv">VpnNetwork</span><span class="x"> -o enp0s20 -j MASQUERADE</span>
+
+<span class="err">#</span><span class="x"> Allow outgoing flow from TUN interface</span>
+<span class="x">sudo iptables -A OUTPUT -o tun+ -j ACCEPT</span>
 </pre></div>
 <ul>
-<li>Start services</li>
+<li>Change file access right</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl start httpobs-web.service
+<div class="highlight"><pre><span></span><span class="gp">$</span> chmod +x iptables.sh
 </pre></div>
 <ul>
-<li>Enable services</li>
+<li>Execute</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl <span class="nb">enable</span> httpobs-web.service
+<div class="highlight"><pre><span></span><span class="gp">$</span> ./iptables.sh
 </pre></div>
+<ul>
+<li>Save Configuration</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo iptables-save <span class="p">|</span> sudo tee /etc/iptables/iptables.rules
+</pre></div>
+<ul>
+<li>Restart Iptables</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">sudo systemctl restart iptables</span>
+</pre></div>
+<h1>Client Side</h1>
+<p>OpenVPN client is install on "g8way.domain.net" based on Debian Linux. The configuration is quite tricky to get routed LAN.</p>
+<ul>
+<li>Create system user for OpenVPN</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo adduser --system --no-create-home --disabled-login --group  openvpn
+</pre></div>
+<ul>
+<li>Install OpenVPN</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install openvpn
+</pre></div>
+<div class="highlight"><pre><span></span><span class="go">sudo chown openvpn:openvpn /etc/openvpn/client/*</span>
+</pre></div>
+<ul>
+<li>Client configuration</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/openvpn/client/client.conf
+</pre></div>
+<div class="highlight"><pre><span></span>client
+
+remote edge.domain.net
+remote-cert-tls server
+
+ca "/etc/openvpn/client/ca.crt"
+cert "/etc/openvpn/client/g8way.crt"
+key "/etc/openvpn/client/g8way.key"
+
+tls-auth "/etc/openvpn/client/ta.key" 1
+cipher AES-256-GCM
+
+dev tun
+proto udp
+topology subnet
+
+nobind
+auth-nocache
+script-security 2
+
+persist-key
+persist-tun
+
+user openvpn
+group openvpn
+
+tls-version-min 1.2
+tls-cipher TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384
+</pre></div>
+<ul>
+<li>Start OpenVPN client</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl start openvpn-client@client.service
+</pre></div>
+<!--
+* Configure IpTables
+
+# Allow incoming flow to TUN interface
+sudo iptables -A INPUT -i tun+ -j ACCEPT
+
+# Allow outgoing flow from TUN interface
+sudo iptables -A OUTPUT -o tun+ -j ACCEPT
+
+# Allow TUN interface connections to be forwarded through other interfaces
+sudo iptables -A FORWARD -i tun+ -j ACCEPT
+sudo iptables -A FORWARD -i tun+ -o enp3s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i enp3s0: -o tun+ -m state --state RELATED,ESTABLISHED -j ACCEPT
+-->
             </div>
             <!-- /.entry-content -->
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://didier.bernaudeau.net/Keytool.html">Keytool</a></li>
+        <li><a href="http://didier.bernaudeau.net/TLS_Understanding_the_cipher_suites.html">TLS: Understanding the cipher suites</a></li>
+        <li><a href="http://didier.bernaudeau.net/EnOcean.html">EnOcean</a></li>
+        <li><a href="http://didier.bernaudeau.net/TLS_Hardened_configuration.html">TLS: Hardened configuration</a></li>
+        <li><a href="http://didier.bernaudeau.net/TLS_Audit_tools.html">TLS: Audit tools</a></li>
         <li><a href="http://didier.bernaudeau.net/TLS_Cipher_Suites.html">TLS Cipher Suites</a></li>
     </ul>
 </section>

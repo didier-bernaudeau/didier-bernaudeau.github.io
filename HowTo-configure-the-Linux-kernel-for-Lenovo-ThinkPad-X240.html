@@ -98,7 +98,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-07-23T22:10:00+02:00"> dim. 23 juillet 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-09-24T12:13:00+02:00"> dim. 24 septembre 2017</time>
             </span>
 
 
@@ -115,7 +115,7 @@ My personal blog note            </a>
 
 <div class="section" id="kernel-installation">
 <h2>Kernel installation</h2>
-<p>Download kernel Gentoo sources (4.9.34) :</p>
+<p>Download kernel Gentoo sources (4.12.12) :</p>
 <pre class="code console literal-block">
 <span class="gp">#</span> emerge sys-kernel/gentoo-sources
 </pre>
@@ -506,7 +506,7 @@ My personal blog note            </a>
 </pre>
 <p>Copy kernel</p>
 <pre class="code console literal-block">
-<span class="gp">#</span> cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.9.34.efi
+<span class="gp">#</span> cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.12.12.efi
 </pre>
 <p>Unmount ESP (EFI System Partition)</p>
 <pre class="code console literal-block">
@@ -521,7 +521,7 @@ My personal blog note            </a>
 </pre>
 <p>Add the new kernel</p>
 <pre class="code console literal-block">
-<span class="gp">#</span> efibootmgr -c -d /dev/sda -p <span class="m">2</span> -L <span class="s2">"Gentoo Linux 4.9.34"</span> -l <span class="s2">"\EFI\GentooLinux\4.9.34.efi"</span>
+<span class="gp">#</span> efibootmgr -c -d /dev/sda -p <span class="m">2</span> -L <span class="s2">"Gentoo Linux 4.12.12"</span> -l <span class="s2">"\EFI\GentooLinux\4.12.12.efi"</span>
 </pre>
 <p>Print the menu</p>
 <pre class="code console literal-block">
@@ -565,6 +565,11 @@ My personal blog note            </a>
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/application-server.html">
+                            Application Server
+                        </a>
+                    </li>
                     <li class="list-group-item tag-3">
                         <a href="http://didier.bernaudeau.net/tag/apu.html">
                             APU
@@ -703,6 +708,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/press-review.html">
                             Press review
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/protocol.html">
+                            Protocol
                         </a>
                     </li>
                     <li class="list-group-item tag-2">

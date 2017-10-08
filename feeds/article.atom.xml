@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Article</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/article.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-10-06T20:44:00+02:00</updated><entry><title>Websphere Application Server</title><link href="http://didier.bernaudeau.net/WAS.html" rel="alternate"></link><published>2017-10-06T20:44:00+02:00</published><updated>2017-10-06T20:44:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-10-06:/WAS.html</id><summary type="html">&lt;p&gt;Websphere Application Server is a middleware from IBM that hosts Java based web applications.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Websphere Application Server is a middleware from IBM that hosts Java based web applications.&lt;/p&gt;
+
+&lt;h1&gt;Websphere Application Server&lt;/h1&gt;
+&lt;p&gt;There are seven WAS editions in the market.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Liberty Core (free and Open Source)&lt;/li&gt;
+&lt;li&gt;Express&lt;/li&gt;
+&lt;li&gt;Base&lt;/li&gt;
+&lt;li&gt;Network Deployment&lt;/li&gt;
+&lt;li&gt;Hypervisor Edition&lt;/li&gt;
+&lt;li&gt;z/OS&lt;/li&gt;
+&lt;li&gt;Developers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Below, an illustration of installation of WAS Network Deployment:&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-10-06_WAS_ND.png" width="60%"/&gt;&lt;/p&gt;
+&lt;h1&gt;RMI/IIOP&lt;/h1&gt;
+&lt;p&gt;Java RMI/IIOP (Remote Method Invocation over Internet Inter-ORB Protocol) is part of the Java 2 Platform. This is a protocol similar to RPC (Remote Procedure Call) often used with EJB (Enterprise Java Bean) and WAS (Websphere Application Server).&lt;/p&gt;
+&lt;p&gt;This protocol is quite complex and it is difficult to find relevant and synthetic information. So, it's time to write a quick post just before I forget everything.&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-10-06_WAS_RMI-IIOP.png" width="60%"/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Flow #1: is only required in WAS Network Deployment clustered instance to find the Bootstrap server. DCS is part of High Availability Manager and/or Work Load Manager.&lt;/li&gt;
+&lt;li&gt;Flow #2: first locate request to the ORB Bootstrap port&lt;/li&gt;
+&lt;li&gt;Flow #3: second locate request to the ORB listener port&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more information :
+&lt;a href="https://www.ibm.com/developerworks/websphere/techjournal/0807_pape/0807_pape.html"&gt;Understanding how EJB calls operate in WebSphere Application Server V6.1&lt;/a&gt;&lt;/p&gt;</content><category term="Java"></category><category term="Application Server"></category><category term="Protocol"></category></entry></feed>

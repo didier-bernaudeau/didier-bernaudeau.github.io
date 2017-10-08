@@ -98,7 +98,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-03-22T17:29:00+01:00"> mer. 22 mars 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-09-28T22:45:00+02:00"> jeu. 28 septembre 2017</time>
             </span>
 
 
@@ -151,11 +151,31 @@ My personal blog note            </a>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">#</span> sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get upgrade
 </pre></div>
+<h1>Disable IPv6</h1>
+<ul>
+<li>Edit kernel configuration file</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/sysctl.conf
+</pre></div>
+<div class="highlight"><pre><span></span>net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6=1
+</pre></div>
+<ul>
+<li>Apply the new configuration</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo sysctl -p
+</pre></div>
 <h1>Useful tools</h1>
 <ul>
 <li>Curl</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y curl
+</pre></div>
+<ul>
+<li>Locate</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y locate
+<span class="gp">$</span> sudo updatedb
 </pre></div>
 <h1>What still needs to be done</h1>
 <ul>
@@ -193,6 +213,11 @@ My personal blog note            </a>
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/application-server.html">
+                            Application Server
+                        </a>
+                    </li>
                     <li class="list-group-item tag-3">
                         <a href="http://didier.bernaudeau.net/tag/apu.html">
                             APU
@@ -331,6 +356,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/press-review.html">
                             Press review
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/protocol.html">
+                            Protocol
                         </a>
                     </li>
                     <li class="list-group-item tag-2">

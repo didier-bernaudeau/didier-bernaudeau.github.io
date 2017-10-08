@@ -99,7 +99,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-09-05T23:11:00+02:00"> mar. 05 septembre 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-09-10T21:52:00+02:00"> dim. 10 septembre 2017</time>
             </span>
 
 
@@ -190,9 +190,23 @@ My personal blog note            </a>
       }
 </pre></div>
 <ul>
-<li>Insert image</li>
+<li>Two column layout</li>
 </ul>
-<div class="highlight"><pre><span></span>  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"img.png"</span> <span class="na">style</span><span class="o">=</span><span class="s">"width:50%; border:0px;"</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">"text-align: left; float: left;"</span><span class="p">&gt;</span>
+    <span class="c">&lt;!-- if necessary, change text-align --&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">"text-align: right; float: right;"</span><span class="p">&gt;</span>
+    <span class="c">&lt;!-- if necessary, change text-align --&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+```html
+
+* Insert image
+
+```html
+  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"img.png"</span> <span class="na">style</span><span class="o">=</span><span class="s">"width:50%; border:0px;"</span><span class="p">&gt;</span>
 </pre></div>
 <ul>
 <li>Speaker notes</li>
@@ -212,9 +226,9 @@ http://lab.hakim.se/reveal-js/#/
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://didier.bernaudeau.net/ModernPresentationRevealJS.html">Modern Presentation with RevealJS</a></li>
-        <li><a href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html">CORS (Cross-Origin Resource Sharing)</a></li>
         <li><a href="http://didier.bernaudeau.net/Same_Origin_Policy.html">SOP (Same-Origin Policy)</a></li>
+        <li><a href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html">CORS (Cross-Origin Resource Sharing)</a></li>
+        <li><a href="http://didier.bernaudeau.net/ModernPresentationRevealJS.html">Modern Presentation with RevealJS</a></li>
         <li><a href="http://didier.bernaudeau.net/JSON_with_Padding.html">JSONP (JSON with Padding)</a></li>
     </ul>
 </section>
@@ -240,6 +254,11 @@ http://lab.hakim.se/reveal-js/#/
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/application-server.html">
+                            Application Server
+                        </a>
+                    </li>
                     <li class="list-group-item tag-3">
                         <a href="http://didier.bernaudeau.net/tag/apu.html">
                             APU
@@ -378,6 +397,11 @@ http://lab.hakim.se/reveal-js/#/
                     <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/press-review.html">
                             Press review
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/protocol.html">
+                            Protocol
                         </a>
                     </li>
                     <li class="list-group-item tag-2">

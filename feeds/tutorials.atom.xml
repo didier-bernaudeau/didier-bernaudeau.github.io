@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-09-09T22:47:00+02:00</updated><entry><title>How to install OpenVPN on ArchLinux</title><link href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html" rel="alternate"></link><published>2017-09-03T22:46:00+02:00</published><updated>2017-09-09T22:47:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-09-03:/HowTo_install_OpenVPN_on_ArchLinux.html</id><summary type="html">&lt;p&gt;OpenVPN is an open-source software application that implements virtual private network (VPN) for creating secure point-to-point connections. This software is available on all Linux distributions. This tutorial describes how to install an OpenVPN server on ArchLinux with routed lan.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-09-28T22:45:00+02:00</updated><entry><title>How to install OpenVPN on ArchLinux</title><link href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html" rel="alternate"></link><published>2017-09-03T22:46:00+02:00</published><updated>2017-09-09T22:47:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-09-03:/HowTo_install_OpenVPN_on_ArchLinux.html</id><summary type="html">&lt;p&gt;OpenVPN is an open-source software application that implements virtual private network (VPN) for creating secure point-to-point connections. This software is available on all Linux distributions. This tutorial describes how to install an OpenVPN server on ArchLinux with routed lan.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;OpenVPN is an open-source software application that implements virtual private network (VPN) for creating secure point-to-point connections. This software is available on all Linux distributions. This tutorial describes how to install an OpenVPN server on ArchLinux with routed lan.&lt;/p&gt;
 
 &lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-09-03_OpenVPN_01.png" width="60%"/&gt;&lt;/p&gt;
@@ -1457,7 +1457,7 @@ Time zone: Paris
 &lt;li&gt;Install Java&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install openjdk-8-jre
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Raspbian"></category><category term="Raspberry Pi"></category></entry><entry><title>Create your first presentation with RevealJS</title><link href="http://didier.bernaudeau.net/Create_your_first_presentation_with_RevealJS.html" rel="alternate"></link><published>2017-05-22T20:10:00+02:00</published><updated>2017-09-05T23:11:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-22:/Create_your_first_presentation_with_RevealJS.html</id><summary type="html">&lt;p&gt;RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. This post descirbes how to install RevealJS then how to make your first presentation.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Raspbian"></category><category term="Raspberry Pi"></category></entry><entry><title>Create your first presentation with RevealJS</title><link href="http://didier.bernaudeau.net/Create_your_first_presentation_with_RevealJS.html" rel="alternate"></link><published>2017-05-22T20:10:00+02:00</published><updated>2017-09-10T21:52:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-22:/Create_your_first_presentation_with_RevealJS.html</id><summary type="html">&lt;p&gt;RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. This post descirbes how to install RevealJS then how to make your first presentation.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. This post descirbes how to install RevealJS then how to make your first presentation.&lt;/p&gt;
 
 &lt;h1&gt;Install needed software&lt;/h1&gt;
@@ -1535,9 +1535,23 @@ Time zone: Paris
       }
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;Insert image&lt;/li&gt;
+&lt;li&gt;Two column layout&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"img.png"&lt;/span&gt; &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"width:50%; border:0px;"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;section&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"text-align: left; float: left;"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="c"&gt;&amp;lt;!-- if necessary, change text-align --&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"text-align: right; float: right;"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="c"&gt;&amp;lt;!-- if necessary, change text-align --&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;section&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+```html
+
+* Insert image
+
+```html
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"img.png"&lt;/span&gt; &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"width:50%; border:0px;"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Speaker notes&lt;/li&gt;
@@ -1760,7 +1774,7 @@ http://lab.hakim.se/reveal-js/#/
 &lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_04.png"/&gt;&lt;/p&gt;
 &lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_05.png"/&gt;&lt;/p&gt;
 &lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_06.png"/&gt;&lt;/p&gt;
-&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_07.png"/&gt;&lt;/p&gt;</content><category term="Java"></category><category term="Spring"></category></entry><entry><title>Debian Stretch</title><link href="http://didier.bernaudeau.net/Debian_Stretch.html" rel="alternate"></link><published>2017-02-02T12:24:00+01:00</published><updated>2017-03-22T17:29:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-02-02:/Debian_Stretch.html</id><summary type="html">&lt;p&gt;Stretch is the 9th version of Debian Linux and succeed to Debian Jessie. This version is still in testing, but the transition freeze stage will begin on February 5th 2017 and should become stable in September 2017. This tutorials is a guideline to install and secure Debian Stretch (RC2).&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_07.png"/&gt;&lt;/p&gt;</content><category term="Java"></category><category term="Spring"></category></entry><entry><title>Debian Stretch</title><link href="http://didier.bernaudeau.net/Debian_Stretch.html" rel="alternate"></link><published>2017-02-02T12:24:00+01:00</published><updated>2017-09-28T22:45:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-02-02:/Debian_Stretch.html</id><summary type="html">&lt;p&gt;Stretch is the 9th version of Debian Linux and succeed to Debian Jessie. This version is still in testing, but the transition freeze stage will begin on February 5th 2017 and should become stable in September 2017. This tutorials is a guideline to install and secure Debian Stretch (RC2).&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Stretch is the 9th version of Debian Linux and succeed to Debian Jessie. This version is still in testing, but the transition freeze stage will begin on February 5th 2017 and should become stable in September 2017. This tutorials is a guideline to install and secure Debian Stretch (RC2).&lt;/p&gt;
 
 &lt;h1&gt;Installation&lt;/h1&gt;
@@ -1802,11 +1816,31 @@ http://lab.hakim.se/reveal-js/#/
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; sudo apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get upgrade
 &lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Disable IPv6&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Edit kernel configuration file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/sysctl.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6=1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Apply the new configuration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo sysctl -p
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Useful tools&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Curl&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y curl
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Locate&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y locate
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo updatedb
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;What still needs to be done&lt;/h1&gt;
 &lt;ul&gt;
@@ -3266,7 +3300,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 
 &lt;div class="section" id="pulseaudio-architecture"&gt;
 &lt;h2&gt;PulseAudio Architecture&lt;/h2&gt;
-&lt;img alt="PulseAudio Architecture" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
+&lt;img alt="PulseAudio Architecture" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="install-pulseaudio"&gt;
 &lt;h2&gt;Install PulseAudio&lt;/h2&gt;
@@ -3407,23 +3441,23 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;span class="gp"&gt;$&lt;/span&gt; virt-manager
 &lt;/pre&gt;
 &lt;p&gt;Open the menu "file &amp;gt; Add connection"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Add connection" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Add connection" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="network-configuration"&gt;
 &lt;h2&gt;Network Configuration&lt;/h2&gt;
 &lt;p&gt;After starting LibVirtd, network configuration is as follows:&lt;/p&gt;
-&lt;img alt="Network Configuration" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
+&lt;img alt="Network Configuration" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="create-a-virtual-machine"&gt;
 &lt;h2&gt;Create a virtual machine&lt;/h2&gt;
 &lt;p&gt;Open the menu "file &amp;gt; New Virtual Machine"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Step1" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step2" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
-&lt;img alt="Virt-Manager - Step3" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step4" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step5" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step1" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step2" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - Step3" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step4" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step5" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
 &lt;p&gt;Select "VirtIO" device model for Network Interface&lt;/p&gt;
-&lt;img alt="Virt-Manager - NIC device model" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - NIC device model" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
 &lt;!-- vhost=on --&gt;
 &lt;/div&gt;
 </content><category term="Gentoo"></category><category term="Virtualization"></category></entry><entry><title>How to create bootable USB flash drives with Rufus</title><link href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html" rel="alternate"></link><published>2015-07-12T12:32:00+02:00</published><updated>2015-07-15T21:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-12:/How_to_create_bootable_USB_flash_drives_with_Rufus.html</id><summary type="html">&lt;p&gt;This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp;amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.&lt;/p&gt;
@@ -3437,12 +3471,12 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;h2&gt;Create installation media&lt;/h2&gt;
 &lt;div class="section" id="example-for-microsoft-windows-8-1-with-mbr"&gt;
 &lt;h3&gt;Example for Microsoft Windows 8.1 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="example-for-debian-8-with-mbr"&gt;
 &lt;h3&gt;Example for Debian 8 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
 &lt;p&gt;If you need additional firmware to install Debian :&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul class="simple"&gt;
@@ -3453,14 +3487,14 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="Windows"></category><category term="Linux"></category></entry><entry><title>HowTo configure the Linux kernel for Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html" rel="alternate"></link><published>2015-06-16T22:10:00+02:00</published><updated>2017-07-23T22:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-16:/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html</id><summary type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
+</content><category term="Windows"></category><category term="Linux"></category></entry><entry><title>HowTo configure the Linux kernel for Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html" rel="alternate"></link><published>2015-06-16T22:10:00+02:00</published><updated>2017-09-24T12:13:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-16:/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html</id><summary type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
 &lt;p&gt;To get more information about the configuration of my laptop, you can read this article : &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html"&gt;Lenovo ThinkPad X240&lt;/a&gt;&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
 &lt;p&gt;To get more information about the configuration of my laptop, you can read this article : &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html"&gt;Lenovo ThinkPad X240&lt;/a&gt;&lt;/p&gt;
 
 &lt;div class="section" id="kernel-installation"&gt;
 &lt;h2&gt;Kernel installation&lt;/h2&gt;
-&lt;p&gt;Download kernel Gentoo sources (4.9.34) :&lt;/p&gt;
+&lt;p&gt;Download kernel Gentoo sources (4.12.12) :&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt; emerge sys-kernel/gentoo-sources
 &lt;/pre&gt;
@@ -3851,7 +3885,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/pre&gt;
 &lt;p&gt;Copy kernel&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.9.34.efi
+&lt;span class="gp"&gt;#&lt;/span&gt; cp /usr/src/linux/arch/x86_64/boot/bzImage /mnt/ESP/EFI/GentooLinux/4.12.12.efi
 &lt;/pre&gt;
 &lt;p&gt;Unmount ESP (EFI System Partition)&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
@@ -3866,7 +3900,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/pre&gt;
 &lt;p&gt;Add the new kernel&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr -c -d /dev/sda -p &lt;span class="m"&gt;2&lt;/span&gt; -L &lt;span class="s2"&gt;"Gentoo Linux 4.9.34"&lt;/span&gt; -l &lt;span class="s2"&gt;"\EFI\GentooLinux\4.9.34.efi"&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr -c -d /dev/sda -p &lt;span class="m"&gt;2&lt;/span&gt; -L &lt;span class="s2"&gt;"Gentoo Linux 4.12.12"&lt;/span&gt; -l &lt;span class="s2"&gt;"\EFI\GentooLinux\4.12.12.efi"&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Print the menu&lt;/p&gt;
 &lt;pre class="code console literal-block"&gt;

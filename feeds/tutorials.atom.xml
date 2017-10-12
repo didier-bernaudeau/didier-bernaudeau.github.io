@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-09-28T22:45:00+02:00</updated><entry><title>How to install OpenVPN on ArchLinux</title><link href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html" rel="alternate"></link><published>2017-09-03T22:46:00+02:00</published><updated>2017-09-09T22:47:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-09-03:/HowTo_install_OpenVPN_on_ArchLinux.html</id><summary type="html">&lt;p&gt;OpenVPN is an open-source software application that implements virtual private network (VPN) for creating secure point-to-point connections. This software is available on all Linux distributions. This tutorial describes how to install an OpenVPN server on ArchLinux with routed lan.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-10-12T22:31:00+02:00</updated><entry><title>How to install OpenVPN on ArchLinux</title><link href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html" rel="alternate"></link><published>2017-09-03T22:46:00+02:00</published><updated>2017-09-09T22:47:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-09-03:/HowTo_install_OpenVPN_on_ArchLinux.html</id><summary type="html">&lt;p&gt;OpenVPN is an open-source software application that implements virtual private network (VPN) for creating secure point-to-point connections. This software is available on all Linux distributions. This tutorial describes how to install an OpenVPN server on ArchLinux with routed lan.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;OpenVPN is an open-source software application that implements virtual private network (VPN) for creating secure point-to-point connections. This software is available on all Linux distributions. This tutorial describes how to install an OpenVPN server on ArchLinux with routed lan.&lt;/p&gt;
 
 &lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-09-03_OpenVPN_01.png" width="60%"/&gt;&lt;/p&gt;
@@ -312,7 +312,360 @@ sudo iptables -A OUTPUT -o tun+ -j ACCEPT
 sudo iptables -A FORWARD -i tun+ -j ACCEPT
 sudo iptables -A FORWARD -i tun+ -o enp3s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 sudo iptables -A FORWARD -i enp3s0: -o tun+ -m state --state RELATED,ESTABLISHED -j ACCEPT
---&gt;</content><category term="Network"></category><category term="ArchLinux"></category><category term="Debian Linux"></category><category term="VPN"></category></entry><entry><title>HTTP Observatory Website</title><link href="http://didier.bernaudeau.net/HTTP_Observatory_Website.html" rel="alternate"></link><published>2017-08-20T12:16:00+02:00</published><updated>2017-07-24T23:17:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-08-20:/HTTP_Observatory_Website.html</id><summary type="html">&lt;p&gt;HTTP Observatory Web is a web application for TLS and HTTP Observatory. This post describes a way to install HTTP Observatory Web on Red Hat 7.3.&lt;/p&gt;
+--&gt;</content><category term="Network"></category><category term="ArchLinux"></category><category term="Debian Linux"></category><category term="VPN"></category></entry><entry><title>Homemade firewall/router on APU</title><link href="http://didier.bernaudeau.net/Homemade_firewall_router_on_APU.html" rel="alternate"></link><published>2017-08-30T21:50:00+02:00</published><updated>2017-10-12T22:31:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-08-30:/Homemade_firewall_router_on_APU.html</id><summary type="html">&lt;p&gt;A personal firewall/router is imperative to secure home network and, above all, to preserve your privacy against indiscretion from your ISP. This firewall/router must provide the minimal network services such as : routing, DHCP, DNS, ...&lt;/p&gt;
+&lt;p&gt;In this configuration, IPv6 is completely disabled because my ISP doesn't support prefix delegation, which is mandatory to have IPv6 subnetting on a non-flat network.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;A personal firewall/router is imperative to secure home network and, above all, to preserve your privacy against indiscretion from your ISP. This firewall/router must provide the minimal network services such as : routing, DHCP, DNS, ...&lt;/p&gt;
+&lt;p&gt;In this configuration, IPv6 is completely disabled because my ISP doesn't support prefix delegation, which is mandatory to have IPv6 subnetting on a non-flat network.&lt;/p&gt;
+
+&lt;h1&gt;Network Manager&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y network-manager
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure Network Manager&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/NetworkManager/NetworkManager.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[ifupdown]&lt;/span&gt;
+&lt;span class="na"&gt;managed&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;true&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure interfaces&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/network/interfaces
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# The primary network interface
+allow-hotplug enp1s0
+iface enp1s0 inet static
+        address 10.XXX.1.254
+        netmask 255.255.255.0
+        gateway 10.XXX.1.1
+
+# Second network interface (IOT)
+allow-hotplug enp2s0
+iface enp2s0 inet static
+        address 10.XXX.2.254
+        netmask 255.255.255.0
+        gateway 10.XXX.1.1
+
+# Third network interface (LAN)
+allow-hotplug enp3s0
+iface enp3s0 inet static
+        address 10.XXX.3.254
+        netmask 255.255.255.0
+        gateway 10.XXX.1.1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start NetworkManager
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; NetworkManager
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;DHCP Server&lt;/h1&gt;
+&lt;p&gt;This DHCP server must assign IP addresses to each client on the networks (LAN and IOT).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install isc-dhcp-server
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;sudo nano /etc/default/isc-dhcp-server&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;INTERFACESv4="enp2s0 enp3s0"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/dhcp/dhcpd.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Include the share secret key for RNDC
+include "/etc/bind/rndc.key";
+
+# Enable dynamic DNS with RNDC
+ddns-update-style interim;
+ignore client-updates;
+
+# Define zone
+zone lazuly.net.
+{
+        primary 127.0.0.1;
+        key rndc-key;
+}
+
+zone 3.XXX.10.in-addr.arpa.
+{
+        primary 127.0.0.1;
+        key rndc-key;
+}
+
+subnet 10.XXX.3.0 netmask 255.255.255.0 {
+        range 10.XXX.3.1 10.XXX.3.99;
+        default-lease-time 86400;
+        max-lease-time 604800;
+        option domain-name "domain.net";
+        option domain-name-servers 10.XXX.3.254;
+        option subnet-mask 255.255.255.0;
+        option broadcast-address 10.XXX.3.255;
+        option routers 10.XXX.3.254;
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/default/isc-dhcp-server
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;INTERFACESv4="enp2s0 enp3s0"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start isc-dhcp-server.service
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; isc-dhcp-server.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;DNS&lt;/h1&gt;
+&lt;p&gt;First of all, Bind is configured to act as a caching DNS server. This configuration will force the server to recursively seek answers from other DNS servers when a client issues a query.
+On top of that, Bind is configure to act also as a primary master DNS to serve DNS records for a registered domain name (also used for internal purpose).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Bind&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y bind9
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Disable IPv6&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/default/bind9
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;OPTIONS="-4 -u bind"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Generate secret key for RNDC (Remote Name Daemon Control)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo rndc-confgen -a -c /etc/bind/rndc.key
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Define access right to secret key&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo chmod g+r /etc/bind/rndc.key
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Edit configuration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/bind/named.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;include "/etc/bind/rndc.key";
+
+controls {
+        inet 127.0.0.1 allow { localhost; }
+        keys { rndc-key; };
+};
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/bind/named.conf.options
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;options {
+        directory "/var/cache/bind";
+        listen-on { 127.0.0.1; 10.XXX.3.254; };
+        listen-on-v6 { none; };
+        allow-query { localhost; 10.XXX.3.0/24; };
+};
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/bind/named.conf.default-zones
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;zone "domain.net" IN {
+        type master;
+        file "domain.net.zone";
+        allow-update { key rndc-key; };
+};
+
+zone "3.XXX.10.in-addr.arpa" IN {
+        type master;
+        file "10.XXX.3.zone";
+        allow-update { key rndc-key; };
+};
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Edit zone file for lazuly.net&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /var/cache/bind/lazuly.net.zone
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="x"&gt; 38400&lt;/span&gt;
+
+&lt;span class="x"&gt;@               IN      SOA  domain.net.   root.domain.net. (&lt;/span&gt;
+&lt;span class="x"&gt;                                2012032900 ; Serial&lt;/span&gt;
+&lt;span class="x"&gt;                                10800      ; Refresh [3h]&lt;/span&gt;
+&lt;span class="x"&gt;                                3600       ; Retry [1h]&lt;/span&gt;
+&lt;span class="x"&gt;                                604800     ; Expire [1 week]&lt;/span&gt;
+&lt;span class="x"&gt;                                86400      ; TTL [1 jour]&lt;/span&gt;
+&lt;span class="x"&gt;)&lt;/span&gt;
+
+&lt;span class="x"&gt;@                IN       NS      ns.lazuly.net.&lt;/span&gt;
+
+&lt;span class="x"&gt;g8way            IN       A       10.XXX.3.254&lt;/span&gt;
+&lt;span class="x"&gt;edge             IN       A       10.0.0.1&lt;/span&gt;
+&lt;span class="x"&gt;ns               IN       A       10.XXX.3.254&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /var/cache/bind/10.XXX.3.zone
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="x"&gt; 3h &lt;/span&gt;
+
+&lt;span class="x"&gt;@  IN  SOA  domain.net.     root.domain.net. (&lt;/span&gt;
+&lt;span class="x"&gt;                    2012032900 ; Serial&lt;/span&gt;
+&lt;span class="x"&gt;                    10800      ; Refresh [3h]&lt;/span&gt;
+&lt;span class="x"&gt;                    3600       ; Retry [1h]&lt;/span&gt;
+&lt;span class="x"&gt;                    604800     ; Expire [1 week]&lt;/span&gt;
+&lt;span class="x"&gt;                    86400      ; TTL [1 jour]&lt;/span&gt;
+&lt;span class="x"&gt;)&lt;/span&gt;
+
+&lt;span class="x"&gt;@    IN  NS  ns.domain.net.&lt;/span&gt;
+&lt;span class="x"&gt;254  IN  PTR g8way.domain.net.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /var/cache/bind/10.0.0.zone
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="x"&gt; 3h &lt;/span&gt;
+
+&lt;span class="x"&gt;@  IN  SOA  domain.net.     root.domain.net. (&lt;/span&gt;
+&lt;span class="x"&gt;                    2012032900 ; Serial&lt;/span&gt;
+&lt;span class="x"&gt;                    10800      ; Refresh [3h]&lt;/span&gt;
+&lt;span class="x"&gt;                    3600       ; Retry [1h]&lt;/span&gt;
+&lt;span class="x"&gt;                    604800     ; Expire [1 week]&lt;/span&gt;
+&lt;span class="x"&gt;                    86400      ; TTL [1 jour]&lt;/span&gt;
+&lt;span class="x"&gt;)&lt;/span&gt;
+
+&lt;span class="x"&gt;@    IN  NS  ns.domain.net.&lt;/span&gt;
+&lt;span class="x"&gt;1  IN  PTR edge.domain.net.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start bind9.service
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; bind9.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Change journal access right (If needed)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo chown bind:bind /var/cache/bind/managed-keys.bind.jnl
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Test&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; dig @localhost g8way.domain.net
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Routing&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Enable routing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;sudo nano /etc/sysctl.conf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;net.ipv4.ip_forward=1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Set the new configuration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo sysctl -p
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;test&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; dig google.fr
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Show route&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;ip route show&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;VPN&lt;/h1&gt;
+&lt;p&gt;Follow instruction in this &lt;a href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html"&gt;post&lt;/a&gt; to install OpenVPN client side on Debian.&lt;/p&gt;
+&lt;h1&gt;Firewall&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; nano iptables.sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; !/bin/bash&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Interface&lt;/span&gt;
+&lt;span class="x"&gt;PublicInterface=enp1s0&lt;/span&gt;
+&lt;span class="x"&gt;LanInterface=enp3s0&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; IP Address&lt;/span&gt;
+&lt;span class="x"&gt;LanAddress=10.XX.3.254&lt;/span&gt;
+&lt;span class="x"&gt;EdgeServer=WWW.XXX.YYY.ZZZ&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Network&lt;/span&gt;
+&lt;span class="x"&gt;LanNetwork=10.XX.3.0/24&lt;/span&gt;
+&lt;span class="x"&gt;PublicNetwork=10.XX.1.0/24&lt;/span&gt;
+&lt;span class="x"&gt;VpnNetwork=10.YY.0.0/24&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; flush existing rules&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -F&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -X&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Default policy&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -t filter -P INPUT DROP&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -t filter -P FORWARD DROP&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -t filter -P OUTPUT DROP&lt;/span&gt;
+
+
+&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;############################## Forwarding ################################&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; HTTP&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -o tun+ -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; HTTPS&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -o tun+ -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; SSH&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -o tun+ -p tcp --dport 22 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow forwarding for already established connection &lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i tun+ -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+
+&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;###################### Outgoing flow via LiveBox ########################&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow DNS&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; OpenVPN&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -d &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;EdgeServer&lt;/span&gt;&lt;span class="x"&gt; -p udp --dport 1194 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow Internet Browsing&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow incoming established connection&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A INPUT -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+
+&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;######################## Outgoing flow via VPN ##########################&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow DNS&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o tun+ -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow incoming established connection from VPN&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A INPUT -i tun+ -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+
+&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;######################## Incoming flow from Lan Interface ###########################&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; DHCP&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -I INPUT -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -p udp -m udp --sport 67 --dport 68 -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; SSH&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A INPUT -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -d &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanAddress&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 22 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; DNS&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A INPUT -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -d &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanAddress&lt;/span&gt;&lt;span class="x"&gt; -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow outgoing established connection&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanAddress&lt;/span&gt;&lt;span class="x"&gt; -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+
+&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;####################### Incoming flow from Local Interface ##########################&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; DNS&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A INPUT -i lo -d 127.0.0.1 -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; RNDC&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A INPUT -i lo -d 127.0.0.1 -p tcp --dport 953 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow outgoing established connection&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o lo -s 127.0.0.1 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="APU"></category><category term="Debian"></category></entry><entry><title>HTTP Observatory Website</title><link href="http://didier.bernaudeau.net/HTTP_Observatory_Website.html" rel="alternate"></link><published>2017-08-20T12:16:00+02:00</published><updated>2017-07-24T23:17:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-08-20:/HTTP_Observatory_Website.html</id><summary type="html">&lt;p&gt;HTTP Observatory Web is a web application for TLS and HTTP Observatory. This post describes a way to install HTTP Observatory Web on Red Hat 7.3.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;HTTP Observatory Web is a web application for TLS and HTTP Observatory. This post describes a way to install HTTP Observatory Web on Red Hat 7.3.&lt;/p&gt;
 
 &lt;h1&gt;Nginx&lt;/h1&gt;
@@ -3300,7 +3653,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 
 &lt;div class="section" id="pulseaudio-architecture"&gt;
 &lt;h2&gt;PulseAudio Architecture&lt;/h2&gt;
-&lt;img alt="PulseAudio Architecture" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
+&lt;img alt="PulseAudio Architecture" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="install-pulseaudio"&gt;
 &lt;h2&gt;Install PulseAudio&lt;/h2&gt;
@@ -3441,23 +3794,23 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;span class="gp"&gt;$&lt;/span&gt; virt-manager
 &lt;/pre&gt;
 &lt;p&gt;Open the menu "file &amp;gt; Add connection"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Add connection" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Add connection" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="network-configuration"&gt;
 &lt;h2&gt;Network Configuration&lt;/h2&gt;
 &lt;p&gt;After starting LibVirtd, network configuration is as follows:&lt;/p&gt;
-&lt;img alt="Network Configuration" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
+&lt;img alt="Network Configuration" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="create-a-virtual-machine"&gt;
 &lt;h2&gt;Create a virtual machine&lt;/h2&gt;
 &lt;p&gt;Open the menu "file &amp;gt; New Virtual Machine"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Step1" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step2" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
-&lt;img alt="Virt-Manager - Step3" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step4" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step5" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step1" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step2" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - Step3" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step4" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step5" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
 &lt;p&gt;Select "VirtIO" device model for Network Interface&lt;/p&gt;
-&lt;img alt="Virt-Manager - NIC device model" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - NIC device model" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
 &lt;!-- vhost=on --&gt;
 &lt;/div&gt;
 </content><category term="Gentoo"></category><category term="Virtualization"></category></entry><entry><title>How to create bootable USB flash drives with Rufus</title><link href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html" rel="alternate"></link><published>2015-07-12T12:32:00+02:00</published><updated>2015-07-15T21:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-12:/How_to_create_bootable_USB_flash_drives_with_Rufus.html</id><summary type="html">&lt;p&gt;This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp;amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.&lt;/p&gt;
@@ -3471,12 +3824,12 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;h2&gt;Create installation media&lt;/h2&gt;
 &lt;div class="section" id="example-for-microsoft-windows-8-1-with-mbr"&gt;
 &lt;h3&gt;Example for Microsoft Windows 8.1 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="example-for-debian-8-with-mbr"&gt;
 &lt;h3&gt;Example for Debian 8 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
 &lt;p&gt;If you need additional firmware to install Debian :&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul class="simple"&gt;

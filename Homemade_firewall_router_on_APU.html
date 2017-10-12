@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Homemade firewall/router on APU - My personal blog note</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://didier.bernaudeau.net/Homemade_firewall_router_on_APU.html">
+
+        <meta name="author" content="Didier BERNAUDEAU" />
+        <meta name="keywords" content="APU,Debian" />
+        <meta name="description" content="A personal firewall/router is imperative to secure home network and, above all, to preserve your privacy against indiscretion from your ISP. This firewall/router must provide the minimal network services such as : routing, DHCP, DNS, ... In this configuration, IPv6 is completely disabled because my ISP doesn&#39;t support prefix delegation, which is mandatory to have IPv6 subnetting on a non-flat network." />
+
+        <meta property="og:site_name" content="My personal blog note" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Homemade firewall/router on APU"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/Homemade_firewall_router_on_APU.html"/>
+        <meta property="og:description" content="A personal firewall/router is imperative to secure home network and, above all, to preserve your privacy against indiscretion from your ISP. This firewall/router must provide the minimal network services such as : routing, DHCP, DNS, ... In this configuration, IPv6 is completely disabled because my ISP doesn&#39;t support prefix delegation, which is mandatory to have IPv6 subnetting on a non-flat network."/>
+        <meta property="article:published_time" content="2017-08-30" />
+            <meta property="article:section" content="Tutorials" />
+            <meta property="article:tag" content="APU" />
+            <meta property="article:tag" content="Debian" />
+            <meta property="article:author" content="Didier BERNAUDEAU" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+    <link href="http://didier.bernaudeau.net/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://didier.bernaudeau.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/style.css" type="text/css"/>
+
+        <link href="http://didier.bernaudeau.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note ATOM Feed"/>
+
+
+
+        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Tutorials ATOM Feed"/>
+
+    <link href="http://didier.bernaudeau.net/theme/css/colorbox.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://didier.bernaudeau.net/" class="navbar-brand">
+My personal blog note            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/articles.html">Articles</a></li>
+                    <li><a href="/category/tutorials.html">Tutorials</a></li>
+                    <li><a href="/category/talk.html">Talk</a></li>
+                    <li><a href="/category/press-review.html">Press Review</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="http://didier.bernaudeau.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://didier.bernaudeau.net/Homemade_firewall_router_on_APU.html"
+                       rel="bookmark"
+                       title="Permalink to Homemade firewall/router on APU">
+                        Homemade firewall/router on APU
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-08-30T21:50:00+02:00"> mer. 30 août 2017</time>
+    </span>
+            <span class="label label-default">Modified</span>
+            <span class="modified">
+                <i class="fa fa-calendar"></i><time datetime="2017-10-12T22:31:00+02:00"> jeu. 12 octobre 2017</time>
+            </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://didier.bernaudeau.net/tag/apu.html">APU</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/debian.html">Debian</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>A personal firewall/router is imperative to secure home network and, above all, to preserve your privacy against indiscretion from your ISP. This firewall/router must provide the minimal network services such as : routing, DHCP, DNS, ...</p>
+<p>In this configuration, IPv6 is completely disabled because my ISP doesn't support prefix delegation, which is mandatory to have IPv6 subnetting on a non-flat network.</p>
+
+<h1>Network Manager</h1>
+<ul>
+<li>Install</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y network-manager
+</pre></div>
+<ul>
+<li>Configure Network Manager</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/NetworkManager/NetworkManager.conf
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">[ifupdown]</span>
+<span class="na">managed</span><span class="o">=</span><span class="s">true</span>
+</pre></div>
+<ul>
+<li>Configure interfaces</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/network/interfaces
+</pre></div>
+<div class="highlight"><pre><span></span># The primary network interface
+allow-hotplug enp1s0
+iface enp1s0 inet static
+        address 10.XXX.1.254
+        netmask 255.255.255.0
+        gateway 10.XXX.1.1
+
+# Second network interface (IOT)
+allow-hotplug enp2s0
+iface enp2s0 inet static
+        address 10.XXX.2.254
+        netmask 255.255.255.0
+        gateway 10.XXX.1.1
+
+# Third network interface (LAN)
+allow-hotplug enp3s0
+iface enp3s0 inet static
+        address 10.XXX.3.254
+        netmask 255.255.255.0
+        gateway 10.XXX.1.1
+</pre></div>
+<ul>
+<li>Start</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl start NetworkManager
+<span class="gp">$</span> sudo systemctl <span class="nb">enable</span> NetworkManager
+</pre></div>
+<h1>DHCP Server</h1>
+<p>This DHCP server must assign IP addresses to each client on the networks (LAN and IOT).</p>
+<ul>
+<li>Install</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install isc-dhcp-server
+</pre></div>
+<ul>
+<li>Configure</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">sudo nano /etc/default/isc-dhcp-server</span>
+</pre></div>
+<div class="highlight"><pre><span></span>INTERFACESv4="enp2s0 enp3s0"
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/dhcp/dhcpd.conf
+</pre></div>
+<div class="highlight"><pre><span></span># Include the share secret key for RNDC
+include "/etc/bind/rndc.key";
+
+# Enable dynamic DNS with RNDC
+ddns-update-style interim;
+ignore client-updates;
+
+# Define zone
+zone lazuly.net.
+{
+        primary 127.0.0.1;
+        key rndc-key;
+}
+
+zone 3.XXX.10.in-addr.arpa.
+{
+        primary 127.0.0.1;
+        key rndc-key;
+}
+
+subnet 10.XXX.3.0 netmask 255.255.255.0 {
+        range 10.XXX.3.1 10.XXX.3.99;
+        default-lease-time 86400;
+        max-lease-time 604800;
+        option domain-name "domain.net";
+        option domain-name-servers 10.XXX.3.254;
+        option subnet-mask 255.255.255.0;
+        option broadcast-address 10.XXX.3.255;
+        option routers 10.XXX.3.254;
+}
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/default/isc-dhcp-server
+</pre></div>
+<div class="highlight"><pre><span></span>INTERFACESv4="enp2s0 enp3s0"
+</pre></div>
+<ul>
+<li>Start</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl start isc-dhcp-server.service
+<span class="gp">$</span> sudo systemctl <span class="nb">enable</span> isc-dhcp-server.service
+</pre></div>
+<h1>DNS</h1>
+<p>First of all, Bind is configured to act as a caching DNS server. This configuration will force the server to recursively seek answers from other DNS servers when a client issues a query.
+On top of that, Bind is configure to act also as a primary master DNS to serve DNS records for a registered domain name (also used for internal purpose).</p>
+<ul>
+<li>Install Bind</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y bind9
+</pre></div>
+<ul>
+<li>Disable IPv6</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/default/bind9
+</pre></div>
+<div class="highlight"><pre><span></span>OPTIONS="-4 -u bind"
+</pre></div>
+<ul>
+<li>Generate secret key for RNDC (Remote Name Daemon Control)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo rndc-confgen -a -c /etc/bind/rndc.key
+</pre></div>
+<ul>
+<li>Define access right to secret key</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo chmod g+r /etc/bind/rndc.key
+</pre></div>
+<ul>
+<li>Edit configuration</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/bind/named.conf
+</pre></div>
+<div class="highlight"><pre><span></span>include "/etc/bind/rndc.key";
+
+controls {
+        inet 127.0.0.1 allow { localhost; }
+        keys { rndc-key; };
+};
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/bind/named.conf.options
+</pre></div>
+<div class="highlight"><pre><span></span>options {
+        directory "/var/cache/bind";
+        listen-on { 127.0.0.1; 10.XXX.3.254; };
+        listen-on-v6 { none; };
+        allow-query { localhost; 10.XXX.3.0/24; };
+};
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/bind/named.conf.default-zones
+</pre></div>
+<div class="highlight"><pre><span></span>zone "domain.net" IN {
+        type master;
+        file "domain.net.zone";
+        allow-update { key rndc-key; };
+};
+
+zone "3.XXX.10.in-addr.arpa" IN {
+        type master;
+        file "10.XXX.3.zone";
+        allow-update { key rndc-key; };
+};
+</pre></div>
+<ul>
+<li>Edit zone file for lazuly.net</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /var/cache/bind/lazuly.net.zone
+</pre></div>
+<div class="highlight"><pre><span></span><span class="p">$</span><span class="nv">ttl</span><span class="x"> 38400</span>
+
+<span class="x">@               IN      SOA  domain.net.   root.domain.net. (</span>
+<span class="x">                                2012032900 ; Serial</span>
+<span class="x">                                10800      ; Refresh [3h]</span>
+<span class="x">                                3600       ; Retry [1h]</span>
+<span class="x">                                604800     ; Expire [1 week]</span>
+<span class="x">                                86400      ; TTL [1 jour]</span>
+<span class="x">)</span>
+
+<span class="x">@                IN       NS      ns.lazuly.net.</span>
+
+<span class="x">g8way            IN       A       10.XXX.3.254</span>
+<span class="x">edge             IN       A       10.0.0.1</span>
+<span class="x">ns               IN       A       10.XXX.3.254</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /var/cache/bind/10.XXX.3.zone
+</pre></div>
+<div class="highlight"><pre><span></span><span class="p">$</span><span class="nv">ttl</span><span class="x"> 3h </span>
+
+<span class="x">@  IN  SOA  domain.net.     root.domain.net. (</span>
+<span class="x">                    2012032900 ; Serial</span>
+<span class="x">                    10800      ; Refresh [3h]</span>
+<span class="x">                    3600       ; Retry [1h]</span>
+<span class="x">                    604800     ; Expire [1 week]</span>
+<span class="x">                    86400      ; TTL [1 jour]</span>
+<span class="x">)</span>
+
+<span class="x">@    IN  NS  ns.domain.net.</span>
+<span class="x">254  IN  PTR g8way.domain.net.</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /var/cache/bind/10.0.0.zone
+</pre></div>
+<div class="highlight"><pre><span></span><span class="p">$</span><span class="nv">ttl</span><span class="x"> 3h </span>
+
+<span class="x">@  IN  SOA  domain.net.     root.domain.net. (</span>
+<span class="x">                    2012032900 ; Serial</span>
+<span class="x">                    10800      ; Refresh [3h]</span>
+<span class="x">                    3600       ; Retry [1h]</span>
+<span class="x">                    604800     ; Expire [1 week]</span>
+<span class="x">                    86400      ; TTL [1 jour]</span>
+<span class="x">)</span>
+
+<span class="x">@    IN  NS  ns.domain.net.</span>
+<span class="x">1  IN  PTR edge.domain.net.</span>
+</pre></div>
+<ul>
+<li>Start</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl start bind9.service
+<span class="gp">$</span> sudo systemctl <span class="nb">enable</span> bind9.service
+</pre></div>
+<ul>
+<li>Change journal access right (If needed)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo chown bind:bind /var/cache/bind/managed-keys.bind.jnl
+</pre></div>
+<ul>
+<li>Test</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> dig @localhost g8way.domain.net
+</pre></div>
+<h1>Routing</h1>
+<ul>
+<li>Enable routing</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">sudo nano /etc/sysctl.conf</span>
+</pre></div>
+<div class="highlight"><pre><span></span>net.ipv4.ip_forward=1
+</pre></div>
+<ul>
+<li>Set the new configuration</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo sysctl -p
+</pre></div>
+<ul>
+<li>test</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> dig google.fr
+</pre></div>
+<ul>
+<li>Show route</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">ip route show</span>
+</pre></div>
+<h1>VPN</h1>
+<p>Follow instruction in this <a href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html">post</a> to install OpenVPN client side on Debian.</p>
+<h1>Firewall</h1>
+<div class="highlight"><pre><span></span><span class="gp">$</span> nano iptables.sh
+</pre></div>
+<div class="highlight"><pre><span></span><span class="err">#</span><span class="x"> !/bin/bash</span>
+
+<span class="err">#</span><span class="x"> Interface</span>
+<span class="x">PublicInterface=enp1s0</span>
+<span class="x">LanInterface=enp3s0</span>
+
+<span class="err">#</span><span class="x"> IP Address</span>
+<span class="x">LanAddress=10.XX.3.254</span>
+<span class="x">EdgeServer=WWW.XXX.YYY.ZZZ</span>
+
+<span class="err">#</span><span class="x"> Network</span>
+<span class="x">LanNetwork=10.XX.3.0/24</span>
+<span class="x">PublicNetwork=10.XX.1.0/24</span>
+<span class="x">VpnNetwork=10.YY.0.0/24</span>
+
+<span class="err">#</span><span class="x"> flush existing rules</span>
+<span class="x">sudo iptables -F</span>
+<span class="x">sudo iptables -X</span>
+
+<span class="err">#</span><span class="x"> Default policy</span>
+<span class="x">sudo iptables -t filter -P INPUT DROP</span>
+<span class="x">sudo iptables -t filter -P FORWARD DROP</span>
+<span class="x">sudo iptables -t filter -P OUTPUT DROP</span>
+
+
+<span class="cp">##</span><span class="c">############################## Forwarding ################################</span><span class="x"></span>
+
+<span class="err">#</span><span class="x"> HTTP</span>
+<span class="x">sudo iptables -A FORWARD -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -o tun+ -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> HTTPS</span>
+<span class="x">sudo iptables -A FORWARD -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -o tun+ -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> SSH</span>
+<span class="x">sudo iptables -A FORWARD -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -o tun+ -p tcp --dport 22 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> Allow forwarding for already established connection </span>
+<span class="x">sudo iptables -A FORWARD -i tun+ -o </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+
+
+<span class="cp">##</span><span class="c">###################### Outgoing flow via LiveBox ########################</span><span class="x"></span>
+
+<span class="err">#</span><span class="x"> Allow DNS</span>
+<span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> OpenVPN</span>
+<span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -d </span><span class="p">$</span><span class="nv">EdgeServer</span><span class="x"> -p udp --dport 1194 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> Allow Internet Browsing</span>
+<span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+<span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> Allow incoming established connection</span>
+<span class="x">sudo iptables -A INPUT -i </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+
+
+<span class="cp">##</span><span class="c">######################## Outgoing flow via VPN ##########################</span><span class="x"></span>
+
+<span class="err">#</span><span class="x"> Allow DNS</span>
+<span class="x">sudo iptables -A OUTPUT -o tun+ -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> Allow incoming established connection from VPN</span>
+<span class="x">sudo iptables -A INPUT -i tun+ -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+
+
+<span class="cp">##</span><span class="c">######################## Incoming flow from Lan Interface ###########################</span><span class="x"></span>
+
+<span class="err">#</span><span class="x"> DHCP</span>
+<span class="x">sudo iptables -I INPUT -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -p udp -m udp --sport 67 --dport 68 -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> SSH</span>
+<span class="x">sudo iptables -A INPUT -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -d </span><span class="p">$</span><span class="nv">LanAddress</span><span class="x"> -p tcp --dport 22 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> DNS</span>
+<span class="x">sudo iptables -A INPUT -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -d </span><span class="p">$</span><span class="nv">LanAddress</span><span class="x"> -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> Allow outgoing established connection</span>
+<span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">LanAddress</span><span class="x"> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+
+
+<span class="cp">##</span><span class="c">####################### Incoming flow from Local Interface ##########################</span><span class="x"></span>
+
+<span class="err">#</span><span class="x"> DNS</span>
+<span class="x">sudo iptables -A INPUT -i lo -d 127.0.0.1 -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> RNDC</span>
+<span class="x">sudo iptables -A INPUT -i lo -d 127.0.0.1 -p tcp --dport 953 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> Allow outgoing established connection</span>
+<span class="x">sudo iptables -A OUTPUT -o lo -s 127.0.0.1 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+</pre></div>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://didier.bernaudeau.net/Debian_Cheat_Sheet.html">Debian Cheat Sheet</a></li>
+        <li><a href="http://didier.bernaudeau.net/PC_Engines_APU3a4.html">PC Engines APU3a4</a></li>
+    </ul>
+</section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="60%" class="img-thumbnail" src="/images/avatar.png"/>
+        </p>
+    <p>
+        <strong>About D. Bernaudeau</strong><br/>
+        I’m Didier Bernaudeau, an Information Systems Security Professional. This site is a way to note some experimentations.
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+
+
+
+            <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/application-server.html">
+                            Application Server
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/apu.html">
+                            APU
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/archlinux.html">
+                            ArchLinux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/blockchain.html">
+                            Blockchain
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
+                            Certificate
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/container.html">
+                            Container
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
+                            Cryptography
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/cups.html">
+                            cups
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/database.html">
+                            Database
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/debian.html">
+                            Debian
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/debian-linux.html">
+                            Debian Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/development.html">
+                            Development
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/development-tool.html">
+                            Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/docker.html">
+                            Docker
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/framework.html">
+                            Framework
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
+                            Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/git.html">
+                            Git
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/go.html">
+                            Go
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
+                            Hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/home-automation.html">
+                            Home automation
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/html.html">
+                            HTML
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/java.html">
+                            Java
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/linux.html">
+                            Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/network.html">
+                            Network
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/php.html">
+                            PHP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/pki.html">
+                            PKI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/press-review.html">
+                            Press review
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/protocol.html">
+                            Protocol
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/python.html">
+                            Python
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/raspberry-pi.html">
+                            Raspberry Pi
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/raspbian.html">
+                            Raspbian
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/redhat.html">
+                            RedHat
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scm.html">
+                            SCM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/software.html">
+                            Software
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/spring.html">
+                            Spring
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/tls.html">
+                            TLS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
+                            Virtualization
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/vpn.html">
+                            VPN
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/website.html">
+                            WebSite
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/windows.html">
+                            Windows
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/wireless.html">
+                            Wireless
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+            &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://didier.bernaudeau.net/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://didier.bernaudeau.net/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://didier.bernaudeau.net/theme/js/respond.min.js"></script>
+
+<!-- ColorBox -->
+<script src="http://didier.bernaudeau.net/theme/js/jquery.colorbox-min.js"></script>
+<script src="http://didier.bernaudeau.net/theme/js/load-colorbox.js"></script>
+
+
+
+</body>
+</html>

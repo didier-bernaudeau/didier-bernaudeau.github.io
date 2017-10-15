@@ -12,7 +12,7 @@
 <link rel="canonical" href="http://didier.bernaudeau.net/Homemade_firewall_router_on_APU.html">
 
         <meta name="author" content="Didier BERNAUDEAU" />
-        <meta name="keywords" content="APU,Debian Linux" />
+        <meta name="keywords" content="APU,Debian Stretch" />
         <meta name="description" content="A personal firewall/router is imperative to secure home network and, above all, to preserve your privacy against indiscretion from your ISP. This firewall/router must provide the minimal network services such as : routing, DHCP, DNS, ... In this configuration, IPv6 is completely disabled because my ISP doesn&#39;t support prefix delegation, which is mandatory to have IPv6 subnetting on a non-flat network." />
 
         <meta property="og:site_name" content="My personal blog note" />
@@ -23,7 +23,7 @@
         <meta property="article:published_time" content="2017-08-30" />
             <meta property="article:section" content="Tutorials" />
             <meta property="article:tag" content="APU" />
-            <meta property="article:tag" content="Debian Linux" />
+            <meta property="article:tag" content="Debian Stretch" />
             <meta property="article:author" content="Didier BERNAUDEAU" />
 
 
@@ -99,7 +99,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-10-12T22:31:00+02:00"> jeu. 12 octobre 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-10-15T14:37:00+02:00"> dim. 15 octobre 2017</time>
             </span>
 
 
@@ -109,7 +109,7 @@ My personal blog note            </a>
 <span class="label label-default">Tags</span>
 	<a href="http://didier.bernaudeau.net/tag/apu.html">APU</a>
         /
-	<a href="http://didier.bernaudeau.net/tag/debian-linux.html">Debian Linux</a>
+	<a href="http://didier.bernaudeau.net/tag/debian-stretch.html">Debian Stretch</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
@@ -162,6 +162,41 @@ iface enp3s0 inet static
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl start NetworkManager
 <span class="gp">$</span> sudo systemctl <span class="nb">enable</span> NetworkManager
 </pre></div>
+<h1>NTP</h1>
+<ul>
+<li>Install NTP server</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y ntp
+</pre></div>
+<ul>
+<li>Configure NTP server</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/ntp.conf
+</pre></div>
+<div class="highlight"><pre><span></span>restrict -4 default kod notrap nomodify nopeer noquery limited
+restrict 10.XXX.3.0 mask 255.255.255.0 nomodify notrap
+</pre></div>
+<ul>
+<li>Configure NTP server</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/default/ntp
+</pre></div>
+<div class="highlight"><pre><span></span>NTPD_OPTS='-4 -g'
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl start ntp
+<span class="gp">$</span> sudo systemctl <span class="nb">enable</span> ntp
+</pre></div>
+<ul>
+<li>Test (On Gentoo Linux)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/systemd/timesyncd.conf
+</pre></div>
+<div class="highlight"><pre><span></span>NTP=g8way.lazuly.net
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">#</span> systemctl restart systemd-timesyncd.service
+<span class="gp">#</span> systemctl status systemd-timesyncd.service
+<span class="gp">#</span> timedatectl status
+</pre></div>
 <h1>DHCP Server</h1>
 <p>This DHCP server must assign IP addresses to each client on the networks (LAN and IOT).</p>
 <ul>
@@ -207,6 +242,7 @@ subnet 10.XXX.3.0 netmask 255.255.255.0 {
         option subnet-mask 255.255.255.0;
         option broadcast-address 10.XXX.3.255;
         option routers 10.XXX.3.254;
+        option ntp-servers 10.XXX.3.254;
 }
 </pre></div>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/default/isc-dhcp-server
@@ -218,6 +254,16 @@ subnet 10.XXX.3.0 netmask 255.255.255.0 {
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl start isc-dhcp-server.service
 <span class="gp">$</span> sudo systemctl <span class="nb">enable</span> isc-dhcp-server.service
+</pre></div>
+<ul>
+<li>Test (on Gentoo Linux)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> dhclient -v enp0s25
+</pre></div>
+<ul>
+<li>Check DHCP lease</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo tail -f /var/lib/dhcp/dhcpd.leases
 </pre></div>
 <h1>DNS</h1>
 <p>First of all, Bind is configured to act as a caching DNS server. This configuration will force the server to recursively seek answers from other DNS servers when a client issues a query.
@@ -372,6 +418,9 @@ zone "3.XXX.10.in-addr.arpa" IN {
 <h1>VPN</h1>
 <p>Follow instruction in this <a href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html">post</a> to install OpenVPN client side on Debian.</p>
 <h1>Firewall</h1>
+<ul>
+<li>Create script</li>
+</ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> nano iptables.sh
 </pre></div>
 <div class="highlight"><pre><span></span><span class="err">#</span><span class="x"> !/bin/bash</span>
@@ -399,7 +448,7 @@ zone "3.XXX.10.in-addr.arpa" IN {
 <span class="x">sudo iptables -t filter -P OUTPUT DROP</span>
 
 
-<span class="cp">##</span><span class="c">############################## Forwarding ################################</span><span class="x"></span>
+<span class="cp">##</span><span class="c">############################## Forwarding (LAN to VPN) ################################</span><span class="x"></span>
 
 <span class="err">#</span><span class="x"> HTTP</span>
 <span class="x">sudo iptables -A FORWARD -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -o tun+ -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
@@ -409,6 +458,15 @@ zone "3.XXX.10.in-addr.arpa" IN {
 
 <span class="err">#</span><span class="x"> SSH</span>
 <span class="x">sudo iptables -A FORWARD -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -o tun+ -p tcp --dport 22 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> SMTP Submission with TLS</span>
+<span class="x">sudo iptables -A FORWARD -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -o tun+ -p tcp --dport 465 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> SMTP Submission with StartTLS</span>
+<span class="x">sudo iptables -A FORWARD -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -o tun+ -p tcp --dport 587 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> IMAPS</span>
+<span class="x">sudo iptables -A FORWARD -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -o tun+ -p tcp --dport 993 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
 
 <span class="err">#</span><span class="x"> Allow forwarding for already established connection </span>
 <span class="x">sudo iptables -A FORWARD -i tun+ -o </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
@@ -430,10 +488,20 @@ zone "3.XXX.10.in-addr.arpa" IN {
 <span class="x">sudo iptables -A INPUT -i </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
 
 
-<span class="cp">##</span><span class="c">######################## Outgoing flow via VPN ##########################</span><span class="x"></span>
+<span class="cp">##</span><span class="c">############################ Outgoing local flow via VPN ##############################</span><span class="x"></span>
 
 <span class="err">#</span><span class="x"> Allow DNS</span>
 <span class="x">sudo iptables -A OUTPUT -o tun+ -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+<span class="x">sudo iptables -A OUTPUT -o tun+ -p tcp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> Allow NTP</span>
+<span class="x">sudo iptables -A OUTPUT -o tun+ -p udp --dport 123 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> Allow HTTP</span>
+<span class="x">sudo iptables -A OUTPUT -o tun+ -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> Allow HTTPS</span>
+<span class="x">sudo iptables -A OUTPUT -o tun+ -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
 
 <span class="err">#</span><span class="x"> Allow incoming established connection from VPN</span>
 <span class="x">sudo iptables -A INPUT -i tun+ -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
@@ -442,7 +510,7 @@ zone "3.XXX.10.in-addr.arpa" IN {
 <span class="cp">##</span><span class="c">######################## Incoming flow from Lan Interface ###########################</span><span class="x"></span>
 
 <span class="err">#</span><span class="x"> DHCP</span>
-<span class="x">sudo iptables -I INPUT -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -p udp -m udp --sport 67 --dport 68 -j ACCEPT</span>
+<span class="x">sudo iptables -I INPUT -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -p udp -m udp --sport 68 --dport 67 -j ACCEPT</span>
 
 <span class="err">#</span><span class="x"> SSH</span>
 <span class="x">sudo iptables -A INPUT -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -d </span><span class="p">$</span><span class="nv">LanAddress</span><span class="x"> -p tcp --dport 22 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
@@ -450,20 +518,39 @@ zone "3.XXX.10.in-addr.arpa" IN {
 <span class="err">#</span><span class="x"> DNS</span>
 <span class="x">sudo iptables -A INPUT -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -d </span><span class="p">$</span><span class="nv">LanAddress</span><span class="x"> -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
 
+<span class="err">#</span><span class="x"> NTP</span>
+<span class="x">sudo iptables -A INPUT -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -d </span><span class="p">$</span><span class="nv">LanAddress</span><span class="x"> -p udp --dport 123 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
 <span class="err">#</span><span class="x"> Allow outgoing established connection</span>
 <span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">LanAddress</span><span class="x"> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
 
 
-<span class="cp">##</span><span class="c">####################### Incoming flow from Local Interface ##########################</span><span class="x"></span>
+<span class="cp">##</span><span class="c">###################### Internal flow from Local Interface #########################</span><span class="x"></span>
 
 <span class="err">#</span><span class="x"> DNS</span>
 <span class="x">sudo iptables -A INPUT -i lo -d 127.0.0.1 -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+<span class="x">sudo iptables -A OUTPUT -o lo -d 127.0.0.1 -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
 
 <span class="err">#</span><span class="x"> RNDC</span>
 <span class="x">sudo iptables -A INPUT -i lo -d 127.0.0.1 -p tcp --dport 953 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
 
-<span class="err">#</span><span class="x"> Allow outgoing established connection</span>
+<span class="err">#</span><span class="x"> Allow outgoing and incoming established connection</span>
 <span class="x">sudo iptables -A OUTPUT -o lo -s 127.0.0.1 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+<span class="x">sudo iptables -A INPUT -i lo -s 127.0.0.1 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+</pre></div>
+<ul>
+<li>Execute script to set rules</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> chmod o+w iptables.sh
+<span class="gp">$</span> ./iptables.sh
+</pre></div>
+<ul>
+<li>Install tool for iptables</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install iptables-persistent
+</pre></div>
+<div class="highlight"><pre><span></span>Save current IPv4 rules? Yes
+Save current IPv6 rules? Yes
 </pre></div>
             </div>
             <!-- /.entry-content -->
@@ -545,9 +632,9 @@ zone "3.XXX.10.in-addr.arpa" IN {
                             Debian
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
-                        <a href="http://didier.bernaudeau.net/tag/debian-linux.html">
-                            Debian Linux
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/debian-stretch.html">
+                            Debian Stretch
                         </a>
                     </li>
                     <li class="list-group-item tag-2">

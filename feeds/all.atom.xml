@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-10-12T22:31:00+02:00</updated><entry><title>Websphere Application Server</title><link href="http://didier.bernaudeau.net/WAS.html" rel="alternate"></link><published>2017-10-06T20:44:00+02:00</published><updated>2017-10-06T20:44:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-10-06:/WAS.html</id><summary type="html">&lt;p&gt;Websphere Application Server is a middleware from IBM that hosts Java based web applications.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-10-15T14:37:00+02:00</updated><entry><title>Websphere Application Server</title><link href="http://didier.bernaudeau.net/WAS.html" rel="alternate"></link><published>2017-10-06T20:44:00+02:00</published><updated>2017-10-06T20:44:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-10-06:/WAS.html</id><summary type="html">&lt;p&gt;Websphere Application Server is a middleware from IBM that hosts Java based web applications.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Websphere Application Server is a middleware from IBM that hosts Java based web applications.&lt;/p&gt;
 
 &lt;h1&gt;Websphere Application Server&lt;/h1&gt;
@@ -338,7 +338,7 @@ sudo iptables -A OUTPUT -o tun+ -j ACCEPT
 sudo iptables -A FORWARD -i tun+ -j ACCEPT
 sudo iptables -A FORWARD -i tun+ -o enp3s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 sudo iptables -A FORWARD -i enp3s0: -o tun+ -m state --state RELATED,ESTABLISHED -j ACCEPT
---&gt;</content><category term="Network"></category><category term="ArchLinux"></category><category term="Debian Linux"></category><category term="VPN"></category><category term="APU"></category></entry><entry><title>Homemade firewall/router on APU</title><link href="http://didier.bernaudeau.net/Homemade_firewall_router_on_APU.html" rel="alternate"></link><published>2017-08-30T21:50:00+02:00</published><updated>2017-10-12T22:31:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-08-30:/Homemade_firewall_router_on_APU.html</id><summary type="html">&lt;p&gt;A personal firewall/router is imperative to secure home network and, above all, to preserve your privacy against indiscretion from your ISP. This firewall/router must provide the minimal network services such as : routing, DHCP, DNS, ...&lt;/p&gt;
+--&gt;</content><category term="Network"></category><category term="ArchLinux"></category><category term="Debian Stretch"></category><category term="VPN"></category><category term="APU"></category></entry><entry><title>Homemade firewall/router on APU</title><link href="http://didier.bernaudeau.net/Homemade_firewall_router_on_APU.html" rel="alternate"></link><published>2017-08-30T21:50:00+02:00</published><updated>2017-10-15T14:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-08-30:/Homemade_firewall_router_on_APU.html</id><summary type="html">&lt;p&gt;A personal firewall/router is imperative to secure home network and, above all, to preserve your privacy against indiscretion from your ISP. This firewall/router must provide the minimal network services such as : routing, DHCP, DNS, ...&lt;/p&gt;
 &lt;p&gt;In this configuration, IPv6 is completely disabled because my ISP doesn't support prefix delegation, which is mandatory to have IPv6 subnetting on a non-flat network.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;A personal firewall/router is imperative to secure home network and, above all, to preserve your privacy against indiscretion from your ISP. This firewall/router must provide the minimal network services such as : routing, DHCP, DNS, ...&lt;/p&gt;
 &lt;p&gt;In this configuration, IPv6 is completely disabled because my ISP doesn't support prefix delegation, which is mandatory to have IPv6 subnetting on a non-flat network.&lt;/p&gt;
@@ -389,6 +389,41 @@ iface enp3s0 inet static
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start NetworkManager
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; NetworkManager
 &lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;NTP&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install NTP server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y ntp
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure NTP server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/ntp.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;restrict -4 default kod notrap nomodify nopeer noquery limited
+restrict 10.XXX.3.0 mask 255.255.255.0 nomodify notrap
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure NTP server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/default/ntp
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;NTPD_OPTS='-4 -g'
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start ntp
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; ntp
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Test (On Gentoo Linux)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/systemd/timesyncd.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;NTP=g8way.lazuly.net
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl restart systemd-timesyncd.service
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl status systemd-timesyncd.service
+&lt;span class="gp"&gt;#&lt;/span&gt; timedatectl status
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;DHCP Server&lt;/h1&gt;
 &lt;p&gt;This DHCP server must assign IP addresses to each client on the networks (LAN and IOT).&lt;/p&gt;
 &lt;ul&gt;
@@ -434,6 +469,7 @@ subnet 10.XXX.3.0 netmask 255.255.255.0 {
         option subnet-mask 255.255.255.0;
         option broadcast-address 10.XXX.3.255;
         option routers 10.XXX.3.254;
+        option ntp-servers 10.XXX.3.254;
 }
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/default/isc-dhcp-server
@@ -445,6 +481,16 @@ subnet 10.XXX.3.0 netmask 255.255.255.0 {
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start isc-dhcp-server.service
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; isc-dhcp-server.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Test (on Gentoo Linux)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; dhclient -v enp0s25
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Check DHCP lease&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo tail -f /var/lib/dhcp/dhcpd.leases
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;DNS&lt;/h1&gt;
 &lt;p&gt;First of all, Bind is configured to act as a caching DNS server. This configuration will force the server to recursively seek answers from other DNS servers when a client issues a query.
@@ -599,6 +645,9 @@ zone "3.XXX.10.in-addr.arpa" IN {
 &lt;h1&gt;VPN&lt;/h1&gt;
 &lt;p&gt;Follow instruction in this &lt;a href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html"&gt;post&lt;/a&gt; to install OpenVPN client side on Debian.&lt;/p&gt;
 &lt;h1&gt;Firewall&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Create script&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; nano iptables.sh
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; !/bin/bash&lt;/span&gt;
@@ -626,7 +675,7 @@ zone "3.XXX.10.in-addr.arpa" IN {
 &lt;span class="x"&gt;sudo iptables -t filter -P OUTPUT DROP&lt;/span&gt;
 
 
-&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;############################## Forwarding ################################&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;############################## Forwarding (LAN to VPN) ################################&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 
 &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; HTTP&lt;/span&gt;
 &lt;span class="x"&gt;sudo iptables -A FORWARD -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -o tun+ -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
@@ -636,6 +685,15 @@ zone "3.XXX.10.in-addr.arpa" IN {
 
 &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; SSH&lt;/span&gt;
 &lt;span class="x"&gt;sudo iptables -A FORWARD -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -o tun+ -p tcp --dport 22 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; SMTP Submission with TLS&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -o tun+ -p tcp --dport 465 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; SMTP Submission with StartTLS&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -o tun+ -p tcp --dport 587 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; IMAPS&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -o tun+ -p tcp --dport 993 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
 
 &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow forwarding for already established connection &lt;/span&gt;
 &lt;span class="x"&gt;sudo iptables -A FORWARD -i tun+ -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
@@ -657,10 +715,20 @@ zone "3.XXX.10.in-addr.arpa" IN {
 &lt;span class="x"&gt;sudo iptables -A INPUT -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
 
 
-&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;######################## Outgoing flow via VPN ##########################&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;############################ Outgoing local flow via VPN ##############################&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 
 &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow DNS&lt;/span&gt;
 &lt;span class="x"&gt;sudo iptables -A OUTPUT -o tun+ -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o tun+ -p tcp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow NTP&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o tun+ -p udp --dport 123 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow HTTP&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o tun+ -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow HTTPS&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o tun+ -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
 
 &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow incoming established connection from VPN&lt;/span&gt;
 &lt;span class="x"&gt;sudo iptables -A INPUT -i tun+ -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
@@ -669,7 +737,7 @@ zone "3.XXX.10.in-addr.arpa" IN {
 &lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;######################## Incoming flow from Lan Interface ###########################&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 
 &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; DHCP&lt;/span&gt;
-&lt;span class="x"&gt;sudo iptables -I INPUT -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -p udp -m udp --sport 67 --dport 68 -j ACCEPT&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -I INPUT -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -p udp -m udp --sport 68 --dport 67 -j ACCEPT&lt;/span&gt;
 
 &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; SSH&lt;/span&gt;
 &lt;span class="x"&gt;sudo iptables -A INPUT -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -d &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanAddress&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 22 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
@@ -677,21 +745,40 @@ zone "3.XXX.10.in-addr.arpa" IN {
 &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; DNS&lt;/span&gt;
 &lt;span class="x"&gt;sudo iptables -A INPUT -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -d &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanAddress&lt;/span&gt;&lt;span class="x"&gt; -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
 
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; NTP&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A INPUT -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -d &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanAddress&lt;/span&gt;&lt;span class="x"&gt; -p udp --dport 123 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
 &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow outgoing established connection&lt;/span&gt;
 &lt;span class="x"&gt;sudo iptables -A OUTPUT -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanAddress&lt;/span&gt;&lt;span class="x"&gt; -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
 
 
-&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;####################### Incoming flow from Local Interface ##########################&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;###################### Internal flow from Local Interface #########################&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 
 &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; DNS&lt;/span&gt;
 &lt;span class="x"&gt;sudo iptables -A INPUT -i lo -d 127.0.0.1 -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o lo -d 127.0.0.1 -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
 
 &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; RNDC&lt;/span&gt;
 &lt;span class="x"&gt;sudo iptables -A INPUT -i lo -d 127.0.0.1 -p tcp --dport 953 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
 
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow outgoing established connection&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow outgoing and incoming established connection&lt;/span&gt;
 &lt;span class="x"&gt;sudo iptables -A OUTPUT -o lo -s 127.0.0.1 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</content><category term="APU"></category><category term="Debian Linux"></category></entry><entry><title>HTTP Observatory Website</title><link href="http://didier.bernaudeau.net/HTTP_Observatory_Website.html" rel="alternate"></link><published>2017-08-20T12:16:00+02:00</published><updated>2017-07-24T23:17:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-08-20:/HTTP_Observatory_Website.html</id><summary type="html">&lt;p&gt;HTTP Observatory Web is a web application for TLS and HTTP Observatory. This post describes a way to install HTTP Observatory Web on Red Hat 7.3.&lt;/p&gt;
+&lt;span class="x"&gt;sudo iptables -A INPUT -i lo -s 127.0.0.1 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Execute script to set rules&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; chmod o+w iptables.sh
+&lt;span class="gp"&gt;$&lt;/span&gt; ./iptables.sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install tool for iptables&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install iptables-persistent
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Save current IPv4 rules? Yes
+Save current IPv6 rules? Yes
+&lt;/pre&gt;&lt;/div&gt;</content><category term="APU"></category><category term="Debian Stretch"></category></entry><entry><title>HTTP Observatory Website</title><link href="http://didier.bernaudeau.net/HTTP_Observatory_Website.html" rel="alternate"></link><published>2017-08-20T12:16:00+02:00</published><updated>2017-07-24T23:17:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-08-20:/HTTP_Observatory_Website.html</id><summary type="html">&lt;p&gt;HTTP Observatory Web is a web application for TLS and HTTP Observatory. This post describes a way to install HTTP Observatory Web on Red Hat 7.3.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;HTTP Observatory Web is a web application for TLS and HTTP Observatory. This post describes a way to install HTTP Observatory Web on Red Hat 7.3.&lt;/p&gt;
 
 &lt;h1&gt;Nginx&lt;/h1&gt;
@@ -1445,7 +1532,7 @@ fam15h_power-pci-00c4
 Adapter: PCI adapter
 power1:        1.82 mW (interval =   0.01 s, crit =   6.00 W)
 &lt;/pre&gt;&lt;/div&gt;
-&lt;!-- http://pcengines.info/forums/?page=post&amp;id=51C5DE97-2D0E-40E9-BFF7-7F7FE30E18FE --&gt;</content><category term="APU"></category><category term="Debian"></category></entry><entry><title>How to install Postgresql on RedHat</title><link href="http://didier.bernaudeau.net/HowTo_Install_Postgresql_On_RedHat.html" rel="alternate"></link><published>2017-07-29T21:51:00+02:00</published><updated>2017-07-29T21:51:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-29:/HowTo_Install_Postgresql_On_RedHat.html</id><summary type="html">&lt;p&gt;By default, RedHat Linux Enterprise provides python 9.1 only. This post is a way to install Postgresql 9.6 on RedHat 7.3.&lt;/p&gt;
+&lt;!-- http://pcengines.info/forums/?page=post&amp;id=51C5DE97-2D0E-40E9-BFF7-7F7FE30E18FE --&gt;</content><category term="APU"></category><category term="Debian Stretch"></category></entry><entry><title>How to install Postgresql on RedHat</title><link href="http://didier.bernaudeau.net/HowTo_Install_Postgresql_On_RedHat.html" rel="alternate"></link><published>2017-07-29T21:51:00+02:00</published><updated>2017-07-29T21:51:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-29:/HowTo_Install_Postgresql_On_RedHat.html</id><summary type="html">&lt;p&gt;By default, RedHat Linux Enterprise provides python 9.1 only. This post is a way to install Postgresql 9.6 on RedHat 7.3.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;By default, RedHat Linux Enterprise provides python 9.1 only. This post is a way to install Postgresql 9.6 on RedHat 7.3.&lt;/p&gt;
 
 &lt;h1&gt;Installation&lt;/h1&gt;
@@ -1529,7 +1616,7 @@ log_statement = 'all'
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -1564,7 +1651,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -1581,7 +1668,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -1598,7 +1685,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -1627,7 +1714,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -1650,7 +1737,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="case"&gt;
 &lt;h3&gt;Case&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2663,7 +2750,7 @@ net.ipv6.conf.default.disable_ipv6=1
 &lt;li&gt;Install a Firewall IPv4/v6&lt;/li&gt;
 &lt;li&gt;Install SeLinux&lt;/li&gt;
 &lt;li&gt;Secure Boot&lt;/li&gt;
-&lt;/ul&gt;</content><category term="Debian"></category></entry><entry><title>OVMF: UEFI support for Virtual Machine</title><link href="http://didier.bernaudeau.net/OVMF_UEFI_support_for_Virtual_Machine.html" rel="alternate"></link><published>2017-01-29T19:30:00+01:00</published><updated>2017-01-31T13:54:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-01-29:/OVMF_UEFI_support_for_Virtual_Machine.html</id><summary type="html">&lt;p&gt;OVMF (Open Virtual Machine Firmware) is the UEFI reference implementation. This firmware is based on EDK2 (EFI Development Kit) and it comes from the Intel's project "TianoCore".&lt;/p&gt;
+&lt;/ul&gt;</content><category term="Debian Stretch"></category></entry><entry><title>OVMF: UEFI support for Virtual Machine</title><link href="http://didier.bernaudeau.net/OVMF_UEFI_support_for_Virtual_Machine.html" rel="alternate"></link><published>2017-01-29T19:30:00+01:00</published><updated>2017-01-31T13:54:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-01-29:/OVMF_UEFI_support_for_Virtual_Machine.html</id><summary type="html">&lt;p&gt;OVMF (Open Virtual Machine Firmware) is the UEFI reference implementation. This firmware is based on EDK2 (EFI Development Kit) and it comes from the Intel's project "TianoCore".&lt;/p&gt;
 &lt;p&gt;By default, virtual machine uses a legacy BIOS implementation (For instance, QEMU uses SeaBIOS). With OVMF, virtual machine could enjoy the new features such as GUID partition tables and Secure Boot (for testing purposes only).&lt;/p&gt;
 &lt;p&gt;At this point, running a UEFI virtual machine with QEMU is still a fairly obscure use-case for which it can be difficult to find good examples. So, this post describes how to install OVMF on Gentoo Linux then, how to start an UEFI virtual machine with QEMU/KVM.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;OVMF (Open Virtual Machine Firmware) is the UEFI reference implementation. This firmware is based on EDK2 (EFI Development Kit) and it comes from the Intel's project "TianoCore".&lt;/p&gt;
@@ -4077,7 +4164,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;p&gt;ERROR [org.jboss.msc.service.fail] (MSC service thread 1-1) MSC000001: Failed to start service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: org.jboss.msc.service.StartException in service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: WFLYDM0018: Unable to start service&lt;/p&gt;</content><category term="Certificate"></category><category term="Debian"></category></entry><entry><title>Press review of July 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_July_2016.html" rel="alternate"></link><published>2016-07-01T21:11:00+02:00</published><updated>2016-07-25T22:21:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-07-01:/Press_review_of_July_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -4179,7 +4266,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;&lt;a class="reference external" href="http://www.tripwire.com/state-of-security/featured/boobytrapped-printers-windows-malware/"&gt;How boobytrapped printers have been able to infect Windows PCs for over 20 years&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="img-responsive first last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="img-responsive last first" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;07/13/2016&lt;/td&gt;
@@ -4283,7 +4370,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 </content><category term="Press review"></category></entry><entry><title>Press review of June 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_June_2016.html" rel="alternate"></link><published>2016-06-01T22:44:00+02:00</published><updated>2016-07-22T22:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-06-01:/Press_review_of_June_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -4489,7 +4576,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;&lt;a class="reference external" href="https://blog.bity.com/la-faille-de-the-dao-les-cles-pour-comprendre/"&gt;La faille de The DAO : les clés pour comprendre&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="img-responsive first last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="img-responsive last first" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;06/20/2016&lt;/td&gt;
@@ -4517,7 +4604,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;&lt;a class="reference external" href="http://www.ibtimes.co.uk/ukrainian-bank-cyber-heist-hackers-compromise-swift-network-10m-theft-1567699"&gt;Ukrainian bank cyber-heist: Hackers take off with $10m&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="img-responsive first last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="img-responsive last first" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;06/28/2016&lt;/td&gt;
@@ -4625,7 +4712,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 </content><category term="Press review"></category></entry><entry><title>Press review of May 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_May_2016.html" rel="alternate"></link><published>2016-05-01T23:20:00+02:00</published><updated>2016-06-21T22:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-05-01:/Press_review_of_May_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -5030,7 +5117,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 
 &lt;div class="section" id="basic-certificate-field"&gt;
 &lt;h2&gt;Basic certificate field&lt;/h2&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
 &lt;col width="89%"&gt;&lt;/col&gt;
@@ -5052,7 +5139,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="certificate-extension"&gt;
 &lt;h2&gt;Certificate extension&lt;/h2&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="12%"&gt;&lt;/col&gt;
 &lt;col width="88%"&gt;&lt;/col&gt;
@@ -5091,7 +5178,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 </content><category term="Certificate"></category></entry><entry><title>Press review of April 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_April_2016.html" rel="alternate"></link><published>2016-04-01T21:24:00+02:00</published><updated>2016-04-18T22:37:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-04-01:/Press_review_of_April_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -5144,7 +5231,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://reflets.info/panamapapers-mossack-fonseca-une-incroyable-bourde/"&gt;#PanamaPapers : Mossack Fonseca une incroyable bourde ?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="img-responsive first last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="img-responsive last first" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;04/04/2016&lt;/td&gt;
@@ -5235,7 +5322,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.theregister.co.uk/2016/04/13/burr_feinstein_antiencryption_bill_is_out/"&gt;Line by line, how the US anti-encryption bill will kill our privacy, security&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="img-responsive first last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="img-responsive last first" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;04/07/2016&lt;/td&gt;
@@ -5366,7 +5453,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://www.theguardian.com/technology/2016/apr/19/ss7-hack-explained-mobile-phone-vulnerability-snooping-texts-calls"&gt;SS7 hack explained: what can you do about it?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="img-responsive first last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="img-responsive last first" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;04/18/2016&lt;/td&gt;
@@ -5451,7 +5538,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 </content><category term="Press review"></category></entry><entry><title>Press review of Mars 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_Mars_2016.html" rel="alternate"></link><published>2016-03-01T22:25:00+01:00</published><updated>2016-04-18T20:22:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-03-01:/Press_review_of_Mars_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -6098,7 +6185,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 </content><category term="Software"></category></entry><entry><title>Press review of February 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_February_2016.html" rel="alternate"></link><published>2016-02-01T22:55:00+01:00</published><updated>2016-03-07T22:36:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-02-01:/Press_review_of_February_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -6578,7 +6665,7 @@ Vulnerability&lt;/td&gt;
 </content><category term="Press review"></category></entry><entry><title>Press review of January 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_January_2016.html" rel="alternate"></link><published>2016-01-01T22:34:00+01:00</published><updated>2016-04-18T22:01:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-01-01:/Press_review_of_January_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -7429,7 +7516,7 @@ Vulnerability&lt;/td&gt;
 </content><category term="Blockchain"></category></entry><entry><title>Press review of december 2015</title><link href="http://didier.bernaudeau.net/Press_review_of_december_2015.html" rel="alternate"></link><published>2015-12-01T22:22:00+01:00</published><updated>2016-01-09T22:32:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-12-01:/Press_review_of_december_2015.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -7972,7 +8059,7 @@ Vulnerability&lt;/td&gt;
 </content><category term="PKI"></category><category term="Certificate"></category></entry><entry><title>Press review of november 2015</title><link href="http://didier.bernaudeau.net/Press_review_of_november_2015.html" rel="alternate"></link><published>2015-11-01T22:34:00+01:00</published><updated>2016-02-27T12:50:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-11-01:/Press_review_of_november_2015.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -8729,7 +8816,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="protocol-version"&gt;
 &lt;h2&gt;Protocol version&lt;/h2&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -8759,7 +8846,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="compression-method"&gt;
 &lt;h2&gt;Compression method&lt;/h2&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -8787,7 +8874,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Cryptographic algorithm&lt;/h2&gt;
 &lt;div class="section" id="key-exchange"&gt;
 &lt;h3&gt;Key exchange&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -8832,7 +8919,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="encryption"&gt;
 &lt;h3&gt;Encryption&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -8887,7 +8974,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="message-authentication-code"&gt;
 &lt;h3&gt;Message Authentication Code&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -8948,7 +9035,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;p&gt;Cipher suite is a list of one or more cipher strings separated by special char (colon, comma, space, ...). The names for cipher suites are defined by IANA (Internet Assigned Numbers Authority).&lt;/p&gt;
 &lt;p&gt;Cipher suite defines algorithms used for each cryptographic function: key exchange, authentication, encryption and message authentication code. If algorithm for key exchange is not mentioned, default algorithm is RSA.&lt;/p&gt;
 &lt;p&gt;The table below details some example of cipher suites:&lt;/p&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="39%"&gt;&lt;/col&gt;
@@ -9105,7 +9192,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="28%"&gt;&lt;/col&gt;
 &lt;col width="72%"&gt;&lt;/col&gt;
@@ -9164,7 +9251,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -9194,7 +9281,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in GPT (GUID Partition Table) during Microsoft Windows 8.1 installation process&lt;/p&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -9296,7 +9383,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="21%"&gt;&lt;/col&gt;
 &lt;col width="79%"&gt;&lt;/col&gt;
@@ -9364,7 +9451,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -9394,7 +9481,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in MBR (Master Boot Record) during Microsoft Windows 8.1 installation process for primary partition then during Debian 8 installation process for extended partition :&lt;/p&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
@@ -9467,7 +9554,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9496,7 +9583,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9516,7 +9603,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9539,7 +9626,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9556,7 +9643,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9576,7 +9663,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9593,7 +9680,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9616,7 +9703,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="optical-disc-drive"&gt;
 &lt;h3&gt;Optical Disc Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -9654,7 +9741,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -9674,7 +9761,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="wifi"&gt;
 &lt;h3&gt;Wifi&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9694,7 +9781,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="bluetooth"&gt;
 &lt;h3&gt;Bluetooth&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9714,7 +9801,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="modem"&gt;
 &lt;h3&gt;Modem&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9731,7 +9818,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="firewire-controller"&gt;
 &lt;h3&gt;FireWire Controller&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9748,7 +9835,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-memory-stick"&gt;
 &lt;h3&gt;Card reader (Memory Stick)&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9765,7 +9852,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-secure-digital"&gt;
 &lt;h3&gt;Card reader (Secure Digital)&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9782,7 +9869,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9805,7 +9892,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -10324,7 +10411,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10365,7 +10452,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10382,7 +10469,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10414,7 +10501,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10437,7 +10524,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10457,7 +10544,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10474,7 +10561,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10497,7 +10584,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10517,7 +10604,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="wifi-and-bluetooth"&gt;
 &lt;h3&gt;Wifi and Bluetooth&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10540,7 +10627,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory-card-reader"&gt;
 &lt;h3&gt;Memory card reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10560,7 +10647,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="smartcard-reader"&gt;
 &lt;h3&gt;Smartcard Reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10577,7 +10664,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="fingerprint-reader"&gt;
 &lt;h3&gt;Fingerprint Reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10594,7 +10681,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="nfc-reader"&gt;
 &lt;h3&gt;NFC Reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10611,7 +10698,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10631,7 +10718,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10667,7 +10754,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;UEFI BIOS&lt;/h2&gt;
 &lt;div class="section" id="version"&gt;
 &lt;h3&gt;Version&lt;/h3&gt;
-&lt;table border="1" class="docutils table-striped table table-hover"&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="59%"&gt;&lt;/col&gt;
 &lt;col width="41%"&gt;&lt;/col&gt;

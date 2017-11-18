@@ -99,7 +99,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-10-15T14:37:00+02:00"> dim. 15 octobre 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-11-11T15:16:00+01:00"> sam. 11 novembre 2017</time>
             </span>
 
 
@@ -191,7 +191,7 @@ restrict 10.XXX.3.0 mask 255.255.255.0 nomodify notrap
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/systemd/timesyncd.conf
 </pre></div>
-<div class="highlight"><pre><span></span>NTP=g8way.lazuly.net
+<div class="highlight"><pre><span></span>NTP=g8way.domain.net
 </pre></div>
 <div class="highlight"><pre><span></span><span class="gp">#</span> systemctl restart systemd-timesyncd.service
 <span class="gp">#</span> systemctl status systemd-timesyncd.service
@@ -221,7 +221,7 @@ ddns-update-style interim;
 ignore client-updates;
 
 # Define zone
-zone lazuly.net.
+zone domain.net.
 {
         primary 127.0.0.1;
         key rndc-key;
@@ -326,9 +326,9 @@ zone "3.XXX.10.in-addr.arpa" IN {
 };
 </pre></div>
 <ul>
-<li>Edit zone file for lazuly.net</li>
+<li>Edit zone file for domain.net</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /var/cache/bind/lazuly.net.zone
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /var/cache/bind/domain.net.zone
 </pre></div>
 <div class="highlight"><pre><span></span><span class="p">$</span><span class="nv">ttl</span><span class="x"> 38400</span>
 
@@ -340,7 +340,7 @@ zone "3.XXX.10.in-addr.arpa" IN {
 <span class="x">                                86400      ; TTL [1 jour]</span>
 <span class="x">)</span>
 
-<span class="x">@                IN       NS      ns.lazuly.net.</span>
+<span class="x">@                IN       NS      ns.domain.net.</span>
 
 <span class="x">g8way            IN       A       10.XXX.3.254</span>
 <span class="x">edge             IN       A       10.0.0.1</span>
@@ -551,6 +551,11 @@ zone "3.XXX.10.in-addr.arpa" IN {
 </pre></div>
 <div class="highlight"><pre><span></span>Save current IPv4 rules? Yes
 Save current IPv6 rules? Yes
+</pre></div>
+<ul>
+<li>Save configuration (to be done after every modification)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo dpkg-reconfigure iptables-persistent
 </pre></div>
             </div>
             <!-- /.entry-content -->

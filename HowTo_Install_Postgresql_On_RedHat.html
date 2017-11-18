@@ -99,7 +99,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-07-29T21:51:00+02:00"> sam. 29 juillet 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-10-17T22:24:00+02:00"> mar. 17 octobre 2017</time>
             </span>
 
 
@@ -138,6 +138,31 @@ My personal blog note            </a>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl <span class="nb">enable</span> postgresql-9.6
 <span class="gp">$</span> sudo systemctl start postgresql-9.6
 </pre></div>
+<h1>Remote access</h1>
+<ul>
+<li>Enable networking</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /var/lib/pgsql/9.6/data/postgresql.conf
+</pre></div>
+<div class="highlight"><pre><span></span>listen_addresses='*'
+</pre></div>
+<ul>
+<li>Enable client authentication</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /var/lib/pgsql/9.6/data/pg_hba.conf
+</pre></div>
+<div class="highlight"><pre><span></span>host all all W.X.Y.Z/32 md5
+</pre></div>
+<ul>
+<li>Restart Postgresql</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl restart postgresql-9.6
+</pre></div>
+<ul>
+<li>Check</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo netstat -tlnp <span class="p">|</span> grep 5432
+</pre></div>
 <h1>Logging</h1>
 <p>The following step is for debugging purpose only.</p>
 <ul>
@@ -150,12 +175,7 @@ log_filename = 'postgresql-%a.log'
 log_statement = 'all'
 </pre></div>
 <ul>
-<li>
-<p>Restart Postgresql</p>
-</li>
-<li>
-<p>Enable automatic start</p>
-</li>
+<li>Restart Postgresql</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl restart postgresql-9.6
 </pre></div>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-10-15T14:37:00+02:00</updated><entry><title>How to install OpenVPN on ArchLinux</title><link href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html" rel="alternate"></link><published>2017-09-03T22:46:00+02:00</published><updated>2017-09-09T22:47:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-09-03:/HowTo_install_OpenVPN_on_ArchLinux.html</id><summary type="html">&lt;p&gt;OpenVPN is an open-source software application that implements virtual private network (VPN) for creating secure point-to-point connections. This software is available on all Linux distributions. This tutorial describes how to install an OpenVPN server on ArchLinux with routed lan.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-11-18T01:55:00+01:00</updated><entry><title>How to install OpenVPN on ArchLinux</title><link href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html" rel="alternate"></link><published>2017-09-03T22:46:00+02:00</published><updated>2017-11-18T01:55:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-09-03:/HowTo_install_OpenVPN_on_ArchLinux.html</id><summary type="html">&lt;p&gt;OpenVPN is an open-source software application that implements virtual private network (VPN) for creating secure point-to-point connections. This software is available on all Linux distributions. This tutorial describes how to install an OpenVPN server on ArchLinux with routed lan.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;OpenVPN is an open-source software application that implements virtual private network (VPN) for creating secure point-to-point connections. This software is available on all Linux distributions. This tutorial describes how to install an OpenVPN server on ArchLinux with routed lan.&lt;/p&gt;
 
 &lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-09-03_OpenVPN_01.png" width="60%"/&gt;&lt;/p&gt;
 &lt;h1&gt;Create a PKI&lt;/h1&gt;
 &lt;p&gt;This following PKI is created on my laptop with Gentoo Linux. This is a quick way to create a PKI for testing purpose only.&lt;/p&gt;
+&lt;h2&gt;Certificate Authority&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Install Easy RSA&lt;/li&gt;
 &lt;/ul&gt;
@@ -46,6 +47,7 @@ set_var EASYRSA_CERT_EXPIRE     1825
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; /root/MyPKI/easyrsa build-ca
 &lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Server Certificate&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Generates a server certificate &lt;/li&gt;
 &lt;/ul&gt;
@@ -63,10 +65,25 @@ set_var EASYRSA_CERT_EXPIRE     1825
 &lt;span class="gp"&gt;#&lt;/span&gt; scp -p /root/MyPKI/pki/issued/openvpn.crt user@hostname:/home/user/
 &lt;span class="gp"&gt;#&lt;/span&gt; scp -p /root/MyPKI/pki/private/openvpn.key user@hostname:/home/user/
 &lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Client Certificate&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Create a certificate for a client&lt;/li&gt;
+&lt;li&gt;Create a certificate&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; /root/MyPKI/easyrsa build-client-full hostname nopass
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; /root/MyPKI/
+&lt;span class="gp"&gt;#&lt;/span&gt; ./easyrsa build-client-full hostname nopass
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Get private key&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /root/MyPKI/pki/private/hostname.key
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Get certificate&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /root/MyPKI/pki/issued/hostname.crt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;or&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; openssl x509 -in hostname.crt -text
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Server Side&lt;/h1&gt;
 &lt;p&gt;OpenVPN server is install on "edge.domain.net", a dedicated server hosted by an hosting provider.&lt;/p&gt;
@@ -139,6 +156,11 @@ tls-cipher TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start openvpn-server@server.service
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; openvpn-server@server.service
 &lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Read log for debugging&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo journalctl -u openvpn-server@server.service --since today
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;Network routing&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Edit kernel configuration&lt;/li&gt;
@@ -155,7 +177,7 @@ tls-cipher TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384
 &lt;ul&gt;
 &lt;li&gt;Verify&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;sudo sysctl net.ipv4.ip_forward&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo sysctl net.ipv4.ip_forward
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;Configure Netfilter&lt;/h2&gt;
 &lt;ul&gt;
@@ -176,55 +198,129 @@ tls-cipher TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; !/bin/bash&lt;/span&gt;
 
-&lt;span class="x"&gt;IpAddress=w.x.y.z&lt;/span&gt;
+&lt;span class="x"&gt;PublicAddress=w.x.y.z&lt;/span&gt;
+&lt;span class="x"&gt;PublicInterface=enp0s20&lt;/span&gt;
+
 &lt;span class="x"&gt;VpnNetwork=10.0.0.0/24&lt;/span&gt;
+&lt;span class="x"&gt;G8wayAddress=10.0.0.Y&lt;/span&gt;
+&lt;span class="x"&gt;LanNetwork=10.XX.3.0/24&lt;/span&gt;
+
+&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;#### Init&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 
 &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; flush existing rules&lt;/span&gt;
 &lt;span class="x"&gt;sudo iptables -F&lt;/span&gt;
 &lt;span class="x"&gt;sudo iptables -X&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -t nat -F&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -t nat -X&lt;/span&gt;
 
 &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Default policy&lt;/span&gt;
 &lt;span class="x"&gt;sudo iptables -t filter -P INPUT DROP&lt;/span&gt;
 &lt;span class="x"&gt;sudo iptables -t filter -P FORWARD DROP&lt;/span&gt;
 &lt;span class="x"&gt;sudo iptables -t filter -P OUTPUT DROP&lt;/span&gt;
 
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow outgoing and incoming established connection&lt;/span&gt;
-&lt;span class="x"&gt;sudo iptables -A OUTPUT -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;IpAddress&lt;/span&gt;&lt;span class="x"&gt; -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
-&lt;span class="x"&gt;sudo iptables -A INPUT -d &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;IpAddress&lt;/span&gt;&lt;span class="x"&gt; -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;#### Logging&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Create chain for logging&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -N LogInputChain&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -N LogOutputChain&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -N LogForwardChain&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Configure chain for logging&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A LogInputChain -m limit --limit 2/min -j LOG --log-prefix "Dropped in Input chain: " --log-level 4&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A LogOutputChain -m limit --limit 2/min -j LOG --log-prefix "Dropped in Output chain: " --log-level 4&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A LogForwardChain -m limit --limit 2/min -j LOG --log-prefix "Dropped in Forward chain: " --log-level 4&lt;/span&gt;
 
 
-&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;############################# Outgoing flows ###############################&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;#### NAT&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow DNS&lt;/span&gt;
-&lt;span class="x"&gt;sudo iptables -A OUTPUT -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Outgoing flow to internet from VPN&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -t nat -A POSTROUTING -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;VpnNetwork&lt;/span&gt;&lt;span class="x"&gt; -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -j MASQUERADE&lt;/span&gt;
 
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow Internet Browsing&lt;/span&gt;
-&lt;span class="x"&gt;sudo iptables -A OUTPUT -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
-&lt;span class="x"&gt;sudo iptables -A OUTPUT -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Outgoing flow to internet from LAN&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -t nat -A POSTROUTING -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanNetwork&lt;/span&gt;&lt;span class="x"&gt; -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -j MASQUERADE&lt;/span&gt;
 
-&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;############################# Incoming flows ###############################&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow SSH&lt;/span&gt;
-&lt;span class="x"&gt;sudo iptables -A INPUT -i enp0s20 -d &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;IpAddress&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT&lt;/span&gt;
+&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;#### Forwarding flows (from G8way)&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow OpenVPN&lt;/span&gt;
-&lt;span class="x"&gt;sudo iptables -A INPUT -i enp0s20 -d &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;IpAddress&lt;/span&gt;&lt;span class="x"&gt; -p udp --dport 1194 -m conntrack --ctstate NEW -j ACCEPT&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; DNS&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i tun0 -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;G8wayAddress&lt;/span&gt;&lt;span class="x"&gt; -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i tun0 -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;G8wayAddress&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
 
-&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;############################# VPN flow ###############################&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; NTP&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i tun0 -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;G8wayAddress&lt;/span&gt;&lt;span class="x"&gt; -p udp --dport 123 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
 
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow TUN interface connections to OpenVPN server&lt;/span&gt;
-&lt;span class="x"&gt;sudo iptables -A INPUT -i tun+ -j ACCEPT&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; HTTP&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i tun0 -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;G8wayAddress&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
 
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow TUN interface connections to be forwarded through other interfaces&lt;/span&gt;
-&lt;span class="x"&gt;sudo iptables -A FORWARD -i tun+ -j ACCEPT&lt;/span&gt;
-&lt;span class="x"&gt;sudo iptables -A FORWARD -i tun+ -o enp0s20 -m state --state RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
-&lt;span class="x"&gt;sudo iptables -A FORWARD -i enp0s20 -o tun+ -m state --state RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; HTTPS&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i tun0 -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;G8wayAddress&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
 
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; NAT the VPN client traffic to the Internet&lt;/span&gt;
-&lt;span class="x"&gt;sudo iptables -t nat -A POSTROUTING -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;VpnNetwork&lt;/span&gt;&lt;span class="x"&gt; -o enp0s20 -j MASQUERADE&lt;/span&gt;
 
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow outgoing flow from TUN interface&lt;/span&gt;
-&lt;span class="x"&gt;sudo iptables -A OUTPUT -o tun+ -j ACCEPT&lt;/span&gt;
+&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;#### Forwarding flows (from internal LAN)&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; HTTP&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i tun0 -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanNetwork&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; HTTPS&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i tun0 -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanNetwork&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; SMTP (Submission with Start TLS)&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i tun0 -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanNetwork&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 465 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; SMTPS (Submission with SSL)&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i tun0 -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanNetwork&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 587 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; RSYNC&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i tun0 -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanNetwork&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 873 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; IMAPS&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i tun0 -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanNetwork&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 993 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow forwarding for already established connection&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -o tun0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+
+&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;#### Incoming flow (from Internet)&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; OpenVPN&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A INPUT -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -d &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicAddress&lt;/span&gt;&lt;span class="x"&gt; -p udp --dport 1194 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; SSH&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A INPUT -i enp0s20 -d &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicAddress&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 22 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow already established connection&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicAddress&lt;/span&gt;&lt;span class="x"&gt; -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+
+&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;#### Incoming flow (from VPN)&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; SSH&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A INPUT -i tun0 -p tcp --dport 22 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow already established connection&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o tun0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+
+&lt;span class="cp"&gt;##&lt;/span&gt;&lt;span class="c"&gt;## Outgoing flows (to Internet)&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; DNS&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicAddress&lt;/span&gt;&lt;span class="x"&gt; -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; HTTP&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicAddress&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; HTTPS&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicAddress&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow already established connection&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A INPUT -i&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicInterface&lt;/span&gt;&lt;span class="x"&gt; -d &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PublicAddress&lt;/span&gt;&lt;span class="x"&gt; -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Log (For debug only)&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A FORWARD -j LogForwardChain&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A INPUT -j LogInputChain&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -j LogOutputChain&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Change file access right&lt;/li&gt;
@@ -244,9 +340,15 @@ tls-cipher TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384
 &lt;ul&gt;
 &lt;li&gt;Restart Iptables&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;sudo systemctl restart iptables&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart iptables
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Viewing log&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo journalctl -k --since 20:00 &lt;span class="p"&gt;|&lt;/span&gt; grep &lt;span class="s2"&gt;"Dropped"&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; less
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Client Side&lt;/h1&gt;
+&lt;h2&gt;Debian&lt;/h2&gt;
 &lt;p&gt;OpenVPN client is install on "g8way.domain.net" based on Debian Linux. The configuration is quite tricky to get routed LAN.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Create system user for OpenVPN&lt;/li&gt;
@@ -312,7 +414,63 @@ sudo iptables -A OUTPUT -o tun+ -j ACCEPT
 sudo iptables -A FORWARD -i tun+ -j ACCEPT
 sudo iptables -A FORWARD -i tun+ -o enp3s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 sudo iptables -A FORWARD -i enp3s0: -o tun+ -m state --state RELATED,ESTABLISHED -j ACCEPT
---&gt;</content><category term="Network"></category><category term="ArchLinux"></category><category term="Debian Stretch"></category><category term="VPN"></category><category term="APU"></category></entry><entry><title>Homemade firewall/router on APU</title><link href="http://didier.bernaudeau.net/Homemade_firewall_router_on_APU.html" rel="alternate"></link><published>2017-08-30T21:50:00+02:00</published><updated>2017-10-15T14:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-08-30:/Homemade_firewall_router_on_APU.html</id><summary type="html">&lt;p&gt;A personal firewall/router is imperative to secure home network and, above all, to preserve your privacy against indiscretion from your ISP. This firewall/router must provide the minimal network services such as : routing, DHCP, DNS, ...&lt;/p&gt;
+--&gt;
+&lt;h2&gt;Android&lt;/h2&gt;
+&lt;p&gt;Install "OpenVPN Connect" then import the following profil:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;client
+
+remote edge.lazuly.net
+remote-cert-tls server
+
+cipher AES-256-GCM
+
+dev tun
+proto udp
+topology subnet
+
+nobind
+auth-nocache
+script-security 2
+
+persist-key
+persist-tun
+
+user openvpn
+group openvpn
+
+tls-version-min 1.2
+tls-cipher TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384
+
+&lt;span class="nt"&gt;&amp;lt;ca&amp;gt;&lt;/span&gt;
+-----BEGIN CERTIFICATE-----
+...
+-----END CERTIFICATE-----
+&lt;span class="nt"&gt;&amp;lt;/ca&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;cert&amp;gt;&lt;/span&gt;
+-----BEGIN CERTIFICATE-----
+...
+-----END CERTIFICATE-----
+&lt;span class="nt"&gt;&amp;lt;/cert&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;
+-----BEGIN PRIVATE KEY-----
+.....
+-----END PRIVATE KEY-----
+&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+
+key-direction 1
+
+&lt;span class="nt"&gt;&amp;lt;tls-auth&amp;gt;&lt;/span&gt;
+#
+# 2048 bit OpenVPN static key
+#
+-----BEGIN OpenVPN Static key V1-----
+.....
+-----END OpenVPN Static key V1-----
+&lt;span class="nt"&gt;&amp;lt;/tls-auth&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;nowadays, the ciphersuite "ECDHE-ECDSA-AES256-GCM-SHA384" seems to be unsupported by OpenVPN Connect 1.1.22&lt;/p&gt;</content><category term="Network"></category><category term="ArchLinux"></category><category term="Debian Stretch"></category><category term="VPN"></category><category term="APU"></category></entry><entry><title>Homemade firewall/router on APU</title><link href="http://didier.bernaudeau.net/Homemade_firewall_router_on_APU.html" rel="alternate"></link><published>2017-08-30T21:50:00+02:00</published><updated>2017-11-11T15:16:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-08-30:/Homemade_firewall_router_on_APU.html</id><summary type="html">&lt;p&gt;A personal firewall/router is imperative to secure home network and, above all, to preserve your privacy against indiscretion from your ISP. This firewall/router must provide the minimal network services such as : routing, DHCP, DNS, ...&lt;/p&gt;
 &lt;p&gt;In this configuration, IPv6 is completely disabled because my ISP doesn't support prefix delegation, which is mandatory to have IPv6 subnetting on a non-flat network.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;A personal firewall/router is imperative to secure home network and, above all, to preserve your privacy against indiscretion from your ISP. This firewall/router must provide the minimal network services such as : routing, DHCP, DNS, ...&lt;/p&gt;
 &lt;p&gt;In this configuration, IPv6 is completely disabled because my ISP doesn't support prefix delegation, which is mandatory to have IPv6 subnetting on a non-flat network.&lt;/p&gt;
@@ -392,7 +550,7 @@ restrict 10.XXX.3.0 mask 255.255.255.0 nomodify notrap
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/systemd/timesyncd.conf
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;NTP=g8way.lazuly.net
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;NTP=g8way.domain.net
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl restart systemd-timesyncd.service
 &lt;span class="gp"&gt;#&lt;/span&gt; systemctl status systemd-timesyncd.service
@@ -422,7 +580,7 @@ ddns-update-style interim;
 ignore client-updates;
 
 # Define zone
-zone lazuly.net.
+zone domain.net.
 {
         primary 127.0.0.1;
         key rndc-key;
@@ -527,9 +685,9 @@ zone "3.XXX.10.in-addr.arpa" IN {
 };
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;Edit zone file for lazuly.net&lt;/li&gt;
+&lt;li&gt;Edit zone file for domain.net&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /var/cache/bind/lazuly.net.zone
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /var/cache/bind/domain.net.zone
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="x"&gt; 38400&lt;/span&gt;
 
@@ -541,7 +699,7 @@ zone "3.XXX.10.in-addr.arpa" IN {
 &lt;span class="x"&gt;                                86400      ; TTL [1 jour]&lt;/span&gt;
 &lt;span class="x"&gt;)&lt;/span&gt;
 
-&lt;span class="x"&gt;@                IN       NS      ns.lazuly.net.&lt;/span&gt;
+&lt;span class="x"&gt;@                IN       NS      ns.domain.net.&lt;/span&gt;
 
 &lt;span class="x"&gt;g8way            IN       A       10.XXX.3.254&lt;/span&gt;
 &lt;span class="x"&gt;edge             IN       A       10.0.0.1&lt;/span&gt;
@@ -752,6 +910,11 @@ zone "3.XXX.10.in-addr.arpa" IN {
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Save current IPv4 rules? Yes
 Save current IPv6 rules? Yes
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Save configuration (to be done after every modification)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo dpkg-reconfigure iptables-persistent
 &lt;/pre&gt;&lt;/div&gt;</content><category term="APU"></category><category term="Debian Stretch"></category></entry><entry><title>HTTP Observatory Website</title><link href="http://didier.bernaudeau.net/HTTP_Observatory_Website.html" rel="alternate"></link><published>2017-08-20T12:16:00+02:00</published><updated>2017-07-24T23:17:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-08-20:/HTTP_Observatory_Website.html</id><summary type="html">&lt;p&gt;HTTP Observatory Web is a web application for TLS and HTTP Observatory. This post describes a way to install HTTP Observatory Web on Red Hat 7.3.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;HTTP Observatory Web is a web application for TLS and HTTP Observatory. This post describes a way to install HTTP Observatory Web on Red Hat 7.3.&lt;/p&gt;
 
@@ -1482,7 +1645,7 @@ fam15h_power-pci-00c4
 Adapter: PCI adapter
 power1:        1.82 mW (interval =   0.01 s, crit =   6.00 W)
 &lt;/pre&gt;&lt;/div&gt;
-&lt;!-- http://pcengines.info/forums/?page=post&amp;id=51C5DE97-2D0E-40E9-BFF7-7F7FE30E18FE --&gt;</content><category term="APU"></category><category term="Debian Stretch"></category></entry><entry><title>How to install Postgresql on RedHat</title><link href="http://didier.bernaudeau.net/HowTo_Install_Postgresql_On_RedHat.html" rel="alternate"></link><published>2017-07-29T21:51:00+02:00</published><updated>2017-07-29T21:51:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-29:/HowTo_Install_Postgresql_On_RedHat.html</id><summary type="html">&lt;p&gt;By default, RedHat Linux Enterprise provides python 9.1 only. This post is a way to install Postgresql 9.6 on RedHat 7.3.&lt;/p&gt;
+&lt;!-- http://pcengines.info/forums/?page=post&amp;id=51C5DE97-2D0E-40E9-BFF7-7F7FE30E18FE --&gt;</content><category term="APU"></category><category term="Debian Stretch"></category></entry><entry><title>How to install Postgresql on RedHat</title><link href="http://didier.bernaudeau.net/HowTo_Install_Postgresql_On_RedHat.html" rel="alternate"></link><published>2017-07-29T21:51:00+02:00</published><updated>2017-10-17T22:24:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-29:/HowTo_Install_Postgresql_On_RedHat.html</id><summary type="html">&lt;p&gt;By default, RedHat Linux Enterprise provides python 9.1 only. This post is a way to install Postgresql 9.6 on RedHat 7.3.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;By default, RedHat Linux Enterprise provides python 9.1 only. This post is a way to install Postgresql 9.6 on RedHat 7.3.&lt;/p&gt;
 
 &lt;h1&gt;Installation&lt;/h1&gt;
@@ -1508,6 +1671,31 @@ power1:        1.82 mW (interval =   0.01 s, crit =   6.00 W)
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; postgresql-9.6
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start postgresql-9.6
 &lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Remote access&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Enable networking&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /var/lib/pgsql/9.6/data/postgresql.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;listen_addresses='*'
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Enable client authentication&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /var/lib/pgsql/9.6/data/pg_hba.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;host all all W.X.Y.Z/32 md5
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart Postgresql&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart postgresql-9.6
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Check&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo netstat -tlnp &lt;span class="p"&gt;|&lt;/span&gt; grep 5432
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Logging&lt;/h1&gt;
 &lt;p&gt;The following step is for debugging purpose only.&lt;/p&gt;
 &lt;ul&gt;
@@ -1520,12 +1708,7 @@ log_filename = 'postgresql-%a.log'
 log_statement = 'all'
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Restart Postgresql&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Enable automatic start&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Restart Postgresql&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart postgresql-9.6
 &lt;/pre&gt;&lt;/div&gt;
@@ -1804,31 +1987,51 @@ log_statement = 'all'
 &lt;li&gt;Test with curl&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; curl -H &lt;span class="s1"&gt;'Accept: application/json; indent=4'&lt;/span&gt; -u user:******** http://127.0.0.1:8000/users/
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Python"></category></entry><entry><title>How to install Raspbian on a Raspberry Pi</title><link href="http://didier.bernaudeau.net/HowToInstallRaspbianOnRaspberryPi.html" rel="alternate"></link><published>2017-06-24T22:19:00+02:00</published><updated>2017-06-26T21:59:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-06-24:/HowToInstallRaspbianOnRaspberryPi.html</id><summary type="html">&lt;p&gt;Raspbian is the main operating system for a Raspberry Pi. This tutorial describes how to install and configure Raspbian Jessie Lite (without desktop environment) on a Raspberry Pi 3.&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;Raspbian is the main operating system for a Raspberry Pi. This tutorial describes how to install and configure Raspbian Jessie Lite (without desktop environment) on a Raspberry Pi 3.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Python"></category></entry><entry><title>How to install Raspbian on a Raspberry Pi</title><link href="http://didier.bernaudeau.net/HowToInstallRaspbianOnRaspberryPi.html" rel="alternate"></link><published>2017-06-24T22:19:00+02:00</published><updated>2017-06-26T21:59:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-06-24:/HowToInstallRaspbianOnRaspberryPi.html</id><summary type="html">&lt;p&gt;Raspbian is the main operating system for a Raspberry Pi. This post is a guideline to install and configure Raspbian Stretch Lite (based on Debian 9 without desktop environment).&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Raspbian is the main operating system for a Raspberry Pi. This post is a guideline to install and configure Raspbian Stretch Lite (based on Debian 9 without desktop environment).&lt;/p&gt;
 
-&lt;h1&gt;Create SD card&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Note regarding SD Card:&lt;/strong&gt;
+Most of the time you won’t see or have any incidences because SD corruption is not really simple to detect. Sometime it works and sometimes Pi is crashing/blocking and you don’t know why. So, it's better to protect your SD cards from unproper shutdown and also prevent SD card premature end of life.
+So, this tutorial suggests some optimization to reduce write access to the SD card.&lt;/p&gt;
+&lt;h1&gt;Getting started&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;Download Raspbian Jessie Lite&lt;/li&gt;
+&lt;li&gt;Download the last version of Raspbian (Stretch / Release date 2017-09-07)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget https://downloads.raspberrypi.org/raspbian_lite_latest
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
+&lt;li&gt;Uncompress file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; unzip 2017-09-07-raspbian-stretch-lite.zip
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
 &lt;li&gt;Copy files on the SD card&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; dd &lt;span class="nv"&gt;bs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4M &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;2017-04-10-raspbian-jessie.img &lt;span class="nv"&gt;of&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/mmcblk0 &lt;span class="nv"&gt;status&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;progress
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; dd &lt;span class="nv"&gt;bs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4M &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;2017-09-07-raspbian-stretch-lite.img &lt;span class="nv"&gt;of&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/mmcblk0 &lt;span class="nv"&gt;status&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;progress
 &lt;span class="gp"&gt;#&lt;/span&gt; sync
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;Insert the SD card in the Raspberry Pi&lt;/li&gt;
+&lt;li&gt;Enable SSH server&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1&gt;Start the system&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Connect with the default user and password&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Login&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pi&lt;/span&gt;
-&lt;span class="n"&gt;Password&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;raspberry&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mkdir /mnt/tmp
+&lt;span class="gp"&gt;#&lt;/span&gt; mount /dev/mmcblk0p1 /mnt/tmp
+&lt;span class="gp"&gt;#&lt;/span&gt; touch /mnt/tmp/ssh
+&lt;span class="gp"&gt;#&lt;/span&gt; umount /mnt/tmp
 &lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Insert the SD card in the Raspberry Pi&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Plug in ethernet cable and power supply&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Connect to your Raspberry by using SSH &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ssh pi@raspberrypi.domain.net
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;*&lt;em&gt;/!*&lt;/em&gt; the default password is "raspberry".&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Change default password&lt;/li&gt;
 &lt;/ul&gt;
@@ -1838,30 +2041,19 @@ log_statement = 'all'
 &lt;li&gt;Update the system&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get upgrade
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt autoremove
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;Configure the system&lt;/h1&gt;
+&lt;h1&gt;Basic system configuration&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Open the configuration menu&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo raspi-config
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;Change keyboard layout&lt;/li&gt;
+&lt;li&gt;Change hostname&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;...
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Expand Filesystem&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;7 Advanced Options
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2 Hostname
 A1 Expand Filesystem
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Enable SSH&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;5 Interfacing Options
-P2 SSH
-Would you like the SSH server to be enabled? Yes
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Define Time Zone&lt;/li&gt;
@@ -1870,6 +2062,93 @@ Would you like the SSH server to be enabled? Yes
 I2 Change Timezone
 Geographic area: Europe
 Time zone: Paris
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Expand Filesystem&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;7 Advanced Options
+A1 Expand Filesystem
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then select "finish" and reboot your Raspberry.&lt;/p&gt;
+&lt;h1&gt;Time synchronization with systemd&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Remove NTP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl stop ntp
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl disable ntp
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get remove --purge ntp
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Remove fake hardware clock&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;fake-hwclock.service                   enabled 
+hwclock-save.service                   enabled &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure TimeSync&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/systemd/timesyncd.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;NTP=g8way.domain.net
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart TimeSync daemon&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart systemd-timesyncd.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Check&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl status systemd-timesyncd.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;●&lt;/span&gt; &lt;span class="nt"&gt;systemd-timesyncd&lt;/span&gt;&lt;span class="nc"&gt;.service&lt;/span&gt; &lt;span class="nt"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;Network&lt;/span&gt; &lt;span class="nt"&gt;Time&lt;/span&gt; &lt;span class="nt"&gt;Synchronization&lt;/span&gt;
+   &lt;span class="nt"&gt;Loaded&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;loaded&lt;/span&gt; &lt;span class="o"&gt;(/&lt;/span&gt;&lt;span class="nt"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;systemd&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;system&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;systemd-timesyncd&lt;/span&gt;&lt;span class="nc"&gt;.service&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="nt"&gt;enabled&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="nt"&gt;vendor&lt;/span&gt; &lt;span class="nt"&gt;preset&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;enabled&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+  &lt;span class="nt"&gt;Drop-In&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;systemd&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;system&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;systemd-timesyncd&lt;/span&gt;&lt;span class="nc"&gt;.service.d&lt;/span&gt;
+           &lt;span class="err"&gt;└─&lt;/span&gt;&lt;span class="nt"&gt;disable-with-time-daemon&lt;/span&gt;&lt;span class="nc"&gt;.conf&lt;/span&gt;
+   &lt;span class="nt"&gt;Active&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;active&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;running&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nt"&gt;since&lt;/span&gt; &lt;span class="nt"&gt;Thu&lt;/span&gt; &lt;span class="nt"&gt;2017-09-07&lt;/span&gt; &lt;span class="nt"&gt;18&lt;/span&gt;&lt;span class="nd"&gt;:15:46&lt;/span&gt; &lt;span class="nt"&gt;CEST&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="nt"&gt;2&lt;/span&gt; &lt;span class="nt"&gt;months&lt;/span&gt; &lt;span class="nt"&gt;2&lt;/span&gt; &lt;span class="nt"&gt;days&lt;/span&gt; &lt;span class="nt"&gt;ago&lt;/span&gt;
+     &lt;span class="nt"&gt;Docs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;man&lt;/span&gt;&lt;span class="nd"&gt;:systemd-timesyncd&lt;/span&gt;&lt;span class="nc"&gt;.service&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;8&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+ &lt;span class="nt"&gt;Main&lt;/span&gt; &lt;span class="nt"&gt;PID&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;539&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;systemd-timesyn&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+   &lt;span class="nt"&gt;Status&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"Synchronized to time server 10.XXX.3.254:123 (g8way.domain.net)."&lt;/span&gt;
+   &lt;span class="nt"&gt;CGroup&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;system&lt;/span&gt;&lt;span class="nc"&gt;.slice&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;systemd-timesyncd&lt;/span&gt;&lt;span class="nc"&gt;.service&lt;/span&gt;
+           &lt;span class="err"&gt;└─&lt;/span&gt;&lt;span class="nt"&gt;539&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;systemd&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;systemd-timesyncd&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;timedatectl &lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;      Local time: Thu 2017-11-09 17:19:20 CET
+  Universal time: Thu 2017-11-09 16:19:20 UTC
+        RTC time: n/a
+       Time zone: Europe/Paris (CET, +0100)
+ Network time on: yes
+NTP synchronized: yes
+ RTC in local TZ: no
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Disable swap&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Disable swapping &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo swapoff /var/swap
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Disable the control swapping daemon&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl stop dphys-swapfile
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl disable dphys-swapfile
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Uninstall the control swapping tool&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get remove --purge dphys-swapfile
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Remove swap file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo rm /var/swap
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure kernel option (add noswap)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /boot/cmdline.txt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=749d10b0-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait noswap
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Configure the WiFi&lt;/h1&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo wpa_passphrase SSID
@@ -1885,8 +2164,7 @@ Time zone: Paris
 &lt;ul&gt;
 &lt;li&gt;Install PyGPIO&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install python3
-&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install RPi.GPIO
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install RPi.GPIO
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Install &lt;a href="http://didier.bernaudeau.net/WiringPi.html"&gt;WiringPI&lt;/a&gt;&lt;/li&gt;
@@ -2214,7 +2492,7 @@ http://lab.hakim.se/reveal-js/#/
 &lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_04.png"/&gt;&lt;/p&gt;
 &lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_05.png"/&gt;&lt;/p&gt;
 &lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_06.png"/&gt;&lt;/p&gt;
-&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_07.png"/&gt;&lt;/p&gt;</content><category term="Java"></category><category term="Spring"></category></entry><entry><title>Debian Stretch</title><link href="http://didier.bernaudeau.net/Debian_Stretch.html" rel="alternate"></link><published>2017-02-02T12:24:00+01:00</published><updated>2017-09-28T22:45:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-02-02:/Debian_Stretch.html</id><summary type="html">&lt;p&gt;Stretch is the 9th version of Debian Linux and succeed to Debian Jessie. This version is still in testing, but the transition freeze stage will begin on February 5th 2017 and should become stable in September 2017. This tutorials is a guideline to install and secure Debian Stretch (RC2).&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-01-24_Spring_Roo_07.png"/&gt;&lt;/p&gt;</content><category term="Java"></category><category term="Spring"></category></entry><entry><title>Debian Stretch</title><link href="http://didier.bernaudeau.net/Debian_Stretch.html" rel="alternate"></link><published>2017-02-02T12:24:00+01:00</published><updated>2017-10-15T22:45:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-02-02:/Debian_Stretch.html</id><summary type="html">&lt;p&gt;Stretch is the 9th version of Debian Linux and succeed to Debian Jessie. This version is still in testing, but the transition freeze stage will begin on February 5th 2017 and should become stable in September 2017. This tutorials is a guideline to install and secure Debian Stretch (RC2).&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Stretch is the 9th version of Debian Linux and succeed to Debian Jessie. This version is still in testing, but the transition freeze stage will begin on February 5th 2017 and should become stable in September 2017. This tutorials is a guideline to install and secure Debian Stretch (RC2).&lt;/p&gt;
 
 &lt;h1&gt;Installation&lt;/h1&gt;
@@ -2271,6 +2549,11 @@ net.ipv6.conf.default.disable_ipv6=1
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo sysctl -p
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Useful tools&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Apt with HTTPS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y apt-transport-https
+&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Curl&lt;/li&gt;
 &lt;/ul&gt;

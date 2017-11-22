@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-11-18T01:55:00+01:00</updated><entry><title>Websphere Application Server</title><link href="http://didier.bernaudeau.net/WAS.html" rel="alternate"></link><published>2017-10-06T20:44:00+02:00</published><updated>2017-10-06T20:44:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-10-06:/WAS.html</id><summary type="html">&lt;p&gt;Websphere Application Server is a middleware from IBM that hosts Java based web applications.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-11-22T22:52:00+01:00</updated><entry><title>Websphere Application Server</title><link href="http://didier.bernaudeau.net/WAS.html" rel="alternate"></link><published>2017-10-06T20:44:00+02:00</published><updated>2017-10-06T20:44:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-10-06:/WAS.html</id><summary type="html">&lt;p&gt;Websphere Application Server is a middleware from IBM that hosts Java based web applications.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Websphere Application Server is a middleware from IBM that hosts Java based web applications.&lt;/p&gt;
 
 &lt;h1&gt;Websphere Application Server&lt;/h1&gt;
@@ -25,7 +25,145 @@
 &lt;li&gt;Flow #3: second locate request to the ORB listener port&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;For more information :
-&lt;a href="https://www.ibm.com/developerworks/websphere/techjournal/0807_pape/0807_pape.html"&gt;Understanding how EJB calls operate in WebSphere Application Server V6.1&lt;/a&gt;&lt;/p&gt;</content><category term="Java"></category><category term="Application Server"></category><category term="Protocol"></category></entry><entry><title>How to install OpenVPN on ArchLinux</title><link href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html" rel="alternate"></link><published>2017-09-03T22:46:00+02:00</published><updated>2017-11-18T01:55:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-09-03:/HowTo_install_OpenVPN_on_ArchLinux.html</id><summary type="html">&lt;p&gt;OpenVPN is an open-source software application that implements virtual private network (VPN) for creating secure point-to-point connections. This software is available on all Linux distributions. This tutorial describes how to install an OpenVPN server on ArchLinux with routed lan.&lt;/p&gt;
+&lt;a href="https://www.ibm.com/developerworks/websphere/techjournal/0807_pape/0807_pape.html"&gt;Understanding how EJB calls operate in WebSphere Application Server V6.1&lt;/a&gt;&lt;/p&gt;</content><category term="Java"></category><category term="Application Server"></category><category term="Protocol"></category></entry><entry><title>Edge Router on Dedibox</title><link href="http://didier.bernaudeau.net/Edge_Router_on_dedibox.html" rel="alternate"></link><published>2017-09-03T22:46:00+02:00</published><updated>2017-11-22T22:27:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-09-03:/Edge_Router_on_dedibox.html</id><summary type="html">&lt;p&gt;An edge router ensures the connectivity of its network with external networks. In my case, this router is a Dedibox hosted by Online at Amsterdam and ensures the connectivity between my LAN and Internet through a VPN network. This post describes the first step to configure ArchLinux.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;An edge router ensures the connectivity of its network with external networks. In my case, this router is a Dedibox hosted by Online at Amsterdam and ensures the connectivity between my LAN and Internet through a VPN network. This post describes the first step to configure ArchLinux.&lt;/p&gt;
+
+&lt;h1&gt;Hardware&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Processor&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; cat /proc/cpuinfo 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vendor_id&lt;/span&gt;       &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;GenuineIntel&lt;/span&gt;
+&lt;span class="n"&gt;cpu&lt;/span&gt; &lt;span class="n"&gt;family&lt;/span&gt;      &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt;           &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;77&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;      &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Atom&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TM&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="n"&gt;CPU&lt;/span&gt;  &lt;span class="n"&gt;C2350&lt;/span&gt;  &lt;span class="err"&gt;@&lt;/span&gt; &lt;span class="mf"&gt;1.74&lt;/span&gt;&lt;span class="n"&gt;GHz&lt;/span&gt;
+&lt;span class="n"&gt;stepping&lt;/span&gt;        &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;span class="n"&gt;microcode&lt;/span&gt;       &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;0x127&lt;/span&gt;
+&lt;span class="n"&gt;cpu&lt;/span&gt; &lt;span class="n"&gt;MHz&lt;/span&gt;         &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;1745.553&lt;/span&gt;
+&lt;span class="n"&gt;cache&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;      &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1024&lt;/span&gt; &lt;span class="n"&gt;KB&lt;/span&gt;
+&lt;span class="n"&gt;physical&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt;     &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="n"&gt;siblings&lt;/span&gt;        &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="n"&gt;core&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt;         &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="n"&gt;cpu&lt;/span&gt; &lt;span class="n"&gt;cores&lt;/span&gt;       &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="n"&gt;apicid&lt;/span&gt;          &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="n"&gt;initial&lt;/span&gt; &lt;span class="n"&gt;apicid&lt;/span&gt;  &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="n"&gt;fpu&lt;/span&gt;             &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;yes&lt;/span&gt;
+&lt;span class="n"&gt;fpu_exception&lt;/span&gt;   &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;yes&lt;/span&gt;
+&lt;span class="n"&gt;cpuid&lt;/span&gt; &lt;span class="n"&gt;level&lt;/span&gt;     &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;
+&lt;span class="n"&gt;wp&lt;/span&gt;              &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;yes&lt;/span&gt;
+&lt;span class="n"&gt;flags&lt;/span&gt;           &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;fpu&lt;/span&gt; &lt;span class="n"&gt;vme&lt;/span&gt; &lt;span class="n"&gt;de&lt;/span&gt; &lt;span class="n"&gt;pse&lt;/span&gt; &lt;span class="n"&gt;tsc&lt;/span&gt; &lt;span class="n"&gt;msr&lt;/span&gt; &lt;span class="n"&gt;pae&lt;/span&gt; &lt;span class="n"&gt;mce&lt;/span&gt; &lt;span class="n"&gt;cx8&lt;/span&gt; &lt;span class="n"&gt;apic&lt;/span&gt; &lt;span class="n"&gt;sep&lt;/span&gt; &lt;span class="n"&gt;mtrr&lt;/span&gt; &lt;span class="n"&gt;pge&lt;/span&gt; &lt;span class="n"&gt;mca&lt;/span&gt; &lt;span class="n"&gt;cmov&lt;/span&gt; &lt;span class="n"&gt;pat&lt;/span&gt; &lt;span class="n"&gt;pse36&lt;/span&gt; &lt;span class="n"&gt;clflush&lt;/span&gt; &lt;span class="n"&gt;dts&lt;/span&gt; &lt;span class="n"&gt;acpi&lt;/span&gt; &lt;span class="n"&gt;mmx&lt;/span&gt; &lt;span class="n"&gt;fxsr&lt;/span&gt; &lt;span class="n"&gt;sse&lt;/span&gt; &lt;span class="n"&gt;sse2&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt; &lt;span class="n"&gt;ht&lt;/span&gt; &lt;span class="n"&gt;tm&lt;/span&gt; &lt;span class="n"&gt;pbe&lt;/span&gt; &lt;span class="n"&gt;syscall&lt;/span&gt; &lt;span class="n"&gt;nx&lt;/span&gt; &lt;span class="n"&gt;rdtscp&lt;/span&gt; &lt;span class="n"&gt;lm&lt;/span&gt; &lt;span class="n"&gt;constant_tsc&lt;/span&gt; &lt;span class="n"&gt;arch_perfmon&lt;/span&gt; &lt;span class="n"&gt;pebs&lt;/span&gt; &lt;span class="n"&gt;bts&lt;/span&gt; &lt;span class="n"&gt;rep_good&lt;/span&gt; &lt;span class="n"&gt;nopl&lt;/span&gt; &lt;span class="n"&gt;xtopology&lt;/span&gt; &lt;span class="n"&gt;nonstop_tsc&lt;/span&gt; &lt;span class="n"&gt;cpuid&lt;/span&gt; &lt;span class="n"&gt;aperfmperf&lt;/span&gt; &lt;span class="n"&gt;pni&lt;/span&gt; &lt;span class="n"&gt;pclmulqdq&lt;/span&gt; &lt;span class="n"&gt;dtes64&lt;/span&gt; &lt;span class="n"&gt;monitor&lt;/span&gt; &lt;span class="n"&gt;ds_cpl&lt;/span&gt; &lt;span class="n"&gt;vmx&lt;/span&gt; &lt;span class="n"&gt;est&lt;/span&gt; &lt;span class="n"&gt;tm2&lt;/span&gt; &lt;span class="n"&gt;ssse3&lt;/span&gt; &lt;span class="n"&gt;cx16&lt;/span&gt; &lt;span class="n"&gt;xtpr&lt;/span&gt; &lt;span class="n"&gt;pdcm&lt;/span&gt; &lt;span class="n"&gt;sse4_1&lt;/span&gt; &lt;span class="n"&gt;sse4_2&lt;/span&gt; &lt;span class="n"&gt;movbe&lt;/span&gt; &lt;span class="n"&gt;popcnt&lt;/span&gt; &lt;span class="n"&gt;tsc_deadline_timer&lt;/span&gt; &lt;span class="n"&gt;aes&lt;/span&gt; &lt;span class="n"&gt;rdrand&lt;/span&gt; &lt;span class="n"&gt;lahf_lm&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="n"&gt;dnowprefetch&lt;/span&gt; &lt;span class="n"&gt;cpuid_fault&lt;/span&gt; &lt;span class="n"&gt;epb&lt;/span&gt; &lt;span class="n"&gt;tpr_shadow&lt;/span&gt; &lt;span class="n"&gt;vnmi&lt;/span&gt; &lt;span class="n"&gt;flexpriority&lt;/span&gt; &lt;span class="n"&gt;ept&lt;/span&gt; &lt;span class="n"&gt;vpid&lt;/span&gt; &lt;span class="n"&gt;tsc_adjust&lt;/span&gt; &lt;span class="n"&gt;smep&lt;/span&gt; &lt;span class="n"&gt;erms&lt;/span&gt; &lt;span class="n"&gt;dtherm&lt;/span&gt; &lt;span class="n"&gt;ida&lt;/span&gt; &lt;span class="n"&gt;arat&lt;/span&gt;
+&lt;span class="n"&gt;bugs&lt;/span&gt;            &lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;bogomips&lt;/span&gt;        &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;3492.56&lt;/span&gt;
+&lt;span class="n"&gt;clflush&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;    &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;64&lt;/span&gt;
+&lt;span class="n"&gt;cache_alignment&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;64&lt;/span&gt;
+&lt;span class="n"&gt;address&lt;/span&gt; &lt;span class="n"&gt;sizes&lt;/span&gt;   &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;36&lt;/span&gt; &lt;span class="n"&gt;bits&lt;/span&gt; &lt;span class="n"&gt;physical&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;48&lt;/span&gt; &lt;span class="n"&gt;bits&lt;/span&gt; &lt;span class="n"&gt;virtual&lt;/span&gt;
+&lt;span class="n"&gt;power&lt;/span&gt; &lt;span class="n"&gt;management&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;PCI&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo lspci 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;00.0&lt;/span&gt; &lt;span class="n"&gt;Host&lt;/span&gt; &lt;span class="n"&gt;bridge&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt; &lt;span class="n"&gt;Atom&lt;/span&gt; &lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="n"&gt;C2000&lt;/span&gt; &lt;span class="n"&gt;SoC&lt;/span&gt; &lt;span class="n"&gt;Transaction&lt;/span&gt; &lt;span class="n"&gt;Router&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;Host&lt;/span&gt; &lt;span class="n"&gt;bridge&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt; &lt;span class="n"&gt;Atom&lt;/span&gt; &lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="n"&gt;C2000&lt;/span&gt; &lt;span class="n"&gt;RAS&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;IOMMU&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt; &lt;span class="n"&gt;Atom&lt;/span&gt; &lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="n"&gt;C2000&lt;/span&gt; &lt;span class="n"&gt;RCEC&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;13.0&lt;/span&gt; &lt;span class="n"&gt;System&lt;/span&gt; &lt;span class="n"&gt;peripheral&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt; &lt;span class="n"&gt;Atom&lt;/span&gt; &lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="n"&gt;C2000&lt;/span&gt; &lt;span class="n"&gt;SMBus&lt;/span&gt; &lt;span class="mf"&gt;2.0&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;14.0&lt;/span&gt; &lt;span class="n"&gt;Ethernet&lt;/span&gt; &lt;span class="n"&gt;controller&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt; &lt;span class="n"&gt;Ethernet&lt;/span&gt; &lt;span class="n"&gt;Connection&lt;/span&gt; &lt;span class="n"&gt;I354&lt;/span&gt; &lt;span class="mf"&gt;2.5&lt;/span&gt; &lt;span class="n"&gt;GbE&lt;/span&gt; &lt;span class="n"&gt;Backplane&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;03&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;16.0&lt;/span&gt; &lt;span class="n"&gt;USB&lt;/span&gt; &lt;span class="n"&gt;controller&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt; &lt;span class="n"&gt;Atom&lt;/span&gt; &lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="n"&gt;C2000&lt;/span&gt; &lt;span class="n"&gt;USB&lt;/span&gt; &lt;span class="n"&gt;Enhanced&lt;/span&gt; &lt;span class="n"&gt;Host&lt;/span&gt; &lt;span class="n"&gt;Controller&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;18.0&lt;/span&gt; &lt;span class="n"&gt;SATA&lt;/span&gt; &lt;span class="n"&gt;controller&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt; &lt;span class="n"&gt;Atom&lt;/span&gt; &lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="n"&gt;C2000&lt;/span&gt; &lt;span class="n"&gt;AHCI&lt;/span&gt; &lt;span class="n"&gt;SATA3&lt;/span&gt; &lt;span class="n"&gt;Controller&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;ISA&lt;/span&gt; &lt;span class="n"&gt;bridge&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt; &lt;span class="n"&gt;Atom&lt;/span&gt; &lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="n"&gt;C2000&lt;/span&gt; &lt;span class="n"&gt;PCU&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;SMBus&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt; &lt;span class="n"&gt;Atom&lt;/span&gt; &lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="n"&gt;C2000&lt;/span&gt; &lt;span class="n"&gt;PCU&lt;/span&gt; &lt;span class="n"&gt;SMBus&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;USB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;lsusb&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Bus 001 Device 002: ID 8087:07db Intel Corp. 
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Operating System&lt;/h1&gt;
+&lt;p&gt;My Edge Router run with ArchLinux.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Change password for main user&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; passwd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Change password for root user&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo su
+&lt;span class="gp"&gt;$&lt;/span&gt; passwd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Sync repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo pacman -Sy
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo pacman -Su
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure nano (text editor)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/nanorc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;set nowrap
+include "/usr/share/nano/*.nanorc"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Fail2ban&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure SSH daemon&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/ssh/sshd_config
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;LogLevel VERBOSE
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart SSH daemon&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart sshd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install fail2ban&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo pacman -S --noconfirm fail2ban
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure fail2ban for SSH daemon&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/fail2ban/jail.d/jail.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[DEFAULT]&lt;/span&gt;
+&lt;span class="na"&gt;bantime&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;864000&lt;/span&gt;
+&lt;span class="na"&gt;ignoreip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;127.0.0.1/8 10.0.0.0/24 10.XXX.3.0/24&lt;/span&gt;
+
+
+&lt;span class="k"&gt;[sshd]&lt;/span&gt;
+&lt;span class="na"&gt;enabled&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;true&lt;/span&gt;
+&lt;span class="na"&gt;filter&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;sshd&lt;/span&gt;
+&lt;span class="na"&gt;action&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;iptables[name=SSH, port=ssh, protocol=tcp]&lt;/span&gt;
+&lt;span class="na"&gt;backend&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;systemd&lt;/span&gt;
+&lt;span class="na"&gt;maxretry&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;5&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start fail2ban&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start fail2ban.service
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; fail2ban.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Read log (for debugging purposes)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo journalctl -b -u fail2ban -n 50
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Next step&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install &lt;a href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html"&gt;OpenVPN&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Network"></category><category term="ArchLinux"></category><category term="Dedibox"></category></entry><entry><title>How to install OpenVPN on ArchLinux</title><link href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html" rel="alternate"></link><published>2017-09-03T22:46:00+02:00</published><updated>2017-11-18T01:55:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-09-03:/HowTo_install_OpenVPN_on_ArchLinux.html</id><summary type="html">&lt;p&gt;OpenVPN is an open-source software application that implements virtual private network (VPN) for creating secure point-to-point connections. This software is available on all Linux distributions. This tutorial describes how to install an OpenVPN server on ArchLinux with routed lan.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;OpenVPN is an open-source software application that implements virtual private network (VPN) for creating secure point-to-point connections. This software is available on all Linux distributions. This tutorial describes how to install an OpenVPN server on ArchLinux with routed lan.&lt;/p&gt;
 
 &lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-09-03_OpenVPN_01.png" width="60%"/&gt;&lt;/p&gt;
@@ -367,6 +505,7 @@ tls-cipher TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384
 &lt;li&gt;Restart Iptables&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart iptables
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; iptables.service
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Viewing log&lt;/li&gt;
@@ -1592,7 +1731,229 @@ shared_buffers = 256MB
 &lt;p&gt;There are two ways of dealing with switch bounce: add a 0.1uF capacitor across your switch or software debouncing.&lt;/p&gt;
 &lt;p&gt;The software debouncing strategy is really simple: checking twice in a short period of time to make sure the push button switch is definitely pressed.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;GPIO.add_event_detect(18, GPIO.BOTH, callback=CallbackFunction(), bouncetime=200)
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Raspberry Pi"></category></entry><entry><title>Install Debian on PC Engines APU3a4</title><link href="http://didier.bernaudeau.net/Install_Debian_on_APU.html" rel="alternate"></link><published>2017-07-30T10:25:00+02:00</published><updated>2017-07-30T10:25:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-30:/Install_Debian_on_APU.html</id><summary type="html">&lt;p&gt;This post describes a way to install Debian 9.1 on the APU3C4, a system board from PcEngines.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Raspberry Pi"></category></entry><entry><title>How to install ZoneMinder on Debian</title><link href="http://didier.bernaudeau.net/ZoneMinder_Debian.html" rel="alternate"></link><published>2017-07-31T22:46:00+02:00</published><updated>2017-11-22T22:52:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-31:/ZoneMinder_Debian.html</id><summary type="html">&lt;p&gt;ZoneMinder is a free and open source CCTV (Closed-circuit television) software application which is suitable for building a DIY home video security system. So, this post describes how to install ZoneMinder on Debian to create your own DVR / NVR (Digital Video Recorder / Network Video Recorder).&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;ZoneMinder is a free and open source CCTV (Closed-circuit television) software application which is suitable for building a DIY home video security system. So, this post describes how to install ZoneMinder on Debian to create your own DVR / NVR (Digital Video Recorder / Network Video Recorder).&lt;/p&gt;
+
+&lt;h1&gt;Firewall&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Incoming flow from Lan Interface&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Apache for ZoneMinder&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A INPUT -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -d &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanAddress&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 8080 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow outgoing established connection&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanAddress&lt;/span&gt;&lt;span class="x"&gt; -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Outgoing flow to LAN&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Camera (RTSP) &lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanAddress&lt;/span&gt;&lt;span class="x"&gt; -d &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanNetwork&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 554 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow incoming established connection&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A INPUT -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Database&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install MariaDB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt install php mariadb-server php-mysql apache2-mod-php7.0
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo mysql_secure_installation
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure MariaDB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo rm /etc/mysql/my.cnf
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo cp /etc/mysql/mariadb.conf.d/50-server.cnf /etc/mysql/my.cnf
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/mysql/my.cnf
+&lt;span class="go"&gt;```console&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;character-set-server = latin1
+collation-server = latin1_swedish_ci&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;* Restart MariaDB
+
+```console
+$ sudo systemctl restart mariadb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Zoneminder&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Add ZoneMinder repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/apt/sources.list
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;deb&lt;/span&gt; &lt;span class="s"&gt;http://www.deb-multimedia.org&lt;/span&gt; &lt;span class="kp"&gt;stretch&lt;/span&gt; &lt;span class="kp"&gt;main&lt;/span&gt; &lt;span class="kp"&gt;non-free&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get update
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install deb-multimedia-keyring
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt update
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt upgrade
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt dist-upgrade
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install ZoneMinder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt install zoneminder vlc-plugin-base
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Change access right&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo chmod &lt;span class="m"&gt;740&lt;/span&gt; /etc/zm/zm.conf
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo chown root:www-data /etc/zm/zm.conf
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo chown -R www-data:www-data /usr/share/zoneminder/
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo adduser www-data video
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start ZoneMinder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; zoneminder.service
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start zoneminder.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Apache&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Load module&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo a2enmod cgi
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo a2enmod rewrite
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo a2enconf zoneminder
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure PHP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/php/7.0/apache2/php.ini
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;date.timezone = Europe/Paris
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Change port&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/apache2/ports.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Listen 8080
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/apache2/sites-enabled/000-default.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span class="err"&gt;*:8080&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+...
+&lt;span class="nt"&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart Apache&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart apache2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Open web browser on http://10.X.Y.Z:8080/zm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Configure ZoneMinder&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Add password for admin user&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Remove old event&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Filter name : DeleteOldEvents
+Open : Event &amp;gt; Show filter windows
+Date less than "-3days"
+Delete all matches
+Run in Background
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Camera Dlink DC932LB&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;General&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Source Type: Remote 
+Function: Modec
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Source&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Remote protocol: http
+Remote hostname: user:password@dcs-932lb.domain.net
+Remote Host Path: /video.cgi
+Capture Width (pixels): 640
+Capture Height (pixels): 480
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Reverse Proxy with Nginx&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Install Nginx as TLS endpoint with Let's Encrypt (Published soon)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install required tools&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install nginx-extras fcgiwrap php7.0-fpm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure PHP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/php/7.0/fpm/php.ini
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cgi.fix_pathinfo = 0;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Check of PHP FPM is started&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart php7.0-fpm.service
+&lt;span class="gp"&gt;$&lt;/span&gt; systemctl status php7.0-fpm.service 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Stop zoneminder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl stop zoneminder
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create config file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/nginx/sites-available/default
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;location&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;camera&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;cgi-bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;gzip&lt;/span&gt; &lt;span class="n"&gt;off&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+      &lt;span class="n"&gt;include&lt;/span&gt; &lt;span class="n"&gt;fastcgi_params&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="n"&gt;fastcgi_param&lt;/span&gt; &lt;span class="n"&gt;SCRIPT_FILENAME&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;zoneminder&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cgi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nph&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;zms&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="n"&gt;fastcgi_intercept_errors&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="n"&gt;fastcgi_pass&lt;/span&gt; &lt;span class="n"&gt;unix&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;fcgiwrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nt"&gt;location&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;camera&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;gzip&lt;/span&gt; &lt;span class="n"&gt;off&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="n"&gt;alias&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;zoneminder&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+      &lt;span class="n"&gt;location&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+         &lt;span class="n"&gt;include&lt;/span&gt; &lt;span class="n"&gt;fastcgi_params&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+         &lt;span class="n"&gt;fastcgi_param&lt;/span&gt; &lt;span class="n"&gt;SCRIPT_FILENAME&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;request_filename&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+         &lt;span class="n"&gt;fastcgi_intercept_errors&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+         &lt;span class="n"&gt;fastcgi_pass&lt;/span&gt; &lt;span class="n"&gt;unix&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;php7&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;fpm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sock&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="p"&gt;}&lt;/span&gt;
+
+      &lt;span class="nt"&gt;location&lt;/span&gt; &lt;span class="o"&gt;~*&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;camera&lt;/span&gt;&lt;span class="o"&gt;/.*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;.(&lt;/span&gt;&lt;span class="nt"&gt;txt&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="nt"&gt;log&lt;/span&gt;&lt;span class="o"&gt;)$&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+         &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="p"&gt;}&lt;/span&gt;
+
+      &lt;span class="nt"&gt;location&lt;/span&gt; &lt;span class="o"&gt;~*&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;camera&lt;/span&gt;&lt;span class="o"&gt;/.*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;.(&lt;/span&gt;&lt;span class="nt"&gt;m4a&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="nt"&gt;mp4&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="nt"&gt;mov&lt;/span&gt;&lt;span class="o"&gt;)$&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+         &lt;span class="n"&gt;mp4&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+         &lt;span class="n"&gt;mp4_buffer_size&lt;/span&gt; &lt;span class="m"&gt;5&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+         &lt;span class="n"&gt;mp4_max_buffer_size&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart nginx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart nginx
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start zoneminder
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure ZoneMinder in "options / Paths" and set PATH_ZMS to "/camera/cgi-bin/nph-zms"&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Debian Stretch"></category></entry><entry><title>Install Debian on PC Engines APU3a4</title><link href="http://didier.bernaudeau.net/Install_Debian_on_APU.html" rel="alternate"></link><published>2017-07-30T10:25:00+02:00</published><updated>2017-07-30T10:25:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-30:/Install_Debian_on_APU.html</id><summary type="html">&lt;p&gt;This post describes a way to install Debian 9.1 on the APU3C4, a system board from PcEngines.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post describes a way to install Debian 9.1 on the APU3C4, a system board from PcEngines.&lt;/p&gt;
 
 &lt;h1&gt;Create boot media&lt;/h1&gt;
@@ -1799,7 +2160,7 @@ log_statement = 'all'
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -1834,7 +2195,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -1851,7 +2212,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -1868,7 +2229,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -1897,7 +2258,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -1920,7 +2281,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="case"&gt;
 &lt;h3&gt;Case&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -4447,7 +4808,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;p&gt;ERROR [org.jboss.msc.service.fail] (MSC service thread 1-1) MSC000001: Failed to start service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: org.jboss.msc.service.StartException in service jboss.server.controller.management.security_realm.SSLRealm.trust-manager: WFLYDM0018: Unable to start service&lt;/p&gt;</content><category term="Certificate"></category><category term="Debian"></category></entry><entry><title>Press review of July 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_July_2016.html" rel="alternate"></link><published>2016-07-01T21:11:00+02:00</published><updated>2016-07-25T22:21:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-07-01:/Press_review_of_July_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -4549,7 +4910,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;&lt;a class="reference external" href="http://www.tripwire.com/state-of-security/featured/boobytrapped-printers-windows-malware/"&gt;How boobytrapped printers have been able to infect Windows PCs for over 20 years&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="first img-responsive last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="img-responsive last first" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;07/13/2016&lt;/td&gt;
@@ -4653,7 +5014,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 </content><category term="Press review"></category></entry><entry><title>Press review of June 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_June_2016.html" rel="alternate"></link><published>2016-06-01T22:44:00+02:00</published><updated>2016-07-22T22:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-06-01:/Press_review_of_June_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -4859,7 +5220,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;&lt;a class="reference external" href="https://blog.bity.com/la-faille-de-the-dao-les-cles-pour-comprendre/"&gt;La faille de The DAO : les clés pour comprendre&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="first img-responsive last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="img-responsive last first" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;06/20/2016&lt;/td&gt;
@@ -4887,7 +5248,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;li&gt;&lt;a class="reference external" href="http://www.ibtimes.co.uk/ukrainian-bank-cyber-heist-hackers-compromise-swift-network-10m-theft-1567699"&gt;Ukrainian bank cyber-heist: Hackers take off with $10m&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="first img-responsive last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="img-responsive last first" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;06/28/2016&lt;/td&gt;
@@ -4995,7 +5356,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 </content><category term="Press review"></category></entry><entry><title>Press review of May 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_May_2016.html" rel="alternate"></link><published>2016-05-01T23:20:00+02:00</published><updated>2016-06-21T22:10:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-05-01:/Press_review_of_May_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -5400,7 +5761,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 
 &lt;div class="section" id="basic-certificate-field"&gt;
 &lt;h2&gt;Basic certificate field&lt;/h2&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
 &lt;col width="89%"&gt;&lt;/col&gt;
@@ -5422,7 +5783,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="certificate-extension"&gt;
 &lt;h2&gt;Certificate extension&lt;/h2&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="12%"&gt;&lt;/col&gt;
 &lt;col width="88%"&gt;&lt;/col&gt;
@@ -5461,7 +5822,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 </content><category term="Certificate"></category></entry><entry><title>Press review of April 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_April_2016.html" rel="alternate"></link><published>2016-04-01T21:24:00+02:00</published><updated>2016-04-18T22:37:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-04-01:/Press_review_of_April_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="4%"&gt;&lt;/col&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
@@ -5514,7 +5875,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://reflets.info/panamapapers-mossack-fonseca-une-incroyable-bourde/"&gt;#PanamaPapers : Mossack Fonseca une incroyable bourde ?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="first img-responsive last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="img-responsive last first" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;04/04/2016&lt;/td&gt;
@@ -5605,7 +5966,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.theregister.co.uk/2016/04/13/burr_feinstein_antiencryption_bill_is_out/"&gt;Line by line, how the US anti-encryption bill will kill our privacy, security&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="first img-responsive last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="img-responsive last first" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;04/07/2016&lt;/td&gt;
@@ -5736,7 +6097,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://www.theguardian.com/technology/2016/apr/19/ss7-hack-explained-mobile-phone-vulnerability-snooping-texts-calls"&gt;SS7 hack explained: what can you do about it?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/td&gt;
-&lt;td&gt;&lt;img alt="" class="first img-responsive last" src="http://didier.bernaudeau.net/images/star.png"/&gt;
+&lt;td&gt;&lt;img alt="" class="img-responsive last first" src="http://didier.bernaudeau.net/images/star.png"/&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;04/18/2016&lt;/td&gt;
@@ -5821,7 +6182,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 </content><category term="Press review"></category></entry><entry><title>Press review of Mars 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_Mars_2016.html" rel="alternate"></link><published>2016-03-01T22:25:00+01:00</published><updated>2016-04-18T20:22:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-03-01:/Press_review_of_Mars_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -6468,7 +6829,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 </content><category term="Software"></category></entry><entry><title>Press review of February 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_February_2016.html" rel="alternate"></link><published>2016-02-01T22:55:00+01:00</published><updated>2016-03-07T22:36:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-02-01:/Press_review_of_February_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -6948,7 +7309,7 @@ Vulnerability&lt;/td&gt;
 </content><category term="Press review"></category></entry><entry><title>Press review of January 2016</title><link href="http://didier.bernaudeau.net/Press_review_of_January_2016.html" rel="alternate"></link><published>2016-01-01T22:34:00+01:00</published><updated>2016-04-18T22:01:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2016-01-01:/Press_review_of_January_2016.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -7799,7 +8160,7 @@ Vulnerability&lt;/td&gt;
 </content><category term="Blockchain"></category></entry><entry><title>Press review of december 2015</title><link href="http://didier.bernaudeau.net/Press_review_of_december_2015.html" rel="alternate"></link><published>2015-12-01T22:22:00+01:00</published><updated>2016-01-09T22:32:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-12-01:/Press_review_of_december_2015.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -8342,7 +8703,7 @@ Vulnerability&lt;/td&gt;
 </content><category term="PKI"></category><category term="Certificate"></category></entry><entry><title>Press review of november 2015</title><link href="http://didier.bernaudeau.net/Press_review_of_november_2015.html" rel="alternate"></link><published>2015-11-01T22:34:00+01:00</published><updated>2016-02-27T12:50:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-11-01:/Press_review_of_november_2015.html</id><summary type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This is an overview of Information Security news : vulnerabilities, patches, data leak, ...&lt;/p&gt;
 
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="5%"&gt;&lt;/col&gt;
 &lt;col width="6%"&gt;&lt;/col&gt;
@@ -9099,7 +9460,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="protocol-version"&gt;
 &lt;h2&gt;Protocol version&lt;/h2&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -9129,7 +9490,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="compression-method"&gt;
 &lt;h2&gt;Compression method&lt;/h2&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -9157,7 +9518,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Cryptographic algorithm&lt;/h2&gt;
 &lt;div class="section" id="key-exchange"&gt;
 &lt;h3&gt;Key exchange&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -9202,7 +9563,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="encryption"&gt;
 &lt;h3&gt;Encryption&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -9257,7 +9618,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="message-authentication-code"&gt;
 &lt;h3&gt;Message Authentication Code&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -9318,7 +9679,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;p&gt;Cipher suite is a list of one or more cipher strings separated by special char (colon, comma, space, ...). The names for cipher suites are defined by IANA (Internet Assigned Numbers Authority).&lt;/p&gt;
 &lt;p&gt;Cipher suite defines algorithms used for each cryptographic function: key exchange, authentication, encryption and message authentication code. If algorithm for key exchange is not mentioned, default algorithm is RSA.&lt;/p&gt;
 &lt;p&gt;The table below details some example of cipher suites:&lt;/p&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="39%"&gt;&lt;/col&gt;
@@ -9475,7 +9836,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="28%"&gt;&lt;/col&gt;
 &lt;col width="72%"&gt;&lt;/col&gt;
@@ -9534,7 +9895,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -9564,7 +9925,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in GPT (GUID Partition Table) during Microsoft Windows 8.1 installation process&lt;/p&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -9666,7 +10027,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="21%"&gt;&lt;/col&gt;
 &lt;col width="79%"&gt;&lt;/col&gt;
@@ -9734,7 +10095,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -9764,7 +10125,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in MBR (Master Boot Record) during Microsoft Windows 8.1 installation process for primary partition then during Debian 8 installation process for extended partition :&lt;/p&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
@@ -9837,7 +10198,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9866,7 +10227,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9886,7 +10247,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9909,7 +10270,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9926,7 +10287,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9946,7 +10307,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9963,7 +10324,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9986,7 +10347,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="optical-disc-drive"&gt;
 &lt;h3&gt;Optical Disc Drive&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -10024,7 +10385,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -10044,7 +10405,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="wifi"&gt;
 &lt;h3&gt;Wifi&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -10064,7 +10425,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="bluetooth"&gt;
 &lt;h3&gt;Bluetooth&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -10084,7 +10445,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="modem"&gt;
 &lt;h3&gt;Modem&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -10101,7 +10462,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="firewire-controller"&gt;
 &lt;h3&gt;FireWire Controller&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -10118,7 +10479,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-memory-stick"&gt;
 &lt;h3&gt;Card reader (Memory Stick)&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -10135,7 +10496,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-secure-digital"&gt;
 &lt;h3&gt;Card reader (Secure Digital)&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -10152,7 +10513,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -10175,7 +10536,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -10214,7 +10575,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hardware-architecture"&gt;
 &lt;h2&gt;Hardware architecture&lt;/h2&gt;
-&lt;img alt="Hardware architecture of Sony VAIO VGN-SR11M" class="align-right img-responsive" src="http://didier.bernaudeau.net/images/2015-06-28_Sony_VAIO_SR11M_01.png" style="width: 100%;"/&gt;
+&lt;img alt="Hardware architecture of Sony VAIO VGN-SR11M" class="img-responsive align-right" src="http://didier.bernaudeau.net/images/2015-06-28_Sony_VAIO_SR11M_01.png" style="width: 100%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="bios"&gt;
 &lt;h2&gt;BIOS&lt;/h2&gt;
@@ -10694,7 +11055,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10735,7 +11096,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10752,7 +11113,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10784,7 +11145,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10807,7 +11168,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10827,7 +11188,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10844,7 +11205,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10867,7 +11228,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10887,7 +11248,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="wifi-and-bluetooth"&gt;
 &lt;h3&gt;Wifi and Bluetooth&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10910,7 +11271,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory-card-reader"&gt;
 &lt;h3&gt;Memory card reader&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10930,7 +11291,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="smartcard-reader"&gt;
 &lt;h3&gt;Smartcard Reader&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10947,7 +11308,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="fingerprint-reader"&gt;
 &lt;h3&gt;Fingerprint Reader&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10964,7 +11325,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="nfc-reader"&gt;
 &lt;h3&gt;NFC Reader&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10981,7 +11342,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -11001,7 +11362,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -11031,13 +11392,13 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hardware-architecture"&gt;
 &lt;h2&gt;Hardware architecture&lt;/h2&gt;
-&lt;img alt="Hardware architecture of Lenovo ThinkPad X240" class="align-right img-responsive" src="http://didier.bernaudeau.net/images/2015-06-12_Laptop_Lenovo_ThinkPad_X240.png" style="width: 100%;"/&gt;
+&lt;img alt="Hardware architecture of Lenovo ThinkPad X240" class="img-responsive align-right" src="http://didier.bernaudeau.net/images/2015-06-12_Laptop_Lenovo_ThinkPad_X240.png" style="width: 100%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="uefi-bios"&gt;
 &lt;h2&gt;UEFI BIOS&lt;/h2&gt;
 &lt;div class="section" id="version"&gt;
 &lt;h3&gt;Version&lt;/h3&gt;
-&lt;table border="1" class="table-striped table-hover docutils table"&gt;
+&lt;table border="1" class="table docutils table-hover table-striped"&gt;
 &lt;colgroup&gt;
 &lt;col width="59%"&gt;&lt;/col&gt;
 &lt;col width="41%"&gt;&lt;/col&gt;

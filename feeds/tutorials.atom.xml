@@ -1,5 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-11-18T01:55:00+01:00</updated><entry><title>How to install OpenVPN on ArchLinux</title><link href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html" rel="alternate"></link><published>2017-09-03T22:46:00+02:00</published><updated>2017-11-18T01:55:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-09-03:/HowTo_install_OpenVPN_on_ArchLinux.html</id><summary type="html">&lt;p&gt;OpenVPN is an open-source software application that implements virtual private network (VPN) for creating secure point-to-point connections. This software is available on all Linux distributions. This tutorial describes how to install an OpenVPN server on ArchLinux with routed lan.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-11-22T22:52:00+01:00</updated><entry><title>Edge Router on Dedibox</title><link href="http://didier.bernaudeau.net/Edge_Router_on_dedibox.html" rel="alternate"></link><published>2017-09-03T22:46:00+02:00</published><updated>2017-11-22T22:27:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-09-03:/Edge_Router_on_dedibox.html</id><summary type="html">&lt;p&gt;An edge router ensures the connectivity of its network with external networks. In my case, this router is a Dedibox hosted by Online at Amsterdam and ensures the connectivity between my LAN and Internet through a VPN network. This post describes the first step to configure ArchLinux.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;An edge router ensures the connectivity of its network with external networks. In my case, this router is a Dedibox hosted by Online at Amsterdam and ensures the connectivity between my LAN and Internet through a VPN network. This post describes the first step to configure ArchLinux.&lt;/p&gt;
+
+&lt;h1&gt;Hardware&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Processor&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; cat /proc/cpuinfo 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vendor_id&lt;/span&gt;       &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;GenuineIntel&lt;/span&gt;
+&lt;span class="n"&gt;cpu&lt;/span&gt; &lt;span class="n"&gt;family&lt;/span&gt;      &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt;           &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;77&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;      &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Atom&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TM&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="n"&gt;CPU&lt;/span&gt;  &lt;span class="n"&gt;C2350&lt;/span&gt;  &lt;span class="err"&gt;@&lt;/span&gt; &lt;span class="mf"&gt;1.74&lt;/span&gt;&lt;span class="n"&gt;GHz&lt;/span&gt;
+&lt;span class="n"&gt;stepping&lt;/span&gt;        &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;span class="n"&gt;microcode&lt;/span&gt;       &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;0x127&lt;/span&gt;
+&lt;span class="n"&gt;cpu&lt;/span&gt; &lt;span class="n"&gt;MHz&lt;/span&gt;         &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;1745.553&lt;/span&gt;
+&lt;span class="n"&gt;cache&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;      &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1024&lt;/span&gt; &lt;span class="n"&gt;KB&lt;/span&gt;
+&lt;span class="n"&gt;physical&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt;     &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="n"&gt;siblings&lt;/span&gt;        &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="n"&gt;core&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt;         &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="n"&gt;cpu&lt;/span&gt; &lt;span class="n"&gt;cores&lt;/span&gt;       &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="n"&gt;apicid&lt;/span&gt;          &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="n"&gt;initial&lt;/span&gt; &lt;span class="n"&gt;apicid&lt;/span&gt;  &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="n"&gt;fpu&lt;/span&gt;             &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;yes&lt;/span&gt;
+&lt;span class="n"&gt;fpu_exception&lt;/span&gt;   &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;yes&lt;/span&gt;
+&lt;span class="n"&gt;cpuid&lt;/span&gt; &lt;span class="n"&gt;level&lt;/span&gt;     &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;
+&lt;span class="n"&gt;wp&lt;/span&gt;              &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;yes&lt;/span&gt;
+&lt;span class="n"&gt;flags&lt;/span&gt;           &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;fpu&lt;/span&gt; &lt;span class="n"&gt;vme&lt;/span&gt; &lt;span class="n"&gt;de&lt;/span&gt; &lt;span class="n"&gt;pse&lt;/span&gt; &lt;span class="n"&gt;tsc&lt;/span&gt; &lt;span class="n"&gt;msr&lt;/span&gt; &lt;span class="n"&gt;pae&lt;/span&gt; &lt;span class="n"&gt;mce&lt;/span&gt; &lt;span class="n"&gt;cx8&lt;/span&gt; &lt;span class="n"&gt;apic&lt;/span&gt; &lt;span class="n"&gt;sep&lt;/span&gt; &lt;span class="n"&gt;mtrr&lt;/span&gt; &lt;span class="n"&gt;pge&lt;/span&gt; &lt;span class="n"&gt;mca&lt;/span&gt; &lt;span class="n"&gt;cmov&lt;/span&gt; &lt;span class="n"&gt;pat&lt;/span&gt; &lt;span class="n"&gt;pse36&lt;/span&gt; &lt;span class="n"&gt;clflush&lt;/span&gt; &lt;span class="n"&gt;dts&lt;/span&gt; &lt;span class="n"&gt;acpi&lt;/span&gt; &lt;span class="n"&gt;mmx&lt;/span&gt; &lt;span class="n"&gt;fxsr&lt;/span&gt; &lt;span class="n"&gt;sse&lt;/span&gt; &lt;span class="n"&gt;sse2&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt; &lt;span class="n"&gt;ht&lt;/span&gt; &lt;span class="n"&gt;tm&lt;/span&gt; &lt;span class="n"&gt;pbe&lt;/span&gt; &lt;span class="n"&gt;syscall&lt;/span&gt; &lt;span class="n"&gt;nx&lt;/span&gt; &lt;span class="n"&gt;rdtscp&lt;/span&gt; &lt;span class="n"&gt;lm&lt;/span&gt; &lt;span class="n"&gt;constant_tsc&lt;/span&gt; &lt;span class="n"&gt;arch_perfmon&lt;/span&gt; &lt;span class="n"&gt;pebs&lt;/span&gt; &lt;span class="n"&gt;bts&lt;/span&gt; &lt;span class="n"&gt;rep_good&lt;/span&gt; &lt;span class="n"&gt;nopl&lt;/span&gt; &lt;span class="n"&gt;xtopology&lt;/span&gt; &lt;span class="n"&gt;nonstop_tsc&lt;/span&gt; &lt;span class="n"&gt;cpuid&lt;/span&gt; &lt;span class="n"&gt;aperfmperf&lt;/span&gt; &lt;span class="n"&gt;pni&lt;/span&gt; &lt;span class="n"&gt;pclmulqdq&lt;/span&gt; &lt;span class="n"&gt;dtes64&lt;/span&gt; &lt;span class="n"&gt;monitor&lt;/span&gt; &lt;span class="n"&gt;ds_cpl&lt;/span&gt; &lt;span class="n"&gt;vmx&lt;/span&gt; &lt;span class="n"&gt;est&lt;/span&gt; &lt;span class="n"&gt;tm2&lt;/span&gt; &lt;span class="n"&gt;ssse3&lt;/span&gt; &lt;span class="n"&gt;cx16&lt;/span&gt; &lt;span class="n"&gt;xtpr&lt;/span&gt; &lt;span class="n"&gt;pdcm&lt;/span&gt; &lt;span class="n"&gt;sse4_1&lt;/span&gt; &lt;span class="n"&gt;sse4_2&lt;/span&gt; &lt;span class="n"&gt;movbe&lt;/span&gt; &lt;span class="n"&gt;popcnt&lt;/span&gt; &lt;span class="n"&gt;tsc_deadline_timer&lt;/span&gt; &lt;span class="n"&gt;aes&lt;/span&gt; &lt;span class="n"&gt;rdrand&lt;/span&gt; &lt;span class="n"&gt;lahf_lm&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="n"&gt;dnowprefetch&lt;/span&gt; &lt;span class="n"&gt;cpuid_fault&lt;/span&gt; &lt;span class="n"&gt;epb&lt;/span&gt; &lt;span class="n"&gt;tpr_shadow&lt;/span&gt; &lt;span class="n"&gt;vnmi&lt;/span&gt; &lt;span class="n"&gt;flexpriority&lt;/span&gt; &lt;span class="n"&gt;ept&lt;/span&gt; &lt;span class="n"&gt;vpid&lt;/span&gt; &lt;span class="n"&gt;tsc_adjust&lt;/span&gt; &lt;span class="n"&gt;smep&lt;/span&gt; &lt;span class="n"&gt;erms&lt;/span&gt; &lt;span class="n"&gt;dtherm&lt;/span&gt; &lt;span class="n"&gt;ida&lt;/span&gt; &lt;span class="n"&gt;arat&lt;/span&gt;
+&lt;span class="n"&gt;bugs&lt;/span&gt;            &lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;bogomips&lt;/span&gt;        &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;3492.56&lt;/span&gt;
+&lt;span class="n"&gt;clflush&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;    &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;64&lt;/span&gt;
+&lt;span class="n"&gt;cache_alignment&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;64&lt;/span&gt;
+&lt;span class="n"&gt;address&lt;/span&gt; &lt;span class="n"&gt;sizes&lt;/span&gt;   &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;36&lt;/span&gt; &lt;span class="n"&gt;bits&lt;/span&gt; &lt;span class="n"&gt;physical&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;48&lt;/span&gt; &lt;span class="n"&gt;bits&lt;/span&gt; &lt;span class="n"&gt;virtual&lt;/span&gt;
+&lt;span class="n"&gt;power&lt;/span&gt; &lt;span class="n"&gt;management&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;PCI&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo lspci 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;00.0&lt;/span&gt; &lt;span class="n"&gt;Host&lt;/span&gt; &lt;span class="n"&gt;bridge&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt; &lt;span class="n"&gt;Atom&lt;/span&gt; &lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="n"&gt;C2000&lt;/span&gt; &lt;span class="n"&gt;SoC&lt;/span&gt; &lt;span class="n"&gt;Transaction&lt;/span&gt; &lt;span class="n"&gt;Router&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;Host&lt;/span&gt; &lt;span class="n"&gt;bridge&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt; &lt;span class="n"&gt;Atom&lt;/span&gt; &lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="n"&gt;C2000&lt;/span&gt; &lt;span class="n"&gt;RAS&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;IOMMU&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt; &lt;span class="n"&gt;Atom&lt;/span&gt; &lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="n"&gt;C2000&lt;/span&gt; &lt;span class="n"&gt;RCEC&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;13.0&lt;/span&gt; &lt;span class="n"&gt;System&lt;/span&gt; &lt;span class="n"&gt;peripheral&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt; &lt;span class="n"&gt;Atom&lt;/span&gt; &lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="n"&gt;C2000&lt;/span&gt; &lt;span class="n"&gt;SMBus&lt;/span&gt; &lt;span class="mf"&gt;2.0&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;14.0&lt;/span&gt; &lt;span class="n"&gt;Ethernet&lt;/span&gt; &lt;span class="n"&gt;controller&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt; &lt;span class="n"&gt;Ethernet&lt;/span&gt; &lt;span class="n"&gt;Connection&lt;/span&gt; &lt;span class="n"&gt;I354&lt;/span&gt; &lt;span class="mf"&gt;2.5&lt;/span&gt; &lt;span class="n"&gt;GbE&lt;/span&gt; &lt;span class="n"&gt;Backplane&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;03&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;16.0&lt;/span&gt; &lt;span class="n"&gt;USB&lt;/span&gt; &lt;span class="n"&gt;controller&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt; &lt;span class="n"&gt;Atom&lt;/span&gt; &lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="n"&gt;C2000&lt;/span&gt; &lt;span class="n"&gt;USB&lt;/span&gt; &lt;span class="n"&gt;Enhanced&lt;/span&gt; &lt;span class="n"&gt;Host&lt;/span&gt; &lt;span class="n"&gt;Controller&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;18.0&lt;/span&gt; &lt;span class="n"&gt;SATA&lt;/span&gt; &lt;span class="n"&gt;controller&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt; &lt;span class="n"&gt;Atom&lt;/span&gt; &lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="n"&gt;C2000&lt;/span&gt; &lt;span class="n"&gt;AHCI&lt;/span&gt; &lt;span class="n"&gt;SATA3&lt;/span&gt; &lt;span class="n"&gt;Controller&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;ISA&lt;/span&gt; &lt;span class="n"&gt;bridge&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt; &lt;span class="n"&gt;Atom&lt;/span&gt; &lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="n"&gt;C2000&lt;/span&gt; &lt;span class="n"&gt;PCU&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;SMBus&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;Corporation&lt;/span&gt; &lt;span class="n"&gt;Atom&lt;/span&gt; &lt;span class="n"&gt;processor&lt;/span&gt; &lt;span class="n"&gt;C2000&lt;/span&gt; &lt;span class="n"&gt;PCU&lt;/span&gt; &lt;span class="n"&gt;SMBus&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rev&lt;/span&gt; &lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;USB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;lsusb&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Bus 001 Device 002: ID 8087:07db Intel Corp. 
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Operating System&lt;/h1&gt;
+&lt;p&gt;My Edge Router run with ArchLinux.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Change password for main user&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; passwd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Change password for root user&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo su
+&lt;span class="gp"&gt;$&lt;/span&gt; passwd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Sync repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo pacman -Sy
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo pacman -Su
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure nano (text editor)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/nanorc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;set nowrap
+include "/usr/share/nano/*.nanorc"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Fail2ban&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure SSH daemon&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/ssh/sshd_config
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;LogLevel VERBOSE
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart SSH daemon&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart sshd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install fail2ban&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo pacman -S --noconfirm fail2ban
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure fail2ban for SSH daemon&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/fail2ban/jail.d/jail.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[DEFAULT]&lt;/span&gt;
+&lt;span class="na"&gt;bantime&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;864000&lt;/span&gt;
+&lt;span class="na"&gt;ignoreip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;127.0.0.1/8 10.0.0.0/24 10.XXX.3.0/24&lt;/span&gt;
+
+
+&lt;span class="k"&gt;[sshd]&lt;/span&gt;
+&lt;span class="na"&gt;enabled&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;true&lt;/span&gt;
+&lt;span class="na"&gt;filter&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;sshd&lt;/span&gt;
+&lt;span class="na"&gt;action&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;iptables[name=SSH, port=ssh, protocol=tcp]&lt;/span&gt;
+&lt;span class="na"&gt;backend&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;systemd&lt;/span&gt;
+&lt;span class="na"&gt;maxretry&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;5&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start fail2ban&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start fail2ban.service
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; fail2ban.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Read log (for debugging purposes)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo journalctl -b -u fail2ban -n 50
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Next step&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install &lt;a href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html"&gt;OpenVPN&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Network"></category><category term="ArchLinux"></category><category term="Dedibox"></category></entry><entry><title>How to install OpenVPN on ArchLinux</title><link href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html" rel="alternate"></link><published>2017-09-03T22:46:00+02:00</published><updated>2017-11-18T01:55:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-09-03:/HowTo_install_OpenVPN_on_ArchLinux.html</id><summary type="html">&lt;p&gt;OpenVPN is an open-source software application that implements virtual private network (VPN) for creating secure point-to-point connections. This software is available on all Linux distributions. This tutorial describes how to install an OpenVPN server on ArchLinux with routed lan.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;OpenVPN is an open-source software application that implements virtual private network (VPN) for creating secure point-to-point connections. This software is available on all Linux distributions. This tutorial describes how to install an OpenVPN server on ArchLinux with routed lan.&lt;/p&gt;
 
 &lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-09-03_OpenVPN_01.png" width="60%"/&gt;&lt;/p&gt;
@@ -341,6 +479,7 @@ tls-cipher TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384
 &lt;li&gt;Restart Iptables&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart iptables
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; iptables.service
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Viewing log&lt;/li&gt;
@@ -1542,7 +1681,229 @@ shared_buffers = 256MB
 &lt;li&gt;Get a report&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; curl http://observatory.intra:57001/api/v1/getScanResults?scan&lt;span class="o"&gt;=&lt;/span&gt;1
-&lt;/pre&gt;&lt;/div&gt;</content><category term="TLS"></category></entry><entry><title>Install Debian on PC Engines APU3a4</title><link href="http://didier.bernaudeau.net/Install_Debian_on_APU.html" rel="alternate"></link><published>2017-07-30T10:25:00+02:00</published><updated>2017-07-30T10:25:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-30:/Install_Debian_on_APU.html</id><summary type="html">&lt;p&gt;This post describes a way to install Debian 9.1 on the APU3C4, a system board from PcEngines.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="TLS"></category></entry><entry><title>How to install ZoneMinder on Debian</title><link href="http://didier.bernaudeau.net/ZoneMinder_Debian.html" rel="alternate"></link><published>2017-07-31T22:46:00+02:00</published><updated>2017-11-22T22:52:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-31:/ZoneMinder_Debian.html</id><summary type="html">&lt;p&gt;ZoneMinder is a free and open source CCTV (Closed-circuit television) software application which is suitable for building a DIY home video security system. So, this post describes how to install ZoneMinder on Debian to create your own DVR / NVR (Digital Video Recorder / Network Video Recorder).&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;ZoneMinder is a free and open source CCTV (Closed-circuit television) software application which is suitable for building a DIY home video security system. So, this post describes how to install ZoneMinder on Debian to create your own DVR / NVR (Digital Video Recorder / Network Video Recorder).&lt;/p&gt;
+
+&lt;h1&gt;Firewall&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Incoming flow from Lan Interface&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Apache for ZoneMinder&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A INPUT -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -d &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanAddress&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 8080 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow outgoing established connection&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanAddress&lt;/span&gt;&lt;span class="x"&gt; -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Outgoing flow to LAN&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Camera (RTSP) &lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A OUTPUT -o &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -s &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanAddress&lt;/span&gt;&lt;span class="x"&gt; -d &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanNetwork&lt;/span&gt;&lt;span class="x"&gt; -p tcp --dport 554 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Allow incoming established connection&lt;/span&gt;
+&lt;span class="x"&gt;sudo iptables -A INPUT -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="x"&gt; -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Database&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install MariaDB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt install php mariadb-server php-mysql apache2-mod-php7.0
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo mysql_secure_installation
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure MariaDB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo rm /etc/mysql/my.cnf
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo cp /etc/mysql/mariadb.conf.d/50-server.cnf /etc/mysql/my.cnf
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/mysql/my.cnf
+&lt;span class="go"&gt;```console&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;character-set-server = latin1
+collation-server = latin1_swedish_ci&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;* Restart MariaDB
+
+```console
+$ sudo systemctl restart mariadb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Zoneminder&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Add ZoneMinder repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/apt/sources.list
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;deb&lt;/span&gt; &lt;span class="s"&gt;http://www.deb-multimedia.org&lt;/span&gt; &lt;span class="kp"&gt;stretch&lt;/span&gt; &lt;span class="kp"&gt;main&lt;/span&gt; &lt;span class="kp"&gt;non-free&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get update
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install deb-multimedia-keyring
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt update
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt upgrade
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt dist-upgrade
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install ZoneMinder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt install zoneminder vlc-plugin-base
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Change access right&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo chmod &lt;span class="m"&gt;740&lt;/span&gt; /etc/zm/zm.conf
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo chown root:www-data /etc/zm/zm.conf
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo chown -R www-data:www-data /usr/share/zoneminder/
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo adduser www-data video
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start ZoneMinder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; zoneminder.service
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start zoneminder.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Apache&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Load module&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo a2enmod cgi
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo a2enmod rewrite
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo a2enconf zoneminder
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure PHP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/php/7.0/apache2/php.ini
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;date.timezone = Europe/Paris
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Change port&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/apache2/ports.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Listen 8080
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/apache2/sites-enabled/000-default.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span class="err"&gt;*:8080&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+...
+&lt;span class="nt"&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart Apache&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart apache2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Open web browser on http://10.X.Y.Z:8080/zm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Configure ZoneMinder&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Add password for admin user&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Remove old event&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Filter name : DeleteOldEvents
+Open : Event &amp;gt; Show filter windows
+Date less than "-3days"
+Delete all matches
+Run in Background
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Camera Dlink DC932LB&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;General&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Source Type: Remote 
+Function: Modec
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Source&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Remote protocol: http
+Remote hostname: user:password@dcs-932lb.domain.net
+Remote Host Path: /video.cgi
+Capture Width (pixels): 640
+Capture Height (pixels): 480
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Reverse Proxy with Nginx&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Install Nginx as TLS endpoint with Let's Encrypt (Published soon)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install required tools&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install nginx-extras fcgiwrap php7.0-fpm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure PHP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/php/7.0/fpm/php.ini
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cgi.fix_pathinfo = 0;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Check of PHP FPM is started&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart php7.0-fpm.service
+&lt;span class="gp"&gt;$&lt;/span&gt; systemctl status php7.0-fpm.service 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Stop zoneminder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl stop zoneminder
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create config file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/nginx/sites-available/default
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;location&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;camera&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;cgi-bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;gzip&lt;/span&gt; &lt;span class="n"&gt;off&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+      &lt;span class="n"&gt;include&lt;/span&gt; &lt;span class="n"&gt;fastcgi_params&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="n"&gt;fastcgi_param&lt;/span&gt; &lt;span class="n"&gt;SCRIPT_FILENAME&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;zoneminder&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cgi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nph&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;zms&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="n"&gt;fastcgi_intercept_errors&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="n"&gt;fastcgi_pass&lt;/span&gt; &lt;span class="n"&gt;unix&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;fcgiwrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nt"&gt;location&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;camera&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;gzip&lt;/span&gt; &lt;span class="n"&gt;off&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="n"&gt;alias&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;zoneminder&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+      &lt;span class="n"&gt;location&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+         &lt;span class="n"&gt;include&lt;/span&gt; &lt;span class="n"&gt;fastcgi_params&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+         &lt;span class="n"&gt;fastcgi_param&lt;/span&gt; &lt;span class="n"&gt;SCRIPT_FILENAME&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;request_filename&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+         &lt;span class="n"&gt;fastcgi_intercept_errors&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+         &lt;span class="n"&gt;fastcgi_pass&lt;/span&gt; &lt;span class="n"&gt;unix&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;php7&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;fpm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sock&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="p"&gt;}&lt;/span&gt;
+
+      &lt;span class="nt"&gt;location&lt;/span&gt; &lt;span class="o"&gt;~*&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;camera&lt;/span&gt;&lt;span class="o"&gt;/.*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;.(&lt;/span&gt;&lt;span class="nt"&gt;txt&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="nt"&gt;log&lt;/span&gt;&lt;span class="o"&gt;)$&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+         &lt;span class="n"&gt;deny&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="p"&gt;}&lt;/span&gt;
+
+      &lt;span class="nt"&gt;location&lt;/span&gt; &lt;span class="o"&gt;~*&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;camera&lt;/span&gt;&lt;span class="o"&gt;/.*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;.(&lt;/span&gt;&lt;span class="nt"&gt;m4a&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="nt"&gt;mp4&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="nt"&gt;mov&lt;/span&gt;&lt;span class="o"&gt;)$&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+         &lt;span class="n"&gt;mp4&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+         &lt;span class="n"&gt;mp4_buffer_size&lt;/span&gt; &lt;span class="m"&gt;5&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+         &lt;span class="n"&gt;mp4_max_buffer_size&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart nginx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart nginx
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start zoneminder
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure ZoneMinder in "options / Paths" and set PATH_ZMS to "/camera/cgi-bin/nph-zms"&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Debian Stretch"></category></entry><entry><title>Install Debian on PC Engines APU3a4</title><link href="http://didier.bernaudeau.net/Install_Debian_on_APU.html" rel="alternate"></link><published>2017-07-30T10:25:00+02:00</published><updated>2017-07-30T10:25:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-07-30:/Install_Debian_on_APU.html</id><summary type="html">&lt;p&gt;This post describes a way to install Debian 9.1 on the APU3C4, a system board from PcEngines.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post describes a way to install Debian 9.1 on the APU3C4, a system board from PcEngines.&lt;/p&gt;
 
 &lt;h1&gt;Create boot media&lt;/h1&gt;

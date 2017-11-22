@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>HowTo support FAT64 on Gentoo - My personal blog note</title>
+    <title>How to install ZoneMinder on Debian - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,21 +9,21 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/HowTo-support-FAT64-on-Gentoo.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/ZoneMinder_Debian.html">
 
-        <meta name="author" content="Didier Bernaudeau" />
-        <meta name="keywords" content="Gentoo" />
-        <meta name="description" content="FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32. This file systen is supported by Microsoft Windows (XP, Vista, Seven,...), MacOS, Linux and Android. For linux, FAT64 is not supported directly in the kernel but with FUSE (Filesystem in UserSpacE). This article describes step by step how to support FAT64 on Gentoo Linux." />
+        <meta name="author" content="Didier BERNAUDEAU" />
+        <meta name="keywords" content="Debian Stretch" />
+        <meta name="description" content="ZoneMinder is a free and open source CCTV (Closed-circuit television) software application which is suitable for building a DIY home video security system. So, this post describes how to install ZoneMinder on Debian to create your own DVR / NVR (Digital Video Recorder / Network Video Recorder)." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="HowTo support FAT64 on Gentoo"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/HowTo-support-FAT64-on-Gentoo.html"/>
-        <meta property="og:description" content="FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32. This file systen is supported by Microsoft Windows (XP, Vista, Seven,...), MacOS, Linux and Android. For linux, FAT64 is not supported directly in the kernel but with FUSE (Filesystem in UserSpacE). This article describes step by step how to support FAT64 on Gentoo Linux."/>
-        <meta property="article:published_time" content="2015-06-02" />
+        <meta property="og:title" content="How to install ZoneMinder on Debian"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/ZoneMinder_Debian.html"/>
+        <meta property="og:description" content="ZoneMinder is a free and open source CCTV (Closed-circuit television) software application which is suitable for building a DIY home video security system. So, this post describes how to install ZoneMinder on Debian to create your own DVR / NVR (Digital Video Recorder / Network Video Recorder)."/>
+        <meta property="article:published_time" content="2017-07-31" />
             <meta property="article:section" content="Tutorials" />
-            <meta property="article:tag" content="Gentoo" />
-            <meta property="article:author" content="Didier Bernaudeau" />
+            <meta property="article:tag" content="Debian Stretch" />
+            <meta property="article:author" content="Didier BERNAUDEAU" />
 
 
     <!-- Bootstrap -->
@@ -81,10 +81,10 @@ My personal blog note            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/HowTo-support-FAT64-on-Gentoo.html"
+                    <a href="http://didier.bernaudeau.net/ZoneMinder_Debian.html"
                        rel="bookmark"
-                       title="Permalink to HowTo support FAT64 on Gentoo">
-                        HowTo support FAT64 on Gentoo
+                       title="Permalink to How to install ZoneMinder on Debian">
+                        How to install ZoneMinder on Debian
                     </a>
                 </h1>
             </header>
@@ -94,11 +94,11 @@ My personal blog note            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-06-02T18:10:00+02:00"> mar. 02 juin 2015</time>
+        <i class="fa fa-calendar"></i><time datetime="2017-07-31T22:46:00+02:00"> lun. 31 juillet 2017</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-06-02T18:10:00+02:00"> mar. 02 juin 2015</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-11-22T22:52:00+01:00"> mer. 22 novembre 2017</time>
             </span>
 
 
@@ -106,51 +106,232 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/gentoo.html">Gentoo</a>
+	<a href="http://didier.bernaudeau.net/tag/debian-stretch.html">Debian Stretch</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>FAT64 or ExFAT (Extended File Allocation Table) is a file system introduced in 2009 by Microsoft. This is the successor to FAT32 that addresses the need to store larges files. With FAT64, the theoretical maximum file size is 64 ZB instead of 4GB for FAT32.</p>
-<p>This file systen is supported by Microsoft Windows (XP, Vista, Seven,...), MacOS, Linux and Android. For linux, FAT64 is not supported directly in the kernel but with FUSE (Filesystem in UserSpacE).</p>
-<p>This article describes step by step how to support FAT64 on Gentoo Linux.</p>
+                <p>ZoneMinder is a free and open source CCTV (Closed-circuit television) software application which is suitable for building a DIY home video security system. So, this post describes how to install ZoneMinder on Debian to create your own DVR / NVR (Digital Video Recorder / Network Video Recorder).</p>
 
-<div class="section" id="installation">
-<h2>Installation</h2>
-<p>Kernel configuration :</p>
-<pre class="code ini literal-block">
-<span class="err">|</span>     <span class="err">File</span> <span class="err">systems</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">FUSE</span> <span class="err">(Filesystem</span> <span class="err">in</span> <span class="err">Userspace)</span> <span class="err">support</span>
-<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Character</span> <span class="err">device</span> <span class="err">in</span> <span class="err">Userspace</span> <span class="err">support</span>
-</pre>
-<p>software installation :</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> emerge sys-fs/fuse-exfat sys-fs/exfat-utils
-</pre>
-</div>
-<div class="section" id="usage">
-<h2>Usage</h2>
-<p>Format the partition</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> mkfs.exfat /dev/sdxy
-</pre>
-<p>Check the partition</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> fsck.exfat /dev/sdxy
-</pre>
-<p>Mount the partition</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> mount -t exfat /dev/sdxy /mnt/usb
-</pre>
-</div>
-<div class="section" id="references">
-<h2>References</h2>
-<blockquote>
-<ul class="simple">
-<li><a class="reference external" href="https://support.microsoft.com/en-us/kb/955704/">Microsoft - Description of the ExFAT file system driver</a></li>
+<h1>Firewall</h1>
+<ul>
+<li>Incoming flow from Lan Interface</li>
 </ul>
-</blockquote>
-</div>
+<div class="highlight"><pre><span></span><span class="err">#</span><span class="x"> Apache for ZoneMinder</span>
+<span class="x">sudo iptables -A INPUT -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -d </span><span class="p">$</span><span class="nv">LanAddress</span><span class="x"> -p tcp --dport 8080 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
 
+<span class="err">#</span><span class="x"> Allow outgoing established connection</span>
+<span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">LanAddress</span><span class="x"> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+</pre></div>
+<ul>
+<li>Outgoing flow to LAN</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="err">#</span><span class="x"> Camera (RTSP) </span>
+<span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">LanAddress</span><span class="x"> -d </span><span class="p">$</span><span class="nv">LanNetwork</span><span class="x"> -p tcp --dport 554 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+
+<span class="err">#</span><span class="x"> Allow incoming established connection</span>
+<span class="x">sudo iptables -A INPUT -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+</pre></div>
+<h1>Database</h1>
+<ul>
+<li>Install MariaDB</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt install php mariadb-server php-mysql apache2-mod-php7.0
+<span class="gp">$</span> sudo mysql_secure_installation
+</pre></div>
+<ul>
+<li>Configure MariaDB</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo rm /etc/mysql/my.cnf
+<span class="gp">$</span> sudo cp /etc/mysql/mariadb.conf.d/50-server.cnf /etc/mysql/my.cnf
+<span class="gp">$</span> sudo nano /etc/mysql/my.cnf
+<span class="go">```console</span>
+</pre></div>
+<p>character-set-server = latin1
+collation-server = latin1_swedish_ci</p>
+<div class="highlight"><pre><span></span>* Restart MariaDB
+
+```console
+$ sudo systemctl restart mariadb
+</pre></div>
+<h1>Zoneminder</h1>
+<ul>
+<li>Add ZoneMinder repository</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/apt/sources.list
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://www.deb-multimedia.org</span> <span class="kp">stretch</span> <span class="kp">main</span> <span class="kp">non-free</span>
+</pre></div>
+<ul>
+<li>Update repository</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get update
+<span class="gp">$</span> sudo apt-get install deb-multimedia-keyring
+<span class="gp">$</span> sudo apt update
+<span class="gp">$</span> sudo apt upgrade
+<span class="gp">$</span> sudo apt dist-upgrade
+</pre></div>
+<ul>
+<li>Install ZoneMinder</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt install zoneminder vlc-plugin-base
+</pre></div>
+<ul>
+<li>Change access right</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo chmod <span class="m">740</span> /etc/zm/zm.conf
+<span class="gp">$</span> sudo chown root:www-data /etc/zm/zm.conf
+<span class="gp">$</span> sudo chown -R www-data:www-data /usr/share/zoneminder/
+<span class="gp">$</span> sudo adduser www-data video
+</pre></div>
+<ul>
+<li>Start ZoneMinder</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl <span class="nb">enable</span> zoneminder.service
+<span class="gp">$</span> sudo systemctl start zoneminder.service
+</pre></div>
+<h1>Apache</h1>
+<ul>
+<li>Load module</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo a2enmod cgi
+<span class="gp">$</span> sudo a2enmod rewrite
+<span class="gp">$</span> sudo a2enconf zoneminder
+</pre></div>
+<ul>
+<li>Configure PHP</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/php/7.0/apache2/php.ini
+</pre></div>
+<div class="highlight"><pre><span></span>date.timezone = Europe/Paris
+</pre></div>
+<ul>
+<li>Change port</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/apache2/ports.conf
+</pre></div>
+<div class="highlight"><pre><span></span>Listen 8080
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/apache2/sites-enabled/000-default.conf
+</pre></div>
+<div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span> <span class="err">*:8080</span><span class="nt">&gt;</span>
+...
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</pre></div>
+<ul>
+<li>Restart Apache</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl restart apache2
+</pre></div>
+<ul>
+<li>Open web browser on http://10.X.Y.Z:8080/zm</li>
+</ul>
+<h1>Configure ZoneMinder</h1>
+<ul>
+<li>
+<p>Add password for admin user</p>
+</li>
+<li>
+<p>Remove old event</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span>Filter name : DeleteOldEvents
+Open : Event &gt; Show filter windows
+Date less than "-3days"
+Delete all matches
+Run in Background
+</pre></div>
+<h1>Camera Dlink DC932LB</h1>
+<ul>
+<li>General</li>
+</ul>
+<div class="highlight"><pre><span></span>Source Type: Remote 
+Function: Modec
+</pre></div>
+<ul>
+<li>Source</li>
+</ul>
+<div class="highlight"><pre><span></span>Remote protocol: http
+Remote hostname: user:password@dcs-932lb.domain.net
+Remote Host Path: /video.cgi
+Capture Width (pixels): 640
+Capture Height (pixels): 480
+</pre></div>
+<h1>Reverse Proxy with Nginx</h1>
+<ul>
+<li>
+<p>Install Nginx as TLS endpoint with Let's Encrypt (Published soon)</p>
+</li>
+<li>
+<p>Install required tools</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install nginx-extras fcgiwrap php7.0-fpm
+</pre></div>
+<ul>
+<li>Configure PHP</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/php/7.0/fpm/php.ini
+</pre></div>
+<div class="highlight"><pre><span></span>cgi.fix_pathinfo = 0;
+</pre></div>
+<ul>
+<li>Check of PHP FPM is started</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl restart php7.0-fpm.service
+<span class="gp">$</span> systemctl status php7.0-fpm.service 
+</pre></div>
+<ul>
+<li>Stop zoneminder</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl stop zoneminder
+</pre></div>
+<ul>
+<li>Create config file</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/nginx/sites-available/default
+</pre></div>
+<div class="highlight"><pre><span></span><span class="nt">location</span> <span class="o">/</span><span class="nt">camera</span><span class="o">/</span><span class="nt">cgi-bin</span><span class="o">/</span> <span class="p">{</span>
+      <span class="n">gzip</span> <span class="n">off</span><span class="p">;</span>
+      <span class="n">root</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="p">;</span>
+
+      <span class="n">include</span> <span class="n">fastcgi_params</span><span class="p">;</span>
+      <span class="n">fastcgi_param</span> <span class="n">SCRIPT_FILENAME</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">zoneminder</span><span class="o">/</span><span class="n">cgi</span><span class="o">-</span><span class="n">bin</span><span class="o">/</span><span class="n">nph</span><span class="o">-</span><span class="n">zms</span><span class="p">;</span>
+      <span class="n">fastcgi_intercept_errors</span> <span class="n">on</span><span class="p">;</span>
+      <span class="n">fastcgi_pass</span> <span class="n">unix</span><span class="o">:/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">fcgiwrap</span><span class="o">.</span><span class="n">socket</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">location</span> <span class="o">/</span><span class="nt">camera</span><span class="o">/</span> <span class="p">{</span>
+      <span class="n">gzip</span> <span class="n">off</span><span class="p">;</span>
+      <span class="n">alias</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">zoneminder</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="p">;</span>
+      <span class="n">index</span> <span class="n">index</span><span class="o">.</span><span class="n">php</span><span class="p">;</span>
+
+      <span class="n">location</span> <span class="o">~</span> <span class="err">\</span><span class="o">.</span><span class="n">php</span><span class="err">$</span> <span class="err">{</span>
+         <span class="n">include</span> <span class="n">fastcgi_params</span><span class="p">;</span>
+         <span class="n">fastcgi_param</span> <span class="n">SCRIPT_FILENAME</span> <span class="err">$</span><span class="n">request_filename</span><span class="p">;</span>
+         <span class="n">fastcgi_intercept_errors</span> <span class="n">on</span><span class="p">;</span>
+         <span class="n">fastcgi_pass</span> <span class="n">unix</span><span class="o">:/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">php</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="m">0</span><span class="o">-</span><span class="n">fpm</span><span class="o">.</span><span class="n">sock</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nt">location</span> <span class="o">~*</span> <span class="o">/</span><span class="nt">camera</span><span class="o">/.*</span><span class="err">\</span><span class="o">.(</span><span class="nt">txt</span><span class="o">|</span><span class="nt">log</span><span class="o">)$</span> <span class="p">{</span>
+         <span class="n">deny</span> <span class="n">all</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nt">location</span> <span class="o">~*</span> <span class="o">/</span><span class="nt">camera</span><span class="o">/.*</span><span class="err">\</span><span class="o">.(</span><span class="nt">m4a</span><span class="o">|</span><span class="nt">mp4</span><span class="o">|</span><span class="nt">mov</span><span class="o">)$</span> <span class="p">{</span>
+         <span class="n">mp4</span><span class="p">;</span>
+         <span class="n">mp4_buffer_size</span> <span class="m">5</span><span class="n">M</span><span class="p">;</span>
+         <span class="n">mp4_max_buffer_size</span> <span class="m">10</span><span class="n">M</span><span class="p">;</span>
+      <span class="p">}</span>
+<span class="err">}</span>
+</pre></div>
+<ul>
+<li>Restart nginx</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl restart nginx
+<span class="gp">$</span> sudo systemctl start zoneminder
+</pre></div>
+<ul>
+<li>Configure ZoneMinder in "options / Paths" and set PATH_ZMS to "/camera/cgi-bin/nph-zms"</li>
+</ul>
             </div>
             <!-- /.entry-content -->
         </article>

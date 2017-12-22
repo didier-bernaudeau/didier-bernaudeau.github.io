@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Cheat Sheet</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/cheat-sheet.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-12-22T21:36:00+01:00</updated><entry><title>Linux cheat sheet</title><link href="http://didier.bernaudeau.net/Linux_cheat_sheet.html" rel="alternate"></link><published>2017-12-17T17:52:00+01:00</published><updated>2017-12-22T21:36:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-17:/Linux_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
+
+&lt;h1&gt;Network&lt;/h1&gt;
+&lt;h2&gt;Check listening&lt;/h2&gt;
+&lt;p&gt;The command line netstat is not used anymore in modern linux distribution.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Check listening TCP ports&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo ss -ltn
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Check listening UDP ports&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo ss -lun
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;file compression&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Compress with Gunzip&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; tar -czvf file.tar.gz /home/directory
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category></entry><entry><title>Docker Cheat Sheet</title><link href="http://didier.bernaudeau.net/Docker_cheat_sheet.html" rel="alternate"></link><published>2017-04-12T21:29:00+02:00</published><updated>2017-04-12T21:29:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-04-12:/Docker_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a quick reference sheet in one page for Docker&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post is a quick reference sheet in one page for Docker&lt;/p&gt;
+
+&lt;h1&gt;Container&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Creates and start a container in one operation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker run -td -p 127.0.0.1:$HOSTPORT:&lt;span class="nv"&gt;$C&lt;/span&gt;ONTAINERPORT -v $HOSTDIR:&lt;span class="nv"&gt;$D&lt;/span&gt;OCKERDIR
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Options:
+&lt;em&gt; -t allocates a pseudo-TTY session
+&lt;/em&gt; -d runs container in background
+&lt;em&gt; -p maps the container port to the host port 
+&lt;/em&gt; -v maps a directory on the host to a docker container&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Show running containers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker ps
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES                     
+f91ce070d170        postgres:9.6        "docker-entrypoint.sh"   2 minutes ago       Up 2 minutes        0.0.0.0:5432-&amp;gt;5432/tcp   stupefied_easley
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Stop a running container&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker stop
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Image&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Show all images&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker images
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Registry &amp;amp; Repository&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Pull an image from registry to local machine.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker pull ImageName
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Push an image to the registry from local machine.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker push
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Network&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;List network&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker network ls
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;NETWORK ID          NAME                DRIVER              SCOPE
+e6ba45aff418        bridge              bridge              local
+0263e7d36622        host                host                local
+1466acd0feda        none                null                local
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Network detail&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker network inspect e6ba45aff418
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[
+    {
+        "Name": "bridge",
+        "Id": "e6ba45aff418ee51a304182bb828fe78f940b2f0134f1564cf72118c53f8450a",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.17.0.0/16",
+                    "Gateway": "172.17.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Containers": {},
+        "Options": {
+            "com.docker.network.bridge.default_bridge": "true",
+            "com.docker.network.bridge.enable_icc": "true",
+            "com.docker.network.bridge.enable_ip_masquerade": "true",
+            "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+            "com.docker.network.bridge.name": "docker0",
+            "com.docker.network.driver.mtu": "1500"
+        },
+        "Labels": {}
+    }
+]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- https://github.com/wsargent/docker-cheat-sheet --&gt;</content><category term="Container"></category><category term="Docker"></category></entry><entry><title>Debian Cheat Sheet</title><link href="http://didier.bernaudeau.net/Debian_Cheat_Sheet.html" rel="alternate"></link><published>2016-11-13T13:03:00+01:00</published><updated>2017-01-12T11:22:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-11-13:/Debian_Cheat_Sheet.html</id><summary type="html">&lt;p&gt;This post is a quick reference sheet in one page for Debian&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post is a quick reference sheet in one page for Debian&lt;/p&gt;
+
+&lt;h1&gt;Update your Debian&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Resynchronize the package index files&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get update
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install the newest versions of all packages currently installed on the system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get upgrade
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Daemon management (with System V init script)&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Start a daemon&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo service DaemonName start
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Daemon management (with Systemd)&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Start a daemon&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start sshd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Network configuration&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Show IP address&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo ip address show
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Set IP address&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo ip addr add 192.168.10.1 dev ens3
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category><category term="Debian"></category></entry></feed>

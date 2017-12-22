@@ -64,7 +64,7 @@ My personal blog note            </a>
                     <li><a href="/category/articles.html">Articles</a></li>
                     <li><a href="/category/tutorials.html">Tutorials</a></li>
                     <li><a href="/category/talk.html">Talk</a></li>
-                    <li><a href="/category/press-review.html">Press Review</a></li>
+                    <li><a href="/category/cheat-sheet.html">Cheat sheet</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="http://didier.bernaudeau.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
@@ -99,7 +99,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-11-11T15:16:00+01:00"> sam. 11 novembre 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-11-25T17:42:00+01:00"> sam. 25 novembre 2017</time>
             </span>
 
 
@@ -155,6 +155,7 @@ iface enp3s0 inet static
         address 10.XXX.3.254
         netmask 255.255.255.0
         gateway 10.XXX.1.1
+        dns-nameserver 127.0.0.1
 </pre></div>
 <ul>
 <li>Start</li>
@@ -342,9 +343,12 @@ zone "3.XXX.10.in-addr.arpa" IN {
 
 <span class="x">@                IN       NS      ns.domain.net.</span>
 
-<span class="x">g8way            IN       A       10.XXX.3.254</span>
 <span class="x">edge             IN       A       10.0.0.1</span>
+<span class="x">g8way            IN       A       10.XXX.3.254</span>
 <span class="x">ns               IN       A       10.XXX.3.254</span>
+<span class="x">cups             IN       A       10.XXX.3.254</span>
+<span class="x">home             IN       A       10.XXX.3.254</span>
+<span class="x">brother          IN       A       10.XXX.3.100</span>
 </pre></div>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /var/cache/bind/10.XXX.3.zone
 </pre></div>
@@ -360,6 +364,7 @@ zone "3.XXX.10.in-addr.arpa" IN {
 
 <span class="x">@    IN  NS  ns.domain.net.</span>
 <span class="x">254  IN  PTR g8way.domain.net.</span>
+<span class="x">100  IN  PTR brother.lazuly.net</span>
 </pre></div>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /var/cache/bind/10.0.0.zone
 </pre></div>
@@ -637,7 +642,7 @@ Save current IPv6 rules? Yes
                             Debian
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/debian-stretch.html">
                             Debian Stretch
                         </a>
@@ -707,7 +712,7 @@ Save current IPv6 rules? Yes
                             JavaScript
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/linux.html">
                             Linux
                         </a>
@@ -730,11 +735,6 @@ Save current IPv6 rules? Yes
                     <li class="list-group-item tag-3">
                         <a href="http://didier.bernaudeau.net/tag/pki.html">
                             PKI
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
-                        <a href="http://didier.bernaudeau.net/tag/press-review.html">
-                            Press review
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

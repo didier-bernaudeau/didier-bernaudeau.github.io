@@ -1,5 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-11-22T22:52:00+01:00</updated><entry><title>Edge Router on Dedibox</title><link href="http://didier.bernaudeau.net/Edge_Router_on_dedibox.html" rel="alternate"></link><published>2017-09-03T22:46:00+02:00</published><updated>2017-11-22T22:27:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-09-03:/Edge_Router_on_dedibox.html</id><summary type="html">&lt;p&gt;An edge router ensures the connectivity of its network with external networks. In my case, this router is a Dedibox hosted by Online at Amsterdam and ensures the connectivity between my LAN and Internet through a VPN network. This post describes the first step to configure ArchLinux.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-12-22T21:26:00+01:00</updated><entry><title>How to install Cups</title><link href="http://didier.bernaudeau.net/HowTo_install_Cups.html" rel="alternate"></link><published>2017-11-25T12:46:00+01:00</published><updated>2017-12-22T21:26:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-11-25:/HowTo_install_Cups.html</id><summary type="html">&lt;p&gt;This post describes how to create a printing server with CUPS on Debian Stretch then how to install a printer (Brother MFC295CN) which requires a 32bits driver from manufacturer.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post describes how to create a printing server with CUPS on Debian Stretch then how to install a printer (Brother MFC295CN) which requires a 32bits driver from manufacturer.&lt;/p&gt;
+
+&lt;h1&gt;Network Configuration&lt;/h1&gt;
+&lt;p&gt;Set A record in your local DNS for "cups.domain.net" and "brother.domain.net"&lt;/p&gt;
+&lt;h1&gt;32 bits Support&lt;/h1&gt;
+&lt;p&gt;Debian removed ia32-libs from the repository. So to run 32bit code on 64bit system, you need to enable multiarch support&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Add i386 architecture&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo dpkg --add-architecture i386
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo dpkg --print-foreign-architectures
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update package repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get update
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install 32bits package&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Firewall&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Incoming flow&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; Cups
+&lt;span class="go"&gt;sudo iptables -A INPUT -i $LanInterface -d $LanAddress -p tcp --dport 631 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+
+&lt;span class="gp"&gt;#&lt;/span&gt; Allow outgoing established connection
+&lt;span class="go"&gt;sudo iptables -A OUTPUT -o $LanInterface -s $LanAddress -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Outgoing flow&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; LPD &lt;span class="o"&gt;(&lt;/span&gt;Print protocol to Brother&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="go"&gt;sudo iptables -A OUTPUT -o $LanInterface -s $LanAddress -d $PrintBrother -p tcp --dport 515 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACC$&lt;/span&gt;
+
+&lt;span class="gp"&gt;#&lt;/span&gt; Allow incoming established connection
+&lt;span class="go"&gt;sudo iptables -A INPUT -i $LanInterface -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Local flow&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; CUPS
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo iptables -A OUTPUT -o lo -s 127.0.0.1 -d 127.0.0.1 -p tcp --dport &lt;span class="m"&gt;631&lt;/span&gt; -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo iptables -A INPUT -i lo -s 127.0.0.1 -d 127.0.0.1 -p tcp --dport &lt;span class="m"&gt;631&lt;/span&gt; -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Cups&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install CUPS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install cups
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure CUPS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/cups/cupsd.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Listen 10.XXX.3.254:631
+Listen /var/run/cups/cups.sock
+
+ServerAlias cups.domain.net
+
+&lt;span class="nt"&gt;&amp;lt;Location&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+  Order allow,deny
+  allow 10.XXX.3.0/24
+&lt;span class="nt"&gt;&amp;lt;/Location&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;Location&lt;/span&gt; &lt;span class="err"&gt;/admin&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  Order allow,deny
+  allow 10.XXX.3.0/24
+&lt;span class="nt"&gt;&amp;lt;/Location&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;Location&lt;/span&gt; &lt;span class="err"&gt;/admin/conf&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  Order allow,deny
+  allow 10.XXX.3.0/24
+&lt;span class="nt"&gt;&amp;lt;Location&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart CUPS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart cups
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; cups
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Open your browser on http://cups.domain.net:631&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Brother MFC295CN&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Set static IP Address (DHCP is not supported): 10.XXX.93.100/24 &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Download the last driver LPR on http://support.brother.com/g/b/producttop.aspx&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; curl -LO http://download.brother.com/welcome/dlf006084/mfc295cnlpr-1.1.3-1.i386.deb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create spool directory&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo mkdir /var/spool/lpd/
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo mkdir /var/spool/lpd/mfc295cn
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Instal LPR driver&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo dpkg -i --force-all mfc295cnlpr-1.1.3-1.i386.deb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configurer le pilote LPR&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/printcap
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;MFC295CN:\
+      :mx=0:\
+      :sd=/var/spool/lpd/mfc295cn:\
+      :sh:\
+      :lp=brother.lazuly.net\
+      :if=/opt/brother/Printers/mfc295cn/lpd/filtermfc295cn
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Download Cups Wrapper&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; curl -LO http://download.brother.com/welcome/dlf006086/mfc295cncupswrapper-1.1.3-1.i386.deb
+&lt;span class="go"&gt;```console&lt;/span&gt;
+
+&lt;span class="go"&gt;* Install cups wrapper&lt;/span&gt;
+
+&lt;span class="go"&gt;```console&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo dpkg -i --force-all mfc295cncupswrapper-1.1.3-1.i386.deb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add printer via the admin interface (https://cups.domain.net:631/admin/ with root user)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;"Administration &amp;gt; Printer &amp;gt; Add printer"
+"Other Network Printers: Hôte ou imprimante LPD/LPR" then "continue"
+"Connection = lpd://brother.domain.net/BINARY_P1" then "continue"
+"Printer name = Brother" and check "Share This Printer" then "continue"
+"Model" : Brother MFC-295CN CUPS (en)" then "add printer"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Cups client&lt;/h1&gt;
+&lt;h2&gt;Linux&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/cups/client.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ServerName cups.lazuly.net
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Android&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Cups Print via Play store and configuration it as below :&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Réglage &amp;gt; impression : activer le service "Impression Android CUPS"
+Ajouter une imprimante : http://cups.domain.net:631/printers/Brother et donner lui un nom
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Troubleshooting&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Erreur "L'application spooleur d'impression s'est malheureusement arrêtée" est affichée mais l'impression suit son cours (et le document est présent dans la liste des échecs d'impression)&lt;/p&gt;</content><category term="Network"></category><category term="Debian Stretch"></category><category term="APU"></category></entry><entry><title>Edge Router on Dedibox</title><link href="http://didier.bernaudeau.net/Edge_Router_on_dedibox.html" rel="alternate"></link><published>2017-09-03T22:46:00+02:00</published><updated>2017-11-22T22:27:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-09-03:/Edge_Router_on_dedibox.html</id><summary type="html">&lt;p&gt;An edge router ensures the connectivity of its network with external networks. In my case, this router is a Dedibox hosted by Online at Amsterdam and ensures the connectivity between my LAN and Internet through a VPN network. This post describes the first step to configure ArchLinux.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;An edge router ensures the connectivity of its network with external networks. In my case, this router is a Dedibox hosted by Online at Amsterdam and ensures the connectivity between my LAN and Internet through a VPN network. This post describes the first step to configure ArchLinux.&lt;/p&gt;
 
 &lt;h1&gt;Hardware&lt;/h1&gt;
@@ -540,6 +699,18 @@ tls-cipher TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start openvpn-client@client.service
 &lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Troubleshooting&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Dec 14 02:20:16 g8way openvpn[769]: [openvpn] Inactivity timeout (--ping-restart), restarting
+Dec 14 02:20:16 g8way openvpn[769]: SIGUSR1[soft,ping-restart] received, process restarting
+Dec 14 02:20:21 g8way openvpn[769]: TCP/UDP: Preserving recently used remote address: [AF_INET]w.x.y.z:1194
+Dec 14 02:20:21 g8way openvpn[769]: UDP link local: (not bound)
+...
+Dec 14 02:21:21 g8way openvpn[769]: TLS Error: TLS key negotiation failed to occur within 60 seconds (check your network connectivity)
+Dec 14 02:21:21 g8way openvpn[769]: TLS Error: TLS handshake failed
+Dec 14 02:21:21 g8way openvpn[769]: SIGUSR1[soft,tls-error] received, process restarting
+&lt;/pre&gt;&lt;/div&gt;
 &lt;!--
 * Configure IpTables
 
@@ -609,7 +780,7 @@ key-direction 1
 -----END OpenVPN Static key V1-----
 &lt;span class="nt"&gt;&amp;lt;/tls-auth&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;nowadays, the ciphersuite "ECDHE-ECDSA-AES256-GCM-SHA384" seems to be unsupported by OpenVPN Connect 1.1.22&lt;/p&gt;</content><category term="Network"></category><category term="ArchLinux"></category><category term="Debian Stretch"></category><category term="VPN"></category><category term="APU"></category></entry><entry><title>Homemade firewall/router on APU</title><link href="http://didier.bernaudeau.net/Homemade_firewall_router_on_APU.html" rel="alternate"></link><published>2017-08-30T21:50:00+02:00</published><updated>2017-11-11T15:16:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-08-30:/Homemade_firewall_router_on_APU.html</id><summary type="html">&lt;p&gt;A personal firewall/router is imperative to secure home network and, above all, to preserve your privacy against indiscretion from your ISP. This firewall/router must provide the minimal network services such as : routing, DHCP, DNS, ...&lt;/p&gt;
+&lt;p&gt;nowadays, the ciphersuite "ECDHE-ECDSA-AES256-GCM-SHA384" seems to be unsupported by OpenVPN Connect 1.1.22&lt;/p&gt;</content><category term="Network"></category><category term="ArchLinux"></category><category term="Debian Stretch"></category><category term="VPN"></category><category term="APU"></category></entry><entry><title>Homemade firewall/router on APU</title><link href="http://didier.bernaudeau.net/Homemade_firewall_router_on_APU.html" rel="alternate"></link><published>2017-08-30T21:50:00+02:00</published><updated>2017-11-25T17:42:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-08-30:/Homemade_firewall_router_on_APU.html</id><summary type="html">&lt;p&gt;A personal firewall/router is imperative to secure home network and, above all, to preserve your privacy against indiscretion from your ISP. This firewall/router must provide the minimal network services such as : routing, DHCP, DNS, ...&lt;/p&gt;
 &lt;p&gt;In this configuration, IPv6 is completely disabled because my ISP doesn't support prefix delegation, which is mandatory to have IPv6 subnetting on a non-flat network.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;A personal firewall/router is imperative to secure home network and, above all, to preserve your privacy against indiscretion from your ISP. This firewall/router must provide the minimal network services such as : routing, DHCP, DNS, ...&lt;/p&gt;
 &lt;p&gt;In this configuration, IPv6 is completely disabled because my ISP doesn't support prefix delegation, which is mandatory to have IPv6 subnetting on a non-flat network.&lt;/p&gt;
@@ -653,6 +824,7 @@ iface enp3s0 inet static
         address 10.XXX.3.254
         netmask 255.255.255.0
         gateway 10.XXX.1.1
+        dns-nameserver 127.0.0.1
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Start&lt;/li&gt;
@@ -840,9 +1012,12 @@ zone "3.XXX.10.in-addr.arpa" IN {
 
 &lt;span class="x"&gt;@                IN       NS      ns.domain.net.&lt;/span&gt;
 
-&lt;span class="x"&gt;g8way            IN       A       10.XXX.3.254&lt;/span&gt;
 &lt;span class="x"&gt;edge             IN       A       10.0.0.1&lt;/span&gt;
+&lt;span class="x"&gt;g8way            IN       A       10.XXX.3.254&lt;/span&gt;
 &lt;span class="x"&gt;ns               IN       A       10.XXX.3.254&lt;/span&gt;
+&lt;span class="x"&gt;cups             IN       A       10.XXX.3.254&lt;/span&gt;
+&lt;span class="x"&gt;home             IN       A       10.XXX.3.254&lt;/span&gt;
+&lt;span class="x"&gt;brother          IN       A       10.XXX.3.100&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /var/cache/bind/10.XXX.3.zone
 &lt;/pre&gt;&lt;/div&gt;
@@ -858,6 +1033,7 @@ zone "3.XXX.10.in-addr.arpa" IN {
 
 &lt;span class="x"&gt;@    IN  NS  ns.domain.net.&lt;/span&gt;
 &lt;span class="x"&gt;254  IN  PTR g8way.domain.net.&lt;/span&gt;
+&lt;span class="x"&gt;100  IN  PTR brother.lazuly.net&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /var/cache/bind/10.0.0.zone
 &lt;/pre&gt;&lt;/div&gt;
@@ -2625,12 +2801,11 @@ NTP synchronized: yes
     &lt;span class="c"&gt;&amp;lt;!-- if necessary, change text-align --&amp;gt;&lt;/span&gt;
   &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;section&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-```html
-
-* Insert image
-
-```html
-  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"img.png"&lt;/span&gt; &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"width:50%; border:0px;"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Insert image&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"img.png"&lt;/span&gt; &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"width:50%; border:0px;"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Speaker notes&lt;/li&gt;
@@ -2921,10 +3096,23 @@ net.ipv6.conf.default.disable_ipv6=1
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y curl
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;Locate&lt;/li&gt;
+&lt;li&gt;Temperature&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y locate
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y lm-sensors
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo sensors-detect
+&lt;span class="gp"&gt;$&lt;/span&gt; sensors
+&lt;span class="go"&gt;```console&lt;/span&gt;
+
+&lt;span class="go"&gt;* Locate&lt;/span&gt;
+
+&lt;span class="go"&gt;```console&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y locate
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo updatedb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;System monotring&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y htop
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;What still needs to be done&lt;/h1&gt;
 &lt;ul&gt;

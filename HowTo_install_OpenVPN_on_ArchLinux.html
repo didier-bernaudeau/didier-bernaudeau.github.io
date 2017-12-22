@@ -67,7 +67,7 @@ My personal blog note            </a>
                     <li><a href="/category/articles.html">Articles</a></li>
                     <li><a href="/category/tutorials.html">Tutorials</a></li>
                     <li><a href="/category/talk.html">Talk</a></li>
-                    <li><a href="/category/press-review.html">Press Review</a></li>
+                    <li><a href="/category/cheat-sheet.html">Cheat sheet</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="http://didier.bernaudeau.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
@@ -524,6 +524,18 @@ tls-cipher TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl start openvpn-client@client.service
 </pre></div>
+<ul>
+<li>Troubleshooting</li>
+</ul>
+<div class="highlight"><pre><span></span>Dec 14 02:20:16 g8way openvpn[769]: [openvpn] Inactivity timeout (--ping-restart), restarting
+Dec 14 02:20:16 g8way openvpn[769]: SIGUSR1[soft,ping-restart] received, process restarting
+Dec 14 02:20:21 g8way openvpn[769]: TCP/UDP: Preserving recently used remote address: [AF_INET]w.x.y.z:1194
+Dec 14 02:20:21 g8way openvpn[769]: UDP link local: (not bound)
+...
+Dec 14 02:21:21 g8way openvpn[769]: TLS Error: TLS key negotiation failed to occur within 60 seconds (check your network connectivity)
+Dec 14 02:21:21 g8way openvpn[769]: TLS Error: TLS handshake failed
+Dec 14 02:21:21 g8way openvpn[769]: SIGUSR1[soft,tls-error] received, process restarting
+</pre></div>
 <!--
 * Configure IpTables
 
@@ -599,11 +611,11 @@ key-direction 1
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
+        <li><a href="http://didier.bernaudeau.net/TLS_Cipher_Suites.html">TLS Cipher Suites</a></li>
         <li><a href="http://didier.bernaudeau.net/EnOcean.html">EnOcean</a></li>
+        <li><a href="http://didier.bernaudeau.net/TLS_Audit_tools.html">TLS: Audit tools</a></li>
         <li><a href="http://didier.bernaudeau.net/PC_Engines_APU3a4.html">PC Engines APU3a4</a></li>
         <li><a href="http://didier.bernaudeau.net/TLS_Understanding_the_cipher_suites.html">TLS: Understanding the cipher suites</a></li>
-        <li><a href="http://didier.bernaudeau.net/TLS_Audit_tools.html">TLS: Audit tools</a></li>
-        <li><a href="http://didier.bernaudeau.net/TLS_Cipher_Suites.html">TLS Cipher Suites</a></li>
     </ul>
 </section>
         </article>
@@ -678,7 +690,7 @@ key-direction 1
                             Debian
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/debian-stretch.html">
                             Debian Stretch
                         </a>
@@ -748,7 +760,7 @@ key-direction 1
                             JavaScript
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/linux.html">
                             Linux
                         </a>
@@ -771,11 +783,6 @@ key-direction 1
                     <li class="list-group-item tag-3">
                         <a href="http://didier.bernaudeau.net/tag/pki.html">
                             PKI
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
-                        <a href="http://didier.bernaudeau.net/tag/press-review.html">
-                            Press review
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

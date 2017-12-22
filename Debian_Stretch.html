@@ -63,7 +63,7 @@ My personal blog note            </a>
                     <li><a href="/category/articles.html">Articles</a></li>
                     <li><a href="/category/tutorials.html">Tutorials</a></li>
                     <li><a href="/category/talk.html">Talk</a></li>
-                    <li><a href="/category/press-review.html">Press Review</a></li>
+                    <li><a href="/category/cheat-sheet.html">Cheat sheet</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="http://didier.bernaudeau.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
@@ -177,10 +177,23 @@ net.ipv6.conf.default.disable_ipv6=1
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y curl
 </pre></div>
 <ul>
-<li>Locate</li>
+<li>Temperature</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y locate
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y lm-sensors
+<span class="gp">$</span> sudo sensors-detect
+<span class="gp">$</span> sensors
+<span class="go">```console</span>
+
+<span class="go">* Locate</span>
+
+<span class="go">```console</span>
+<span class="gp">$</span> sudo apt-get install -y locate
 <span class="gp">$</span> sudo updatedb
+</pre></div>
+<ul>
+<li>System monotring</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y htop
 </pre></div>
 <h1>What still needs to be done</h1>
 <ul>
@@ -262,7 +275,7 @@ net.ipv6.conf.default.disable_ipv6=1
                             Debian
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/debian-stretch.html">
                             Debian Stretch
                         </a>
@@ -332,7 +345,7 @@ net.ipv6.conf.default.disable_ipv6=1
                             JavaScript
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/linux.html">
                             Linux
                         </a>
@@ -355,11 +368,6 @@ net.ipv6.conf.default.disable_ipv6=1
                     <li class="list-group-item tag-3">
                         <a href="http://didier.bernaudeau.net/tag/pki.html">
                             PKI
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
-                        <a href="http://didier.bernaudeau.net/tag/press-review.html">
-                            Press review
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

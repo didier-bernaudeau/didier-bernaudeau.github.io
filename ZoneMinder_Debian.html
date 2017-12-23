@@ -144,14 +144,14 @@ My personal blog note            </a>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo rm /etc/mysql/my.cnf
 <span class="gp">$</span> sudo cp /etc/mysql/mariadb.conf.d/50-server.cnf /etc/mysql/my.cnf
 <span class="gp">$</span> sudo nano /etc/mysql/my.cnf
-<span class="go">```console</span>
 </pre></div>
-<p>character-set-server = latin1
-collation-server = latin1_swedish_ci</p>
-<div class="highlight"><pre><span></span>* Restart MariaDB
-
-```console
-$ sudo systemctl restart mariadb
+<div class="highlight"><pre><span></span>character-set-server = latin1
+collation-server = latin1_swedish_ci
+</pre></div>
+<ul>
+<li>Restart MariaDB</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl restart mariadb
 </pre></div>
 <h1>Zoneminder</h1>
 <ul>
@@ -346,7 +346,7 @@ Capture Height (pixels): 480
         </p>
     <p>
         <strong>About D. Bernaudeau</strong><br/>
-        I’m Didier Bernaudeau, an Information Systems Security Professional. This site is a way to note some experimentations.
+        I’m Didier Bernaudeau, an Information Systems Security Professional. I’m also a geek who likes to test all new technologies, frameworks, softwares, ... So, this site is a way to document some of my experimentations.
     </p>
 </div>
 <section class="well well-sm">
@@ -484,6 +484,11 @@ Capture Height (pixels): 480
                     <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/network.html">
                             Network
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/nginx.html">
+                            Nginx
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

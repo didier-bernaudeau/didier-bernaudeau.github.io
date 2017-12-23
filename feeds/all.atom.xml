@@ -1,5 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-12-22T21:36:00+01:00</updated><entry><title>Linux cheat sheet</title><link href="http://didier.bernaudeau.net/Linux_cheat_sheet.html" rel="alternate"></link><published>2017-12-17T17:52:00+01:00</published><updated>2017-12-22T21:36:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-17:/Linux_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-12-23T13:06:00+01:00</updated><entry><title>Video Streaming with HLSjs</title><link href="http://didier.bernaudeau.net/Video_Streaming_with_HLSjs.html" rel="alternate"></link><published>2017-12-23T10:36:00+01:00</published><updated>2017-12-23T13:06:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-23:/Video_Streaming_with_HLSjs.html</id><summary type="html">&lt;p&gt;This tutorial describes a way to stream video from my surveillance camera. The backend is a Nginx (as RTMP proxy server) with FFmpeg for video transcoding. The frontend is based on HLSjs framework. Finally, HLS protocol (Also known as HTTP Live Streaming) is used for the communication between back and front.
+This solution doesn't work on Android device. So, I did not take that option and this article is not really finish.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This tutorial describes a way to stream video from my surveillance camera. The backend is a Nginx (as RTMP proxy server) with FFmpeg for video transcoding. The frontend is based on HLSjs framework. Finally, HLS protocol (Also known as HTTP Live Streaming) is used for the communication between back and front.
+This solution doesn't work on Android device. So, I did not take that option and this article is not really finish.&lt;/p&gt;
+
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-12-23_Video_Streaming_with_HLSjs.png" width="80%"/&gt;&lt;/p&gt;
+&lt;h1&gt;Backend&lt;/h1&gt;
+&lt;h2&gt;RTMP Server&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Nginx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.use
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;www-servers/nginx    rtmp
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install nginx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge nginx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure nginx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;rtmp &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;    server &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;        listen 1935; &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Listen on standard RTMP port&lt;/span&gt;
+&lt;span class="x"&gt;        chunk_size 4000;&lt;/span&gt;
+
+&lt;span class="x"&gt;        application show &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;            live on;&lt;/span&gt;
+&lt;span class="x"&gt;            &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Turn on HLS&lt;/span&gt;
+&lt;span class="x"&gt;            hls on;&lt;/span&gt;
+&lt;span class="x"&gt;            hls_path /mnt/hls/;&lt;/span&gt;
+&lt;span class="x"&gt;            hls_fragment 3;&lt;/span&gt;
+&lt;span class="x"&gt;            hls_playlist_length 60;&lt;/span&gt;
+&lt;span class="x"&gt;            &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; disable consuming the stream from nginx as rtmp&lt;/span&gt;
+&lt;span class="x"&gt;            &lt;/span&gt;&lt;span class="cp"&gt;#&lt;/span&gt;&lt;span class="nf"&gt;deny&lt;/span&gt;&lt;span class="x"&gt; play all;&lt;/span&gt;
+&lt;span class="x"&gt;        }&lt;/span&gt;
+&lt;span class="x"&gt;    }&lt;/span&gt;
+&lt;span class="x"&gt;}&lt;/span&gt;
+
+&lt;span class="x"&gt;http &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;      ...&lt;/span&gt;
+&lt;span class="x"&gt;      sendfile off;&lt;/span&gt;
+&lt;span class="x"&gt;      tcp_nopush on;&lt;/span&gt;
+&lt;span class="x"&gt;      tcp_nodelay on;&lt;/span&gt;
+&lt;span class="x"&gt;      directio 512;&lt;/span&gt;
+
+&lt;span class="x"&gt;      server &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;        listen 8081;&lt;/span&gt;
+&lt;span class="x"&gt;        root /var/www/app/;&lt;/span&gt;
+&lt;span class="x"&gt;      }&lt;/span&gt;
+
+&lt;span class="x"&gt;      server &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;        listen 8080;&lt;/span&gt;
+&lt;span class="x"&gt;        server_name hostname;&lt;/span&gt;
+
+&lt;span class="x"&gt;        location / &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;          &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Disable cache&lt;/span&gt;
+&lt;span class="x"&gt;          add_header 'Cache-Control' 'no-cache';&lt;/span&gt;
+
+&lt;span class="x"&gt;          &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; CORS setup&lt;/span&gt;
+&lt;span class="x"&gt;          add_header 'Access-Control-Allow-Origin' '*' always;&lt;/span&gt;
+&lt;span class="x"&gt;          add_header 'Access-Control-Expose-Headers' 'Content-Length';&lt;/span&gt;
+
+&lt;span class="x"&gt;          &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; allow CORS preflight requests (Don't use this configure in production environment)&lt;/span&gt;
+&lt;span class="x"&gt;          if (&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;request_method&lt;/span&gt;&lt;span class="x"&gt; = 'OPTIONS') &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;            add_header 'Access-Control-Allow-Origin' '*';&lt;/span&gt;
+&lt;span class="x"&gt;            add_header 'Access-Control-Max-Age' 1728000;&lt;/span&gt;
+&lt;span class="x"&gt;            add_header 'Content-Type' 'text/plain charset=UTF-8';&lt;/span&gt;
+&lt;span class="x"&gt;            add_header 'Content-Length' 0;&lt;/span&gt;
+&lt;span class="x"&gt;            return 204;&lt;/span&gt;
+&lt;span class="x"&gt;          }&lt;/span&gt;
+
+&lt;span class="x"&gt;          types &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;            application/dash+xml mpd;&lt;/span&gt;
+&lt;span class="x"&gt;            application/vnd.apple.mpegurl m3u8;&lt;/span&gt;
+&lt;span class="x"&gt;            video/mp2t ts;&lt;/span&gt;
+&lt;span class="x"&gt;          }&lt;/span&gt;
+
+&lt;span class="x"&gt;          root /mnt/;&lt;/span&gt;
+&lt;span class="x"&gt;        }&lt;/span&gt;
+&lt;span class="x"&gt;      }&lt;/span&gt;
+&lt;span class="x"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Video transcoding&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Install ffmpeg&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge ffmpeg
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Transcode video&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; ffmpeg -i rtsp://username:password@10.X.Y.Z:554/VideoInput/chan1/h264/1 -vcodec libx264 -vprofile baseline -acodec aac -strict -2 -f flv rtmp://localhost/show/stream
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Frontend&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Create webpage&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mkdir /var/www/app
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /var/www/app/hls.html
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"https://cdn.jsdelivr.net/npm/hls.js@latest"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Test streaming&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;video&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"video"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;video&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;Hls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;isSupported&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;video&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'video'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;hls&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;Hls&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="nx"&gt;hls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;loadSource&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'http://hostname.domain.net:8080/hls/stream.m3u8'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;hls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;attachMedia&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;video&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;hls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;Hls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Events&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;MANIFEST_PARSED&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="nx"&gt;video&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;play&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="p"&gt;});&lt;/span&gt;
+ &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Open your browser on http://hostname.domain.net:8081/app/hls.html&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Nginx"></category><category term="Gentoo"></category></entry><entry><title>Linux cheat sheet</title><link href="http://didier.bernaudeau.net/Linux_cheat_sheet.html" rel="alternate"></link><published>2017-12-17T17:52:00+01:00</published><updated>2017-12-22T21:36:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-17:/Linux_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
 
 &lt;h1&gt;Network&lt;/h1&gt;
@@ -1963,14 +2094,14 @@ shared_buffers = 256MB
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo rm /etc/mysql/my.cnf
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo cp /etc/mysql/mariadb.conf.d/50-server.cnf /etc/mysql/my.cnf
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/mysql/my.cnf
-&lt;span class="go"&gt;```console&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;character-set-server = latin1
-collation-server = latin1_swedish_ci&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;* Restart MariaDB
-
-```console
-$ sudo systemctl restart mariadb
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;character-set-server = latin1
+collation-server = latin1_swedish_ci
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart MariaDB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart mariadb
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Zoneminder&lt;/h1&gt;
 &lt;ul&gt;
@@ -2357,7 +2488,7 @@ log_statement = 'all'
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2392,7 +2523,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2409,7 +2540,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2426,7 +2557,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2455,7 +2586,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2478,7 +2609,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="case"&gt;
 &lt;h3&gt;Case&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -2571,7 +2702,7 @@ log_statement = 'all'
 &lt;ul class="simple"&gt;
 &lt;li&gt;Boot on the USB media boot&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img alt="PC Enginge boot" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2017-07-21_PC_Engines_APU3a4_02.png" style="width: 100%;"/&gt;
+&lt;img alt="PC Enginge boot" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2017-07-21_PC_Engines_APU3a4_02.png" style="width: 100%;"/&gt;
 &lt;!-- --&gt;
 &lt;!-- TinyCore USB-Stick --&gt;
 &lt;!-- ================== --&gt;
@@ -5021,7 +5152,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 
 &lt;div class="section" id="basic-certificate-field"&gt;
 &lt;h2&gt;Basic certificate field&lt;/h2&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
 &lt;col width="89%"&gt;&lt;/col&gt;
@@ -5043,7 +5174,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="certificate-extension"&gt;
 &lt;h2&gt;Certificate extension&lt;/h2&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="12%"&gt;&lt;/col&gt;
 &lt;col width="88%"&gt;&lt;/col&gt;
@@ -5541,7 +5672,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 
 &lt;div class="section" id="pulseaudio-architecture"&gt;
 &lt;h2&gt;PulseAudio Architecture&lt;/h2&gt;
-&lt;img alt="PulseAudio Architecture" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
+&lt;img alt="PulseAudio Architecture" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="install-pulseaudio"&gt;
 &lt;h2&gt;Install PulseAudio&lt;/h2&gt;
@@ -5732,23 +5863,23 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt; virt-manager
 &lt;/pre&gt;
 &lt;p&gt;Open the menu "file &amp;gt; Add connection"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Add connection" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Add connection" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="network-configuration"&gt;
 &lt;h2&gt;Network Configuration&lt;/h2&gt;
 &lt;p&gt;After starting LibVirtd, network configuration is as follows:&lt;/p&gt;
-&lt;img alt="Network Configuration" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
+&lt;img alt="Network Configuration" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="create-a-virtual-machine"&gt;
 &lt;h2&gt;Create a virtual machine&lt;/h2&gt;
 &lt;p&gt;Open the menu "file &amp;gt; New Virtual Machine"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Step1" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step2" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
-&lt;img alt="Virt-Manager - Step3" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step4" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step5" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step1" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step2" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - Step3" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step4" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step5" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
 &lt;p&gt;Select "VirtIO" device model for Network Interface&lt;/p&gt;
-&lt;img alt="Virt-Manager - NIC device model" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - NIC device model" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
 &lt;!-- vhost=on --&gt;
 &lt;/div&gt;
 </content><category term="Gentoo"></category><category term="Virtualization"></category></entry><entry><title>CORS (Cross-Origin Resource Sharing)</title><link href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html" rel="alternate"></link><published>2015-08-30T15:14:00+02:00</published><updated>2015-09-01T23:44:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-08-30:/Cross_Origin_Resource_Sharing.html</id><summary type="html">&lt;p&gt;CORS (Cross-Origin Resource Sharing) is a mechanism, define by W3C, which provides a way for web servers to support cross-site access controls, which enable secure cross-site data transfers.&lt;/p&gt;
@@ -5941,7 +6072,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="protocol-version"&gt;
 &lt;h2&gt;Protocol version&lt;/h2&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -5971,7 +6102,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="compression-method"&gt;
 &lt;h2&gt;Compression method&lt;/h2&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -5999,7 +6130,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Cryptographic algorithm&lt;/h2&gt;
 &lt;div class="section" id="key-exchange"&gt;
 &lt;h3&gt;Key exchange&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -6044,7 +6175,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="encryption"&gt;
 &lt;h3&gt;Encryption&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -6099,7 +6230,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="message-authentication-code"&gt;
 &lt;h3&gt;Message Authentication Code&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -6160,7 +6291,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;p&gt;Cipher suite is a list of one or more cipher strings separated by special char (colon, comma, space, ...). The names for cipher suites are defined by IANA (Internet Assigned Numbers Authority).&lt;/p&gt;
 &lt;p&gt;Cipher suite defines algorithms used for each cryptographic function: key exchange, authentication, encryption and message authentication code. If algorithm for key exchange is not mentioned, default algorithm is RSA.&lt;/p&gt;
 &lt;p&gt;The table below details some example of cipher suites:&lt;/p&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="39%"&gt;&lt;/col&gt;
@@ -6317,7 +6448,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="28%"&gt;&lt;/col&gt;
 &lt;col width="72%"&gt;&lt;/col&gt;
@@ -6376,7 +6507,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -6406,7 +6537,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in GPT (GUID Partition Table) during Microsoft Windows 8.1 installation process&lt;/p&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -6487,12 +6618,12 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Create installation media&lt;/h2&gt;
 &lt;div class="section" id="example-for-microsoft-windows-8-1-with-mbr"&gt;
 &lt;h3&gt;Example for Microsoft Windows 8.1 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="example-for-debian-8-with-mbr"&gt;
 &lt;h3&gt;Example for Debian 8 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
 &lt;p&gt;If you need additional firmware to install Debian :&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul class="simple"&gt;
@@ -6508,7 +6639,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="21%"&gt;&lt;/col&gt;
 &lt;col width="79%"&gt;&lt;/col&gt;
@@ -6576,7 +6707,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -6606,7 +6737,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in MBR (Master Boot Record) during Microsoft Windows 8.1 installation process for primary partition then during Debian 8 installation process for extended partition :&lt;/p&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
@@ -6679,7 +6810,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6708,7 +6839,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6728,7 +6859,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6751,7 +6882,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6768,7 +6899,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6788,7 +6919,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6805,7 +6936,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6828,7 +6959,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="optical-disc-drive"&gt;
 &lt;h3&gt;Optical Disc Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -6866,7 +6997,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -6886,7 +7017,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="wifi"&gt;
 &lt;h3&gt;Wifi&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6906,7 +7037,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="bluetooth"&gt;
 &lt;h3&gt;Bluetooth&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6926,7 +7057,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="modem"&gt;
 &lt;h3&gt;Modem&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6943,7 +7074,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="firewire-controller"&gt;
 &lt;h3&gt;FireWire Controller&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6960,7 +7091,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-memory-stick"&gt;
 &lt;h3&gt;Card reader (Memory Stick)&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6977,7 +7108,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-secure-digital"&gt;
 &lt;h3&gt;Card reader (Secure Digital)&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -6994,7 +7125,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -7017,7 +7148,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -7536,7 +7667,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7577,7 +7708,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7594,7 +7725,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7626,7 +7757,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7649,7 +7780,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7669,7 +7800,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7686,7 +7817,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7709,7 +7840,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7729,7 +7860,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="wifi-and-bluetooth"&gt;
 &lt;h3&gt;Wifi and Bluetooth&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7752,7 +7883,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory-card-reader"&gt;
 &lt;h3&gt;Memory card reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7772,7 +7903,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="smartcard-reader"&gt;
 &lt;h3&gt;Smartcard Reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7789,7 +7920,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="fingerprint-reader"&gt;
 &lt;h3&gt;Fingerprint Reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7806,7 +7937,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="nfc-reader"&gt;
 &lt;h3&gt;NFC Reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7823,7 +7954,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7843,7 +7974,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -7879,7 +8010,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;UEFI BIOS&lt;/h2&gt;
 &lt;div class="section" id="version"&gt;
 &lt;h3&gt;Version&lt;/h3&gt;
-&lt;table border="1" class="docutils table table-striped table-hover"&gt;
+&lt;table border="1" class="table-striped table table-hover docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="59%"&gt;&lt;/col&gt;
 &lt;col width="41%"&gt;&lt;/col&gt;

@@ -1,5 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-12-22T21:26:00+01:00</updated><entry><title>How to install Cups</title><link href="http://didier.bernaudeau.net/HowTo_install_Cups.html" rel="alternate"></link><published>2017-11-25T12:46:00+01:00</published><updated>2017-12-22T21:26:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-11-25:/HowTo_install_Cups.html</id><summary type="html">&lt;p&gt;This post describes how to create a printing server with CUPS on Debian Stretch then how to install a printer (Brother MFC295CN) which requires a 32bits driver from manufacturer.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-12-23T13:06:00+01:00</updated><entry><title>Video Streaming with HLSjs</title><link href="http://didier.bernaudeau.net/Video_Streaming_with_HLSjs.html" rel="alternate"></link><published>2017-12-23T10:36:00+01:00</published><updated>2017-12-23T13:06:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-23:/Video_Streaming_with_HLSjs.html</id><summary type="html">&lt;p&gt;This tutorial describes a way to stream video from my surveillance camera. The backend is a Nginx (as RTMP proxy server) with FFmpeg for video transcoding. The frontend is based on HLSjs framework. Finally, HLS protocol (Also known as HTTP Live Streaming) is used for the communication between back and front.
+This solution doesn't work on Android device. So, I did not take that option and this article is not really finish.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This tutorial describes a way to stream video from my surveillance camera. The backend is a Nginx (as RTMP proxy server) with FFmpeg for video transcoding. The frontend is based on HLSjs framework. Finally, HLS protocol (Also known as HTTP Live Streaming) is used for the communication between back and front.
+This solution doesn't work on Android device. So, I did not take that option and this article is not really finish.&lt;/p&gt;
+
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-12-23_Video_Streaming_with_HLSjs.png" width="80%"/&gt;&lt;/p&gt;
+&lt;h1&gt;Backend&lt;/h1&gt;
+&lt;h2&gt;RTMP Server&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Nginx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.use
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;www-servers/nginx    rtmp
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install nginx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge nginx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure nginx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;rtmp &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;    server &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;        listen 1935; &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Listen on standard RTMP port&lt;/span&gt;
+&lt;span class="x"&gt;        chunk_size 4000;&lt;/span&gt;
+
+&lt;span class="x"&gt;        application show &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;            live on;&lt;/span&gt;
+&lt;span class="x"&gt;            &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Turn on HLS&lt;/span&gt;
+&lt;span class="x"&gt;            hls on;&lt;/span&gt;
+&lt;span class="x"&gt;            hls_path /mnt/hls/;&lt;/span&gt;
+&lt;span class="x"&gt;            hls_fragment 3;&lt;/span&gt;
+&lt;span class="x"&gt;            hls_playlist_length 60;&lt;/span&gt;
+&lt;span class="x"&gt;            &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; disable consuming the stream from nginx as rtmp&lt;/span&gt;
+&lt;span class="x"&gt;            &lt;/span&gt;&lt;span class="cp"&gt;#&lt;/span&gt;&lt;span class="nf"&gt;deny&lt;/span&gt;&lt;span class="x"&gt; play all;&lt;/span&gt;
+&lt;span class="x"&gt;        }&lt;/span&gt;
+&lt;span class="x"&gt;    }&lt;/span&gt;
+&lt;span class="x"&gt;}&lt;/span&gt;
+
+&lt;span class="x"&gt;http &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;      ...&lt;/span&gt;
+&lt;span class="x"&gt;      sendfile off;&lt;/span&gt;
+&lt;span class="x"&gt;      tcp_nopush on;&lt;/span&gt;
+&lt;span class="x"&gt;      tcp_nodelay on;&lt;/span&gt;
+&lt;span class="x"&gt;      directio 512;&lt;/span&gt;
+
+&lt;span class="x"&gt;      server &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;        listen 8081;&lt;/span&gt;
+&lt;span class="x"&gt;        root /var/www/app/;&lt;/span&gt;
+&lt;span class="x"&gt;      }&lt;/span&gt;
+
+&lt;span class="x"&gt;      server &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;        listen 8080;&lt;/span&gt;
+&lt;span class="x"&gt;        server_name hostname;&lt;/span&gt;
+
+&lt;span class="x"&gt;        location / &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;          &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Disable cache&lt;/span&gt;
+&lt;span class="x"&gt;          add_header 'Cache-Control' 'no-cache';&lt;/span&gt;
+
+&lt;span class="x"&gt;          &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; CORS setup&lt;/span&gt;
+&lt;span class="x"&gt;          add_header 'Access-Control-Allow-Origin' '*' always;&lt;/span&gt;
+&lt;span class="x"&gt;          add_header 'Access-Control-Expose-Headers' 'Content-Length';&lt;/span&gt;
+
+&lt;span class="x"&gt;          &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; allow CORS preflight requests (Don't use this configure in production environment)&lt;/span&gt;
+&lt;span class="x"&gt;          if (&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;request_method&lt;/span&gt;&lt;span class="x"&gt; = 'OPTIONS') &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;            add_header 'Access-Control-Allow-Origin' '*';&lt;/span&gt;
+&lt;span class="x"&gt;            add_header 'Access-Control-Max-Age' 1728000;&lt;/span&gt;
+&lt;span class="x"&gt;            add_header 'Content-Type' 'text/plain charset=UTF-8';&lt;/span&gt;
+&lt;span class="x"&gt;            add_header 'Content-Length' 0;&lt;/span&gt;
+&lt;span class="x"&gt;            return 204;&lt;/span&gt;
+&lt;span class="x"&gt;          }&lt;/span&gt;
+
+&lt;span class="x"&gt;          types &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;            application/dash+xml mpd;&lt;/span&gt;
+&lt;span class="x"&gt;            application/vnd.apple.mpegurl m3u8;&lt;/span&gt;
+&lt;span class="x"&gt;            video/mp2t ts;&lt;/span&gt;
+&lt;span class="x"&gt;          }&lt;/span&gt;
+
+&lt;span class="x"&gt;          root /mnt/;&lt;/span&gt;
+&lt;span class="x"&gt;        }&lt;/span&gt;
+&lt;span class="x"&gt;      }&lt;/span&gt;
+&lt;span class="x"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Video transcoding&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Install ffmpeg&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge ffmpeg
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Transcode video&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; ffmpeg -i rtsp://username:password@10.X.Y.Z:554/VideoInput/chan1/h264/1 -vcodec libx264 -vprofile baseline -acodec aac -strict -2 -f flv rtmp://localhost/show/stream
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Frontend&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Create webpage&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mkdir /var/www/app
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /var/www/app/hls.html
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"https://cdn.jsdelivr.net/npm/hls.js@latest"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Test streaming&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;video&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"video"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;video&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;Hls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;isSupported&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;video&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'video'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;hls&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;Hls&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="nx"&gt;hls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;loadSource&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'http://hostname.domain.net:8080/hls/stream.m3u8'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;hls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;attachMedia&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;video&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;hls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;Hls&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Events&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;MANIFEST_PARSED&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="nx"&gt;video&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;play&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="p"&gt;});&lt;/span&gt;
+ &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Open your browser on http://hostname.domain.net:8081/app/hls.html&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Nginx"></category><category term="Gentoo"></category></entry><entry><title>How to install Cups</title><link href="http://didier.bernaudeau.net/HowTo_install_Cups.html" rel="alternate"></link><published>2017-11-25T12:46:00+01:00</published><updated>2017-12-22T21:26:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-11-25:/HowTo_install_Cups.html</id><summary type="html">&lt;p&gt;This post describes how to create a printing server with CUPS on Debian Stretch then how to install a printer (Brother MFC295CN) which requires a 32bits driver from manufacturer.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post describes how to create a printing server with CUPS on Debian Stretch then how to install a printer (Brother MFC295CN) which requires a 32bits driver from manufacturer.&lt;/p&gt;
 
 &lt;h1&gt;Network Configuration&lt;/h1&gt;
@@ -1892,14 +2023,14 @@ shared_buffers = 256MB
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo rm /etc/mysql/my.cnf
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo cp /etc/mysql/mariadb.conf.d/50-server.cnf /etc/mysql/my.cnf
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/mysql/my.cnf
-&lt;span class="go"&gt;```console&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;character-set-server = latin1
-collation-server = latin1_swedish_ci&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;* Restart MariaDB
-
-```console
-$ sudo systemctl restart mariadb
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;character-set-server = latin1
+collation-server = latin1_swedish_ci
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart MariaDB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl restart mariadb
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Zoneminder&lt;/h1&gt;
 &lt;ul&gt;
@@ -4572,7 +4703,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 
 &lt;div class="section" id="pulseaudio-architecture"&gt;
 &lt;h2&gt;PulseAudio Architecture&lt;/h2&gt;
-&lt;img alt="PulseAudio Architecture" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
+&lt;img alt="PulseAudio Architecture" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="install-pulseaudio"&gt;
 &lt;h2&gt;Install PulseAudio&lt;/h2&gt;
@@ -4713,23 +4844,23 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;span class="gp"&gt;$&lt;/span&gt; virt-manager
 &lt;/pre&gt;
 &lt;p&gt;Open the menu "file &amp;gt; Add connection"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Add connection" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Add connection" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="network-configuration"&gt;
 &lt;h2&gt;Network Configuration&lt;/h2&gt;
 &lt;p&gt;After starting LibVirtd, network configuration is as follows:&lt;/p&gt;
-&lt;img alt="Network Configuration" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
+&lt;img alt="Network Configuration" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="create-a-virtual-machine"&gt;
 &lt;h2&gt;Create a virtual machine&lt;/h2&gt;
 &lt;p&gt;Open the menu "file &amp;gt; New Virtual Machine"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Step1" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step2" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
-&lt;img alt="Virt-Manager - Step3" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step4" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step5" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step1" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step2" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - Step3" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step4" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step5" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
 &lt;p&gt;Select "VirtIO" device model for Network Interface&lt;/p&gt;
-&lt;img alt="Virt-Manager - NIC device model" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - NIC device model" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
 &lt;!-- vhost=on --&gt;
 &lt;/div&gt;
 </content><category term="Gentoo"></category><category term="Virtualization"></category></entry><entry><title>How to create bootable USB flash drives with Rufus</title><link href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html" rel="alternate"></link><published>2015-07-12T12:32:00+02:00</published><updated>2015-07-15T21:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-12:/How_to_create_bootable_USB_flash_drives_with_Rufus.html</id><summary type="html">&lt;p&gt;This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp;amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.&lt;/p&gt;
@@ -4743,12 +4874,12 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;h2&gt;Create installation media&lt;/h2&gt;
 &lt;div class="section" id="example-for-microsoft-windows-8-1-with-mbr"&gt;
 &lt;h3&gt;Example for Microsoft Windows 8.1 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="example-for-debian-8-with-mbr"&gt;
 &lt;h3&gt;Example for Debian 8 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
 &lt;p&gt;If you need additional firmware to install Debian :&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul class="simple"&gt;

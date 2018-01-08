@@ -177,8 +177,8 @@ So, this tutorial suggests some optimization to reduce write access to the SD ca
 <ul>
 <li>Change hostname</li>
 </ul>
-<div class="highlight"><pre><span></span>2 Hostname
-A1 Expand Filesystem
+<div class="highlight"><pre><span></span>2 Network Option
+N1 Hostname
 </pre></div>
 <ul>
 <li>Define Time Zone</li>
@@ -196,18 +196,6 @@ A1 Expand Filesystem
 </pre></div>
 <p>Then select "finish" and reboot your Raspberry.</p>
 <h1>Time synchronization with systemd</h1>
-<ul>
-<li>Remove NTP</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl stop ntp
-<span class="gp">$</span> sudo systemctl disable ntp
-<span class="gp">$</span> sudo apt-get remove --purge ntp
-</pre></div>
-<ul>
-<li>Remove fake hardware clock</li>
-</ul>
-<p>fake-hwclock.service                   enabled 
-hwclock-save.service                   enabled </p>
 <ul>
 <li>Configure TimeSync</li>
 </ul>
@@ -236,7 +224,7 @@ hwclock-save.service                   enabled </p>
    <span class="nt">CGroup</span><span class="o">:</span> <span class="o">/</span><span class="nt">system</span><span class="nc">.slice</span><span class="o">/</span><span class="nt">systemd-timesyncd</span><span class="nc">.service</span>
            <span class="err">└─</span><span class="nt">539</span> <span class="o">/</span><span class="nt">lib</span><span class="o">/</span><span class="nt">systemd</span><span class="o">/</span><span class="nt">systemd-timesyncd</span>
 </pre></div>
-<div class="highlight"><pre><span></span><span class="go">timedatectl </span>
+<div class="highlight"><pre><span></span><span class="gp">$</span> timedatectl
 </pre></div>
 <div class="highlight"><pre><span></span>      Local time: Thu 2017-11-09 17:19:20 CET
   Universal time: Thu 2017-11-09 16:19:20 UTC
@@ -306,8 +294,8 @@ NTP synchronized: yes
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://didier.bernaudeau.net/WiringPi.html">Wiring PI</a></li>
         <li><a href="http://didier.bernaudeau.net/Connecting_a_Push_Switch_on_a_Raspberry.html">Connecting a push button switch on a Raspberry</a></li>
+        <li><a href="http://didier.bernaudeau.net/WiringPi.html">Wiring PI</a></li>
     </ul>
 </section>
         </article>
@@ -465,6 +453,11 @@ NTP synchronized: yes
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/nginx.html">
                             Nginx
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/nodejs.html">
+                            NodeJs
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

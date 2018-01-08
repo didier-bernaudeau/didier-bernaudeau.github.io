@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Jenkins - My personal blog note</title>
+    <title>How to install NodeJS on Gentoo Linux - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,21 +9,21 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/Jenkins.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/HowTo_install_NodeJS.md.html">
 
         <meta name="author" content="Didier BERNAUDEAU" />
-        <meta name="keywords" content="Development tool,Debian" />
-        <meta name="description" content="Jenkins is the main tool for continuous integration and continuous delivery. Indeed, this tool is in the center of a development pipeline because it is able to interact with a variety of tools (Git repository, source code analysis, ...). Jenkins, a fork of Hudson, is a open source software written in Java." />
+        <meta name="keywords" content="NodeJs,Gentoo" />
+        <meta name="description" content="Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Jenkins"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/Jenkins.html"/>
-        <meta property="og:description" content="Jenkins is the main tool for continuous integration and continuous delivery. Indeed, this tool is in the center of a development pipeline because it is able to interact with a variety of tools (Git repository, source code analysis, ...). Jenkins, a fork of Hudson, is a open source software written in Java."/>
-        <meta property="article:published_time" content="2017-01-21" />
+        <meta property="og:title" content="How to install NodeJS on Gentoo Linux"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/HowTo_install_NodeJS.md.html"/>
+        <meta property="og:description" content="Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux."/>
+        <meta property="article:published_time" content="2017-12-31" />
             <meta property="article:section" content="Tutorials" />
-            <meta property="article:tag" content="Development tool" />
-            <meta property="article:tag" content="Debian" />
+            <meta property="article:tag" content="NodeJs" />
+            <meta property="article:tag" content="Gentoo" />
             <meta property="article:author" content="Didier BERNAUDEAU" />
 
 
@@ -82,10 +82,10 @@ My personal blog note            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/Jenkins.html"
+                    <a href="http://didier.bernaudeau.net/HowTo_install_NodeJS.md.html"
                        rel="bookmark"
-                       title="Permalink to Jenkins">
-                        Jenkins
+                       title="Permalink to How to install NodeJS on Gentoo Linux">
+                        How to install NodeJS on Gentoo Linux
                     </a>
                 </h1>
             </header>
@@ -95,11 +95,11 @@ My personal blog note            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-01-21T21:08:00+01:00"> sam. 21 janvier 2017</time>
+        <i class="fa fa-calendar"></i><time datetime="2017-12-31T17:13:00+01:00"> dim. 31 décembre 2017</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-01-21T21:08:00+01:00"> sam. 21 janvier 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2017-12-31T16:08:00+01:00"> dim. 31 décembre 2017</time>
             </span>
 
 
@@ -107,108 +107,71 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/development-tool.html">Development tool</a>
+	<a href="http://didier.bernaudeau.net/tag/nodejs.html">NodeJs</a>
         /
-	<a href="http://didier.bernaudeau.net/tag/debian.html">Debian</a>
+	<a href="http://didier.bernaudeau.net/tag/gentoo.html">Gentoo</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Jenkins is the main tool for continuous integration and continuous delivery. Indeed, this tool is in the center of a development pipeline because it is able to interact with a variety of tools (Git repository, source code analysis, ...). Jenkins, a fork of Hudson, is a open source software written in Java.</p>
+                <p>Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux.</p>
 
-<h1>Debian Stretch</h1>
+<h1>NodeJS</h1>
 <ul>
-<li>Install Debian</li>
+<li>Install NodeJS</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="n">Hostname</span><span class="o">:</span> <span class="n">jenkins</span>
-<span class="n">Domain</span> <span class="n">name</span><span class="o">:</span> <span class="n">intra</span><span class="o">.</span><span class="na">net</span>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/portage/package.keywords
 </pre></div>
+<div class="highlight"><pre><span></span>net-libs/nodejs                 ~amd64
+net-libs/nghttp2                ~amd64
+dev-libs/libuv                  ~amd64
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">#</span> emerge net-libs/nodejs
+</pre></div>
+<h1>NPM</h1>
+<p>NPM (stands for Node Package Manager) is a command line interface program to manage node.js libraries. This tools is provided by default with NodeJs.</p>
+<h2>Command line for user installation</h2>
 <ul>
-<li>Install sudo</li>
+<li>Install package for all users</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> apt-get install -y sudo
-<span class="gp">#</span> adduser UserName sudo
+<div class="highlight"><pre><span></span><span class="gp">$</span> npm install PackageName
 </pre></div>
+<p>Packages are installed in the following directory: "/home/didier/node_modules".</p>
+<h2>Command line for global installation</h2>
 <ul>
-<li>Update system</li>
+<li>Install package for all users</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get upgrade
+<div class="highlight"><pre><span></span><span class="gp">#</span> npm i PackageName -g
 </pre></div>
-<h1>Jenkins</h1>
+<p>Packages are installed in the following directory: "/usr/lib64/node_modules/".</p>
 <ul>
-<li>Add the key of jenkins' repository</li>
+<li>Update NPM packages</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key <span class="p">|</span> sudo apt-key add -
-</pre></div>
-<ul>
-<li>Add the repository</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/apt/sources.list
-</pre></div>
-<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">https://pkg.jenkins.io/debian</span> <span class="kp">binary/</span>
-</pre></div>
-<ul>
-<li>Install apt module</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="go">sudo apt-get install apt-transport-https</span>
+<div class="highlight"><pre><span></span><span class="gp">#</span> npm update -g --unsafe-perm
 </pre></div>
 <ul>
-<li>Update the local package index</li>
+<li>Clear NPM cache</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get update
+<div class="highlight"><pre><span></span><span class="gp">#</span> npm cache verify
+<span class="gp">#</span> npm cache clear --force
+</pre></div>
+<h1>Yarn</h1>
+<p>Yarn is an another package manager from Facebook. Yarn is an alternative to NPM.</p>
+<ul>
+<li>Install Yarn (1.2.1)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/portage/package.accept_keywords
+</pre></div>
+<div class="highlight"><pre><span></span>=sys-apps/yarn-1.2.1    ~amd64
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">#</span> emerge sys-apps/yarn
 </pre></div>
 <ul>
-<li>Install Jenkins</li>
+<li>Install package for all users</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install jenkins
+<div class="highlight"><pre><span></span><span class="gp">#</span> yarn global add PackageName
 </pre></div>
-<ul>
-<li>Create startup script for Jenkins</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/systemd/system/jenkins.service
-</pre></div>
-<div class="highlight"><pre><span></span><span class="k">[Unit]</span>
-<span class="na">Description</span><span class="o">=</span><span class="s">Jenkins</span>
-
-<span class="k">[Service]</span>
-<span class="na">User</span><span class="o">=</span><span class="s">jenkins</span>
-<span class="na">Group</span><span class="o">=</span><span class="s">jenkins</span>
-<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/var/lib/jenkins</span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/java -jar /usr/share/jenkins/jenkins.war</span>
-<span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
-
-<span class="k">[Install]</span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
-</pre></div>
-<ul>
-<li>Start the service</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl <span class="nb">enable</span> jenkins
-<span class="gp">$</span> sudo systemctl start jenkins
-</pre></div>
-<ul>
-<li>
-<p>Open <a href="http://jenkins.intra.net:8080">http://jenkins.intra.net:8080</a> in your browser to configure Jenkins</p>
-</li>
-<li>
-<p>Get password</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo cat /var/lib/jenkins/secrets/initialAdminPassword
-</pre></div>
-<h1>What still needs to be done</h1>
-<ul>
-<li>Reverse Proxy with authentication</li>
-<li>Link to git repository (without technical account)</li>
-</ul>
             </div>
             <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://didier.bernaudeau.net/Software_Development_Tools.html">Software Development Tools</a></li>
-        <li><a href="http://didier.bernaudeau.net/Debian_Cheat_Sheet.html">Debian Cheat Sheet</a></li>
-    </ul>
-</section>
         </article>
     </section>
 

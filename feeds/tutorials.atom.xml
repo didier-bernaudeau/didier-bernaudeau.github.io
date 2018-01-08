@@ -1,5 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-12-23T13:06:00+01:00</updated><entry><title>Video Streaming with HLSjs</title><link href="http://didier.bernaudeau.net/Video_Streaming_with_HLSjs.html" rel="alternate"></link><published>2017-12-23T10:36:00+01:00</published><updated>2017-12-23T13:06:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-23:/Video_Streaming_with_HLSjs.html</id><summary type="html">&lt;p&gt;This tutorial describes a way to stream video from my surveillance camera. The backend is a Nginx (as RTMP proxy server) with FFmpeg for video transcoding. The frontend is based on HLSjs framework. Finally, HLS protocol (Also known as HTTP Live Streaming) is used for the communication between back and front.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-01-06T10:09:00+01:00</updated><entry><title>How to install NodeJS on Gentoo Linux</title><link href="http://didier.bernaudeau.net/HowTo_install_NodeJS.md.html" rel="alternate"></link><published>2017-12-31T17:13:00+01:00</published><updated>2017-12-31T16:08:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-31:/HowTo_install_NodeJS.md.html</id><summary type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux.&lt;/p&gt;
+
+&lt;h1&gt;NodeJS&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install NodeJS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.keywords
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;net-libs/nodejs                 ~amd64
+net-libs/nghttp2                ~amd64
+dev-libs/libuv                  ~amd64
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge net-libs/nodejs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;NPM&lt;/h1&gt;
+&lt;p&gt;NPM (stands for Node Package Manager) is a command line interface program to manage node.js libraries. This tools is provided by default with NodeJs.&lt;/p&gt;
+&lt;h2&gt;Command line for user installation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Install package for all users&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; npm install PackageName
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Packages are installed in the following directory: "/home/didier/node_modules".&lt;/p&gt;
+&lt;h2&gt;Command line for global installation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Install package for all users&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm i PackageName -g
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Packages are installed in the following directory: "/usr/lib64/node_modules/".&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Update NPM packages&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm update -g --unsafe-perm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Clear NPM cache&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm cache verify
+&lt;span class="gp"&gt;#&lt;/span&gt; npm cache clear --force
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Yarn&lt;/h1&gt;
+&lt;p&gt;Yarn is an another package manager from Facebook. Yarn is an alternative to NPM.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Yarn (1.2.1)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.accept_keywords
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;=sys-apps/yarn-1.2.1    ~amd64
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge sys-apps/yarn
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install package for all users&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; yarn global add PackageName
+&lt;/pre&gt;&lt;/div&gt;</content><category term="NodeJs"></category><category term="Gentoo"></category></entry><entry><title>Video Streaming with HLSjs</title><link href="http://didier.bernaudeau.net/Video_Streaming_with_HLSjs.html" rel="alternate"></link><published>2017-12-23T10:36:00+01:00</published><updated>2017-12-23T13:06:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-23:/Video_Streaming_with_HLSjs.html</id><summary type="html">&lt;p&gt;This tutorial describes a way to stream video from my surveillance camera. The backend is a Nginx (as RTMP proxy server) with FFmpeg for video transcoding. The frontend is based on HLSjs framework. Finally, HLS protocol (Also known as HTTP Live Streaming) is used for the communication between back and front.
 This solution doesn't work on Android device. So, I did not take that option and this article is not really finish.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This tutorial describes a way to stream video from my surveillance camera. The backend is a Nginx (as RTMP proxy server) with FFmpeg for video transcoding. The frontend is based on HLSjs framework. Finally, HLS protocol (Also known as HTTP Live Streaming) is used for the communication between back and front.
 This solution doesn't work on Android device. So, I did not take that option and this article is not really finish.&lt;/p&gt;
@@ -2720,8 +2777,8 @@ So, this tutorial suggests some optimization to reduce write access to the SD ca
 &lt;ul&gt;
 &lt;li&gt;Change hostname&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2 Hostname
-A1 Expand Filesystem
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2 Network Option
+N1 Hostname
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Define Time Zone&lt;/li&gt;
@@ -2739,18 +2796,6 @@ A1 Expand Filesystem
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Then select "finish" and reboot your Raspberry.&lt;/p&gt;
 &lt;h1&gt;Time synchronization with systemd&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Remove NTP&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl stop ntp
-&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl disable ntp
-&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get remove --purge ntp
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Remove fake hardware clock&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;fake-hwclock.service                   enabled 
-hwclock-save.service                   enabled &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Configure TimeSync&lt;/li&gt;
 &lt;/ul&gt;
@@ -2779,7 +2824,7 @@ hwclock-save.service                   enabled &lt;/p&gt;
    &lt;span class="nt"&gt;CGroup&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;system&lt;/span&gt;&lt;span class="nc"&gt;.slice&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;systemd-timesyncd&lt;/span&gt;&lt;span class="nc"&gt;.service&lt;/span&gt;
            &lt;span class="err"&gt;└─&lt;/span&gt;&lt;span class="nt"&gt;539&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;systemd&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;systemd-timesyncd&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;timedatectl &lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; timedatectl
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;      Local time: Thu 2017-11-09 17:19:20 CET
   Universal time: Thu 2017-11-09 16:19:20 UTC
@@ -2843,7 +2888,7 @@ NTP synchronized: yes
 &lt;li&gt;Install Java&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install openjdk-8-jre
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Raspbian"></category><category term="Raspberry Pi"></category></entry><entry><title>Create your first presentation with RevealJS</title><link href="http://didier.bernaudeau.net/Create_your_first_presentation_with_RevealJS.html" rel="alternate"></link><published>2017-05-22T20:10:00+02:00</published><updated>2017-09-10T21:52:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-22:/Create_your_first_presentation_with_RevealJS.html</id><summary type="html">&lt;p&gt;RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. This post descirbes how to install RevealJS then how to make your first presentation.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Raspbian"></category><category term="Raspberry Pi"></category></entry><entry><title>Create your first presentation with RevealJS</title><link href="http://didier.bernaudeau.net/Create_your_first_presentation_with_RevealJS.html" rel="alternate"></link><published>2017-05-22T20:10:00+02:00</published><updated>2018-01-06T10:09:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-22:/Create_your_first_presentation_with_RevealJS.html</id><summary type="html">&lt;p&gt;RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. This post descirbes how to install RevealJS then how to make your first presentation.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. This post descirbes how to install RevealJS then how to make your first presentation.&lt;/p&gt;
 
 &lt;h1&gt;Install needed software&lt;/h1&gt;
@@ -2924,11 +2969,11 @@ NTP synchronized: yes
 &lt;li&gt;Two column layout&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;section&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"text-align: left; float: left;"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"text-align: left; float: left; width:50%;"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
     &lt;span class="c"&gt;&amp;lt;!-- if necessary, change text-align --&amp;gt;&lt;/span&gt;
   &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 
-  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"text-align: right; float: right;"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"text-align: right; float: right; width:50%;"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
     &lt;span class="c"&gt;&amp;lt;!-- if necessary, change text-align --&amp;gt;&lt;/span&gt;
   &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;section&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
@@ -2945,6 +2990,18 @@ NTP synchronized: yes
   notes...
 &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;aside&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Fragment event&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"fragment fade-in"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Text&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Troubleshooting&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Missing reveal.js&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;Error: ENOENT: no such file or directory, stat '/usr/lib64/node_modules/node-reveal/reveal.js'&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Get the file from git repository and copy it to the right location.&lt;/p&gt;
 &lt;!--Source:
 https://www.npmjs.com/package/node-reveal
 http://htmlcheats.com/reveal-js/reveal-js-tutorial-reveal-js-for-beginners/
@@ -2984,11 +3041,11 @@ http://lab.hakim.se/reveal-js/#/
 &lt;p&gt;Some people swear that they need to rebuild every single package on their system when a new GCC version is made available. Of course, that doesn't make sense, since there are many applications that are not using GCC for their build and install process anyhow, so they would never be affected by such changes.&lt;/p&gt;
 &lt;p&gt;Below, some packages for which rebuild is requires :&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --oneshot -pv media-gfx/exiv2 dev-libs/re2 dev-libs/boost dev-util/cppunit dev-cpp/libcmis dev-libs/liborcus dev-libs/xapian dev-libs/tinyxml app-text/qpdf sys-devel/llvm dev-libs/leveldb
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Gentoo"></category></entry><entry><title>How to install Docker on Gentoo</title><link href="http://didier.bernaudeau.net/How_to_install_Docker_on_Gentoo.html" rel="alternate"></link><published>2017-03-31T06:50:00+02:00</published><updated>2017-04-12T21:37:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-03-31:/How_to_install_Docker_on_Gentoo.html</id><summary type="html">&lt;p&gt;This post describes the linux kernel configuration for container support and the way to install Docker on Gentoo Linux.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Gentoo"></category></entry><entry><title>How to install Docker on Gentoo</title><link href="http://didier.bernaudeau.net/How_to_install_Docker_on_Gentoo.html" rel="alternate"></link><published>2017-03-31T06:50:00+02:00</published><updated>2017-12-25T22:09:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-03-31:/How_to_install_Docker_on_Gentoo.html</id><summary type="html">&lt;p&gt;This post describes the linux kernel configuration for container support and the way to install Docker on Gentoo Linux.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post describes the linux kernel configuration for container support and the way to install Docker on Gentoo Linux.&lt;/p&gt;
 
 &lt;h1&gt;Kernel configuration&lt;/h1&gt;
-&lt;p&gt;This configuration is based on Gentoo Source 4.9.16.&lt;/p&gt;
+&lt;p&gt;This configuration is based on Gentoo Source 4.12.12.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; | General setup  ---&amp;gt;
  |      |
 *|      | [*] POSIX Message Queues
@@ -3222,6 +3279,11 @@ net.ipv6.conf.default.disable_ipv6=1
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y apt-transport-https
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
+&lt;li&gt;Apt additional tools (such as add-apt-repository)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;sudo apt-get install software-properties-common&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
 &lt;li&gt;Curl&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y curl
@@ -3232,12 +3294,11 @@ net.ipv6.conf.default.disable_ipv6=1
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y lm-sensors
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo sensors-detect
 &lt;span class="gp"&gt;$&lt;/span&gt; sensors
-&lt;span class="go"&gt;```console&lt;/span&gt;
-
-&lt;span class="go"&gt;* Locate&lt;/span&gt;
-
-&lt;span class="go"&gt;```console&lt;/span&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y locate
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Locate&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y locate
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo updatedb
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
@@ -4703,7 +4764,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 
 &lt;div class="section" id="pulseaudio-architecture"&gt;
 &lt;h2&gt;PulseAudio Architecture&lt;/h2&gt;
-&lt;img alt="PulseAudio Architecture" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
+&lt;img alt="PulseAudio Architecture" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="install-pulseaudio"&gt;
 &lt;h2&gt;Install PulseAudio&lt;/h2&gt;
@@ -4844,23 +4905,23 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;span class="gp"&gt;$&lt;/span&gt; virt-manager
 &lt;/pre&gt;
 &lt;p&gt;Open the menu "file &amp;gt; Add connection"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Add connection" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Add connection" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="network-configuration"&gt;
 &lt;h2&gt;Network Configuration&lt;/h2&gt;
 &lt;p&gt;After starting LibVirtd, network configuration is as follows:&lt;/p&gt;
-&lt;img alt="Network Configuration" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
+&lt;img alt="Network Configuration" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="create-a-virtual-machine"&gt;
 &lt;h2&gt;Create a virtual machine&lt;/h2&gt;
 &lt;p&gt;Open the menu "file &amp;gt; New Virtual Machine"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Step1" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step2" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
-&lt;img alt="Virt-Manager - Step3" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step4" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step5" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step1" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step2" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - Step3" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step4" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step5" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
 &lt;p&gt;Select "VirtIO" device model for Network Interface&lt;/p&gt;
-&lt;img alt="Virt-Manager - NIC device model" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - NIC device model" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
 &lt;!-- vhost=on --&gt;
 &lt;/div&gt;
 </content><category term="Gentoo"></category><category term="Virtualization"></category></entry><entry><title>How to create bootable USB flash drives with Rufus</title><link href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html" rel="alternate"></link><published>2015-07-12T12:32:00+02:00</published><updated>2015-07-15T21:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-12:/How_to_create_bootable_USB_flash_drives_with_Rufus.html</id><summary type="html">&lt;p&gt;This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp;amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.&lt;/p&gt;
@@ -4874,12 +4935,12 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;h2&gt;Create installation media&lt;/h2&gt;
 &lt;div class="section" id="example-for-microsoft-windows-8-1-with-mbr"&gt;
 &lt;h3&gt;Example for Microsoft Windows 8.1 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="example-for-debian-8-with-mbr"&gt;
 &lt;h3&gt;Example for Debian 8 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
 &lt;p&gt;If you need additional firmware to install Debian :&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul class="simple"&gt;

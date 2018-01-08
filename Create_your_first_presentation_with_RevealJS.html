@@ -99,7 +99,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-09-10T21:52:00+02:00"> dim. 10 septembre 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2018-01-06T10:09:00+01:00"> sam. 06 janvier 2018</time>
             </span>
 
 
@@ -193,11 +193,11 @@ My personal blog note            </a>
 <li>Two column layout</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">"text-align: left; float: left;"</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">"text-align: left; float: left; width:50%;"</span><span class="p">&gt;</span>
     <span class="c">&lt;!-- if necessary, change text-align --&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">"text-align: right; float: right;"</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">"text-align: right; float: right; width:50%;"</span><span class="p">&gt;</span>
     <span class="c">&lt;!-- if necessary, change text-align --&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
@@ -214,6 +214,18 @@ My personal blog note            </a>
   notes...
 <span class="p">&lt;/</span><span class="nt">aside</span><span class="p">&gt;</span>
 </pre></div>
+<ul>
+<li>Fragment event</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">"fragment fade-in"</span><span class="p">&gt;</span>Text<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+<h1>Troubleshooting</h1>
+<ul>
+<li>Missing reveal.js</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">Error: ENOENT: no such file or directory, stat '/usr/lib64/node_modules/node-reveal/reveal.js'</span>
+</pre></div>
+<p>Get the file from git repository and copy it to the right location.</p>
 <!--Source:
 https://www.npmjs.com/package/node-reveal
 http://htmlcheats.com/reveal-js/reveal-js-tutorial-reveal-js-for-beginners/
@@ -225,10 +237,10 @@ http://lab.hakim.se/reveal-js/#/
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://didier.bernaudeau.net/JSON_with_Padding.html">JSONP (JSON with Padding)</a></li>
         <li><a href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html">CORS (Cross-Origin Resource Sharing)</a></li>
         <li><a href="http://didier.bernaudeau.net/ModernPresentationRevealJS.html">Modern Presentation with RevealJS</a></li>
         <li><a href="http://didier.bernaudeau.net/Same_Origin_Policy.html">SOP (Same-Origin Policy)</a></li>
+        <li><a href="http://didier.bernaudeau.net/JSON_with_Padding.html">JSONP (JSON with Padding)</a></li>
     </ul>
 </section>
         </article>
@@ -386,6 +398,11 @@ http://lab.hakim.se/reveal-js/#/
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/nginx.html">
                             Nginx
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/nodejs.html">
+                            NodeJs
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

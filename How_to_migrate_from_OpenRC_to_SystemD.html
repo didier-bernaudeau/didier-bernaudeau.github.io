@@ -116,18 +116,18 @@ My personal blog note            </a>
 <div class="section" id="kernel-configuration">
 <h2>Kernel configuration</h2>
 <pre class="code ini literal-block">
-<span class="err">|</span> <span class="err">Gentoo</span> <span class="err">Linux</span> <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>     <span class="err">Support</span> <span class="err">for</span> <span class="err">init</span> <span class="err">systems,</span> <span class="err">system</span> <span class="err">and</span> <span class="err">service</span> <span class="err">managers</span> <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span> <span class="err">OpenRC,</span> <span class="err">runit</span> <span class="err">and</span> <span class="err">other</span> <span class="err">script</span> <span class="err">based</span> <span class="err">systems</span> <span class="err">and</span> <span class="err">managers</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">systemd</span>
-<span class="err">|</span>
-<span class="err">|</span> <span class="err">General</span> <span class="err">setup</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Configure</span> <span class="err">standard</span> <span class="err">kernel</span> <span class="err">features</span> <span class="err">(expert</span> <span class="err">users)</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Enable</span> <span class="err">eventpoll</span> <span class="err">support</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Enable</span> <span class="err">signalfd()</span> <span class="err">system</span> <span class="err">call</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Enable</span> <span class="err">timerfd()</span> <span class="err">system</span> <span class="err">call</span>
-<span class="err">|</span>
-<span class="err">|</span> <span class="err">Processor</span> <span class="err">type</span> <span class="err">and</span> <span class="err">features</span>  <span class="err">---&gt;</span>
+<span class="na">| Gentoo Linux ---&gt;</span>
+<span class="na">|      |     Support for init systems, system and service managers ---&gt;</span>
+<span class="na">|      |      | [ ] OpenRC, runit and other script based systems and managers</span>
+<span class="na">|      |      | [*] systemd</span>
+<span class="na">|</span>
+<span class="na">| General setup  ---&gt;</span>
+<span class="na">|      | [*] Configure standard kernel features (expert users)  ---&gt;</span>
+<span class="na">|      |      | [*] Enable eventpoll support</span>
+<span class="na">|      |      | [*] Enable signalfd() system call</span>
+<span class="na">|      |      | [*] Enable timerfd() system call</span>
+<span class="na">|</span>
+<span class="na">| Processor type and features  ---&gt;</span>
 <span class="na">|      | (root</span><span class="o">=</span><span class="s">/dev/sda6 init=/usr/lib/systemd/systemd) Built-in kernel command string</span>
 </pre>
 <p>Another options are mandatory or recommended but they are already enabled. More informations on <a class="reference external" href="https://wiki.gentoo.org/wiki/Systemd">wiki.gentoo.org/wiki/Systemd</a></p>
@@ -137,7 +137,7 @@ My personal blog note            </a>
 <p>Select profil for systemd (default/linux/amd64/13.0/desktop/kde/systemd)</p>
 <pre class="code console literal-block">
 <span class="gp">#</span> eselect profile list
-<span class="gp">#</span> eselect profile <span class="nb">set</span> 7
+<span class="gp">#</span> eselect profile <span class="nb">set</span> <span class="m">7</span>
 </pre>
 <p>Update system</p>
 <pre class="code console literal-block">
@@ -227,6 +227,11 @@ My personal blog note            </a>
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/agile.html">
+                            Agile
+                        </a>
+                    </li>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/application-server.html">
                             Application Server
@@ -287,7 +292,7 @@ My personal blog note            </a>
                             Dedibox
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/development.html">
                             Development
                         </a>
@@ -295,6 +300,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/development-tool.html">
                             Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/devops.html">
+                            DevOps
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -412,6 +422,11 @@ My personal blog note            </a>
                             SCM
                         </a>
                     </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scrum.html">
+                            Scrum
+                        </a>
+                    </li>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/software.html">
                             Software
@@ -466,7 +481,7 @@ My personal blog note            </a>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+         <div class="col-xs-10">&copy; 2018 D. Bernaudeau
             &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
     Content
   licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.

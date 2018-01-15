@@ -134,67 +134,67 @@ This solution doesn't work on Android device. So, I did not take that option and
 <ul>
 <li>Configure nginx</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="x">rtmp </span><span class="err">{</span><span class="x"></span>
-<span class="x">    server </span><span class="err">{</span><span class="x"></span>
-<span class="x">        listen 1935; </span><span class="err">#</span><span class="x"> Listen on standard RTMP port</span>
-<span class="x">        chunk_size 4000;</span>
+<div class="highlight"><pre><span></span>rtmp {
+    server {
+        listen 1935; # Listen on standard RTMP port
+        chunk_size 4000;
 
-<span class="x">        application show </span><span class="err">{</span><span class="x"></span>
-<span class="x">            live on;</span>
-<span class="x">            </span><span class="err">#</span><span class="x"> Turn on HLS</span>
-<span class="x">            hls on;</span>
-<span class="x">            hls_path /mnt/hls/;</span>
-<span class="x">            hls_fragment 3;</span>
-<span class="x">            hls_playlist_length 60;</span>
-<span class="x">            </span><span class="err">#</span><span class="x"> disable consuming the stream from nginx as rtmp</span>
-<span class="x">            </span><span class="cp">#</span><span class="nf">deny</span><span class="x"> play all;</span>
-<span class="x">        }</span>
-<span class="x">    }</span>
-<span class="x">}</span>
+        application show {
+            live on;
+            # Turn on HLS
+            hls on;
+            hls_path /mnt/hls/;
+            hls_fragment 3;
+            hls_playlist_length 60;
+            # disable consuming the stream from nginx as rtmp
+            #deny play all;
+        }
+    }
+}
 
-<span class="x">http </span><span class="err">{</span><span class="x"></span>
-<span class="x">      ...</span>
-<span class="x">      sendfile off;</span>
-<span class="x">      tcp_nopush on;</span>
-<span class="x">      tcp_nodelay on;</span>
-<span class="x">      directio 512;</span>
+http {
+      ...
+      sendfile off;
+      tcp_nopush on;
+      tcp_nodelay on;
+      directio 512;
 
-<span class="x">      server </span><span class="err">{</span><span class="x"></span>
-<span class="x">        listen 8081;</span>
-<span class="x">        root /var/www/app/;</span>
-<span class="x">      }</span>
+      server {
+        listen 8081;
+        root /var/www/app/;
+      }
 
-<span class="x">      server </span><span class="err">{</span><span class="x"></span>
-<span class="x">        listen 8080;</span>
-<span class="x">        server_name hostname;</span>
+      server {
+        listen 8080;
+        server_name hostname;
 
-<span class="x">        location / </span><span class="err">{</span><span class="x"></span>
-<span class="x">          </span><span class="err">#</span><span class="x"> Disable cache</span>
-<span class="x">          add_header 'Cache-Control' 'no-cache';</span>
+        location / {
+          # Disable cache
+          add_header 'Cache-Control' 'no-cache';
 
-<span class="x">          </span><span class="err">#</span><span class="x"> CORS setup</span>
-<span class="x">          add_header 'Access-Control-Allow-Origin' '*' always;</span>
-<span class="x">          add_header 'Access-Control-Expose-Headers' 'Content-Length';</span>
+          # CORS setup
+          add_header 'Access-Control-Allow-Origin' '*' always;
+          add_header 'Access-Control-Expose-Headers' 'Content-Length';
 
-<span class="x">          </span><span class="err">#</span><span class="x"> allow CORS preflight requests (Don't use this configure in production environment)</span>
-<span class="x">          if (</span><span class="p">$</span><span class="nv">request_method</span><span class="x"> = 'OPTIONS') </span><span class="err">{</span><span class="x"></span>
-<span class="x">            add_header 'Access-Control-Allow-Origin' '*';</span>
-<span class="x">            add_header 'Access-Control-Max-Age' 1728000;</span>
-<span class="x">            add_header 'Content-Type' 'text/plain charset=UTF-8';</span>
-<span class="x">            add_header 'Content-Length' 0;</span>
-<span class="x">            return 204;</span>
-<span class="x">          }</span>
+          # allow CORS preflight requests (Don't use this configure in production environment)
+          if ($request_method = 'OPTIONS') {
+            add_header 'Access-Control-Allow-Origin' '*';
+            add_header 'Access-Control-Max-Age' 1728000;
+            add_header 'Content-Type' 'text/plain charset=UTF-8';
+            add_header 'Content-Length' 0;
+            return 204;
+          }
 
-<span class="x">          types </span><span class="err">{</span><span class="x"></span>
-<span class="x">            application/dash+xml mpd;</span>
-<span class="x">            application/vnd.apple.mpegurl m3u8;</span>
-<span class="x">            video/mp2t ts;</span>
-<span class="x">          }</span>
+          types {
+            application/dash+xml mpd;
+            application/vnd.apple.mpegurl m3u8;
+            video/mp2t ts;
+          }
 
-<span class="x">          root /mnt/;</span>
-<span class="x">        }</span>
-<span class="x">      }</span>
-<span class="x">}</span>
+          root /mnt/;
+        }
+      }
+}
 </pre></div>
 <h2>Video transcoding</h2>
 <ul>
@@ -267,6 +267,11 @@ This solution doesn't work on Android device. So, I did not take that option and
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/agile.html">
+                            Agile
+                        </a>
+                    </li>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/application-server.html">
                             Application Server
@@ -327,7 +332,7 @@ This solution doesn't work on Android device. So, I did not take that option and
                             Dedibox
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/development.html">
                             Development
                         </a>
@@ -335,6 +340,11 @@ This solution doesn't work on Android device. So, I did not take that option and
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/development-tool.html">
                             Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/devops.html">
+                            DevOps
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -452,6 +462,11 @@ This solution doesn't work on Android device. So, I did not take that option and
                             SCM
                         </a>
                     </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scrum.html">
+                            Scrum
+                        </a>
+                    </li>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/software.html">
                             Software
@@ -506,7 +521,7 @@ This solution doesn't work on Android device. So, I did not take that option and
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+         <div class="col-xs-10">&copy; 2018 D. Bernaudeau
             &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
     Content
   licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.

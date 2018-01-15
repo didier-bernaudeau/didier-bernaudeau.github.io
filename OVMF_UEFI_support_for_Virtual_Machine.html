@@ -176,18 +176,18 @@ TOOL_CHAIN_TAG        = GCC49
 <li>Start virtual machine (Option 1)</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> qemu-system-x86_64 -m 1G -enable-kvm -vga virtio <span class="se">\</span>
-<span class="go">    -drive if=pflash,format=raw,readonly,file=OVMF/OVMF_CODE.fd \</span>
-<span class="go">    -drive if=pflash,format=raw,file=OVMF/OVMF_VARS.fd \</span>
-<span class="go">    -drive if=virtio,file=OVMF.qcow2 \</span>
-<span class="go">    -cdrom iso/archlinux-2016.10.01-dual.iso</span>
+    -drive <span class="k">if</span><span class="o">=</span>pflash,format<span class="o">=</span>raw,readonly,file<span class="o">=</span>OVMF/OVMF_CODE.fd <span class="se">\</span>
+    -drive <span class="k">if</span><span class="o">=</span>pflash,format<span class="o">=</span>raw,file<span class="o">=</span>OVMF/OVMF_VARS.fd <span class="se">\</span>
+    -drive <span class="k">if</span><span class="o">=</span>virtio,file<span class="o">=</span>OVMF.qcow2 <span class="se">\</span>
+    -cdrom iso/archlinux-2016.10.01-dual.iso
 </pre></div>
 <ul>
 <li>Start virtual machine (Option 2)</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> qemu-system-x86_64 -m 1G -enable-kvm -vga virtio <span class="se">\</span>
-<span class="go">    -drive if=pflash,format=raw,file=OVMF/OVMF.fd \</span>
-<span class="go">    -drive if=virtio,file=OVMF.qcow2 \</span>
-<span class="go">    -cdrom iso/archlinux-2016.10.01-dual.iso</span>
+    -drive <span class="k">if</span><span class="o">=</span>pflash,format<span class="o">=</span>raw,file<span class="o">=</span>OVMF/OVMF.fd <span class="se">\</span>
+    -drive <span class="k">if</span><span class="o">=</span>virtio,file<span class="o">=</span>OVMF.qcow2 <span class="se">\</span>
+    -cdrom iso/archlinux-2016.10.01-dual.iso
 </pre></div>
 <p align="center"><img class="img-responsive" src="images/2017-01-29_OVMF_UEFI_support_for_Virtual_Machine_01.png" width="60%"/></p>
 <p align="center"><img class="img-responsive" src="images/2017-01-29_OVMF_UEFI_support_for_Virtual_Machine_02.png" width="60%"/></p>
@@ -246,6 +246,11 @@ TOOL_CHAIN_TAG        = GCC49
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/agile.html">
+                            Agile
+                        </a>
+                    </li>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/application-server.html">
                             Application Server
@@ -306,7 +311,7 @@ TOOL_CHAIN_TAG        = GCC49
                             Dedibox
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/development.html">
                             Development
                         </a>
@@ -314,6 +319,11 @@ TOOL_CHAIN_TAG        = GCC49
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/development-tool.html">
                             Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/devops.html">
+                            DevOps
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -431,6 +441,11 @@ TOOL_CHAIN_TAG        = GCC49
                             SCM
                         </a>
                     </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scrum.html">
+                            Scrum
+                        </a>
+                    </li>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/software.html">
                             Software
@@ -485,7 +500,7 @@ TOOL_CHAIN_TAG        = GCC49
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+         <div class="col-xs-10">&copy; 2018 D. Bernaudeau
             &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
     Content
   licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.

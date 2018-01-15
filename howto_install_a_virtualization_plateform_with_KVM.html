@@ -122,58 +122,58 @@ My personal blog note            </a>
 <p>This is the configuration for Gentoo kernel 4.9.16.</p>
 <p>Enable KVM</p>
 <pre class="code ini literal-block">
-<span class="err">|</span> <span class="err">[*]</span> <span class="err">Virtualization</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Virtualization</span>
-<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Kernel-based</span> <span class="err">Virtual</span> <span class="err">Machine</span> <span class="err">(KVM)</span> <span class="err">support</span>
-<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">KVM</span> <span class="err">for</span> <span class="err">Intel</span> <span class="err">processors</span> <span class="err">support</span>
-<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;</span> <span class="err">&gt;</span>     <span class="err">KVM</span> <span class="err">for</span> <span class="err">AMD</span> <span class="err">processors</span> <span class="err">support</span> <span class="err">(NEW)</span>
-<span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>     <span class="err">Audit</span> <span class="err">KVM</span> <span class="err">MMU</span> <span class="err">(NEW)</span>
-<span class="err">|</span>      <span class="err">|</span> <span class="err">[</span> <span class="err">]</span>     <span class="err">KVM</span> <span class="err">legacy</span> <span class="err">PCI</span> <span class="err">device</span> <span class="err">assignment</span> <span class="err">support</span>
+<span class="na">| [*] Virtualization  ---&gt;</span>
+<span class="na">|      | --- Virtualization</span>
+<span class="na">|      | &lt;*&gt;   Kernel-based Virtual Machine (KVM) support</span>
+<span class="na">|      | &lt;*&gt;     KVM for Intel processors support</span>
+<span class="na">|      | &lt; &gt;     KVM for AMD processors support (NEW)</span>
+<span class="na">|      | [ ]     Audit KVM MMU (NEW)</span>
+<span class="na">|      | [ ]     KVM legacy PCI device assignment support</span>
 </pre>
 <p>Enable VirtIO driver</p>
 <pre class="code ini literal-block">
-<span class="err">|</span>     <span class="err">Device</span> <span class="err">Drivers</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>
-<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">Network</span> <span class="err">device</span> <span class="err">support</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">Virtio</span> <span class="err">network</span> <span class="err">driver</span>
-<span class="err">|</span>      <span class="err">|</span>
-<span class="err">|</span>      <span class="err">|</span>     <span class="err">Virtio</span> <span class="err">drivers</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">PCI</span> <span class="err">driver</span> <span class="err">for</span> <span class="err">virtio</span> <span class="err">devices</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Support</span> <span class="err">for</span> <span class="err">legacy</span> <span class="err">virtio</span> <span class="err">draft</span> <span class="err">0.9.X</span> <span class="err">and</span> <span class="err">older</span> <span class="err">devices</span> <span class="err">(NEW)</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Virtio</span> <span class="err">balloon</span> <span class="err">driver</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Virtio</span> <span class="err">input</span> <span class="err">driver</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">&lt;*&gt;</span> <span class="err">Platform</span> <span class="err">bus</span> <span class="err">driver</span> <span class="err">for</span> <span class="err">memory</span> <span class="err">mapped</span> <span class="err">virtio</span> <span class="err">devices</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Memory</span> <span class="err">mapped</span> <span class="err">virtio</span> <span class="err">devices</span> <span class="err">parameter</span> <span class="err">parsing</span>
+<span class="na">|     Device Drivers  ---&gt;</span>
+<span class="na">|      |</span>
+<span class="na">|      | [*] Network device support  ---&gt;</span>
+<span class="na">|      |        | &lt;*&gt;     Virtio network driver</span>
+<span class="na">|      |</span>
+<span class="na">|      |     Virtio drivers  ---&gt;</span>
+<span class="na">|      |        | &lt;*&gt; PCI driver for virtio devices</span>
+<span class="na">|      |        | [*]   Support for legacy virtio draft 0.9.X and older devices (NEW)</span>
+<span class="na">|      |        | &lt;*&gt; Virtio balloon driver</span>
+<span class="na">|      |        | &lt;*&gt; Virtio input driver</span>
+<span class="na">|      |        | &lt;*&gt; Platform bus driver for memory mapped virtio devices</span>
+<span class="na">|      |        | [*]   Memory mapped virtio devices parameter parsing</span>
 </pre>
 <p>Enable VHostNet</p>
 <pre class="code ini literal-block">
-<span class="err">|</span> <span class="err">[*]</span> <span class="err">Virtualization</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Virtualization</span>
-<span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Host</span> <span class="err">kernel</span> <span class="err">accelerator</span> <span class="err">for</span> <span class="err">virtio</span> <span class="err">net</span> <span class="err">(NEW)</span>
+<span class="na">| [*] Virtualization  ---&gt;</span>
+<span class="na">|      | --- Virtualization</span>
+<span class="na">|      | &lt;*&gt;   Host kernel accelerator for virtio net (NEW)</span>
 </pre>
 <p>Enable virtual network (Local bridge with NAT)</p>
 <pre class="code ini literal-block">
-<span class="err">|</span> <span class="err">[*]</span> <span class="err">Networking</span> <span class="err">support</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span> <span class="err">---</span> <span class="err">Networking</span> <span class="err">support</span>
-<span class="err">|</span>      <span class="err">|</span>       <span class="err">Networking</span> <span class="err">options</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span> <span class="err">Network</span> <span class="err">packet</span> <span class="err">filtering</span> <span class="err">framework</span> <span class="err">(Netfilter)</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Advanced</span> <span class="err">netfilter</span> <span class="err">configuration</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span>       <span class="err">Core</span> <span class="err">Netfilter</span> <span class="err">Configuration</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">ctmark</span> <span class="err">target</span> <span class="err">and</span> <span class="err">match</span> <span class="err">support</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">CHECKSUM</span> <span class="err">target</span> <span class="err">support</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Ethernet</span> <span class="err">Bridge</span> <span class="err">tables</span> <span class="err">(ebtables)</span> <span class="err">support</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">ebt:</span> <span class="err">nat</span> <span class="err">table</span> <span class="err">support</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">ebt:</span> <span class="err">mark</span> <span class="err">target</span> <span class="err">support</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span> <span class="err">[*]</span> <span class="err">QoS</span> <span class="err">and/or</span> <span class="err">fair</span> <span class="err">queueing</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Hierarchical</span> <span class="err">Token</span> <span class="err">Bucket</span> <span class="err">(HTB)</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Stochastic</span> <span class="err">Fairness</span> <span class="err">Queueing</span> <span class="err">(SFQ)</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Ingress</span> <span class="err">Qdisc</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Netfilter</span> <span class="err">mark</span> <span class="err">(FW)</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">Universal</span> <span class="err">32bit</span> <span class="err">comparisons</span> <span class="err">w/</span> <span class="err">hashing</span> <span class="err">(U32)</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Actions</span>
-<span class="err">|</span>      <span class="err">|</span>        <span class="err">|</span>       <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">Traffic</span> <span class="err">Policing</span>
+<span class="na">| [*] Networking support  ---&gt;</span>
+<span class="na">|      | --- Networking support</span>
+<span class="na">|      |       Networking options  ---&gt;</span>
+<span class="na">|      |</span>
+<span class="na">|      |        | [*] Network packet filtering framework (Netfilter)  ---&gt;</span>
+<span class="na">|      |        |       | [*]   Advanced netfilter configuration</span>
+<span class="na">|      |        |       |       Core Netfilter Configuration  ---&gt;</span>
+<span class="na">|      |        |       |       | &lt;*&gt;   ctmark target and match support</span>
+<span class="na">|      |        |       |       | &lt;*&gt;   CHECKSUM target support</span>
+<span class="na">|      |        |       | &lt;*&gt;   Ethernet Bridge tables (ebtables) support  ---&gt;</span>
+<span class="na">|      |        |       |       | &lt;*&gt;   ebt: nat table support</span>
+<span class="na">|      |        |       |       | &lt;*&gt;   ebt: mark target support</span>
+<span class="na">|      |        |</span>
+<span class="na">|      |        | [*] QoS and/or fair queueing  ---&gt;</span>
+<span class="na">|      |        |       | &lt;*&gt;   Hierarchical Token Bucket (HTB)</span>
+<span class="na">|      |        |       | &lt;*&gt;   Stochastic Fairness Queueing (SFQ)</span>
+<span class="na">|      |        |       | &lt;*&gt;   Ingress Qdisc</span>
+<span class="na">|      |        |       | &lt;*&gt;   Netfilter mark (FW)</span>
+<span class="na">|      |        |       | &lt;*&gt;   Universal 32bit comparisons w/ hashing (U32)</span>
+<span class="na">|      |        |       | [*]   Actions</span>
+<span class="na">|      |        |       | &lt;*&gt;     Traffic Policing</span>
 </pre>
 </div>
 <div class="section" id="installation">
@@ -183,13 +183,13 @@ My personal blog note            </a>
 <span class="gp">#</span> nano /etc/portage/package.use
 </pre>
 <pre class="code ini literal-block">
-<span class="err">app-emulation/libvirt</span>           <span class="err">qemu</span> <span class="err">virt-network</span>
-<span class="err">app-emulation/libvirt-glib</span>      <span class="err">python</span>
-<span class="err">app-emulation/qemu</span>              <span class="err">qemu_softmmu_targets_x86_64</span> <span class="err">spice</span> <span class="err">usbredir</span>
-<span class="err">app-emulation/virt-manager</span>      <span class="err">gtk</span> <span class="err">sasl</span>
-<span class="err">net-dns/dnsmasq</span>                 <span class="err">script</span>
-<span class="err">net-firewall/iptables</span>           <span class="err">conntrack</span> <span class="err">ipv6</span>
-<span class="err">media-libs/mesa</span>                 <span class="err">gles2</span>
+<span class="na">app-emulation/libvirt           qemu virt-network</span>
+<span class="na">app-emulation/libvirt-glib      python</span>
+<span class="na">app-emulation/qemu              qemu_softmmu_targets_x86_64 spice usbredir</span>
+<span class="na">app-emulation/virt-manager      gtk sasl</span>
+<span class="na">net-dns/dnsmasq                 script</span>
+<span class="na">net-firewall/iptables           conntrack ipv6</span>
+<span class="na">media-libs/mesa                 gles2</span>
 </pre>
 <p>Start installation</p>
 <pre class="code console literal-block">
@@ -276,6 +276,11 @@ My personal blog note            </a>
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/agile.html">
+                            Agile
+                        </a>
+                    </li>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/application-server.html">
                             Application Server
@@ -336,7 +341,7 @@ My personal blog note            </a>
                             Dedibox
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/development.html">
                             Development
                         </a>
@@ -344,6 +349,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/development-tool.html">
                             Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/devops.html">
+                            DevOps
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -461,6 +471,11 @@ My personal blog note            </a>
                             SCM
                         </a>
                     </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scrum.html">
+                            Scrum
+                        </a>
+                    </li>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/software.html">
                             Software
@@ -515,7 +530,7 @@ My personal blog note            </a>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+         <div class="col-xs-10">&copy; 2018 D. Bernaudeau
             &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
     Content
   licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.

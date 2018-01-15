@@ -331,55 +331,55 @@ zone "3.XXX.10.in-addr.arpa" IN {
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /var/cache/bind/domain.net.zone
 </pre></div>
-<div class="highlight"><pre><span></span><span class="p">$</span><span class="nv">ttl</span><span class="x"> 38400</span>
+<div class="highlight"><pre><span></span>$ttl 38400
 
-<span class="x">@               IN      SOA  domain.net.   root.domain.net. (</span>
-<span class="x">                                2012032900 ; Serial</span>
-<span class="x">                                10800      ; Refresh [3h]</span>
-<span class="x">                                3600       ; Retry [1h]</span>
-<span class="x">                                604800     ; Expire [1 week]</span>
-<span class="x">                                86400      ; TTL [1 jour]</span>
-<span class="x">)</span>
+@               IN      SOA  domain.net.   root.domain.net. (
+                                2012032900 ; Serial
+                                10800      ; Refresh [3h]
+                                3600       ; Retry [1h]
+                                604800     ; Expire [1 week]
+                                86400      ; TTL [1 jour]
+)
 
-<span class="x">@                IN       NS      ns.domain.net.</span>
+@                IN       NS      ns.domain.net.
 
-<span class="x">edge             IN       A       10.0.0.1</span>
-<span class="x">g8way            IN       A       10.XXX.3.254</span>
-<span class="x">ns               IN       A       10.XXX.3.254</span>
-<span class="x">cups             IN       A       10.XXX.3.254</span>
-<span class="x">home             IN       A       10.XXX.3.254</span>
-<span class="x">brother          IN       A       10.XXX.3.100</span>
+edge             IN       A       10.0.0.1
+g8way            IN       A       10.XXX.3.254
+ns               IN       A       10.XXX.3.254
+cups             IN       A       10.XXX.3.254
+home             IN       A       10.XXX.3.254
+brother          IN       A       10.XXX.3.100
 </pre></div>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /var/cache/bind/10.XXX.3.zone
 </pre></div>
-<div class="highlight"><pre><span></span><span class="p">$</span><span class="nv">ttl</span><span class="x"> 3h </span>
+<div class="highlight"><pre><span></span>$ttl 3h 
 
-<span class="x">@  IN  SOA  domain.net.     root.domain.net. (</span>
-<span class="x">                    2012032900 ; Serial</span>
-<span class="x">                    10800      ; Refresh [3h]</span>
-<span class="x">                    3600       ; Retry [1h]</span>
-<span class="x">                    604800     ; Expire [1 week]</span>
-<span class="x">                    86400      ; TTL [1 jour]</span>
-<span class="x">)</span>
+@  IN  SOA  domain.net.     root.domain.net. (
+                    2012032900 ; Serial
+                    10800      ; Refresh [3h]
+                    3600       ; Retry [1h]
+                    604800     ; Expire [1 week]
+                    86400      ; TTL [1 jour]
+)
 
-<span class="x">@    IN  NS  ns.domain.net.</span>
-<span class="x">254  IN  PTR g8way.domain.net.</span>
-<span class="x">100  IN  PTR brother.lazuly.net</span>
+@    IN  NS  ns.domain.net.
+254  IN  PTR g8way.domain.net.
+100  IN  PTR brother.lazuly.net
 </pre></div>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /var/cache/bind/10.0.0.zone
 </pre></div>
-<div class="highlight"><pre><span></span><span class="p">$</span><span class="nv">ttl</span><span class="x"> 3h </span>
+<div class="highlight"><pre><span></span>$ttl 3h 
 
-<span class="x">@  IN  SOA  domain.net.     root.domain.net. (</span>
-<span class="x">                    2012032900 ; Serial</span>
-<span class="x">                    10800      ; Refresh [3h]</span>
-<span class="x">                    3600       ; Retry [1h]</span>
-<span class="x">                    604800     ; Expire [1 week]</span>
-<span class="x">                    86400      ; TTL [1 jour]</span>
-<span class="x">)</span>
+@  IN  SOA  domain.net.     root.domain.net. (
+                    2012032900 ; Serial
+                    10800      ; Refresh [3h]
+                    3600       ; Retry [1h]
+                    604800     ; Expire [1 week]
+                    86400      ; TTL [1 jour]
+)
 
-<span class="x">@    IN  NS  ns.domain.net.</span>
-<span class="x">1  IN  PTR edge.domain.net.</span>
+@    IN  NS  ns.domain.net.
+1  IN  PTR edge.domain.net.
 </pre></div>
 <ul>
 <li>Start</li>
@@ -428,120 +428,120 @@ zone "3.XXX.10.in-addr.arpa" IN {
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> nano iptables.sh
 </pre></div>
-<div class="highlight"><pre><span></span><span class="err">#</span><span class="x"> !/bin/bash</span>
+<div class="highlight"><pre><span></span># !/bin/bash
 
-<span class="err">#</span><span class="x"> Interface</span>
-<span class="x">PublicInterface=enp1s0</span>
-<span class="x">LanInterface=enp3s0</span>
+# Interface
+PublicInterface=enp1s0
+LanInterface=enp3s0
 
-<span class="err">#</span><span class="x"> IP Address</span>
-<span class="x">LanAddress=10.XX.3.254</span>
-<span class="x">EdgeServer=WWW.XXX.YYY.ZZZ</span>
+# IP Address
+LanAddress=10.XX.3.254
+EdgeServer=WWW.XXX.YYY.ZZZ
 
-<span class="err">#</span><span class="x"> Network</span>
-<span class="x">LanNetwork=10.XX.3.0/24</span>
-<span class="x">PublicNetwork=10.XX.1.0/24</span>
-<span class="x">VpnNetwork=10.YY.0.0/24</span>
+# Network
+LanNetwork=10.XX.3.0/24
+PublicNetwork=10.XX.1.0/24
+VpnNetwork=10.YY.0.0/24
 
-<span class="err">#</span><span class="x"> flush existing rules</span>
-<span class="x">sudo iptables -F</span>
-<span class="x">sudo iptables -X</span>
+# flush existing rules
+sudo iptables -F
+sudo iptables -X
 
-<span class="err">#</span><span class="x"> Default policy</span>
-<span class="x">sudo iptables -t filter -P INPUT DROP</span>
-<span class="x">sudo iptables -t filter -P FORWARD DROP</span>
-<span class="x">sudo iptables -t filter -P OUTPUT DROP</span>
-
-
-<span class="cp">##</span><span class="c">############################## Forwarding (LAN to VPN) ################################</span><span class="x"></span>
-
-<span class="err">#</span><span class="x"> HTTP</span>
-<span class="x">sudo iptables -A FORWARD -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -o tun+ -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> HTTPS</span>
-<span class="x">sudo iptables -A FORWARD -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -o tun+ -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> SSH</span>
-<span class="x">sudo iptables -A FORWARD -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -o tun+ -p tcp --dport 22 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> SMTP Submission with TLS</span>
-<span class="x">sudo iptables -A FORWARD -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -o tun+ -p tcp --dport 465 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> SMTP Submission with StartTLS</span>
-<span class="x">sudo iptables -A FORWARD -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -o tun+ -p tcp --dport 587 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> IMAPS</span>
-<span class="x">sudo iptables -A FORWARD -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -o tun+ -p tcp --dport 993 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> Allow forwarding for already established connection </span>
-<span class="x">sudo iptables -A FORWARD -i tun+ -o </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+# Default policy
+sudo iptables -t filter -P INPUT DROP
+sudo iptables -t filter -P FORWARD DROP
+sudo iptables -t filter -P OUTPUT DROP
 
 
-<span class="cp">##</span><span class="c">###################### Outgoing flow via LiveBox ########################</span><span class="x"></span>
+################################ Forwarding (LAN to VPN) ################################
 
-<span class="err">#</span><span class="x"> Allow DNS</span>
-<span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+# HTTP
+sudo iptables -A FORWARD -i $LanInterface -o tun+ -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
-<span class="err">#</span><span class="x"> OpenVPN</span>
-<span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -d </span><span class="p">$</span><span class="nv">EdgeServer</span><span class="x"> -p udp --dport 1194 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+# HTTPS
+sudo iptables -A FORWARD -i $LanInterface -o tun+ -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
-<span class="err">#</span><span class="x"> Allow Internet Browsing</span>
-<span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-<span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+# SSH
+sudo iptables -A FORWARD -i $LanInterface -o tun+ -p tcp --dport 22 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
-<span class="err">#</span><span class="x"> Allow incoming established connection</span>
-<span class="x">sudo iptables -A INPUT -i </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+# SMTP Submission with TLS
+sudo iptables -A FORWARD -i $LanInterface -o tun+ -p tcp --dport 465 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
+# SMTP Submission with StartTLS
+sudo iptables -A FORWARD -i $LanInterface -o tun+ -p tcp --dport 587 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
-<span class="cp">##</span><span class="c">############################ Outgoing local flow via VPN ##############################</span><span class="x"></span>
+# IMAPS
+sudo iptables -A FORWARD -i $LanInterface -o tun+ -p tcp --dport 993 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
-<span class="err">#</span><span class="x"> Allow DNS</span>
-<span class="x">sudo iptables -A OUTPUT -o tun+ -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-<span class="x">sudo iptables -A OUTPUT -o tun+ -p tcp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> Allow NTP</span>
-<span class="x">sudo iptables -A OUTPUT -o tun+ -p udp --dport 123 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> Allow HTTP</span>
-<span class="x">sudo iptables -A OUTPUT -o tun+ -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> Allow HTTPS</span>
-<span class="x">sudo iptables -A OUTPUT -o tun+ -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> Allow incoming established connection from VPN</span>
-<span class="x">sudo iptables -A INPUT -i tun+ -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+# Allow forwarding for already established connection 
+sudo iptables -A FORWARD -i tun+ -o $LanInterface -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 
 
-<span class="cp">##</span><span class="c">######################## Incoming flow from Lan Interface ###########################</span><span class="x"></span>
+######################## Outgoing flow via LiveBox ########################
 
-<span class="err">#</span><span class="x"> DHCP</span>
-<span class="x">sudo iptables -I INPUT -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -p udp -m udp --sport 68 --dport 67 -j ACCEPT</span>
+# Allow DNS
+sudo iptables -A OUTPUT -o $PublicInterface -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
-<span class="err">#</span><span class="x"> SSH</span>
-<span class="x">sudo iptables -A INPUT -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -d </span><span class="p">$</span><span class="nv">LanAddress</span><span class="x"> -p tcp --dport 22 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+# OpenVPN
+sudo iptables -A OUTPUT -o $PublicInterface -d $EdgeServer -p udp --dport 1194 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
-<span class="err">#</span><span class="x"> DNS</span>
-<span class="x">sudo iptables -A INPUT -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -d </span><span class="p">$</span><span class="nv">LanAddress</span><span class="x"> -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+# Allow Internet Browsing
+sudo iptables -A OUTPUT -o $PublicInterface -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A OUTPUT -o $PublicInterface -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
-<span class="err">#</span><span class="x"> NTP</span>
-<span class="x">sudo iptables -A INPUT -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -d </span><span class="p">$</span><span class="nv">LanAddress</span><span class="x"> -p udp --dport 123 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> Allow outgoing established connection</span>
-<span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">LanAddress</span><span class="x"> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+# Allow incoming established connection
+sudo iptables -A INPUT -i $PublicInterface -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 
 
-<span class="cp">##</span><span class="c">###################### Internal flow from Local Interface #########################</span><span class="x"></span>
+############################## Outgoing local flow via VPN ##############################
 
-<span class="err">#</span><span class="x"> DNS</span>
-<span class="x">sudo iptables -A INPUT -i lo -d 127.0.0.1 -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-<span class="x">sudo iptables -A OUTPUT -o lo -d 127.0.0.1 -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+# Allow DNS
+sudo iptables -A OUTPUT -o tun+ -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A OUTPUT -o tun+ -p tcp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
-<span class="err">#</span><span class="x"> RNDC</span>
-<span class="x">sudo iptables -A INPUT -i lo -d 127.0.0.1 -p tcp --dport 953 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+# Allow NTP
+sudo iptables -A OUTPUT -o tun+ -p udp --dport 123 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
-<span class="err">#</span><span class="x"> Allow outgoing and incoming established connection</span>
-<span class="x">sudo iptables -A OUTPUT -o lo -s 127.0.0.1 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
-<span class="x">sudo iptables -A INPUT -i lo -s 127.0.0.1 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+# Allow HTTP
+sudo iptables -A OUTPUT -o tun+ -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+# Allow HTTPS
+sudo iptables -A OUTPUT -o tun+ -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+# Allow incoming established connection from VPN
+sudo iptables -A INPUT -i tun+ -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+
+########################## Incoming flow from Lan Interface ###########################
+
+# DHCP
+sudo iptables -I INPUT -i $LanInterface -p udp -m udp --sport 68 --dport 67 -j ACCEPT
+
+# SSH
+sudo iptables -A INPUT -i $LanInterface -d $LanAddress -p tcp --dport 22 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+# DNS
+sudo iptables -A INPUT -i $LanInterface -d $LanAddress -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+# NTP
+sudo iptables -A INPUT -i $LanInterface -d $LanAddress -p udp --dport 123 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+# Allow outgoing established connection
+sudo iptables -A OUTPUT -o $LanInterface -s $LanAddress -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+
+######################## Internal flow from Local Interface #########################
+
+# DNS
+sudo iptables -A INPUT -i lo -d 127.0.0.1 -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A OUTPUT -o lo -d 127.0.0.1 -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+# RNDC
+sudo iptables -A INPUT -i lo -d 127.0.0.1 -p tcp --dport 953 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+# Allow outgoing and incoming established connection
+sudo iptables -A OUTPUT -o lo -s 127.0.0.1 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A INPUT -i lo -s 127.0.0.1 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 </pre></div>
 <ul>
 <li>Execute script to set rules</li>
@@ -592,6 +592,11 @@ Save current IPv6 rules? Yes
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/agile.html">
+                            Agile
+                        </a>
+                    </li>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/application-server.html">
                             Application Server
@@ -652,7 +657,7 @@ Save current IPv6 rules? Yes
                             Dedibox
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/development.html">
                             Development
                         </a>
@@ -660,6 +665,11 @@ Save current IPv6 rules? Yes
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/development-tool.html">
                             Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/devops.html">
+                            DevOps
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -777,6 +787,11 @@ Save current IPv6 rules? Yes
                             SCM
                         </a>
                     </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scrum.html">
+                            Scrum
+                        </a>
+                    </li>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/software.html">
                             Software
@@ -831,7 +846,7 @@ Save current IPv6 rules? Yes
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+         <div class="col-xs-10">&copy; 2018 D. Bernaudeau
             &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
     Content
   licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.

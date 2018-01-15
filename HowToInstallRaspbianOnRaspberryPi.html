@@ -127,12 +127,12 @@ So, this tutorial suggests some optimization to reduce write access to the SD ca
 <ul>
 <li>Uncompress file</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> unzip 2017-09-07-raspbian-stretch-lite.zip
+<div class="highlight"><pre><span></span><span class="gp">$</span> unzip <span class="m">2017</span>-09-07-raspbian-stretch-lite.zip
 </pre></div>
 <ul>
 <li>Copy files on the SD card</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> dd <span class="nv">bs</span><span class="o">=</span>4M <span class="k">if</span><span class="o">=</span>2017-09-07-raspbian-stretch-lite.img <span class="nv">of</span><span class="o">=</span>/dev/mmcblk0 <span class="nv">status</span><span class="o">=</span>progress
+<div class="highlight"><pre><span></span><span class="gp">#</span> dd <span class="nv">bs</span><span class="o">=</span>4M <span class="k">if</span><span class="o">=</span><span class="m">2017</span>-09-07-raspbian-stretch-lite.img <span class="nv">of</span><span class="o">=</span>/dev/mmcblk0 <span class="nv">status</span><span class="o">=</span>progress
 <span class="gp">#</span> sync
 </pre></div>
 <ul>
@@ -213,15 +213,15 @@ A1 Expand Filesystem
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl status systemd-timesyncd.service
 </pre></div>
-<div class="highlight"><pre><span></span><span class="err">●</span> <span class="nt">systemd-timesyncd</span><span class="nc">.service</span> <span class="nt">-</span> <span class="nt">Network</span> <span class="nt">Time</span> <span class="nt">Synchronization</span>
-   <span class="nt">Loaded</span><span class="o">:</span> <span class="nt">loaded</span> <span class="o">(/</span><span class="nt">lib</span><span class="o">/</span><span class="nt">systemd</span><span class="o">/</span><span class="nt">system</span><span class="o">/</span><span class="nt">systemd-timesyncd</span><span class="nc">.service</span><span class="o">;</span> <span class="nt">enabled</span><span class="o">;</span> <span class="nt">vendor</span> <span class="nt">preset</span><span class="o">:</span> <span class="nt">enabled</span><span class="o">)</span>
-  <span class="nt">Drop-In</span><span class="o">:</span> <span class="o">/</span><span class="nt">lib</span><span class="o">/</span><span class="nt">systemd</span><span class="o">/</span><span class="nt">system</span><span class="o">/</span><span class="nt">systemd-timesyncd</span><span class="nc">.service.d</span>
-           <span class="err">└─</span><span class="nt">disable-with-time-daemon</span><span class="nc">.conf</span>
-   <span class="nt">Active</span><span class="o">:</span> <span class="nt">active</span> <span class="o">(</span><span class="nt">running</span><span class="o">)</span> <span class="nt">since</span> <span class="nt">Thu</span> <span class="nt">2017-09-07</span> <span class="nt">18</span><span class="nd">:15:46</span> <span class="nt">CEST</span><span class="o">;</span> <span class="nt">2</span> <span class="nt">months</span> <span class="nt">2</span> <span class="nt">days</span> <span class="nt">ago</span>
-     <span class="nt">Docs</span><span class="o">:</span> <span class="nt">man</span><span class="nd">:systemd-timesyncd</span><span class="nc">.service</span><span class="o">(</span><span class="nt">8</span><span class="o">)</span>
+<div class="highlight"><pre><span></span><span class="err">●</span> <span class="nt">systemd-timesyncd</span><span class="p">.</span><span class="nc">service</span> <span class="nt">-</span> <span class="nt">Network</span> <span class="nt">Time</span> <span class="nt">Synchronization</span>
+   <span class="nt">Loaded</span><span class="o">:</span> <span class="nt">loaded</span> <span class="o">(/</span><span class="nt">lib</span><span class="o">/</span><span class="nt">systemd</span><span class="o">/</span><span class="nt">system</span><span class="o">/</span><span class="nt">systemd-timesyncd</span><span class="p">.</span><span class="nc">service</span><span class="o">;</span> <span class="nt">enabled</span><span class="o">;</span> <span class="nt">vendor</span> <span class="nt">preset</span><span class="o">:</span> <span class="nt">enabled</span><span class="o">)</span>
+  <span class="nt">Drop-In</span><span class="o">:</span> <span class="o">/</span><span class="nt">lib</span><span class="o">/</span><span class="nt">systemd</span><span class="o">/</span><span class="nt">system</span><span class="o">/</span><span class="nt">systemd-timesyncd</span><span class="p">.</span><span class="nc">service</span><span class="p">.</span><span class="nc">d</span>
+           <span class="err">└─</span><span class="nt">disable-with-time-daemon</span><span class="p">.</span><span class="nc">conf</span>
+   <span class="nt">Active</span><span class="o">:</span> <span class="nt">active</span> <span class="o">(</span><span class="nt">running</span><span class="o">)</span> <span class="nt">since</span> <span class="nt">Thu</span> <span class="nt">2017-09-07</span> <span class="nt">18</span><span class="p">:</span><span class="nd">15</span><span class="p">:</span><span class="nd">46</span> <span class="nt">CEST</span><span class="o">;</span> <span class="nt">2</span> <span class="nt">months</span> <span class="nt">2</span> <span class="nt">days</span> <span class="nt">ago</span>
+     <span class="nt">Docs</span><span class="o">:</span> <span class="nt">man</span><span class="p">:</span><span class="nd">systemd-timesyncd</span><span class="p">.</span><span class="nc">service</span><span class="o">(</span><span class="nt">8</span><span class="o">)</span>
  <span class="nt">Main</span> <span class="nt">PID</span><span class="o">:</span> <span class="nt">539</span> <span class="o">(</span><span class="nt">systemd-timesyn</span><span class="o">)</span>
    <span class="nt">Status</span><span class="o">:</span> <span class="s2">"Synchronized to time server 10.XXX.3.254:123 (g8way.domain.net)."</span>
-   <span class="nt">CGroup</span><span class="o">:</span> <span class="o">/</span><span class="nt">system</span><span class="nc">.slice</span><span class="o">/</span><span class="nt">systemd-timesyncd</span><span class="nc">.service</span>
+   <span class="nt">CGroup</span><span class="o">:</span> <span class="o">/</span><span class="nt">system</span><span class="p">.</span><span class="nc">slice</span><span class="o">/</span><span class="nt">systemd-timesyncd</span><span class="p">.</span><span class="nc">service</span>
            <span class="err">└─</span><span class="nt">539</span> <span class="o">/</span><span class="nt">lib</span><span class="o">/</span><span class="nt">systemd</span><span class="o">/</span><span class="nt">systemd-timesyncd</span>
 </pre></div>
 <div class="highlight"><pre><span></span><span class="gp">$</span> timedatectl
@@ -320,6 +320,11 @@ NTP synchronized: yes
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/agile.html">
+                            Agile
+                        </a>
+                    </li>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/application-server.html">
                             Application Server
@@ -380,7 +385,7 @@ NTP synchronized: yes
                             Dedibox
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/development.html">
                             Development
                         </a>
@@ -388,6 +393,11 @@ NTP synchronized: yes
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/development-tool.html">
                             Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/devops.html">
+                            DevOps
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -505,6 +515,11 @@ NTP synchronized: yes
                             SCM
                         </a>
                     </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scrum.html">
+                            Scrum
+                        </a>
+                    </li>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/software.html">
                             Software
@@ -559,7 +574,7 @@ NTP synchronized: yes
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+         <div class="col-xs-10">&copy; 2018 D. Bernaudeau
             &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
     Content
   licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.

@@ -123,17 +123,17 @@ My personal blog note            </a>
 <li>Create a virtual machine with Libvirt, QEMU and KVM</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> virt-install <span class="se">\</span>
-<span class="go">--connect qemu:///system \</span>
-<span class="go">--name=debian.intra.net \</span>
-<span class="go">--os-type=linux \</span>
-<span class="go">--os-variant=debiantesting \</span>
-<span class="go">--vcpus=1 \</span>
-<span class="go">--ram=1024 \</span>
-<span class="go">--graphics spice \</span>
-<span class="go">--network network=VirtualSwitch,model=virtio \</span>
-<span class="go">--boot uefi \</span>
-<span class="go">--disk path=/var/lib/libvirt/images/disk/debian.qcow2,format=qcow2,size=10,bus=virtio \</span>
-<span class="go">--cdrom=/var/lib/libvirt/images/iso/debian-stretch-DI-rc2-amd64-netinst.iso</span>
+--connect qemu:///system <span class="se">\</span>
+--name<span class="o">=</span>debian.intra.net <span class="se">\</span>
+--os-type<span class="o">=</span>linux <span class="se">\</span>
+--os-variant<span class="o">=</span>debiantesting <span class="se">\</span>
+--vcpus<span class="o">=</span><span class="m">1</span> <span class="se">\</span>
+--ram<span class="o">=</span><span class="m">1024</span> <span class="se">\</span>
+--graphics spice <span class="se">\</span>
+--network <span class="nv">network</span><span class="o">=</span>VirtualSwitch,model<span class="o">=</span>virtio <span class="se">\</span>
+--boot uefi <span class="se">\</span>
+--disk <span class="nv">path</span><span class="o">=</span>/var/lib/libvirt/images/disk/debian.qcow2,format<span class="o">=</span>qcow2,size<span class="o">=</span><span class="m">10</span>,bus<span class="o">=</span>virtio <span class="se">\</span>
+--cdrom<span class="o">=</span>/var/lib/libvirt/images/iso/debian-stretch-DI-rc2-amd64-netinst.iso
 </pre></div>
 <ul>
 <li>
@@ -229,6 +229,11 @@ net.ipv6.conf.default.disable_ipv6=1
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/agile.html">
+                            Agile
+                        </a>
+                    </li>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/application-server.html">
                             Application Server
@@ -289,7 +294,7 @@ net.ipv6.conf.default.disable_ipv6=1
                             Dedibox
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/development.html">
                             Development
                         </a>
@@ -297,6 +302,11 @@ net.ipv6.conf.default.disable_ipv6=1
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/development-tool.html">
                             Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/devops.html">
+                            DevOps
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -414,6 +424,11 @@ net.ipv6.conf.default.disable_ipv6=1
                             SCM
                         </a>
                     </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scrum.html">
+                            Scrum
+                        </a>
+                    </li>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/software.html">
                             Software
@@ -468,7 +483,7 @@ net.ipv6.conf.default.disable_ipv6=1
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+         <div class="col-xs-10">&copy; 2018 D. Bernaudeau
             &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
     Content
   licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.

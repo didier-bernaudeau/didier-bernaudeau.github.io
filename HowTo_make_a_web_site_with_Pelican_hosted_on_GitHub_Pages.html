@@ -131,9 +131,9 @@ My personal blog note            </a>
 <h2>DNS Configuration</h2>
 <p>Add a record in the DNS :</p>
 <pre class="code ini literal-block">
-<span class="err">Type</span> <span class="err">:</span> <span class="err">CNAME</span>
-<span class="err">Name</span> <span class="err">:</span> <span class="err">didier.bernaudeau.net</span>
-<span class="err">Value</span> <span class="err">:</span> <span class="err">didier-bernaudeau.github.io.</span>
+<span class="na">Type : CNAME</span>
+<span class="na">Name : didier.bernaudeau.net</span>
+<span class="na">Value : didier-bernaudeau.github.io.</span>
 </pre>
 <p>Check configuration with "dig" tool :</p>
 <pre class="code console literal-block">
@@ -163,22 +163,22 @@ github.map.fastly.net.  30      IN      A       185.31.17.133</span>
 <span class="gp">$</span> pelican-quickstart
 </pre>
 <pre class="code ini literal-block">
-<span class="err">&gt;</span> <span class="err">Where</span> <span class="err">do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">create</span> <span class="err">your</span> <span class="err">new</span> <span class="err">web</span> <span class="err">site?</span> <span class="k">[.]</span>
-<span class="err">&gt;</span> <span class="err">What</span> <span class="err">will</span> <span class="err">be</span> <span class="err">the</span> <span class="err">title</span> <span class="err">of</span> <span class="err">this</span> <span class="err">web</span> <span class="err">site?</span> <span class="err">D.</span> <span class="err">Bernaudeau</span>
-<span class="err">&gt;</span> <span class="err">Who</span> <span class="err">will</span> <span class="err">be</span> <span class="err">the</span> <span class="err">author</span> <span class="err">of</span> <span class="err">this</span> <span class="err">web</span> <span class="err">site?</span> <span class="err">D.</span> <span class="err">Bernaudeau</span>
-<span class="err">&gt;</span> <span class="err">What</span> <span class="err">will</span> <span class="err">be</span> <span class="err">the</span> <span class="err">default</span> <span class="err">language</span> <span class="err">of</span> <span class="err">this</span> <span class="err">web</span> <span class="err">site?</span> <span class="k">[en]</span>
-<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">specify</span> <span class="err">a</span> <span class="err">URL</span> <span class="err">prefix?</span> <span class="err">e.g.,</span> <span class="err">http://example.com</span>   <span class="err">(Y/n)</span> <span class="err">Y</span>
-<span class="err">&gt;</span> <span class="err">What</span> <span class="err">is</span> <span class="err">your</span> <span class="err">URL</span> <span class="err">prefix?</span> <span class="err">(see</span> <span class="err">above</span> <span class="err">example</span><span class="c1">; no trailing slash) http://didier.bernaudeau.net</span>
-<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">enable</span> <span class="err">article</span> <span class="err">pagination?</span> <span class="err">(Y/n)</span> <span class="err">n</span>
-<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">generate</span> <span class="err">a</span> <span class="err">Fabfile/Makefile</span> <span class="err">to</span> <span class="err">automate</span> <span class="err">generation</span> <span class="err">and</span> <span class="err">publishing?</span> <span class="err">(Y/n)</span> <span class="err">Y</span>
-<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">an</span> <span class="err">auto-reload</span> <span class="err">&amp;</span> <span class="err">simpleHTTP</span> <span class="err">script</span> <span class="err">to</span> <span class="err">assist</span> <span class="err">with</span> <span class="err">theme</span> <span class="err">and</span> <span class="err">site</span> <span class="err">development?</span> <span class="err">(Y/n)</span> <span class="err">n</span>
-<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">upload</span> <span class="err">your</span> <span class="err">website</span> <span class="err">using</span> <span class="err">FTP?</span> <span class="err">(y/N)</span> <span class="err">N</span>
-<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">upload</span> <span class="err">your</span> <span class="err">website</span> <span class="err">using</span> <span class="err">SSH?</span> <span class="err">(y/N)</span> <span class="err">N</span>
-<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">upload</span> <span class="err">your</span> <span class="err">website</span> <span class="err">using</span> <span class="err">Dropbox?</span> <span class="err">(y/N)</span> <span class="err">N</span>
-<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">upload</span> <span class="err">your</span> <span class="err">website</span> <span class="err">using</span> <span class="err">S3?</span> <span class="err">(y/N)</span> <span class="err">N</span>
-<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">upload</span> <span class="err">your</span> <span class="err">website</span> <span class="err">using</span> <span class="err">Rackspace</span> <span class="err">Cloud</span> <span class="err">Files?</span> <span class="err">(y/N)</span> <span class="err">N</span>
-<span class="err">&gt;</span> <span class="err">Do</span> <span class="err">you</span> <span class="err">want</span> <span class="err">to</span> <span class="err">upload</span> <span class="err">your</span> <span class="err">website</span> <span class="err">using</span> <span class="err">GitHub</span> <span class="err">Pages?</span> <span class="err">(y/N)</span> <span class="err">y</span>
-<span class="err">&gt;</span> <span class="err">Is</span> <span class="err">this</span> <span class="err">your</span> <span class="err">personal</span> <span class="err">page</span> <span class="err">(username.github.io)?</span> <span class="err">(y/N)</span> <span class="err">y</span>
+<span class="na">&gt; Where do you want to create your new web site? [.]</span>
+<span class="na">&gt; What will be the title of this web site? D. Bernaudeau</span>
+<span class="na">&gt; Who will be the author of this web site? D. Bernaudeau</span>
+<span class="na">&gt; What will be the default language of this web site? [en]</span>
+<span class="na">&gt; Do you want to specify a URL prefix? e.g., http://example.com   (Y/n) Y</span>
+<span class="na">&gt; What is your URL prefix? (see above example; no trailing slash) http://didier.bernaudeau.net</span>
+<span class="na">&gt; Do you want to enable article pagination? (Y/n) n</span>
+<span class="na">&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? (Y/n) Y</span>
+<span class="na">&gt; Do you want an auto-reload &amp; simpleHTTP script to assist with theme and site development? (Y/n) n</span>
+<span class="na">&gt; Do you want to upload your website using FTP? (y/N) N</span>
+<span class="na">&gt; Do you want to upload your website using SSH? (y/N) N</span>
+<span class="na">&gt; Do you want to upload your website using Dropbox? (y/N) N</span>
+<span class="na">&gt; Do you want to upload your website using S3? (y/N) N</span>
+<span class="na">&gt; Do you want to upload your website using Rackspace Cloud Files? (y/N) N</span>
+<span class="na">&gt; Do you want to upload your website using GitHub Pages? (y/N) y</span>
+<span class="na">&gt; Is this your personal page (username.github.io)? (y/N) y</span>
 </pre>
 </div>
 <div class="section" id="download-the-theme">
@@ -218,15 +218,15 @@ github.map.fastly.net.  30      IN      A       185.31.17.133</span>
 <span class="gp">$</span> nano content/GitHubFiles/CNAME
 </pre>
 <pre class="code ini literal-block">
-<span class="err">didier.bernaudeau.net</span>
+<span class="na">didier.bernaudeau.net</span>
 </pre>
 <p>Disable indexation by web search engine :</p>
 <pre class="code console literal-block">
 <span class="gp">$</span> nano content/GitHubFiles/robots.txt
 </pre>
 <pre class="code ini literal-block">
-<span class="err">User-agent:</span> <span class="err">*</span>
-<span class="err">Disallow:/</span>
+<span class="na">User-agent: *</span>
+<span class="na">Disallow:/</span>
 </pre>
 </div>
 <div class="section" id="pelican-configuration">
@@ -274,7 +274,7 @@ github.map.fastly.net.  30      IN      A       185.31.17.133</span>
 <span class="na">EXTRA_PATH_METADATA</span> <span class="o">=</span> <span class="s">{
    'GitHubFiles/CNAME': {'path': 'CNAME'},
    'GitHubFiles/robots.txt': {'path': 'robots.txt'},</span>
-<span class="err">}</span>
+<span class="na">}</span>
 </pre>
 </div>
 <div class="section" id="create-an-article-in-restructuredtext">
@@ -283,21 +283,21 @@ github.map.fastly.net.  30      IN      A       185.31.17.133</span>
 <span class="gp">$</span> nano content/test.rst
 </pre>
 <pre class="code ini literal-block">
-<span class="err">Article</span> <span class="err">title</span>
+<span class="na">Article title</span>
 <span class="c1">#############</span>
 
-<span class="err">:date:</span> <span class="err">AAAA-MM-JJ</span> <span class="err">HH:MM</span>
-<span class="err">:modified:</span> <span class="err">AAAA-MM-JJ</span> <span class="err">HH:MM</span>
-<span class="err">:tags:</span> <span class="err">word1,</span> <span class="err">word2</span>
-<span class="err">:category:</span> <span class="err">MyCategory</span>
-<span class="err">:slug:</span> <span class="err">Article-title</span>
-<span class="err">:authors:</span> <span class="err">MyName</span>
+<span class="na">:date: AAAA-MM-JJ HH:MM</span>
+<span class="na">:modified: AAAA-MM-JJ HH:MM</span>
+<span class="na">:tags: word1, word2</span>
+<span class="na">:category: MyCategory</span>
+<span class="na">:slug: Article-title</span>
+<span class="na">:authors: MyName</span>
 
-<span class="err">Introduction</span> <span class="err">...</span>
+<span class="na">Introduction ...</span>
 
-<span class="err">..</span> <span class="err">PELICAN_END_SUMMARY</span>
+<span class="na">.. PELICAN_END_SUMMARY</span>
 
-<span class="err">Content</span> <span class="err">...</span>
+<span class="na">Content ...</span>
 </pre>
 </div>
 <div class="section" id="generate-the-web-site">
@@ -358,6 +358,11 @@ Password for 'https://didier-bernaudeau@github.com': *************************</
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/agile.html">
+                            Agile
+                        </a>
+                    </li>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/application-server.html">
                             Application Server
@@ -418,7 +423,7 @@ Password for 'https://didier-bernaudeau@github.com': *************************</
                             Dedibox
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/development.html">
                             Development
                         </a>
@@ -426,6 +431,11 @@ Password for 'https://didier-bernaudeau@github.com': *************************</
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/development-tool.html">
                             Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/devops.html">
+                            DevOps
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -543,6 +553,11 @@ Password for 'https://didier-bernaudeau@github.com': *************************</
                             SCM
                         </a>
                     </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scrum.html">
+                            Scrum
+                        </a>
+                    </li>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/software.html">
                             Software
@@ -597,7 +612,7 @@ Password for 'https://didier-bernaudeau@github.com': *************************</
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+         <div class="col-xs-10">&copy; 2018 D. Bernaudeau
             &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
     Content
   licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.

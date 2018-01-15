@@ -100,7 +100,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-11-22T22:27:00+01:00"> mer. 22 novembre 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2018-01-16T00:11:00+01:00"> mar. 16 janvier 2018</time>
             </span>
 
 
@@ -248,7 +248,37 @@ include "/usr/share/nano/*.nanorc"
 <ul>
 <li>Read log (for debugging purposes)</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo journalctl -b -u fail2ban -n 50
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo journalctl -b -u fail2ban -n <span class="m">50</span>
+</pre></div>
+<h1>ARP Wathching</h1>
+<p>Arpwatch is an open source computer software program that helps you to monitor Ethernet traffic activity (like Changing IP and MAC Addresses) on your network and maintains a database of ethernet/ip address pairings.</p>
+<ul>
+<li>Install ARP Watch (in progress)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo pacman -S --noconfirm arpwatch
+</pre></div>
+<p>Select msmtp-mta as smtp-forwarder</p>
+<ul>
+<li>Create unit file for SystemD</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/systemd/system/arpwatch.service
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Arpwatch daemon which keeps track of ethernet/ip address pairings</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+
+<span class="k">[Service]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">forking</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/sbin/arpwatch -u arpwatch -e root -s 'root (Arpwatch)'</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</pre></div>
+<ul>
+<li>Start ARP Watch</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl start arpwatch.service
+<span class="gp">$</span> sudo systemctl <span class="nb">enable</span> arpwatch.service
 </pre></div>
 <h1>Next step</h1>
 <ul>
@@ -260,10 +290,10 @@ include "/usr/share/nano/*.nanorc"
     <h4>Related Posts:</h4>
     <ul>
         <li><a href="http://didier.bernaudeau.net/TLS_Audit_tools.html">TLS: Audit tools</a></li>
-        <li><a href="http://didier.bernaudeau.net/TLS_Cipher_Suites.html">TLS Cipher Suites</a></li>
-        <li><a href="http://didier.bernaudeau.net/TLS_Hardened_configuration.html">TLS: Hardened configuration</a></li>
         <li><a href="http://didier.bernaudeau.net/TLS_Understanding_the_cipher_suites.html">TLS: Understanding the cipher suites</a></li>
         <li><a href="http://didier.bernaudeau.net/EnOcean.html">EnOcean</a></li>
+        <li><a href="http://didier.bernaudeau.net/TLS_Hardened_configuration.html">TLS: Hardened configuration</a></li>
+        <li><a href="http://didier.bernaudeau.net/TLS_Cipher_Suites.html">TLS Cipher Suites</a></li>
     </ul>
 </section>
         </article>
@@ -288,6 +318,11 @@ include "/usr/share/nano/*.nanorc"
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/agile.html">
+                            Agile
+                        </a>
+                    </li>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/application-server.html">
                             Application Server
@@ -348,7 +383,7 @@ include "/usr/share/nano/*.nanorc"
                             Dedibox
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/development.html">
                             Development
                         </a>
@@ -356,6 +391,11 @@ include "/usr/share/nano/*.nanorc"
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/development-tool.html">
                             Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/devops.html">
+                            DevOps
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -473,6 +513,11 @@ include "/usr/share/nano/*.nanorc"
                             SCM
                         </a>
                     </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scrum.html">
+                            Scrum
+                        </a>
+                    </li>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/software.html">
                             Software
@@ -527,7 +572,7 @@ include "/usr/share/nano/*.nanorc"
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+         <div class="col-xs-10">&copy; 2018 D. Bernaudeau
             &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
     Content
   licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.

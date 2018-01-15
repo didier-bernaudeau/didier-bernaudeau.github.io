@@ -184,21 +184,21 @@ My personal blog note            </a>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/nginx/sites-available/gogs
 </pre></div>
 <div class="highlight"><pre><span></span><span class="nt">server</span> <span class="p">{</span>
-    <span class="n">listen</span> <span class="m">80</span><span class="p">;</span>
-    <span class="n">server_name</span> <span class="n">gogs</span><span class="o">.</span><span class="n">intra</span><span class="o">.</span><span class="n">net</span><span class="p">;</span>
-    <span class="n">return</span> <span class="m">302</span> <span class="n">https</span><span class="o">://</span><span class="err">$</span><span class="n">server_name</span><span class="err">$</span><span class="n">request_uri</span><span class="p">;</span>
+    <span class="err">listen</span> <span class="err">80</span><span class="p">;</span>
+    <span class="err">server_name</span> <span class="err">gogs.intra.net</span><span class="p">;</span>
+    <span class="err">return</span> <span class="err">302</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="err">$</span><span class="n">server_name</span><span class="err">$</span><span class="n">request_uri</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="nt">server</span> <span class="p">{</span>
-    <span class="n">listen</span> <span class="m">443</span> <span class="n">ssl</span><span class="p">;</span>
-    <span class="n">server_name</span> <span class="n">gogs</span><span class="o">.</span><span class="n">intra</span><span class="o">.</span><span class="n">net</span><span class="p">;</span>
+    <span class="err">listen</span> <span class="err">443</span> <span class="err">ssl</span><span class="p">;</span>
+    <span class="err">server_name</span> <span class="err">gogs.intra.net</span><span class="p">;</span>
 
-    <span class="n">ssl_certificate</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">tls</span><span class="o">/</span><span class="n">gogs</span><span class="o">.</span><span class="n">crt</span><span class="p">;</span>
-    <span class="n">ssl_certificate_key</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">tls</span><span class="o">/</span><span class="n">gogs</span><span class="o">.</span><span class="n">key</span><span class="p">;</span>
+    <span class="err">ssl_certificate</span> <span class="err">/etc/nginx/tls/gogs.crt</span><span class="p">;</span>
+    <span class="err">ssl_certificate_key</span> <span class="err">/etc/nginx/tls/gogs.key</span><span class="p">;</span>
 
-    <span class="n">location</span> <span class="o">/</span> <span class="err">{</span>
-        <span class="n">proxy_set_header</span> <span class="n">X</span><span class="o">-</span><span class="n">Real</span><span class="o">-</span><span class="n">IP</span> <span class="err">$</span><span class="n">remote_addr</span><span class="p">;</span>
-        <span class="n">proxy_pass</span> <span class="n">http</span><span class="o">://</span><span class="m">127</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">1</span><span class="o">:</span><span class="m">3000</span><span class="p">;</span>
+    <span class="err">location</span> <span class="err">/</span> <span class="err">{</span>
+        <span class="err">proxy_set_header</span> <span class="err">X-Real-IP</span> <span class="err">$remote_addr</span><span class="p">;</span>
+        <span class="err">proxy_pass</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="o">:</span><span class="mi">3000</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="err">}</span>
 </pre></div>
@@ -380,6 +380,11 @@ Application URL = https://gogs.intra.net
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/agile.html">
+                            Agile
+                        </a>
+                    </li>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/application-server.html">
                             Application Server
@@ -440,7 +445,7 @@ Application URL = https://gogs.intra.net
                             Dedibox
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/development.html">
                             Development
                         </a>
@@ -448,6 +453,11 @@ Application URL = https://gogs.intra.net
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/development-tool.html">
                             Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/devops.html">
+                            DevOps
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -565,6 +575,11 @@ Application URL = https://gogs.intra.net
                             SCM
                         </a>
                     </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scrum.html">
+                            Scrum
+                        </a>
+                    </li>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/software.html">
                             Software
@@ -619,7 +634,7 @@ Application URL = https://gogs.intra.net
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+         <div class="col-xs-10">&copy; 2018 D. Bernaudeau
             &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
     Content
   licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.

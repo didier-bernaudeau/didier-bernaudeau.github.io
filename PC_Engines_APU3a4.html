@@ -119,7 +119,7 @@ My personal blog note            </a>
 <h2>Hardware specification</h2>
 <div class="section" id="processor">
 <h3>Processor</h3>
-<table border="1" class="docutils table table-hover table-striped">
+<table border="1" class="docutils table-hover table-striped table">
 <colgroup>
 <col width="43%"></col>
 <col width="57%"></col>
@@ -154,7 +154,7 @@ My personal blog note            </a>
 </div>
 <div class="section" id="memory">
 <h3>Memory</h3>
-<table border="1" class="docutils table table-hover table-striped">
+<table border="1" class="docutils table-hover table-striped table">
 <colgroup>
 <col width="43%"></col>
 <col width="57%"></col>
@@ -171,7 +171,7 @@ My personal blog note            </a>
 </div>
 <div class="section" id="ethernet">
 <h3>Ethernet</h3>
-<table border="1" class="docutils table table-hover table-striped">
+<table border="1" class="docutils table-hover table-striped table">
 <colgroup>
 <col width="43%"></col>
 <col width="57%"></col>
@@ -188,7 +188,7 @@ My personal blog note            </a>
 </div>
 <div class="section" id="ports-interfaces">
 <h3>Ports &amp; interfaces</h3>
-<table border="1" class="docutils table table-hover table-striped">
+<table border="1" class="docutils table-hover table-striped table">
 <colgroup>
 <col width="43%"></col>
 <col width="57%"></col>
@@ -217,7 +217,7 @@ My personal blog note            </a>
 </div>
 <div class="section" id="hard-disk-drive">
 <h3>Hard Disk Drive</h3>
-<table border="1" class="docutils table table-hover table-striped">
+<table border="1" class="docutils table-hover table-striped table">
 <colgroup>
 <col width="43%"></col>
 <col width="57%"></col>
@@ -240,7 +240,7 @@ My personal blog note            </a>
 </div>
 <div class="section" id="case">
 <h3>Case</h3>
-<table border="1" class="docutils table table-hover table-striped">
+<table border="1" class="docutils table-hover table-striped table">
 <colgroup>
 <col width="43%"></col>
 <col width="57%"></col>
@@ -261,15 +261,15 @@ My personal blog note            </a>
 <li>Kernel configuration</li>
 </ul>
 <pre class="code ini literal-block">
-<span class="err">|</span> <span class="err">Device</span> <span class="err">Drivers</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span> <span class="err">USB</span> <span class="err">support</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>   <span class="err">USB</span> <span class="err">Serial</span> <span class="err">Converter</span> <span class="err">support</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">USB</span> <span class="err">Serial</span> <span class="err">Console</span> <span class="err">device</span> <span class="err">support</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">&lt;*&gt;</span>     <span class="err">&lt;*&gt;</span>   <span class="err">USB</span> <span class="err">Winchiphead</span> <span class="err">CH341</span> <span class="err">Single</span> <span class="err">Port</span> <span class="err">Serial</span> <span class="err">Driver</span>
-<span class="err">|</span>      <span class="err">|</span>
-<span class="err">|</span>      <span class="err">|</span> <span class="err">Character</span> <span class="err">devices</span>  <span class="err">---&gt;</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">[*]</span>   <span class="err">Legacy</span> <span class="err">(BSD)</span> <span class="err">PTY</span> <span class="err">support</span>
-<span class="err">|</span>      <span class="err">|</span>      <span class="err">|</span> <span class="err">(256)</span>   <span class="err">Maximum</span> <span class="err">number</span> <span class="err">of</span> <span class="err">legacy</span> <span class="err">PTY</span> <span class="err">in</span> <span class="err">use</span> <span class="err">(NEW)</span>
+<span class="na">| Device Drivers  ---&gt;</span>
+<span class="na">|      | [*] USB support  ---&gt;</span>
+<span class="na">|      |      | &lt;*&gt;   USB Serial Converter support  ---&gt;</span>
+<span class="na">|      |      | [*]   USB Serial Console device support</span>
+<span class="na">|      |      | &lt;*&gt;     &lt;*&gt;   USB Winchiphead CH341 Single Port Serial Driver</span>
+<span class="na">|      |</span>
+<span class="na">|      | Character devices  ---&gt;</span>
+<span class="na">|      |      | [*]   Legacy (BSD) PTY support</span>
+<span class="na">|      |      | (256)   Maximum number of legacy PTY in use (NEW)</span>
 </pre>
 <ul class="simple">
 <li>Add user in the group uucp</li>
@@ -290,45 +290,45 @@ My personal blog note            </a>
 <span class="gp">$</span> picocom --baud <span class="m">115200</span> --flow n --parity n --stopbits <span class="m">1</span> /dev/ttyUSB0
 </pre>
 <pre class="code ini literal-block">
-<span class="err">picocom</span> <span class="err">v2.2</span>
+<span class="na">picocom v2.2</span>
 
-<span class="err">port</span> <span class="err">is</span>        <span class="err">:</span> <span class="err">/dev/ttyUSB0</span>
-<span class="err">flowcontrol</span>    <span class="err">:</span> <span class="err">none</span>
-<span class="err">baudrate</span> <span class="err">is</span>    <span class="err">:</span> <span class="err">115200</span>
-<span class="err">parity</span> <span class="err">is</span>      <span class="err">:</span> <span class="err">none</span>
-<span class="err">databits</span> <span class="err">are</span>   <span class="err">:</span> <span class="err">8</span>
-<span class="err">stopbits</span> <span class="err">are</span>   <span class="err">:</span> <span class="err">1</span>
-<span class="err">escape</span> <span class="err">is</span>      <span class="err">:</span> <span class="err">C-a</span>
-<span class="err">local</span> <span class="err">echo</span> <span class="err">is</span>  <span class="err">:</span> <span class="err">no</span>
-<span class="err">noinit</span> <span class="err">is</span>      <span class="err">:</span> <span class="err">no</span>
-<span class="err">noreset</span> <span class="err">is</span>     <span class="err">:</span> <span class="err">no</span>
-<span class="err">nolock</span> <span class="err">is</span>      <span class="err">:</span> <span class="err">no</span>
-<span class="err">send_cmd</span> <span class="err">is</span>    <span class="err">:</span> <span class="err">sz</span> <span class="err">-vv</span>
-<span class="err">receive_cmd</span> <span class="err">is</span> <span class="err">:</span> <span class="err">rz</span> <span class="err">-vv</span> <span class="err">-E</span>
-<span class="err">imap</span> <span class="err">is</span>        <span class="err">:</span>
-<span class="err">omap</span> <span class="err">is</span>        <span class="err">:</span>
-<span class="err">emap</span> <span class="err">is</span>        <span class="err">:</span> <span class="err">crcrlf,delbs,</span>
+<span class="na">port is        : /dev/ttyUSB0</span>
+<span class="na">flowcontrol    : none</span>
+<span class="na">baudrate is    : 115200</span>
+<span class="na">parity is      : none</span>
+<span class="na">databits are   : 8</span>
+<span class="na">stopbits are   : 1</span>
+<span class="na">escape is      : C-a</span>
+<span class="na">local echo is  : no</span>
+<span class="na">noinit is      : no</span>
+<span class="na">noreset is     : no</span>
+<span class="na">nolock is      : no</span>
+<span class="na">send_cmd is    : sz -vv</span>
+<span class="na">receive_cmd is : rz -vv -E</span>
+<span class="na">imap is        :</span>
+<span class="na">omap is        :</span>
+<span class="na">emap is        : crcrlf,delbs,</span>
 
-<span class="err">Type</span> <span class="err">[C-a]</span> <span class="err">[C-h]</span> <span class="err">to</span> <span class="err">see</span> <span class="err">available</span> <span class="err">commands</span>
+<span class="na">Type [C-a] [C-h] to see available commands</span>
 
-<span class="err">Terminal</span> <span class="err">ready</span>
-<span class="err">PCEngines</span> <span class="err">apu3</span>
-<span class="err">coreboot</span> <span class="err">build</span> <span class="err">20170302</span>
-<span class="err">4080</span> <span class="err">MB</span> <span class="err">ECC</span> <span class="err">DRAM</span>
+<span class="na">Terminal ready</span>
+<span class="na">PCEngines apu3</span>
+<span class="na">coreboot build 20170302</span>
+<span class="na">4080 MB ECC DRAM</span>
 
-<span class="err">SeaBIOS</span> <span class="err">(version</span> <span class="err">rel-1.10.0.1)</span>
+<span class="na">SeaBIOS (version rel-1.10.0.1)</span>
 
-<span class="err">Press</span> <span class="err">F10</span> <span class="err">key</span> <span class="err">now</span> <span class="err">for</span> <span class="err">boot</span> <span class="err">menu</span>
+<span class="na">Press F10 key now for boot menu</span>
 </pre>
 <ul class="simple">
 <li>Press F10 to print the boot menu</li>
 </ul>
 <pre class="code ini literal-block">
-<span class="err">Select</span> <span class="err">boot</span> <span class="err">device:</span>
+<span class="na">Select boot device:</span>
 
-<span class="err">1.</span> <span class="err">USB</span> <span class="err">MSC</span> <span class="err">Drive</span>  <span class="err">USB</span> <span class="err">DISK</span> <span class="err">2.0</span> <span class="err">PMAP</span>
-<span class="err">2.</span> <span class="err">Payload</span> <span class="k">[memtest]</span>
-<span class="err">3.</span> <span class="err">Payload</span> <span class="k">[setup]</span>
+<span class="na">1. USB MSC Drive  USB DISK 2.0 PMAP</span>
+<span class="na">2. Payload [memtest]</span>
+<span class="na">3. Payload [setup]</span>
 </pre>
 <ul class="simple">
 <li>Boot on the USB media boot</li>
@@ -360,11 +360,11 @@ My personal blog note            </a>
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
+        <li><a href="http://didier.bernaudeau.net/How_to_install_canon_selphy_cp400.html">How to install Canon Selphy CP400</a></li>
         <li><a href="http://didier.bernaudeau.net/Install_Debian_on_APU.html">Install Debian on PC Engines APU3a4</a></li>
         <li><a href="http://didier.bernaudeau.net/Homemade_firewall_router_on_APU.html">Homemade firewall/router on APU</a></li>
-        <li><a href="http://didier.bernaudeau.net/How_to_install_canon_selphy_cp400.html">How to install Canon Selphy CP400</a></li>
-        <li><a href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html">How to install OpenVPN on ArchLinux</a></li>
         <li><a href="http://didier.bernaudeau.net/HowTo_install_Cups.html">How to install Cups</a></li>
+        <li><a href="http://didier.bernaudeau.net/HowTo_install_OpenVPN_on_ArchLinux.html">How to install OpenVPN on ArchLinux</a></li>
     </ul>
 </section>
         </article>
@@ -389,6 +389,11 @@ My personal blog note            </a>
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/agile.html">
+                            Agile
+                        </a>
+                    </li>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/application-server.html">
                             Application Server
@@ -449,7 +454,7 @@ My personal blog note            </a>
                             Dedibox
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/development.html">
                             Development
                         </a>
@@ -457,6 +462,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/development-tool.html">
                             Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/devops.html">
+                            DevOps
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -574,6 +584,11 @@ My personal blog note            </a>
                             SCM
                         </a>
                     </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scrum.html">
+                            Scrum
+                        </a>
+                    </li>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/software.html">
                             Software
@@ -628,7 +643,7 @@ My personal blog note            </a>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+         <div class="col-xs-10">&copy; 2018 D. Bernaudeau
             &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
     Content
   licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.

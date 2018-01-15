@@ -116,20 +116,20 @@ My personal blog note            </a>
 <ul>
 <li>Incoming flow from Lan Interface</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="err">#</span><span class="x"> Apache for ZoneMinder</span>
-<span class="x">sudo iptables -A INPUT -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -d </span><span class="p">$</span><span class="nv">LanAddress</span><span class="x"> -p tcp --dport 8080 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+<div class="highlight"><pre><span></span># Apache for ZoneMinder
+sudo iptables -A INPUT -i $LanInterface -d $LanAddress -p tcp --dport 8080 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
-<span class="err">#</span><span class="x"> Allow outgoing established connection</span>
-<span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">LanAddress</span><span class="x"> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+# Allow outgoing established connection
+sudo iptables -A OUTPUT -o $LanInterface -s $LanAddress -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 </pre></div>
 <ul>
 <li>Outgoing flow to LAN</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="err">#</span><span class="x"> Camera (RTSP) </span>
-<span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">LanAddress</span><span class="x"> -d </span><span class="p">$</span><span class="nv">LanNetwork</span><span class="x"> -p tcp --dport 554 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+<div class="highlight"><pre><span></span># Camera (RTSP) 
+sudo iptables -A OUTPUT -o $LanInterface -s $LanAddress -d $LanNetwork -p tcp --dport 554 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
-<span class="err">#</span><span class="x"> Allow incoming established connection</span>
-<span class="x">sudo iptables -A INPUT -i </span><span class="p">$</span><span class="nv">LanInterface</span><span class="x"> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+# Allow incoming established connection
+sudo iptables -A INPUT -i $LanInterface -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 </pre></div>
 <h1>Database</h1>
 <ul>
@@ -291,35 +291,35 @@ Capture Height (pixels): 480
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/nginx/sites-available/default
 </pre></div>
 <div class="highlight"><pre><span></span><span class="nt">location</span> <span class="o">/</span><span class="nt">camera</span><span class="o">/</span><span class="nt">cgi-bin</span><span class="o">/</span> <span class="p">{</span>
-      <span class="n">gzip</span> <span class="n">off</span><span class="p">;</span>
-      <span class="n">root</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="p">;</span>
+      <span class="err">gzip</span> <span class="err">off</span><span class="p">;</span>
+      <span class="err">root</span> <span class="err">/usr/lib</span><span class="p">;</span>
 
-      <span class="n">include</span> <span class="n">fastcgi_params</span><span class="p">;</span>
-      <span class="n">fastcgi_param</span> <span class="n">SCRIPT_FILENAME</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">zoneminder</span><span class="o">/</span><span class="n">cgi</span><span class="o">-</span><span class="n">bin</span><span class="o">/</span><span class="n">nph</span><span class="o">-</span><span class="n">zms</span><span class="p">;</span>
-      <span class="n">fastcgi_intercept_errors</span> <span class="n">on</span><span class="p">;</span>
-      <span class="n">fastcgi_pass</span> <span class="n">unix</span><span class="o">:/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">fcgiwrap</span><span class="o">.</span><span class="n">socket</span><span class="p">;</span>
+      <span class="err">include</span> <span class="err">fastcgi_params</span><span class="p">;</span>
+      <span class="err">fastcgi_param</span> <span class="err">SCRIPT_FILENAME</span> <span class="err">/usr/lib/zoneminder/cgi-bin/nph-zms</span><span class="p">;</span>
+      <span class="err">fastcgi_intercept_errors</span> <span class="err">on</span><span class="p">;</span>
+      <span class="err">fastcgi_pass</span> <span class="n">unix</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">fcgiwrap</span><span class="o">.</span><span class="n">socket</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="nt">location</span> <span class="o">/</span><span class="nt">camera</span><span class="o">/</span> <span class="p">{</span>
-      <span class="n">gzip</span> <span class="n">off</span><span class="p">;</span>
-      <span class="n">alias</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">zoneminder</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="p">;</span>
-      <span class="n">index</span> <span class="n">index</span><span class="o">.</span><span class="n">php</span><span class="p">;</span>
+      <span class="err">gzip</span> <span class="err">off</span><span class="p">;</span>
+      <span class="err">alias</span> <span class="err">/usr/share/zoneminder/www/</span><span class="p">;</span>
+      <span class="err">index</span> <span class="err">index.php</span><span class="p">;</span>
 
-      <span class="n">location</span> <span class="o">~</span> <span class="err">\</span><span class="o">.</span><span class="n">php</span><span class="err">$</span> <span class="err">{</span>
-         <span class="n">include</span> <span class="n">fastcgi_params</span><span class="p">;</span>
-         <span class="n">fastcgi_param</span> <span class="n">SCRIPT_FILENAME</span> <span class="err">$</span><span class="n">request_filename</span><span class="p">;</span>
-         <span class="n">fastcgi_intercept_errors</span> <span class="n">on</span><span class="p">;</span>
-         <span class="n">fastcgi_pass</span> <span class="n">unix</span><span class="o">:/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">php</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="m">0</span><span class="o">-</span><span class="n">fpm</span><span class="o">.</span><span class="n">sock</span><span class="p">;</span>
+      <span class="err">location</span> <span class="err">~</span> <span class="err">\.php$</span> <span class="err">{</span>
+         <span class="err">include</span> <span class="err">fastcgi_params</span><span class="p">;</span>
+         <span class="err">fastcgi_param</span> <span class="err">SCRIPT_FILENAME</span> <span class="err">$request_filename</span><span class="p">;</span>
+         <span class="err">fastcgi_intercept_errors</span> <span class="err">on</span><span class="p">;</span>
+         <span class="err">fastcgi_pass</span> <span class="n">unix</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">php</span><span class="o">/</span><span class="n">php7</span><span class="mf">.0</span><span class="o">-</span><span class="n">fpm</span><span class="o">.</span><span class="n">sock</span><span class="p">;</span>
       <span class="p">}</span>
 
       <span class="nt">location</span> <span class="o">~*</span> <span class="o">/</span><span class="nt">camera</span><span class="o">/.*</span><span class="err">\</span><span class="o">.(</span><span class="nt">txt</span><span class="o">|</span><span class="nt">log</span><span class="o">)$</span> <span class="p">{</span>
-         <span class="n">deny</span> <span class="n">all</span><span class="p">;</span>
+         <span class="err">deny</span> <span class="err">all</span><span class="p">;</span>
       <span class="p">}</span>
 
       <span class="nt">location</span> <span class="o">~*</span> <span class="o">/</span><span class="nt">camera</span><span class="o">/.*</span><span class="err">\</span><span class="o">.(</span><span class="nt">m4a</span><span class="o">|</span><span class="nt">mp4</span><span class="o">|</span><span class="nt">mov</span><span class="o">)$</span> <span class="p">{</span>
-         <span class="n">mp4</span><span class="p">;</span>
-         <span class="n">mp4_buffer_size</span> <span class="m">5</span><span class="n">M</span><span class="p">;</span>
-         <span class="n">mp4_max_buffer_size</span> <span class="m">10</span><span class="n">M</span><span class="p">;</span>
+         <span class="err">mp4</span><span class="p">;</span>
+         <span class="err">mp4_buffer_size</span> <span class="err">5M</span><span class="p">;</span>
+         <span class="err">mp4_max_buffer_size</span> <span class="err">10M</span><span class="p">;</span>
       <span class="p">}</span>
 <span class="err">}</span>
 </pre></div>
@@ -356,6 +356,11 @@ Capture Height (pixels): 480
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/agile.html">
+                            Agile
+                        </a>
+                    </li>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/application-server.html">
                             Application Server
@@ -416,7 +421,7 @@ Capture Height (pixels): 480
                             Dedibox
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/development.html">
                             Development
                         </a>
@@ -424,6 +429,11 @@ Capture Height (pixels): 480
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/development-tool.html">
                             Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/devops.html">
+                            DevOps
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -541,6 +551,11 @@ Capture Height (pixels): 480
                             SCM
                         </a>
                     </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scrum.html">
+                            Scrum
+                        </a>
+                    </li>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/software.html">
                             Software
@@ -595,7 +610,7 @@ Capture Height (pixels): 480
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+         <div class="col-xs-10">&copy; 2018 D. Bernaudeau
             &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
     Content
   licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.

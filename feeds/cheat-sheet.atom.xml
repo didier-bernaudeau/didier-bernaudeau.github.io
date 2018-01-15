@@ -15,17 +15,24 @@
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo ss -lun
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;Find&lt;/h1&gt;
+&lt;h1&gt;File&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Search a file by name&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; find / -name &lt;span class="s2"&gt;"FileName"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;file compression&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;Compress with Gunzip&lt;/li&gt;
+&lt;li&gt;Create a link&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; tar -czvf file.tar.gz /home/directory
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ln -s FileName LinkName
+&lt;span class="go"&gt;```console&lt;/span&gt;
+
+&lt;span class="gp"&gt;#&lt;/span&gt; file compression
+
+&lt;span class="go"&gt;* Compress with Gunzip&lt;/span&gt;
+
+&lt;span class="go"&gt;```console&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; tar -czvf file.tar.gz /home/directory
 &lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category></entry><entry><title>Docker Cheat Sheet</title><link href="http://didier.bernaudeau.net/Docker_cheat_sheet.html" rel="alternate"></link><published>2017-04-12T21:29:00+02:00</published><updated>2017-04-12T21:29:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-04-12:/Docker_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a quick reference sheet in one page for Docker&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post is a quick reference sheet in one page for Docker&lt;/p&gt;
 
@@ -33,7 +40,7 @@
 &lt;ul&gt;
 &lt;li&gt;Creates and start a container in one operation&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker run -td -p 127.0.0.1:$HOSTPORT:&lt;span class="nv"&gt;$C&lt;/span&gt;ONTAINERPORT -v $HOSTDIR:&lt;span class="nv"&gt;$D&lt;/span&gt;OCKERDIR
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker run -td -p &lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:&lt;span class="nv"&gt;$HOSTPORT&lt;/span&gt;:&lt;span class="nv"&gt;$CONTAINERPORT&lt;/span&gt; -v &lt;span class="nv"&gt;$HOSTDIR&lt;/span&gt;:&lt;span class="nv"&gt;$DOCKERDIR&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Options:
 &lt;em&gt; -t allocates a pseudo-TTY session
@@ -152,5 +159,5 @@ e6ba45aff418        bridge              bridge              local
 &lt;ul&gt;
 &lt;li&gt;Set IP address&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo ip addr add 192.168.10.1 dev ens3
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo ip addr add &lt;span class="m"&gt;192&lt;/span&gt;.168.10.1 dev ens3
 &lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category><category term="Debian"></category></entry></feed>

@@ -230,7 +230,7 @@ set_var EASYRSA_CERT_EXPIRE     1825
 <ul>
 <li>Generate Diffie Hellman parameters (Still needed even with elliptic curve cryptography)</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> sudo openssl dhparam -out /etc/openvpn/server/dh2048.pem 2048
+<div class="highlight"><pre><span></span><span class="gp">#</span> sudo openssl dhparam -out /etc/openvpn/server/dh2048.pem <span class="m">2048</span>
 </pre></div>
 <ul>
 <li>Define client configuration</li>
@@ -318,131 +318,131 @@ tls-cipher TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> nano iptables.sh
 </pre></div>
-<div class="highlight"><pre><span></span><span class="err">#</span><span class="x"> !/bin/bash</span>
+<div class="highlight"><pre><span></span># !/bin/bash
 
-<span class="x">PublicAddress=w.x.y.z</span>
-<span class="x">PublicInterface=enp0s20</span>
+PublicAddress=w.x.y.z
+PublicInterface=enp0s20
 
-<span class="x">VpnNetwork=10.0.0.0/24</span>
-<span class="x">G8wayAddress=10.0.0.Y</span>
-<span class="x">LanNetwork=10.XX.3.0/24</span>
+VpnNetwork=10.0.0.0/24
+G8wayAddress=10.0.0.Y
+LanNetwork=10.XX.3.0/24
 
-<span class="cp">##</span><span class="c">#### Init</span><span class="x"></span>
+###### Init
 
-<span class="err">#</span><span class="x"> flush existing rules</span>
-<span class="x">sudo iptables -F</span>
-<span class="x">sudo iptables -X</span>
-<span class="x">sudo iptables -t nat -F</span>
-<span class="x">sudo iptables -t nat -X</span>
+# flush existing rules
+sudo iptables -F
+sudo iptables -X
+sudo iptables -t nat -F
+sudo iptables -t nat -X
 
-<span class="err">#</span><span class="x"> Default policy</span>
-<span class="x">sudo iptables -t filter -P INPUT DROP</span>
-<span class="x">sudo iptables -t filter -P FORWARD DROP</span>
-<span class="x">sudo iptables -t filter -P OUTPUT DROP</span>
-
-
-<span class="cp">##</span><span class="c">#### Logging</span><span class="x"></span>
-
-<span class="err">#</span><span class="x"> Create chain for logging</span>
-<span class="x">sudo iptables -N LogInputChain</span>
-<span class="x">sudo iptables -N LogOutputChain</span>
-<span class="x">sudo iptables -N LogForwardChain</span>
-
-<span class="err">#</span><span class="x"> Configure chain for logging</span>
-<span class="x">sudo iptables -A LogInputChain -m limit --limit 2/min -j LOG --log-prefix "Dropped in Input chain: " --log-level 4</span>
-<span class="x">sudo iptables -A LogOutputChain -m limit --limit 2/min -j LOG --log-prefix "Dropped in Output chain: " --log-level 4</span>
-<span class="x">sudo iptables -A LogForwardChain -m limit --limit 2/min -j LOG --log-prefix "Dropped in Forward chain: " --log-level 4</span>
+# Default policy
+sudo iptables -t filter -P INPUT DROP
+sudo iptables -t filter -P FORWARD DROP
+sudo iptables -t filter -P OUTPUT DROP
 
 
-<span class="cp">##</span><span class="c">#### NAT</span><span class="x"></span>
+###### Logging
 
-<span class="err">#</span><span class="x"> Outgoing flow to internet from VPN</span>
-<span class="x">sudo iptables -t nat -A POSTROUTING -s </span><span class="p">$</span><span class="nv">VpnNetwork</span><span class="x"> -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -j MASQUERADE</span>
+# Create chain for logging
+sudo iptables -N LogInputChain
+sudo iptables -N LogOutputChain
+sudo iptables -N LogForwardChain
 
-<span class="err">#</span><span class="x"> Outgoing flow to internet from LAN</span>
-<span class="x">sudo iptables -t nat -A POSTROUTING -s </span><span class="p">$</span><span class="nv">LanNetwork</span><span class="x"> -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -j MASQUERADE</span>
-
-
-<span class="cp">##</span><span class="c">#### Forwarding flows (from G8way)</span><span class="x"></span>
-
-<span class="err">#</span><span class="x"> DNS</span>
-<span class="x">sudo iptables -A FORWARD -i tun0 -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">G8wayAddress</span><span class="x"> -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-<span class="x">sudo iptables -A FORWARD -i tun0 -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">G8wayAddress</span><span class="x"> -p tcp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> NTP</span>
-<span class="x">sudo iptables -A FORWARD -i tun0 -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">G8wayAddress</span><span class="x"> -p udp --dport 123 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> HTTP</span>
-<span class="x">sudo iptables -A FORWARD -i tun0 -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">G8wayAddress</span><span class="x"> -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> HTTPS</span>
-<span class="x">sudo iptables -A FORWARD -i tun0 -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">G8wayAddress</span><span class="x"> -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+# Configure chain for logging
+sudo iptables -A LogInputChain -m limit --limit 2/min -j LOG --log-prefix "Dropped in Input chain: " --log-level 4
+sudo iptables -A LogOutputChain -m limit --limit 2/min -j LOG --log-prefix "Dropped in Output chain: " --log-level 4
+sudo iptables -A LogForwardChain -m limit --limit 2/min -j LOG --log-prefix "Dropped in Forward chain: " --log-level 4
 
 
-<span class="cp">##</span><span class="c">#### Forwarding flows (from internal LAN)</span><span class="x"></span>
+###### NAT
 
-<span class="err">#</span><span class="x"> HTTP</span>
-<span class="x">sudo iptables -A FORWARD -i tun0 -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">LanNetwork</span><span class="x"> -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+# Outgoing flow to internet from VPN
+sudo iptables -t nat -A POSTROUTING -s $VpnNetwork -o $PublicInterface -j MASQUERADE
 
-<span class="err">#</span><span class="x"> HTTPS</span>
-<span class="x">sudo iptables -A FORWARD -i tun0 -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">LanNetwork</span><span class="x"> -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> SMTP (Submission with Start TLS)</span>
-<span class="x">sudo iptables -A FORWARD -i tun0 -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">LanNetwork</span><span class="x"> -p tcp --dport 465 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> SMTPS (Submission with SSL)</span>
-<span class="x">sudo iptables -A FORWARD -i tun0 -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">LanNetwork</span><span class="x"> -p tcp --dport 587 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> RSYNC</span>
-<span class="x">sudo iptables -A FORWARD -i tun0 -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">LanNetwork</span><span class="x"> -p tcp --dport 873 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> IMAPS</span>
-<span class="x">sudo iptables -A FORWARD -i tun0 -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">LanNetwork</span><span class="x"> -p tcp --dport 993 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> Allow forwarding for already established connection</span>
-<span class="x">sudo iptables -A FORWARD -i </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -o tun0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+# Outgoing flow to internet from LAN
+sudo iptables -t nat -A POSTROUTING -s $LanNetwork -o $PublicInterface -j MASQUERADE
 
 
-<span class="cp">##</span><span class="c">#### Incoming flow (from Internet)</span><span class="x"></span>
+###### Forwarding flows (from G8way)
 
-<span class="err">#</span><span class="x"> OpenVPN</span>
-<span class="x">sudo iptables -A INPUT -i </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -d </span><span class="p">$</span><span class="nv">PublicAddress</span><span class="x"> -p udp --dport 1194 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+# DNS
+sudo iptables -A FORWARD -i tun0 -o $PublicInterface -s $G8wayAddress -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i tun0 -o $PublicInterface -s $G8wayAddress -p tcp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
-<span class="err">#</span><span class="x"> SSH</span>
-<span class="x">sudo iptables -A INPUT -i enp0s20 -d </span><span class="p">$</span><span class="nv">PublicAddress</span><span class="x"> -p tcp --dport 22 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+# NTP
+sudo iptables -A FORWARD -i tun0 -o $PublicInterface -s $G8wayAddress -p udp --dport 123 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
-<span class="err">#</span><span class="x"> Allow already established connection</span>
-<span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">PublicAddress</span><span class="x"> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+# HTTP
+sudo iptables -A FORWARD -i tun0 -o $PublicInterface -s $G8wayAddress -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
-
-<span class="cp">##</span><span class="c">#### Incoming flow (from VPN)</span><span class="x"></span>
-
-<span class="err">#</span><span class="x"> SSH</span>
-<span class="x">sudo iptables -A INPUT -i tun0 -p tcp --dport 22 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
-
-<span class="err">#</span><span class="x"> Allow already established connection</span>
-<span class="x">sudo iptables -A OUTPUT -o tun0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+# HTTPS
+sudo iptables -A FORWARD -i tun0 -o $PublicInterface -s $G8wayAddress -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
 
-<span class="cp">##</span><span class="c">## Outgoing flows (to Internet)</span><span class="x"></span>
+###### Forwarding flows (from internal LAN)
 
-<span class="err">#</span><span class="x"> DNS</span>
-<span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">PublicAddress</span><span class="x"> -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+# HTTP
+sudo iptables -A FORWARD -i tun0 -o $PublicInterface -s $LanNetwork -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
-<span class="err">#</span><span class="x"> HTTP</span>
-<span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">PublicAddress</span><span class="x"> -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+# HTTPS
+sudo iptables -A FORWARD -i tun0 -o $PublicInterface -s $LanNetwork -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
-<span class="err">#</span><span class="x"> HTTPS</span>
-<span class="x">sudo iptables -A OUTPUT -o </span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -s </span><span class="p">$</span><span class="nv">PublicAddress</span><span class="x"> -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT</span>
+# SMTP (Submission with Start TLS)
+sudo iptables -A FORWARD -i tun0 -o $PublicInterface -s $LanNetwork -p tcp --dport 465 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 
-<span class="err">#</span><span class="x"> Allow already established connection</span>
-<span class="x">sudo iptables -A INPUT -i</span><span class="p">$</span><span class="nv">PublicInterface</span><span class="x"> -d </span><span class="p">$</span><span class="nv">PublicAddress</span><span class="x"> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span>
+# SMTPS (Submission with SSL)
+sudo iptables -A FORWARD -i tun0 -o $PublicInterface -s $LanNetwork -p tcp --dport 587 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+# RSYNC
+sudo iptables -A FORWARD -i tun0 -o $PublicInterface -s $LanNetwork -p tcp --dport 873 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+# IMAPS
+sudo iptables -A FORWARD -i tun0 -o $PublicInterface -s $LanNetwork -p tcp --dport 993 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+# Allow forwarding for already established connection
+sudo iptables -A FORWARD -i $PublicInterface -o tun0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 
 
-<span class="err">#</span><span class="x"> Log (For debug only)</span>
-<span class="x">sudo iptables -A FORWARD -j LogForwardChain</span>
-<span class="x">sudo iptables -A INPUT -j LogInputChain</span>
-<span class="x">sudo iptables -A OUTPUT -j LogOutputChain</span>
+###### Incoming flow (from Internet)
+
+# OpenVPN
+sudo iptables -A INPUT -i $PublicInterface -d $PublicAddress -p udp --dport 1194 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+# SSH
+sudo iptables -A INPUT -i enp0s20 -d $PublicAddress -p tcp --dport 22 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+# Allow already established connection
+sudo iptables -A OUTPUT -o $PublicInterface -s $PublicAddress -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+
+###### Incoming flow (from VPN)
+
+# SSH
+sudo iptables -A INPUT -i tun0 -p tcp --dport 22 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+# Allow already established connection
+sudo iptables -A OUTPUT -o tun0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+
+#### Outgoing flows (to Internet)
+
+# DNS
+sudo iptables -A OUTPUT -o $PublicInterface -s $PublicAddress -p udp --dport 53 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+# HTTP
+sudo iptables -A OUTPUT -o $PublicInterface -s $PublicAddress -p tcp --dport 80 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+# HTTPS
+sudo iptables -A OUTPUT -o $PublicInterface -s $PublicAddress -p tcp --dport 443 -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+# Allow already established connection
+sudo iptables -A INPUT -i$PublicInterface -d $PublicAddress -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+
+# Log (For debug only)
+sudo iptables -A FORWARD -j LogForwardChain
+sudo iptables -A INPUT -j LogInputChain
+sudo iptables -A OUTPUT -j LogOutputChain
 </pre></div>
 <ul>
 <li>Change file access right</li>
@@ -468,7 +468,7 @@ tls-cipher TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384
 <ul>
 <li>Viewing log</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo journalctl -k --since 20:00 <span class="p">|</span> grep <span class="s2">"Dropped"</span> <span class="p">|</span> less
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo journalctl -k --since <span class="m">20</span>:00 <span class="p">|</span> grep <span class="s2">"Dropped"</span> <span class="p">|</span> less
 </pre></div>
 <h1>Client Side</h1>
 <h2>Debian</h2>
@@ -611,11 +611,11 @@ key-direction 1
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://didier.bernaudeau.net/TLS_Cipher_Suites.html">TLS Cipher Suites</a></li>
-        <li><a href="http://didier.bernaudeau.net/TLS_Hardened_configuration.html">TLS: Hardened configuration</a></li>
         <li><a href="http://didier.bernaudeau.net/TLS_Audit_tools.html">TLS: Audit tools</a></li>
+        <li><a href="http://didier.bernaudeau.net/EnOcean.html">EnOcean</a></li>
+        <li><a href="http://didier.bernaudeau.net/TLS_Hardened_configuration.html">TLS: Hardened configuration</a></li>
         <li><a href="http://didier.bernaudeau.net/PC_Engines_APU3a4.html">PC Engines APU3a4</a></li>
-        <li><a href="http://didier.bernaudeau.net/TLS_Understanding_the_cipher_suites.html">TLS: Understanding the cipher suites</a></li>
+        <li><a href="http://didier.bernaudeau.net/TLS_Cipher_Suites.html">TLS Cipher Suites</a></li>
     </ul>
 </section>
         </article>
@@ -640,6 +640,11 @@ key-direction 1
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/agile.html">
+                            Agile
+                        </a>
+                    </li>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/application-server.html">
                             Application Server
@@ -700,7 +705,7 @@ key-direction 1
                             Dedibox
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/development.html">
                             Development
                         </a>
@@ -708,6 +713,11 @@ key-direction 1
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/development-tool.html">
                             Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/devops.html">
+                            DevOps
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -825,6 +835,11 @@ key-direction 1
                             SCM
                         </a>
                     </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scrum.html">
+                            Scrum
+                        </a>
+                    </li>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/software.html">
                             Software
@@ -879,7 +894,7 @@ key-direction 1
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+         <div class="col-xs-10">&copy; 2018 D. Bernaudeau
             &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
     Content
   licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.

@@ -161,8 +161,8 @@ My personal blog note            </a>
 <li>Local flow</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">#</span> CUPS
-<span class="gp">$</span> sudo iptables -A OUTPUT -o lo -s 127.0.0.1 -d 127.0.0.1 -p tcp --dport <span class="m">631</span> -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
-<span class="gp">$</span> sudo iptables -A INPUT -i lo -s 127.0.0.1 -d 127.0.0.1 -p tcp --dport <span class="m">631</span> -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+<span class="gp">$</span> sudo iptables -A OUTPUT -o lo -s <span class="m">127</span>.0.0.1 -d <span class="m">127</span>.0.0.1 -p tcp --dport <span class="m">631</span> -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+<span class="gp">$</span> sudo iptables -A INPUT -i lo -s <span class="m">127</span>.0.0.1 -d <span class="m">127</span>.0.0.1 -p tcp --dport <span class="m">631</span> -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
 </pre></div>
 <h1>Cups</h1>
 <ul>
@@ -280,11 +280,11 @@ Ajouter une imprimante : http://cups.domain.net:631/printers/Brother et donner l
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://didier.bernaudeau.net/TLS_Cipher_Suites.html">TLS Cipher Suites</a></li>
-        <li><a href="http://didier.bernaudeau.net/TLS_Hardened_configuration.html">TLS: Hardened configuration</a></li>
         <li><a href="http://didier.bernaudeau.net/TLS_Audit_tools.html">TLS: Audit tools</a></li>
+        <li><a href="http://didier.bernaudeau.net/EnOcean.html">EnOcean</a></li>
+        <li><a href="http://didier.bernaudeau.net/TLS_Hardened_configuration.html">TLS: Hardened configuration</a></li>
         <li><a href="http://didier.bernaudeau.net/PC_Engines_APU3a4.html">PC Engines APU3a4</a></li>
-        <li><a href="http://didier.bernaudeau.net/TLS_Understanding_the_cipher_suites.html">TLS: Understanding the cipher suites</a></li>
+        <li><a href="http://didier.bernaudeau.net/TLS_Cipher_Suites.html">TLS Cipher Suites</a></li>
     </ul>
 </section>
         </article>
@@ -309,6 +309,11 @@ Ajouter une imprimante : http://cups.domain.net:631/printers/Brother et donner l
 
             <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/agile.html">
+                            Agile
+                        </a>
+                    </li>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/application-server.html">
                             Application Server
@@ -369,7 +374,7 @@ Ajouter une imprimante : http://cups.domain.net:631/printers/Brother et donner l
                             Dedibox
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/development.html">
                             Development
                         </a>
@@ -377,6 +382,11 @@ Ajouter une imprimante : http://cups.domain.net:631/printers/Brother et donner l
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/development-tool.html">
                             Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/devops.html">
+                            DevOps
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -494,6 +504,11 @@ Ajouter une imprimante : http://cups.domain.net:631/printers/Brother et donner l
                             SCM
                         </a>
                     </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scrum.html">
+                            Scrum
+                        </a>
+                    </li>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/software.html">
                             Software
@@ -548,7 +563,7 @@ Ajouter une imprimante : http://cups.domain.net:631/printers/Brother et donner l
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2017 D. Bernaudeau
+         <div class="col-xs-10">&copy; 2018 D. Bernaudeau
             &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
     Content
   licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.

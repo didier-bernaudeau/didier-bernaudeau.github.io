@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-01-16T00:11:00+01:00</updated><entry><title>Agile Security</title><link href="http://didier.bernaudeau.net/AgileSecurity.html" rel="alternate"></link><published>2018-01-09T14:00:00+01:00</published><updated>2018-01-09T14:00:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-01-09:/AgileSecurity.html</id><summary type="html">&lt;p&gt;This presentation that I made at &lt;a href="https://www.ossir.org"&gt;OSSIR&lt;/a&gt; describes how to become an Agile application security Officer.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-01-22T09:20:00+01:00</updated><entry><title>Cloud Storage</title><link href="http://didier.bernaudeau.net/CloudStorage.html" rel="alternate"></link><published>2018-01-22T09:20:00+01:00</published><updated>2018-01-22T09:20:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-01-22:/CloudStorage.html</id><summary type="html">&lt;p&gt;Cloud Storage is a model of data storage more flexible than traditional solution like NAS and SAN. Each cloud provider offers a proprietary solution of Cloud Storage. However, There are some self-hosted object storage solutions...&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Cloud Storage is a model of data storage more flexible than traditional solution like NAS and SAN. Each cloud provider offers a proprietary solution of Cloud Storage. However, There are some self-hosted object storage solutions...&lt;/p&gt;
+
+&lt;h1&gt;Object Storage&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://wiki.openstack.org/wiki/Swift"&gt;Swift&lt;/a&gt;: cloud storage solution for OpenStack by RedHat&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ceph.com"&gt;Ceph&lt;/a&gt; : REST interface that's compatible with applications written for S3 and Swift.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.minio.io"&gt;Minio&lt;/a&gt;: written in the Go language, Minio is an open source object storage server with Amazon S3 compatible API.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.rook.io/"&gt;Rook&lt;/a&gt;: Based on Ceph, Rook is designed to run as a native Kubernetes service.&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Cloud"></category></entry><entry><title>Agile Security</title><link href="http://didier.bernaudeau.net/AgileSecurity.html" rel="alternate"></link><published>2018-01-09T14:00:00+01:00</published><updated>2018-01-09T14:00:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-01-09:/AgileSecurity.html</id><summary type="html">&lt;p&gt;This presentation that I made at &lt;a href="https://www.ossir.org"&gt;OSSIR&lt;/a&gt; describes how to become an Agile application security Officer.&lt;/p&gt;
 &lt;p&gt;View online on &lt;a href="https://0xdbe.github.io/AgileSecurity_20180109/"&gt;GitHub&lt;/a&gt;&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This presentation that I made at &lt;a href="https://www.ossir.org"&gt;OSSIR&lt;/a&gt; describes how to become an Agile application security Officer.&lt;/p&gt;
 &lt;p&gt;View online on &lt;a href="https://0xdbe.github.io/AgileSecurity_20180109/"&gt;GitHub&lt;/a&gt;&lt;/p&gt;
@@ -196,7 +205,7 @@ http {
 </summary><content type="html">&lt;p&gt;This presentation is an introduction to DevOps that I made for "Ecole 42". This is a story that describes the transition from Waterfall to DevOps in the "Cash Register Unlimited Company". In this show, the students take part into this story to select the right options and so deploy DevOps with success.&lt;/p&gt;
 &lt;p&gt;View online on &lt;a href="https://0xdbe.github.io/DevOpsStory_20171221/"&gt;GitHub&lt;/a&gt;&lt;/p&gt;
 
-&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-12-21_DevOpsStory.jpg" width="60%"/&gt;&lt;/p&gt;</content><category term="Agile"></category><category term="DevOps"></category></entry><entry><title>Linux cheat sheet</title><link href="http://didier.bernaudeau.net/Linux_cheat_sheet.html" rel="alternate"></link><published>2017-12-17T17:52:00+01:00</published><updated>2017-12-31T15:52:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-17:/Linux_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-12-21_DevOpsStory.jpg" width="60%"/&gt;&lt;/p&gt;</content><category term="Agile"></category><category term="DevOps"></category></entry><entry><title>Linux cheat sheet</title><link href="http://didier.bernaudeau.net/Linux_cheat_sheet.html" rel="alternate"></link><published>2017-12-17T17:52:00+01:00</published><updated>2018-01-21T14:59:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-17:/Linux_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
 
 &lt;h1&gt;Network&lt;/h1&gt;
@@ -230,6 +239,12 @@ http {
 
 &lt;span class="go"&gt;```console&lt;/span&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt; tar -czvf file.tar.gz /home/directory
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Systemd&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;List unit file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl list-unit-files
 &lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category></entry><entry><title>How to install Cups</title><link href="http://didier.bernaudeau.net/HowTo_install_Cups.html" rel="alternate"></link><published>2017-11-25T12:46:00+01:00</published><updated>2017-12-22T21:26:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-11-25:/HowTo_install_Cups.html</id><summary type="html">&lt;p&gt;This post describes how to create a printing server with CUPS on Debian Stretch then how to install a printer (Brother MFC295CN) which requires a 32bits driver from manufacturer.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post describes how to create a printing server with CUPS on Debian Stretch then how to install a printer (Brother MFC295CN) which requires a 32bits driver from manufacturer.&lt;/p&gt;
 
@@ -5780,38 +5795,63 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;/pre&gt;
 &lt;p&gt;To get information about flash plugin, open &lt;a class="reference external" href="chrome://flash"&gt;chrome://flash&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Gentoo"></category></entry><entry><title>How to install PulseAudio</title><link href="http://didier.bernaudeau.net/How_to_install_PulseAudio.html" rel="alternate"></link><published>2015-10-19T17:24:00+02:00</published><updated>2015-10-19T17:24:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-19:/How_to_install_PulseAudio.html</id><summary type="html">&lt;p&gt;A sound server is software that manages the use of and access to audio devices. There are many sound server (JACK Audio Connection Kit, Enlightened Sound Daemon, ...) but PulseAudio is now an integral part of all relevant modern Linux distributions. This tutorials describes how to install PulseAudio on Gentoo Linux.&lt;/p&gt;
+</content><category term="Gentoo"></category></entry><entry><title>How to install PulseAudio on Gentoo Linux</title><link href="http://didier.bernaudeau.net/How_to_install_PulseAudio.html" rel="alternate"></link><published>2015-10-19T17:24:00+02:00</published><updated>2018-01-21T18:05:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2015-10-19:/How_to_install_PulseAudio.html</id><summary type="html">&lt;p&gt;A sound server is software that manages the use of and access to audio devices. There are many sound server (JACK Audio Connection Kit, Enlightened Sound Daemon, ...) but PulseAudio is now an integral part of all relevant modern Linux distributions. This tutorials describes how to install PulseAudio on Gentoo Linux.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;A sound server is software that manages the use of and access to audio devices. There are many sound server (JACK Audio Connection Kit, Enlightened Sound Daemon, ...) but PulseAudio is now an integral part of all relevant modern Linux distributions. This tutorials describes how to install PulseAudio on Gentoo Linux.&lt;/p&gt;
 
-&lt;div class="section" id="pulseaudio-architecture"&gt;
-&lt;h2&gt;PulseAudio Architecture&lt;/h2&gt;
-&lt;img alt="PulseAudio Architecture" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
-&lt;/div&gt;
-&lt;div class="section" id="install-pulseaudio"&gt;
-&lt;h2&gt;Install PulseAudio&lt;/h2&gt;
-&lt;p&gt;Define local USE flags&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.use
-&lt;span class="go"&gt;media-sound/pulseaudio          -tcpd -webrtc-aec&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;Install PulseAudio&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; emerge --oneshot pulseaudio
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class="section" id="compile-application-to-support-pulseaudio"&gt;
-&lt;h2&gt;Compile application to support PulseAudio&lt;/h2&gt;
-&lt;p&gt;Define global USE flags&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; etc/portage/make.conf
-&lt;span class="go"&gt;USE="pulseaudio"&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;Install packages&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; emerge ffmpeg vlc kmix chromium
-&lt;/pre&gt;
-&lt;/div&gt;
-</content><category term="Gentoo"></category></entry><entry><title>Extended Validation Certificate</title><link href="http://didier.bernaudeau.net/Extended_Validation_Certificate.html" rel="alternate"></link><published>2015-10-08T18:50:00+02:00</published><updated>2015-10-08T22:09:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-08:/Extended_Validation_Certificate.html</id><summary type="html">&lt;p&gt;An Extended Validation Certificate is a digital certificate issue by a Certificate Authority in conformity with "&lt;a class="reference external" href="https://cabforum.org/baseline-requirements-documents/"&gt;Baseline Requirements&lt;/a&gt;" and "&lt;a class="reference external" href="https://cabforum.org/extended-validation/"&gt;EV SSL Certificate Guidelines&lt;/a&gt;". These documents are defined by CA/B Forum (Certificate Authority &amp;amp; Browser Forum). This article is a summary of EV SSL Certificate Guidelines version 1.5.6 of 25 june 2015.&lt;/p&gt;
+&lt;h1&gt;PulseAudio Architecture&lt;/h1&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2015-10-19_How_to_install_PulseAudio.png" width="25%"/&gt;&lt;/p&gt;
+&lt;h1&gt;Install PulseAudio&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Define local USE flags&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.use
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;media-sound/pulseaudio          -tcpd -webrtc-aec
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install PulseAudio&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --oneshot pulseaudio
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Configure capture device&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;List all capture devices&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; arecord -l
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;****&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;CAPTURE&lt;/span&gt; &lt;span class="n"&gt;Hardware&lt;/span&gt; &lt;span class="n"&gt;Devices&lt;/span&gt; &lt;span class="o"&gt;****&lt;/span&gt;
+&lt;span class="n"&gt;card&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;PCH&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;HDA&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;PCH&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ALC3232&lt;/span&gt; &lt;span class="n"&gt;Analog&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;ALC3232&lt;/span&gt; &lt;span class="n"&gt;Analog&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+  &lt;span class="nl"&gt;Subdevices&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+  &lt;span class="n"&gt;Subdevice&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;subdevice&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The card number is "1" and device number is "0". So, In hw:CARD,DEVICE notation, the capture device is hw:1,0.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Define the capture device to load audio drivers statically&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/pulse/default.pa
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;load-module module-alsa-source device=hw:1,0
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart pulse (by non-root user)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; pulseaudio -k &lt;span class="p"&gt;;&lt;/span&gt; pulseaudio -D
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Compile application to support PulseAudio&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Define global USE flags&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano etc/portage/make.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;USE="pulseaudio"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install packages&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge ffmpeg vlc kmix chromium
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Configure Chromium for Hangout&lt;/h2&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2015-10-19_How_to_install_PulseAudio_2.png" width="50%"/&gt;&lt;/p&gt;</content><category term="Gentoo"></category></entry><entry><title>Extended Validation Certificate</title><link href="http://didier.bernaudeau.net/Extended_Validation_Certificate.html" rel="alternate"></link><published>2015-10-08T18:50:00+02:00</published><updated>2015-10-08T22:09:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-08:/Extended_Validation_Certificate.html</id><summary type="html">&lt;p&gt;An Extended Validation Certificate is a digital certificate issue by a Certificate Authority in conformity with "&lt;a class="reference external" href="https://cabforum.org/baseline-requirements-documents/"&gt;Baseline Requirements&lt;/a&gt;" and "&lt;a class="reference external" href="https://cabforum.org/extended-validation/"&gt;EV SSL Certificate Guidelines&lt;/a&gt;". These documents are defined by CA/B Forum (Certificate Authority &amp;amp; Browser Forum). This article is a summary of EV SSL Certificate Guidelines version 1.5.6 of 25 june 2015.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;An Extended Validation Certificate is a digital certificate issue by a Certificate Authority in conformity with "&lt;a class="reference external" href="https://cabforum.org/baseline-requirements-documents/"&gt;Baseline Requirements&lt;/a&gt;" and "&lt;a class="reference external" href="https://cabforum.org/extended-validation/"&gt;EV SSL Certificate Guidelines&lt;/a&gt;". These documents are defined by CA/B Forum (Certificate Authority &amp;amp; Browser Forum). This article is a summary of EV SSL Certificate Guidelines version 1.5.6 of 25 june 2015.&lt;/p&gt;
 
 &lt;div class="section" id="additional-content"&gt;

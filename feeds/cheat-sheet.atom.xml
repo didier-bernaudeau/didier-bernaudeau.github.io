@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Cheat Sheet</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/cheat-sheet.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2017-12-31T15:52:00+01:00</updated><entry><title>Linux cheat sheet</title><link href="http://didier.bernaudeau.net/Linux_cheat_sheet.html" rel="alternate"></link><published>2017-12-17T17:52:00+01:00</published><updated>2017-12-31T15:52:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-17:/Linux_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Cheat Sheet</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/cheat-sheet.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-01-21T14:59:00+01:00</updated><entry><title>Linux cheat sheet</title><link href="http://didier.bernaudeau.net/Linux_cheat_sheet.html" rel="alternate"></link><published>2017-12-17T17:52:00+01:00</published><updated>2018-01-21T14:59:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-17:/Linux_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
 
 &lt;h1&gt;Network&lt;/h1&gt;
@@ -33,6 +33,12 @@
 
 &lt;span class="go"&gt;```console&lt;/span&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt; tar -czvf file.tar.gz /home/directory
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Systemd&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;List unit file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl list-unit-files
 &lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category></entry><entry><title>Docker Cheat Sheet</title><link href="http://didier.bernaudeau.net/Docker_cheat_sheet.html" rel="alternate"></link><published>2017-04-12T21:29:00+02:00</published><updated>2017-04-12T21:29:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-04-12:/Docker_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a quick reference sheet in one page for Docker&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post is a quick reference sheet in one page for Docker&lt;/p&gt;
 

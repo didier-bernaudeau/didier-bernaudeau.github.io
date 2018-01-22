@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>How to install PulseAudio - My personal blog note</title>
+    <title>How to install PulseAudio on Gentoo Linux - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -11,19 +11,19 @@
 
 <link rel="canonical" href="http://didier.bernaudeau.net/How_to_install_PulseAudio.html">
 
-        <meta name="author" content="Didier Bernaudeau" />
+        <meta name="author" content="Didier BERNAUDEAU" />
         <meta name="keywords" content="Gentoo" />
         <meta name="description" content="A sound server is software that manages the use of and access to audio devices. There are many sound server (JACK Audio Connection Kit, Enlightened Sound Daemon, ...) but PulseAudio is now an integral part of all relevant modern Linux distributions. This tutorials describes how to install PulseAudio on Gentoo Linux." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="How to install PulseAudio"/>
+        <meta property="og:title" content="How to install PulseAudio on Gentoo Linux"/>
         <meta property="og:url" content="http://didier.bernaudeau.net/How_to_install_PulseAudio.html"/>
         <meta property="og:description" content="A sound server is software that manages the use of and access to audio devices. There are many sound server (JACK Audio Connection Kit, Enlightened Sound Daemon, ...) but PulseAudio is now an integral part of all relevant modern Linux distributions. This tutorials describes how to install PulseAudio on Gentoo Linux."/>
         <meta property="article:published_time" content="2015-10-19" />
             <meta property="article:section" content="Tutorials" />
             <meta property="article:tag" content="Gentoo" />
-            <meta property="article:author" content="Didier Bernaudeau" />
+            <meta property="article:author" content="Didier BERNAUDEAU" />
 
 
     <!-- Bootstrap -->
@@ -83,8 +83,8 @@ My personal blog note            </a>
                 <h1>
                     <a href="http://didier.bernaudeau.net/How_to_install_PulseAudio.html"
                        rel="bookmark"
-                       title="Permalink to How to install PulseAudio">
-                        How to install PulseAudio
+                       title="Permalink to How to install PulseAudio on Gentoo Linux">
+                        How to install PulseAudio on Gentoo Linux
                     </a>
                 </h1>
             </header>
@@ -98,7 +98,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-10-19T17:24:00+02:00"> lun. 19 octobre 2015</time>
+                <i class="fa fa-calendar"></i><time datetime="2018-01-21T18:05:00+01:00"> dim. 21 janvier 2018</time>
             </span>
 
 
@@ -112,35 +112,60 @@ My personal blog note            </a>
                 </div>
                 <p>A sound server is software that manages the use of and access to audio devices. There are many sound server (JACK Audio Connection Kit, Enlightened Sound Daemon, ...) but PulseAudio is now an integral part of all relevant modern Linux distributions. This tutorials describes how to install PulseAudio on Gentoo Linux.</p>
 
-<div class="section" id="pulseaudio-architecture">
-<h2>PulseAudio Architecture</h2>
-<img alt="PulseAudio Architecture" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/>
-</div>
-<div class="section" id="install-pulseaudio">
-<h2>Install PulseAudio</h2>
-<p>Define local USE flags</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> nano /etc/portage/package.use
-<span class="go">media-sound/pulseaudio          -tcpd -webrtc-aec</span>
-</pre>
-<p>Install PulseAudio</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> emerge --oneshot pulseaudio
-</pre>
-</div>
-<div class="section" id="compile-application-to-support-pulseaudio">
-<h2>Compile application to support PulseAudio</h2>
-<p>Define global USE flags</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> etc/portage/make.conf
-<span class="go">USE="pulseaudio"</span>
-</pre>
-<p>Install packages</p>
-<pre class="code console literal-block">
-<span class="gp">#</span> emerge ffmpeg vlc kmix chromium
-</pre>
-</div>
-
+<h1>PulseAudio Architecture</h1>
+<p align="center"><img class="img-responsive" src="images/2015-10-19_How_to_install_PulseAudio.png" width="25%"/></p>
+<h1>Install PulseAudio</h1>
+<ul>
+<li>Define local USE flags</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/portage/package.use
+</pre></div>
+<div class="highlight"><pre><span></span>media-sound/pulseaudio          -tcpd -webrtc-aec
+</pre></div>
+<ul>
+<li>Install PulseAudio</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> emerge --oneshot pulseaudio
+</pre></div>
+<h1>Configure capture device</h1>
+<ul>
+<li>List all capture devices</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> arecord -l
+</pre></div>
+<div class="highlight"><pre><span></span><span class="o">****</span> <span class="n">List</span> <span class="n">of</span> <span class="n">CAPTURE</span> <span class="n">Hardware</span> <span class="n">Devices</span> <span class="o">****</span>
+<span class="n">card</span> <span class="mi">1</span><span class="o">:</span> <span class="n">PCH</span> <span class="p">[</span><span class="n">HDA</span> <span class="n">Intel</span> <span class="n">PCH</span><span class="p">],</span> <span class="n">device</span> <span class="mi">0</span><span class="o">:</span> <span class="n">ALC3232</span> <span class="n">Analog</span> <span class="p">[</span><span class="n">ALC3232</span> <span class="n">Analog</span><span class="p">]</span>
+  <span class="nl">Subdevices</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>
+  <span class="n">Subdevice</span> <span class="err">#</span><span class="mi">0</span><span class="o">:</span> <span class="n">subdevice</span> <span class="err">#</span><span class="mi">0</span>
+</pre></div>
+<p>The card number is "1" and device number is "0". So, In hw:CARD,DEVICE notation, the capture device is hw:1,0.</p>
+<ul>
+<li>Define the capture device to load audio drivers statically</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/pulse/default.pa
+</pre></div>
+<div class="highlight"><pre><span></span>load-module module-alsa-source device=hw:1,0
+</pre></div>
+<ul>
+<li>Restart pulse (by non-root user)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> pulseaudio -k <span class="p">;</span> pulseaudio -D
+</pre></div>
+<h1>Compile application to support PulseAudio</h1>
+<ul>
+<li>Define global USE flags</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano etc/portage/make.conf
+</pre></div>
+<div class="highlight"><pre><span></span>USE="pulseaudio"
+</pre></div>
+<ul>
+<li>Install packages</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> emerge ffmpeg vlc kmix chromium
+</pre></div>
+<h2>Configure Chromium for Hangout</h2>
+<p align="center"><img class="img-responsive" src="images/2015-10-19_How_to_install_PulseAudio_2.png" width="50%"/></p>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -193,6 +218,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/certificate.html">
                             Certificate
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/cloud.html">
+                            Cloud
                         </a>
                     </li>
                     <li class="list-group-item tag-2">

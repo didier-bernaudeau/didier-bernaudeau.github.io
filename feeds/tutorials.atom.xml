@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-01-16T00:11:00+01:00</updated><entry><title>How to install NodeJS on Gentoo Linux</title><link href="http://didier.bernaudeau.net/HowTo_install_NodeJS.md.html" rel="alternate"></link><published>2017-12-31T17:13:00+01:00</published><updated>2017-12-31T16:08:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-31:/HowTo_install_NodeJS.md.html</id><summary type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-01-21T18:05:00+01:00</updated><entry><title>How to install NodeJS on Gentoo Linux</title><link href="http://didier.bernaudeau.net/HowTo_install_NodeJS.md.html" rel="alternate"></link><published>2017-12-31T17:13:00+01:00</published><updated>2017-12-31T16:08:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-31:/HowTo_install_NodeJS.md.html</id><summary type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux.&lt;/p&gt;
 
 &lt;h1&gt;NodeJS&lt;/h1&gt;
@@ -4789,38 +4789,63 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/pre&gt;
 &lt;p&gt;To get information about flash plugin, open &lt;a class="reference external" href="chrome://flash"&gt;chrome://flash&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Gentoo"></category></entry><entry><title>How to install PulseAudio</title><link href="http://didier.bernaudeau.net/How_to_install_PulseAudio.html" rel="alternate"></link><published>2015-10-19T17:24:00+02:00</published><updated>2015-10-19T17:24:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-10-19:/How_to_install_PulseAudio.html</id><summary type="html">&lt;p&gt;A sound server is software that manages the use of and access to audio devices. There are many sound server (JACK Audio Connection Kit, Enlightened Sound Daemon, ...) but PulseAudio is now an integral part of all relevant modern Linux distributions. This tutorials describes how to install PulseAudio on Gentoo Linux.&lt;/p&gt;
+</content><category term="Gentoo"></category></entry><entry><title>How to install PulseAudio on Gentoo Linux</title><link href="http://didier.bernaudeau.net/How_to_install_PulseAudio.html" rel="alternate"></link><published>2015-10-19T17:24:00+02:00</published><updated>2018-01-21T18:05:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2015-10-19:/How_to_install_PulseAudio.html</id><summary type="html">&lt;p&gt;A sound server is software that manages the use of and access to audio devices. There are many sound server (JACK Audio Connection Kit, Enlightened Sound Daemon, ...) but PulseAudio is now an integral part of all relevant modern Linux distributions. This tutorials describes how to install PulseAudio on Gentoo Linux.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;A sound server is software that manages the use of and access to audio devices. There are many sound server (JACK Audio Connection Kit, Enlightened Sound Daemon, ...) but PulseAudio is now an integral part of all relevant modern Linux distributions. This tutorials describes how to install PulseAudio on Gentoo Linux.&lt;/p&gt;
 
-&lt;div class="section" id="pulseaudio-architecture"&gt;
-&lt;h2&gt;PulseAudio Architecture&lt;/h2&gt;
-&lt;img alt="PulseAudio Architecture" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-10-19_How_to_install_PulseAudio.png" style="width: 25%;"/&gt;
-&lt;/div&gt;
-&lt;div class="section" id="install-pulseaudio"&gt;
-&lt;h2&gt;Install PulseAudio&lt;/h2&gt;
-&lt;p&gt;Define local USE flags&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.use
-&lt;span class="go"&gt;media-sound/pulseaudio          -tcpd -webrtc-aec&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;Install PulseAudio&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; emerge --oneshot pulseaudio
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class="section" id="compile-application-to-support-pulseaudio"&gt;
-&lt;h2&gt;Compile application to support PulseAudio&lt;/h2&gt;
-&lt;p&gt;Define global USE flags&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; etc/portage/make.conf
-&lt;span class="go"&gt;USE="pulseaudio"&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;Install packages&lt;/p&gt;
-&lt;pre class="code console literal-block"&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt; emerge ffmpeg vlc kmix chromium
-&lt;/pre&gt;
-&lt;/div&gt;
-</content><category term="Gentoo"></category></entry><entry><title>HowTo install a virtualization plateform with KVM</title><link href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html" rel="alternate"></link><published>2015-09-15T19:08:00+02:00</published><updated>2017-06-20T22:07:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-09-15:/howto_install_a_virtualization_plateform_with_KVM.html</id><summary type="html">&lt;p&gt;This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.&lt;/p&gt;
+&lt;h1&gt;PulseAudio Architecture&lt;/h1&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2015-10-19_How_to_install_PulseAudio.png" width="25%"/&gt;&lt;/p&gt;
+&lt;h1&gt;Install PulseAudio&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Define local USE flags&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.use
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;media-sound/pulseaudio          -tcpd -webrtc-aec
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install PulseAudio&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --oneshot pulseaudio
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Configure capture device&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;List all capture devices&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; arecord -l
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;****&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;CAPTURE&lt;/span&gt; &lt;span class="n"&gt;Hardware&lt;/span&gt; &lt;span class="n"&gt;Devices&lt;/span&gt; &lt;span class="o"&gt;****&lt;/span&gt;
+&lt;span class="n"&gt;card&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;PCH&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;HDA&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;PCH&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ALC3232&lt;/span&gt; &lt;span class="n"&gt;Analog&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;ALC3232&lt;/span&gt; &lt;span class="n"&gt;Analog&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+  &lt;span class="nl"&gt;Subdevices&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+  &lt;span class="n"&gt;Subdevice&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;subdevice&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The card number is "1" and device number is "0". So, In hw:CARD,DEVICE notation, the capture device is hw:1,0.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Define the capture device to load audio drivers statically&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/pulse/default.pa
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;load-module module-alsa-source device=hw:1,0
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart pulse (by non-root user)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; pulseaudio -k &lt;span class="p"&gt;;&lt;/span&gt; pulseaudio -D
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Compile application to support PulseAudio&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Define global USE flags&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano etc/portage/make.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;USE="pulseaudio"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install packages&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge ffmpeg vlc kmix chromium
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Configure Chromium for Hangout&lt;/h2&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2015-10-19_How_to_install_PulseAudio_2.png" width="50%"/&gt;&lt;/p&gt;</content><category term="Gentoo"></category></entry><entry><title>HowTo install a virtualization plateform with KVM</title><link href="http://didier.bernaudeau.net/howto_install_a_virtualization_plateform_with_KVM.html" rel="alternate"></link><published>2015-09-15T19:08:00+02:00</published><updated>2017-06-20T22:07:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-09-15:/howto_install_a_virtualization_plateform_with_KVM.html</id><summary type="html">&lt;p&gt;This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.&lt;/p&gt;
 &lt;p&gt;Then, LibVirt provides a convenient way to manage virtual machines on this plateform. LibVirt include an API library, a daemon (libvirtd), command line tools (virsh and virt-install) and a graphic tool (virt-manager). All these softwares are sponsorted by Red Hat.&lt;/p&gt;
 &lt;p&gt;Obviouly, this virtualization plateform uses Intel Virtualization Technologyy like VT-x (Virtualization Technology eXecution) and VT-d (Virtualization Technology for Directed I/O). KVM can also support VT-c (Intel® Virtualization Technology for Connectivity) but my laptop does not have this technology.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This tutorial describes how to install a virtualization plateform with KVM (Kernel-based Virtual Machine) on Gentoo Linux. This plateform is based on Kernel modules, QEMU (Quick Emulator), VirtIO and VHostNet.&lt;/p&gt;

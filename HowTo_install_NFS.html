@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Talk - My personal blog note</title>
+    <title>How to install NFS - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,16 +9,22 @@
 
 
 
+<link rel="canonical" href="http://didier.bernaudeau.net/HowTo_install_NFS.html">
 
-    <meta name="author" content="D. Bernaudeau" />
-    <meta name="keywords" content="Talk" />
+        <meta name="author" content="Didier BERNAUDEAU" />
+        <meta name="keywords" content="Home Server 2012,Debian Stretch" />
+        <meta name="description" content="NFS (Network file System) allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally. This post describes how to install NFS on Debian 9 (Stretch)." />
 
-    <!-- Open Graph tags -->
         <meta property="og:site_name" content="My personal blog note" />
-        <meta property="og:type" content="website"/>
-        <meta property="og:title" content="My personal blog note"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net"/>
-        <meta property="og:description" content="My personal blog note"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="How to install NFS"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/HowTo_install_NFS.html"/>
+        <meta property="og:description" content="NFS (Network file System) allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally. This post describes how to install NFS on Debian 9 (Stretch)."/>
+        <meta property="article:published_time" content="2017-11-30" />
+            <meta property="article:section" content="Tutorials" />
+            <meta property="article:tag" content="Home Server 2012" />
+            <meta property="article:tag" content="Debian Stretch" />
+            <meta property="article:author" content="Didier BERNAUDEAU" />
 
 
     <!-- Bootstrap -->
@@ -33,8 +39,8 @@
 
 
 
-        <link href="http://didier.bernaudeau.net/feeds/talk.atom.xml" type="application/atom+xml" rel="alternate"
-              title="My personal blog note Talk ATOM Feed"/>
+        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Tutorials ATOM Feed"/>
 
     <link href="http://didier.bernaudeau.net/theme/css/colorbox.css" rel="stylesheet">
 
@@ -72,17 +78,28 @@ My personal blog note            </a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-            <article>                
-              <h2><a href="http://didier.bernaudeau.net/AgileSecurity.html">Agile Security</a></h2>
-                <div class="well well-sm">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://didier.bernaudeau.net/HowTo_install_NFS.html"
+                       rel="bookmark"
+                       title="Permalink to How to install NFS">
+                        How to install NFS
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2018-01-09T14:00:00+01:00"> mar. 09 janvier 2018</time>
+        <i class="fa fa-calendar"></i><time datetime="2017-11-30T09:37:00+01:00"> jeu. 30 novembre 2017</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2018-01-09T14:00:00+01:00"> mar. 09 janvier 2018</time>
+                <i class="fa fa-calendar"></i><time datetime="2018-01-27T17:00:00+01:00"> sam. 27 janvier 2018</time>
             </span>
 
 
@@ -90,230 +107,161 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/development.html">Development</a>
+	<a href="http://didier.bernaudeau.net/tag/home-server-2012.html">Home Server 2012</a>
         /
-	<a href="http://didier.bernaudeau.net/tag/agile.html">Agile</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/scrum.html">Scrum</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/devops.html">DevOps</a>
+	<a href="http://didier.bernaudeau.net/tag/debian-stretch.html">Debian Stretch</a>
     
-</footer><!-- /.post-info -->                </div>
-              <div class="summary"><p>This presentation that I made at <a href="https://www.ossir.org">OSSIR</a> describes how to become an Agile application security Officer.</p>
-<p>View online on <a href="https://0xdbe.github.io/AgileSecurity_20180109/">GitHub</a></p>
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>NFS (Network file System) allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally. This post describes how to install NFS on Debian 9 (Stretch).</p>
 
-                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/AgileSecurity.html">more ...</a>
-              </div>
-            </article>
-            <hr/>
-            <article>                
-              <h2><a href="http://didier.bernaudeau.net/DevOpsStory.html">DevOps Story</a></h2>
-                <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-12-21T13:00:00+01:00"> jeu. 21 décembre 2017</time>
-    </span>
-            <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-12-21T13:00:00+01:00"> jeu. 21 décembre 2017</time>
-            </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/agile.html">Agile</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/devops.html">DevOps</a>
-    
-</footer><!-- /.post-info -->                </div>
-              <div class="summary"><p>This presentation is an introduction to DevOps that I made for "Ecole 42". This is a story that describes the transition from Waterfall to DevOps in the "Cash Register Unlimited Company". In this show, the students take part into this story to select the right options and so deploy DevOps with success.</p>
-<p>View online on <a href="https://0xdbe.github.io/DevOpsStory_20171221/">GitHub</a></p>
-
-                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/DevOpsStory.html">more ...</a>
-              </div>
-            </article>
-            <hr/>
-            <article>                
-              <h2><a href="http://didier.bernaudeau.net/ModernPresentationRevealJS.html">Modern Presentation with RevealJS</a></h2>
-                <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-05-23T13:00:00+02:00"> mar. 23 mai 2017</time>
-    </span>
-            <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-05-23T13:00:00+02:00"> mar. 23 mai 2017</time>
-            </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/development.html">Development</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/javascript.html">JavaScript</a>
-    
-</footer><!-- /.post-info -->                </div>
-              <div class="summary"><p>RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. So, this talk is a short overview (10mn) to explain how does it work.</p>
-<p>View online on <a href="https://0xdbe.github.io/ModernPresentationRevealJS_20170523">GitHub</a></p>
-
-                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/ModernPresentationRevealJS.html">more ...</a>
-              </div>
-            </article>
-            <hr/>
-            <article>                
-              <h2><a href="http://didier.bernaudeau.net/TLS_Cipher_Suites.html">TLS Cipher Suites</a></h2>
-                <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-03-22T13:00:00+01:00"> mer. 22 mars 2017</time>
-    </span>
-            <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-03-22T13:00:00+01:00"> mer. 22 mars 2017</time>
-            </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/tls.html">TLS</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/network.html">Network</a>
-    
-</footer><!-- /.post-info -->                </div>
-              <div class="summary"><p>TLS is a security measure greatly recommended and widely used. However, this security measure is often innefficient due to bad configuration. It is important to select the right cipher suites. So, this talk is a short overview (10mn) to explain what is cipher suites.</p>
-<p>View online on <a href="http://0xdbe.github.io/TlsCipherSuites_20170322">GitHub</a></p>
-
-                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/TLS_Cipher_Suites.html">more ...</a>
-              </div>
-            </article>
-            <hr/>
-            <article>                
-              <h2><a href="http://didier.bernaudeau.net/Container_Overview.html">Container Overview</a></h2>
-                <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2016-12-08T13:00:00+01:00"> jeu. 08 décembre 2016</time>
-    </span>
-            <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2016-12-18T13:00:00+01:00"> dim. 18 décembre 2016</time>
-            </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/container.html">Container</a>
-    
-</footer><!-- /.post-info -->                </div>
-              <div class="summary"><p>Container is a righ way to run application in a sandbox and this technology becomes an alternative to virtualization. Container is already used by many companies such as Google, Netflix, Amazon, ... This talk is a short overview (10mn) to present the base of this technology.</p>
-<p>View online on <a href="http://0xdbe.github.io/ContainerOverview_20161208">GitHub</a></p>
-
-                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/Container_Overview.html">more ...</a>
-              </div>
-            </article>
-            <hr/>
-            <article>                
-              <h2><a href="http://didier.bernaudeau.net/2015-12-19_Bitcoin.html">Bitcoin</a></h2>
-                <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-12-19T17:00:00+01:00"> sam. 19 décembre 2015</time>
-    </span>
-            <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-12-19T17:00:00+01:00"> sam. 19 décembre 2015</time>
-            </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/blockchain.html">Blockchain</a>
-    
-</footer><!-- /.post-info -->                </div>
-              <div class="summary"><p>Bitcoin is the main blockchain for crypto-currency. This long talk (2h) is a presentation for newbie to understand this technology with Bitcoin.</p>
-<p>Download slides : <a href="http://didier.bernaudeau.net/presentation/Bitcoin_2017-01-04.pdf">2017-01-04</a>, <a href="http://didier.bernaudeau.net/presentation/Bitcoin_2015-12-19.pdf">2015-12-19</a>.</p>
-
-                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/2015-12-19_Bitcoin.html">more ...</a>
-              </div>
-            </article>
-            <hr/>
-            <article>                
-              <h2><a href="http://didier.bernaudeau.net/Keytool.html">Keytool</a></h2>
-                <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-02-04T13:00:00+01:00"> mer. 04 février 2015</time>
-    </span>
-            <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-02-04T13:00:00+01:00"> mer. 04 février 2015</time>
-            </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/tls.html">TLS</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/java.html">Java</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/certificate.html">Certificate</a>
-    
-</footer><!-- /.post-info -->                </div>
-              <div class="summary"><p>Keytool is a command line tool provided by Oracle to create and manage Java keystore. This long talk (45min) presents the best practices to create a private and public key, create a Certificate Signing Request, ...</p>
-<p>Download slides <a href="http://didier.bernaudeau.net/presentation/Keytool_2015-02-04.pdf">here</a>.</p>
-
-                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/Keytool.html">more ...</a>
-              </div>
-            </article>
-            <hr/>
-            <article>                
-              <h2><a href="http://didier.bernaudeau.net/OpenSSL.html">OpenSSL</a></h2>
-                <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-02-03T13:00:00+01:00"> mar. 03 février 2015</time>
-    </span>
-            <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-02-03T13:00:00+01:00"> mar. 03 février 2015</time>
-            </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/certificate.html">Certificate</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/pki.html">PKI</a>
-    
-</footer><!-- /.post-info -->                </div>
-              <div class="summary"><p>OpenSSL is a command line tool to create and manage certificate. This long talk (45min) presents the best practices to create a certificate authority, a private and public key, a Certificate Signing Request, ... with OpenSSL.</p>
-<p>Download slides <a href="http://didier.bernaudeau.net/presentation/OpenSSL_2015-02-03.pdf">here</a>.</p>
-
-                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/OpenSSL.html">more ...</a>
-              </div>
-            </article>
-            <hr/>
+<h1>NFS server</h1>
+<h2>Private directory</h2>
+<p>In this case, a user (Bob) will be allowed to access remotely to his own directory (/data/perso/bob).</p>
+<ul>
+<li>Create user and group</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo adduser bob
+</pre></div>
+<ul>
+<li>Create directory</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo mkdir /data/perso
+<span class="gp">$</span> sudo mkdir /data/perso/bob
+</pre></div>
+<ul>
+<li>Set Posix rights</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo chown bob:bob /data/perso/bob
+<span class="gp">$</span> sudo chmod <span class="m">700</span> /data/perso/bob/
+</pre></div>
+<h2>Shared directory</h2>
+<p>In this case, a group of person will be allowed to access remotely to a shared directory (/data/common).</p>
+<ul>
+<li>Create groupe</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo groupadd -g <span class="m">2000</span> common
+<span class="gp">$</span> sudo usermod -a -G common bob
+</pre></div>
+<ul>
+<li>Create directory</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo mkdir /data/common
+</pre></div>
+<ul>
+<li>Set Posix rights</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo chown root:common /data/common
+<span class="gp">$</span> sudo chmod g+w /data/common/
+<span class="gp">$</span> sudo chmod -R o-rx /data/common
+<span class="gp">$</span> sudo find /data/common -type d -exec chmod g+s <span class="o">{}</span> <span class="se">\;</span>
+</pre></div>
+<p>The last command line set the "setGID" on each directory. Thus, all files and folders created under /data/common will have the same owning group “common” and will have SetGID set.</p>
+<ul>
+<li>Scheduling a task to set access right</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo crontab -e
+</pre></div>
+<div class="highlight"><pre><span></span>0 3 * * * chmod -R g+w /data/common/ &amp;&amp; chmod -R o-rx /data/common &amp;&amp; chown -R root:common /data/common
+</pre></div>
+<p>I have already tried with the following solutions without success :</p>
+<ul>
+<li>
+<p>Setting the default umask to "067"</p>
+</li>
+<li>
+<p>Using SetACL command line to define access rights. But, this works only locally with POSIX and it's not take into consideration by NFS.</p>
+</li>
+<li>
+<p>Using NFS4-ACL command line to define access rights. But, this doesn't work POSIX which will be an inconvenient if the users use an another protocol such as SSH.</p>
+</li>
+</ul>
+<p>So, the work around is to set access right every night.</p>
+<h2>NFS software</h2>
+<ul>
+<li>Install NFS</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y nfs-kernel-server
+</pre></div>
+<ul>
+<li>Check the status</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl status nfs-kernel-server
+<span class="gp">$</span> sudo systemctl <span class="nb">enable</span> nfs-kernel-server
+</pre></div>
+<ul>
+<li>Exporting directory</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/exports
+</pre></div>
+<div class="highlight"><pre><span></span>/data/perso             10.XXX.3.0/24(rw,sync,subtree_check)
+/data/common            10.XXX.3.0/24(rw,sync,subtree_check)
+</pre></div>
+<ul>
+<li>Shared directory</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo exportfs -a
+</pre></div>
+<h1>Client</h1>
+<h2>Mount by hand</h2>
+<div class="highlight"><pre><span></span><span class="gp">#</span> mount -t nfs cube.domain.net:/data/common /mnt/nfs/
+</pre></div>
+<h2>Mount automatically (with AutoFS)</h2>
+<ul>
+<li>Creating mount point</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> mkdir /mnt/cube.domain.net
+</pre></div>
+<ul>
+<li>Configure AutoFS</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/autofs/auto.master
+</pre></div>
+<div class="highlight"><pre><span></span>/mnt/nfs /etc/autofs/auto.nfs --ghost --timeout 30
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/autofs/auto.nfs
+</pre></div>
+<div class="highlight"><pre><span></span>perso       -fstype=nfs4,rw,async,actimeo=120,subtree_check,intr,rsize=32768,wsize=32768     cube.domain.net:/data/perso
+common      -fstype=nfs4,rw,async,actimeo=120,subtree_check,intr,rsize=32768,wsize=32768     cube.domain.net:/data/common
+</pre></div>
+<ul>
+<li>Start AutoFS</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> systemctl start autofs
+</pre></div>
+<h1>NFS Tuning</h1>
+<h2>Hard vs Soft</h2>
+<ul>
+<li>
+<p>Hard: If you have mounted the NFS filesystem using hard mount, it will repeatedly retry to contact the server. Once the server is back online, the program will continue to execute undisturbed from the state where it was during server crash. We can use the mount option “intr” which allows NFS requests to be interrupted if the server goes down or cannot be reached. Hence the recommended settings are hard and intr options.</p>
+</li>
+<li>
+<p>Soft: When a program or application requests a file from the NFS filesystem, NFS client daemons will try to retrieve the data from the NFS server. But, if it doesn’t get any response from the NFS server (due to any crash or failure of NFS server), the NFS client will report an error to the process on the client machine requesting the file access. The advantage of this mechanism is “fast responsiveness” as it doesn’t wait for the NFS server to respond. But the main disadvantage of this method is data corruption or loss of data. So this is not a recommended option to use.</p>
+</li>
+</ul>
+<h2>Sync vs async</h2>
+<ul>
+<li>
+<p>Sync: this option means that the server only confirms write operations after they are actually written to the disk.</p>
+</li>
+<li>
+<p>Async: this option means that the server immediately acknowledges the write-operation to the client when it is processed but not yet written to the disk. This is a little bit more unreliable (for instance: in case of a power failure).</p>
+</li>
+</ul>
+<h2>Intr vs Nointr</h2>
+<p>Selects whether to allow signals to interrupt file operations on this mount point. If neither option is specified (or if nointr is specified), signals do not interrupt NFS file operations. If intr is specified, system calls return EINTR if an in-progress NFS operation is interrupted by a signal.</p>
+<h2>Subtree Checking</h2>
+<p>This option enforces additional checks on the server to verify that the requested file is contained within the exported hierarchy.</p>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://didier.bernaudeau.net/Home_Server_2012.html">Home Server 2012</a></li>
+    </ul>
+</section>
+        </article>
+    </section>
 
         </div>
         <div class="col-sm-3" id="sidebar">

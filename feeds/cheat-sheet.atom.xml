@@ -25,14 +25,12 @@
 &lt;li&gt;Create a link&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ln -s FileName LinkName
-&lt;span class="go"&gt;```console&lt;/span&gt;
-
-&lt;span class="gp"&gt;#&lt;/span&gt; file compression
-
-&lt;span class="go"&gt;* Compress with Gunzip&lt;/span&gt;
-
-&lt;span class="go"&gt;```console&lt;/span&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; tar -czvf file.tar.gz /home/directory
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;file compression&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Compress with Gunzip&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; tar -czvf file.tar.gz /home/directory
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Systemd&lt;/h1&gt;
 &lt;ul&gt;

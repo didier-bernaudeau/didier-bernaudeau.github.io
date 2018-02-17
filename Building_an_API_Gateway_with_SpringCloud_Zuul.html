@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Java - My personal blog note</title>
+    <title>Building an API Gateway with Spring Cloud - Part 3 (Zuul) - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,16 +9,23 @@
 
 
 
+<link rel="canonical" href="http://didier.bernaudeau.net/Building_an_API_Gateway_with_SpringCloud_Zuul.html">
 
-    <meta name="author" content="D. Bernaudeau" />
-    <meta name="keywords" content="Java" />
+        <meta name="author" content="Didier BERNAUDEAU" />
+        <meta name="keywords" content="Spring,Spring Cloud,Java" />
+        <meta name="description" content="This post walks you through installing an embedded Zuul which is part of Spring Cloud developed by netflix OSS (Open Source Software). Zuul will use Eureka server in order to know how and where to route incoming requests and Ribbon to forward requests to the microservice. Ribbon is a HTTP client which allows client side load balancing." />
 
-    <!-- Open Graph tags -->
         <meta property="og:site_name" content="My personal blog note" />
-        <meta property="og:type" content="website"/>
-        <meta property="og:title" content="My personal blog note"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net"/>
-        <meta property="og:description" content="My personal blog note"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Building an API Gateway with Spring Cloud - Part 3 (Zuul)"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/Building_an_API_Gateway_with_SpringCloud_Zuul.html"/>
+        <meta property="og:description" content="This post walks you through installing an embedded Zuul which is part of Spring Cloud developed by netflix OSS (Open Source Software). Zuul will use Eureka server in order to know how and where to route incoming requests and Ribbon to forward requests to the microservice. Ribbon is a HTTP client which allows client side load balancing."/>
+        <meta property="article:published_time" content="2018-02-02" />
+            <meta property="article:section" content="Tutorials" />
+            <meta property="article:tag" content="Spring" />
+            <meta property="article:tag" content="Spring Cloud" />
+            <meta property="article:tag" content="Java" />
+            <meta property="article:author" content="Didier BERNAUDEAU" />
 
 
     <!-- Bootstrap -->
@@ -33,6 +40,8 @@
 
 
 
+        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Tutorials ATOM Feed"/>
 
     <link href="http://didier.bernaudeau.net/theme/css/colorbox.css" rel="stylesheet">
 
@@ -70,9 +79,20 @@ My personal blog note            </a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-            <article>                
-              <h2><a href="http://didier.bernaudeau.net/Building_an_API_Gateway_with_SpringCloud_Zuul.html">Building an API Gateway with Spring Cloud - Part 3 (Zuul)</a></h2>
-                <div class="well well-sm">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://didier.bernaudeau.net/Building_an_API_Gateway_with_SpringCloud_Zuul.html"
+                       rel="bookmark"
+                       title="Permalink to Building an API Gateway with Spring Cloud - Part 3 (Zuul)">
+                        Building an API Gateway with Spring Cloud - Part 3 (Zuul)
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
@@ -94,166 +114,157 @@ My personal blog note            </a>
         /
 	<a href="http://didier.bernaudeau.net/tag/java.html">Java</a>
     
-</footer><!-- /.post-info -->                </div>
-              <div class="summary"><p>This post walks you through installing an embedded Zuul which is part of Spring Cloud developed by netflix OSS (Open Source Software). Zuul will use Eureka server in order to know how and where to route incoming requests and Ribbon to forward requests to the microservice. Ribbon is a HTTP client which allows client side load balancing.</p>
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>This post walks you through installing an embedded Zuul which is part of Spring Cloud developed by netflix OSS (Open Source Software). Zuul will use Eureka server in order to know how and where to route incoming requests and Ribbon to forward requests to the microservice. Ribbon is a HTTP client which allows client side load balancing.</p>
 
-                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/Building_an_API_Gateway_with_SpringCloud_Zuul.html">more ...</a>
-              </div>
-            </article>
-            <hr/>
-            <article>                
-              <h2><a href="http://didier.bernaudeau.net/WAS.html">Websphere Application Server</a></h2>
-                <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-10-06T20:44:00+02:00"> ven. 06 octobre 2017</time>
-    </span>
-            <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-10-06T20:44:00+02:00"> ven. 06 octobre 2017</time>
-            </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/java.html">Java</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/application-server.html">Application Server</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/protocol.html">Protocol</a>
-    
-</footer><!-- /.post-info -->                </div>
-              <div class="summary"><p>Websphere Application Server is a middleware from IBM that hosts Java based web applications.</p>
-
-                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/WAS.html">more ...</a>
-              </div>
-            </article>
-            <hr/>
-            <article>                
-              <h2><a href="http://didier.bernaudeau.net/Spring_Tool_Suite.html">Spring Tool Suite</a></h2>
-                <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-03-26T12:12:00+02:00"> dim. 26 mars 2017</time>
-    </span>
-            <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-03-26T12:37:00+02:00"> dim. 26 mars 2017</time>
-            </span>
+<ul>
+<li>Create the directory structure</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> mkdir -p zuul/src/main/java/zuul
+<span class="gp">$</span> mkdir -p zuul/src/main/resources
+<span class="gp">$</span> <span class="nb">cd</span> zuul
+</pre></div>
+<ul>
+<li>Create a Gradle build file</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> nano build.gradle
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">buildscript</span> <span class="o">{</span>
+  <span class="n">repositories</span> <span class="o">{</span>
+    <span class="n">mavenCentral</span><span class="o">()</span>
+  <span class="o">}</span>
+  <span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">classpath</span><span class="o">(</span><span class="s2">"org.springframework.boot:spring-boot-gradle-plugin:1.5.10.RELEASE"</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span>
 
 
+<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'java'</span>
+<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'org.springframework.boot'</span>
+<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'io.spring.dependency-management'</span>
 
+<span class="n">jar</span> <span class="o">{</span>
+    <span class="n">baseName</span> <span class="o">=</span> <span class="s1">'gateway-zuul'</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s1">'1.0'</span>
+<span class="o">}</span>
+<span class="n">sourceCompatibility</span> <span class="o">=</span> <span class="mf">1.8</span>
+<span class="n">targetCompatibility</span> <span class="o">=</span> <span class="mf">1.8</span>
 
+<span class="n">repositories</span> <span class="o">{</span>
+    <span class="n">mavenCentral</span><span class="o">()</span>
+<span class="o">}</span>
 
-<span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/java.html">Java</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/spring.html">Spring</a>
-    
-</footer><!-- /.post-info -->                </div>
-              <div class="summary"><p>STS (Spring Tool Suite) is an IDE (Integrated Development Environment) provided by Pivotal. STS is an Eclipse-based that is customized to develop application based on Spring framework. This tutorial describes how to install Spring Tool Suite and additional framework provided by Pivotal.</p>
+<span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">compile</span><span class="o">(</span><span class="s1">'org.springframework.cloud:spring-cloud-starter-eureka'</span><span class="o">)</span>
+    <span class="n">compile</span><span class="o">(</span><span class="s1">'org.springframework.cloud:spring-cloud-starter-zuul'</span><span class="o">)</span>
+    <span class="n">compile</span><span class="o">(</span><span class="s1">'org.springframework.boot:spring-boot-starter-web'</span><span class="o">)</span>
+<span class="o">}</span>
 
-                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/Spring_Tool_Suite.html">more ...</a>
-              </div>
-            </article>
-            <hr/>
-            <article>                
-              <h2><a href="http://didier.bernaudeau.net/Spring_Roo.html">Spring Roo</a></h2>
-                <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-01-24T17:55:00+01:00"> mar. 24 janvier 2017</time>
-    </span>
-            <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-01-25T16:23:00+01:00"> mer. 25 janvier 2017</time>
-            </span>
+<span class="n">dependencyManagement</span> <span class="o">{</span>
+  <span class="n">imports</span> <span class="o">{</span>
+    <span class="n">mavenBom</span> <span class="s1">'org.springframework.cloud:spring-cloud-dependencies:Edgware.RELEASE'</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<ul>
+<li>Create application</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> nano src/main/java/zuul/GatewayZuulApplication.java
+</pre></div>
+<div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">zuul</span><span class="o">;</span>
 
+<span class="kn">import</span> <span class="nn">org.springframework.boot.SpringApplication</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.autoconfigure.SpringBootApplication</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.cloud.netflix.zuul.EnableZuulProxy</span><span class="o">;</span>
 
+<span class="nd">@EnableZuulProxy</span>
+<span class="nd">@SpringBootApplication</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GatewayZuulApplication</span> <span class="o">{</span>
 
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">GatewayZuulApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+  <span class="o">}</span>
 
+<span class="o">}</span>
+</pre></div>
+<ul>
+<li>Configure Zuul</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> nano src/main/resources/application.yml
+</pre></div>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">spring</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">application</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">zuul</span>
 
-<span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/framework.html">Framework</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/java.html">Java</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/spring.html">Spring</a>
-    
-</footer><!-- /.post-info -->                </div>
-              <div class="summary"><p>Spring ROO (Real Object Oriented) is an another framework provided by Pivotal for AOP (Aspect-Oriented Programming). This framework is based on AspectJ and suitable for DDD (Domain Driven Design). This tutorial describes how to create a first application with Spring ROO.</p>
+<span class="l l-Scalar l-Scalar-Plain">ribbon</span><span class="p p-Indicator">:</span> 
+  <span class="l l-Scalar l-Scalar-Plain">ConnectTimeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">30000</span>
+  <span class="l l-Scalar l-Scalar-Plain">ReadTimeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">990000</span>
+  <span class="l l-Scalar l-Scalar-Plain">maxAutoRetries</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+  <span class="l l-Scalar l-Scalar-Plain">MaxAutoRetriesNextServer</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+  <span class="l l-Scalar l-Scalar-Plain">eureka</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 
-                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/Spring_Roo.html">more ...</a>
-              </div>
-            </article>
-            <hr/>
-            <article>                
-              <h2><a href="http://didier.bernaudeau.net/How_to_install_Java_SE_on_debian.html">How to install Java SE on Debian</a></h2>
-                <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-01-12T15:42:00+01:00"> jeu. 12 janvier 2017</time>
-    </span>
-            <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-01-13T17:47:00+01:00"> ven. 13 janvier 2017</time>
-            </span>
+<span class="l l-Scalar l-Scalar-Plain">server</span><span class="p p-Indicator">:</span> 
+  <span class="l l-Scalar l-Scalar-Plain">port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
 
+<span class="l l-Scalar l-Scalar-Plain">zuul</span><span class="p p-Indicator">:</span> 
+  <span class="l l-Scalar l-Scalar-Plain">ignoredServices</span><span class="p p-Indicator">:</span> <span class="s">'*'</span>
+  <span class="l l-Scalar l-Scalar-Plain">routes</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">api</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/api/**</span>
+      <span class="l l-Scalar l-Scalar-Plain">serviceId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">api</span>
+      <span class="l l-Scalar l-Scalar-Plain">sensitiveHeaders</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Authorization</span>
 
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/debian.html">Debian</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/java.html">Java</a>
-    
-</footer><!-- /.post-info -->                </div>
-              <div class="summary"><p>Lately, install Java SE on Linux has become a nightmare because most of Linux distributions, such as Debian, have chosen to remove this package from official repositories due to license reasons.
-However, Java SE is needed for some applications which are not compatible with Open JRE / JDK. So, this post describes step by step how to install Java SE (JRE and JDK) provided by Oracle on Debian.</p>
-
-                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/How_to_install_Java_SE_on_debian.html">more ...</a>
-              </div>
-            </article>
-            <hr/>
-            <article>                
-              <h2><a href="http://didier.bernaudeau.net/Keytool.html">Keytool</a></h2>
-                <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-02-04T13:00:00+01:00"> mer. 04 février 2015</time>
-    </span>
-            <span class="label label-default">Modified</span>
-            <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-02-04T13:00:00+01:00"> mer. 04 février 2015</time>
-            </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/tls.html">TLS</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/java.html">Java</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/certificate.html">Certificate</a>
-    
-</footer><!-- /.post-info -->                </div>
-              <div class="summary"><p>Keytool is a command line tool provided by Oracle to create and manage Java keystore. This long talk (45min) presents the best practices to create a private and public key, create a Certificate Signing Request, ...</p>
-<p>Download slides <a href="http://didier.bernaudeau.net/presentation/Keytool_2015-02-04.pdf">here</a>.</p>
-
-                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/Keytool.html">more ...</a>
-              </div>
-            </article>
-            <hr/>
+<span class="l l-Scalar l-Scalar-Plain">eureka</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">client</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">serviceUrl</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">defaultZone</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http://localhost:8761/eureka/</span>
+</pre></div>
+<ul>
+<li>Build</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> gradle build
+</pre></div>
+<ul>
+<li>
+<p>Start Eureka and Microservice instances</p>
+</li>
+<li>
+<p>Run</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> java -jar build/libs/gateway-zuul-1.0.jar
+</pre></div>
+<ul>
+<li>List routes</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> curl http://localhost:8080/routes
+</pre></div>
+<ul>
+<li>Test API access</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">curl http://localhost:8080/api/greeting</span>
+</pre></div>
+<div class="highlight"><pre><span></span>{"id":8,"content":"Hello, World!"}
+</pre></div>
+<h1>What still needs to be done</h1>
+<ul>
+<li>Secure access to "routes" path</li>
+<li>Add Hystrix dashboard</li>
+<li>Add User Account and Authentication service</li>
+</ul>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://didier.bernaudeau.net/WAS.html">Websphere Application Server</a></li>
+        <li><a href="http://didier.bernaudeau.net/Keytool.html">Keytool</a></li>
+    </ul>
+</section>
+        </article>
+    </section>
 
         </div>
         <div class="col-sm-3" id="sidebar">

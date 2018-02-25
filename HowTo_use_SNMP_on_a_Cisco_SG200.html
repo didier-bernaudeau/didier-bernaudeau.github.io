@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>How to use SNMP on a Cisco SG200 - My personal blog note</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://didier.bernaudeau.net/HowTo_use_SNMP_on_a_Cisco_SG200.html">
+
+        <meta name="author" content="Didier BERNAUDEAU" />
+        <meta name="keywords" content="Cisco,Network,SNMP" />
+        <meta name="description" content="SNMP is a protocol largely used to monitor network hardware, and I would have used it to monitor my CISCO SG200 but the implementation is very limited. For instance, this switch doesn&#39;t have temperature sensor. This post walks you through configuring the swith then installing SNMP tools on your computer." />
+
+        <meta property="og:site_name" content="My personal blog note" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="How to use SNMP on a Cisco SG200"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/HowTo_use_SNMP_on_a_Cisco_SG200.html"/>
+        <meta property="og:description" content="SNMP is a protocol largely used to monitor network hardware, and I would have used it to monitor my CISCO SG200 but the implementation is very limited. For instance, this switch doesn&#39;t have temperature sensor. This post walks you through configuring the swith then installing SNMP tools on your computer."/>
+        <meta property="article:published_time" content="2018-02-20" />
+            <meta property="article:section" content="Tutorials" />
+            <meta property="article:tag" content="Cisco" />
+            <meta property="article:tag" content="Network" />
+            <meta property="article:tag" content="SNMP" />
+            <meta property="article:author" content="Didier BERNAUDEAU" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+    <link href="http://didier.bernaudeau.net/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://didier.bernaudeau.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/style.css" type="text/css"/>
+
+        <link href="http://didier.bernaudeau.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note ATOM Feed"/>
+
+
+
+        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Tutorials ATOM Feed"/>
+
+    <link href="http://didier.bernaudeau.net/theme/css/colorbox.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://didier.bernaudeau.net/" class="navbar-brand">
+My personal blog note            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/articles.html">Articles</a></li>
+                    <li><a href="/category/tutorials.html">Tutorials</a></li>
+                    <li><a href="/category/talk.html">Talk</a></li>
+                    <li><a href="/category/cheat-sheet.html">Cheat sheet</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="http://didier.bernaudeau.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://didier.bernaudeau.net/HowTo_use_SNMP_on_a_Cisco_SG200.html"
+                       rel="bookmark"
+                       title="Permalink to How to use SNMP on a Cisco SG200">
+                        How to use SNMP on a Cisco SG200
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2018-02-20T17:07:00+01:00"> mar. 20 février 2018</time>
+    </span>
+            <span class="label label-default">Modified</span>
+            <span class="modified">
+                <i class="fa fa-calendar"></i><time datetime="2018-02-25T11:29:00+01:00"> dim. 25 février 2018</time>
+            </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://didier.bernaudeau.net/tag/cisco.html">Cisco</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/network.html">Network</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/snmp.html">SNMP</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>SNMP is a protocol largely used to monitor network hardware, and I would have used it to monitor my CISCO SG200 but the implementation is very limited. For instance, this switch doesn't have temperature sensor. This post walks you through configuring the swith then installing SNMP tools on your computer.</p>
+
+<h1>Switch configuration</h1>
+<p>The web console is the only way to manage the SG200 because it doesn't support any CLI.</p>
+<ul>
+<li>Create an SNMP community: SNMP &gt; Communities</li>
+</ul>
+<p align="center"><img class="img-responsive" src="images/2018-02-20_HowTo_use_SNMP_on_a_Cisco_SG200.png" width="60%"/></p>
+<ul>
+<li>
+<p>Allow SNMP service : Security &gt; TCP/UDP Services</p>
+</li>
+<li>
+<p>Save the new configuration</p>
+</li>
+</ul>
+<h1>Install SNMP tools</h1>
+<ul>
+<li>Install Net SNMP</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> emerge -pv net-analyzer/net-snmp
+</pre></div>
+<ul>
+<li>Create directory for MIB files</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> mkdir -p ~/.snmp/mibs
+<span class="gp">$</span> <span class="nb">cd</span> ~/.snmp/mibs
+</pre></div>
+<ul>
+<li>Download MIB</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> wget http://www.circitor.fr/Mibs/Mib/C/CISCOSB-MIB.mib
+<span class="gp">$</span> wget http://www.circitor.fr/Mibs/Mib/C/CISCOSB-HWENVIROMENT.mib
+<span class="gp">$</span> wget http://www.circitor.fr/Mibs/Mib/C/CISCOSB-rndMng.mib
+</pre></div>
+<h1>SNMP request</h1>
+<ul>
+<li>Parse all OID</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> snmpwalk -Os -v2c -c private <span class="m">10</span>.93.3.25 .1.3.6.1.4.1.9.6.1
+</pre></div>
+<h2>Processor</h2>
+<ul>
+<li>CPU utilization during last second</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> snmpwalk -m ~/.snmp/mibs/CISCOSB-rndMng.mib -Os -v2c -c private <span class="m">10</span>.93.3.25 .1.3.6.1.4.1.9.6.1.101.1.7
+</pre></div>
+<div class="highlight"><pre><span></span>rlCpuUtilDuringLastSecond.0 = INTEGER: 21
+</pre></div>
+<ul>
+<li>CPU utilization during last minute</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> snmpwalk -m ~/.snmp/mibs/CISCOSB-rndMng.mib -Os -v2c -c private <span class="m">10</span>.93.3.25 .1.3.6.1.4.1.9.6.1.101.1.8
+</pre></div>
+<div class="highlight"><pre><span></span>rlCpuUtilDuringLastMinute.0 = INTEGER: 1
+</pre></div>
+<ul>
+<li>CPU utilization during last 5 minutes</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> snmpwalk -m ~/.snmp/mibs/CISCOSB-rndMng.mib -Os -v2c -c private <span class="m">10</span>.93.3.25 .1.3.6.1.4.1.9.6.1.101.1.9
+</pre></div>
+<div class="highlight"><pre><span></span>rlCpuUtilDuringLast5Minutes.0 = INTEGER: 1
+</pre></div>
+<h2>Fan</h2>
+<div class="highlight"><pre><span></span><span class="gp">$</span> snmpwalk -m ~/.snmp/mibs/CISCOSB-HWENVIROMENT.mib -Os -v2c -c public <span class="m">10</span>.93.3.25 .1.3.6.1.4.1.9.6.1.101.83
+</pre></div>
+<div class="highlight"><pre><span></span>rlEnvMonFanStatusDescr.67109249 = STRING: fan1_unit1
+rlEnvMonFanStatusDescr.67109250 = STRING: fan2_unit1
+rlEnvMonFanStatusDescr.67109251 = STRING: fan3_unit1
+rlEnvMonFanStatusDescr.67109252 = STRING: fan4_unit1
+rlEnvMonFanState.67109249 = INTEGER: normal(1)
+rlEnvMonFanState.67109250 = INTEGER: notPresent(5)
+rlEnvMonFanState.67109251 = INTEGER: notPresent(5)
+rlEnvMonFanState.67109252 = INTEGER: notPresent(5)
+rlEnvFanDataStackUnit.1 = INTEGER: 1
+rlEnvFanDataTemp.1 = INTEGER: 0
+rlEnvFanDataSpeed.1 = INTEGER: 0
+rlEnvFanDataOperLevel.1 = INTEGER: 0
+rlEnvFanDataAdminLevel.1 = INTEGER: 0
+rlEnvFanDataDirection.1 = INTEGER: unKnown(1)
+</pre></div>
+<p>As you can see, the temperature data (FanDataTemp) is not relevant. Another OID regarding temperature is ".1.3.6.1.4.1.9.9.13.1.3.1.3" from CISCOSB-HWENVIROMENT.mib but it's not supported by Switch SG200.</p>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://didier.bernaudeau.net/TLS_Understanding_the_cipher_suites.html">TLS: Understanding the cipher suites</a></li>
+        <li><a href="http://didier.bernaudeau.net/TLS_Hardened_configuration.html">TLS: Hardened configuration</a></li>
+        <li><a href="http://didier.bernaudeau.net/TLS_Audit_tools.html">TLS: Audit tools</a></li>
+        <li><a href="http://didier.bernaudeau.net/EnOcean.html">EnOcean</a></li>
+        <li><a href="http://didier.bernaudeau.net/TLS_Cipher_Suites.html">TLS Cipher Suites</a></li>
+    </ul>
+</section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="60%" class="img-thumbnail" src="/images/avatar.png"/>
+        </p>
+    <p>
+        <strong>About D. Bernaudeau</strong><br/>
+        Didier is an information security consultant graduated with a Master's in Information Security in 2007. He has been focusing on securing SDLC and writing secure coding policies for the past ten years. He is curious, inquisitive, lifelong learner and self-starter. So, this blog is a way to document some of my experimentation.
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+
+
+
+            <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/agile.html">
+                            Agile
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/api.html">
+                            API
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/application-server.html">
+                            Application Server
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/apu.html">
+                            APU
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/archlinux.html">
+                            ArchLinux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/blockchain.html">
+                            Blockchain
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
+                            Certificate
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/cisco.html">
+                            Cisco
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/cloud.html">
+                            Cloud
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/container.html">
+                            Container
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
+                            Cryptography
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/cups.html">
+                            cups
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/database.html">
+                            Database
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/debian.html">
+                            Debian
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/debian-stretch.html">
+                            Debian Stretch
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/dedibox.html">
+                            Dedibox
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/development.html">
+                            Development
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/development-tool.html">
+                            Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/devops.html">
+                            DevOps
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/dictionary.html">
+                            Dictionary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/docker.html">
+                            Docker
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/electronic.html">
+                            Electronic
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/framework.html">
+                            Framework
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
+                            Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/git.html">
+                            Git
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/go.html">
+                            Go
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
+                            Hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/home-automation.html">
+                            Home automation
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/home-server-2012.html">
+                            Home Server 2012
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/html.html">
+                            HTML
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/java.html">
+                            Java
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/linux.html">
+                            Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/network.html">
+                            Network
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/nginx.html">
+                            Nginx
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/nodejs.html">
+                            NodeJs
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/php.html">
+                            PHP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/pki.html">
+                            PKI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/protocol.html">
+                            Protocol
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/python.html">
+                            Python
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/raspberry-pi.html">
+                            Raspberry Pi
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/raspbian.html">
+                            Raspbian
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/redhat.html">
+                            RedHat
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/rest.html">
+                            REST
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scm.html">
+                            SCM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scrum.html">
+                            Scrum
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/snmp.html">
+                            SNMP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/software.html">
+                            Software
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/spring.html">
+                            Spring
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/spring-boot.html">
+                            Spring Boot
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/spring-cloud.html">
+                            Spring Cloud
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/tls.html">
+                            TLS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
+                            Virtualization
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/vpn.html">
+                            VPN
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/website.html">
+                            WebSite
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/windows.html">
+                            Windows
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/wireless.html">
+                            Wireless
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2018 D. Bernaudeau
+            &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://didier.bernaudeau.net/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://didier.bernaudeau.net/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://didier.bernaudeau.net/theme/js/respond.min.js"></script>
+
+<!-- ColorBox -->
+<script src="http://didier.bernaudeau.net/theme/js/jquery.colorbox-min.js"></script>
+<script src="http://didier.bernaudeau.net/theme/js/load-colorbox.js"></script>
+
+
+
+</body>
+</html>

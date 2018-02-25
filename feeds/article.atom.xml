@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Article</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/article.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-01-22T09:39:00+01:00</updated><entry><title>Cloud Storage</title><link href="http://didier.bernaudeau.net/CloudStorage.html" rel="alternate"></link><published>2018-01-22T09:20:00+01:00</published><updated>2018-01-22T09:39:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-01-22:/CloudStorage.html</id><summary type="html">&lt;p&gt;Cloud Storage is a model of data storage more flexible than traditional solution like NAS and SAN. Each cloud provider offers a proprietary solution of Cloud Storage. However, There are some self-hosted object storage solutions...&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Article</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/article.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-02-19T10:51:00+01:00</updated><entry><title>Cloud Storage</title><link href="http://didier.bernaudeau.net/CloudStorage.html" rel="alternate"></link><published>2018-01-22T09:20:00+01:00</published><updated>2018-01-22T09:39:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-01-22:/CloudStorage.html</id><summary type="html">&lt;p&gt;Cloud Storage is a model of data storage more flexible than traditional solution like NAS and SAN. Each cloud provider offers a proprietary solution of Cloud Storage. However, There are some self-hosted object storage solutions...&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Cloud Storage is a model of data storage more flexible than traditional solution like NAS and SAN. Each cloud provider offers a proprietary solution of Cloud Storage. However, There are some self-hosted object storage solutions...&lt;/p&gt;
 
 &lt;h1&gt;Object Storage&lt;/h1&gt;
@@ -35,4 +35,25 @@
 &lt;li&gt;Flow #3: second locate request to the ORB listener port&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;For more information :
-&lt;a href="https://www.ibm.com/developerworks/websphere/techjournal/0807_pape/0807_pape.html"&gt;Understanding how EJB calls operate in WebSphere Application Server V6.1&lt;/a&gt;&lt;/p&gt;</content><category term="Java"></category><category term="Application Server"></category><category term="Protocol"></category></entry></feed>
+&lt;a href="https://www.ibm.com/developerworks/websphere/techjournal/0807_pape/0807_pape.html"&gt;Understanding how EJB calls operate in WebSphere Application Server V6.1&lt;/a&gt;&lt;/p&gt;</content><category term="Java"></category><category term="Application Server"></category><category term="Protocol"></category></entry><entry><title>Information security dictionary</title><link href="http://didier.bernaudeau.net/Information_Security_Dictionary.html" rel="alternate"></link><published>2015-11-16T21:04:00+01:00</published><updated>2018-02-19T10:51:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2015-11-16:/Information_Security_Dictionary.html</id><summary type="html">&lt;p&gt;This post is a simple dictionary for information security vocabulary and acronym.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post is a simple dictionary for information security vocabulary and acronym.&lt;/p&gt;
+
+&lt;h1&gt;Authentication&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Password complexity requirements&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Attack&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Pastjacking: using malicious javascript to insert sneaky text into pasted terminal commands&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;PKI and Certificate&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;CRL (Certificate Revocation List)&lt;/li&gt;
+&lt;li&gt;CSR (Certificate Signing Request)&lt;/li&gt;
+&lt;li&gt;CTL (Certificate Trusted List)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Malware&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;CC or C2 (Command &amp;amp; Control)&lt;/li&gt;
+&lt;li&gt;PUA (Potentially Unwanted Application)&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Dictionary"></category></entry></feed>

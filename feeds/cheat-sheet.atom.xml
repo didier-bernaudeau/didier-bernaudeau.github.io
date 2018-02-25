@@ -42,10 +42,38 @@
 &lt;li&gt;List unit file&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl list-unit-files
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category></entry><entry><title>Docker Cheat Sheet</title><link href="http://didier.bernaudeau.net/Docker_cheat_sheet.html" rel="alternate"></link><published>2017-04-12T21:29:00+02:00</published><updated>2017-04-12T21:29:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-04-12:/Docker_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a quick reference sheet in one page for Docker&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;This post is a quick reference sheet in one page for Docker&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category></entry><entry><title>Docker Cheat Sheet</title><link href="http://didier.bernaudeau.net/Docker_cheat_sheet.html" rel="alternate"></link><published>2017-04-12T21:29:00+02:00</published><updated>2017-04-12T21:29:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-04-12:/Docker_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a quick reference sheet in one page for Docker. This guide take into consideration the new command line interface.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post is a quick reference sheet in one page for Docker. This guide take into consideration the new command line interface.&lt;/p&gt;
 
+&lt;h1&gt;Images&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;List out all images installed locally&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker image ls
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Download the latest image from a registry (DockerHub by default)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker image pull ImageName
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Remove an image&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker image rm ImageName
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;/!\ You should remove the containers using this image before removing the image.&lt;/p&gt;
 &lt;h1&gt;Container&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;List out all containers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker container ls -a
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Remove a container (and erase volumes)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker container rm --volumes ContainerID
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Run a container&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Creates and start a container in one operation&lt;/li&gt;
 &lt;/ul&gt;
@@ -68,23 +96,6 @@ f91ce070d170        postgres:9.6        "docker-entrypoint.sh"   2 minutes ago  
 &lt;li&gt;Stop a running container&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker stop
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;Image&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Show all images&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker images
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;Registry &amp;amp; Repository&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Pull an image from registry to local machine.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker pull ImageName
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Push an image to the registry from local machine.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; docker push
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Network&lt;/h1&gt;
 &lt;ul&gt;

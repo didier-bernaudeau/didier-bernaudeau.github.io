@@ -13,13 +13,13 @@
 
         <meta name="author" content="Didier BERNAUDEAU" />
         <meta name="keywords" content="Container,Docker" />
-        <meta name="description" content="This post is a quick reference sheet in one page for Docker" />
+        <meta name="description" content="This post is a quick reference sheet in one page for Docker. This guide take into consideration the new command line interface." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Docker Cheat Sheet"/>
         <meta property="og:url" content="http://didier.bernaudeau.net/Docker_cheat_sheet.html"/>
-        <meta property="og:description" content="This post is a quick reference sheet in one page for Docker"/>
+        <meta property="og:description" content="This post is a quick reference sheet in one page for Docker. This guide take into consideration the new command line interface."/>
         <meta property="article:published_time" content="2017-04-12" />
             <meta property="article:section" content="Cheat Sheet" />
             <meta property="article:tag" content="Container" />
@@ -113,9 +113,37 @@ My personal blog note            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>This post is a quick reference sheet in one page for Docker</p>
+                <p>This post is a quick reference sheet in one page for Docker. This guide take into consideration the new command line interface.</p>
 
+<h1>Images</h1>
+<ul>
+<li>List out all images installed locally</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> docker image ls
+</pre></div>
+<ul>
+<li>Download the latest image from a registry (DockerHub by default)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> docker image pull ImageName
+</pre></div>
+<ul>
+<li>Remove an image</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> docker image rm ImageName
+</pre></div>
+<p>/!\ You should remove the containers using this image before removing the image.</p>
 <h1>Container</h1>
+<ul>
+<li>List out all containers</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> docker container ls -a
+</pre></div>
+<ul>
+<li>Remove a container (and erase volumes)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> docker container rm --volumes ContainerID
+</pre></div>
+<h1>Run a container</h1>
 <ul>
 <li>Creates and start a container in one operation</li>
 </ul>
@@ -138,23 +166,6 @@ f91ce070d170        postgres:9.6        "docker-entrypoint.sh"   2 minutes ago  
 <li>Stop a running container</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">#</span> docker stop
-</pre></div>
-<h1>Image</h1>
-<ul>
-<li>Show all images</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> docker images
-</pre></div>
-<h1>Registry &amp; Repository</h1>
-<ul>
-<li>Pull an image from registry to local machine.</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> docker pull ImageName
-</pre></div>
-<ul>
-<li>Push an image to the registry from local machine.</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> docker push
 </pre></div>
 <h1>Network</h1>
 <ul>
@@ -210,8 +221,8 @@ e6ba45aff418        bridge              bridge              local
     <h4>Related Posts:</h4>
     <ul>
         <li><a href="http://didier.bernaudeau.net/How_to_install_Docker_on_Gentoo.html">How to install Docker on Gentoo</a></li>
-        <li><a href="http://didier.bernaudeau.net/How_to_install_docker.html">How to install Docker</a></li>
         <li><a href="http://didier.bernaudeau.net/Container_Overview.html">Container Overview</a></li>
+        <li><a href="http://didier.bernaudeau.net/How_to_install_docker.html">How to install Docker</a></li>
     </ul>
 </section>
         </article>
@@ -226,7 +237,7 @@ e6ba45aff418        bridge              bridge              local
         </p>
     <p>
         <strong>About D. Bernaudeau</strong><br/>
-        I’m Didier Bernaudeau, an Information Systems Security Professional. I’m also a geek who likes to test all new technologies, frameworks, softwares, ... So, this site is a way to document some of my experimentations.
+        Didier is an information security consultant graduated with a Master's in Information Security in 2007. He has been focusing on securing SDLC and writing secure coding policies for the past ten years. He is curious, inquisitive, lifelong learner and self-starter. So, this blog is a way to document some of my experimentation.
     </p>
 </div>
 <section class="well well-sm">
@@ -251,7 +262,7 @@ e6ba45aff418        bridge              bridge              local
                             Application Server
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/apu.html">
                             APU
                         </a>
@@ -269,6 +280,11 @@ e6ba45aff418        bridge              bridge              local
                     <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/certificate.html">
                             Certificate
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/cisco.html">
+                            Cisco
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
@@ -324,6 +340,11 @@ e6ba45aff418        bridge              bridge              local
                     <li class="list-group-item tag-3">
                         <a href="http://didier.bernaudeau.net/tag/devops.html">
                             DevOps
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/dictionary.html">
+                            Dictionary
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -459,6 +480,11 @@ e6ba45aff418        bridge              bridge              local
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/scrum.html">
                             Scrum
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/snmp.html">
+                            SNMP
                         </a>
                     </li>
                     <li class="list-group-item tag-2">

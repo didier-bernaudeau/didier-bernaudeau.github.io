@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>How to install Debian on my Home Server - My personal blog note</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://didier.bernaudeau.net/2012-01-30_HowTo_install_Debian_on_Home_Server.html">
+
+        <meta name="author" content="Didier BERNAUDEAU" />
+        <meta name="keywords" content="Home Server,Debian Stretch" />
+        <meta name="description" content="This post describes how to install Debian Stretch 9.3 on my home server." />
+
+        <meta property="og:site_name" content="My personal blog note" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="How to install Debian on my Home Server"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/2012-01-30_HowTo_install_Debian_on_Home_Server.html"/>
+        <meta property="og:description" content="This post describes how to install Debian Stretch 9.3 on my home server."/>
+        <meta property="article:published_time" content="2012-01-31" />
+            <meta property="article:section" content="Tutorials" />
+            <meta property="article:tag" content="Home Server" />
+            <meta property="article:tag" content="Debian Stretch" />
+            <meta property="article:author" content="Didier BERNAUDEAU" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+    <link href="http://didier.bernaudeau.net/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://didier.bernaudeau.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/style.css" type="text/css"/>
+
+        <link href="http://didier.bernaudeau.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note ATOM Feed"/>
+
+
+
+        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Tutorials ATOM Feed"/>
+
+    <link href="http://didier.bernaudeau.net/theme/css/colorbox.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://didier.bernaudeau.net/" class="navbar-brand">
+My personal blog note            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/articles.html">Articles</a></li>
+                    <li><a href="/category/tutorials.html">Tutorials</a></li>
+                    <li><a href="/category/talk.html">Talk</a></li>
+                    <li><a href="/category/cheat-sheet.html">Cheat sheet</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="http://didier.bernaudeau.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://didier.bernaudeau.net/2012-01-30_HowTo_install_Debian_on_Home_Server.html"
+                       rel="bookmark"
+                       title="Permalink to How to install Debian on my Home Server">
+                        How to install Debian on my Home Server
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2012-01-31T12:24:00+01:00"> mar. 31 janvier 2012</time>
+    </span>
+            <span class="label label-default">Modified</span>
+            <span class="modified">
+                <i class="fa fa-calendar"></i><time datetime="2018-03-04T18:43:00+01:00"> dim. 04 mars 2018</time>
+            </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://didier.bernaudeau.net/tag/home-server.html">Home Server</a>
+        /
+	<a href="http://didier.bernaudeau.net/tag/debian-stretch.html">Debian Stretch</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>This post describes how to install Debian Stretch 9.3 on my <a href="http://didier.bernaudeau.net/Home_Server.html">home server</a>.</p>
+
+<h1>Create boot media</h1>
+<ul>
+<li>Getting debian</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> curl -0 https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-9.3.0-amd64-netinst.iso
+</pre></div>
+<ul>
+<li>Create USB boot media</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> dd <span class="k">if</span><span class="o">=</span>debian-9.3.0-amd64-netinst.iso <span class="nv">of</span><span class="o">=</span>/dev/sdb <span class="nv">bs</span><span class="o">=</span>4k
+<span class="gp">#</span> sync
+</pre></div>
+<p>/!\ This USB key will be a read only filesystem</p>
+<ul>
+<li>Getting network driver</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> curl -O http://ftp.nl.debian.org/debian/pool/non-free/f/firmware-nonfree/firmware-realtek_20161130-3_all.deb
+</pre></div>
+<ul>
+<li>Copy network driver on an another USB key</li>
+</ul>
+<h1>Debian installation</h1>
+<ul>
+<li>
+<p>Plug the both USB keys then power on the server</p>
+</li>
+<li>
+<p>Press "del" to enter in the UEFI bios and select "UEFI:" as first boot media</p>
+</li>
+<li>
+<p>Select "install" in the "Debian UEFI Installer" menu</p>
+</li>
+<li>
+<p>Select a language: english</p>
+</li>
+<li>
+<p>Select your location: Other / Europe / France</p>
+</li>
+<li>
+<p>Configure Locales: United States</p>
+</li>
+<li>
+<p>Configure the keyboard: French</p>
+</li>
+<li>
+<p>Configure the network: cube.domain.net</p>
+</li>
+<li>
+<p>Partition disk</p>
+</li>
+</ul>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Mount Point</th>
+<th align="left">Type</th>
+<th align="right">Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td align="left">ESP</td>
+<td align="right">300 MB</td>
+</tr>
+<tr>
+<td>/</td>
+<td align="left">EXT4</td>
+<td align="right">10O GB</td>
+</tr>
+<tr>
+<td>None</td>
+<td align="left">Swap</td>
+<td align="right">8 GB</td>
+</tr>
+<tr>
+<td>None</td>
+<td align="left">EXT4</td>
+<td align="right">775 GB</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>Software selection: SSH server and Standard system utilities</p>
+</li>
+<li>
+<p>The server reboot automatically when the installation is finished</p>
+</li>
+<li>
+<p>Press "del" to enter in the UEFI bios and select "debian (P0: WDC WD10EFRW-68FYTN0" as first boot media and disabled any others.</p>
+</li>
+<li>
+<p>Install Sudo</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> apt-get install -y sudo
+<span class="gp">#</span> adduser UserName sudo
+</pre></div>
+<ul>
+<li>Update system</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get full-upgrade <span class="o">&amp;&amp;</span> sudo apt-get autoremove
+</pre></div>
+<h1>Mount the second hard drive disk</h1>
+<ul>
+<li>Install gdisk</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y gdisk
+</pre></div>
+<ul>
+<li>Create a partition</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo gdisk /dev/sdb
+</pre></div>
+<ul>
+<li>Format partition in EXT4</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo mkfs.ext4 -L data /dev/sdb1
+</pre></div>
+<ul>
+<li>Get UUID (Universally Unique Identifier)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo blkid /dev/sdb1
+</pre></div>
+<ul>
+<li>Create mount point</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo mkdir /data/
+</pre></div>
+<ul>
+<li>Define mount option</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/fstab
+</pre></div>
+<div class="highlight"><pre><span></span>UUID=d391610f-dca0-4677-ad3a-c0f6d20b5baf       /data     ext4    defaults        0       2
+</pre></div>
+<ul>
+<li>Mount disk</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo mount /data
+</pre></div>
+<h1>Install additional tools</h1>
+<ul>
+<li>Curl</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y curl
+</pre></div>
+<ul>
+<li>Rsync</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y rsync
+</pre></div>
+<ul>
+<li>Adding HTTPS support for APT tool</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y apt-transport-https
+</pre></div>
+<ul>
+<li>Adding additional tools for APT (such as add-apt-repository)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y software-properties-common
+</pre></div>
+<ul>
+<li>Htop</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y htop
+</pre></div>
+<h1>Disable IPv6</h1>
+<ul>
+<li>Edit kernel configuration file</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/sysctl.conf
+</pre></div>
+<div class="highlight"><pre><span></span>net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6=1
+</pre></div>
+<ul>
+<li>Apply the new configuration</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo sysctl -p
+</pre></div>
+<h1>ACPI</h1>
+<p>The UEFI bios on my Assus motherboard is quite buggy and Assus doesn't update the bios anymore.</p>
+<h2>Errors</h2>
+<ul>
+<li>DSSP Error</li>
+</ul>
+<div class="highlight"><pre><span></span>ACPI Error: [DSSP] Namespace lookup failure, AE_NOT_FOUND (20160831/psargs-359)
+ACPI Error: Method parse/execution failed [\_SB.PCI0.SAT0.SPT0._GTF] (Node ffff97e5dadca5f0), AE_NOT_FOUND (20160831/psparse-543)
+ACPI Error: [DSSP] Namespace lookup failure, AE_NOT_FOUND (20160831/psargs-359)
+ACPI Error: Method parse/execution failed [\_SB.PCI0.SAT0.SPT1._GTF] (Node ffff97e5dadca780), AE_NOT_FOUND (20160831/psparse-543)
+</pre></div>
+<ul>
+<li>Ressource conflict</li>
+</ul>
+<div class="highlight"><pre><span></span>[    5.181191] ACPI Warning: SystemIO range 0x0000000000000428-0x000000000000042F conflicts with OpRegion 0x0000000000000400-0x000000000000047F (\PMIO) (20160831/utaddress-247)
+[    5.181196] ACPI: If an ACPI driver is available for this device, you should use it instead of the native driver
+[    5.181199] ACPI Warning: SystemIO range 0x0000000000000540-0x000000000000054F conflicts with OpRegion 0x0000000000000500-0x0000000000000563 (\GPIO) (20160831/utaddress-247)
+[    5.181202] ACPI: If an ACPI driver is available for this device, you should use it instead of the native driver
+[    5.181202] ACPI Warning: SystemIO range 0x0000000000000530-0x000000000000053F conflicts with OpRegion 0x0000000000000500-0x0000000000000563 (\GPIO) (20160831/utaddress-247)
+[    5.181205] ACPI: If an ACPI driver is available for this device, you should use it instead of the native driver
+[    5.181206] ACPI Warning: SystemIO range 0x0000000000000500-0x000000000000052F conflicts with OpRegion 0x0000000000000500-0x0000000000000563 (\GPIO) (20160831/utaddress-247)
+[    5.181208] ACPI Warning: SystemIO range 0x0000000000000500-0x000000000000052F conflicts with OpRegion 0x0000000000000500-0x000000000000050F (\_GPE.GPIO) (20160831/utaddress-247)
+[    5.181211] ACPI: If an ACPI driver is available for this device, you should use it instead of the native driver
+[    5.313241] lpc_ich: Resource conflict(s) found affecting gpio_ich
+</pre></div>
+<h2>Workaround</h2>
+<ul>
+<li>Add kernel parameters for ACPI</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/default/grub
+</pre></div>
+<div class="highlight"><pre><span></span>GRUB_CMDLINE_LINUX_DEFAULT="quiet libata.noacpi=1 acpi_enforce_resources=lax"
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo update-grub
+</pre></div>
+<ul>
+<li>Reboot the server</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo reboot
+</pre></div>
+<h1>LM Sensors</h1>
+<ul>
+<li>Install</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y lm-sensors
+</pre></div>
+<ul>
+<li>Auto detection</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo sensors-detect
+</pre></div>
+<div class="highlight"><pre><span></span>Do you want to scan for Super I/O sensors? (YES/no): yes
+Do you want to probe the I2C/SMBus adapters now? (YES/no): yes
+Do you want to add these lines automatically to /etc/modules? (yes/NO): yes
+</pre></div>
+<ul>
+<li>Add modules which will be load</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/modules
+</pre></div>
+<div class="highlight"><pre><span></span>coretemp
+nct6775
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sensors
+</pre></div>
+<div class="highlight"><pre><span></span>asus-isa-0000
+Adapter: ISA adapter
+cpu_fan:        0 RPM
+
+acpitz-virtual-0
+Adapter: Virtual device
+temp1:        +27.8°C  (crit = +103.0°C)
+temp2:        +29.8°C  (crit = +103.0°C)
+
+nct6776-isa-0290
+Adapter: ISA adapter
+Vcore:          +0.83 V  (min =  +0.00 V, max =  +1.74 V)
+in1:            +1.04 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+AVCC:           +3.39 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
++3.3V:          +3.39 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+in4:            +1.02 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+in5:            +2.04 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+in6:            +1.02 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+3VSB:           +3.42 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+Vbat:           +3.30 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+fan1:           971 RPM  (min =    0 RPM)
+fan2:           987 RPM  (min =    0 RPM)
+fan3:             0 RPM  (min =    0 RPM)
+fan4:             0 RPM  (min =    0 RPM)
+fan5:             0 RPM  (min =    0 RPM)
+SYSTIN:         +21.0°C  (high =  +0.0°C, hyst =  +0.0°C)  ALARM  sensor = thermistor
+CPUTIN:         +92.0°C  (high = +81.0°C, hyst = +76.0°C)  ALARM  sensor = thermistor
+AUXTIN:         +65.0°C  (high = +80.0°C, hyst = +75.0°C)  sensor = thermistor
+PECI Agent 0:   +29.0°C  (high = +80.0°C, hyst = +75.0°C)
+                         (crit = +102.0°C)
+PCH_CHIP_TEMP:   +0.0°C  
+PCH_CPU_TEMP:    +0.0°C  
+PCH_MCH_TEMP:    +0.0°C  
+intrusion0:    ALARM
+intrusion1:    ALARM
+beep_enable:   disabled
+
+coretemp-isa-0000
+Adapter: ISA adapter
+Physical id 0:  +30.0°C  (high = +82.0°C, crit = +102.0°C)
+Core 0:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
+Core 1:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
+</pre></div>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://didier.bernaudeau.net/Home_Server.html">Home Server</a></li>
+    </ul>
+</section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="60%" class="img-thumbnail" src="/images/avatar.png"/>
+        </p>
+    <p>
+        <strong>About D. Bernaudeau</strong><br/>
+        Didier is an information security consultant graduated with a Master's in Information Security in 2007. He has been focusing on securing SDLC and writing secure coding policies for the past ten years. He is curious, inquisitive, lifelong learner and self-starter. So, this blog is a way to document some of my experimentation.
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+
+
+
+            <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/agile.html">
+                            Agile
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/api.html">
+                            API
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/application-server.html">
+                            Application Server
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/apu.html">
+                            APU
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/archlinux.html">
+                            ArchLinux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/blockchain.html">
+                            Blockchain
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
+                            Certificate
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/cisco.html">
+                            Cisco
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/cloud.html">
+                            Cloud
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/container.html">
+                            Container
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
+                            Cryptography
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/cups.html">
+                            cups
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/database.html">
+                            Database
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/debian.html">
+                            Debian
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/debian-stretch.html">
+                            Debian Stretch
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/dedibox.html">
+                            Dedibox
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/development.html">
+                            Development
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/development-tool.html">
+                            Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/devops.html">
+                            DevOps
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/dictionary.html">
+                            Dictionary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/docker.html">
+                            Docker
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/electronic.html">
+                            Electronic
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/framework.html">
+                            Framework
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
+                            Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/git.html">
+                            Git
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/go.html">
+                            Go
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
+                            Hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/home-automation.html">
+                            Home automation
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/home-server.html">
+                            Home Server
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/html.html">
+                            HTML
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/java.html">
+                            Java
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/linux.html">
+                            Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/network.html">
+                            Network
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/nginx.html">
+                            Nginx
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/nodejs.html">
+                            NodeJs
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/openssl.html">
+                            OpenSSL
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/php.html">
+                            PHP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/pki.html">
+                            PKI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/protocol.html">
+                            Protocol
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/python.html">
+                            Python
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/raspberry-pi.html">
+                            Raspberry Pi
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/raspbian.html">
+                            Raspbian
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/redhat.html">
+                            RedHat
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/rest.html">
+                            REST
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scm.html">
+                            SCM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scrum.html">
+                            Scrum
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/snmp.html">
+                            SNMP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/software.html">
+                            Software
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/spring.html">
+                            Spring
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/spring-boot.html">
+                            Spring Boot
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/spring-cloud.html">
+                            Spring Cloud
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/tls.html">
+                            TLS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
+                            Virtualization
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/vpn.html">
+                            VPN
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/website.html">
+                            WebSite
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/windows.html">
+                            Windows
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/wireless.html">
+                            Wireless
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2018 D. Bernaudeau
+            &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://didier.bernaudeau.net/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://didier.bernaudeau.net/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://didier.bernaudeau.net/theme/js/respond.min.js"></script>
+
+<!-- ColorBox -->
+<script src="http://didier.bernaudeau.net/theme/js/jquery.colorbox-min.js"></script>
+<script src="http://didier.bernaudeau.net/theme/js/load-colorbox.js"></script>
+
+
+
+</body>
+</html>

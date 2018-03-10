@@ -12,17 +12,17 @@
 <link rel="canonical" href="http://didier.bernaudeau.net/HowTo_install_NFS.html">
 
         <meta name="author" content="Didier BERNAUDEAU" />
-        <meta name="keywords" content="Home Server 2012,Debian Stretch" />
-        <meta name="description" content="NFS (Network file System) allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally. This post describes how to install NFS on Debian 9 (Stretch)." />
+        <meta name="keywords" content="Home Server,Debian Stretch" />
+        <meta name="description" content="NFS (Network file System) allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally. This post describes how to install NFS on Debian 9 (Stretch) on my home server." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="How to install NFS"/>
         <meta property="og:url" content="http://didier.bernaudeau.net/HowTo_install_NFS.html"/>
-        <meta property="og:description" content="NFS (Network file System) allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally. This post describes how to install NFS on Debian 9 (Stretch)."/>
+        <meta property="og:description" content="NFS (Network file System) allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally. This post describes how to install NFS on Debian 9 (Stretch) on my home server."/>
         <meta property="article:published_time" content="2017-11-30" />
             <meta property="article:section" content="Tutorials" />
-            <meta property="article:tag" content="Home Server 2012" />
+            <meta property="article:tag" content="Home Server" />
             <meta property="article:tag" content="Debian Stretch" />
             <meta property="article:author" content="Didier BERNAUDEAU" />
 
@@ -99,7 +99,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2018-01-27T17:00:00+01:00"> sam. 27 janvier 2018</time>
+                <i class="fa fa-calendar"></i><time datetime="2018-03-04T20:34:00+01:00"> dim. 04 mars 2018</time>
             </span>
 
 
@@ -107,13 +107,13 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/home-server-2012.html">Home Server 2012</a>
+	<a href="http://didier.bernaudeau.net/tag/home-server.html">Home Server</a>
         /
 	<a href="http://didier.bernaudeau.net/tag/debian-stretch.html">Debian Stretch</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>NFS (Network file System) allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally. This post describes how to install NFS on Debian 9 (Stretch).</p>
+                <p>NFS (Network file System) allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally. This post describes how to install NFS on Debian 9 (Stretch) on my <a href="http://didier.bernaudeau.net/Home_Server.html">home server</a>.</p>
 
 <h1>NFS server</h1>
 <h2>Private directory</h2>
@@ -121,7 +121,7 @@ My personal blog note            </a>
 <ul>
 <li>Create user and group</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo adduser bob
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo adduser --no-create-home --disabled-password --disabled-login bob
 </pre></div>
 <ul>
 <li>Create directory</li>
@@ -156,7 +156,9 @@ My personal blog note            </a>
 <span class="gp">$</span> sudo chmod -R o-rx /data/common
 <span class="gp">$</span> sudo find /data/common -type d -exec chmod g+s <span class="o">{}</span> <span class="se">\;</span>
 </pre></div>
+<blockquote>
 <p>The last command line set the "setGID" on each directory. Thus, all files and folders created under /data/common will have the same owning group “common” and will have SetGID set.</p>
+</blockquote>
 <ul>
 <li>Scheduling a task to set access right</li>
 </ul>
@@ -164,6 +166,7 @@ My personal blog note            </a>
 </pre></div>
 <div class="highlight"><pre><span></span>0 3 * * * chmod -R g+w /data/common/ &amp;&amp; chmod -R o-rx /data/common &amp;&amp; chown -R root:common /data/common
 </pre></div>
+<blockquote>
 <p>I have already tried with the following solutions without success :</p>
 <ul>
 <li>
@@ -176,7 +179,8 @@ My personal blog note            </a>
 <p>Using NFS4-ACL command line to define access rights. But, this doesn't work POSIX which will be an inconvenient if the users use an another protocol such as SSH.</p>
 </li>
 </ul>
-<p>So, the work around is to set access right every night.</p>
+<p>So, the workaround is to set access right every night.</p>
+</blockquote>
 <h2>NFS software</h2>
 <ul>
 <li>Install NFS</li>
@@ -257,7 +261,7 @@ common      -fstype=nfs4,rw,async,actimeo=120,subtree_check,intr,rsize=32768,wsi
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://didier.bernaudeau.net/Home_Server_2012.html">Home Server 2012</a></li>
+        <li><a href="http://didier.bernaudeau.net/Home_Server.html">Home Server</a></li>
     </ul>
 </section>
         </article>
@@ -387,7 +391,7 @@ common      -fstype=nfs4,rw,async,actimeo=120,subtree_check,intr,rsize=32768,wsi
                             Docker
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
+                    <li class="list-group-item tag-3">
                         <a href="http://didier.bernaudeau.net/tag/electronic.html">
                             Electronic
                         </a>
@@ -422,9 +426,9 @@ common      -fstype=nfs4,rw,async,actimeo=120,subtree_check,intr,rsize=32768,wsi
                             Home automation
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
-                        <a href="http://didier.bernaudeau.net/tag/home-server-2012.html">
-                            Home Server 2012
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/home-server.html">
+                            Home Server
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -460,6 +464,11 @@ common      -fstype=nfs4,rw,async,actimeo=120,subtree_check,intr,rsize=32768,wsi
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/nodejs.html">
                             NodeJs
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/openssl.html">
+                            OpenSSL
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

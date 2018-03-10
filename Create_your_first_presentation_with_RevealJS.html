@@ -99,7 +99,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2018-01-06T10:09:00+01:00"> sam. 06 janvier 2018</time>
+                <i class="fa fa-calendar"></i><time datetime="2018-02-26T09:32:00+01:00"> lun. 26 février 2018</time>
             </span>
 
 
@@ -220,12 +220,24 @@ My personal blog note            </a>
 <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">"fragment fade-in"</span><span class="p">&gt;</span>Text<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </pre></div>
 <h1>Troubleshooting</h1>
-<ul>
-<li>Missing reveal.js</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="go">Error: ENOENT: no such file or directory, stat '/usr/lib64/node_modules/node-reveal/reveal.js'</span>
+<div class="highlight"><pre><span></span><span class="gp">$</span> reveal -i project_name
+
+<span class="go">fs.js:968</span>
+<span class="go">  binding.stat(pathModule.toNamespacedPath(path));</span>
+<span class="go">          ^</span>
+
+<span class="go">Error: ENOENT: no such file or directory, stat '/usr/local/share/.config/yarn/global/node_modules/node-reveal/reveal.js'</span>
+<span class="go">    at Object.fs.statSync (fs.js:968:11)</span>
+<span class="go">    at Object.statSync (/usr/local/share/.config/yarn/global/node_modules/graceful-fs/polyfills.js:297:22)</span>
+<span class="go">    at copySync (/usr/local/share/.config/yarn/global/node_modules/fs-extra/lib/copy-sync/copy-sync.js:31:86)</span>
+<span class="go">    at init (/usr/local/share/.config/yarn/global/node_modules/node-reveal/src/handler.js:42:3)</span>
+<span class="go">    at module.exports (/usr/local/share/.config/yarn/global/node_modules/node-reveal/src/handler.js:65:3)</span>
+<span class="go">    at Object.&lt;anonymous&gt; (/usr/local/share/.config/yarn/global/node_modules/node-reveal/index.js:30:1)</span>
+<span class="go">    at Module._compile (module.js:660:30)</span>
+<span class="go">    at Object.Module._extensions..js (module.js:671:10)</span>
+<span class="go">    at Module.load (module.js:573:32)</span>
+<span class="go">    at tryModuleLoad (module.js:513:12)</span>
 </pre></div>
-<p>Get the file from git repository and copy it to the right location.</p>
 <!--Source:
 https://www.npmjs.com/package/node-reveal
 http://htmlcheats.com/reveal-js/reveal-js-tutorial-reveal-js-for-beginners/
@@ -238,8 +250,8 @@ http://lab.hakim.se/reveal-js/#/
     <h4>Related Posts:</h4>
     <ul>
         <li><a href="http://didier.bernaudeau.net/ModernPresentationRevealJS.html">Modern Presentation with RevealJS</a></li>
-        <li><a href="http://didier.bernaudeau.net/Same_Origin_Policy.html">SOP (Same-Origin Policy)</a></li>
         <li><a href="http://didier.bernaudeau.net/JSON_with_Padding.html">JSONP (JSON with Padding)</a></li>
+        <li><a href="http://didier.bernaudeau.net/Same_Origin_Policy.html">SOP (Same-Origin Policy)</a></li>
         <li><a href="http://didier.bernaudeau.net/Cross_Origin_Resource_Sharing.html">CORS (Cross-Origin Resource Sharing)</a></li>
         <li><a href="http://didier.bernaudeau.net/AgileSecurity.html">Agile Security</a></li>
     </ul>
@@ -371,7 +383,7 @@ http://lab.hakim.se/reveal-js/#/
                             Docker
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
+                    <li class="list-group-item tag-3">
                         <a href="http://didier.bernaudeau.net/tag/electronic.html">
                             Electronic
                         </a>
@@ -406,9 +418,9 @@ http://lab.hakim.se/reveal-js/#/
                             Home automation
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
-                        <a href="http://didier.bernaudeau.net/tag/home-server-2012.html">
-                            Home Server 2012
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/home-server.html">
+                            Home Server
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -444,6 +456,11 @@ http://lab.hakim.se/reveal-js/#/
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/nodejs.html">
                             NodeJs
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/openssl.html">
+                            OpenSSL
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

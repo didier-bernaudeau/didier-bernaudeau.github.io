@@ -1,5 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-02-25T11:29:00+01:00</updated><entry><title>How to use SNMP on a Cisco SG200</title><link href="http://didier.bernaudeau.net/HowTo_use_SNMP_on_a_Cisco_SG200.html" rel="alternate"></link><published>2018-02-20T17:07:00+01:00</published><updated>2018-02-25T11:29:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-02-20:/HowTo_use_SNMP_on_a_Cisco_SG200.html</id><summary type="html">&lt;p&gt;SNMP is a protocol largely used to monitor network hardware, and I would have used it to monitor my CISCO SG200 but the implementation is very limited. For instance, this switch doesn't have temperature sensor. This post walks you through configuring the swith then installing SNMP tools on your computer.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-03-09T23:40:00+01:00</updated><entry><title>Connecting an optocouler switch on a Raspberry</title><link href="http://didier.bernaudeau.net/Connecting_an_optocoupler_on_a_Raspberry.html" rel="alternate"></link><published>2018-03-09T23:40:00+01:00</published><updated>2018-03-09T23:40:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-03-09:/Connecting_an_optocoupler_on_a_Raspberry.html</id><summary type="html">&lt;p&gt;An optocoupler is a component that transfers electrical signals between two isolated circuits. So, it provides a galvanic isolation of the Raspberry Pi from a circuit system where the voltage is higher than 3,3 volt. Optocouler is a good alternative to mechanical relay. This post describes how to connect an optocouler 4N25 to GPIO input pin.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;An optocoupler is a component that transfers electrical signals between two isolated circuits. So, it provides a galvanic isolation of the Raspberry Pi from a circuit system where the voltage is higher than 3,3 volt. Optocouler is a good alternative to mechanical relay. This post describes how to connect an optocouler 4N25 to GPIO input pin.&lt;/p&gt;
+
+&lt;h1&gt;Pinout&lt;/h1&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2018-03-09_Connecting_an_optocoupler_on_a_Raspberry_01.png" width="40%"/&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Led anode&lt;/li&gt;
+&lt;li&gt;Led cathode&lt;/li&gt;
+&lt;li&gt;NC&lt;/li&gt;
+&lt;li&gt;Emitter&lt;/li&gt;
+&lt;li&gt;Collector&lt;/li&gt;
+&lt;li&gt;Base&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1&gt;Wiring diagram&lt;/h1&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2018-03-09_Connecting_an_optocoupler_on_a_Raspberry_02.png" width="90%"/&gt;&lt;/p&gt;
+&lt;h1&gt;Picking resistor&lt;/h1&gt;
+&lt;h2&gt;Collector Current&lt;/h2&gt;
+&lt;p&gt;The maximum current you are advised to source or sink through one GPIO is 16 mA with a total maximum of 51 mA for the GPIOs as a whole. Hence, the recommended current limit per GPIO is 51mA / 17 GPIO = 3mA.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ice = 3mA&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;Forward Current&lt;/h1&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2018-03-09_Connecting_an_optocoupler_on_a_Raspberry_03.png" width="60%"/&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If = 4 mA&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;Forward Voltage&lt;/h1&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2018-03-09_Connecting_an_optocoupler_on_a_Raspberry_04.png" width="60%"/&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Vf = 1,1v (Approximately)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;Resistor (for 12v)&lt;/h1&gt;
+&lt;p&gt;Rout = (Vcc -  Vf ) / If&lt;/p&gt;
+&lt;p&gt;Rout = (12v - 1,1v) / 0,004 A&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Rout = 2725 ohms&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;2700 ohms = Red / Violet / Red&lt;/p&gt;</content><category term="Raspberry Pi"></category><category term="Electronic"></category></entry><entry><title>OpenSSL cheat sheet</title><link href="http://didier.bernaudeau.net/OpenSSL_cheat_sheet.html" rel="alternate"></link><published>2018-03-09T10:50:00+01:00</published><updated>2018-03-09T10:50:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-03-09:/OpenSSL_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for OpenSSL.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post is a list of useful command lines for OpenSSL.&lt;/p&gt;
+
+&lt;h1&gt;Certificate X509&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Show a certificate (Human Readable)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; openssl x509 -in MyCertificate.pem -text -noout
+&lt;/pre&gt;&lt;/div&gt;</content><category term="OpenSSL"></category></entry><entry><title>How to use SNMP on a Cisco SG200</title><link href="http://didier.bernaudeau.net/HowTo_use_SNMP_on_a_Cisco_SG200.html" rel="alternate"></link><published>2018-02-20T17:07:00+01:00</published><updated>2018-02-25T11:29:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-02-20:/HowTo_use_SNMP_on_a_Cisco_SG200.html</id><summary type="html">&lt;p&gt;SNMP is a protocol largely used to monitor network hardware, and I would have used it to monitor my CISCO SG200 but the implementation is very limited. For instance, this switch doesn't have temperature sensor. This post walks you through configuring the swith then installing SNMP tools on your computer.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;SNMP is a protocol largely used to monitor network hardware, and I would have used it to monitor my CISCO SG200 but the implementation is very limited. For instance, this switch doesn't have temperature sensor. This post walks you through configuring the swith then installing SNMP tools on your computer.&lt;/p&gt;
 
 &lt;h1&gt;Switch configuration&lt;/h1&gt;
@@ -708,9 +753,20 @@ http {
 </summary><content type="html">&lt;p&gt;This presentation is an introduction to DevOps that I made for "Ecole 42". This is a story that describes the transition from Waterfall to DevOps in the "Cash Register Unlimited Company". In this show, the students take part into this story to select the right options and so deploy DevOps with success.&lt;/p&gt;
 &lt;p&gt;View online on &lt;a href="https://0xdbe.github.io/DevOpsStory_20171221/"&gt;GitHub&lt;/a&gt;&lt;/p&gt;
 
-&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-12-21_DevOpsStory.jpg" width="60%"/&gt;&lt;/p&gt;</content><category term="Agile"></category><category term="DevOps"></category></entry><entry><title>Linux cheat sheet</title><link href="http://didier.bernaudeau.net/Linux_cheat_sheet.html" rel="alternate"></link><published>2017-12-17T17:52:00+01:00</published><updated>2018-02-04T12:04:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-17:/Linux_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2017-12-21_DevOpsStory.jpg" width="60%"/&gt;&lt;/p&gt;</content><category term="Agile"></category><category term="DevOps"></category></entry><entry><title>Linux cheat sheet</title><link href="http://didier.bernaudeau.net/Linux_cheat_sheet.html" rel="alternate"></link><published>2017-12-17T17:52:00+01:00</published><updated>2018-03-04T17:08:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-17:/Linux_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
 
+&lt;h1&gt;User and Group&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Create user with no login&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo adduser --no-create-home --disabled-password --disabled-login UserName
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Delete a group&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo groupdel GroupName
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Network&lt;/h1&gt;
 &lt;h2&gt;Check listening&lt;/h2&gt;
 &lt;p&gt;The command line netstat is not used anymore in modern linux distribution.&lt;/p&gt;
@@ -751,8 +807,44 @@ http {
 &lt;li&gt;List unit file&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl list-unit-files
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category></entry><entry><title>How to install NFS</title><link href="http://didier.bernaudeau.net/HowTo_install_NFS.html" rel="alternate"></link><published>2017-11-30T09:37:00+01:00</published><updated>2018-01-27T17:00:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-11-30:/HowTo_install_NFS.html</id><summary type="html">&lt;p&gt;NFS (Network file System) allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally. This post describes how to install NFS on Debian 9 (Stretch).&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;NFS (Network file System) allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally. This post describes how to install NFS on Debian 9 (Stretch).&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category></entry><entry><title>How to install DLNA server</title><link href="http://didier.bernaudeau.net/HowTo_install_DLNA_Server.html" rel="alternate"></link><published>2017-12-01T18:24:00+01:00</published><updated>2018-03-04T20:36:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-01:/HowTo_install_DLNA_Server.html</id><summary type="html">&lt;p&gt;This post describes how to install a MiniDLNA server on my &lt;a href="http://didier.bernaudeau.net/Home_Server.html"&gt;home server&lt;/a&gt;.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post describes how to install a MiniDLNA server on my &lt;a href="http://didier.bernaudeau.net/Home_Server.html"&gt;home server&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Install MiniDLNA&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y minidlna
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure MiniDLNA&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/minidlna.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;media_dir=A,/data/multimedia/music
+network_interface=enp3s0
+friendly_name=Cube Server
+
+port=8200
+
+friendly_name=MusiCube
+
+inotify=yes
+notify_interval=60 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Force rescan&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/default/minidlna 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;DAEMON_OPTS="-R"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start MiniDLNA&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start minidlna
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; minidlna
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Home Server"></category></entry><entry><title>How to install NFS</title><link href="http://didier.bernaudeau.net/HowTo_install_NFS.html" rel="alternate"></link><published>2017-11-30T09:37:00+01:00</published><updated>2018-03-04T20:34:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-11-30:/HowTo_install_NFS.html</id><summary type="html">&lt;p&gt;NFS (Network file System) allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally. This post describes how to install NFS on Debian 9 (Stretch) on my &lt;a href="http://didier.bernaudeau.net/Home_Server.html"&gt;home server&lt;/a&gt;.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;NFS (Network file System) allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally. This post describes how to install NFS on Debian 9 (Stretch) on my &lt;a href="http://didier.bernaudeau.net/Home_Server.html"&gt;home server&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h1&gt;NFS server&lt;/h1&gt;
 &lt;h2&gt;Private directory&lt;/h2&gt;
@@ -760,7 +852,7 @@ http {
 &lt;ul&gt;
 &lt;li&gt;Create user and group&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo adduser bob
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo adduser --no-create-home --disabled-password --disabled-login bob
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Create directory&lt;/li&gt;
@@ -795,7 +887,9 @@ http {
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo chmod -R o-rx /data/common
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo find /data/common -type d -exec chmod g+s &lt;span class="o"&gt;{}&lt;/span&gt; &lt;span class="se"&gt;\;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
 &lt;p&gt;The last command line set the "setGID" on each directory. Thus, all files and folders created under /data/common will have the same owning group “common” and will have SetGID set.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;Scheduling a task to set access right&lt;/li&gt;
 &lt;/ul&gt;
@@ -803,6 +897,7 @@ http {
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;0 3 * * * chmod -R g+w /data/common/ &amp;amp;&amp;amp; chmod -R o-rx /data/common &amp;amp;&amp;amp; chown -R root:common /data/common
 &lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
 &lt;p&gt;I have already tried with the following solutions without success :&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -815,7 +910,8 @@ http {
 &lt;p&gt;Using NFS4-ACL command line to define access rights. But, this doesn't work POSIX which will be an inconvenient if the users use an another protocol such as SSH.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;So, the work around is to set access right every night.&lt;/p&gt;
+&lt;p&gt;So, the workaround is to set access right every night.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2&gt;NFS software&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Install NFS&lt;/li&gt;
@@ -890,7 +986,7 @@ common      -fstype=nfs4,rw,async,actimeo=120,subtree_check,intr,rsize=32768,wsi
 &lt;h2&gt;Intr vs Nointr&lt;/h2&gt;
 &lt;p&gt;Selects whether to allow signals to interrupt file operations on this mount point. If neither option is specified (or if nointr is specified), signals do not interrupt NFS file operations. If intr is specified, system calls return EINTR if an in-progress NFS operation is interrupted by a signal.&lt;/p&gt;
 &lt;h2&gt;Subtree Checking&lt;/h2&gt;
-&lt;p&gt;This option enforces additional checks on the server to verify that the requested file is contained within the exported hierarchy.&lt;/p&gt;</content><category term="Home Server 2012"></category><category term="Debian Stretch"></category></entry><entry><title>How to install Cups</title><link href="http://didier.bernaudeau.net/HowTo_install_Cups.html" rel="alternate"></link><published>2017-11-25T12:46:00+01:00</published><updated>2017-12-22T21:26:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-11-25:/HowTo_install_Cups.html</id><summary type="html">&lt;p&gt;This post describes how to create a printing server with CUPS on Debian Stretch then how to install a printer (Brother MFC295CN) which requires a 32bits driver from manufacturer.&lt;/p&gt;
+&lt;p&gt;This option enforces additional checks on the server to verify that the requested file is contained within the exported hierarchy.&lt;/p&gt;</content><category term="Home Server"></category><category term="Debian Stretch"></category></entry><entry><title>How to install Cups</title><link href="http://didier.bernaudeau.net/HowTo_install_Cups.html" rel="alternate"></link><published>2017-11-25T12:46:00+01:00</published><updated>2017-12-22T21:26:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-11-25:/HowTo_install_Cups.html</id><summary type="html">&lt;p&gt;This post describes how to create a printing server with CUPS on Debian Stretch then how to install a printer (Brother MFC295CN) which requires a 32bits driver from manufacturer.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post describes how to create a printing server with CUPS on Debian Stretch then how to install a printer (Brother MFC295CN) which requires a 32bits driver from manufacturer.&lt;/p&gt;
 
 &lt;h1&gt;Network Configuration&lt;/h1&gt;
@@ -4191,7 +4287,7 @@ NTP synchronized: yes
 &lt;p&gt;View online on &lt;a href="https://0xdbe.github.io/ModernPresentationRevealJS_20170523"&gt;GitHub&lt;/a&gt;&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. So, this talk is a short overview (10mn) to explain how does it work.&lt;/p&gt;
 &lt;p&gt;View online on &lt;a href="https://0xdbe.github.io/ModernPresentationRevealJS_20170523"&gt;GitHub&lt;/a&gt;&lt;/p&gt;
-</content><category term="Development"></category><category term="JavaScript"></category></entry><entry><title>Create your first presentation with RevealJS</title><link href="http://didier.bernaudeau.net/Create_your_first_presentation_with_RevealJS.html" rel="alternate"></link><published>2017-05-22T20:10:00+02:00</published><updated>2018-01-06T10:09:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-22:/Create_your_first_presentation_with_RevealJS.html</id><summary type="html">&lt;p&gt;RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. This post descirbes how to install RevealJS then how to make your first presentation.&lt;/p&gt;
+</content><category term="Development"></category><category term="JavaScript"></category></entry><entry><title>Create your first presentation with RevealJS</title><link href="http://didier.bernaudeau.net/Create_your_first_presentation_with_RevealJS.html" rel="alternate"></link><published>2017-05-22T20:10:00+02:00</published><updated>2018-02-26T09:32:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-22:/Create_your_first_presentation_with_RevealJS.html</id><summary type="html">&lt;p&gt;RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. This post descirbes how to install RevealJS then how to make your first presentation.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. This post descirbes how to install RevealJS then how to make your first presentation.&lt;/p&gt;
 
 &lt;h1&gt;Install needed software&lt;/h1&gt;
@@ -4299,12 +4395,24 @@ NTP synchronized: yes
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"fragment fade-in"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Text&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Troubleshooting&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Missing reveal.js&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;Error: ENOENT: no such file or directory, stat '/usr/lib64/node_modules/node-reveal/reveal.js'&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; reveal -i project_name
+
+&lt;span class="go"&gt;fs.js:968&lt;/span&gt;
+&lt;span class="go"&gt;  binding.stat(pathModule.toNamespacedPath(path));&lt;/span&gt;
+&lt;span class="go"&gt;          ^&lt;/span&gt;
+
+&lt;span class="go"&gt;Error: ENOENT: no such file or directory, stat '/usr/local/share/.config/yarn/global/node_modules/node-reveal/reveal.js'&lt;/span&gt;
+&lt;span class="go"&gt;    at Object.fs.statSync (fs.js:968:11)&lt;/span&gt;
+&lt;span class="go"&gt;    at Object.statSync (/usr/local/share/.config/yarn/global/node_modules/graceful-fs/polyfills.js:297:22)&lt;/span&gt;
+&lt;span class="go"&gt;    at copySync (/usr/local/share/.config/yarn/global/node_modules/fs-extra/lib/copy-sync/copy-sync.js:31:86)&lt;/span&gt;
+&lt;span class="go"&gt;    at init (/usr/local/share/.config/yarn/global/node_modules/node-reveal/src/handler.js:42:3)&lt;/span&gt;
+&lt;span class="go"&gt;    at module.exports (/usr/local/share/.config/yarn/global/node_modules/node-reveal/src/handler.js:65:3)&lt;/span&gt;
+&lt;span class="go"&gt;    at Object.&amp;lt;anonymous&amp;gt; (/usr/local/share/.config/yarn/global/node_modules/node-reveal/index.js:30:1)&lt;/span&gt;
+&lt;span class="go"&gt;    at Module._compile (module.js:660:30)&lt;/span&gt;
+&lt;span class="go"&gt;    at Object.Module._extensions..js (module.js:671:10)&lt;/span&gt;
+&lt;span class="go"&gt;    at Module.load (module.js:573:32)&lt;/span&gt;
+&lt;span class="go"&gt;    at tryModuleLoad (module.js:513:12)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Get the file from git repository and copy it to the right location.&lt;/p&gt;
 &lt;!--Source:
 https://www.npmjs.com/package/node-reveal
 http://htmlcheats.com/reveal-js/reveal-js-tutorial-reveal-js-for-beginners/
@@ -4635,32 +4743,17 @@ e6ba45aff418        bridge              bridge              local
 &lt;p&gt;View online on &lt;a href="http://0xdbe.github.io/TlsCipherSuites_20170322"&gt;GitHub&lt;/a&gt;&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;TLS is a security measure greatly recommended and widely used. However, this security measure is often innefficient due to bad configuration. It is important to select the right cipher suites. So, this talk is a short overview (10mn) to explain what is cipher suites.&lt;/p&gt;
 &lt;p&gt;View online on &lt;a href="http://0xdbe.github.io/TlsCipherSuites_20170322"&gt;GitHub&lt;/a&gt;&lt;/p&gt;
-</content><category term="TLS"></category><category term="Network"></category></entry><entry><title>Debian Stretch</title><link href="http://didier.bernaudeau.net/Debian_Stretch.html" rel="alternate"></link><published>2017-02-02T12:24:00+01:00</published><updated>2017-10-15T22:45:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-02-02:/Debian_Stretch.html</id><summary type="html">&lt;p&gt;Stretch is the 9th version of Debian Linux and succeed to Debian Jessie. This version is still in testing, but the transition freeze stage will begin on February 5th 2017 and should become stable in September 2017. This tutorials is a guideline to install and secure Debian Stretch (RC2).&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;Stretch is the 9th version of Debian Linux and succeed to Debian Jessie. This version is still in testing, but the transition freeze stage will begin on February 5th 2017 and should become stable in September 2017. This tutorials is a guideline to install and secure Debian Stretch (RC2).&lt;/p&gt;
+</content><category term="TLS"></category><category term="Network"></category></entry><entry><title>Debian Stretch</title><link href="http://didier.bernaudeau.net/Debian_Stretch.html" rel="alternate"></link><published>2017-02-02T12:24:00+01:00</published><updated>2017-10-15T22:45:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-02-02:/Debian_Stretch.html</id><summary type="html">&lt;p&gt;Stretch is the 9th version of Debian Linux and succeed to Debian Jessie. The 3rd version has been released on December 9th 2017. This tutorials is a guideline to install and secure Debian Stretch 9.3.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Stretch is the 9th version of Debian Linux and succeed to Debian Jessie. The 3rd version has been released on December 9th 2017. This tutorials is a guideline to install and secure Debian Stretch 9.3.&lt;/p&gt;
 
+&lt;h1&gt;Getting debian&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; curl -O https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-9.3.0-amd64-netinst.iso
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Create a boot media&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; dd &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;debian-9.3.0-amd64-netinst.iso &lt;span class="nv"&gt;of&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/sdb &lt;span class="nv"&gt;bs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4k
+&lt;span class="gp"&gt;#&lt;/span&gt; sync
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Installation&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Download Debian Stretch ISO&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;cd /var/lib/libvirt/images/iso/&lt;/span&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; wget http://cdimage.debian.org/cdimage/stretch_di_rc2/amd64/iso-cd/debian-stretch-DI-rc2-amd64-netinst.iso
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Create a virtual machine with Libvirt, QEMU and KVM&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; virt-install &lt;span class="se"&gt;\&lt;/span&gt;
---connect qemu:///system &lt;span class="se"&gt;\&lt;/span&gt;
---name&lt;span class="o"&gt;=&lt;/span&gt;debian.intra.net &lt;span class="se"&gt;\&lt;/span&gt;
---os-type&lt;span class="o"&gt;=&lt;/span&gt;linux &lt;span class="se"&gt;\&lt;/span&gt;
---os-variant&lt;span class="o"&gt;=&lt;/span&gt;debiantesting &lt;span class="se"&gt;\&lt;/span&gt;
---vcpus&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
---ram&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1024&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
---graphics spice &lt;span class="se"&gt;\&lt;/span&gt;
---network &lt;span class="nv"&gt;network&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;VirtualSwitch,model&lt;span class="o"&gt;=&lt;/span&gt;virtio &lt;span class="se"&gt;\&lt;/span&gt;
---boot uefi &lt;span class="se"&gt;\&lt;/span&gt;
---disk &lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/var/lib/libvirt/images/disk/debian.qcow2,format&lt;span class="o"&gt;=&lt;/span&gt;qcow2,size&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;,bus&lt;span class="o"&gt;=&lt;/span&gt;virtio &lt;span class="se"&gt;\&lt;/span&gt;
---cdrom&lt;span class="o"&gt;=&lt;/span&gt;/var/lib/libvirt/images/iso/debian-stretch-DI-rc2-amd64-netinst.iso
-&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Follow the instruction on the screen&lt;/p&gt;
@@ -4691,7 +4784,7 @@ net.ipv6.conf.default.disable_ipv6=1
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo sysctl -p
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;Useful tools&lt;/h1&gt;
+&lt;h1&gt;Install Useful tools&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Apt with HTTPS&lt;/li&gt;
 &lt;/ul&gt;
@@ -4715,13 +4808,7 @@ net.ipv6.conf.default.disable_ipv6=1
 &lt;span class="gp"&gt;$&lt;/span&gt; sensors
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;Locate&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y locate
-&lt;span class="gp"&gt;$&lt;/span&gt; sudo updatedb
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;System monotring&lt;/li&gt;
+&lt;li&gt;System monitring&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y htop
 &lt;/pre&gt;&lt;/div&gt;
@@ -9382,8 +9469,300 @@ Password for 'https://didier-bernaudeau@github.com': *************************&l
 &lt;p&gt;Download slides &lt;a href="http://didier.bernaudeau.net/presentation/OpenSSL_2015-02-03.pdf"&gt;here&lt;/a&gt;.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;OpenSSL is a command line tool to create and manage certificate. This long talk (45min) presents the best practices to create a certificate authority, a private and public key, a Certificate Signing Request, ... with OpenSSL.&lt;/p&gt;
 &lt;p&gt;Download slides &lt;a href="http://didier.bernaudeau.net/presentation/OpenSSL_2015-02-03.pdf"&gt;here&lt;/a&gt;.&lt;/p&gt;
-</content><category term="Certificate"></category><category term="PKI"></category></entry><entry><title>Home Server 2012</title><link href="http://didier.bernaudeau.net/Home_Server_2012.html" rel="alternate"></link><published>2012-01-30T19:05:00+01:00</published><updated>2018-01-27T10:44:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2012-01-30:/Home_Server_2012.html</id><summary type="html">&lt;p&gt;This article describes the configuration of my personal server build in 2012 with an Intel Sandy Bridge processor. Future articles will refer to this one.&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;This article describes the configuration of my personal server build in 2012 with an Intel Sandy Bridge processor. Future articles will refer to this one.&lt;/p&gt;
+</content><category term="Certificate"></category><category term="PKI"></category></entry><entry><title>How to install Debian on my Home Server</title><link href="http://didier.bernaudeau.net/2012-01-30_HowTo_install_Debian_on_Home_Server.html" rel="alternate"></link><published>2012-01-31T12:24:00+01:00</published><updated>2018-03-04T18:43:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2012-01-31:/2012-01-30_HowTo_install_Debian_on_Home_Server.html</id><summary type="html">&lt;p&gt;This post describes how to install Debian Stretch 9.3 on my &lt;a href="http://didier.bernaudeau.net/Home_Server.html"&gt;home server&lt;/a&gt;.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post describes how to install Debian Stretch 9.3 on my &lt;a href="http://didier.bernaudeau.net/Home_Server.html"&gt;home server&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1&gt;Create boot media&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Getting debian&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; curl -0 https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-9.3.0-amd64-netinst.iso
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create USB boot media&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; dd &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;debian-9.3.0-amd64-netinst.iso &lt;span class="nv"&gt;of&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/sdb &lt;span class="nv"&gt;bs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4k
+&lt;span class="gp"&gt;#&lt;/span&gt; sync
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;/!\ This USB key will be a read only filesystem&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Getting network driver&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; curl -O http://ftp.nl.debian.org/debian/pool/non-free/f/firmware-nonfree/firmware-realtek_20161130-3_all.deb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Copy network driver on an another USB key&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Debian installation&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Plug the both USB keys then power on the server&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Press "del" to enter in the UEFI bios and select "UEFI:" as first boot media&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Select "install" in the "Debian UEFI Installer" menu&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Select a language: english&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Select your location: Other / Europe / France&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Configure Locales: United States&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Configure the keyboard: French&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Configure the network: cube.domain.net&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Partition disk&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="table table-hover table-striped"&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Mount Point&lt;/th&gt;
+&lt;th align="left"&gt;Type&lt;/th&gt;
+&lt;th align="right"&gt;Size&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;None&lt;/td&gt;
+&lt;td align="left"&gt;ESP&lt;/td&gt;
+&lt;td align="right"&gt;300 MB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;/&lt;/td&gt;
+&lt;td align="left"&gt;EXT4&lt;/td&gt;
+&lt;td align="right"&gt;10O GB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;None&lt;/td&gt;
+&lt;td align="left"&gt;Swap&lt;/td&gt;
+&lt;td align="right"&gt;8 GB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;None&lt;/td&gt;
+&lt;td align="left"&gt;EXT4&lt;/td&gt;
+&lt;td align="right"&gt;775 GB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Software selection: SSH server and Standard system utilities&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The server reboot automatically when the installation is finished&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Press "del" to enter in the UEFI bios and select "debian (P0: WDC WD10EFRW-68FYTN0" as first boot media and disabled any others.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install Sudo&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; apt-get install -y sudo
+&lt;span class="gp"&gt;#&lt;/span&gt; adduser UserName sudo
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get full-upgrade &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get autoremove
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Mount the second hard drive disk&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install gdisk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y gdisk
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a partition&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo gdisk /dev/sdb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Format partition in EXT4&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo mkfs.ext4 -L data /dev/sdb1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Get UUID (Universally Unique Identifier)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo blkid /dev/sdb1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create mount point&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo mkdir /data/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Define mount option&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/fstab
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;UUID=d391610f-dca0-4677-ad3a-c0f6d20b5baf       /data     ext4    defaults        0       2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Mount disk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo mount /data
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Install additional tools&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Curl&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y curl
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Rsync&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y rsync
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Adding HTTPS support for APT tool&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y apt-transport-https
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Adding additional tools for APT (such as add-apt-repository)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y software-properties-common
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Htop&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y htop
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Disable IPv6&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Edit kernel configuration file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/sysctl.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6=1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Apply the new configuration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo sysctl -p
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;ACPI&lt;/h1&gt;
+&lt;p&gt;The UEFI bios on my Assus motherboard is quite buggy and Assus doesn't update the bios anymore.&lt;/p&gt;
+&lt;h2&gt;Errors&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;DSSP Error&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ACPI Error: [DSSP] Namespace lookup failure, AE_NOT_FOUND (20160831/psargs-359)
+ACPI Error: Method parse/execution failed [\_SB.PCI0.SAT0.SPT0._GTF] (Node ffff97e5dadca5f0), AE_NOT_FOUND (20160831/psparse-543)
+ACPI Error: [DSSP] Namespace lookup failure, AE_NOT_FOUND (20160831/psargs-359)
+ACPI Error: Method parse/execution failed [\_SB.PCI0.SAT0.SPT1._GTF] (Node ffff97e5dadca780), AE_NOT_FOUND (20160831/psparse-543)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Ressource conflict&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[    5.181191] ACPI Warning: SystemIO range 0x0000000000000428-0x000000000000042F conflicts with OpRegion 0x0000000000000400-0x000000000000047F (\PMIO) (20160831/utaddress-247)
+[    5.181196] ACPI: If an ACPI driver is available for this device, you should use it instead of the native driver
+[    5.181199] ACPI Warning: SystemIO range 0x0000000000000540-0x000000000000054F conflicts with OpRegion 0x0000000000000500-0x0000000000000563 (\GPIO) (20160831/utaddress-247)
+[    5.181202] ACPI: If an ACPI driver is available for this device, you should use it instead of the native driver
+[    5.181202] ACPI Warning: SystemIO range 0x0000000000000530-0x000000000000053F conflicts with OpRegion 0x0000000000000500-0x0000000000000563 (\GPIO) (20160831/utaddress-247)
+[    5.181205] ACPI: If an ACPI driver is available for this device, you should use it instead of the native driver
+[    5.181206] ACPI Warning: SystemIO range 0x0000000000000500-0x000000000000052F conflicts with OpRegion 0x0000000000000500-0x0000000000000563 (\GPIO) (20160831/utaddress-247)
+[    5.181208] ACPI Warning: SystemIO range 0x0000000000000500-0x000000000000052F conflicts with OpRegion 0x0000000000000500-0x000000000000050F (\_GPE.GPIO) (20160831/utaddress-247)
+[    5.181211] ACPI: If an ACPI driver is available for this device, you should use it instead of the native driver
+[    5.313241] lpc_ich: Resource conflict(s) found affecting gpio_ich
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Workaround&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Add kernel parameters for ACPI&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/default/grub
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;GRUB_CMDLINE_LINUX_DEFAULT="quiet libata.noacpi=1 acpi_enforce_resources=lax"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo update-grub
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Reboot the server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo reboot
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;LM Sensors&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install -y lm-sensors
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Auto detection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo sensors-detect
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Do you want to scan for Super I/O sensors? (YES/no): yes
+Do you want to probe the I2C/SMBus adapters now? (YES/no): yes
+Do you want to add these lines automatically to /etc/modules? (yes/NO): yes
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add modules which will be load&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/modules
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;coretemp
+nct6775
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sensors
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;asus-isa-0000
+Adapter: ISA adapter
+cpu_fan:        0 RPM
+
+acpitz-virtual-0
+Adapter: Virtual device
+temp1:        +27.8°C  (crit = +103.0°C)
+temp2:        +29.8°C  (crit = +103.0°C)
+
+nct6776-isa-0290
+Adapter: ISA adapter
+Vcore:          +0.83 V  (min =  +0.00 V, max =  +1.74 V)
+in1:            +1.04 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+AVCC:           +3.39 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
++3.3V:          +3.39 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+in4:            +1.02 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+in5:            +2.04 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+in6:            +1.02 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+3VSB:           +3.42 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+Vbat:           +3.30 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+fan1:           971 RPM  (min =    0 RPM)
+fan2:           987 RPM  (min =    0 RPM)
+fan3:             0 RPM  (min =    0 RPM)
+fan4:             0 RPM  (min =    0 RPM)
+fan5:             0 RPM  (min =    0 RPM)
+SYSTIN:         +21.0°C  (high =  +0.0°C, hyst =  +0.0°C)  ALARM  sensor = thermistor
+CPUTIN:         +92.0°C  (high = +81.0°C, hyst = +76.0°C)  ALARM  sensor = thermistor
+AUXTIN:         +65.0°C  (high = +80.0°C, hyst = +75.0°C)  sensor = thermistor
+PECI Agent 0:   +29.0°C  (high = +80.0°C, hyst = +75.0°C)
+                         (crit = +102.0°C)
+PCH_CHIP_TEMP:   +0.0°C  
+PCH_CPU_TEMP:    +0.0°C  
+PCH_MCH_TEMP:    +0.0°C  
+intrusion0:    ALARM
+intrusion1:    ALARM
+beep_enable:   disabled
+
+coretemp-isa-0000
+Adapter: ISA adapter
+Physical id 0:  +30.0°C  (high = +82.0°C, crit = +102.0°C)
+Core 0:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
+Core 1:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Home Server"></category><category term="Debian Stretch"></category></entry><entry><title>Home Server</title><link href="http://didier.bernaudeau.net/Home_Server.html" rel="alternate"></link><published>2012-01-30T19:05:00+01:00</published><updated>2018-03-04T19:18:00+01:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2012-01-30:/Home_Server.html</id><summary type="html">&lt;p&gt;This article describes the configuration of my personal server build in 2010 with an Intel Sandy Bridge processor. Future articles will refer to this one.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This article describes the configuration of my personal server build in 2010 with an Intel Sandy Bridge processor. Future articles will refer to this one.&lt;/p&gt;
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
@@ -9527,6 +9906,29 @@ Password for 'https://didier-bernaudeau@github.com': *************************&l
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
+&lt;div class="section" id="processor-fan"&gt;
+&lt;h3&gt;Processor Fan&lt;/h3&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;colgroup&gt;
+&lt;col width="43%"&gt;&lt;/col&gt;
+&lt;col width="57%"&gt;&lt;/col&gt;
+&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Manufacturer&lt;/td&gt;
+&lt;td&gt;Noctua&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Model&lt;/td&gt;
+&lt;td&gt;NH-L9i&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fan&lt;/td&gt;
+&lt;td&gt;Noctua NF-A9x14 PWM&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Acoustical Noise&lt;/td&gt;
+&lt;td&gt;23,6 dB(A)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
 &lt;table border="1" class="docutils table-hover table-striped table"&gt;
@@ -9656,6 +10058,32 @@ Password for 'https://didier-bernaudeau@github.com': *************************&l
 &lt;/colgroup&gt;
 &lt;tbody valign="top"&gt;
 &lt;tr&gt;&lt;td&gt;Manufacturer&lt;/td&gt;
+&lt;td&gt;Western Digital&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Hard drive model&lt;/td&gt;
+&lt;td&gt;Red NAS Hard Drive (WD10EFRX)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Total storage capacity&lt;/td&gt;
+&lt;td&gt;1000 GB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Hard drive interface&lt;/td&gt;
+&lt;td&gt;SATA 3 (6Gb/s)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Hard drive speed&lt;/td&gt;
+&lt;td&gt;5400 RPM&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Cache&lt;/td&gt;
+&lt;td&gt;64 MB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;colgroup&gt;
+&lt;col width="43%"&gt;&lt;/col&gt;
+&lt;col width="57%"&gt;&lt;/col&gt;
+&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Manufacturer&lt;/td&gt;
 &lt;td&gt;Seagate&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Hard drive model&lt;/td&gt;
@@ -9723,47 +10151,4 @@ Password for 'https://didier-bernaudeau@github.com': *************************&l
 &lt;p&gt;There is not a real hardware RAID controller on Intel Z68 chipset. Indeed, this is a "Fake RAID" which is a combination of hardware (Chipset) and software (driver). So, this is not possible to store ESP (EFI System Partition) on a RAID drive.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="section" id="operating-system"&gt;
-&lt;h2&gt;Operating System&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Create USB boot media with Debian Stretch (This USB key will be a read only filesystem)&lt;/li&gt;
-&lt;li&gt;Copy firmware-realtek_20161130-3_all.deb on an another USB key (from &lt;a class="reference external" href="https://packages.debian.org/stretch/all/firmware-realtek/download"&gt;https://packages.debian.org/stretch/all/firmware-realtek/download&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;Start installation&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Note: In UEFI-installer you must press e key instead Tab and use arrow keys for moving&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="disk-partitioning"&gt;
-&lt;h2&gt;Disk partitioning&lt;/h2&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
-&lt;colgroup&gt;
-&lt;col width="45%"&gt;&lt;/col&gt;
-&lt;col width="28%"&gt;&lt;/col&gt;
-&lt;col width="28%"&gt;&lt;/col&gt;
-&lt;/colgroup&gt;
-&lt;thead valign="bottom"&gt;
-&lt;tr&gt;&lt;th class="head"&gt;Mount Point&lt;/th&gt;
-&lt;th class="head"&gt;Type&lt;/th&gt;
-&lt;th class="head"&gt;Size&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody valign="top"&gt;
-&lt;tr&gt;&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;ESP&lt;/td&gt;
-&lt;td&gt;300 MB&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;/&lt;/td&gt;
-&lt;td&gt;EXT4&lt;/td&gt;
-&lt;td&gt;3O GB&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;Swap&lt;/td&gt;
-&lt;td&gt;4 GB&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;/data&lt;/td&gt;
-&lt;td&gt;EXT4&lt;/td&gt;
-&lt;td&gt;2 TB&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-</content><category term="Hardware"></category><category term="Home Server 2012"></category></entry></feed>
+</content><category term="Hardware"></category><category term="Home Server"></category></entry></feed>

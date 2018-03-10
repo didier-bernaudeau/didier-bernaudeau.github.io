@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Home Server 2012 - My personal blog note</title>
+    <title>OpenSSL - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,22 +9,16 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/Home_Server_2012.html">
 
-        <meta name="author" content="Didier Bernaudeau" />
-        <meta name="keywords" content="Hardware,Home Server 2012" />
-        <meta name="description" content="This article describes the configuration of my personal server build in 2012 with an Intel Sandy Bridge processor. Future articles will refer to this one." />
+    <meta name="author" content="D. Bernaudeau" />
+    <meta name="keywords" content="OpenSSL" />
 
+    <!-- Open Graph tags -->
         <meta property="og:site_name" content="My personal blog note" />
-        <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Home Server 2012"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/Home_Server_2012.html"/>
-        <meta property="og:description" content="This article describes the configuration of my personal server build in 2012 with an Intel Sandy Bridge processor. Future articles will refer to this one."/>
-        <meta property="article:published_time" content="2012-01-30" />
-            <meta property="article:section" content="Articles" />
-            <meta property="article:tag" content="Hardware" />
-            <meta property="article:tag" content="Home Server 2012" />
-            <meta property="article:author" content="Didier Bernaudeau" />
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="My personal blog note"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net"/>
+        <meta property="og:description" content="My personal blog note"/>
 
 
     <!-- Bootstrap -->
@@ -39,8 +33,6 @@
 
 
 
-        <link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" type="application/atom+xml" rel="alternate"
-              title="My personal blog note Articles ATOM Feed"/>
 
     <link href="http://didier.bernaudeau.net/theme/css/colorbox.css" rel="stylesheet">
 
@@ -78,28 +70,17 @@ My personal blog note            </a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-    <section id="content">
-        <article>
-            <header class="page-header">
-                <h1>
-                    <a href="http://didier.bernaudeau.net/Home_Server_2012.html"
-                       rel="bookmark"
-                       title="Permalink to Home Server 2012">
-                        Home Server 2012
-                    </a>
-                </h1>
-            </header>
-            <div class="entry-content">
-                <div class="panel">
-                    <div class="panel-body">
+            <article>                
+              <h2><a href="http://didier.bernaudeau.net/OpenSSL_cheat_sheet.html">OpenSSL cheat sheet</a></h2>
+                <div class="well well-sm">
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2012-01-30T19:05:00+01:00"> lun. 30 janvier 2012</time>
+        <i class="fa fa-calendar"></i><time datetime="2018-03-09T10:50:00+01:00"> ven. 09 mars 2018</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2018-01-27T10:44:00+01:00"> sam. 27 janvier 2018</time>
+                <i class="fa fa-calendar"></i><time datetime="2018-03-09T10:50:00+01:00"> ven. 09 mars 2018</time>
             </span>
 
 
@@ -107,407 +88,15 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/hardware.html">Hardware</a>
-        /
-	<a href="http://didier.bernaudeau.net/tag/home-server-2012.html">Home Server 2012</a>
+	<a href="http://didier.bernaudeau.net/tag/openssl.html">OpenSSL</a>
     
-</footer><!-- /.post-info -->                    </div>
-                </div>
-                <p>This article describes the configuration of my personal server build in 2012 with an Intel Sandy Bridge processor. Future articles will refer to this one.</p>
+</footer><!-- /.post-info -->                </div>
+              <div class="summary"><p>This post is a list of useful command lines for OpenSSL.</p>
 
-<div class="section" id="hardware-specification">
-<h2>Hardware specification</h2>
-<div class="section" id="case">
-<h3>Case</h3>
-<table border="1" class="docutils table-hover table-striped table">
-<colgroup>
-<col width="43%"></col>
-<col width="57%"></col>
-</colgroup>
-<tbody valign="top">
-<tr><td>Manufacturer</td>
-<td>Lian Li</td>
-</tr>
-<tr><td>Model</td>
-<td>PC-V351B Black</td>
-</tr>
-<tr><td>5.25" drive bays</td>
-<td>2</td>
-</tr>
-<tr><td>3.5" drive bays</td>
-<td>2</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="power-supply">
-<h3>Power supply</h3>
-<table border="1" class="docutils table-hover table-striped table">
-<colgroup>
-<col width="43%"></col>
-<col width="57%"></col>
-</colgroup>
-<tbody valign="top">
-<tr><td>Manufacturer</td>
-<td>Corsair</td>
-</tr>
-<tr><td>Model</td>
-<td>HX450W</td>
-</tr>
-<tr><td>Standard</td>
-<td>ATX</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="motherboard">
-<h3>Motherboard</h3>
-<table border="1" class="docutils table-hover table-striped table">
-<colgroup>
-<col width="43%"></col>
-<col width="57%"></col>
-</colgroup>
-<tbody valign="top">
-<tr><td>Model</td>
-<td>Asus P8Z68-M Pro</td>
-</tr>
-<tr><td>Chipset model</td>
-<td>Intel Z68</td>
-</tr>
-<tr><td>Chipset collection</td>
-<td>Intel® 6 Series Chipsets</td>
-</tr>
-<tr><td>Chipser code name</td>
-<td>Cougar Point</td>
-</tr>
-<tr><td>SATA 2 (3Gb/s)</td>
-<td>4 ports (Blue)</td>
-</tr>
-<tr><td>SATA 3 (6Gb/s)</td>
-<td>2 ports (Gray)</td>
-</tr>
-<tr><td>PCIe 2.0 x16</td>
-<td>1 slot (blue)</td>
-</tr>
-<tr><td>PCIe 2.0 x16 (x4 mode)</td>
-<td>1 slot (black)</td>
-</tr>
-<tr><td>PCI</td>
-<td>2 slots</td>
-</tr>
-<tr><td>USB 2.0</td>
-<td>4 ports</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="processor">
-<h3>Processor</h3>
-<table border="1" class="docutils table-hover table-striped table">
-<colgroup>
-<col width="60%"></col>
-<col width="40%"></col>
-</colgroup>
-<tbody valign="top">
-<tr><td>Processor family</td>
-<td>Intel Pentium</td>
-</tr>
-<tr><td>Processor model</td>
-<td>G840</td>
-</tr>
-<tr><td>Processor architecture</td>
-<td>Sandy Bridge (2nd generation)</td>
-</tr>
-<tr><td>Processor core</td>
-<td>2</td>
-</tr>
-<tr><td>Processor thread</td>
-<td>2</td>
-</tr>
-<tr><td>Processor base frequency</td>
-<td>2.8 GHz</td>
-</tr>
-<tr><td>Processor Cache L1</td>
-<td>64 KB per core</td>
-</tr>
-<tr><td>Processor Cache L2</td>
-<td>256 KB per core</td>
-</tr>
-<tr><td>Processor Cache L3</td>
-<td>3 MB (Shared)</td>
-</tr>
-<tr><td>Thermal Design Power</td>
-<td>65w</td>
-</tr>
-<tr><td>Socket</td>
-<td>FCLGA1155</td>
-</tr>
-<tr><td>Virtualization Technology (VT-x)</td>
-<td>Yes</td>
-</tr>
-<tr><td>VT-x with Extended Page Tables (EPT)</td>
-<td>Yes</td>
-</tr>
-<tr><td>Virtualization Technology for Directed I/O (VT-d)</td>
-<td>No</td>
-</tr>
-<tr><td>AES New Instructions</td>
-<td>No</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="memory">
-<h3>Memory</h3>
-<table border="1" class="docutils table-hover table-striped table">
-<colgroup>
-<col width="43%"></col>
-<col width="57%"></col>
-</colgroup>
-<tbody valign="top">
-<tr><td>Memory chip name</td>
-<td>DDR3</td>
-</tr>
-<tr><td>Memory module data rate</td>
-<td>1333 MHz</td>
-</tr>
-<tr><td>Memory module capacity</td>
-<td>4 GB</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="graphics">
-<h3>Graphics</h3>
-<table border="1" class="docutils table-hover table-striped table">
-<colgroup>
-<col width="43%"></col>
-<col width="57%"></col>
-</colgroup>
-<tbody valign="top">
-<tr><td>Graphics processor</td>
-<td>Intel HD Graphics</td>
-</tr>
-<tr><td>Graphics base frequency</td>
-<td>850 MHz</td>
-</tr>
-<tr><td>Graphics max frequency</td>
-<td>1100 MHz</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="audio">
-<h3>Audio</h3>
-<table border="1" class="docutils table-hover table-striped table">
-<colgroup>
-<col width="43%"></col>
-<col width="57%"></col>
-</colgroup>
-<tbody valign="top">
-<tr><td>Audio controller</td>
-<td>Intel HD Audio</td>
-</tr>
-<tr><td>Audio codec</td>
-<td>Realtek ALC892</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="ethernet">
-<h3>Ethernet</h3>
-<table border="1" class="docutils table-hover table-striped table">
-<colgroup>
-<col width="43%"></col>
-<col width="57%"></col>
-</colgroup>
-<tbody valign="top">
-<tr><td>Model</td>
-<td>Realtek 8111E</td>
-</tr>
-<tr><td>Standard</td>
-<td>Gigabit Ethernet (1 Gbps)</td>
-</tr>
-<tr><td>Interface</td>
-<td>PCI Express</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="sata-controller">
-<h3>SATA controller</h3>
-<table border="1" class="docutils table-hover table-striped table">
-<colgroup>
-<col width="43%"></col>
-<col width="57%"></col>
-</colgroup>
-<tbody valign="top">
-<tr><td>Manufacturer</td>
-<td>ASMedia</td>
-</tr>
-<tr><td>Model</td>
-<td>ASM1062</td>
-</tr>
-<tr><td>SATA 3 (6Gb/s)</td>
-<td>1 port (Navy blue)</td>
-</tr>
-<tr><td>eSATA 3 (6Gb/s)</td>
-<td>1 port (Red)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="usb-controller">
-<h3>USB controller</h3>
-<table border="1" class="docutils table-hover table-striped table">
-<colgroup>
-<col width="43%"></col>
-<col width="57%"></col>
-</colgroup>
-<tbody valign="top">
-<tr><td>Manufacturer</td>
-<td>ASMedia</td>
-</tr>
-<tr><td>Model</td>
-<td>ASM1042</td>
-</tr>
-<tr><td>USB 3.1 (Gen 1)</td>
-<td>2 ports (blue at back panel)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="hard-disk-drive">
-<h3>Hard Disk Drive</h3>
-<table border="1" class="docutils table-hover table-striped table">
-<colgroup>
-<col width="43%"></col>
-<col width="57%"></col>
-</colgroup>
-<tbody valign="top">
-<tr><td>Manufacturer</td>
-<td>Seagate</td>
-</tr>
-<tr><td>Hard drive model</td>
-<td>Iron Wolf NAS</td>
-</tr>
-<tr><td>Total storage capacity</td>
-<td>2000 GB</td>
-</tr>
-<tr><td>Hard drive interface</td>
-<td>SATA 3 (6Gb/s)</td>
-</tr>
-<tr><td>Hard drive speed</td>
-<td>5900 RPM</td>
-</tr>
-<tr><td>Cache</td>
-<td>64 MB</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="section" id="uefi-bios">
-<h2>UEFI BIOS</h2>
-<div class="section" id="version">
-<h3>Version</h3>
-<table border="1" class="docutils table-hover table-striped table">
-<colgroup>
-<col width="40%"></col>
-<col width="60%"></col>
-</colgroup>
-<tbody valign="top">
-<tr><td>Version</td>
-<td>4003</td>
-</tr>
-<tr><td>Date</td>
-<td>September 5th, 2013</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="configuration">
-<h3>Configuration</h3>
-<p>Menu "CPU Configuration"</p>
-<pre class="code ini literal-block">
-<span class="na">Intel Virtualization Technologie     Enabled</span>
-</pre>
-<p>Menu "SATA Configuration"</p>
-<pre class="code ini literal-block">
-<span class="na">SATA mode selection                  AHCI</span>
-</pre>
-<p>Menu "APM"</p>
-<pre class="code ini literal-block">
-<span class="na">Restore AC power loss                Power On</span>
-</pre>
-<p>Menu "Boot"</p>
-<pre class="code ini literal-block">
-<span class="na">Full screen logo                     Enabled</span>
-<span class="na">PCI ROM priority                     EFI compatible ROM</span>
-<span class="na">Option ROM message                   Keep current</span>
-<span class="na">Setup mode                           Advanced mode</span>
-</pre>
-</div>
-<div class="section" id="raid">
-<h3>RAID</h3>
-<p>There is not a real hardware RAID controller on Intel Z68 chipset. Indeed, this is a "Fake RAID" which is a combination of hardware (Chipset) and software (driver). So, this is not possible to store ESP (EFI System Partition) on a RAID drive.</p>
-</div>
-</div>
-<div class="section" id="operating-system">
-<h2>Operating System</h2>
-<ul class="simple">
-<li>Create USB boot media with Debian Stretch (This USB key will be a read only filesystem)</li>
-<li>Copy firmware-realtek_20161130-3_all.deb on an another USB key (from <a class="reference external" href="https://packages.debian.org/stretch/all/firmware-realtek/download">https://packages.debian.org/stretch/all/firmware-realtek/download</a>)</li>
-<li>Start installation</li>
-</ul>
-<p>Note: In UEFI-installer you must press e key instead Tab and use arrow keys for moving</p>
-</div>
-<div class="section" id="disk-partitioning">
-<h2>Disk partitioning</h2>
-<table border="1" class="docutils table-hover table-striped table">
-<colgroup>
-<col width="45%"></col>
-<col width="28%"></col>
-<col width="28%"></col>
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">Mount Point</th>
-<th class="head">Type</th>
-<th class="head">Size</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td>None</td>
-<td>ESP</td>
-<td>300 MB</td>
-</tr>
-<tr><td>/</td>
-<td>EXT4</td>
-<td>3O GB</td>
-</tr>
-<tr><td>None</td>
-<td>Swap</td>
-<td>4 GB</td>
-</tr>
-<tr><td>/data</td>
-<td>EXT4</td>
-<td>2 TB</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-            </div>
-            <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://didier.bernaudeau.net/HowTo_install_NFS.html">How to install NFS</a></li>
-        <li><a href="http://didier.bernaudeau.net/How_to_install_canon_selphy_cp400.html">How to install Canon Selphy CP400</a></li>
-    </ul>
-</section>
-        </article>
-    </section>
+                <a class="btn btn-default btn-xs" href="http://didier.bernaudeau.net/OpenSSL_cheat_sheet.html">more ...</a>
+              </div>
+            </article>
+            <hr/>
 
         </div>
         <div class="col-sm-3" id="sidebar">
@@ -633,7 +222,7 @@ My personal blog note            </a>
                             Docker
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
+                    <li class="list-group-item tag-3">
                         <a href="http://didier.bernaudeau.net/tag/electronic.html">
                             Electronic
                         </a>
@@ -668,9 +257,9 @@ My personal blog note            </a>
                             Home automation
                         </a>
                     </li>
-                    <li class="list-group-item tag-3">
-                        <a href="http://didier.bernaudeau.net/tag/home-server-2012.html">
-                            Home Server 2012
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/home-server.html">
+                            Home Server
                         </a>
                     </li>
                     <li class="list-group-item tag-2">
@@ -706,6 +295,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/nodejs.html">
                             NodeJs
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/openssl.html">
+                            OpenSSL
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

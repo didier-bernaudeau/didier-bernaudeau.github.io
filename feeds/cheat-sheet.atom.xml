@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Cheat Sheet</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/cheat-sheet.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-02-04T12:04:00+01:00</updated><entry><title>Linux cheat sheet</title><link href="http://didier.bernaudeau.net/Linux_cheat_sheet.html" rel="alternate"></link><published>2017-12-17T17:52:00+01:00</published><updated>2018-02-04T12:04:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-17:/Linux_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Cheat Sheet</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/cheat-sheet.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-03-09T10:50:00+01:00</updated><entry><title>OpenSSL cheat sheet</title><link href="http://didier.bernaudeau.net/OpenSSL_cheat_sheet.html" rel="alternate"></link><published>2018-03-09T10:50:00+01:00</published><updated>2018-03-09T10:50:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-03-09:/OpenSSL_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for OpenSSL.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post is a list of useful command lines for OpenSSL.&lt;/p&gt;
+
+&lt;h1&gt;Certificate X509&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Show a certificate (Human Readable)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; openssl x509 -in MyCertificate.pem -text -noout
+&lt;/pre&gt;&lt;/div&gt;</content><category term="OpenSSL"></category></entry><entry><title>Linux cheat sheet</title><link href="http://didier.bernaudeau.net/Linux_cheat_sheet.html" rel="alternate"></link><published>2017-12-17T17:52:00+01:00</published><updated>2018-03-04T17:08:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-17:/Linux_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
 
+&lt;h1&gt;User and Group&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Create user with no login&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo adduser --no-create-home --disabled-password --disabled-login UserName
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Delete a group&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo groupdel GroupName
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Network&lt;/h1&gt;
 &lt;h2&gt;Check listening&lt;/h2&gt;
 &lt;p&gt;The command line netstat is not used anymore in modern linux distribution.&lt;/p&gt;

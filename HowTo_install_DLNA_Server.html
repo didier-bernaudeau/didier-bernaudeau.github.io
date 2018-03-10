@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>How to install DLNA server - My personal blog note</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://didier.bernaudeau.net/HowTo_install_DLNA_Server.html">
+
+        <meta name="author" content="Didier BERNAUDEAU" />
+        <meta name="keywords" content="Home Server" />
+        <meta name="description" content="This post describes how to install a MiniDLNA server on my home server." />
+
+        <meta property="og:site_name" content="My personal blog note" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="How to install DLNA server"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/HowTo_install_DLNA_Server.html"/>
+        <meta property="og:description" content="This post describes how to install a MiniDLNA server on my home server."/>
+        <meta property="article:published_time" content="2017-12-01" />
+            <meta property="article:section" content="Tutorials" />
+            <meta property="article:tag" content="Home Server" />
+            <meta property="article:author" content="Didier BERNAUDEAU" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+    <link href="http://didier.bernaudeau.net/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://didier.bernaudeau.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://didier.bernaudeau.net/theme/css/style.css" type="text/css"/>
+
+        <link href="http://didier.bernaudeau.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note ATOM Feed"/>
+
+
+
+        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Tutorials ATOM Feed"/>
+
+    <link href="http://didier.bernaudeau.net/theme/css/colorbox.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://didier.bernaudeau.net/" class="navbar-brand">
+My personal blog note            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/category/articles.html">Articles</a></li>
+                    <li><a href="/category/tutorials.html">Tutorials</a></li>
+                    <li><a href="/category/talk.html">Talk</a></li>
+                    <li><a href="/category/cheat-sheet.html">Cheat sheet</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="http://didier.bernaudeau.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://didier.bernaudeau.net/HowTo_install_DLNA_Server.html"
+                       rel="bookmark"
+                       title="Permalink to How to install DLNA server">
+                        How to install DLNA server
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-12-01T18:24:00+01:00"> ven. 01 décembre 2017</time>
+    </span>
+            <span class="label label-default">Modified</span>
+            <span class="modified">
+                <i class="fa fa-calendar"></i><time datetime="2018-03-04T20:36:00+01:00"> dim. 04 mars 2018</time>
+            </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://didier.bernaudeau.net/tag/home-server.html">Home Server</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>This post describes how to install a MiniDLNA server on my <a href="http://didier.bernaudeau.net/Home_Server.html">home server</a>.</p>
+
+<ul>
+<li>Install MiniDLNA</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -y minidlna
+</pre></div>
+<ul>
+<li>Configure MiniDLNA</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/minidlna.conf
+</pre></div>
+<div class="highlight"><pre><span></span>media_dir=A,/data/multimedia/music
+network_interface=enp3s0
+friendly_name=Cube Server
+
+port=8200
+
+friendly_name=MusiCube
+
+inotify=yes
+notify_interval=60 
+</pre></div>
+<ul>
+<li>Force rescan</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/default/minidlna 
+</pre></div>
+<div class="highlight"><pre><span></span>DAEMON_OPTS="-R"
+</pre></div>
+<ul>
+<li>Start MiniDLNA</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo systemctl start minidlna
+<span class="gp">$</span> sudo systemctl <span class="nb">enable</span> minidlna
+</pre></div>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Related Posts:</h4>
+    <ul>
+        <li><a href="http://didier.bernaudeau.net/Home_Server.html">Home Server</a></li>
+    </ul>
+</section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="60%" class="img-thumbnail" src="/images/avatar.png"/>
+        </p>
+    <p>
+        <strong>About D. Bernaudeau</strong><br/>
+        Didier is an information security consultant graduated with a Master's in Information Security in 2007. He has been focusing on securing SDLC and writing secure coding policies for the past ten years. He is curious, inquisitive, lifelong learner and self-starter. So, this blog is a way to document some of my experimentation.
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+
+
+
+            <li class="list-group-item"><a href="http://didier.bernaudeau.net/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/agile.html">
+                            Agile
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/api.html">
+                            API
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/application-server.html">
+                            Application Server
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/apu.html">
+                            APU
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/archlinux.html">
+                            ArchLinux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/blockchain.html">
+                            Blockchain
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/certificate.html">
+                            Certificate
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/cisco.html">
+                            Cisco
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/cloud.html">
+                            Cloud
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/container.html">
+                            Container
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/cryptography.html">
+                            Cryptography
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/cups.html">
+                            cups
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/database.html">
+                            Database
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/debian.html">
+                            Debian
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/debian-stretch.html">
+                            Debian Stretch
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/dedibox.html">
+                            Dedibox
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/development.html">
+                            Development
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/development-tool.html">
+                            Development tool
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/devops.html">
+                            DevOps
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/dictionary.html">
+                            Dictionary
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/docker.html">
+                            Docker
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/electronic.html">
+                            Electronic
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/framework.html">
+                            Framework
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/gentoo.html">
+                            Gentoo
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/git.html">
+                            Git
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/go.html">
+                            Go
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/hardware.html">
+                            Hardware
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/home-automation.html">
+                            Home automation
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/home-server.html">
+                            Home Server
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/html.html">
+                            HTML
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/java.html">
+                            Java
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/javascript.html">
+                            JavaScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/linux.html">
+                            Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="http://didier.bernaudeau.net/tag/network.html">
+                            Network
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/nginx.html">
+                            Nginx
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/nodejs.html">
+                            NodeJs
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/openssl.html">
+                            OpenSSL
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/pelican.html">
+                            Pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/php.html">
+                            PHP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/pki.html">
+                            PKI
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/protocol.html">
+                            Protocol
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/python.html">
+                            Python
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/raspberry-pi.html">
+                            Raspberry Pi
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/raspbian.html">
+                            Raspbian
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/redhat.html">
+                            RedHat
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/rest.html">
+                            REST
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scm.html">
+                            SCM
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/scrum.html">
+                            Scrum
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/snmp.html">
+                            SNMP
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/software.html">
+                            Software
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/spring.html">
+                            Spring
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/spring-boot.html">
+                            Spring Boot
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/spring-cloud.html">
+                            Spring Cloud
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/tls.html">
+                            TLS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/virtualization.html">
+                            Virtualization
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/vpn.html">
+                            VPN
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://didier.bernaudeau.net/tag/website.html">
+                            WebSite
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/windows.html">
+                            Windows
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/wireless.html">
+                            Wireless
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2018 D. Bernaudeau
+            &middot; Powered by <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://didier.bernaudeau.net/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://didier.bernaudeau.net/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://didier.bernaudeau.net/theme/js/respond.min.js"></script>
+
+<!-- ColorBox -->
+<script src="http://didier.bernaudeau.net/theme/js/jquery.colorbox-min.js"></script>
+<script src="http://didier.bernaudeau.net/theme/js/load-colorbox.js"></script>
+
+
+
+</body>
+</html>

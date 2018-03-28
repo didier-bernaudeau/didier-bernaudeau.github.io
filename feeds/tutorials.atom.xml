@@ -1,5 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-03-04T20:36:00+01:00</updated><entry><title>How to use SNMP on a Cisco SG200</title><link href="http://didier.bernaudeau.net/HowTo_use_SNMP_on_a_Cisco_SG200.html" rel="alternate"></link><published>2018-02-20T17:07:00+01:00</published><updated>2018-02-25T11:29:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-02-20:/HowTo_use_SNMP_on_a_Cisco_SG200.html</id><summary type="html">&lt;p&gt;SNMP is a protocol largely used to monitor network hardware, and I would have used it to monitor my CISCO SG200 but the implementation is very limited. For instance, this switch doesn't have temperature sensor. This post walks you through configuring the swith then installing SNMP tools on your computer.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-03-28T12:17:00+02:00</updated><entry><title>WebSocket server in Python</title><link href="http://didier.bernaudeau.net/WebSocketServerPython.html" rel="alternate"></link><published>2018-03-28T11:08:00+02:00</published><updated>2018-03-28T12:17:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-03-28:/WebSocketServerPython.html</id><summary type="html">&lt;p&gt;This post will walk-through programming a WebSocket server in Python with Gevent WebSocket. It's difficult to use this framework because the documentation is very poor.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post will walk-through programming a WebSocket server in Python with Gevent WebSocket. It's difficult to use this framework because the documentation is very poor.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create virtual environment&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; virtualenv --python&lt;span class="o"&gt;=&lt;/span&gt;/usr/bin/python3.5 PyWS
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Enable virtual environment&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; PyWS
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;source&lt;/span&gt; bin/activate
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Gevent WebSocket&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; pip install gevent-websocket
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create App&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; nano PyWS.py
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;geventwebsocket&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;WebSocketServer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;WebSocketApplication&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Resource&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;OrderedDict&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;GreetingsApplication&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;WebSocketApplication&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;on_open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Connection opened"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;on_message&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;UserName&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ws&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Hello "&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;UserName&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;"!"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;UserName&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;on_close&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Connection closed!"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;'__main__'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;WebSocketServer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'0.0.0.0'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8000&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+      &lt;span class="n"&gt;Resource&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;OrderedDict&lt;/span&gt;&lt;span class="p"&gt;([(&lt;/span&gt;&lt;span class="s1"&gt;'/'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;GreetingsApplication&lt;/span&gt;&lt;span class="p"&gt;)]))&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;serve_forever&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Run WebSocket server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; bin/python3.5 PyWS.py
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Test with "Smart websocket client" (chrome add-ons)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Quit&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; deactivate
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Python"></category><category term="WebSocket"></category></entry><entry><title>How to use SNMP on a Cisco SG200</title><link href="http://didier.bernaudeau.net/HowTo_use_SNMP_on_a_Cisco_SG200.html" rel="alternate"></link><published>2018-02-20T17:07:00+01:00</published><updated>2018-02-25T11:29:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-02-20:/HowTo_use_SNMP_on_a_Cisco_SG200.html</id><summary type="html">&lt;p&gt;SNMP is a protocol largely used to monitor network hardware, and I would have used it to monitor my CISCO SG200 but the implementation is very limited. For instance, this switch doesn't have temperature sensor. This post walks you through configuring the swith then installing SNMP tools on your computer.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;SNMP is a protocol largely used to monitor network hardware, and I would have used it to monitor my CISCO SG200 but the implementation is very limited. For instance, this switch doesn't have temperature sensor. This post walks you through configuring the swith then installing SNMP tools on your computer.&lt;/p&gt;
 
 &lt;h1&gt;Switch configuration&lt;/h1&gt;
@@ -499,39 +557,46 @@ rlEnvFanDataDirection.1 = INTEGER: unKnown(1)
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Open &lt;a href="http://localhost:8761/"&gt;the dashboard&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="Spring"></category><category term="Spring Cloud"></category><category term="REST"></category><category term="API"></category></entry><entry><title>How to install NodeJS on Gentoo Linux</title><link href="http://didier.bernaudeau.net/HowTo_install_NodeJS.html" rel="alternate"></link><published>2017-12-31T17:13:00+01:00</published><updated>2017-12-31T16:08:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-31:/HowTo_install_NodeJS.html</id><summary type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux.&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux.&lt;/p&gt;
+&lt;/ul&gt;</content><category term="Spring"></category><category term="Spring Cloud"></category><category term="REST"></category><category term="API"></category></entry><entry><title>How to install NodeJS on Gentoo Linux</title><link href="http://didier.bernaudeau.net/HowTo_install_NodeJS.html" rel="alternate"></link><published>2017-12-30T17:13:00+01:00</published><updated>2018-03-25T16:32:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-30:/HowTo_install_NodeJS.html</id><summary type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional software on Gentoo Linux.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional software on Gentoo Linux.&lt;/p&gt;
 
 &lt;h1&gt;NodeJS&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;Install NodeJS 9.4&lt;/li&gt;
+&lt;li&gt;Install NodeJS 9.8&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.accept_keywords
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;=net-libs/nodejs-9.4.0       ~amd64
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;=net-libs/nodejs-9.8.0       ~amd64
 =net-libs/http-parser-2.7.1  ~amd64
 =net-libs/nghttp2-1.29.0     ~amd64
-=dev-libs/libuv-1.19.1       ~amd64
+=dev-libs/libuv-1.19.2       ~amd64
 =dev-libs/icu-60.2           ~amd64
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge -pv &lt;span class="o"&gt;=&lt;/span&gt;net-libs/nodejs-9.4.0
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nv"&gt;emerge&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;net-libs/nodejs-9.8.0
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;NPM&lt;/h1&gt;
 &lt;p&gt;NPM (stands for Node Package Manager) is a command line interface program to manage node.js libraries. This tools is provided by default with NodeJs.&lt;/p&gt;
-&lt;h2&gt;Command line for user installation&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Install package for all users&lt;/li&gt;
+&lt;li&gt;Install NPM&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; npm install PackageName
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm install -g npm
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Packages are installed in the following directory: "/home/didier/node_modules".&lt;/p&gt;
-&lt;h2&gt;Command line for global installation&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Install package for all users&lt;/li&gt;
+&lt;li&gt;Install a package&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm i PackageName -g
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm install -g PackageName
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Packages are installed in the following directory: "/usr/lib64/node_modules/".&lt;/p&gt;
+&lt;p&gt;/!\ Packages are installed in the following directory: "/usr/lib64/node_modules/".&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Uninstall a package&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm uninstall -g PackageName
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Get information about a package&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm list PackageName
+&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Update NPM packages&lt;/li&gt;
 &lt;/ul&gt;
@@ -542,6 +607,11 @@ rlEnvFanDataDirection.1 = INTEGER: unKnown(1)
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm cache verify
 &lt;span class="gp"&gt;#&lt;/span&gt; npm cache clear --force
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a project&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; npm init
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Yarn&lt;/h1&gt;
 &lt;p&gt;Yarn is an another package manager from Facebook. Yarn is an alternative to NPM.&lt;/p&gt;
@@ -3688,6 +3758,17 @@ So, this tutorial suggests some optimization to reduce write access to the SD ca
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo raspi-config
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
+&lt;li&gt;Change keyboard layout&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;4 Localisation Options
+I3 Change keyboard layout
+Type: Generic 105-key
+Country: French
+Layout: French - French (Azerty)
+Key to function as AltGr: The default for the keyboard layout
+Compose key: no compose key
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
 &lt;li&gt;Change hostname&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2 Network Option
@@ -3700,6 +3781,13 @@ N1 Hostname
 I2 Change Timezone
 Geographic area: Europe
 Time zone: Paris
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Change wifi country&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;4 Localisation Options
+I4 Change Wifi country
+Country: FR France
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Expand Filesystem&lt;/li&gt;
@@ -3777,6 +3865,12 @@ NTP synchronized: yes
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=749d10b0-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait noswap
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Configure the WiFi&lt;/h1&gt;
+&lt;h2&gt;Through Raspi-config&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;N2 Wi-fi
+SSID: **********
+Passphrase: **********
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Through file system&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo wpa_passphrase SSID
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
 &lt;/pre&gt;&lt;/div&gt;

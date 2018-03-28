@@ -13,14 +13,14 @@
 
         <meta name="author" content="Didier BERNAUDEAU" />
         <meta name="keywords" content="NodeJs,Gentoo" />
-        <meta name="description" content="Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux." />
+        <meta name="description" content="Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional software on Gentoo Linux." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="How to install NodeJS on Gentoo Linux"/>
         <meta property="og:url" content="http://didier.bernaudeau.net/HowTo_install_NodeJS.html"/>
-        <meta property="og:description" content="Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux."/>
-        <meta property="article:published_time" content="2017-12-31" />
+        <meta property="og:description" content="Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional software on Gentoo Linux."/>
+        <meta property="article:published_time" content="2017-12-30" />
             <meta property="article:section" content="Tutorials" />
             <meta property="article:tag" content="NodeJs" />
             <meta property="article:tag" content="Gentoo" />
@@ -95,11 +95,11 @@ My personal blog note            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-12-31T17:13:00+01:00"> dim. 31 décembre 2017</time>
+        <i class="fa fa-calendar"></i><time datetime="2017-12-30T17:13:00+01:00"> sam. 30 décembre 2017</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-12-31T16:08:00+01:00"> dim. 31 décembre 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2018-03-25T16:32:00+02:00"> dim. 25 mars 2018</time>
             </span>
 
 
@@ -113,38 +113,45 @@ My personal blog note            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux.</p>
+                <p>Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional software on Gentoo Linux.</p>
 
 <h1>NodeJS</h1>
 <ul>
-<li>Install NodeJS 9.4</li>
+<li>Install NodeJS 9.8</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/portage/package.accept_keywords
 </pre></div>
-<div class="highlight"><pre><span></span>=net-libs/nodejs-9.4.0       ~amd64
+<div class="highlight"><pre><span></span>=net-libs/nodejs-9.8.0       ~amd64
 =net-libs/http-parser-2.7.1  ~amd64
 =net-libs/nghttp2-1.29.0     ~amd64
-=dev-libs/libuv-1.19.1       ~amd64
+=dev-libs/libuv-1.19.2       ~amd64
 =dev-libs/icu-60.2           ~amd64
 </pre></div>
-<div class="highlight"><pre><span></span><span class="gp">#</span> emerge -pv <span class="o">=</span>net-libs/nodejs-9.4.0
+<div class="highlight"><pre><span></span><span class="gp">#</span> <span class="nv">emerge</span> <span class="o">=</span>net-libs/nodejs-9.8.0
 </pre></div>
 <h1>NPM</h1>
 <p>NPM (stands for Node Package Manager) is a command line interface program to manage node.js libraries. This tools is provided by default with NodeJs.</p>
-<h2>Command line for user installation</h2>
 <ul>
-<li>Install package for all users</li>
+<li>Install NPM</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> npm install PackageName
+<div class="highlight"><pre><span></span><span class="gp">#</span> npm install -g npm
 </pre></div>
-<p>Packages are installed in the following directory: "/home/didier/node_modules".</p>
-<h2>Command line for global installation</h2>
 <ul>
-<li>Install package for all users</li>
+<li>Install a package</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> npm i PackageName -g
+<div class="highlight"><pre><span></span><span class="gp">#</span> npm install -g PackageName
 </pre></div>
-<p>Packages are installed in the following directory: "/usr/lib64/node_modules/".</p>
+<p>/!\ Packages are installed in the following directory: "/usr/lib64/node_modules/".</p>
+<ul>
+<li>Uninstall a package</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> npm uninstall -g PackageName
+</pre></div>
+<ul>
+<li>Get information about a package</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> npm list PackageName
+</pre></div>
 <ul>
 <li>Update NPM packages</li>
 </ul>
@@ -155,6 +162,11 @@ My personal blog note            </a>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">#</span> npm cache verify
 <span class="gp">#</span> npm cache clear --force
+</pre></div>
+<ul>
+<li>Create a project</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> npm init
 </pre></div>
 <h1>Yarn</h1>
 <p>Yarn is an another package manager from Facebook. Yarn is an alternative to NPM.</p>
@@ -479,6 +491,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/website.html">
                             WebSite
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/websocket.html">
+                            WebSocket
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>TLS: Hardened configuration - My personal blog note</title>
+    <title>WebSocket server in Python - My personal blog note</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,22 +9,22 @@
 
 
 
-<link rel="canonical" href="http://didier.bernaudeau.net/TLS_Hardened_configuration.html">
+<link rel="canonical" href="http://didier.bernaudeau.net/WebSocketServerPython.html">
 
-        <meta name="author" content="Didier Bernaudeau" />
-        <meta name="keywords" content="Cryptography,Network" />
-        <meta name="description" content="In recent years, many vulnerabilities (BEAST, CRIME, FREAK, ...) have been published about TLS protocol. Today, it is essential to enhanced configuration of TLS protocol to ensure the security of communication. This article lists the best practices to enhanced configuration of TLS protocol." />
+        <meta name="author" content="Didier BERNAUDEAU" />
+        <meta name="keywords" content="Python,WebSocket" />
+        <meta name="description" content="This post will walk-through programming a WebSocket server in Python with Gevent WebSocket. It&#39;s difficult to use this framework because the documentation is very poor." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="TLS: Hardened configuration"/>
-        <meta property="og:url" content="http://didier.bernaudeau.net/TLS_Hardened_configuration.html"/>
-        <meta property="og:description" content="In recent years, many vulnerabilities (BEAST, CRIME, FREAK, ...) have been published about TLS protocol. Today, it is essential to enhanced configuration of TLS protocol to ensure the security of communication. This article lists the best practices to enhanced configuration of TLS protocol."/>
-        <meta property="article:published_time" content="2015-07-23" />
-            <meta property="article:section" content="Articles" />
-            <meta property="article:tag" content="Cryptography" />
-            <meta property="article:tag" content="Network" />
-            <meta property="article:author" content="Didier Bernaudeau" />
+        <meta property="og:title" content="WebSocket server in Python"/>
+        <meta property="og:url" content="http://didier.bernaudeau.net/WebSocketServerPython.html"/>
+        <meta property="og:description" content="This post will walk-through programming a WebSocket server in Python with Gevent WebSocket. It&#39;s difficult to use this framework because the documentation is very poor."/>
+        <meta property="article:published_time" content="2018-03-28" />
+            <meta property="article:section" content="Tutorials" />
+            <meta property="article:tag" content="Python" />
+            <meta property="article:tag" content="WebSocket" />
+            <meta property="article:author" content="Didier BERNAUDEAU" />
 
 
     <!-- Bootstrap -->
@@ -39,8 +39,8 @@
 
 
 
-        <link href="http://didier.bernaudeau.net/feeds/articles.atom.xml" type="application/atom+xml" rel="alternate"
-              title="My personal blog note Articles ATOM Feed"/>
+        <link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
+              title="My personal blog note Tutorials ATOM Feed"/>
 
     <link href="http://didier.bernaudeau.net/theme/css/colorbox.css" rel="stylesheet">
 
@@ -82,10 +82,10 @@ My personal blog note            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://didier.bernaudeau.net/TLS_Hardened_configuration.html"
+                    <a href="http://didier.bernaudeau.net/WebSocketServerPython.html"
                        rel="bookmark"
-                       title="Permalink to TLS: Hardened configuration">
-                        TLS: Hardened configuration
+                       title="Permalink to WebSocket server in Python">
+                        WebSocket server in Python
                     </a>
                 </h1>
             </header>
@@ -95,11 +95,11 @@ My personal blog note            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-07-23T22:41:00+02:00"> jeu. 23 juillet 2015</time>
+        <i class="fa fa-calendar"></i><time datetime="2018-03-28T11:08:00+02:00"> mer. 28 mars 2018</time>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2015-08-02T12:44:00+02:00"> dim. 02 août 2015</time>
+                <i class="fa fa-calendar"></i><time datetime="2018-03-28T12:17:00+02:00"> mer. 28 mars 2018</time>
             </span>
 
 
@@ -107,218 +107,72 @@ My personal blog note            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://didier.bernaudeau.net/tag/cryptography.html">Cryptography</a>
+	<a href="http://didier.bernaudeau.net/tag/python.html">Python</a>
         /
-	<a href="http://didier.bernaudeau.net/tag/network.html">Network</a>
+	<a href="http://didier.bernaudeau.net/tag/websocket.html">WebSocket</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>In recent years, many vulnerabilities (BEAST, CRIME, FREAK, ...) have been published about TLS protocol. Today, it is essential to enhanced configuration of TLS protocol to ensure the security of communication. This article lists the best practices to enhanced configuration of TLS protocol.</p>
+                <p>This post will walk-through programming a WebSocket server in Python with Gevent WebSocket. It's difficult to use this framework because the documentation is very poor.</p>
 
-<div class="section" id="protocol-version">
-<h2>Protocol version</h2>
-<table border="1" class="docutils table-hover table-striped table">
-<colgroup>
-<col width="9%"></col>
-<col width="20%"></col>
-<col width="71%"></col>
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">Version</th>
-<th class="head">Recommended state</th>
-<th class="head">Comment</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td>1.0</td>
-<td>Disabled</td>
-<td>Vulnerability: BEAST (Browser Exploit Against SSL/TLS)</td>
-</tr>
-<tr><td>1.1</td>
-<td>Disabled</td>
-<td>Enable only for interoperability</td>
-</tr>
-<tr><td>1.2</td>
-<td>Enable</td>
-<td>This is the last version</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="compression-method">
-<h2>Compression method</h2>
-<table border="1" class="docutils table-hover table-striped table">
-<colgroup>
-<col width="9%"></col>
-<col width="20%"></col>
-<col width="71%"></col>
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">Method</th>
-<th class="head">Recommended state</th>
-<th class="head">Comment</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td>Null</td>
-<td>Enable</td>
-<td> </td>
-</tr>
-<tr><td>Deflate</td>
-<td>Disabled</td>
-<td>Vulnerability: CRIME (Compression Ratio Info-leak Made Easy)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="cryptographic-algorithm">
-<h2>Cryptographic algorithm</h2>
-<div class="section" id="key-exchange">
-<h3>Key exchange</h3>
-<table border="1" class="docutils table-hover table-striped table">
-<colgroup>
-<col width="10%"></col>
-<col width="11%"></col>
-<col width="18%"></col>
-<col width="60%"></col>
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">Algorithm</th>
-<th class="head">Key length</th>
-<th class="head">Recommended state</th>
-<th class="head">Comment</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td>RSA Export</td>
-<td>512 bits</td>
-<td>Disabled</td>
-<td>Vulnerability: FREAK (Factoring RSA Export Keys)</td>
-</tr>
-<tr><td>RSA</td>
-<td>2048 bits</td>
-<td>Disabled</td>
-<td>Enable only for interoperability</td>
-</tr>
-<tr><td>DH</td>
-<td>2048 bits</td>
-<td>Disabled</td>
-<td>Enable only for interoperability</td>
-</tr>
-<tr><td>DHE</td>
-<td>2048 bits</td>
-<td>Enable</td>
-<td>Allow PFS (Perfect Forward Secrecy)</td>
-</tr>
-<tr><td>ECDHE</td>
-<td>256 bits</td>
-<td>Enable</td>
-<td>Allow PFS (Perfect Forward Secrecy)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="encryption">
-<h3>Encryption</h3>
-<table border="1" class="docutils table-hover table-striped table">
-<colgroup>
-<col width="10%"></col>
-<col width="11%"></col>
-<col width="18%"></col>
-<col width="60%"></col>
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">Algorithm</th>
-<th class="head">Key length</th>
-<th class="head">Recommended state</th>
-<th class="head">Comment</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td>DES</td>
-<td>56 bits</td>
-<td>Disabled</td>
-<td>Weak algorithm</td>
-</tr>
-<tr><td>3DES</td>
-<td>112 bits</td>
-<td>Disabled</td>
-<td>Weak algorithm</td>
-</tr>
-<tr><td>RC4</td>
-<td>128 bits</td>
-<td>Disabled</td>
-<td>Weak algorithm</td>
-</tr>
-<tr><td>AES-CBC</td>
-<td>128 bits</td>
-<td>Disabled</td>
-<td>Vulnerability: Lucky 13</td>
-</tr>
-<tr><td>AES-CBC</td>
-<td>256 bits</td>
-<td>Disabled</td>
-<td>Vulnerability: Lucky 13</td>
-</tr>
-<tr><td>AES-GCM</td>
-<td>128 bits</td>
-<td>Enable</td>
-<td>Allow AEAD (Authenticated Encryption with Associated Data)</td>
-</tr>
-<tr><td>AES-GCM</td>
-<td>256 bits</td>
-<td>Enable</td>
-<td>Allow AEAD (Authenticated Encryption with Associated Data)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="message-authentication-code">
-<h3>Message Authentication Code</h3>
-<table border="1" class="docutils table-hover table-striped table">
-<colgroup>
-<col width="10%"></col>
-<col width="11%"></col>
-<col width="18%"></col>
-<col width="60%"></col>
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">Algorithm</th>
-<th class="head">Key length</th>
-<th class="head">Recommended state</th>
-<th class="head">Comment</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td>MD5</td>
-<td>128 bits</td>
-<td>Disabled</td>
-<td>Weak algorithm</td>
-</tr>
-<tr><td>SHA-1</td>
-<td>160 bits</td>
-<td>Disabled</td>
-<td>Weak algorithm</td>
-</tr>
-<tr><td>SHA-2</td>
-<td>256 bits</td>
-<td>Enable</td>
-<td> </td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<ul>
+<li>Create virtual environment</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> virtualenv --python<span class="o">=</span>/usr/bin/python3.5 PyWS
+</pre></div>
+<ul>
+<li>Enable virtual environment</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> PyWS
+<span class="gp">$</span> <span class="nb">source</span> bin/activate
+</pre></div>
+<ul>
+<li>Install Gevent WebSocket</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> pip install gevent-websocket
+</pre></div>
+<ul>
+<li>Create App</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> nano PyWS.py
+</pre></div>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geventwebsocket</span> <span class="kn">import</span> <span class="n">WebSocketServer</span><span class="p">,</span> <span class="n">WebSocketApplication</span><span class="p">,</span> <span class="n">Resource</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 
+<span class="k">class</span> <span class="nc">GreetingsApplication</span><span class="p">(</span><span class="n">WebSocketApplication</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">"Connection opened"</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">on_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">UserName</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ws</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">"Hello "</span> <span class="o">+</span> <span class="n">UserName</span> <span class="o">+</span> <span class="s2">"!"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">UserName</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">"Connection closed!"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="n">WebSocketServer</span><span class="p">(</span>
+      <span class="p">(</span><span class="s1">'0.0.0.0'</span><span class="p">,</span> <span class="mi">8000</span><span class="p">),</span>
+      <span class="n">Resource</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">'/'</span><span class="p">,</span> <span class="n">GreetingsApplication</span><span class="p">)]))</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
+</pre></div>
+<ul>
+<li>Run WebSocket server</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> bin/python3.5 PyWS.py
+</pre></div>
+<ul>
+<li>
+<p>Test with "Smart websocket client" (chrome add-ons)</p>
+</li>
+<li>
+<p>Quit</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> deactivate
+</pre></div>
             </div>
             <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Related Posts:</h4>
-    <ul>
-        <li><a href="http://didier.bernaudeau.net/TLS_Understanding_the_cipher_suites.html">TLS: Understanding the cipher suites</a></li>
-        <li><a href="http://didier.bernaudeau.net/TLS_Audit_tools.html">TLS: Audit tools</a></li>
-    </ul>
-</section>
         </article>
     </section>
 

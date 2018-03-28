@@ -175,6 +175,17 @@ So, this tutorial suggests some optimization to reduce write access to the SD ca
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo raspi-config
 </pre></div>
 <ul>
+<li>Change keyboard layout</li>
+</ul>
+<div class="highlight"><pre><span></span>4 Localisation Options
+I3 Change keyboard layout
+Type: Generic 105-key
+Country: French
+Layout: French - French (Azerty)
+Key to function as AltGr: The default for the keyboard layout
+Compose key: no compose key
+</pre></div>
+<ul>
 <li>Change hostname</li>
 </ul>
 <div class="highlight"><pre><span></span>2 Network Option
@@ -187,6 +198,13 @@ N1 Hostname
 I2 Change Timezone
 Geographic area: Europe
 Time zone: Paris
+</pre></div>
+<ul>
+<li>Change wifi country</li>
+</ul>
+<div class="highlight"><pre><span></span>4 Localisation Options
+I4 Change Wifi country
+Country: FR France
 </pre></div>
 <ul>
 <li>Expand Filesystem</li>
@@ -264,6 +282,12 @@ NTP synchronized: yes
 <div class="highlight"><pre><span></span>dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=749d10b0-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait noswap
 </pre></div>
 <h1>Configure the WiFi</h1>
+<h2>Through Raspi-config</h2>
+<div class="highlight"><pre><span></span>N2 Wi-fi
+SSID: **********
+Passphrase: **********
+</pre></div>
+<h2>Through file system</h2>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo wpa_passphrase SSID
 <span class="gp">$</span> sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
 </pre></div>
@@ -604,6 +628,11 @@ NTP synchronized: yes
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/website.html">
                             WebSite
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/websocket.html">
+                            WebSocket
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

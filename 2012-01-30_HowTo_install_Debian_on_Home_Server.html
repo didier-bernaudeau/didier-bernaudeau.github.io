@@ -99,7 +99,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2018-03-04T18:43:00+01:00"> dim. 04 mars 2018</time>
+                <i class="fa fa-calendar"></i><time datetime="2018-04-03T22:57:00+02:00"> mar. 03 avril 2018</time>
             </span>
 
 
@@ -256,6 +256,34 @@ My personal blog note            </a>
 <li>Mount disk</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo mount /data
+</pre></div>
+<h1>Time sync</h1>
+<ul>
+<li>Disable RTC</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo timedatectl set-local-rtc <span class="m">0</span>
+</pre></div>
+<ul>
+<li>Enable NTP</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo timedatectl set-ntp <span class="m">1</span>
+</pre></div>
+<ul>
+<li>Define NTP server</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/systemd/timesyncd.conf
+</pre></div>
+<div class="highlight"><pre><span></span>Servers=g8way.domain.net
+</pre></div>
+<ul>
+<li>Restart NTP client</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> systemctl restart systemd-timesyncd.service
+</pre></div>
+<ul>
+<li>Check</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo timedatectl status
 </pre></div>
 <h1>Install additional tools</h1>
 <ul>
@@ -668,6 +696,11 @@ Core 1:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
                     <li class="list-group-item tag-3">
                         <a href="http://didier.bernaudeau.net/tag/rest.html">
                             REST
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/rpigpio.html">
+                            Rpi.GPIO
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

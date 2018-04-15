@@ -52,9 +52,14 @@
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;file compression&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;Compress with Gunzip&lt;/li&gt;
+&lt;li&gt;Compress&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; tar -czvf file.tar.gz /home/directory
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Unpack&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; tar -xzvf file.tar.gz
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Systemd&lt;/h1&gt;
 &lt;ul&gt;

@@ -99,7 +99,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2017-06-26T21:59:00+02:00"> lun. 26 juin 2017</time>
+                <i class="fa fa-calendar"></i><time datetime="2018-05-27T13:33:00+02:00"> dim. 27 mai 2018</time>
             </span>
 
 
@@ -118,22 +118,24 @@ My personal blog note            </a>
 <p><strong>Note regarding SD Card:</strong>
 Most of the time you won’t see or have any incidences because SD corruption is not really simple to detect. Sometime it works and sometimes Pi is crashing/blocking and you don’t know why. So, it's better to protect your SD cards from unproper shutdown and also prevent SD card premature end of life.
 So, this tutorial suggests some optimization to reduce write access to the SD card.</p>
-<h1>Getting started</h1>
+<h1>Making a bootable SD Card</h1>
 <ul>
-<li>Download the last version of Raspbian (Stretch / Release date 2017-09-07)</li>
+<li>Download the last version of Raspbian (Stretch / Release date 2018-04-18)</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> wget https://downloads.raspberrypi.org/raspbian_lite_latest
+<div class="highlight"><pre><span></span><span class="gp">$</span> curl -L https://downloads.raspberrypi.org/raspbian_lite_latest -o raspbian-stretch-lite.zip
 </pre></div>
 <ul>
 <li>Uncompress file</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> unzip <span class="m">2017</span>-09-07-raspbian-stretch-lite.zip
+<div class="highlight"><pre><span></span><span class="gp">$</span> unzip raspbian-stretch-lite.zip
+<span class="gp">$</span> mv *raspbian-stretch-lite.img raspbian-stretch-lite.img
 </pre></div>
 <ul>
 <li>Copy files on the SD card</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> dd <span class="nv">bs</span><span class="o">=</span>4M <span class="k">if</span><span class="o">=</span><span class="m">2017</span>-09-07-raspbian-stretch-lite.img <span class="nv">of</span><span class="o">=</span>/dev/mmcblk0 <span class="nv">status</span><span class="o">=</span>progress
+<div class="highlight"><pre><span></span><span class="gp">#</span> dd <span class="nv">bs</span><span class="o">=</span>4M <span class="k">if</span><span class="o">=</span>raspbian-stretch-lite.img <span class="nv">of</span><span class="o">=</span>/dev/mmcblk0 <span class="nv">status</span><span class="o">=</span>progress
 <span class="gp">#</span> sync
+<span class="gp">$</span> rm raspbian-stretch-lite.img
 </pre></div>
 <ul>
 <li>Enable SSH server</li>
@@ -144,11 +146,37 @@ So, this tutorial suggests some optimization to reduce write access to the SD ca
 <span class="gp">#</span> umount /mnt/tmp
 </pre></div>
 <ul>
+<li>Define hostname (by default raspberrypi)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> mount /dev/mmcblk0p2 /mnt/tmp
+<span class="gp">#</span> nano /mnt/tmp/etc/hostname
+<span class="gp">#</span> nano /mnt/tmp/etc/hosts
+<span class="gp">#</span> umount /mnt/tmp
+</pre></div>
+<ul>
+<li>Enable WiFi</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> mount /dev/mmcblk0p2 /mnt/tmp
+<span class="gp">#</span> nano /mnt/tmp/etc/wpa_supplicant/wpa_supplicant.conf
+</pre></div>
+<div class="highlight"><pre><span></span>country=FR
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+        ssid="My SSID"
+        psk="**********"
+}
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">#</span> umount /mnt/tmp
+</pre></div>
+<h1>Booting your Raspberry Pi</h1>
+<ul>
 <li>
 <p>Insert the SD card in the Raspberry Pi</p>
 </li>
 <li>
-<p>Plug in ethernet cable and power supply</p>
+<p>Plug-in power supply and, if needed, the Ethernet cable.</p>
 </li>
 <li>
 <p>Connect to your Raspberry by using SSH </p>
@@ -169,6 +197,7 @@ So, this tutorial suggests some optimization to reduce write access to the SD ca
 <span class="gp">$</span> sudo apt autoremove
 </pre></div>
 <h1>Basic system configuration</h1>
+<p>Raspi-Config is a tool which allows you to change easily the Raspbian's configuration.</p>
 <ul>
 <li>Open the configuration menu</li>
 </ul>
@@ -185,6 +214,7 @@ Layout: French - French (Azerty)
 Key to function as AltGr: The default for the keyboard layout
 Compose key: no compose key
 </pre></div>
+<p>Note: This option works only if a keyboard is plugged-in.</p>
 <ul>
 <li>Change hostname</li>
 </ul>
@@ -213,6 +243,22 @@ Country: FR France
 A1 Expand Filesystem
 </pre></div>
 <p>Then select "finish" and reboot your Raspberry.</p>
+<h1>Hardening SSH Server</h1>
+<ul>
+<li>Generate your SSH keys (on your computer)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> ssh-keygen -f ~/.ssh/raspberry.key
+</pre></div>
+<ul>
+<li>Copy your public key to the Raspberry Pi</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> ssh-copy-id -i ~/.ssh/raspberry.key pi@raspberrypi.domain.net
+</pre></div>
+<ul>
+<li>Start a SSH connection</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">ssh -i ~/.ssh/raspberry.key pi@raspberrypi.domain.net</span>
+</pre></div>
 <h1>Time synchronization with systemd</h1>
 <ul>
 <li>Configure TimeSync</li>
@@ -282,19 +328,11 @@ NTP synchronized: yes
 <div class="highlight"><pre><span></span>dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=749d10b0-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait noswap
 </pre></div>
 <h1>Configure the WiFi</h1>
-<h2>Through Raspi-config</h2>
-<div class="highlight"><pre><span></span>N2 Wi-fi
-SSID: **********
-Passphrase: **********
-</pre></div>
-<h2>Through file system</h2>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo wpa_passphrase SSID
-<span class="gp">$</span> sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
 </pre></div>
 <div class="highlight"><pre><span></span>network={
         ssid="SSID"
-        #psk="MySecret"
-        psk=4baa71a05efba1dfa9af4aa162f5a67b7c9d9aae5c3bac92e5ed540b0c3f0332
+        psk="MySecret"
 }
 </pre></div>
 <h1>Install additional packages</h1>
@@ -318,10 +356,10 @@ Passphrase: **********
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://didier.bernaudeau.net/Connecting_a_Push_Switch_on_a_Raspberry.html">Connecting a push button switch on a Raspberry</a></li>
-        <li><a href="http://didier.bernaudeau.net/WiringPi.html">Wiring PI</a></li>
         <li><a href="http://didier.bernaudeau.net/Connecting_an_optocoupler_on_a_Raspberry.html">Connecting an optocouler switch on a Raspberry</a></li>
+        <li><a href="http://didier.bernaudeau.net/WiringPi.html">Wiring PI</a></li>
         <li><a href="http://didier.bernaudeau.net/Raspberry_PI.html">Raspberry PI</a></li>
+        <li><a href="http://didier.bernaudeau.net/Connecting_a_Push_Switch_on_a_Raspberry.html">Connecting a push button switch on a Raspberry</a></li>
     </ul>
 </section>
         </article>
@@ -351,7 +389,7 @@ Passphrase: **********
                             Agile
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/angular.html">
                             Angular
                         </a>
@@ -411,7 +449,7 @@ Passphrase: **********
                             cups
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
+                    <li class="list-group-item tag-3">
                         <a href="http://didier.bernaudeau.net/tag/database.html">
                             Database
                         </a>
@@ -466,6 +504,11 @@ Passphrase: **********
                             Framework
                         </a>
                     </li>
+                    <li class="list-group-item tag-3">
+                        <a href="http://didier.bernaudeau.net/tag/front-end.html">
+                            Front-End
+                        </a>
+                    </li>
                     <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/gentoo.html">
                             Gentoo
@@ -506,7 +549,7 @@ Passphrase: **********
                             Java
                         </a>
                     </li>
-                    <li class="list-group-item tag-2">
+                    <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/javascript.html">
                             JavaScript
                         </a>
@@ -514,6 +557,11 @@ Passphrase: **********
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/linux.html">
                             Linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/mongodb.html">
+                            MongoDB
                         </a>
                     </li>
                     <li class="list-group-item tag-1">

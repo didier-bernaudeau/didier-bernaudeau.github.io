@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-04-15T09:08:00+02:00</updated><entry><title>Asynchronous GPIO interupts</title><link href="http://didier.bernaudeau.net/Asynchronous_GPIO_interupts.html" rel="alternate"></link><published>2018-04-15T09:08:00+02:00</published><updated>2018-04-14T09:48:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-04-15:/Asynchronous_GPIO_interupts.html</id><summary type="html">&lt;p&gt;Rpi.GPIO is a powerful framework to control GPIO on Raspberry. However, this framework is not really compatible with asynchronous programming.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-06-10T09:45:00+02:00</updated><entry><title>MongoDB</title><link href="http://didier.bernaudeau.net/MongoDB.html" rel="alternate"></link><published>2018-06-09T10:08:00+02:00</published><updated>2018-06-10T09:45:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-09:/MongoDB.html</id><summary type="html">&lt;p&gt;MongoDB is a document-oriented database very popular especially with MEAN technical stack (MongoDB, ExpressJS, AngularJS and NodeJS). This post will walk-through installing MongoDB on Gentoo Linux then it will list the most usefull command line with Mongo Shell tool (This second part could be a Cheat Sheet).&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;MongoDB is a document-oriented database very popular especially with MEAN technical stack (MongoDB, ExpressJS, AngularJS and NodeJS). This post will walk-through installing MongoDB on Gentoo Linux then it will list the most usefull command line with Mongo Shell tool (This second part could be a Cheat Sheet).&lt;/p&gt;
+
+&lt;h1&gt;Server&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge mongodb 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl start mongodb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now, MongoDB is listening on localhost interface on port 27017.&lt;/p&gt;
+&lt;h1&gt;Mongo Shell&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Connection to MongoDB server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; mongo
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;List of existing databases&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt; show databases
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a new database and a collection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt; use mydb
+&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt; db.MyCollection.insert&lt;span class="o"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;"name"&lt;/span&gt;:&lt;span class="s2"&gt;"didier"&lt;/span&gt;&lt;span class="o"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create an index&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt; db.MyOtherCollection.createIndex&lt;span class="o"&gt;(&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt; id: &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="MongoDB"></category><category term="Database"></category></entry><entry><title>Angular</title><link href="http://didier.bernaudeau.net/Angular.html" rel="alternate"></link><published>2018-05-11T21:36:00+02:00</published><updated>2018-05-11T21:36:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-05-11:/Angular.html</id><summary type="html">&lt;p&gt;Angular is an open source framework from Google which allows developers to create single page applications. Angular has become a common framework used by many front-end components, event though this framework is very difficult to learn with a "steep learning curve". So, in this post, I summarize what I learnt on this framework.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Angular is an open source framework from Google which allows developers to create single page applications. Angular has become a common framework used by many front-end components, event though this framework is very difficult to learn with a "steep learning curve". So, in this post, I summarize what I learnt on this framework.&lt;/p&gt;
+
+&lt;h1&gt;Data binding&lt;/h1&gt;
+&lt;p&gt;Data-binding in Angular apps is the synchronization of data between the model and view. There are various ways in which you can make use of data binding in the Angular framework.&lt;/p&gt;
+&lt;h2&gt;Interpolation&lt;/h2&gt;
+&lt;p&gt;You bind a property name in your view template by making use of double curly braces {{ value }}.&lt;/p&gt;
+&lt;h2&gt;Ng bind&lt;/h2&gt;
+&lt;p&gt;The ng-bind-html directive is a secure way of binding content to an HTML element. =&amp;gt; Output encoding&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Hello, &lt;span class="nt"&gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;ng-bind=&lt;/span&gt;&lt;span class="s"&gt;"value"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It seems to be twice as fast to use ng-bind than interpolation.&lt;/p&gt;
+&lt;h1&gt;Dependency Injection&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;@Injectable({
+  providedIn: 'root',
+})
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Angular"></category><category term="JavaScript"></category><category term="Front-End"></category></entry><entry><title>Asynchronous GPIO interupts</title><link href="http://didier.bernaudeau.net/Asynchronous_GPIO_interupts.html" rel="alternate"></link><published>2018-04-15T09:08:00+02:00</published><updated>2018-04-14T09:48:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-04-15:/Asynchronous_GPIO_interupts.html</id><summary type="html">&lt;p&gt;Rpi.GPIO is a powerful framework to control GPIO on Raspberry. However, this framework is not really compatible with asynchronous programming.&lt;/p&gt;
 &lt;p&gt;Actually, a part of the documentation says: &lt;strong&gt;"the callback functions are run sequentially, not concurrently. This is because there is only one thread used for callbacks, in which every callback is run, in the order in which they have been defined"&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;So, this post describes a workaround to make asynchronous GPIO interupts.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Rpi.GPIO is a powerful framework to control GPIO on Raspberry. However, this framework is not really compatible with asynchronous programming.&lt;/p&gt;
@@ -4423,28 +4469,30 @@ log_statement = 'all'
 &lt;li&gt;Print the status&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; gpio &lt;span class="nb"&gt;read&lt;/span&gt; &lt;span class="m"&gt;7&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Raspberry Pi"></category></entry><entry><title>How to install Raspbian on a Raspberry Pi</title><link href="http://didier.bernaudeau.net/HowToInstallRaspbianOnRaspberryPi.html" rel="alternate"></link><published>2017-06-24T22:19:00+02:00</published><updated>2017-06-26T21:59:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-06-24:/HowToInstallRaspbianOnRaspberryPi.html</id><summary type="html">&lt;p&gt;Raspbian is the main operating system for a Raspberry Pi. This post is a guideline to install and configure Raspbian Stretch Lite (based on Debian 9 without desktop environment).&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Raspberry Pi"></category></entry><entry><title>How to install Raspbian on a Raspberry Pi</title><link href="http://didier.bernaudeau.net/HowToInstallRaspbianOnRaspberryPi.html" rel="alternate"></link><published>2017-06-24T22:19:00+02:00</published><updated>2018-05-27T13:33:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-06-24:/HowToInstallRaspbianOnRaspberryPi.html</id><summary type="html">&lt;p&gt;Raspbian is the main operating system for a Raspberry Pi. This post is a guideline to install and configure Raspbian Stretch Lite (based on Debian 9 without desktop environment).&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Raspbian is the main operating system for a Raspberry Pi. This post is a guideline to install and configure Raspbian Stretch Lite (based on Debian 9 without desktop environment).&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Note regarding SD Card:&lt;/strong&gt;
 Most of the time you won’t see or have any incidences because SD corruption is not really simple to detect. Sometime it works and sometimes Pi is crashing/blocking and you don’t know why. So, it's better to protect your SD cards from unproper shutdown and also prevent SD card premature end of life.
 So, this tutorial suggests some optimization to reduce write access to the SD card.&lt;/p&gt;
-&lt;h1&gt;Getting started&lt;/h1&gt;
+&lt;h1&gt;Making a bootable SD Card&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;Download the last version of Raspbian (Stretch / Release date 2017-09-07)&lt;/li&gt;
+&lt;li&gt;Download the last version of Raspbian (Stretch / Release date 2018-04-18)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget https://downloads.raspberrypi.org/raspbian_lite_latest
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; curl -L https://downloads.raspberrypi.org/raspbian_lite_latest -o raspbian-stretch-lite.zip
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Uncompress file&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; unzip &lt;span class="m"&gt;2017&lt;/span&gt;-09-07-raspbian-stretch-lite.zip
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; unzip raspbian-stretch-lite.zip
+&lt;span class="gp"&gt;$&lt;/span&gt; mv *raspbian-stretch-lite.img raspbian-stretch-lite.img
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Copy files on the SD card&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; dd &lt;span class="nv"&gt;bs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4M &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;2017&lt;/span&gt;-09-07-raspbian-stretch-lite.img &lt;span class="nv"&gt;of&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/mmcblk0 &lt;span class="nv"&gt;status&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;progress
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; dd &lt;span class="nv"&gt;bs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4M &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;raspbian-stretch-lite.img &lt;span class="nv"&gt;of&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/mmcblk0 &lt;span class="nv"&gt;status&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;progress
 &lt;span class="gp"&gt;#&lt;/span&gt; sync
+&lt;span class="gp"&gt;$&lt;/span&gt; rm raspbian-stretch-lite.img
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Enable SSH server&lt;/li&gt;
@@ -4455,11 +4503,37 @@ So, this tutorial suggests some optimization to reduce write access to the SD ca
 &lt;span class="gp"&gt;#&lt;/span&gt; umount /mnt/tmp
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
+&lt;li&gt;Define hostname (by default raspberrypi)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mount /dev/mmcblk0p2 /mnt/tmp
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /mnt/tmp/etc/hostname
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /mnt/tmp/etc/hosts
+&lt;span class="gp"&gt;#&lt;/span&gt; umount /mnt/tmp
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Enable WiFi&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mount /dev/mmcblk0p2 /mnt/tmp
+&lt;span class="gp"&gt;#&lt;/span&gt; nano /mnt/tmp/etc/wpa_supplicant/wpa_supplicant.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;country=FR
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+        ssid="My SSID"
+        psk="**********"
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; umount /mnt/tmp
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Booting your Raspberry Pi&lt;/h1&gt;
+&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Insert the SD card in the Raspberry Pi&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Plug in ethernet cable and power supply&lt;/p&gt;
+&lt;p&gt;Plug-in power supply and, if needed, the Ethernet cable.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Connect to your Raspberry by using SSH &lt;/p&gt;
@@ -4480,6 +4554,7 @@ So, this tutorial suggests some optimization to reduce write access to the SD ca
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo apt autoremove
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Basic system configuration&lt;/h1&gt;
+&lt;p&gt;Raspi-Config is a tool which allows you to change easily the Raspbian's configuration.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Open the configuration menu&lt;/li&gt;
 &lt;/ul&gt;
@@ -4496,6 +4571,7 @@ Layout: French - French (Azerty)
 Key to function as AltGr: The default for the keyboard layout
 Compose key: no compose key
 &lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Note: This option works only if a keyboard is plugged-in.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Change hostname&lt;/li&gt;
 &lt;/ul&gt;
@@ -4524,6 +4600,22 @@ Country: FR France
 A1 Expand Filesystem
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Then select "finish" and reboot your Raspberry.&lt;/p&gt;
+&lt;h1&gt;Hardening SSH Server&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Generate your SSH keys (on your computer)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ssh-keygen -f ~/.ssh/raspberry.key
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Copy your public key to the Raspberry Pi&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ssh-copy-id -i ~/.ssh/raspberry.key pi@raspberrypi.domain.net
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start a SSH connection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;ssh -i ~/.ssh/raspberry.key pi@raspberrypi.domain.net&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Time synchronization with systemd&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Configure TimeSync&lt;/li&gt;
@@ -4593,19 +4685,11 @@ NTP synchronized: yes
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=749d10b0-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait noswap
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Configure the WiFi&lt;/h1&gt;
-&lt;h2&gt;Through Raspi-config&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;N2 Wi-fi
-SSID: **********
-Passphrase: **********
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;Through file system&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo wpa_passphrase SSID
-&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;network={
         ssid="SSID"
-        #psk="MySecret"
-        psk=4baa71a05efba1dfa9af4aa162f5a67b7c9d9aae5c3bac92e5ed540b0c3f0332
+        psk="MySecret"
 }
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Install additional packages&lt;/h1&gt;
@@ -4623,7 +4707,41 @@ Passphrase: **********
 &lt;li&gt;Install Java&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install openjdk-8-jre
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Raspbian"></category><category term="Raspberry Pi"></category></entry><entry><title>Modern Presentation with RevealJS</title><link href="http://didier.bernaudeau.net/ModernPresentationRevealJS.html" rel="alternate"></link><published>2017-05-23T13:00:00+02:00</published><updated>2017-05-23T13:00:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-23:/ModernPresentationRevealJS.html</id><summary type="html">&lt;p&gt;RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. So, this talk is a short overview (10mn) to explain how does it work.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Raspbian"></category><category term="Raspberry Pi"></category></entry><entry><title>Angular CLI</title><link href="http://didier.bernaudeau.net/AngularCLI.html" rel="alternate"></link><published>2017-05-25T22:46:00+02:00</published><updated>2018-05-11T21:49:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-25:/AngularCLI.html</id><summary type="html">&lt;p&gt;Angular Command Line Interface makes it easy to develop an single page application with Angular framework. This post will walk-through installing and then using this development tool.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Angular Command Line Interface makes it easy to develop an single page application with Angular framework. This post will walk-through installing and then using this development tool.&lt;/p&gt;
+
+&lt;h1&gt;Installing Angular CLI&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Install &lt;a href="http://didier.bernaudeau.net/HowTo_install_NodeJS.html"&gt;NodeJS&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install Angular command line (Version 1.6.6)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm install -g @angular/cli
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This tool will be install in "/usr/lib/node_modules/@angular/cli"&lt;/p&gt;
+&lt;h1&gt;Using Angular CLI&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a new app &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ng new MyApp
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; MyApp
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Running the development server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ng serve --open
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The "ng serve" command launches the server, watches your files, and rebuilds the app as you make changes to those files.
+And using the --open (or just -o) option will automatically open your browser on http://localhost:4200/.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Build an application&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ng build
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After compilation, the files will be in "dist" repository.&lt;/p&gt;</content><category term="Angular"></category><category term="JavaScript"></category><category term="Front-End"></category></entry><entry><title>Modern Presentation with RevealJS</title><link href="http://didier.bernaudeau.net/ModernPresentationRevealJS.html" rel="alternate"></link><published>2017-05-23T13:00:00+02:00</published><updated>2017-05-23T13:00:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-23:/ModernPresentationRevealJS.html</id><summary type="html">&lt;p&gt;RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. So, this talk is a short overview (10mn) to explain how does it work.&lt;/p&gt;
 &lt;p&gt;View online on &lt;a href="https://0xdbe.github.io/ModernPresentationRevealJS_20170523"&gt;GitHub&lt;/a&gt;&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;RevealJS is a powerful framework for creating a modern and beautiful presentation in HTML5/JS/CSS. So, this talk is a short overview (10mn) to explain how does it work.&lt;/p&gt;
 &lt;p&gt;View online on &lt;a href="https://0xdbe.github.io/ModernPresentationRevealJS_20170523"&gt;GitHub&lt;/a&gt;&lt;/p&gt;

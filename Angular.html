@@ -13,13 +13,13 @@
 
         <meta name="author" content="Didier BERNAUDEAU" />
         <meta name="keywords" content="Angular,JavaScript,Front-End" />
-        <meta name="description" content="Angular is an open source framework from Google which allows developers to create single page applications. Angular has become a common framework used by many front-end components, event though this framework is very difficult to learn with a &#34;steep learning curve&#34;. So, in this post, I summarize what I learnt on this framework." />
+        <meta name="description" content="Angular is an open source framework from Google which allows developers to create single page applications. Angular has become a common framework used by many front-end components, event though this framework is very difficult to learn with a &#34;steep learning curve&#34;. So, in this post, I summarize what I learnt on this framework. Angular should not be confused with AngularJS. This post concerns only Angular (version 2 to 6)." />
 
         <meta property="og:site_name" content="My personal blog note" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Angular"/>
         <meta property="og:url" content="http://didier.bernaudeau.net/Angular.html"/>
-        <meta property="og:description" content="Angular is an open source framework from Google which allows developers to create single page applications. Angular has become a common framework used by many front-end components, event though this framework is very difficult to learn with a &#34;steep learning curve&#34;. So, in this post, I summarize what I learnt on this framework."/>
+        <meta property="og:description" content="Angular is an open source framework from Google which allows developers to create single page applications. Angular has become a common framework used by many front-end components, event though this framework is very difficult to learn with a &#34;steep learning curve&#34;. So, in this post, I summarize what I learnt on this framework. Angular should not be confused with AngularJS. This post concerns only Angular (version 2 to 6)."/>
         <meta property="article:published_time" content="2018-05-11" />
             <meta property="article:section" content="Articles" />
             <meta property="article:tag" content="Angular" />
@@ -116,8 +116,57 @@ My personal blog note            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Angular is an open source framework from Google which allows developers to create single page applications. Angular has become a common framework used by many front-end components, event though this framework is very difficult to learn with a "steep learning curve". So, in this post, I summarize what I learnt on this framework.</p>
+                <p>Angular is an open source framework from Google which allows developers to create single page applications. Angular has become a common framework used by many front-end components, event though this framework is very difficult to learn with a "steep learning curve".
+So, in this post, I summarize what I learnt on this framework. Angular should not be confused with AngularJS. This post concerns only Angular (version 2 to 6).</p>
 
+<h1>Architecture</h1>
+<p align="center"><img class="img-responsive" src="images/2018-05-11_Angular_Architecture.jpg" width="60%"/></p>
+<ul>
+<li>
+<p>Module: an angular module is set of angular basic building blocks like components, services etc. An application can have more than one module. A module can be created using @NgModule decorator.</p>
+</li>
+<li>
+<p>Component: a component is one of the basic building blocks of an Angular application. An application can have more than one component. In a normal app, a component contains an HTML view page class file, a class file that controls the behaviour of the HTML page and the CSS/scss file to style your HTML view.</p>
+</li>
+</ul>
+<h1>Routing</h1>
+<p>Angular Router allows to map a URL path to a component.</p>
+<ul>
+<li>Import Angular Router (app.module.ts)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">RouterModule</span><span class="p">,</span> <span class="nx">Routes</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'@angular/router'</span><span class="p">;</span>
+</pre></div>
+<ul>
+<li>Define route (app.module.ts)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">appRoutes</span>: <span class="kt">Routes</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span> <span class="nx">path</span><span class="o">:</span> <span class="s1">'things'</span><span class="p">,</span>     <span class="nx">component</span>: <span class="kt">ThingsListComponent</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="nx">path</span><span class="o">:</span> <span class="s1">'thing/:id'</span><span class="p">,</span>  <span class="nx">component</span>: <span class="kt">ThingDetailComponent</span> <span class="p">}</span>
+<span class="p">];</span>
+</pre></div>
+<ul>
+<li>Apply route to the module (app.module.ts)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kd">@NgModule</span><span class="p">({</span>
+  <span class="nx">imports</span><span class="o">:</span> <span class="p">[</span>
+    <span class="nx">RouterModule</span><span class="p">.</span><span class="nx">forRoot</span><span class="p">(</span>
+      <span class="nx">appRoutes</span><span class="p">,</span>
+      <span class="p">{</span> <span class="nx">enableTracing</span>: <span class="kt">true</span> <span class="p">}</span> <span class="c1">// &lt;-- debugging purposes only</span>
+    <span class="p">)</span>
+    <span class="c1">// other imports here</span>
+  <span class="p">],</span>
+  <span class="p">...</span>
+<span class="p">})</span>
+</pre></div>
+<ul>
+<li>Add a navigation bar in your root component template (app.component.html)</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">routerLink</span><span class="o">=</span><span class="s">"/articles"</span> <span class="na">routerLinkActive</span><span class="o">=</span><span class="s">"active"</span><span class="p">&gt;</span>Articles List<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">routerLink</span><span class="o">=</span><span class="s">"/article/4"</span> <span class="na">routerLinkActive</span><span class="o">=</span><span class="s">"active"</span><span class="p">&gt;</span>Article n4<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">router-outlet</span><span class="p">&gt;&lt;/</span><span class="nt">router-outlet</span><span class="p">&gt;</span>
+</pre></div>
 <h1>Data binding</h1>
 <p>Data-binding in Angular apps is the synchronization of data between the model and view. There are various ways in which you can make use of data binding in the Angular framework.</p>
 <h2>Interpolation</h2>
@@ -127,7 +176,45 @@ My personal blog note            </a>
 <div class="highlight"><pre><span></span>Hello, <span class="nt">&lt;span</span> <span class="na">ng-bind=</span><span class="s">"value"</span><span class="nt">&gt;&lt;/span&gt;</span>
 </pre></div>
 <p>It seems to be twice as fast to use ng-bind than interpolation.</p>
-<h1>Dependency Injection</h1>
+<h1>Create a service (with Angular 5.2)</h1>
+<ul>
+<li>Create the service my.service.ts</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Injectable</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'@angular/core'</span><span class="p">;</span>
+
+<span class="kd">@Injectable</span><span class="p">()</span>
+
+<span class="kr">export</span> <span class="kr">class</span> <span class="nx">MyService</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</pre></div>
+<ul>
+<li>Import service in app.module.ts</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">MyService</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./my.service'</span><span class="p">;</span>
+<span class="p">...</span>
+
+<span class="kd">@NgModule</span><span class="p">({</span>
+  <span class="p">...</span>
+  <span class="nx">providers</span><span class="o">:</span> <span class="p">[</span>
+   <span class="nx">MyService</span>
+  <span class="p">],</span>
+  <span class="p">...</span>
+<span class="p">})</span>
+</pre></div>
+<ul>
+<li>Use this service in app.component.ts</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">MyService</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./my.service'</span><span class="p">;</span>
+<span class="p">...</span>
+
+<span class="kr">export</span> <span class="kr">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+  <span class="kr">constructor</span><span class="p">(</span><span class="kr">private</span> <span class="nx">_MyService</span>:<span class="kt">MyService</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<h2>Dependency Injection with Angular 6</h2>
 <div class="highlight"><pre><span></span>@Injectable({
   providedIn: 'root',
 })
@@ -138,8 +225,8 @@ My personal blog note            </a>
     <h4>Related Posts:</h4>
     <ul>
         <li><a href="http://didier.bernaudeau.net/AngularCLI.html">Angular CLI</a></li>
-        <li><a href="http://didier.bernaudeau.net/WebSocket_frontend_with_Angular.html">WebSocket front end with Angular</a></li>
         <li><a href="http://didier.bernaudeau.net/Create_your_first_presentation_with_RevealJS.html">Create your first presentation with RevealJS</a></li>
+        <li><a href="http://didier.bernaudeau.net/WebSocket_frontend_with_Angular.html">WebSocket front end with Angular</a></li>
         <li><a href="http://didier.bernaudeau.net/ModernPresentationRevealJS.html">Modern Presentation with RevealJS</a></li>
     </ul>
 </section>
@@ -200,7 +287,7 @@ My personal blog note            </a>
                             Blockchain
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/certificate.html">
                             Certificate
                         </a>
@@ -250,7 +337,7 @@ My personal blog note            </a>
                             Dedibox
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/development.html">
                             Development
                         </a>
@@ -295,7 +382,7 @@ My personal blog note            </a>
                             Gentoo
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
+                    <li class="list-group-item tag-3">
                         <a href="http://didier.bernaudeau.net/tag/git.html">
                             Git
                         </a>
@@ -325,7 +412,7 @@ My personal blog note            </a>
                             HTML
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/java.html">
                             Java
                         </a>
@@ -381,6 +468,11 @@ My personal blog note            </a>
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/programming-language.html">
+                            Programming Language
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/protocol.html">
                             Protocol
                         </a>
@@ -390,7 +482,7 @@ My personal blog note            </a>
                             Python
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/raspberry-pi.html">
                             Raspberry Pi
                         </a>
@@ -453,6 +545,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/tls.html">
                             TLS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/typescript.html">
+                            TypeScript
                         </a>
                     </li>
                     <li class="list-group-item tag-2">

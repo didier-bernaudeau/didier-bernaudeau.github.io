@@ -1,5 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-06-10T09:45:00+02:00</updated><entry><title>MongoDB</title><link href="http://didier.bernaudeau.net/MongoDB.html" rel="alternate"></link><published>2018-06-09T10:08:00+02:00</published><updated>2018-06-10T09:45:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-09:/MongoDB.html</id><summary type="html">&lt;p&gt;MongoDB is a document-oriented database very popular especially with MEAN technical stack (MongoDB, ExpressJS, AngularJS and NodeJS). This post will walk-through installing MongoDB on Gentoo Linux then it will list the most usefull command line with Mongo Shell tool (This second part could be a Cheat Sheet).&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/all.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-06-30T07:58:00+02:00</updated><entry><title>Gentoo cheat sheet</title><link href="http://didier.bernaudeau.net/Gentoo_cheat_sheet.html" rel="alternate"></link><published>2018-06-30T07:58:00+02:00</published><updated>2018-06-30T07:58:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-30:/Gentoo_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Gentoo Linux.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post is a list of useful command lines for Gentoo Linux.&lt;/p&gt;
+
+&lt;h1&gt;Emerge&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Updating all packages that are still built against old version librairy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --ask @preserved-rebuild
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Rebuild packages after having altered USE flags&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --update --newuse --deep @world
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Portage Utils (q*)&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;install tools&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge app-portage/portage-utils
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Find which package owns a file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; qfile /path/file
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Merge time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; qlop -tH PackageName
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Gentoolkit (equery, ...)&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install tools &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge -pv app-portage/gentoolkit
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Find which package owns a file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; equery belongs -e /path/file
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category><category term="Gentoo"></category></entry><entry><title>Git cheat sheet</title><link href="http://didier.bernaudeau.net/Git_cheat_sheet.html" rel="alternate"></link><published>2018-06-24T17:52:00+02:00</published><updated>2018-06-24T17:52:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-24:/Git_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Git (hub).&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post is a list of useful command lines for Git (hub).&lt;/p&gt;
+
+&lt;h1&gt;If the repository is already initialized&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Clone this repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;git clone https://github.com/0xdbe/BlogNode_Back&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Set committer information&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git config user.name &lt;span class="s2"&gt;"MyName"&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; git config user.email &lt;span class="s2"&gt;"mail@domain.net"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add all files&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git add .
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Commit (with commit message)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git commit -m &lt;span class="s2"&gt;"My First Commit"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Push the changes in your local repository to GitHub.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git push -u origin master
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;If the repository is not initialized&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Create a new repository on GitHub (without initialize the new repository with README, license, or gitignore files)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Initialize the local directory as a Git repository.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git init
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This command line creates a folder called ".git"&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Set committer information&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git config user.name &lt;span class="s2"&gt;"MyName"&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; git config user.email &lt;span class="s2"&gt;"mail@domain.net"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add the files in your new local repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git add .
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Commit (with commit message)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git commit -m &lt;span class="s2"&gt;"My First Commit"&lt;/span&gt;!
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add the URL for the remote repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git remote add origin https://github.com/username/repository.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Print the list of remote repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git remote -v
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Push the changes in your local repository to GitHub.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git push -u origin master
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Git"></category></entry><entry><title>TypeScript cheat sheet</title><link href="http://didier.bernaudeau.net/TypeScript_cheat_sheet.html" rel="alternate"></link><published>2018-06-13T11:33:00+02:00</published><updated>2018-06-13T11:33:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-13:/TypeScript_cheat_sheet.html</id><summary type="html">&lt;p&gt;TypeScript is a superset of javascript which means any javascript code is a valid typescript but typescript has some additional features which are not in javascript.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;TypeScript is a superset of javascript which means any javascript code is a valid typescript but typescript has some additional features which are not in javascript.&lt;/p&gt;
+
+&lt;h1&gt;Variable&lt;/h1&gt;
+&lt;h2&gt;Scoping&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;var: variable is function scoped&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;let: variable is block scoped&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Type&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;a&lt;/span&gt;: &lt;span class="kt"&gt;number&lt;/span&gt;
+&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt;: &lt;span class="kt"&gt;boolean&lt;/span&gt;
+&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;c&lt;/span&gt;: &lt;span class="kt"&gt;string&lt;/span&gt;
+&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;d&lt;/span&gt;: &lt;span class="kt"&gt;any&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Array&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;e&lt;/span&gt;: &lt;span class="kt"&gt;number&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;f&lt;/span&gt;: &lt;span class="kt"&gt;any&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Class&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nx"&gt;VarName&lt;/span&gt;: &lt;span class="kt"&gt;ClassName&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;id&lt;/span&gt;: &lt;span class="kt"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'test'&lt;/span&gt;
+  &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Function&lt;/h1&gt;
+&lt;h2&gt;Declaration in JavaScript&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;log&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This way of declaring a function is also supported by TypeScript.&lt;/p&gt;
+&lt;h2&gt;Declaration in TypeScript&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;full declaration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;log&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+ &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Shorten declaration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;log&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Even shorter&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;log&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="TypeScript"></category><category term="Programming Language"></category></entry><entry><title>MongoDB</title><link href="http://didier.bernaudeau.net/MongoDB.html" rel="alternate"></link><published>2018-06-09T10:08:00+02:00</published><updated>2018-06-13T21:38:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-09:/MongoDB.html</id><summary type="html">&lt;p&gt;MongoDB is a document-oriented database very popular especially with MEAN technical stack (MongoDB, ExpressJS, AngularJS and NodeJS). This post will walk-through installing MongoDB on Gentoo Linux then it will list the most usefull command line with Mongo Shell tool (This second part could be a Cheat Sheet).&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;MongoDB is a document-oriented database very popular especially with MEAN technical stack (MongoDB, ExpressJS, AngularJS and NodeJS). This post will walk-through installing MongoDB on Gentoo Linux then it will list the most usefull command line with Mongo Shell tool (This second part could be a Cheat Sheet).&lt;/p&gt;
 
 &lt;h1&gt;Server&lt;/h1&gt;
@@ -26,12 +191,77 @@
 &lt;span class="gp"&gt;&amp;gt;&lt;/span&gt; db.MyCollection.insert&lt;span class="o"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;"name"&lt;/span&gt;:&lt;span class="s2"&gt;"didier"&lt;/span&gt;&lt;span class="o"&gt;})&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
+&lt;li&gt;List of existing collections&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt; show collections
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
 &lt;li&gt;Create an index&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt; db.MyOtherCollection.createIndex&lt;span class="o"&gt;(&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt; id: &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</content><category term="MongoDB"></category><category term="Database"></category></entry><entry><title>Angular</title><link href="http://didier.bernaudeau.net/Angular.html" rel="alternate"></link><published>2018-05-11T21:36:00+02:00</published><updated>2018-05-11T21:36:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-05-11:/Angular.html</id><summary type="html">&lt;p&gt;Angular is an open source framework from Google which allows developers to create single page applications. Angular has become a common framework used by many front-end components, event though this framework is very difficult to learn with a "steep learning curve". So, in this post, I summarize what I learnt on this framework.&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;Angular is an open source framework from Google which allows developers to create single page applications. Angular has become a common framework used by many front-end components, event though this framework is very difficult to learn with a "steep learning curve". So, in this post, I summarize what I learnt on this framework.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Print all documents&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt; db.MyCollection.find&lt;span class="o"&gt;(&lt;/span&gt; &lt;span class="o"&gt;{}&lt;/span&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Remove a document&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt; db.MyCollection.remove&lt;span class="o"&gt;(&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;"_id"&lt;/span&gt;: ObjectId&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"4d512b45cd9374271b02ec4f"&lt;/span&gt;&lt;span class="o"&gt;)})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="MongoDB"></category><category term="Database"></category></entry><entry><title>Angular</title><link href="http://didier.bernaudeau.net/Angular.html" rel="alternate"></link><published>2018-05-11T21:36:00+02:00</published><updated>2018-05-11T21:36:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-05-11:/Angular.html</id><summary type="html">&lt;p&gt;Angular is an open source framework from Google which allows developers to create single page applications. Angular has become a common framework used by many front-end components, event though this framework is very difficult to learn with a "steep learning curve".
+So, in this post, I summarize what I learnt on this framework. Angular should not be confused with AngularJS. This post concerns only Angular (version 2 to 6).&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Angular is an open source framework from Google which allows developers to create single page applications. Angular has become a common framework used by many front-end components, event though this framework is very difficult to learn with a "steep learning curve".
+So, in this post, I summarize what I learnt on this framework. Angular should not be confused with AngularJS. This post concerns only Angular (version 2 to 6).&lt;/p&gt;
 
+&lt;h1&gt;Architecture&lt;/h1&gt;
+&lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2018-05-11_Angular_Architecture.jpg" width="60%"/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Module: an angular module is set of angular basic building blocks like components, services etc. An application can have more than one module. A module can be created using @NgModule decorator.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Component: a component is one of the basic building blocks of an Angular application. An application can have more than one component. In a normal app, a component contains an HTML view page class file, a class file that controls the behaviour of the HTML page and the CSS/scss file to style your HTML view.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Routing&lt;/h1&gt;
+&lt;p&gt;Angular Router allows to map a URL path to a component.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Import Angular Router (app.module.ts)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;RouterModule&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;Routes&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'@angular/router'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Define route (app.module.ts)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;appRoutes&lt;/span&gt;: &lt;span class="kt"&gt;Routes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+  &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;path&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'things'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;     &lt;span class="nx"&gt;component&lt;/span&gt;: &lt;span class="kt"&gt;ThingsListComponent&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+  &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;path&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'thing/:id'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="nx"&gt;component&lt;/span&gt;: &lt;span class="kt"&gt;ThingDetailComponent&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Apply route to the module (app.module.ts)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;@NgModule&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+  &lt;span class="nx"&gt;imports&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="nx"&gt;RouterModule&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;forRoot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+      &lt;span class="nx"&gt;appRoutes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;enableTracing&lt;/span&gt;: &lt;span class="kt"&gt;true&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="c1"&gt;// &amp;lt;-- debugging purposes only&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;// other imports here&lt;/span&gt;
+  &lt;span class="p"&gt;],&lt;/span&gt;
+  &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add a navigation bar in your root component template (app.component.html)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;nav&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="na"&gt;routerLink&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"/articles"&lt;/span&gt; &lt;span class="na"&gt;routerLinkActive&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"active"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Articles List&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="na"&gt;routerLink&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"/article/4"&lt;/span&gt; &lt;span class="na"&gt;routerLinkActive&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"active"&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Article n4&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;nav&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;router-outlet&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;router-outlet&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Data binding&lt;/h1&gt;
 &lt;p&gt;Data-binding in Angular apps is the synchronization of data between the model and view. There are various ways in which you can make use of data binding in the Angular framework.&lt;/p&gt;
 &lt;h2&gt;Interpolation&lt;/h2&gt;
@@ -41,7 +271,45 @@
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Hello, &lt;span class="nt"&gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;ng-bind=&lt;/span&gt;&lt;span class="s"&gt;"value"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;It seems to be twice as fast to use ng-bind than interpolation.&lt;/p&gt;
-&lt;h1&gt;Dependency Injection&lt;/h1&gt;
+&lt;h1&gt;Create a service (with Angular 5.2)&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Create the service my.service.ts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;Injectable&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'@angular/core'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;@Injectable&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="kr"&gt;export&lt;/span&gt; &lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;MyService&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Import service in app.module.ts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;MyService&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'./my.service'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;
+
+&lt;span class="kd"&gt;@NgModule&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+  &lt;span class="p"&gt;...&lt;/span&gt;
+  &lt;span class="nx"&gt;providers&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+   &lt;span class="nx"&gt;MyService&lt;/span&gt;
+  &lt;span class="p"&gt;],&lt;/span&gt;
+  &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Use this service in app.component.ts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="kr"&gt;import&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;MyService&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="nx"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'./my.service'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;
+
+&lt;span class="kr"&gt;export&lt;/span&gt; &lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;AppComponent&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kr"&gt;constructor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;private&lt;/span&gt; &lt;span class="nx"&gt;_MyService&lt;/span&gt;:&lt;span class="kt"&gt;MyService&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Dependency Injection with Angular 6&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;@Injectable({
   providedIn: 'root',
 })
@@ -442,7 +710,7 @@ rlEnvFanDataDirection.1 = INTEGER: unKnown(1)
 &lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2018-02-18_RaspberryPI_pinout_diagram.png" width="80%"/&gt;&lt;/p&gt;
 &lt;h1&gt;GPIO libraries&lt;/h1&gt;
 &lt;p&gt;There are libraries for each language (Go, Node, Python, ...) for accessing GPIO-pins on the Raspberry Pi but these librairies don't have the same features. So you should choose a programming language according to needed features.&lt;/p&gt;
-&lt;table class="table table-hover table-striped"&gt;
+&lt;table class="table-hover table-striped table"&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;&lt;/th&gt;
@@ -903,61 +1171,66 @@ rlEnvFanDataDirection.1 = INTEGER: unKnown(1)
 &lt;p&gt;View online on &lt;a href="https://0xdbe.github.io/AgileSecurity_20180109/"&gt;GitHub&lt;/a&gt;&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This presentation that I made at &lt;a href="https://www.ossir.org"&gt;OSSIR&lt;/a&gt; describes how to become an Agile application security Officer.&lt;/p&gt;
 &lt;p&gt;View online on &lt;a href="https://0xdbe.github.io/AgileSecurity_20180109/"&gt;GitHub&lt;/a&gt;&lt;/p&gt;
-</content><category term="Development"></category><category term="Agile"></category><category term="Scrum"></category><category term="DevOps"></category></entry><entry><title>How to install NodeJS on Gentoo Linux</title><link href="http://didier.bernaudeau.net/HowTo_install_NodeJS.html" rel="alternate"></link><published>2017-12-30T17:13:00+01:00</published><updated>2018-03-25T16:32:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-30:/HowTo_install_NodeJS.html</id><summary type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional software on Gentoo Linux.&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional software on Gentoo Linux.&lt;/p&gt;
+</content><category term="Development"></category><category term="Agile"></category><category term="Scrum"></category><category term="DevOps"></category></entry><entry><title>How to install NodeJS on Gentoo Linux</title><link href="http://didier.bernaudeau.net/HowTo_install_NodeJS.html" rel="alternate"></link><published>2017-12-30T17:13:00+01:00</published><updated>2018-06-24T18:55:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-30:/HowTo_install_NodeJS.html</id><summary type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux.&lt;/p&gt;
 
-&lt;h1&gt;NodeJS&lt;/h1&gt;
+&lt;p&gt;Unfortunately, I can't install the latest version of NodeJS because:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Install NodeJS 9.8&lt;/li&gt;
+&lt;li&gt;NodeJS 10.x needs 1.1.x and several packages (such as OpenSSH) refuse to compile with OpenSSL 1.1.x &lt;/li&gt;
+&lt;li&gt;NodeJS 9.x needs ICU 61.x and several packages (such as LibreOffice) refuse to compile with ICU 61.x &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.accept_keywords
+&lt;h1&gt;NodeJS&lt;/h1&gt;
+&lt;p&gt;So, the following instructions describe how to install NodeJS 8.11.1.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install NodeJS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge net-libs/nodejs
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;=net-libs/nodejs-9.8.0       ~amd64
-=net-libs/http-parser-2.7.1  ~amd64
-=net-libs/nghttp2-1.29.0     ~amd64
-=dev-libs/libuv-1.19.2       ~amd64
-=dev-libs/icu-60.2           ~amd64
+&lt;ul&gt;
+&lt;li&gt;Merge time (on my Lenovo X240)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; qlop -tH net-libs/nodejs
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nv"&gt;emerge&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;net-libs/nodejs-9.8.0
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;nodejs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt; &lt;span class="n"&gt;minutes&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;49&lt;/span&gt; &lt;span class="n"&gt;seconds&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;merges&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;NPM&lt;/h1&gt;
-&lt;p&gt;NPM (stands for Node Package Manager) is a command line interface program to manage node.js libraries. This tools is provided by default with NodeJs.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Install NPM&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm install -g npm
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Install a package&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm install -g PackageName
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;/!\ Packages are installed in the following directory: "/usr/lib64/node_modules/".&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Uninstall a package&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm uninstall -g PackageName
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Get information about a package&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm list PackageName
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Update NPM packages&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm update -g --unsafe-perm
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Clear NPM cache&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm cache verify
-&lt;span class="gp"&gt;#&lt;/span&gt; npm cache clear --force
-&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;NPM (stands for Node Package Manager) is a command line interface program to manage node.js libraries. The version 5.6.0 is provided by default with NodeJs 9.11.2.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Create a project&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; npm init
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add a package into your project&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; npm install PackageName
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;/!\ Package will be installed in the folder "node_modules" and the package name will be added into package.json file.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Uninstall a package&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; npm uninstall PackageName
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Get information about a package&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; npm list PackageName
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update NPM packages&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; npm update
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;List all installed packages&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; npm ls
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Clear NPM cache&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; npm cache verify
+&lt;span class="gp"&gt;$&lt;/span&gt; npm cache clear --force
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Yarn&lt;/h1&gt;
 &lt;p&gt;Yarn is an another package manager from Facebook. Yarn is an alternative to NPM.&lt;/p&gt;
@@ -3917,7 +4190,7 @@ log_statement = 'all'
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -3952,7 +4225,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -3969,7 +4242,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -3986,7 +4259,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -4015,7 +4288,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -4038,7 +4311,7 @@ log_statement = 'all'
 &lt;/div&gt;
 &lt;div class="section" id="case"&gt;
 &lt;h3&gt;Case&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -4707,7 +4980,7 @@ NTP synchronized: yes
 &lt;li&gt;Install Java&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install openjdk-8-jre
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Raspbian"></category><category term="Raspberry Pi"></category></entry><entry><title>Angular CLI</title><link href="http://didier.bernaudeau.net/AngularCLI.html" rel="alternate"></link><published>2017-05-25T22:46:00+02:00</published><updated>2018-05-11T21:49:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-25:/AngularCLI.html</id><summary type="html">&lt;p&gt;Angular Command Line Interface makes it easy to develop an single page application with Angular framework. This post will walk-through installing and then using this development tool.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Raspbian"></category><category term="Raspberry Pi"></category></entry><entry><title>Angular CLI</title><link href="http://didier.bernaudeau.net/AngularCLI.html" rel="alternate"></link><published>2017-05-25T22:46:00+02:00</published><updated>2018-06-11T10:12:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-25:/AngularCLI.html</id><summary type="html">&lt;p&gt;Angular Command Line Interface makes it easy to develop an single page application with Angular framework. This post will walk-through installing and then using this development tool.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Angular Command Line Interface makes it easy to develop an single page application with Angular framework. This post will walk-through installing and then using this development tool.&lt;/p&gt;
 
 &lt;h1&gt;Installing Angular CLI&lt;/h1&gt;
@@ -4716,7 +4989,7 @@ NTP synchronized: yes
 &lt;p&gt;Install &lt;a href="http://didier.bernaudeau.net/HowTo_install_NodeJS.html"&gt;NodeJS&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Install Angular command line (Version 1.6.6)&lt;/p&gt;
+&lt;p&gt;Install Angular command line (Version 1.7.4)&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm install -g @angular/cli
@@ -4729,6 +5002,17 @@ NTP synchronized: yes
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ng new MyApp
 &lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; MyApp
 &lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a new component in App module&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ng generate component Name --module&lt;span class="o"&gt;=&lt;/span&gt;app
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a new service&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ng generate service MyService
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This command line will create a new file called "MyService.service.ts".&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Running the development server&lt;/li&gt;
 &lt;/ul&gt;
@@ -6693,7 +6977,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 
 &lt;div class="section" id="basic-certificate-field"&gt;
 &lt;h2&gt;Basic certificate field&lt;/h2&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
 &lt;col width="89%"&gt;&lt;/col&gt;
@@ -6715,7 +6999,7 @@ This post is a memo to remind the main fields and extension.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="certificate-extension"&gt;
 &lt;h2&gt;Certificate extension&lt;/h2&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="12%"&gt;&lt;/col&gt;
 &lt;col width="88%"&gt;&lt;/col&gt;
@@ -7660,7 +7944,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="protocol-version"&gt;
 &lt;h2&gt;Protocol version&lt;/h2&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -7690,7 +7974,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="compression-method"&gt;
 &lt;h2&gt;Compression method&lt;/h2&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="20%"&gt;&lt;/col&gt;
@@ -7718,7 +8002,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Cryptographic algorithm&lt;/h2&gt;
 &lt;div class="section" id="key-exchange"&gt;
 &lt;h3&gt;Key exchange&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -7763,7 +8047,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="encryption"&gt;
 &lt;h3&gt;Encryption&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -7818,7 +8102,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="message-authentication-code"&gt;
 &lt;h3&gt;Message Authentication Code&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="10%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -7879,7 +8163,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;p&gt;Cipher suite is a list of one or more cipher strings separated by special char (colon, comma, space, ...). The names for cipher suites are defined by IANA (Internet Assigned Numbers Authority).&lt;/p&gt;
 &lt;p&gt;Cipher suite defines algorithms used for each cryptographic function: key exchange, authentication, encryption and message authentication code. If algorithm for key exchange is not mentioned, default algorithm is RSA.&lt;/p&gt;
 &lt;p&gt;The table below details some example of cipher suites:&lt;/p&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
 &lt;col width="39%"&gt;&lt;/col&gt;
@@ -8036,7 +8320,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="28%"&gt;&lt;/col&gt;
 &lt;col width="72%"&gt;&lt;/col&gt;
@@ -8095,7 +8379,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -8125,7 +8409,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in GPT (GUID Partition Table) during Microsoft Windows 8.1 installation process&lt;/p&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="11%"&gt;&lt;/col&gt;
@@ -8227,7 +8511,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 
 &lt;div class="section" id="hardware-specification"&gt;
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="21%"&gt;&lt;/col&gt;
 &lt;col width="79%"&gt;&lt;/col&gt;
@@ -8295,7 +8579,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="performance"&gt;
 &lt;h2&gt;Performance&lt;/h2&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="55%"&gt;&lt;/col&gt;
 &lt;col width="45%"&gt;&lt;/col&gt;
@@ -8325,7 +8609,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;div class="section" id="partition-table"&gt;
 &lt;h2&gt;Partition Table&lt;/h2&gt;
 &lt;p&gt;This partition table is created in MBR (Master Boot Record) during Microsoft Windows 8.1 installation process for primary partition then during Debian 8 installation process for extended partition :&lt;/p&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="3%"&gt;&lt;/col&gt;
 &lt;col width="9%"&gt;&lt;/col&gt;
@@ -8398,7 +8682,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8427,7 +8711,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8447,7 +8731,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8470,7 +8754,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8487,7 +8771,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8507,7 +8791,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8524,7 +8808,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8547,7 +8831,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="optical-disc-drive"&gt;
 &lt;h3&gt;Optical Disc Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -8585,7 +8869,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="52%"&gt;&lt;/col&gt;
 &lt;col width="48%"&gt;&lt;/col&gt;
@@ -8605,7 +8889,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="wifi"&gt;
 &lt;h3&gt;Wifi&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8625,7 +8909,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="bluetooth"&gt;
 &lt;h3&gt;Bluetooth&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8645,7 +8929,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="modem"&gt;
 &lt;h3&gt;Modem&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8662,7 +8946,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="firewire-controller"&gt;
 &lt;h3&gt;FireWire Controller&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8679,7 +8963,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-memory-stick"&gt;
 &lt;h3&gt;Card reader (Memory Stick)&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8696,7 +8980,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="card-reader-secure-digital"&gt;
 &lt;h3&gt;Card reader (Secure Digital)&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8713,7 +8997,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -8736,7 +9020,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="53%"&gt;&lt;/col&gt;
 &lt;col width="47%"&gt;&lt;/col&gt;
@@ -9255,7 +9539,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9296,7 +9580,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="chipset"&gt;
 &lt;h3&gt;Chipset&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9313,7 +9597,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9345,7 +9629,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9368,7 +9652,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9388,7 +9672,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="display"&gt;
 &lt;h3&gt;Display&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9405,7 +9689,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9428,7 +9712,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9448,7 +9732,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="wifi-and-bluetooth"&gt;
 &lt;h3&gt;Wifi and Bluetooth&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9471,7 +9755,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="memory-card-reader"&gt;
 &lt;h3&gt;Memory card reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9491,7 +9775,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="smartcard-reader"&gt;
 &lt;h3&gt;Smartcard Reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9508,7 +9792,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="fingerprint-reader"&gt;
 &lt;h3&gt;Fingerprint Reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9525,7 +9809,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="nfc-reader"&gt;
 &lt;h3&gt;NFC Reader&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9542,7 +9826,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="camera"&gt;
 &lt;h3&gt;Camera&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9562,7 +9846,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;/div&gt;
 &lt;div class="section" id="ports-interfaces"&gt;
 &lt;h3&gt;Ports &amp;amp; interfaces&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -9598,7 +9882,7 @@ Website : &lt;a class="reference external" href="https://sourceforge.net/project
 &lt;h2&gt;UEFI BIOS&lt;/h2&gt;
 &lt;div class="section" id="version"&gt;
 &lt;h3&gt;Version&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="59%"&gt;&lt;/col&gt;
 &lt;col width="41%"&gt;&lt;/col&gt;
@@ -9982,7 +10266,7 @@ Password for 'https://didier-bernaudeau@github.com': *************************&l
 &lt;p&gt;Partition disk&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;table class="table table-hover table-striped"&gt;
+&lt;table class="table-hover table-striped table"&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;Mount Point&lt;/th&gt;
@@ -10255,7 +10539,7 @@ Core 1:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
 &lt;h2&gt;Hardware specification&lt;/h2&gt;
 &lt;div class="section" id="case"&gt;
 &lt;h3&gt;Case&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10278,7 +10562,7 @@ Core 1:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
 &lt;/div&gt;
 &lt;div class="section" id="power-supply"&gt;
 &lt;h3&gt;Power supply&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10298,7 +10582,7 @@ Core 1:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
 &lt;/div&gt;
 &lt;div class="section" id="motherboard"&gt;
 &lt;h3&gt;Motherboard&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10339,7 +10623,7 @@ Core 1:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
 &lt;/div&gt;
 &lt;div class="section" id="processor"&gt;
 &lt;h3&gt;Processor&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="60%"&gt;&lt;/col&gt;
 &lt;col width="40%"&gt;&lt;/col&gt;
@@ -10395,7 +10679,7 @@ Core 1:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
 &lt;/div&gt;
 &lt;div class="section" id="processor-fan"&gt;
 &lt;h3&gt;Processor Fan&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10418,7 +10702,7 @@ Core 1:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
 &lt;/div&gt;
 &lt;div class="section" id="memory"&gt;
 &lt;h3&gt;Memory&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10438,7 +10722,7 @@ Core 1:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
 &lt;/div&gt;
 &lt;div class="section" id="graphics"&gt;
 &lt;h3&gt;Graphics&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10458,7 +10742,7 @@ Core 1:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
 &lt;/div&gt;
 &lt;div class="section" id="audio"&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10475,7 +10759,7 @@ Core 1:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
 &lt;/div&gt;
 &lt;div class="section" id="ethernet"&gt;
 &lt;h3&gt;Ethernet&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10495,7 +10779,7 @@ Core 1:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
 &lt;/div&gt;
 &lt;div class="section" id="sata-controller"&gt;
 &lt;h3&gt;SATA controller&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10518,7 +10802,7 @@ Core 1:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
 &lt;/div&gt;
 &lt;div class="section" id="usb-controller"&gt;
 &lt;h3&gt;USB controller&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10538,7 +10822,7 @@ Core 1:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
 &lt;/div&gt;
 &lt;div class="section" id="hard-disk-drive"&gt;
 &lt;h3&gt;Hard Disk Drive&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10564,7 +10848,7 @@ Core 1:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="43%"&gt;&lt;/col&gt;
 &lt;col width="57%"&gt;&lt;/col&gt;
@@ -10596,7 +10880,7 @@ Core 1:         +29.0°C  (high = +82.0°C, crit = +102.0°C)
 &lt;h2&gt;UEFI BIOS&lt;/h2&gt;
 &lt;div class="section" id="version"&gt;
 &lt;h3&gt;Version&lt;/h3&gt;
-&lt;table border="1" class="docutils table-hover table-striped table"&gt;
+&lt;table border="1" class="table-hover docutils table-striped table"&gt;
 &lt;colgroup&gt;
 &lt;col width="40%"&gt;&lt;/col&gt;
 &lt;col width="60%"&gt;&lt;/col&gt;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-06-10T09:45:00+02:00</updated><entry><title>MongoDB</title><link href="http://didier.bernaudeau.net/MongoDB.html" rel="alternate"></link><published>2018-06-09T10:08:00+02:00</published><updated>2018-06-10T09:45:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-09:/MongoDB.html</id><summary type="html">&lt;p&gt;MongoDB is a document-oriented database very popular especially with MEAN technical stack (MongoDB, ExpressJS, AngularJS and NodeJS). This post will walk-through installing MongoDB on Gentoo Linux then it will list the most usefull command line with Mongo Shell tool (This second part could be a Cheat Sheet).&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-06-24T18:55:00+02:00</updated><entry><title>MongoDB</title><link href="http://didier.bernaudeau.net/MongoDB.html" rel="alternate"></link><published>2018-06-09T10:08:00+02:00</published><updated>2018-06-13T21:38:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-09:/MongoDB.html</id><summary type="html">&lt;p&gt;MongoDB is a document-oriented database very popular especially with MEAN technical stack (MongoDB, ExpressJS, AngularJS and NodeJS). This post will walk-through installing MongoDB on Gentoo Linux then it will list the most usefull command line with Mongo Shell tool (This second part could be a Cheat Sheet).&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;MongoDB is a document-oriented database very popular especially with MEAN technical stack (MongoDB, ExpressJS, AngularJS and NodeJS). This post will walk-through installing MongoDB on Gentoo Linux then it will list the most usefull command line with Mongo Shell tool (This second part could be a Cheat Sheet).&lt;/p&gt;
 
 &lt;h1&gt;Server&lt;/h1&gt;
@@ -26,9 +26,24 @@
 &lt;span class="gp"&gt;&amp;gt;&lt;/span&gt; db.MyCollection.insert&lt;span class="o"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;"name"&lt;/span&gt;:&lt;span class="s2"&gt;"didier"&lt;/span&gt;&lt;span class="o"&gt;})&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
+&lt;li&gt;List of existing collections&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt; show collections
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
 &lt;li&gt;Create an index&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt; db.MyOtherCollection.createIndex&lt;span class="o"&gt;(&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt; id: &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Print all documents&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt; db.MyCollection.find&lt;span class="o"&gt;(&lt;/span&gt; &lt;span class="o"&gt;{}&lt;/span&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Remove a document&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt; db.MyCollection.remove&lt;span class="o"&gt;(&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;"_id"&lt;/span&gt;: ObjectId&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"4d512b45cd9374271b02ec4f"&lt;/span&gt;&lt;span class="o"&gt;)})&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</content><category term="MongoDB"></category><category term="Database"></category></entry><entry><title>Asynchronous GPIO interupts</title><link href="http://didier.bernaudeau.net/Asynchronous_GPIO_interupts.html" rel="alternate"></link><published>2018-04-15T09:08:00+02:00</published><updated>2018-04-14T09:48:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-04-15:/Asynchronous_GPIO_interupts.html</id><summary type="html">&lt;p&gt;Rpi.GPIO is a powerful framework to control GPIO on Raspberry. However, this framework is not really compatible with asynchronous programming.&lt;/p&gt;
 &lt;p&gt;Actually, a part of the documentation says: &lt;strong&gt;"the callback functions are run sequentially, not concurrently. This is because there is only one thread used for callbacks, in which every callback is run, in the order in which they have been defined"&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;So, this post describes a workaround to make asynchronous GPIO interupts.&lt;/p&gt;
@@ -783,61 +798,66 @@ rlEnvFanDataDirection.1 = INTEGER: unKnown(1)
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Open &lt;a href="http://localhost:8761/"&gt;the dashboard&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="Spring"></category><category term="Spring Cloud"></category><category term="REST"></category><category term="API"></category></entry><entry><title>How to install NodeJS on Gentoo Linux</title><link href="http://didier.bernaudeau.net/HowTo_install_NodeJS.html" rel="alternate"></link><published>2017-12-30T17:13:00+01:00</published><updated>2018-03-25T16:32:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-30:/HowTo_install_NodeJS.html</id><summary type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional software on Gentoo Linux.&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional software on Gentoo Linux.&lt;/p&gt;
+&lt;/ul&gt;</content><category term="Spring"></category><category term="Spring Cloud"></category><category term="REST"></category><category term="API"></category></entry><entry><title>How to install NodeJS on Gentoo Linux</title><link href="http://didier.bernaudeau.net/HowTo_install_NodeJS.html" rel="alternate"></link><published>2017-12-30T17:13:00+01:00</published><updated>2018-06-24T18:55:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-30:/HowTo_install_NodeJS.html</id><summary type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux.&lt;/p&gt;
 
-&lt;h1&gt;NodeJS&lt;/h1&gt;
+&lt;p&gt;Unfortunately, I can't install the latest version of NodeJS because:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Install NodeJS 9.8&lt;/li&gt;
+&lt;li&gt;NodeJS 10.x needs 1.1.x and several packages (such as OpenSSH) refuse to compile with OpenSSL 1.1.x &lt;/li&gt;
+&lt;li&gt;NodeJS 9.x needs ICU 61.x and several packages (such as LibreOffice) refuse to compile with ICU 61.x &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.accept_keywords
+&lt;h1&gt;NodeJS&lt;/h1&gt;
+&lt;p&gt;So, the following instructions describe how to install NodeJS 8.11.1.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install NodeJS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge net-libs/nodejs
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;=net-libs/nodejs-9.8.0       ~amd64
-=net-libs/http-parser-2.7.1  ~amd64
-=net-libs/nghttp2-1.29.0     ~amd64
-=dev-libs/libuv-1.19.2       ~amd64
-=dev-libs/icu-60.2           ~amd64
+&lt;ul&gt;
+&lt;li&gt;Merge time (on my Lenovo X240)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; qlop -tH net-libs/nodejs
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nv"&gt;emerge&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;net-libs/nodejs-9.8.0
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;nodejs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt; &lt;span class="n"&gt;minutes&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;49&lt;/span&gt; &lt;span class="n"&gt;seconds&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;merges&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;NPM&lt;/h1&gt;
-&lt;p&gt;NPM (stands for Node Package Manager) is a command line interface program to manage node.js libraries. This tools is provided by default with NodeJs.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Install NPM&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm install -g npm
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Install a package&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm install -g PackageName
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;/!\ Packages are installed in the following directory: "/usr/lib64/node_modules/".&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Uninstall a package&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm uninstall -g PackageName
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Get information about a package&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm list PackageName
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Update NPM packages&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm update -g --unsafe-perm
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Clear NPM cache&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm cache verify
-&lt;span class="gp"&gt;#&lt;/span&gt; npm cache clear --force
-&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;NPM (stands for Node Package Manager) is a command line interface program to manage node.js libraries. The version 5.6.0 is provided by default with NodeJs 9.11.2.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Create a project&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; npm init
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add a package into your project&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; npm install PackageName
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;/!\ Package will be installed in the folder "node_modules" and the package name will be added into package.json file.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Uninstall a package&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; npm uninstall PackageName
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Get information about a package&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; npm list PackageName
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update NPM packages&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; npm update
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;List all installed packages&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; npm ls
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Clear NPM cache&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; npm cache verify
+&lt;span class="gp"&gt;$&lt;/span&gt; npm cache clear --force
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Yarn&lt;/h1&gt;
 &lt;p&gt;Yarn is an another package manager from Facebook. Yarn is an alternative to NPM.&lt;/p&gt;
@@ -4159,7 +4179,7 @@ NTP synchronized: yes
 &lt;li&gt;Install Java&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apt-get install openjdk-8-jre
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Raspbian"></category><category term="Raspberry Pi"></category></entry><entry><title>Angular CLI</title><link href="http://didier.bernaudeau.net/AngularCLI.html" rel="alternate"></link><published>2017-05-25T22:46:00+02:00</published><updated>2018-05-11T21:49:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-25:/AngularCLI.html</id><summary type="html">&lt;p&gt;Angular Command Line Interface makes it easy to develop an single page application with Angular framework. This post will walk-through installing and then using this development tool.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Raspbian"></category><category term="Raspberry Pi"></category></entry><entry><title>Angular CLI</title><link href="http://didier.bernaudeau.net/AngularCLI.html" rel="alternate"></link><published>2017-05-25T22:46:00+02:00</published><updated>2018-06-11T10:12:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-05-25:/AngularCLI.html</id><summary type="html">&lt;p&gt;Angular Command Line Interface makes it easy to develop an single page application with Angular framework. This post will walk-through installing and then using this development tool.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Angular Command Line Interface makes it easy to develop an single page application with Angular framework. This post will walk-through installing and then using this development tool.&lt;/p&gt;
 
 &lt;h1&gt;Installing Angular CLI&lt;/h1&gt;
@@ -4168,7 +4188,7 @@ NTP synchronized: yes
 &lt;p&gt;Install &lt;a href="http://didier.bernaudeau.net/HowTo_install_NodeJS.html"&gt;NodeJS&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Install Angular command line (Version 1.6.6)&lt;/p&gt;
+&lt;p&gt;Install Angular command line (Version 1.7.4)&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; npm install -g @angular/cli
@@ -4181,6 +4201,17 @@ NTP synchronized: yes
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ng new MyApp
 &lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; MyApp
 &lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a new component in App module&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ng generate component Name --module&lt;span class="o"&gt;=&lt;/span&gt;app
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a new service&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ng generate service MyService
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This command line will create a new file called "MyService.service.ts".&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Running the development server&lt;/li&gt;
 &lt;/ul&gt;
@@ -7034,7 +7065,7 @@ Password for 'https://didier-bernaudeau@github.com': *************************&l
 &lt;p&gt;Partition disk&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;table class="table table-hover table-striped"&gt;
+&lt;table class="table-hover table-striped table"&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;Mount Point&lt;/th&gt;

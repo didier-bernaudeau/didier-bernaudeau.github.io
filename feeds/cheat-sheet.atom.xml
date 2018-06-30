@@ -1,5 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Cheat Sheet</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/cheat-sheet.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-03-09T10:50:00+01:00</updated><entry><title>OpenSSL cheat sheet</title><link href="http://didier.bernaudeau.net/OpenSSL_cheat_sheet.html" rel="alternate"></link><published>2018-03-09T10:50:00+01:00</published><updated>2018-03-09T10:50:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-03-09:/OpenSSL_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for OpenSSL.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Cheat Sheet</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/cheat-sheet.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-06-30T07:58:00+02:00</updated><entry><title>Gentoo cheat sheet</title><link href="http://didier.bernaudeau.net/Gentoo_cheat_sheet.html" rel="alternate"></link><published>2018-06-30T07:58:00+02:00</published><updated>2018-06-30T07:58:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-30:/Gentoo_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Gentoo Linux.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post is a list of useful command lines for Gentoo Linux.&lt;/p&gt;
+
+&lt;h1&gt;Emerge&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Updating all packages that are still built against old version librairy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --ask @preserved-rebuild
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Rebuild packages after having altered USE flags&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --update --newuse --deep @world
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Portage Utils (q*)&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;install tools&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge app-portage/portage-utils
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Find which package owns a file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; qfile /path/file
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Merge time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; qlop -tH PackageName
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Gentoolkit (equery, ...)&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install tools &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge -pv app-portage/gentoolkit
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Find which package owns a file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; equery belongs -e /path/file
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category><category term="Gentoo"></category></entry><entry><title>Git cheat sheet</title><link href="http://didier.bernaudeau.net/Git_cheat_sheet.html" rel="alternate"></link><published>2018-06-24T17:52:00+02:00</published><updated>2018-06-24T17:52:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-24:/Git_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Git (hub).&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post is a list of useful command lines for Git (hub).&lt;/p&gt;
+
+&lt;h1&gt;If the repository is already initialized&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Clone this repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;git clone https://github.com/0xdbe/BlogNode_Back&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Set committer information&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git config user.name &lt;span class="s2"&gt;"MyName"&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; git config user.email &lt;span class="s2"&gt;"mail@domain.net"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add all files&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git add .
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Commit (with commit message)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git commit -m &lt;span class="s2"&gt;"My First Commit"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Push the changes in your local repository to GitHub.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git push -u origin master
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;If the repository is not initialized&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Create a new repository on GitHub (without initialize the new repository with README, license, or gitignore files)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Initialize the local directory as a Git repository.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git init
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This command line creates a folder called ".git"&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Set committer information&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git config user.name &lt;span class="s2"&gt;"MyName"&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; git config user.email &lt;span class="s2"&gt;"mail@domain.net"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add the files in your new local repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git add .
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Commit (with commit message)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git commit -m &lt;span class="s2"&gt;"My First Commit"&lt;/span&gt;!
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add the URL for the remote repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git remote add origin https://github.com/username/repository.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Print the list of remote repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git remote -v
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Push the changes in your local repository to GitHub.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git push -u origin master
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Git"></category></entry><entry><title>TypeScript cheat sheet</title><link href="http://didier.bernaudeau.net/TypeScript_cheat_sheet.html" rel="alternate"></link><published>2018-06-13T11:33:00+02:00</published><updated>2018-06-13T11:33:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-13:/TypeScript_cheat_sheet.html</id><summary type="html">&lt;p&gt;TypeScript is a superset of javascript which means any javascript code is a valid typescript but typescript has some additional features which are not in javascript.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;TypeScript is a superset of javascript which means any javascript code is a valid typescript but typescript has some additional features which are not in javascript.&lt;/p&gt;
+
+&lt;h1&gt;Variable&lt;/h1&gt;
+&lt;h2&gt;Scoping&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;var: variable is function scoped&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;let: variable is block scoped&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Type&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;a&lt;/span&gt;: &lt;span class="kt"&gt;number&lt;/span&gt;
+&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt;: &lt;span class="kt"&gt;boolean&lt;/span&gt;
+&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;c&lt;/span&gt;: &lt;span class="kt"&gt;string&lt;/span&gt;
+&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;d&lt;/span&gt;: &lt;span class="kt"&gt;any&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Array&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;e&lt;/span&gt;: &lt;span class="kt"&gt;number&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;f&lt;/span&gt;: &lt;span class="kt"&gt;any&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Class&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nx"&gt;VarName&lt;/span&gt;: &lt;span class="kt"&gt;ClassName&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;id&lt;/span&gt;: &lt;span class="kt"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'test'&lt;/span&gt;
+  &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Function&lt;/h1&gt;
+&lt;h2&gt;Declaration in JavaScript&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;log&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This way of declaring a function is also supported by TypeScript.&lt;/p&gt;
+&lt;h2&gt;Declaration in TypeScript&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;full declaration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;log&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+ &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Shorten declaration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;log&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Even shorter&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;log&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="TypeScript"></category><category term="Programming Language"></category></entry><entry><title>OpenSSL cheat sheet</title><link href="http://didier.bernaudeau.net/OpenSSL_cheat_sheet.html" rel="alternate"></link><published>2018-03-09T10:50:00+01:00</published><updated>2018-03-09T10:50:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-03-09:/OpenSSL_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for OpenSSL.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post is a list of useful command lines for OpenSSL.&lt;/p&gt;
 
 &lt;h1&gt;Certificate X509&lt;/h1&gt;

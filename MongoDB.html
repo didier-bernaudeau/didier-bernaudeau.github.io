@@ -99,7 +99,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2018-06-10T09:45:00+02:00"> dim. 10 juin 2018</time>
+                <i class="fa fa-calendar"></i><time datetime="2018-06-13T21:38:00+02:00"> mer. 13 juin 2018</time>
             </span>
 
 
@@ -139,9 +139,24 @@ My personal blog note            </a>
 <span class="gp">&gt;</span> db.MyCollection.insert<span class="o">({</span><span class="s2">"name"</span>:<span class="s2">"didier"</span><span class="o">})</span>
 </pre></div>
 <ul>
+<li>List of existing collections</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">&gt;</span> show collections
+</pre></div>
+<ul>
 <li>Create an index</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">&gt;</span> db.MyOtherCollection.createIndex<span class="o">(</span> <span class="o">{</span> id: <span class="m">1</span> <span class="o">}</span> <span class="o">)</span>
+</pre></div>
+<ul>
+<li>Print all documents</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">&gt;</span> db.MyCollection.find<span class="o">(</span> <span class="o">{}</span> <span class="o">)</span>
+</pre></div>
+<ul>
+<li>Remove a document</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">&gt;</span> db.MyCollection.remove<span class="o">(</span> <span class="o">{</span><span class="s2">"_id"</span>: ObjectId<span class="o">(</span><span class="s2">"4d512b45cd9374271b02ec4f"</span><span class="o">)})</span>
 </pre></div>
             </div>
             <!-- /.entry-content -->
@@ -202,7 +217,7 @@ My personal blog note            </a>
                             Blockchain
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/certificate.html">
                             Certificate
                         </a>
@@ -252,7 +267,7 @@ My personal blog note            </a>
                             Dedibox
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/development.html">
                             Development
                         </a>
@@ -297,7 +312,7 @@ My personal blog note            </a>
                             Gentoo
                         </a>
                     </li>
-                    <li class="list-group-item tag-4">
+                    <li class="list-group-item tag-3">
                         <a href="http://didier.bernaudeau.net/tag/git.html">
                             Git
                         </a>
@@ -327,7 +342,7 @@ My personal blog note            </a>
                             HTML
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/java.html">
                             Java
                         </a>
@@ -383,6 +398,11 @@ My personal blog note            </a>
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/programming-language.html">
+                            Programming Language
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/protocol.html">
                             Protocol
                         </a>
@@ -392,7 +412,7 @@ My personal blog note            </a>
                             Python
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/raspberry-pi.html">
                             Raspberry Pi
                         </a>
@@ -455,6 +475,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-2">
                         <a href="http://didier.bernaudeau.net/tag/tls.html">
                             TLS
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/typescript.html">
+                            TypeScript
                         </a>
                     </li>
                     <li class="list-group-item tag-2">

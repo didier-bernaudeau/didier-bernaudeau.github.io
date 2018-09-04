@@ -60,7 +60,7 @@
 &lt;span class="nf"&gt;node_modules&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;stages all changes&lt;/li&gt;
+&lt;li&gt;Stages all changes&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git add -A
 &lt;/pre&gt;&lt;/div&gt;
@@ -73,24 +73,17 @@
 &lt;li&gt;Stages modifications and deletions, without new files&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;git add -u&lt;/span&gt;
-&lt;span class="go"&gt;```console&lt;/span&gt;
-
-
-&lt;span class="go"&gt;* List all files in local git repository&lt;/span&gt;
-
-&lt;span class="go"&gt;```console&lt;/span&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; git ls-files
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;List all files in local git repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git ls-files
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;or&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;git ls-tree -r master --name-only&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Remove file&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Commit (with commit message)&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Commit (with commit message)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git commit -m &lt;span class="s2"&gt;"My First Commit"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;

@@ -7130,7 +7130,7 @@ Password for 'https://didier-bernaudeau@github.com': *************************&l
 &lt;p&gt;Partition disk&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;table class="table-striped table table-hover"&gt;
+&lt;table class="table table-hover table-striped"&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;Mount Point&lt;/th&gt;

@@ -15,7 +15,7 @@
 &lt;p align="center"&gt;&lt;img class="img-responsive" src="images/2018-02-18_RaspberryPI_pinout_diagram.png" width="80%"/&gt;&lt;/p&gt;
 &lt;h1&gt;GPIO libraries&lt;/h1&gt;
 &lt;p&gt;There are libraries for each language (Go, Node, Python, ...) for accessing GPIO-pins on the Raspberry Pi but these librairies don't have the same features. So you should choose a programming language according to needed features.&lt;/p&gt;
-&lt;table class="table-striped table table-hover"&gt;
+&lt;table class="table table-hover table-striped"&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;&lt;/th&gt;

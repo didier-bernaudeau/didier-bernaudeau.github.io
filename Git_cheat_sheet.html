@@ -98,7 +98,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2018-06-24T17:52:00+02:00"> dim. 24 juin 2018</time>
+                <i class="fa fa-calendar"></i><time datetime="2018-09-03T23:12:00+02:00"> lun. 03 septembre 2018</time>
             </span>
 
 
@@ -112,11 +112,11 @@ My personal blog note            </a>
                 </div>
                 <p>This post is a list of useful command lines for Git (hub).</p>
 
-<h1>If the repository is already initialized</h1>
+<h1>Start a new git local repository</h1>
 <ul>
-<li>Clone this repository</li>
+<li>Initialize the local directory as a Git repository</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="go">git clone https://github.com/0xdbe/BlogNode_Back</span>
+<div class="highlight"><pre><span></span><span class="gp">$</span> git init
 </pre></div>
 <ul>
 <li>Set committer information</li>
@@ -125,47 +125,79 @@ My personal blog note            </a>
 <span class="gp">$</span> git config user.email <span class="s2">"mail@domain.net"</span>
 </pre></div>
 <ul>
-<li>Add all files</li>
+<li>Show repository configuration</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> git config --list
+</pre></div>
+<ul>
+<li>Create git ignore file</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> nano .gitignore
+</pre></div>
+<div class="highlight"><pre><span></span><span class="na">.gitignore</span>
+<span class="nf">node_modules</span>
+</pre></div>
+<ul>
+<li>stages all changes</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> git add -A
+</pre></div>
+<ul>
+<li>Stages new files and modifications, without deletions</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> git add .
 </pre></div>
 <ul>
-<li>Commit (with commit message)</li>
+<li>Stages modifications and deletions, without new files</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">git add -u</span>
+<span class="go">```console</span>
+
+
+<span class="go">* List all files in local git repository</span>
+
+<span class="go">```console</span>
+<span class="gp">$</span> git ls-files
+</pre></div>
+<p>or</p>
+<div class="highlight"><pre><span></span><span class="go">git ls-tree -r master --name-only</span>
+</pre></div>
+<ul>
+<li>
+<p>Remove file</p>
+</li>
+<li>
+<p>Commit (with commit message)</p>
+</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> git commit -m <span class="s2">"My First Commit"</span>
+</pre></div>
+<h1>Manage Branch</h1>
+<ul>
+<li>Create a new branch and switch in this branch</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> git checkout -b BranchName
+</pre></div>
+<ul>
+<li>List all branches</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> git branch
+</pre></div>
+<ul>
+<li>Change working branch</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> git checkout BranchName
+</pre></div>
+<h1>Remote repository</h1>
+<ul>
+<li>Clone a repository</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">git clone https://github.com/UserName/RepositoryName</span>
 </pre></div>
 <ul>
 <li>Push the changes in your local repository to GitHub.</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> git push -u origin master
-</pre></div>
-<h1>If the repository is not initialized</h1>
-<ul>
-<li>
-<p>Create a new repository on GitHub (without initialize the new repository with README, license, or gitignore files)</p>
-</li>
-<li>
-<p>Initialize the local directory as a Git repository.</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> git init
-</pre></div>
-<p>This command line creates a folder called ".git"</p>
-<ul>
-<li>Set committer information</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> git config user.name <span class="s2">"MyName"</span>
-<span class="gp">$</span> git config user.email <span class="s2">"mail@domain.net"</span>
-</pre></div>
-<ul>
-<li>Add the files in your new local repository</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> git add .
-</pre></div>
-<ul>
-<li>Commit (with commit message)</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> git commit -m <span class="s2">"My First Commit"</span>!
 </pre></div>
 <ul>
 <li>Add the URL for the remote repository</li>
@@ -176,11 +208,6 @@ My personal blog note            </a>
 <li>Print the list of remote repository</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">$</span> git remote -v
-</pre></div>
-<ul>
-<li>Push the changes in your local repository to GitHub.</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> git push -u origin master
 </pre></div>
             </div>
             <!-- /.entry-content -->
@@ -328,6 +355,11 @@ My personal blog note            </a>
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/fancy-bear.html">
+                            Fancy Bear
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/framework.html">
                             Framework
                         </a>
@@ -350,6 +382,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/go.html">
                             Go
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/hack.html">
+                            Hack
                         </a>
                     </li>
                     <li class="list-group-item tag-1">

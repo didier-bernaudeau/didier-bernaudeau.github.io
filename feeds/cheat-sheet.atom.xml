@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Cheat Sheet</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/cheat-sheet.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-06-30T07:58:00+02:00</updated><entry><title>Gentoo cheat sheet</title><link href="http://didier.bernaudeau.net/Gentoo_cheat_sheet.html" rel="alternate"></link><published>2018-06-30T07:58:00+02:00</published><updated>2018-06-30T07:58:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-30:/Gentoo_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Gentoo Linux.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Cheat Sheet</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/cheat-sheet.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-09-03T23:12:00+02:00</updated><entry><title>Gentoo cheat sheet</title><link href="http://didier.bernaudeau.net/Gentoo_cheat_sheet.html" rel="alternate"></link><published>2018-06-30T07:58:00+02:00</published><updated>2018-06-30T07:58:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-30:/Gentoo_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Gentoo Linux.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post is a list of useful command lines for Gentoo Linux.&lt;/p&gt;
 
 &lt;h1&gt;Emerge&lt;/h1&gt;
@@ -13,12 +13,8 @@
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge --update --newuse --deep @world
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;Portage Utils (q*)&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;install tools&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge app-portage/portage-utils
-&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Other portage tools&lt;/h1&gt;
+&lt;p&gt;The package "portage-utils" is installed by default and provide many command lines tools such as emerge, qfile and qlop.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Find which package owns a file&lt;/li&gt;
 &lt;/ul&gt;
@@ -29,24 +25,20 @@
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; qlop -tH PackageName
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;Gentoolkit (equery, ...)&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Install tools &lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge -pv app-portage/gentoolkit
-&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Equery&lt;/h1&gt;
+&lt;p&gt;The "equery" command line is included in Gentoolkit.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Find which package owns a file&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; equery belongs -e /path/file
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category><category term="Gentoo"></category></entry><entry><title>Git cheat sheet</title><link href="http://didier.bernaudeau.net/Git_cheat_sheet.html" rel="alternate"></link><published>2018-06-24T17:52:00+02:00</published><updated>2018-06-24T17:52:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-24:/Git_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Git (hub).&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category><category term="Gentoo"></category></entry><entry><title>Git cheat sheet</title><link href="http://didier.bernaudeau.net/Git_cheat_sheet.html" rel="alternate"></link><published>2018-06-24T17:52:00+02:00</published><updated>2018-09-03T23:12:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-24:/Git_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Git (hub).&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post is a list of useful command lines for Git (hub).&lt;/p&gt;
 
-&lt;h1&gt;If the repository is already initialized&lt;/h1&gt;
+&lt;h1&gt;Start a new git local repository&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;Clone this repository&lt;/li&gt;
+&lt;li&gt;Initialize the local directory as a Git repository&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;git clone https://github.com/0xdbe/BlogNode_Back&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git init
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Set committer information&lt;/li&gt;
@@ -55,47 +47,79 @@
 &lt;span class="gp"&gt;$&lt;/span&gt; git config user.email &lt;span class="s2"&gt;"mail@domain.net"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;Add all files&lt;/li&gt;
+&lt;li&gt;Show repository configuration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git config --list
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create git ignore file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; nano .gitignore
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="na"&gt;.gitignore&lt;/span&gt;
+&lt;span class="nf"&gt;node_modules&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;stages all changes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git add -A
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Stages new files and modifications, without deletions&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git add .
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;Commit (with commit message)&lt;/li&gt;
+&lt;li&gt;Stages modifications and deletions, without new files&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;git add -u&lt;/span&gt;
+&lt;span class="go"&gt;```console&lt;/span&gt;
+
+
+&lt;span class="go"&gt;* List all files in local git repository&lt;/span&gt;
+
+&lt;span class="go"&gt;```console&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; git ls-files
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;or&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;git ls-tree -r master --name-only&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Remove file&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Commit (with commit message)&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git commit -m &lt;span class="s2"&gt;"My First Commit"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Manage Branch&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a new branch and switch in this branch&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git checkout -b BranchName
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;List all branches&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git branch
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Change working branch&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git checkout BranchName
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Remote repository&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Clone a repository&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;git clone https://github.com/UserName/RepositoryName&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Push the changes in your local repository to GitHub.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git push -u origin master
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;If the repository is not initialized&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Create a new repository on GitHub (without initialize the new repository with README, license, or gitignore files)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Initialize the local directory as a Git repository.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git init
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This command line creates a folder called ".git"&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Set committer information&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git config user.name &lt;span class="s2"&gt;"MyName"&lt;/span&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; git config user.email &lt;span class="s2"&gt;"mail@domain.net"&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Add the files in your new local repository&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git add .
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Commit (with commit message)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git commit -m &lt;span class="s2"&gt;"My First Commit"&lt;/span&gt;!
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Add the URL for the remote repository&lt;/li&gt;
@@ -106,11 +130,6 @@
 &lt;li&gt;Print the list of remote repository&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git remote -v
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Push the changes in your local repository to GitHub.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; git push -u origin master
 &lt;/pre&gt;&lt;/div&gt;</content><category term="Git"></category></entry><entry><title>TypeScript cheat sheet</title><link href="http://didier.bernaudeau.net/TypeScript_cheat_sheet.html" rel="alternate"></link><published>2018-06-13T11:33:00+02:00</published><updated>2018-06-13T11:33:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-13:/TypeScript_cheat_sheet.html</id><summary type="html">&lt;p&gt;TypeScript is a superset of javascript which means any javascript code is a valid typescript but typescript has some additional features which are not in javascript.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;TypeScript is a superset of javascript which means any javascript code is a valid typescript but typescript has some additional features which are not in javascript.&lt;/p&gt;
 
@@ -118,10 +137,13 @@
 &lt;h2&gt;Scoping&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;var: variable is function scoped&lt;/p&gt;
+&lt;p&gt;var: variable that is function scoped&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;let: variable is block scoped&lt;/p&gt;
+&lt;p&gt;const: variable that is function scoped (like var) but once the variable is assigned it cannot be assigned again&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;let: variable that is block scoped&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Type&lt;/h2&gt;

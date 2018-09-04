@@ -115,24 +115,37 @@ My personal blog note            </a>
                 </div>
                 <p>Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux.</p>
 
-<p>Unfortunately, I can't install the latest version of NodeJS because:</p>
-<ul>
-<li>NodeJS 10.x needs 1.1.x and several packages (such as OpenSSH) refuse to compile with OpenSSL 1.1.x </li>
-<li>NodeJS 9.x needs ICU 61.x and several packages (such as LibreOffice) refuse to compile with ICU 61.x </li>
-</ul>
 <h1>NodeJS</h1>
-<p>So, the following instructions describe how to install NodeJS 8.11.1.</p>
+<p>Unfortunately, you can't install the latest version of NodeJS on Gentoo Linux because NodeJS 10.x needs 1.1.x and several packages (such as OpenSSH) refuse to compile with OpenSSL 1.1.x. Even more, it's not possible to install NodeJS 9.x because this version requires ICU 61.x and several packages (such as LibreOffice) refuse to compile with ICU 61.x. So, the following instructions describe the workaround to install NodeJS 9.11.2.</p>
+<ul>
+<li>Disable ICU support</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/portage/package.use
+</pre></div>
+<div class="highlight"><pre><span></span>net-libs/nodejs   -icu
+</pre></div>
+<ul>
+<li>Allow unstable packages for NodeJS</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/portage/package.accept_keywords 
+</pre></div>
+<div class="highlight"><pre><span></span>=net-libs/nodejs-9.11.2          ~amd64
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/portage/package.unmask
+</pre></div>
+<div class="highlight"><pre><span></span>=net-libs/nodejs-9.11.2
+</pre></div>
 <ul>
 <li>Install NodeJS</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">#</span> emerge net-libs/nodejs
+<div class="highlight"><pre><span></span><span class="gp">#</span> <span class="nv">emerge</span> <span class="o">=</span>net-libs/nodejs-9.11.2
 </pre></div>
 <ul>
 <li>Merge time (on my Lenovo X240)</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">#</span> qlop -tH net-libs/nodejs
 </pre></div>
-<div class="highlight"><pre><span></span><span class="n">nodejs</span><span class="o">:</span> <span class="mi">13</span> <span class="n">minutes</span><span class="o">,</span> <span class="mi">49</span> <span class="n">seconds</span> <span class="k">for</span> <span class="mi">12</span> <span class="n">merges</span>
+<div class="highlight"><pre><span></span><span class="n">nodejs</span><span class="o">:</span> <span class="mi">14</span> <span class="n">minutes</span><span class="o">,</span> <span class="mi">23</span> <span class="n">seconds</span>
 </pre></div>
 <h1>NPM</h1>
 <p>NPM (stands for Node Package Manager) is a command line interface program to manage node.js libraries. The version 5.6.0 is provided by default with NodeJs 9.11.2.</p>
@@ -335,6 +348,11 @@ My personal blog note            </a>
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/fancy-bear.html">
+                            Fancy Bear
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/framework.html">
                             Framework
                         </a>
@@ -357,6 +375,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/go.html">
                             Go
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/hack.html">
+                            Hack
                         </a>
                     </li>
                     <li class="list-group-item tag-1">

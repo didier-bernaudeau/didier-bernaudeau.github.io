@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-06-24T18:55:00+02:00</updated><entry><title>MongoDB</title><link href="http://didier.bernaudeau.net/MongoDB.html" rel="alternate"></link><published>2018-06-09T10:08:00+02:00</published><updated>2018-06-13T21:38:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-09:/MongoDB.html</id><summary type="html">&lt;p&gt;MongoDB is a document-oriented database very popular especially with MEAN technical stack (MongoDB, ExpressJS, AngularJS and NodeJS). This post will walk-through installing MongoDB on Gentoo Linux then it will list the most usefull command line with Mongo Shell tool (This second part could be a Cheat Sheet).&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-08-07T12:49:00+02:00</updated><entry><title>MongoDB</title><link href="http://didier.bernaudeau.net/MongoDB.html" rel="alternate"></link><published>2018-06-09T10:08:00+02:00</published><updated>2018-08-07T12:49:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-09:/MongoDB.html</id><summary type="html">&lt;p&gt;MongoDB is a document-oriented database very popular especially with MEAN technical stack (MongoDB, ExpressJS, AngularJS and NodeJS). This post will walk-through installing MongoDB on Gentoo Linux then it will list the most usefull command line with Mongo Shell tool (This second part could be a Cheat Sheet).&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;MongoDB is a document-oriented database very popular especially with MEAN technical stack (MongoDB, ExpressJS, AngularJS and NodeJS). This post will walk-through installing MongoDB on Gentoo Linux then it will list the most usefull command line with Mongo Shell tool (This second part could be a Cheat Sheet).&lt;/p&gt;
 
 &lt;h1&gt;Server&lt;/h1&gt;
@@ -8,7 +8,59 @@
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl start mongodb
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now, MongoDB is listening on localhost interface on port 27017.&lt;/p&gt;
-&lt;h1&gt;Mongo Shell&lt;/h1&gt;
+&lt;h2&gt;Create admin user&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Connect to MongoDB server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; mongo mongodb://localhost:27017
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create admin account&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt; use admin
+&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt; db.createUser&lt;span class="o"&gt;(&lt;/span&gt;
+&lt;span class="go"&gt;  {&lt;/span&gt;
+&lt;span class="go"&gt;    user: "admin",&lt;/span&gt;
+&lt;span class="go"&gt;    pwd: "************",&lt;/span&gt;
+&lt;span class="go"&gt;    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]&lt;/span&gt;
+&lt;span class="go"&gt;  }&lt;/span&gt;
+&lt;span class="go"&gt;)&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;exit&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Enable authentication&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/mongodb.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;security&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;authorization&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"enabled"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart MongoDB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl restart mongodb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Connect to MongoDB server with admin account&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; mongo mongodb://localhost:27017
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; use admin
+&amp;gt; db.auth("admin", "************")
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create simple user account on MyDB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; use MyDB
+&amp;gt; db.createUser(
+  {
+    user: "MyDbUserAccount",
+    pwd: "************",
+    roles: [ { role: "readWrite", db: "MyDB" } ]
+  }
+)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Other useful command lines for Mongo Shell&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Connection to MongoDB server&lt;/li&gt;
 &lt;/ul&gt;
@@ -801,24 +853,37 @@ rlEnvFanDataDirection.1 = INTEGER: unKnown(1)
 &lt;/ul&gt;</content><category term="Spring"></category><category term="Spring Cloud"></category><category term="REST"></category><category term="API"></category></entry><entry><title>How to install NodeJS on Gentoo Linux</title><link href="http://didier.bernaudeau.net/HowTo_install_NodeJS.html" rel="alternate"></link><published>2017-12-30T17:13:00+01:00</published><updated>2018-06-24T18:55:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-30:/HowTo_install_NodeJS.html</id><summary type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Node.js is a powerful JavaScript run-time environment for executing JavaScript code server-side. This post will walk-through installing Node.js with essential additional softwares on Gentoo Linux.&lt;/p&gt;
 
-&lt;p&gt;Unfortunately, I can't install the latest version of NodeJS because:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;NodeJS 10.x needs 1.1.x and several packages (such as OpenSSH) refuse to compile with OpenSSL 1.1.x &lt;/li&gt;
-&lt;li&gt;NodeJS 9.x needs ICU 61.x and several packages (such as LibreOffice) refuse to compile with ICU 61.x &lt;/li&gt;
-&lt;/ul&gt;
 &lt;h1&gt;NodeJS&lt;/h1&gt;
-&lt;p&gt;So, the following instructions describe how to install NodeJS 8.11.1.&lt;/p&gt;
+&lt;p&gt;Unfortunately, you can't install the latest version of NodeJS on Gentoo Linux because NodeJS 10.x needs 1.1.x and several packages (such as OpenSSH) refuse to compile with OpenSSL 1.1.x. Even more, it's not possible to install NodeJS 9.x because this version requires ICU 61.x and several packages (such as LibreOffice) refuse to compile with ICU 61.x. So, the following instructions describe the workaround to install NodeJS 9.11.2.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Disable ICU support&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.use
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;net-libs/nodejs   -icu
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Allow unstable packages for NodeJS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.accept_keywords 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;=net-libs/nodejs-9.11.2          ~amd64
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/portage/package.unmask
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;=net-libs/nodejs-9.11.2
+&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Install NodeJS&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; emerge net-libs/nodejs
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nv"&gt;emerge&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;net-libs/nodejs-9.11.2
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Merge time (on my Lenovo X240)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; qlop -tH net-libs/nodejs
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;nodejs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt; &lt;span class="n"&gt;minutes&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;49&lt;/span&gt; &lt;span class="n"&gt;seconds&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;merges&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;nodejs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;14&lt;/span&gt; &lt;span class="n"&gt;minutes&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt; &lt;span class="n"&gt;seconds&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;NPM&lt;/h1&gt;
 &lt;p&gt;NPM (stands for Node Package Manager) is a command line interface program to manage node.js libraries. The version 5.6.0 is provided by default with NodeJs 9.11.2.&lt;/p&gt;
@@ -6267,23 +6332,23 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;span class="gp"&gt;$&lt;/span&gt; virt-manager
 &lt;/pre&gt;
 &lt;p&gt;Open the menu "file &amp;gt; Add connection"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Add connection" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Add connection" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="network-configuration"&gt;
 &lt;h2&gt;Network Configuration&lt;/h2&gt;
 &lt;p&gt;After starting LibVirtd, network configuration is as follows:&lt;/p&gt;
-&lt;img alt="Network Configuration" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
+&lt;img alt="Network Configuration" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="create-a-virtual-machine"&gt;
 &lt;h2&gt;Create a virtual machine&lt;/h2&gt;
 &lt;p&gt;Open the menu "file &amp;gt; New Virtual Machine"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Step1" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step2" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
-&lt;img alt="Virt-Manager - Step3" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step4" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step5" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step1" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step2" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - Step3" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step4" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step5" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
 &lt;p&gt;Select "VirtIO" device model for Network Interface&lt;/p&gt;
-&lt;img alt="Virt-Manager - NIC device model" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - NIC device model" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
 &lt;!-- vhost=on --&gt;
 &lt;/div&gt;
 </content><category term="Gentoo"></category><category term="Virtualization"></category></entry><entry><title>How to create bootable USB flash drives with Rufus</title><link href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html" rel="alternate"></link><published>2015-07-12T12:32:00+02:00</published><updated>2015-07-15T21:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-12:/How_to_create_bootable_USB_flash_drives_with_Rufus.html</id><summary type="html">&lt;p&gt;This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp;amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.&lt;/p&gt;
@@ -6297,12 +6362,12 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;h2&gt;Create installation media&lt;/h2&gt;
 &lt;div class="section" id="example-for-microsoft-windows-8-1-with-mbr"&gt;
 &lt;h3&gt;Example for Microsoft Windows 8.1 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="example-for-debian-8-with-mbr"&gt;
 &lt;h3&gt;Example for Debian 8 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
 &lt;p&gt;If you need additional firmware to install Debian :&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul class="simple"&gt;
@@ -7065,7 +7130,7 @@ Password for 'https://didier-bernaudeau@github.com': *************************&l
 &lt;p&gt;Partition disk&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;table class="table-hover table-striped table"&gt;
+&lt;table class="table-striped table table-hover"&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;Mount Point&lt;/th&gt;

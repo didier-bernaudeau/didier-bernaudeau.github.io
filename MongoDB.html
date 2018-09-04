@@ -99,7 +99,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2018-06-13T21:38:00+02:00"> mer. 13 juin 2018</time>
+                <i class="fa fa-calendar"></i><time datetime="2018-08-07T12:49:00+02:00"> mar. 07 août 2018</time>
             </span>
 
 
@@ -121,7 +121,59 @@ My personal blog note            </a>
 <div class="highlight"><pre><span></span><span class="gp">#</span> systemctl start mongodb
 </pre></div>
 <p>Now, MongoDB is listening on localhost interface on port 27017.</p>
-<h1>Mongo Shell</h1>
+<h2>Create admin user</h2>
+<ul>
+<li>Connect to MongoDB server</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> mongo mongodb://localhost:27017
+</pre></div>
+<ul>
+<li>Create admin account</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">&gt;</span> use admin
+<span class="gp">&gt;</span> db.createUser<span class="o">(</span>
+<span class="go">  {</span>
+<span class="go">    user: "admin",</span>
+<span class="go">    pwd: "************",</span>
+<span class="go">    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]</span>
+<span class="go">  }</span>
+<span class="go">)</span>
+<span class="gp">&gt;</span> <span class="nb">exit</span>
+</pre></div>
+<ul>
+<li>Enable authentication</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nano /etc/mongodb.conf
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">security</span><span class="o">:</span>
+    <span class="n">authorization</span><span class="o">:</span> <span class="s2">"enabled"</span>
+</pre></div>
+<ul>
+<li>Restart MongoDB</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> systemctl restart mongodb
+</pre></div>
+<ul>
+<li>Connect to MongoDB server with admin account</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> mongo mongodb://localhost:27017
+</pre></div>
+<div class="highlight"><pre><span></span>&gt; use admin
+&gt; db.auth("admin", "************")
+</pre></div>
+<ul>
+<li>Create simple user account on MyDB</li>
+</ul>
+<div class="highlight"><pre><span></span>&gt; use MyDB
+&gt; db.createUser(
+  {
+    user: "MyDbUserAccount",
+    pwd: "************",
+    roles: [ { role: "readWrite", db: "MyDB" } ]
+  }
+)
+</pre></div>
+<h1>Other useful command lines for Mongo Shell</h1>
 <ul>
 <li>Connection to MongoDB server</li>
 </ul>
@@ -298,6 +350,11 @@ My personal blog note            </a>
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/fancy-bear.html">
+                            Fancy Bear
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/framework.html">
                             Framework
                         </a>
@@ -320,6 +377,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/go.html">
                             Go
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/hack.html">
+                            Hack
                         </a>
                     </li>
                     <li class="list-group-item tag-1">

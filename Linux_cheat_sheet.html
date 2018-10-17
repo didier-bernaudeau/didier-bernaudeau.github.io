@@ -98,7 +98,7 @@ My personal blog note            </a>
     </span>
             <span class="label label-default">Modified</span>
             <span class="modified">
-                <i class="fa fa-calendar"></i><time datetime="2018-03-04T17:08:00+01:00"> dim. 04 mars 2018</time>
+                <i class="fa fa-calendar"></i><time datetime="2018-10-13T22:04:00+02:00"> sam. 13 octobre 2018</time>
             </span>
 
 
@@ -124,6 +124,22 @@ My personal blog note            </a>
 <div class="highlight"><pre><span></span><span class="gp">$</span> sudo groupdel GroupName
 </pre></div>
 <h1>Network</h1>
+<h2>Configuration</h2>
+<ul>
+<li>Show IP address</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo ip address show
+</pre></div>
+<ul>
+<li>Set IP address</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo ip addr add <span class="m">192</span>.168.10.1 dev ens3
+</pre></div>
+<ul>
+<li>Default route</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> ip route add default via <span class="m">192</span>.168.10.254
+</pre></div>
 <h2>Check listening</h2>
 <p>The command line netstat is not used anymore in modern linux distribution.</p>
 <ul>
@@ -165,6 +181,11 @@ My personal blog note            </a>
 </pre></div>
 <h1>Systemd</h1>
 <ul>
+<li>Service log</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> journalctl -u name.service
+</pre></div>
+<ul>
 <li>List unit file</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="gp">#</span> systemctl list-unit-files
@@ -185,7 +206,7 @@ My personal blog note            </a>
             <aside>
 <div id="aboutme">
         <p>
-            <img width="60%" class="img-thumbnail" src="/images/avatar.png"/>
+            <img width="60%" class="img-thumbnail" src="/images/photo.jpg"/>
         </p>
     <p>
         <strong>About D. Bernaudeau</strong><br/>
@@ -222,6 +243,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/apu.html">
                             APU
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/arch-linux.html">
+                            Arch Linux
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -315,6 +341,11 @@ My personal blog note            </a>
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/elitebook.html">
+                            EliteBook
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/fancy-bear.html">
                             Fancy Bear
                         </a>
@@ -387,6 +418,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/mongodb.html">
                             MongoDB
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/music.html">
+                            music
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
@@ -475,6 +511,11 @@ My personal blog note            </a>
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/shell.html">
+                            Shell
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/snmp.html">
                             SNMP
                         </a>
@@ -507,6 +548,11 @@ My personal blog note            </a>
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/typescript.html">
                             TypeScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/video.html">
+                            video
                         </a>
                     </li>
                     <li class="list-group-item tag-2">

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Cheat Sheet</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/cheat-sheet.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-09-03T23:12:00+02:00</updated><entry><title>Gentoo cheat sheet</title><link href="http://didier.bernaudeau.net/Gentoo_cheat_sheet.html" rel="alternate"></link><published>2018-06-30T07:58:00+02:00</published><updated>2018-06-30T07:58:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-30:/Gentoo_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Gentoo Linux.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Cheat Sheet</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/cheat-sheet.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-10-13T22:04:00+02:00</updated><entry><title>Shell cheat sheet</title><link href="http://didier.bernaudeau.net/shell_cheat_sheet.html" rel="alternate"></link><published>2018-09-22T11:17:00+02:00</published><updated>2018-09-22T11:17:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-09-22:/shell_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful shell scripting.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post is a list of useful shell scripting.&lt;/p&gt;
+
+&lt;h1&gt;Formatting texts&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;With escape character&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; -e &lt;span class="s2"&gt;"\x1B[31mHello World\e[0m"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Shell"></category></entry><entry><title>Gentoo cheat sheet</title><link href="http://didier.bernaudeau.net/Gentoo_cheat_sheet.html" rel="alternate"></link><published>2018-06-30T07:58:00+02:00</published><updated>2018-06-30T07:58:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-30:/Gentoo_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Gentoo Linux.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post is a list of useful command lines for Gentoo Linux.&lt;/p&gt;
 
 &lt;h1&gt;Emerge&lt;/h1&gt;
@@ -187,7 +195,7 @@
 &lt;li&gt;Show a certificate (Human Readable)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; openssl x509 -in MyCertificate.pem -text -noout
-&lt;/pre&gt;&lt;/div&gt;</content><category term="OpenSSL"></category></entry><entry><title>Linux cheat sheet</title><link href="http://didier.bernaudeau.net/Linux_cheat_sheet.html" rel="alternate"></link><published>2017-12-17T17:52:00+01:00</published><updated>2018-03-04T17:08:00+01:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-17:/Linux_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="OpenSSL"></category></entry><entry><title>Linux cheat sheet</title><link href="http://didier.bernaudeau.net/Linux_cheat_sheet.html" rel="alternate"></link><published>2017-12-17T17:52:00+01:00</published><updated>2018-10-13T22:04:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2017-12-17:/Linux_cheat_sheet.html</id><summary type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This post is a list of useful command lines for Linux whatever the distribution (Debian, Gentoo, Arch, ...).&lt;/p&gt;
 
 &lt;h1&gt;User and Group&lt;/h1&gt;
@@ -202,6 +210,22 @@
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo groupdel GroupName
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Network&lt;/h1&gt;
+&lt;h2&gt;Configuration&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Show IP address&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo ip address show
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Set IP address&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo ip addr add &lt;span class="m"&gt;192&lt;/span&gt;.168.10.1 dev ens3
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Default route&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ip route add default via &lt;span class="m"&gt;192&lt;/span&gt;.168.10.254
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;Check listening&lt;/h2&gt;
 &lt;p&gt;The command line netstat is not used anymore in modern linux distribution.&lt;/p&gt;
 &lt;ul&gt;
@@ -242,6 +266,11 @@
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; tar -xzvf file.tar.gz
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Systemd&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Service log&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; journalctl -u name.service
+&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;List unit file&lt;/li&gt;
 &lt;/ul&gt;
@@ -373,15 +402,4 @@ e6ba45aff418        bridge              bridge              local
 &lt;li&gt;Start a daemon&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo systemctl start sshd
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h1&gt;Network configuration&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Show IP address&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo ip address show
-&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Set IP address&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo ip addr add &lt;span class="m"&gt;192&lt;/span&gt;.168.10.1 dev ens3
 &lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category><category term="Debian"></category></entry></feed>

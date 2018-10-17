@@ -335,6 +335,28 @@ NTP synchronized: yes
         psk="MySecret"
 }
 </pre></div>
+<h1>Install python</h1>
+<ul>
+<li>Install virtualenv</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="go">sudo apt-get install python-virtualenv</span>
+</pre></div>
+<ul>
+<li>Create a project</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> virtualenv -p python3 ProjectName
+<span class="gp">$</span> <span class="nb">cd</span> ProjectName
+<span class="gp">$</span> <span class="nb">source</span> bin/activate
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">$</span> pip3 install RPi.GPIO
+</pre></div>
+<div class="highlight"><pre><span></span><span class="gp">$</span> pip3 freeze &gt; requirements.txt
+</pre></div>
+<ul>
+<li>Close your project</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">$</span> deactivate
+</pre></div>
 <h1>Install additional packages</h1>
 <ul>
 <li>Install PyGPIO</li>
@@ -356,10 +378,10 @@ NTP synchronized: yes
 <section class="well" id="related-posts">
     <h4>Related Posts:</h4>
     <ul>
-        <li><a href="http://didier.bernaudeau.net/Raspberry_PI.html">Raspberry PI</a></li>
-        <li><a href="http://didier.bernaudeau.net/WiringPi.html">Wiring PI</a></li>
         <li><a href="http://didier.bernaudeau.net/Connecting_a_Push_Switch_on_a_Raspberry.html">Connecting a push button switch on a Raspberry</a></li>
         <li><a href="http://didier.bernaudeau.net/Connecting_an_optocoupler_on_a_Raspberry.html">Connecting an optocouler switch on a Raspberry</a></li>
+        <li><a href="http://didier.bernaudeau.net/WiringPi.html">Wiring PI</a></li>
+        <li><a href="http://didier.bernaudeau.net/Raspberry_PI.html">Raspberry PI</a></li>
     </ul>
 </section>
         </article>
@@ -370,7 +392,7 @@ NTP synchronized: yes
             <aside>
 <div id="aboutme">
         <p>
-            <img width="60%" class="img-thumbnail" src="/images/avatar.png"/>
+            <img width="60%" class="img-thumbnail" src="/images/photo.jpg"/>
         </p>
     <p>
         <strong>About D. Bernaudeau</strong><br/>
@@ -407,6 +429,11 @@ NTP synchronized: yes
                     <li class="list-group-item tag-1">
                         <a href="http://didier.bernaudeau.net/tag/apu.html">
                             APU
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/arch-linux.html">
+                            Arch Linux
                         </a>
                     </li>
                     <li class="list-group-item tag-3">
@@ -500,6 +527,11 @@ NTP synchronized: yes
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/elitebook.html">
+                            EliteBook
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/fancy-bear.html">
                             Fancy Bear
                         </a>
@@ -572,6 +604,11 @@ NTP synchronized: yes
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/mongodb.html">
                             MongoDB
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/music.html">
+                            music
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
@@ -660,6 +697,11 @@ NTP synchronized: yes
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/shell.html">
+                            Shell
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/snmp.html">
                             SNMP
                         </a>
@@ -692,6 +734,11 @@ NTP synchronized: yes
                     <li class="list-group-item tag-4">
                         <a href="http://didier.bernaudeau.net/tag/typescript.html">
                             TypeScript
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://didier.bernaudeau.net/tag/video.html">
+                            video
                         </a>
                     </li>
                     <li class="list-group-item tag-2">

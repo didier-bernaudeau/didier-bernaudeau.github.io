@@ -1,5 +1,385 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-08-07T12:49:00+02:00</updated><entry><title>MongoDB</title><link href="http://didier.bernaudeau.net/MongoDB.html" rel="alternate"></link><published>2018-06-09T10:08:00+02:00</published><updated>2018-08-07T12:49:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-09:/MongoDB.html</id><summary type="html">&lt;p&gt;MongoDB is a document-oriented database very popular especially with MEAN technical stack (MongoDB, ExpressJS, AngularJS and NodeJS). This post will walk-through installing MongoDB on Gentoo Linux then it will list the most usefull command line with Mongo Shell tool (This second part could be a Cheat Sheet).&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My personal blog note - Tutorials</title><link href="http://didier.bernaudeau.net/" rel="alternate"></link><link href="http://didier.bernaudeau.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://didier.bernaudeau.net/</id><updated>2018-10-17T21:53:00+02:00</updated><entry><title>How to install Arch Linux on EliteBook</title><link href="http://didier.bernaudeau.net/HowTo_install_ArchLinux_on_EliteBook.html" rel="alternate"></link><published>2018-10-17T21:53:00+02:00</published><updated>2018-10-17T21:53:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-10-17:/HowTo_install_ArchLinux_on_EliteBook.html</id><summary type="html">&lt;p&gt;This post will walk-through installing Arch Linux on my new laptop: HP EliteBook 840 G5. This tutorial takes into consideration UEFI Kernel and full disk encryption with LUKS.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post will walk-through installing Arch Linux on my new laptop: HP EliteBook 840 G5. This tutorial takes into consideration UEFI Kernel and full disk encryption with LUKS.&lt;/p&gt;
+
+&lt;h1&gt;Creating Kickstart Boot Media&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; curl -O http://archlinux.mirrors.ovh.net/archlinux/iso/2018.10.01/archlinux-2018.10.01-x86_64.iso
+&lt;span class="gp"&gt;$&lt;/span&gt; dd &lt;span class="nv"&gt;bs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4M &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;archlinux-2018.10.01-x86_64.iso &lt;span class="nv"&gt;of&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/sdb
+&lt;span class="gp"&gt;$&lt;/span&gt; sync
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then, plug Ethernet cable and USB key. Press power button and F9 to open Boot Menu.&lt;/p&gt;
+&lt;h1&gt;Pre-installation&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Set the keyboard layout&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; loadkeys fr-latin1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;On a "azerty" keyboard: "loqdkeys fr)lqtin&amp;amp;"&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Partitioning disk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; gdisk /dev/nvme0n1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Partition n°4: SWAP (Type 8200)
+partition n°5: LUKS (Type 8309)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Enable Swap&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mkswap /dev/nvme0n1p4
+&lt;span class="gp"&gt;#&lt;/span&gt; swapon /dev/nvme0n1p4
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Disk encryption&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;load module&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; modprobe dm-crypt
+&lt;span class="gp"&gt;#&lt;/span&gt; modprobe dm-mod
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Disk encryption&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; cryptsetup luksFormat -v -s &lt;span class="m"&gt;512&lt;/span&gt; /dev/nvme0n1p5
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Open encrypted disk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; cryptsetup open /dev/nvme0n1p5 root
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Format disk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mkfs.ext4 -L root /dev/mapper/root
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Mount disk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mount /dev/mapper/root /mnt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;ESP (EFI System Partition)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Create mount point&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mkdir -p /mnt/boot
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Mount ESP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mount /dev/nvme0n1p1 /mnt/boot
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Installation&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install main system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; pacstrap /mnt base
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Configuration&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;create fstab&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Change root&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; arch-chroot /mnt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Localization&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;set localtime&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
+&lt;span class="gp"&gt;#&lt;/span&gt; hwclock --systohc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Localization&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/locale.gen
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; locale-gen
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/locale.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;LANG=en_US.UTF-8
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Set keyboard&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/vconsole.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KEYMAP=fr-latin1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Network&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Create the hostname file:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/hostname
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/hosts
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;127.0.0.1   localhost
+::1     localhost
+127.0.1.1   hostname
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;User&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Set the root password:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; passwd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add a user&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; useradd -m didier
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Install additional software&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Install other software&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;pacman -Syy&lt;/span&gt;
+&lt;span class="go"&gt;pacman -S dhclient bind-tools&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Disk encryption&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Define encrypted disk partition&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/crypttab.initramfs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;root    /dev/nvme0n1p5   none
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure option for initrd&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/mkinitcpio.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;HOOKS=(base systemd autodetect modconf block keyboard sd-vconsole sd-encrypt filesystems)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;/!\ encrypt hook is for Busybox and not for systemd.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a new initramfs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; mkinitcpio -c /etc/mkinitcpio.conf -g /boot/initramfs-linux.img -k &lt;span class="m"&gt;4&lt;/span&gt;.18.12-arh1-1-ARCH
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Note: Kernel version is in /lib/modules&lt;/p&gt;
+&lt;h2&gt;UEFI Boot loader&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Install UEFI Tools&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; pacman -S efibootmgr
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add an entry in UEFI NVRAM&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; efibootmgr --create --disk /dev/nvme0n1 --gpt --part &lt;span class="m"&gt;1&lt;/span&gt; --label &lt;span class="s2"&gt;"Arch Linux"&lt;/span&gt; --loader &lt;span class="s2"&gt;"\vmlinuz-linux"&lt;/span&gt; --unicode &lt;span class="s2"&gt;"rw rd.luks.name=/dev/nvme0n1p5=root  root=/dev/mapper/root initrd=\initramfs-linux.img"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Post Installation&lt;/h1&gt;
+&lt;h2&gt;Desktop environment&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Install packages&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; pacman -S xorg-server xf86-video-intel xf86-input-synaptics sddm plasma plasma-wayland-session
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure Xorg&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; localectl set-x11-keymap fr latin9
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start SDDM&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl start sddm.service
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; sddm.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Network&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Install Network Manager&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; pacman -S networkmanager plasma-nm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start Network Manager&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;systemctl start NetworkManager&lt;/span&gt;
+&lt;span class="go"&gt;systemctl enable NetworkManager&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Time&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Set NTP servers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /etc/systemd/timesyncd.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[Time]&lt;/span&gt;
+&lt;span class="na"&gt;NTP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;0.fr.pool.ntp.org 1.fr.pool.ntp.org 2.fr.pool.ntp.org 3.fr.pool.ntp.org&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start time sync&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl restart systemd-timesyncd.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Check&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl status systemd-timesyncd.service
+&lt;span class="gp"&gt;#&lt;/span&gt; timedatectl status
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Firewall&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Define rules&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nano /root/firewall.sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;table class="table-hover table table-striped highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Interface&lt;/span&gt;
+&lt;span class="nv"&gt;LanInterface&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;enp0s31f6
+&lt;span class="nv"&gt;WifiInterface&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;wlp1s0
+
+&lt;span class="c1"&gt;# Flush existing rules&lt;/span&gt;
+iptables -F
+iptables -X
+
+&lt;span class="c1"&gt;# Default Policy&lt;/span&gt;
+iptables -t filter -P INPUT DROP
+iptables -t filter -P FORWARD DROP
+iptables -t filter -P OUTPUT DROP
+
+&lt;span class="c1"&gt;# New Chain for log&lt;/span&gt;
+iptables -N LogChain
+iptables -A LogChain -m limit --limit &lt;span class="m"&gt;10&lt;/span&gt;/m --limit-burst &lt;span class="m"&gt;10&lt;/span&gt; -j LOG
+iptables -A LogChain -j DROP
+
+&lt;span class="c1"&gt;### Outgoing flow ###&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Allowing DNS&lt;/span&gt;
+iptables -A OUTPUT -o &lt;span class="nv"&gt;$WifiInterface&lt;/span&gt; -p udp --dport &lt;span class="m"&gt;53&lt;/span&gt; -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+&lt;span class="c1"&gt;# Allowing NTP&lt;/span&gt;
+iptables -A OUTPUT -o &lt;span class="nv"&gt;$WifiInterface&lt;/span&gt; -p udp --dport &lt;span class="m"&gt;123&lt;/span&gt; -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+&lt;span class="c1"&gt;# Allowing internet browsing (HTTP and HTTPS)&lt;/span&gt;
+iptables -A OUTPUT -o &lt;span class="nv"&gt;$WifiInterface&lt;/span&gt; -p tcp --dport &lt;span class="m"&gt;80&lt;/span&gt; -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -o &lt;span class="nv"&gt;$WifiInterface&lt;/span&gt; -p tcp --dport &lt;span class="m"&gt;443&lt;/span&gt; -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+
+&lt;span class="c1"&gt;# Allowing incoming established connection&lt;/span&gt;
+iptables -A INPUT -i &lt;span class="nv"&gt;$WifiInterface&lt;/span&gt; -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+&lt;span class="c1"&gt;# Logging dropped packet&lt;/span&gt;
+iptables -A INPUT -j LogChain
+iptables -A OUTPUT -j LogChain
+iptables -A FORWARD -j LogChain
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;Apply rules&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; /root/firewall.sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Show dropped packets&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; journalctl -fk &lt;span class="p"&gt;|&lt;/span&gt; grep &lt;span class="s2"&gt;"IN=.*OUT=.*"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Save rules&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; iptables-save &amp;gt; /etc/iptables/iptables.rules
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Start iptables&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; systemctl start iptables
+&lt;span class="gp"&gt;#&lt;/span&gt; systemctl &lt;span class="nb"&gt;enable&lt;/span&gt; iptables
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Additional software&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Chromium&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; pacman -S chromium ttf-liberation
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;System tools&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; pacman -S htop
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;KDE tools&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; pacman -S konsole dolphin kcalc kwrite
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Gimp&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; pacman -S gimp
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Arch Linux"></category><category term="EliteBook"></category></entry><entry><title>Extracting video from youtube</title><link href="http://didier.bernaudeau.net/Extracting_video_from_youtube.html" rel="alternate"></link><published>2018-09-15T09:15:00+02:00</published><updated>2018-09-15T09:15:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-09-15:/Extracting_video_from_youtube.html</id><summary type="html">&lt;p&gt;This post describes a simple way to extract video or sound from YouTube with "youtube-dl", a useful tool in python.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;This post describes a simple way to extract video or sound from YouTube with "youtube-dl", a useful tool in python.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;List all available formats of requested videos&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; youtube-dl --list-formats https://www.youtube.com/watch?v&lt;span class="o"&gt;=&lt;/span&gt;XXXXXXXXXXX
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;youtube&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="nl"&gt;XXXXXXXXXXX&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Downloading&lt;/span&gt; &lt;span class="n"&gt;webpage&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;youtube&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="nl"&gt;XXXXXXXXXXX&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Downloading&lt;/span&gt; &lt;span class="n"&gt;video&lt;/span&gt; &lt;span class="n"&gt;info&lt;/span&gt; &lt;span class="n"&gt;webpage&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;youtube&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="nl"&gt;XXXXXXXXXXX&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Extracting&lt;/span&gt; &lt;span class="n"&gt;video&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;Available&lt;/span&gt; &lt;span class="n"&gt;formats&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nl"&gt;XXXXXXXXXXX&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;format&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt;  &lt;span class="n"&gt;extension&lt;/span&gt;  &lt;span class="n"&gt;resolution&lt;/span&gt; &lt;span class="n"&gt;note&lt;/span&gt;
+&lt;span class="mi"&gt;140&lt;/span&gt;          &lt;span class="n"&gt;m4a&lt;/span&gt;        &lt;span class="n"&gt;audio&lt;/span&gt; &lt;span class="n"&gt;only&lt;/span&gt; &lt;span class="n"&gt;DASH&lt;/span&gt; &lt;span class="n"&gt;audio&lt;/span&gt;  &lt;span class="mi"&gt;130&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m4a_dash&lt;/span&gt; &lt;span class="n"&gt;container&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mp4a&lt;/span&gt;&lt;span class="mf"&gt;.40.2&lt;/span&gt;&lt;span class="mi"&gt;@128&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.88&lt;/span&gt;&lt;span class="n"&gt;MiB&lt;/span&gt;
+&lt;span class="mi"&gt;160&lt;/span&gt;          &lt;span class="n"&gt;mp4&lt;/span&gt;        &lt;span class="mi"&gt;256&lt;/span&gt;&lt;span class="n"&gt;x144&lt;/span&gt;    &lt;span class="mi"&gt;144&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;  &lt;span class="mi"&gt;106&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;avc1&lt;/span&gt;&lt;span class="mf"&gt;.4&lt;/span&gt;&lt;span class="n"&gt;d400c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;25f&lt;/span&gt;&lt;span class="n"&gt;ps&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;video&lt;/span&gt; &lt;span class="n"&gt;only&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.60&lt;/span&gt;&lt;span class="n"&gt;MiB&lt;/span&gt;
+&lt;span class="mi"&gt;133&lt;/span&gt;          &lt;span class="n"&gt;mp4&lt;/span&gt;        &lt;span class="mi"&gt;426&lt;/span&gt;&lt;span class="n"&gt;x240&lt;/span&gt;    &lt;span class="mi"&gt;240&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;  &lt;span class="mi"&gt;191&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;avc1&lt;/span&gt;&lt;span class="mf"&gt;.4&lt;/span&gt;&lt;span class="n"&gt;d4015&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;25f&lt;/span&gt;&lt;span class="n"&gt;ps&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;video&lt;/span&gt; &lt;span class="n"&gt;only&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.95&lt;/span&gt;&lt;span class="n"&gt;MiB&lt;/span&gt;
+&lt;span class="mi"&gt;134&lt;/span&gt;          &lt;span class="n"&gt;mp4&lt;/span&gt;        &lt;span class="mi"&gt;640&lt;/span&gt;&lt;span class="n"&gt;x360&lt;/span&gt;    &lt;span class="mi"&gt;360&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;  &lt;span class="mi"&gt;401&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;avc1&lt;/span&gt;&lt;span class="mf"&gt;.4&lt;/span&gt;&lt;span class="n"&gt;d401e&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;25f&lt;/span&gt;&lt;span class="n"&gt;ps&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;video&lt;/span&gt; &lt;span class="n"&gt;only&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;5.79&lt;/span&gt;&lt;span class="n"&gt;MiB&lt;/span&gt;
+&lt;span class="mi"&gt;135&lt;/span&gt;          &lt;span class="n"&gt;mp4&lt;/span&gt;        &lt;span class="mi"&gt;854&lt;/span&gt;&lt;span class="n"&gt;x480&lt;/span&gt;    &lt;span class="mi"&gt;480&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;  &lt;span class="mi"&gt;671&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;avc1&lt;/span&gt;&lt;span class="mf"&gt;.4&lt;/span&gt;&lt;span class="n"&gt;d401e&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;25f&lt;/span&gt;&lt;span class="n"&gt;ps&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;video&lt;/span&gt; &lt;span class="n"&gt;only&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;9.07&lt;/span&gt;&lt;span class="n"&gt;MiB&lt;/span&gt;
+&lt;span class="mi"&gt;136&lt;/span&gt;          &lt;span class="n"&gt;mp4&lt;/span&gt;        &lt;span class="mi"&gt;1280&lt;/span&gt;&lt;span class="n"&gt;x720&lt;/span&gt;   &lt;span class="mi"&gt;720&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;1063&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;avc1&lt;/span&gt;&lt;span class="mf"&gt;.4&lt;/span&gt;&lt;span class="n"&gt;d401f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;25f&lt;/span&gt;&lt;span class="n"&gt;ps&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;video&lt;/span&gt; &lt;span class="n"&gt;only&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;13.60&lt;/span&gt;&lt;span class="n"&gt;MiB&lt;/span&gt;
+&lt;span class="mi"&gt;137&lt;/span&gt;          &lt;span class="n"&gt;mp4&lt;/span&gt;        &lt;span class="mi"&gt;1920&lt;/span&gt;&lt;span class="n"&gt;x1080&lt;/span&gt;  &lt;span class="mi"&gt;1080&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;1597&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;avc1&lt;/span&gt;&lt;span class="mf"&gt;.640028&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;25f&lt;/span&gt;&lt;span class="n"&gt;ps&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;video&lt;/span&gt; &lt;span class="n"&gt;only&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;20.25&lt;/span&gt;&lt;span class="n"&gt;MiB&lt;/span&gt;
+&lt;span class="mi"&gt;18&lt;/span&gt;           &lt;span class="n"&gt;mp4&lt;/span&gt;        &lt;span class="mi"&gt;640&lt;/span&gt;&lt;span class="n"&gt;x360&lt;/span&gt;    &lt;span class="n"&gt;medium&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;avc1&lt;/span&gt;&lt;span class="mf"&gt;.42001&lt;/span&gt;&lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mp4a&lt;/span&gt;&lt;span class="mf"&gt;.40.2&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt; &lt;span class="mi"&gt;96&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;best&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Download&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; youtube-dl --format FormatCode https://www.youtube.com/watch?v&lt;span class="o"&gt;=&lt;/span&gt;XXXXXXXXXXX
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Extract audio from video&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ffmpeg -i video.mp4 -b:a 192K -vn audio.mp3
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The -vn options is used to skip inclusion of video.&lt;/p&gt;</content><category term="Python"></category><category term="video"></category><category term="music"></category></entry><entry><title>MongoDB</title><link href="http://didier.bernaudeau.net/MongoDB.html" rel="alternate"></link><published>2018-06-09T10:08:00+02:00</published><updated>2018-08-07T12:49:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2018-06-09:/MongoDB.html</id><summary type="html">&lt;p&gt;MongoDB is a document-oriented database very popular especially with MEAN technical stack (MongoDB, ExpressJS, AngularJS and NodeJS). This post will walk-through installing MongoDB on Gentoo Linux then it will list the most usefull command line with Mongo Shell tool (This second part could be a Cheat Sheet).&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;MongoDB is a document-oriented database very popular especially with MEAN technical stack (MongoDB, ExpressJS, AngularJS and NodeJS). This post will walk-through installing MongoDB on Gentoo Linux then it will list the most usefull command line with Mongo Shell tool (This second part could be a Cheat Sheet).&lt;/p&gt;
 
 &lt;h1&gt;Server&lt;/h1&gt;
@@ -4229,6 +4609,28 @@ NTP synchronized: yes
         psk="MySecret"
 }
 &lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Install python&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Install virtualenv&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;sudo apt-get install python-virtualenv&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a project&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; virtualenv -p python3 ProjectName
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; ProjectName
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;source&lt;/span&gt; bin/activate
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; pip3 install RPi.GPIO
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; pip3 freeze &amp;gt; requirements.txt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Close your project&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; deactivate
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h1&gt;Install additional packages&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Install PyGPIO&lt;/li&gt;
@@ -5656,6 +6058,15 @@ Press enter to keep the current choice[*], or type selection number: 2
 wzxhzdk:18
 
 
+--&gt;
+&lt;!--
+
+depmod: WARNING: /lib/modules/4.9.72-gentoo/net/openvswitch.ko needs unknown symbol udp_sock_create4
+depmod: WARNING: /lib/modules/4.9.72-gentoo/net/openvswitch.ko needs unknown symbol udp_tunnel_sock_release
+depmod: WARNING: /lib/modules/4.9.72-gentoo/net/openvswitch.ko needs unknown symbol setup_udp_tunnel_sock
+depmod: WARNING: /lib/modules/4.9.72-gentoo/net/openvswitch.ko needs unknown symbol udp_tun_rx_dst
+depmod: WARNING: /lib/modules/4.9.72-gentoo/net/openvswitch.ko needs unknown symbol udp_tunnel_xmit_skb
+
 --&gt;</content><category term="virtualization"></category><category term="Gentoo"></category></entry><entry><title>How to install Canon Selphy CP400</title><link href="http://didier.bernaudeau.net/How_to_install_canon_selphy_cp400.html" rel="alternate"></link><published>2016-09-05T22:26:00+02:00</published><updated>2016-09-16T22:56:00+02:00</updated><author><name>Didier BERNAUDEAU</name></author><id>tag:didier.bernaudeau.net,2016-09-05:/How_to_install_canon_selphy_cp400.html</id><summary type="html">&lt;p&gt;This tutorial describe how to install a portable photo printer (Canon Selphy CP400). This device is normaly use for direct printing with Canon compact digital camera. But, this uncommon printer is pretty well supported by cups with gutenprint driver.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This tutorial describe how to install a portable photo printer (Canon Selphy CP400). This device is normaly use for direct printing with Canon compact digital camera. But, this uncommon printer is pretty well supported by cups with gutenprint driver.&lt;/p&gt;
 
@@ -6332,23 +6743,23 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;span class="gp"&gt;$&lt;/span&gt; virt-manager
 &lt;/pre&gt;
 &lt;p&gt;Open the menu "file &amp;gt; Add connection"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Add connection" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Add connection" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="network-configuration"&gt;
 &lt;h2&gt;Network Configuration&lt;/h2&gt;
 &lt;p&gt;After starting LibVirtd, network configuration is as follows:&lt;/p&gt;
-&lt;img alt="Network Configuration" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
+&lt;img alt="Network Configuration" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_00.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="create-a-virtual-machine"&gt;
 &lt;h2&gt;Create a virtual machine&lt;/h2&gt;
 &lt;p&gt;Open the menu "file &amp;gt; New Virtual Machine"&lt;/p&gt;
-&lt;img alt="Virt-Manager - Step1" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step2" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
-&lt;img alt="Virt-Manager - Step3" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step4" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
-&lt;img alt="Virt-Manager - Step5" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step1" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step2" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_03.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - Step3" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_04.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step4" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_05.png" style="width: 50%;"/&gt;
+&lt;img alt="Virt-Manager - Step5" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_06.png" style="width: 50%;"/&gt;
 &lt;p&gt;Select "VirtIO" device model for Network Interface&lt;/p&gt;
-&lt;img alt="Virt-Manager - NIC device model" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
+&lt;img alt="Virt-Manager - NIC device model" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-09-15_howto_install_a_virtualization_plateform_with_KVM_07.png" style="width: 70%;"/&gt;
 &lt;!-- vhost=on --&gt;
 &lt;/div&gt;
 </content><category term="Gentoo"></category><category term="Virtualization"></category></entry><entry><title>How to create bootable USB flash drives with Rufus</title><link href="http://didier.bernaudeau.net/How_to_create_bootable_USB_flash_drives_with_Rufus.html" rel="alternate"></link><published>2015-07-12T12:32:00+02:00</published><updated>2015-07-15T21:45:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-07-12:/How_to_create_bootable_USB_flash_drives_with_Rufus.html</id><summary type="html">&lt;p&gt;This article describes how to create bootable USB flash drives from ISO image with Rufus. The advantages of this software is that it supports UEFI &amp;amp; GPT and can create installation media for Microsoft Windows 7/8. The  disadvantage is that it runs only on Microsoft Windows.&lt;/p&gt;
@@ -6362,12 +6773,12 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;h2&gt;Create installation media&lt;/h2&gt;
 &lt;div class="section" id="example-for-microsoft-windows-8-1-with-mbr"&gt;
 &lt;h3&gt;Example for Microsoft Windows 8.1 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_01.png" style="width: 50%;"/&gt;
 &lt;/div&gt;
 &lt;div class="section" id="example-for-debian-8-with-mbr"&gt;
 &lt;h3&gt;Example for Debian 8 (with MBR)&lt;/h3&gt;
-&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
-&lt;img alt="Rufus - Windows" class="align-center img-responsive" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_02.png" style="width: 50%;"/&gt;
+&lt;img alt="Rufus - Windows" class="img-responsive align-center" src="http://didier.bernaudeau.net/images/2015-07-12_How_to_create_bootable_USB_flash_drives_with_Rufus_03.png" style="width: 50%;"/&gt;
 &lt;p&gt;If you need additional firmware to install Debian :&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul class="simple"&gt;
@@ -6378,7 +6789,7 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="Windows"></category><category term="Linux"></category></entry><entry><title>HowTo configure the Linux kernel for Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html" rel="alternate"></link><published>2015-06-16T22:10:00+02:00</published><updated>2017-09-24T12:13:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-16:/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html</id><summary type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
+</content><category term="Windows"></category><category term="Linux"></category></entry><entry><title>HowTo configure the Linux kernel for Lenovo ThinkPad X240</title><link href="http://didier.bernaudeau.net/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html" rel="alternate"></link><published>2015-06-16T22:10:00+02:00</published><updated>2018-09-16T13:33:00+02:00</updated><author><name>Didier Bernaudeau</name></author><id>tag:didier.bernaudeau.net,2015-06-16:/HowTo-configure-the-Linux-kernel-for-Lenovo-ThinkPad-X240.html</id><summary type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
 &lt;p&gt;To get more information about the configuration of my laptop, you can read this article : &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html"&gt;Lenovo ThinkPad X240&lt;/a&gt;&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;This article describes step by step how to configure the Linux Kernel for my Lenovo ThinkPad X240. This kernel must support Intel Haswell processor, all devices and UEFI bootloader without Grub.&lt;/p&gt;
 &lt;p&gt;To get more information about the configuration of my laptop, you can read this article : &lt;a class="reference external" href="http://didier.bernaudeau.net/Laptop_Lenovo_ThinkPad_X240.html"&gt;Lenovo ThinkPad X240&lt;/a&gt;&lt;/p&gt;
@@ -6628,6 +7039,9 @@ Press enter to keep the current choice[*], or type selection number: 2
 &lt;span class="na"&gt;|      | &amp;lt;*&amp;gt; The Extended 4 (ext4) filesystem&lt;/span&gt;
 &lt;span class="na"&gt;|      | &amp;lt;*&amp;gt; XFS filesystem support&lt;/span&gt;
 &lt;span class="na"&gt;|      | &amp;lt;*&amp;gt; FUSE (Filesystem in Userspace) support&lt;/span&gt;
+&lt;span class="na"&gt;|      |&lt;/span&gt;
+&lt;span class="na"&gt;|      |     CD-ROM/DVD Filesystems  ---&amp;gt;&lt;/span&gt;
+&lt;span class="na"&gt;|      |      | &amp;lt;*&amp;gt; UDF file system support&lt;/span&gt;
 &lt;span class="na"&gt;|      |&lt;/span&gt;
 &lt;span class="na"&gt;|      |     Pseudo filesystems  ---&amp;gt;&lt;/span&gt;
 &lt;span class="na"&gt;|      |      | &amp;lt;*&amp;gt;   EFI Variable filesystem&lt;/span&gt;
@@ -7130,7 +7544,7 @@ Password for 'https://didier-bernaudeau@github.com': *************************&l
 &lt;p&gt;Partition disk&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;table class="table table-hover table-striped"&gt;
+&lt;table class="table-hover table-striped table"&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;Mount Point&lt;/th&gt;
